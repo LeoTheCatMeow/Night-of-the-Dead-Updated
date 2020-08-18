@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CActorRegion default="1" id="GuideRegionNormal">
         <Host Subject="::QueryCaster"/>
@@ -102,7 +102,7 @@
         <AutoScaleFactor value="0.200000"/>
     </CActorModel>
     <CActorModel id="250mmStrikeCannonsImpact">
-        <On index="3" Terms="Effect.250mmStrikeCannonsDamage.Start" Send="Create"/>
+        <On index="3" Terms="Effect.250mmStrikeCannonsDamage.Start"/>
         <On Terms="Effect.BlackDogSearchHEFRounds.Start" Send="Create"/>
         <On Terms="Effect.L3GrenadeExplosion.Start" Send="Create"/>
         <On Terms="Effect.BlackDogDamageAMRounds.Start" Send="Create"/>
@@ -111,7 +111,7 @@
         <Scale value="1.400000,1.400000,2.000000"/>
     </CActorModel>
     <CActorSound id="250mmStrikeCannonsSound">
-        <On index="1" Terms="Effect.250mmStrikeCannonsDamage.Start" Send="Create"/>
+        <On index="1" Terms="Effect.250mmStrikeCannonsDamage.Start"/>
         <On Terms="Effect.L3GrenadeExplosion.Start" Send="Create"/>
     </CActorSound>
     <CActorBeamSimple id="AERLaserRifleBeam" parent="BeamSimpleAnimationStyleOneShot">
@@ -217,6 +217,19 @@
             <Image value="Assets\Textures\wireframe-zerg-brutalisk.dds"/>
         </Wireframe>
     </CActorUnit>
+    <CActorModel id="ChargeImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.ChargePeriodicSetLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ChargePeriodicSetLevel2.Start" Send="Create"/>
+        <Model value="RepulseExplosion5"/>
+        <Scale value="0.400000"/>
+    </CActorModel>
+    <CActorSound id="ChargeImpactSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.ChargePeriodicSetLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ChargePeriodicSetLevel2.Start" Send="Create"/>
+        <Sound value="RepulseSound"/>
+    </CActorSound>
     <CActorSound id="ChargingSound2" parent="SoundContinuous">
         <On Terms="Behavior.Charging.Create" Send="Create"/>
         <On Terms="Behavior.Charging.Destroy" Send="Destroy"/>
@@ -229,6 +242,27 @@
     <CActorDoodad id="CocoonedColonists">
         <Footprint value=""/>
     </CActorDoodad>
+    <CActorModel id="EnergyTransferBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Birth Death ContentForceLooping"/>
+        <On index="1" Terms="Behavior.VenomEnergyTransferLevel1.On" Send="Create"/>
+        <On index="2" Terms="Behavior.VenomEnergyTransferLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.VenomEnergyTransferLevel2.On" Send="Create"/>
+        <On Terms="Behavior.VenomEnergyTransferLevel2.Off" Send="Destroy"/>
+        <Model value="EnergyTransferBuffModel"/>
+    </CActorModel>
+    <CActorModel id="ErebosSporeDetonationModel" parent="GenericAttackImpactModel">
+        <EditorCategories value=""/>
+        <On Terms="Effect.VolatileBurstU4.Start" Send="Create"/>
+        <On Terms="Effect.VolatileBurstU42.Start" Send="Create"/>
+        <Model value="ParasiteImpact"/>
+    </CActorModel>
+    <CActorSound id="ErebosSporeDetonationSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.VolatileBurstU4.Start" Send="Create"/>
+        <On Terms="Effect.VolatileBurstU42.Start" Send="Create"/>
+        <Sound value="Baneling_Suicide"/>
+    </CActorSound>
     <CActorModel id="GenericAttackDamageModel2" parent="GenericAttackModel"/>
     <CActorSound id="GenericAttackDamageSound2" parent="GenericAttackSound"/>
     <CActorModel id="GenericAttackImpactModel2" parent="GenericAttackModel"/>
@@ -244,6 +278,40 @@
         <On Terms="ActorCreation.GhostOverlaySelection" Send="SetOpacity"/>
         <Model value="Ghost"/>
     </CActorModel>
+    <CActorModel id="GuardianoftheBetaDeathBurst" parent="BuffOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 0.700000 AsTimeScale"/>
+        <On index="2" Terms="UnitDeath.GuardianoftheBeta" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,50,50"/>
+    </CActorModel>
+    <CActorModel id="GuardianoftheBetaVisualAddon" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentForceLooping,OpeningPlayForever"/>
+        <On Terms="UnitBirth.GuardianoftheBeta" Send="Create"/>
+        <On Terms="UnitDeath.GuardianoftheBeta" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="GuardianoftheBeta2"/>
+    </CActorModel>
+    <CActorSplat id="ImYourFatherTauntSplat" parent="GenericUnitSplat">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ImYourFatherLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ImYourFatherLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ImYourFatherLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ImYourFatherLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ImYourFatherLevel3.On" Send="Create"/>
+        <On Terms="Behavior.ImYourFatherLevel3.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+        <Color value="50,0,128,255"/>
+        <Model value="TauntAnimation"/>
+        <Scale value="2.000000,2.000000,1.000000"/>
+    </CActorSplat>
+    <CActorSound id="ImboundSicknessImpactSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.InboundSicknessImpactSetLevel1.Start" Send="Create"/>
+        <On Terms="Effect.InboundSicknessImpactSetLevel2.Start" Send="Create"/>
+        <Sound value="Raven_HunterSeekerAttackImpact"/>
+    </CActorSound>
     <CActorModel id="Infection" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.Infection.On" Send="Create"/>
         <On Terms="Behavior.Infection.Off" Send="Destroy"/>
@@ -263,6 +331,38 @@
         <Scale value="1.100000"/>
         <ModelFlags index="AllowHitTest" value="0"/>
     </CActorModel>
+    <CActorSplat id="MadSparkTauntSplat" parent="GenericUnitSplat">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MadSpark.On" Send="Create"/>
+        <On Terms="Behavior.MadSpark.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+        <Color value="50,0,128,255"/>
+        <Model value="TauntAnimation"/>
+        <Scale value="1.500000,1.500000,1.000000"/>
+    </CActorSplat>
+    <CActorUnit id="MissleRevealDummy" parent="GenericUnitBase" unitName="MissleRevealDummy">
+        <EditorCategories value=""/>
+        <Model value="Invisible"/>
+    </CActorUnit>
+    <!-- Dummy Units for the AC Gluescreen End -->
+    <!-- Ping panel beacons, created via effects -->
+    <CActorModel id="PingPanelBeaconAttack">
+        <Filter index="Neutral" value="0"/>
+        <Filter index="Enemy" value="0"/>
+    </CActorModel>
+    <CActorModel id="PingPanelBeaconDefend">
+        <Filter index="Neutral" value="0"/>
+        <Filter index="Enemy" value="0"/>
+    </CActorModel>
+    <CActorModel id="PingPanelBeaconOnMyWay">
+        <Filter index="Neutral" value="0"/>
+        <Filter index="Enemy" value="0"/>
+    </CActorModel>
+    <CActorModel id="PingPanelBeaconRetreat">
+        <Filter index="Neutral" value="0"/>
+        <Filter index="Enemy" value="0"/>
+    </CActorModel>
     <CActorAction id="PredatorAttack2" parent="GenericAttack" effectAttack="Predator2">
         <LaunchAttachQuery Methods="Weapon"/>
         <LaunchAssets Sound="Predator_AttackLaunch2"/>
@@ -278,6 +378,14 @@
         <DamageSound value="GenericAttackDamageSound2"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
+    <CActorModel id="RailgunCursorModel">
+        <Flags index="SuppressSaveLoad" value="0"/>
+    </CActorModel>
+    <CActorSplat id="RaynorSnipeSplat">
+        <On Terms="Abil.RaynorSnipe.TargetOff" Send="Destroy"/>
+        <On Terms="Abil.RaynorSnipe.ButtonHoverOff" Send="Destroy"/>
+        <Scale value="0.300000,1.000000,1.000000"/>
+    </CActorSplat>
     <CActorSound id="ReinforceSound">
         <EditorCategories value=""/>
         <On Terms="SoundDone" Send="Destroy"/>
@@ -369,16 +477,15 @@
     </CActorAction>
     <CActorBeamSimple id="BeamIonCannon" parent="BeamSimpleAnimationStyleContinuous">
         <EditorCategories value=""/>
-        <On index="1" Terms="ActorCreation" Send="Create Impact6"/>
+        <On index="1" Terms="ActorCreation" Send="Create ColossusAttackImpactSound"/>
         <On index="2" Terms="Effect.IonCannonPersistentDummy.Start" Send="Create"/>
         <On Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
         <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
         <On Terms="Effect.IonCannonPersistentDummy.Stop" Send="Destroy"/>
-        <Model value="ColossusAttackBeam"/>
-        <Scale value="10.000000"/>
+        <Model value="OrbitalLaserBeam"/>
+        <Scale value="0.880000,1.000000,0.880000"/>
         <HostLaunch Subject="_Selectable" Scope="Caster"/>
         <HostLaunchSiteOps Ops="SOpAttachCenter SiteOp2"/>
-        <HostImpact Subject="Site6" Actor="Create"/>
     </CActorBeamSimple>
     <CActorSiteOpRandomPointInCircle id="BlazeofGloryVariance">
         <EditorCategories value=""/>
@@ -387,7 +494,7 @@
         <Variance value="20.000000"/>
     </CActorSiteOpRandomPointInCircle>
     <CActorSound id="BroodlingAttackLaunch">
-        <On index="1" Terms="WeaponStart.NeedleClaws2" Send="Create"/>
+        <On index="1" Terms="WeaponStart.NeedleClaws2"/>
     </CActorSound>
     <CActorBeamSimple id="ColossusAttackBeam">
         <Scale value="2.000000"/>
@@ -553,6 +660,8 @@
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
+        <On Terms="ActorCreation" Send="RefSet ::global.RaynorCommando ::Self"/>
+        <On Terms="Signal.*.DestroySplat" Target="RaynorSnipeSplat" Send="Destroy"/>
         <Model value="Ghost"/>
         <EventDataFootprint index="0" Actor="UnitFootprint" Model="GhostLaserLinesFootprint"/>
         <BuildModel value="Ghost"/>
@@ -729,16 +838,6 @@
         <On Terms="Abil.Inception.SourceCastStart" Send="Create"/>
         <Sound value="InceptionStart"/>
     </CActorSound>
-    <CActorModel id="Impact6">
-        <Supporter Subject="::Creator"/>
-        <On Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death"/>
-        <On Terms="ActorCreation" Send="Create ColossusAttackImpactSound"/>
-        <On Terms="SupporterDestruction" Send="AnimBracketStop BSD"/>
-        <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
-        <Host Subject="Site6"/>
-        <Model value="ColossusAttackBeamImpact"/>
-        <Scale value="5.000000"/>
-    </CActorModel>
     <CActorRange id="InboundSicknessRange" parent="RangeAbil" abil="InboundSickness"/>
     <CActorModel id="LevelUp" parent="ModelAddition">
         <Inherits index="BaseModelScale" value="0"/>
@@ -961,6 +1060,22 @@
         <ImpactModel value="M5PulseRifleAttackModel"/>
     </CActorAction>
     <CActorModel id="M5PulseRifleAttackModel" parent="GenericAttackModel"/>
+    <CActorSiteOpLocalOffset id="SOpMoveLeftForward">
+        <EditorCategories value=""/>
+        <LocalOffset value="-0.300000,-0.300000,0.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="SOpMoveRightForward">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.300000,-0.300000,0.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorModel id="ScorchedEarthIndicator" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 1.500000 AsDuration"/>
+        <On Terms="Effect.ScorchedEarthPersistent.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
+        <Model value="ScorchedEarthIndicatorModel"/>
+        <Scale value="1.450000"/>
+    </CActorModel>
     <CActorText id="SethPolarityNegative">
         <On Terms="Behavior.NegativePolarity.On" Send="Create"/>
         <On Terms="Behavior.NegativePolarity.Off" Send="Destroy"/>
@@ -1024,7 +1139,6 @@
         <On Terms="Abil.L3LaunchGrenade.SourceFinishStop" Send="AnimBracketStop {Attack Superior}"/>
         <On Terms="ActorCreation" Send="TimerSet"/>
         <On Terms="TimerExpired" Send="TextureSelectById Marine_Diffuse"/>
-        <On Terms="ActorCreation" Send="AttachModel ModelAdditionHarness MedicShield {Hardpoint 1}"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
         <Model value="MedicNOTD"/>
         <Scale value="1.100000"/>
@@ -1057,7 +1171,6 @@
     </CActorUnit>
     <CActorSiteOpLocalOffset id="SiteOp2">
         <EditorCategories value=""/>
-        <LocalOffset value="0.000000,0.000000,50.000000"/>
     </CActorSiteOpLocalOffset>
     <CActorAction id="SlitherAttack" parent="GenericAttack" effectAttack="VenomousFangs">
         <ImpactMap index="None" Sound="Broodling_AttackImpact"/>
@@ -1499,11 +1612,11 @@
     <CActorModel id="ScorchedEarthBlast" parent="ModelAnimationStyleContinuous">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
         <On Terms="Effect.ScorchedEarthSearch.Start" Send="Create"/>
-        <On Terms="ActorCreation" Send="SetTintColor {51,255,21 0.350000} 1.000000"/>
         <Model value="BattlecruiserHurricaneAttackImpact"/>
+        <Scale value="1.700000"/>
     </CActorModel>
     <CActorSplat id="ScorchedEarthCursor" parent="TerranCursorSplat" abil="ScorchedEarth">
-        <Scale value="6.000000"/>
+        <Model value="ZergAOECursorSplat"/>
     </CActorSplat>
     <CActorAction id="ScorchedEarthLeftLaunch" parent="GenericAttack" effectImpact="ScorchedEarthSearch" effectLaunch="ScorchedEarthLeftLaunch">
         <LaunchAttachQuery Methods="AMFilterBattlecruiserHurricaneLeft AMRandomUniform"/>
@@ -1571,11 +1684,15 @@
         <On Terms="Effect.ContaminateDamageSetLevel2.Start" Send="Create"/>
     </CActorSound>
     <CActorModel id="InboundSicknessBlast" parent="ModelAnimationStyleContinuous">
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
-        <On Terms="ActorCreation" Send="SetTintColor {68,249,72 0.350000} 1.000000"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death"/>
+        <On Terms="Effect.InboundSicknessImpactSetLevel1.Start" Send="Create"/>
+        <On Terms="Effect.InboundSicknessImpactSetLevel2.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor {129,255,111 0.500000}"/>
         <Model value="HunterSeekerAttackImpact"/>
     </CActorModel>
-    <CActorSplat id="InboundSicknessCursor" parent="TerranCursorSplat" abil="InboundSickness"/>
+    <CActorSplat id="InboundSicknessCursor" parent="TerranCursorSplat" abil="InboundSickness">
+        <Model value="ZergAOECursorSplat"/>
+    </CActorSplat>
     <CActorModel id="ContaminateGas" parent="ModelAnimationStyleContinuous">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart $BSD {} Stand {} OpeningPlayForever"/>
         <On Terms="Effect.ContaminatePersistentLevel1.Start" Send="Create"/>
@@ -1584,7 +1701,7 @@
         <On Terms="Effect.ContaminatePersistentLevel2.Stop" Send="Destroy"/>
         <On Terms="Effect.ContaminatePersistentLevel1.Stop" Send="Destroy"/>
         <On Terms="Effect.ContaminatePersistentLevel3.Stop" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="SetTintColor {146,196,30 1.500000}"/>
+        <On Terms="ActorCreation" Send="SetTintColor {128,255,0 0.900000}"/>
         <On Terms="Effect.ContaminatePersistentLevel2.Start" Send="SetScale 1.070000"/>
         <On Terms="Effect.ContaminatePersistentLevel3.Start" Send="SetScale 1.330000"/>
         <Scale value="0.800000"/>
@@ -1592,7 +1709,9 @@
     <CActorRange id="ContaminateRange2" parent="RangeAbil" abil="Contaminate2">
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
-    <CActorSplat id="ContaminateCursor" parent="TerranCursorSplat" abil="Contaminate2"/>
+    <CActorSplat id="ContaminateCursor" parent="TerranCursorSplat" abil="Contaminate2">
+        <Model value="ZergAOECursorSplat"/>
+    </CActorSplat>
     <CActorAction id="ContaminateAttack" parent="GenericAttack" effectImpact="ContaminatePersistentLevel1" effectLaunch="ContaminateLaunchLevel1">
         <On Terms="Effect.ContaminateLaunchLevel2.Start; At Caster" Send="Create"/>
         <On Terms="Effect.ContaminateLaunchLevel3.Start; At Caster" Send="Create"/>
@@ -1641,12 +1760,10 @@
         <Sound value="DesolationSound"/>
     </CActorSound>
     <CActorModel id="DesolationLaunch2" parent="ModelAnimationStyleOneShot">
-        <Flags index="SuppressCreationErrors" value="1"/>
-        <On Terms="Abil.Desolation.SourcePrepStart" Send="Create"/>
-        <On Terms="Abil.Desolation.SourceCastStart" Send="Create"/>
+        <On Terms="Abil.Desolation.SourceFinishStart" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {103,233,106 3.000000}"/>
         <Host Subject="_Unit"/>
-        <HostSiteOps Ops="SOpAttachWeaponRight" HoldRotation="1"/>
+        <HostSiteOps Ops="SOpAttachCenterSoft SOpMoveRightForward"/>
         <Model value="DesolationFlame"/>
         <Scale value="2.500000,1.000000,1.000000"/>
     </CActorModel>
@@ -1654,11 +1771,10 @@
         <FogVisibility value="Visible"/>
     </CActorRange>
     <CActorModel id="DesolationLaunch1" parent="ModelAnimationStyleOneShot">
-        <Flags index="SuppressCreationErrors" value="1"/>
-        <On index="2" Terms="Abil.Desolation.SourceCastStart" Send="Create"/>
+        <On index="2" Terms="Abil.Desolation.SourceFinishStart" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {103,233,106 3.000000}"/>
         <Host Subject="_Unit"/>
-        <HostSiteOps Ops="SOpAttachWeaponLeft" HoldRotation="1"/>
+        <HostSiteOps Ops="SOpAttachCenterSoft SOpMoveLeftForward"/>
         <Model value="DesolationFlame"/>
         <Scale value="2.500000,1.000000,1.000000"/>
     </CActorModel>
@@ -1667,23 +1783,6 @@
         <LaunchAssets Model="HunterSeekerAttackLaunch" Sound="Raven_HunterSeekerLaunch"/>
         <Beam value="HunterSeekerAttackBeam"/>
         <Missile value="HunterSeekerAttackMissile"/>
-        <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOp2DRotation"/>
-        <ImpactAttachQuery Methods="AMFilterTargetVolumes"/>
-        <ImpactMap index="None">
-            <Model value="HunterSeekerAttackImpact"/>
-            <Scale value="0.850000"/>
-            <Sound value="ShellImpact"/>
-            <ModelReaction value="HunterSeekerAttackImpactReaction"/>
-        </ImpactMap>
-        <ImpactMap index="Dirt" Sound="HunterSeekerAttackImpactDirt" ModelReaction="HunterSeekerAttackImpactReactionDirt"/>
-        <ImpactMap index="Rock" Sound="HunterSeekerAttackImpactRock" ModelReaction="HunterSeekerAttackImpactReactionRock"/>
-        <ImpactMap index="Snow" Sound="HunterSeekerAttackImpactSnow" ModelReaction="HunterSeekerAttackImpactReactionSnow"/>
-        <ImpactMap index="Sand" Sound="HunterSeekerAttackImpactSand" ModelReaction="HunterSeekerAttackImpactReactionSand"/>
-        <ImpactMap index="Water" Sound="HunterSeekerAttackImpactWater" ModelReaction="HunterSeekerAttackImpactReactionWater"/>
-        <ImpactMap index="Flesh" Sound="HunterSeekerAttackImpactFlesh" ModelReaction="HunterSeekerAttackImpactReactionFlesh"/>
-        <ImpactMap index="LightArmor" Sound="HunterSeekerAttackImpactLightArmor" ModelReaction="HunterSeekerAttackImpactReactionLightArmor"/>
-        <ImpactMap index="Metal" Sound="HunterSeekerAttackImpactMetal" ModelReaction="HunterSeekerAttackImpactReactionMetal"/>
-        <ImpactMap index="Shield" Sound="HunterSeekerAttackImpactShield" ModelReaction="HunterSeekerAttackImpactReactionShield"/>
         <DamageMap index="None">
             <Model value="TauntAnimation"/>
             <Scale value="3.000000"/>
@@ -1701,7 +1800,6 @@
         <DamageMap index="Metal" Sound="HunterSeekerAttackDamageMetal" ModelReaction="HunterSeekerAttackDamageReactionMetal"/>
         <DamageMap index="Shield" Sound="HunterSeekerAttackDamageShield" ModelReaction="HunterSeekerAttackDamageReactionShield"/>
         <ShieldFlashType value="Full"/>
-        <ImpactModel value="InboundSicknessBlast"/>
         <DamageSiteOps HoldPosition="1"/>
     </CActorAction>
     <CActorRange id="ScorchedEarthRange" parent="RangeAbil" abil="ScorchedEarth"/>
@@ -1726,7 +1824,7 @@
         <On Terms="Effect.ContaminatePersistentLevel1.Start" Send="Create"/>
         <On Terms="Effect.ContaminatePersistentLevel2.Start" Send="Create"/>
         <On Terms="Effect.ContaminatePersistentLevel3.Start" Send="Create"/>
-        <On Terms="ActorCreation" Send="SetTintColor {238,51,234 5.000000}"/>
+        <On Terms="ActorCreation" Send="SetTintColor {140,191,0 0.500000}"/>
         <On Terms="Effect.ContaminatePersistentLevel2.Start" Send="SetScaleAbsolute 1.330000"/>
         <On Terms="Effect.ContaminatePersistentLevel3.Start" Send="SetScaleAbsolute 1.660000"/>
     </CActorModel>
@@ -1855,6 +1953,20 @@
         <EditorCategories value=""/>
         <On Terms="Abil.TacNukeStrike.SourceCastStart" Send="Create"/>
     </CActorSound>
+    <CActorSplat id="TauntSplat" parent="GenericUnitSplat">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.TauntLevel1.On" Send="Create"/>
+        <On Terms="Behavior.TauntLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.TauntLevel2.On" Send="Create"/>
+        <On Terms="Behavior.TauntLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.TauntLevel3.On" Send="Create"/>
+        <On Terms="Behavior.TauntLevel3.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+        <Color value="50,0,128,255"/>
+        <Model value="TauntAnimation"/>
+        <Scale value="2.300000,2.300000,1.000000"/>
+    </CActorSplat>
     <CActorSiteBillboard id="Test">
         <EditorCategories value=""/>
     </CActorSiteBillboard>
@@ -1906,6 +2018,16 @@
         <Host Subject="_Unit"/>
         <Model value="GunshipSupportInactiveFO"/>
     </CActorModel>
+    <CActorBeamSimple id="VRLBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.VRL772CreatePersistent.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 128,255,0"/>
+        <Model value="RaynorSnipeBeam"/>
+        <HostLaunch Subject="ChemicalExpert"/>
+        <HostLaunchSiteOps Ops="SOpAttachWeaponRight"/>
+        <HostImpact Subject="ChemicalExpert"/>
+        <HostImpactSiteOps Ops="SOpAttachCenter SOpRaynorSnipeOffset"/>
+    </CActorBeamSimple>
     <CActorSound id="VRLSound">
         <EditorCategories value=""/>
         <On Terms="SoundDone" Send="Destroy"/>
@@ -2289,6 +2411,8 @@
         <On Terms="UnitBirth.ChemicalExpert" Send="SetTintColor 185,223,159"/>
         <On Terms="UnitCreation.ChemicalExpert" Send="SetTintColor 185,223,159"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
+        <On Terms="Abil.VRL772.SourcePrepStart" Send="AnimBracketStart Shrinker {} Attack,Right {} ContentPlayOnce"/>
+        <On Terms="Abil.VRL772.TargetCastStop" Send="AnimBracketStop Shrinker"/>
         <DeathArray index="Normal" ModelLink="MarauderMercenaryDeath" SoundLink="Marauder_Explode"/>
         <DeathArray index="Eviscerate" ModelLink="MarauderMercenaryDeath" SoundLink="Uni_DeathFXEviscerate"/>
         <PortraitModel value="MarauderMercenaryPortrait"/>
@@ -2456,7 +2580,7 @@
         <Scale value="1.000000,1.000000,1.800000"/>
     </CActorModel>
     <CActorSound id="ReaperJumpLaunchSound">
-        <On index="1" Terms="Abil.FullThrottle.TargetCastStart" Send="Create"/>
+        <On index="1" Terms="Abil.FullThrottle.TargetCastStart"/>
     </CActorSound>
     <CActorMissile id="TrickShotAmmoFourth" parent="GenericAttackMissile" unitName="TrickShotAmmoFourth">
         <Model value="TrickShotProjectile"/>
@@ -6197,8 +6321,8 @@
     <!--        <ImpactAttachQuery Methods="Head"/>-->
     <!--    </CActorAction> -->
     <CActorModel id="NeuralParasiteModel">
-        <On index="3" Terms="Behavior.NeuralParasiteTargeted.On" Send="Create"/>
-        <On index="4" Terms="Behavior.NeuralParasiteTargeted.On" Target="::Main" Send="SetSoundSuffix _NP"/>
+        <On index="3" Terms="Behavior.NeuralParasiteTargeted.On"/>
+        <On index="4" Terms="Behavior.NeuralParasiteTargeted.On"/>
         <On index="5" Terms="Behavior.NeuralParasiteTargeted.Off" Target="" Send="AnimBracketStop BSD"/>
         <On index="6" Terms="Behavior.NeuralParasiteTargeted.Off" Target="::Main" Send="SetSoundSuffix"/>
         <On index="7" removed="1"/>
@@ -6771,18 +6895,6 @@
         <On Terms="ActorCreation" Send="SetTintColor {255,0,0 7.000000}"/>
         <Scale value="3.000000"/>
     </CActorModel>
-    <CActorModel id="TauntAnimation" parent="ModelAnimationStyleContinuous">
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
-        <On index="1" Terms="Effect.TauntLevel1SearchIssueAttack.Start" Send="Create"/>
-        <On index="2" Terms="ActorOrphan" Send="Destroy"/>
-        <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
-        <On Terms="Effect.TauntLevel2SearchIssueAttack.Start" Send="Create"/>
-        <On Terms="Effect.TauntLevel3SearchIssueAttack.Start" Send="Create"/>
-        <On Terms="ActorCreation" Send="SetOpacity 0.200000"/>
-        <Scale value="2.500000"/>
-        <Host Subject="_Unit"/>
-        <HostSiteOps Ops="SOpAttachOriginStationary"/>
-    </CActorModel>
     <CActorAction id="SurgicalLaserBeam" parent="GenericAttack" effectAttack="SurgicalLaserLevel1Set">
         <On index="0" Terms="Effect.SurgicalLaserLevel1Set.Start; At Caster" Send="Create"/>
         <On index="1" Terms="Effect.SurgicalLaserLevel2Set.Start; At Caster" Send="Create"/>
@@ -7285,7 +7397,7 @@
         <On index="5" Terms="Effect.GuardianBladeDamage.Start; At Caster" Send="Create"/>
         <LaunchAttachQuery Methods="AMFilterWeaponLeft"/>
         <LaunchAssets Sound="GuardianBlades_AttackLaunch"/>
-        <ImpactMap index="None" Sound="GuardianBlades_AttackImpact"/>
+        <ImpactMap index="None" Model="GuardianoftheBetaWeaponImpact" Sound="GuardianBlades_AttackImpact"/>
         <ImpactMap index="Shield" Sound="GuardianBlades_AttackImpact"/>
         <ImpactPhysics>
             <Name value="Attack00"/>
@@ -7592,17 +7704,6 @@
         <On Terms="Effect.HadesBloodWheelDamage.Start" Send="Create"/>
         <Sound value="Colossus_AttackLaunch"/>
     </CActorSound>
-    <CActorModel id="ImYourFatherAnimation" parent="ModelAnimationStyleContinuous">
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death"/>
-        <On index="1" Terms="Effect.ImYourFatherSearchIssueAttackLevel1.Start" Send="Create"/>
-        <On index="2" Terms="ActorOrphan" Send="Destroy"/>
-        <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="SetOpacity 0.500000"/>
-        <Model value="TauntAnimation"/>
-        <Scale value="2.500000"/>
-        <Host Subject="_Unit"/>
-        <HostSiteOps Ops="SOpAttachOriginStationary"/>
-    </CActorModel>
     <CActorUnit id="TaurenSpaceMarine2" parent="GenericUnitStandard" unitName="TaurenSpaceMarine2">
         <Model value="TaurenSpaceMarine"/>
         <Scale value="0.600000"/>
@@ -8137,7 +8238,6 @@
     <CActorModel id="ChainsawAnimation" parent="ModelAnimationStyleContinuous">
         <Flags index="SuppressCreationErrors" value="1"/>
         <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
         <Inherits index="CloakEffect" value="1"/>
         <Inherits index="Decal" value="1"/>
         <Inherits index="LocalTintColor" value="1"/>
@@ -8147,12 +8247,10 @@
         <Inherits index="Visibility" value="1"/>
         <Inherits index="WarpGroup" value="1"/>
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
-        <On Terms="Behavior.ChargeLevel1.On" Send="Create"/>
         <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
-        <On Terms="Behavior.ChargeLevel1.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="ActorCreation" Send="SetTintColor {232,0,0 3.000000}"/>
+        <On Terms="ActorCreation" Send="SetCastShadows"/>
         <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachWeapon"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="ChainsawModel"/>
         <Scale value="0.100000"/>
     </CActorModel>
@@ -12421,10 +12519,6 @@
         <On Terms="ActorOrphan" Send="Destroy Immediate"/>
         <On Terms="Behavior.ChemicalPlatingOxalicPoison.On" Send="Create"/>
         <On Terms="Behavior.ChemicalPlatingOxalicPoison.Off" Send="Destroy Immediate"/>
-        <On Terms="Behavior.VenomEnergyTransferLevel1.On" Send="Create"/>
-        <On Terms="Behavior.VenomEnergyTransferLevel1.Off" Send="Destroy Immediate"/>
-        <On Terms="Behavior.VenomEnergyTransferLevel2.On" Send="Create"/>
-        <On Terms="Behavior.VenomEnergyTransferLevel2.Off" Send="Destroy Immediate"/>
         <On Terms="Behavior.VRL772Damage.On" Send="Create"/>
         <On Terms="Behavior.VRL772Damage.Off" Send="Destroy Immediate"/>
         <On Terms="Behavior.VRL772Stun.On" Send="Create"/>
@@ -12947,7 +13041,7 @@
         <Inherits index="CastShadows" value="0"/>
         <Inherits index="CloakEffect" value="0"/>
         <Inherits index="Decal" value="0"/>
-        <On index="3" Terms="Behavior.Flashlight.On; ValidateUnit IsNotHallucination" Send="Create"/>
+        <On index="3" Terms="Behavior.Flashlight.On; ValidateUnit IsNotHallucination"/>
         <On index="4" Terms="Behavior.*.On" Send="TimerSet 0.100000 CloakDelay"/>
         <On Terms="Behavior.*.Off; ValidateUnit UnitFlashlightDecloak" Send="SetVisibility 1"/>
         <On Terms="TimerExpired; TimerName CloakDelay; ValidateUnit UnitisCloaked" Send="SetVisibility"/>
@@ -12957,7 +13051,7 @@
         <Macros value="Shrinker"/>
     </CActorModel>
     <CActorModel id="FlashlightModel4" parent="FlashlightModel">
-        <On index="3" Terms="Behavior.FlashlightFatsuits.On" Send="Create"/>
+        <On index="3" Terms="Behavior.FlashlightFatsuits.On"/>
         <On index="4" Terms="Behavior.*.Off; ValidateUnit UnitFlashlightDecloakFatsuit" Send="SetVisibility 1"/>
         <On index="5" Terms="Behavior.*.On" Send="TimerSet 0.100000 CloakDelay"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
@@ -13025,7 +13119,7 @@
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
     <CActorModel id="NanoShieldModelLevel1" parent="ModelAddition">
-        <On Terms="ActorCreation" Send="SetLocalTintColor {174,174,255 5.000000}"/>
+        <On Terms="ActorCreation" Send="SetTintColor {40,40,255 3.000000}"/>
         <On Terms="Behavior.NanoShieldLevel1.On" Send="Create"/>
         <On Terms="Behavior.NanoShieldLevel1.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.NanoShieldLevel2.On" Send="Create"/>
@@ -13039,6 +13133,7 @@
         <AcceptedHostedPropTransfers index="BaseModelScale" value="0"/>
         <AcceptedHostedPropTransfers index="LocalTintColor" value="0"/>
         <InheritType value="None"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
     </CActorModel>
     <CActorSound id="NanoShieldSoundDeath" parent="SoundOneShot">
         <On Terms="Behavior.NanoShieldLevel1.Off" Send="Create"/>
@@ -13103,8 +13198,6 @@
         <AcceptedHostedPropTransfers index="TintColor" value="0"/>
     </CActorSplat>
     <CActorModel id="ChainsawModelBloodImpact" parent="ModelAnimationStyleOneShot">
-        <On Terms="Behavior.ChargeHeightLevel1.On; ValidateUnit UnitIsBiological" Send="Create"/>
-        <On Terms="Behavior.ChargeHeightLevel2.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpRaynorSnipeBigBloodImpactLaunchGuide SOpPatch15 SOpAttachTarget"/>
         <Model value="RaynorSnipeBigBloodImpact"/>
@@ -14465,10 +14558,10 @@
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorSound id="RaynorSnipeChargeupSound">
-        <On index="1" Terms="Abil.RaynorSnipe.SourcePrepStart" Send="Create"/>
+        <On index="1" Terms="Abil.RaynorSnipe.SourcePrepStart"/>
     </CActorSound>
     <CActorModel id="RaynorSnipeLaunchSquib">
-        <On index="3" Terms="Abil.RaynorSnipe.SourceCastStart" Send="Create"/>
+        <On index="3" Terms="Abil.RaynorSnipe.SourceCastStart"/>
         <Scale value="0.300000"/>
     </CActorModel>
     <CActorModel id="RaynorSnipeLaunchSquib2" parent="ModelAnimationStyleOneShot">
@@ -14485,7 +14578,7 @@
         <Scale value="1.300000"/>
     </CActorModel>
     <CActorSound id="RaynorSnipeSound">
-        <On index="1" Terms="Abil.RaynorSnipe.SourceCastStart" Send="Create"/>
+        <On index="1" Terms="Abil.RaynorSnipe.SourceCastStart"/>
     </CActorSound>
     <CActorSound id="FlareSound" parent="SoundOneShot">
         <EditorCategories value=""/>
@@ -15088,8 +15181,8 @@
         <Model value="NanoShockImpactLevel3"/>
     </CActorModel>
     <CActorModel id="MindBlastStun">
-        <On index="4" Terms="Behavior.MindBlastStun.On; ValidateUnit UnitIsBiological" Send="Create"/>
-        <On index="5" Terms="Behavior.UltrasonicPulseStun.On; ValidateUnit UnitIsBiological" Send="Create"/>
+        <On index="4" Terms="Behavior.MindBlastStun.On; ValidateUnit UnitIsBiological"/>
+        <On index="5" Terms="Behavior.UltrasonicPulseStun.On; ValidateUnit UnitIsBiological"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel1Stun.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel2Stun.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel3Stun.On; ValidateUnit UnitIsBiological" Send="Create"/>
@@ -15244,22 +15337,12 @@
         <StatusBarFlags index="Energy" value="0"/>
         <Scale value="0.800000"/>
     </CActorUnit>
-    <CActorModel id="RailgunCursorModel">
-        <On index="4" removed="1"/>
-        <On index="5" removed="1"/>
-        <On index="6" removed="1"/>
-        <On index="7" removed="1"/>
-    </CActorModel>
     <CActorBeamSimple id="RaynorSnipeBeam">
         <HostLaunch Subject="Marksman"/>
         <HostImpact Subject="Marksman"/>
         <On Terms="Effect.MonofilamentCartridgeCreatePersistentLevel2.Start" Send="Create"/>
         <On Terms="Effect.MonofilamentCartridgeCreatePersistentLevel3.Start" Send="Create"/>
     </CActorBeamSimple>
-    <CActorSplat id="RaynorSnipeSplat">
-        <On Terms="Abil.RaynorSnipe.TargetOff" Send="Destroy"/>
-        <Scale value="0.750000"/>
-    </CActorSplat>
     <CActorSound id="ClipOut" parent="SoundOneShot">
         <On Terms="Behavior.Reload.On" Send="Create"/>
     </CActorSound>
@@ -15658,7 +15741,7 @@
         <On Terms="UnitBirth.GuardianoftheBeta" Send="SetTintColor 160,135,122"/>
         <On Terms="UnitCreation.GuardianoftheBeta" Send="SetTintColor 160,135,122"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
-        <Scale value="3.000000"/>
+        <Scale value="2.600000"/>
         <EventDataFootprint index="0" Model="GuardianoftheBetaFootprint"/>
         <DeathArray index="Normal" VoiceLink="GuardianoftheBetaDeathVoice"/>
         <BarOffset value="140"/>
@@ -15692,11 +15775,17 @@
         <BarHeight value="6"/>
         <Macros value="Shrinker"/>
     </CActorUnit>
+    <!-- Nuke                                                                                    -->
+    <CActorSplat id="nukeCursorSplat">
+        <Flags index="SuppressSaveLoad" value="0"/>
+    </CActorSplat>
     <CActorRange id="nukeRange">
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
     <CActorModel id="GhostNukeIndicator">
         <Model value="nukeCursorSplat"/>
         <Scale value="9.500000"/>
+        <On index="0" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 7.000000 AsDuration"/>
+        <On index="4" removed="1"/>
     </CActorModel>
 </Catalog>

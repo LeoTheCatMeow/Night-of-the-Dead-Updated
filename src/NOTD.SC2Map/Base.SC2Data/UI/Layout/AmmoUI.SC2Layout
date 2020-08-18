@@ -2,7 +2,7 @@
 <Desc>
     <Frame type="Frame" name="AmmoCounter">
         <Height val="35"/>
-        <Width val="230"/>
+        <Width val="270"/>
 
         <Frame type="Image" name="AmmoCountImage">
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
@@ -43,10 +43,17 @@
         </Frame>
 
         <Frame type="Button" name="AmmoUIMoveButton">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="10"/>
-            <Anchor side="Left" relative="$parent/MagazineCountLabel" pos="Max" offset="0"/>
-            <Height val="15"/>
-            <Width val="15"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
+            <Anchor side="Left" relative="$parent/MagazineCountLabel" pos="Max" offset="-5"/>
+            <Height val="25"/>
+            <Width val="25"/>
+        </Frame>
+
+        <Frame type="Button" name="BehaviorTrackerDisplayButton">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
+            <Anchor side="Left" relative="$parent/AmmoUIMoveButton" pos="Max" offset="0"/>
+            <Height val="25"/>
+            <Width val="25"/>
         </Frame>
     </Frame>
 </Desc>

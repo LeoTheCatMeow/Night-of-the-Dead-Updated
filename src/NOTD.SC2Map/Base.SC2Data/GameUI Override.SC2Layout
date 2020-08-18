@@ -30,8 +30,8 @@
 
     <Frame type="Frame" name="GameUI/UIContainer/FullscreenUpperContainer" file="GameUI">
         <Frame type="Frame" name="BossBar" template="BossBar/BossBarTemplate">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="50"/>
-            <Anchor side="Left" relative="$parent" pos="Mid" offset="-400"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="25"/>
+            <Anchor side="Left" relative="$parent" pos="Mid" offset="-250"/>
         </Frame>
 
         <Frame type="AlertPanel" name="AlertPanel" template="AlertPanel/AlertPanelTemplate">
@@ -300,6 +300,5 @@
 			<AcceptsMouse val="False"/>
             <Handle val="CursorAnchor"/>
         </Frame> 
-
 	</Frame>
 </Desc>

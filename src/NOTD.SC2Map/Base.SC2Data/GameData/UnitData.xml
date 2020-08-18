@@ -923,6 +923,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="ChemicalPlatingAuraLevel1"/>
         <BehaviorArray Link="ChemicalPlatingAuraLevel2"/>
@@ -966,14 +967,13 @@
             <LayoutButtons Face="AntiVenom" Type="AbilCmd" AbilCmd="AntiVenom,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="ChemicalExtraction" Type="AbilCmd" AbilCmd="ChemicalExtraction,Execute" Row="2" Column="3"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="4"/>
@@ -985,6 +985,7 @@
         <EditorCategories value="ObjectType:Hero"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
+        <LifeArmorTip value="Unit/ChemicalExpert/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="Cow">
         <LifeMax value="150"/>
@@ -1177,6 +1178,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="SpikedArmorLevel1"/>
         <BehaviorArray Link="SpikedArmorLevel2"/>
@@ -1204,6 +1206,7 @@
             <LayoutButtons Face="Armageddon" Type="AbilCmd" AbilCmd="Armageddon,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="Look" Type="AbilCmd" AbilCmd="Look,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="ImYourFather" Type="AbilCmd" AbilCmd="ImYourFather,On" Row="1" Column="3"/>
+            <LayoutButtons Face="Cancel22" Type="AbilCmd" AbilCmd="ImYourFather,Off" Row="1" Column="3"/>
             <LayoutButtons Face="TimetoDie" Type="AbilCmd" AbilCmd="TimetoDie,On" Row="1" Column="0"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
         </CardLayouts>
@@ -1221,14 +1224,13 @@
             <LayoutButtons Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
             <LayoutButtons Face="Sap" Type="AbilCmd" AbilCmd="Sap,Execute" Row="2" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="3">
@@ -1243,6 +1245,7 @@
         <MinimapRadius value="0.2"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
         <HotkeyCategory value="Hotkey/Heros"/>
+        <LifeArmorTip value="Unit/Demolitions/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="FieldNexus">
         <DeathRevealRadius value="3"/>
@@ -1629,6 +1632,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="MasterMarksman"/>
         <BehaviorArray Link="Scope"/>
@@ -1647,6 +1651,7 @@
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Stealth" Type="AbilCmd" AbilCmd="Stealth,On" Row="1" Column="2"/>
+            <LayoutButtons Face="Cancel2222" Type="AbilCmd" AbilCmd="Stealth,Off" Row="1" Column="2"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="QuickAim" Type="AbilCmd" AbilCmd="QuickAim,Execute" Row="1" Column="3"/>
@@ -1674,14 +1679,13 @@
             <LayoutButtons Face="MasterMarksman" Type="Passive" Requirements="MasterMarksman" Row="2" Column="3"/>
             <LayoutButtons Face="Scope" Type="Passive" Behavior="Scope" Row="2" Column="2"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="4"/>
@@ -1694,6 +1698,7 @@
         <EditorCategories value="ObjectType:Hero"/>
         <AIEvalFactor value="1.2"/>
         <HotkeyCategory value="Hotkey/Heros"/>
+        <LifeArmorTip value="Unit/Marksman/LifeArmorTooltip"/>
     </CUnit>
     <CUnit id="Medic2" parent="BaseHeroLight" ClassInventory="InventoryMedic" ClassLearn="LearnMedic">
         <LifeStart value="185"/>
@@ -1719,6 +1724,7 @@
         <AbilArray Link="EnergyCapacitors"/>
         <AbilArray Link="heal"/>
         <AbilArray Link="MindBlast"/>
+        <AbilArray Link="QuickUseItem"/>
         <CardLayouts index="0">
             <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="NanoStrength" Type="AbilCmd" AbilCmd="NanoStrength,Execute" Row="1" Column="2"/>
@@ -1731,7 +1737,16 @@
             <LayoutButtons Face="SurgicalLaser" Type="AbilCmd" AbilCmd="SurgicalLaser,Execute" Row="2" Column="3"/>
         </CardLayouts>
         <CardLayouts index="1" CardId="2">
-            <LayoutButtons Face="AntiVenom" Type="AbilCmd" AbilCmd="AntiVenom,Execute" Row="1" Column="4"/>
+            <LayoutButtons index="4" Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,255" Row="0" Column="1"/>
+            <LayoutButtons index="6" Face="QuickUse" Type="AbilCmd" AbilCmd="QuickUseItem,Execute" Row="1" Column="0"/>
+            <LayoutButtons index="7" Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
+            <LayoutButtons index="8" Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="2" Column="2"/>
+            <LayoutButtons index="9" Face="DropMagazine" Type="AbilCmd" AbilCmd="DropMagazine,Execute" Row="1" Column="1"/>
+            <LayoutButtons index="10" Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
+            <LayoutButtons index="11" Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
+            <LayoutButtons index="12" Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="GhostHoldFire,Execute" Row="2" Column="0"/>
+            <LayoutButtons index="13" Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="GhostWeaponsFree,Execute" Row="2" Column="1"/>
+            <LayoutButtons index="14" Face="AntiVenom" Type="AbilCmd" AbilCmd="AntiVenom,Execute" Row="1" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Restoration" Type="AbilCmd" AbilCmd="Restoration,Execute" Row="0" Column="0"/>
@@ -1746,6 +1761,7 @@
         <Description value="Button/Tooltip/Medic"/>
         <LifeRegenDelay value="0.5"/>
         <ShieldRegenDelay value="0"/>
+        <LifeArmorTip value="Unit/Medic/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="Menoetes">
         <DeathRevealRadius value="3"/>
@@ -1855,6 +1871,16 @@
         <LifeMax value="75"/>
         <Sight value="1"/>
     </CUnit>
+    <CUnit id="MissleRevealDummy">
+        <Race value="Terr"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="NoDraw" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Sight value="6"/>
+        <BehaviorArray Link="MissleRevealDummy"/>
+        <EditorCategories value=""/>
+    </CUnit>
     <CUnit id="PortJunker">
         <FlagArray index="Unselectable" value="1"/>
         <FlagArray index="Untargetable" value="1"/>
@@ -1896,6 +1922,7 @@
         <AbilArray Link="Bloodlust"/>
         <AbilArray Link="WeaponsProficiency"/>
         <AbilArray Link="SalineIV"/>
+        <AbilArray Link="QuickUseItem"/>
         <CardLayouts index="0">
             <LayoutButtons Face="XM35GrenadeLauncher" Type="AbilCmd" AbilCmd="XM35GrenadeLauncher,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="SalineIV" Type="AbilCmd" AbilCmd="SalineIV,Execute" Row="2" Column="0"/>
@@ -1905,6 +1932,18 @@
             <LayoutButtons Face="SonicTrapLevel1" Type="AbilCmd" AbilCmd="SonicTrap,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="FocusedFire" Type="AbilCmd" AbilCmd="FocusedFire,Execute" Row="1" Column="0"/>
         </CardLayouts>
+        <CardLayouts index="1" CardId="2">
+            <LayoutButtons index="4" Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,255" Row="0" Column="1"/>
+            <LayoutButtons index="6" Face="QuickUse" Type="AbilCmd" AbilCmd="QuickUseItem,Execute" Row="1" Column="0"/>
+            <LayoutButtons index="7" Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
+            <LayoutButtons index="8" Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="2" Column="2"/>
+            <LayoutButtons index="9" Face="DropMagazine" Type="AbilCmd" AbilCmd="DropMagazine,Execute" Row="1" Column="1"/>
+            <LayoutButtons index="10" Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
+            <LayoutButtons index="11" Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
+            <LayoutButtons index="12" Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="GhostHoldFire,Execute" Row="2" Column="0"/>
+            <LayoutButtons index="13" Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="GhostWeaponsFree,Execute" Row="2" Column="1"/>
+            <LayoutButtons index="14" removed="1"/>
+        </CardLayouts>
         <Fidget>
             <ChanceArray index="Anim" value="33"/>
             <ChanceArray index="Idle" value="33"/>
@@ -1912,6 +1951,7 @@
         </Fidget>
         <LifeRegenDelay value="0.5"/>
         <ShieldRegenDelay value="0"/>
+        <LifeArmorTip value="Unit/Rifleman/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="Slither" parent="Larva">
         <Name value="Unit/Name/Slither"/>
@@ -2037,6 +2077,7 @@
         <AbilArray Link="MassDesignate"/>
         <AbilArray Link="Execute"/>
         <AbilArray Link="StealthMatrix"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="MotionSensorLevel1"/>
         <BehaviorArray Link="MotionSensorLevel2"/>
@@ -2087,14 +2128,13 @@
             <LayoutButtons Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="2" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="3">
@@ -2108,6 +2148,7 @@
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
+        <LifeArmorTip value="Unit/Recon/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="TitanBoulder" parent="MISSILE_INVULNERABLE">
         <Race value="Zerg"/>
@@ -2387,6 +2428,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="KittenBeacon"/>
         <BehaviorArray Link="PersonalPropulsionSystem"/>
@@ -2442,14 +2484,13 @@
             <LayoutButtons Face="GhostHoldFire" Type="AbilCmd" AbilCmd="GhostHoldFire,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="WeaponsFree" Type="AbilCmd" AbilCmd="GhostWeaponsFree,Execute" Row="2" Column="1"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="2" Column="4"/>
@@ -2471,6 +2512,7 @@
         </ReviveInfoBase>
         <Mover value="Ground"/>
         <HotkeyCategory value="Hotkey/Heros"/>
+        <LifeArmorTip value="Unit/Pathfinder/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="MarSaraBridgeBLUR">
         <FlagArray index="IgnoreTerrainZInit" value="0"/>
@@ -2617,6 +2659,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="CriticalStrikeAttacker"/>
         <BehaviorArray Link="KittenBeacon"/>
@@ -2672,14 +2715,13 @@
             <LayoutButtons Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
             <LayoutButtons Face="Exhaust" Type="AbilCmd" AbilCmd="Exhaust,Execute" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
@@ -2702,6 +2744,7 @@
             <Charge Link="TychusChaingun/Revive"/>
             <Cooldown Link="TychusChaingun/Revive"/>
         </ReviveInfoBase>
+        <LifeArmorTip value="Unit/Technician/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="DrGunjan">
         <DeathRevealRadius value="3"/>
@@ -2969,6 +3012,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="DefensivePlatingLevel1"/>
         <BehaviorArray Link="DefensivePlatingLevel2"/>
@@ -2999,6 +3043,7 @@
             </LayoutButtons>
             <LayoutButtons Face="HarvesterofSorrow" Type="AbilCmd" AbilCmd="HarvesterofSorrow,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="Taunt2" Type="AbilCmd" AbilCmd="Taunt2,On" Row="2" Column="1"/>
+            <LayoutButtons Face="Cancel222" Type="AbilCmd" AbilCmd="Taunt2,Off" Row="2" Column="1"/>
             <LayoutButtons Face="Charge2" Type="AbilCmd" AbilCmd="Charge2,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="BloodFrenzy" Type="AbilCmd" AbilCmd="BloodFrenzy,On" Row="1" Column="0"/>
@@ -3017,22 +3062,7 @@
             <LayoutButtons Face="Reload" Type="AbilCmd" AbilCmd="Reload,Execute" Row="0" Column="2"/>
             <LayoutButtons Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
-            <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="0"/>
-            </LayoutButtons>
-            <LayoutButtons>
-                <Face value="EnableInventoryTransfer"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,Off"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="0"/>
-            </LayoutButtons>
+            <LayoutButtons Face="QuickUse" Type="AbilCmd" AbilCmd="QuickUseItem,Execute" Row="1" Column="0"/>
         </CardLayouts>
         <Radius value="0.1875"/>
         <SeparationRadius value="0.2"/>
@@ -3041,6 +3071,7 @@
         <MinimapRadius value="0.2"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <SelectAlias value="Assault"/>
+        <LifeArmorTip value="Unit/Assault/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="Assault" parent="BaseHero">
         <DeathRevealFilters value="Visible;Player,Ally,Neutral,Missile,Dead,Hidden"/>
@@ -6338,6 +6369,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="Helium3IgniterLevel1"/>
         <BehaviorArray Link="Helium3IgniterLevel2"/>
@@ -6392,14 +6424,13 @@
             <LayoutButtons Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="4"/>
@@ -6427,6 +6458,7 @@
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
         <HotkeyCategory value="Hotkey/Heros"/>
+        <LifeArmorTip value="Unit/Flamethrower/LifeArmorTooltip"/>
     </CUnit>
     <CUnit id="Predator2" parent="PetTemplate">
         <Name value="Unit/Name/Predator2"/>
@@ -7401,6 +7433,8 @@
         <BehaviorArray Link="DifficultyScalingHP"/>
         <Collide index="Burrow" value="0"/>
         <Collide index="Ground" value="0"/>
+        <Collide index="Structure" value="0"/>
+        <Collide index="Small" value="0"/>
         <Footprint value=""/>
         <PlacementFootprint value=""/>
     </CUnit>
@@ -8248,6 +8282,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="GhostEnergyUserRadar"/>
         <BehaviorArray Link="ForesightLevel1"/>
@@ -8302,14 +8337,13 @@
             <LayoutButtons Face="ForesightLevel2" Type="Passive" Requirements="ForesightLevel2" Row="1" Column="4"/>
             <LayoutButtons Face="ForesightLevel1" Type="Passive" Requirements="ForesightLevel1" Row="1" Column="4"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="4"/>
@@ -8343,6 +8377,7 @@
         <DeathRevealType value="Vision"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
+        <LifeArmorTip value="Unit/PsiOps/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="Parasite" parent="Larva">
         <Name value="Unit/Name/Parasite"/>
@@ -8617,6 +8652,8 @@
         <Race value=""/>
         <Collide index="Burrow" value="0"/>
         <Collide index="Ground" value="0"/>
+        <Collide index="Structure" value="0"/>
+        <Collide index="Small" value="0"/>
         <Footprint value=""/>
     </CUnit>
     <CUnit id="FMJAmmo" parent="ITEM">
@@ -10002,6 +10039,7 @@
         <FlagArray index="AILifetime" value="1"/>
         <PlaneArray index="Ground" value="1"/>
         <Collide index="Burrow" value="1"/>
+        <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
         <LifeStart value="35"/>
         <LifeMax value="35"/>
@@ -10056,6 +10094,7 @@
         <PlaneArray index="Ground" value="1"/>
         <Collide index="Ground" value="1"/>
         <Collide index="ForceField" value="1"/>
+        <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
         <LifeStart value="70"/>
         <LifeMax value="70"/>
@@ -10385,7 +10424,7 @@
         <AbilArray Link="BattlefieldIntelligence"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="LunarBoostersLevel1Dummy"/>
         <BehaviorArray Link="LunarBoostersLevel2Dummy"/>
@@ -10443,9 +10482,7 @@
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
-            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="1" Column="0"/>
-            <LayoutButtons Face="DisableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,On" Row="1" Column="0"/>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
+            <LayoutButtons Face="QuickUse" Type="AbilCmd" AbilCmd="QuickUseItem,Cancel" Row="1" Column="0"/>
             <LayoutButtons Face="DropMagazine" Type="AbilCmd" AbilCmd="DropMagazine,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="GhostHoldFire,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="GhostWeaponsFree,Execute" Row="2" Column="1"/>
@@ -10457,12 +10494,14 @@
             <LayoutButtons Face="FibrinBandage" Type="AbilCmd" AbilCmd="FibrinBandage,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="BattlefieldIntelligence" Type="AbilCmd" AbilCmd="BattlefieldIntelligence,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="2" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="4"/>
         </CardLayouts>
         <HotkeyAlias value="ForwardObserver"/>
         <LifeRegenDelay value="0.5"/>
+        <LifeArmorTip value="Unit/ForwardObserver/LifeArmorTooltip"/>
     </CUnit>
     <CUnit id="CplIrvin" parent="Marine">
         <Name value="Unit/Name/CplIrvin"/>
@@ -10682,6 +10721,7 @@
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="CriticalStrikeAttacker"/>
         <BehaviorArray Link="EnergyBatteryLevel1"/>
@@ -10734,14 +10774,13 @@
             <LayoutButtons Face="TeamLocation" Type="AbilCmd" AbilCmd="TeamLocation,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
             <LayoutButtons Face="Reinforce" Type="AbilCmd" AbilCmd="Reinforce,Execute" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="0.1875"/>
@@ -10755,6 +10794,7 @@
         <GlossaryPriority value="320"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
+        <LifeArmorTip value="Unit/Engineer/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="NydusCanal">
         <LifeStart value="1500"/>
@@ -10804,6 +10844,7 @@
         <FlagArray index="AILifetime" value="1"/>
         <PlaneArray index="Ground" value="1"/>
         <Collide index="Burrow" value="1"/>
+        <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
         <LifeStart value="70"/>
         <LifeMax value="70"/>
@@ -11456,6 +11497,7 @@
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="MonofilamentTrap"/>
+        <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="KittenBeacon"/>
         <BehaviorArray Link="WeaponExpertiseLevel1"/>
@@ -11502,14 +11544,13 @@
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons>
-                <Face value="DisableInventoryTransfer"/>
+                <Face value="QuickUse"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="BlockInventoryTransfer,On"/>
+                <AbilCmd value="QuickUseItem,Execute"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
-            <LayoutButtons Face="EnableInventoryTransfer" Type="AbilCmd" AbilCmd="BlockInventoryTransfer,Off" Row="1" Column="0"/>
         </CardLayouts>
         <CardLayouts CardId="3">
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="4"/>
@@ -11527,6 +11568,7 @@
         </Fidget>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
+        <LifeArmorTip value="Unit/Commando/LifeArmorTooltip"/>
     </CUnit>
     <CUnit id="UrsadakCalf">
         <LifeStart value="500"/>

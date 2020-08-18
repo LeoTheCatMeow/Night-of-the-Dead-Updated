@@ -6,7 +6,7 @@
 			<Anchor relative="$parent"/>
 			<Operator val="Random"/>
 			<A val="1"/>
-			<B val="12"/>
+			<B val="14"/>
 			<StateGroup name="SplatPickerState">
 				<DefaultState val="1"/>
 				<State name="1">
@@ -53,18 +53,27 @@
 					<When type="Property" ResultInt="11"/>
 					<Action type="SetProperty" frame="$parent/LoadScreenImage" Texture="Assets/Textures/Pathfinder.jpg"/>
 				</State>
-				<!-- Essentially a dummy state, this is needed to for state 11 to work -->
+				
 				<State name="12">
 					<When type="Property" ResultInt="12"/>
-					<Action type="SetProperty" frame="$parent/LoadScreenImage" Texture="Assets/Textures/Recon.jpg"/>
-				</State>  
+					<Action type="SetProperty" frame="$parent/LoadScreenImage" Texture="Assets/Textures/Trio.jpg"/>
+				</State>
+                <State name="13">
+					<When type="Property" ResultInt="13"/>
+					<Action type="SetProperty" frame="$parent/LoadScreenImage" Texture="Assets/Textures/Story.jpg"/>
+				</State>
+                <!-- Essentially a dummy state, this is needed to for state 11 to work -->
+                <State name="14">
+					<When type="Property" ResultInt="14"/>
+					<Action type="SetProperty" frame="$parent/LoadScreenImage" Texture="Assets/Textures/Story.jpg"/>
+				</State>
 			</StateGroup>
 		</Frame>
 		<Frame type = "Image" name = "LoadScreenImage">
 			<Anchor side="Left" offset = "0" pos = "Min" relative = "$parent"/>
 			<Anchor side="Top" offset = "0" pos = "Min" relative = "$parent"/>
-			<Width val = "2240" />
-			<Height val = "1260" />
+			<Width val = "2144" />
+			<Height val = "1206" />
 			<Texture val = "" />
 		</Frame>
 	</Frame>

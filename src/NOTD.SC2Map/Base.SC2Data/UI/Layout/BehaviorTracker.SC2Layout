@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Frame" name="BehaviorIconTemplate">
+        <Width val="64"/>
+        <Height val="48"/>
+        <Alpha val="0"/>
+        <CollapseLayout val="true"/>
+
+        <Frame type="Image" name="IconBorder">
+            <Width val="48"/>
+            <Height val="48"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Texture val="Assets\Textures\sc2_ui_glues_bluebuttons_taskbarsmalldown.dds"/>
+            <IgnoreParentAlpha val='true'/>   
+        </Frame> 
+
+        <Frame type="Image" name="IconImage">
+            <Width val="38"/>
+            <Height val="38"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
+            <Texture val="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
+            <IgnoreParentAlpha val='true'/>    
+        </Frame> 
+
+        <Frame type="Label" name="IconLabel">
+             <Anchor side="Top" relative="$parent/IconBorder" pos="Max" offset="-20"/>
+             <Anchor side="Left" relative="$parent/IconBorder" pos="Max" offset="-4"/>
+             <Height val="24"/>
+             <Width val="24"/>
+             <Text val="1"/>
+             <IgnoreParentAlpha val='true'/>
+        </Frame>
+
+        <Frame type="Label" name="IconLabel2">
+             <Anchor side="Top" relative="$parent/IconBorder" pos="Min" offset="2"/>
+             <Anchor side="Left" relative="$parent/IconBorder" pos="Max" offset="-4"/>
+             <Height val="24"/>
+             <Width val="24"/>
+             <Text val=""/>
+             <IgnoreParentAlpha val='true'/>
+        </Frame>        
+    </Frame>
+
+    <Frame type="Frame" name="BehaviorTracker">
+        <Height val="48"/>
+        <Width val="640"/>
+
+        <Frame type="Image" name="BehaviorIcon0" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Image" name="BehaviorIcon1" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon0" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon0" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Image" name="BehaviorIcon2" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon1" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon1" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Image" name="BehaviorIcon3" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon2" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon2" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Image" name="BehaviorIcon4" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon3" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon3" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Image" name="BehaviorIcon5" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon4" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon4" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Image" name="BehaviorIcon6" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon5" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon5" pos="Max" offset="0"/>
+        </Frame>
+        
+         <Frame type="Image" name="BehaviorIcon7" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon6" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon6" pos="Max" offset="0"/>
+        </Frame>
+        
+         <Frame type="Image" name="BehaviorIcon8" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon7" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon7" pos="Max" offset="0"/>
+        </Frame>
+
+         <Frame type="Image" name="BehaviorIcon9" template="BehaviorTracker/BehaviorIconTemplate">
+            <Anchor side="Top" relative="$parent/BehaviorIcon8" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/BehaviorIcon8" pos="Max" offset="0"/>
+        </Frame>
+    </Frame>
+</Desc>

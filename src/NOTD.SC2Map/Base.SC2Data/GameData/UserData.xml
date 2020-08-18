@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CUser id="CustomNames">
+        <Fields Id="Class" Type="Unit" EditorColumn="5"/>
+        <Fields Id="Name" Type="String" EditorColumn="1"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Marksman">
+            <String String="DOCSTR_ArcanePariahMarksman">
+                <Field Id="Name"/>
+            </String>
+            <Unit Unit="Marksman">
+                <Field Id="Class"/>
+            </Unit>
+        </Instances>
+    </CUser>
     <CUser id="OgilvyComments">
         <Fields Id="Comments" Type="Text" Count="10">
             <Flags index="Modifiable" value="1"/>
@@ -1845,25 +1858,6 @@
             <Text Text="UserData/CommunicationTowerCompletionMessages/Completion_Message_002">
                 <Field Id="Message" Index="2"/>
             </Text>
-        </Instances>
-    </CUser>
-    <CUser id="CustomNames">
-        <Fields Id="Player ID NA" Type="String" EditorColumn="2"/>
-        <Fields Id="Class" Type="Unit" EditorColumn="5"/>
-        <Fields Id="Name" Type="String" EditorColumn="1"/>
-        <Fields Id="Player ID EU" Type="String" EditorColumn="3"/>
-        <Fields Id="Player ID SEA" Type="String" EditorColumn="4"/>
-        <Instances Id="[Default]"/>
-        <Instances Id="ArcanePariah">
-            <String String="1-S2-1-431521">
-                <Field Id="Player ID NA"/>
-            </String>
-            <String String="DOCSTR_ArcanePariahMarksman">
-                <Field Id="Name"/>
-            </String>
-            <Unit Unit="Marksman">
-                <Field Id="Class"/>
-            </Unit>
         </Instances>
     </CUser>
     <CUser id="CustomPetImages">
@@ -4403,7 +4397,7 @@
             </Text>
         </Instances>
         <Instances Id="Master of the Universe">
-            <Image>
+            <Image Image="Assets\Textures\ui_battlenet_glue_coop_commandericon_maxicon.dds">
                 <Field Id="Icon"/>
             </Image>
             <Int Int="1000000">
@@ -5404,7 +5398,7 @@
             <User Type="Classes" Instance="Engineer">
                 <Field Id="Class" Index="6"/>
             </User>
-            <User Type="Classes" Instance="Forward Observer">
+            <User Type="Classes" Instance="Pathfinder">
                 <Field Id="Class" Index="5"/>
             </User>
             <User Type="Classes" Instance="Commando">
@@ -5422,7 +5416,7 @@
             <User Type="Classes" Instance="Psi Ops">
                 <Field Id="Class" Index="11"/>
             </User>
-            <User Type="Classes" Instance="Pathfinder">
+            <User Type="Classes" Instance="Forward Observer">
                 <Field Id="Class" Index="12"/>
             </User>
             <User Type="Classes" Instance="Chemical Expert">
@@ -5451,7 +5445,7 @@
             <User Type="Classes" Instance="Chemical Expert">
                 <Field Id="Class" Index="5"/>
             </User>
-            <User Type="Classes" Instance="Pathfinder">
+            <User Type="Classes" Instance="Forward Observer">
                 <Field Id="Class" Index="6"/>
             </User>
             <User Type="Classes" Instance="Psi Ops">
@@ -5460,7 +5454,7 @@
             <User Type="Classes" Instance="Flamethrower">
                 <Field Id="Class" Index="8"/>
             </User>
-            <User Type="Classes" Instance="Forward Observer">
+            <User Type="Classes" Instance="Pathfinder">
                 <Field Id="Class" Index="9"/>
             </User>
             <User Type="Classes" Instance="Demolitions">
@@ -7521,15 +7515,6 @@
             </Text>
             <Text Text="UserData/Medals/Medal of Honor_Name">
                 <Field Id="Name"/>
-            </Text>
-        </Instances>
-    </CUser>
-    <CUser id="TestFunShit">
-        <Fields Id="Blah" Type="Text"/>
-        <Instances Id="[Default]"/>
-        <Instances Id="Stupid">
-            <Text Text="UserData/TestFunShit/Stupid_Blah">
-                <Field Id="Blah"/>
             </Text>
         </Instances>
     </CUser>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CEffectLaunchMissile default="1" id="AssaultJumpLaunchTemplate">
         <?token id="Level"?>
@@ -95,6 +95,11 @@
         <EditorCategories value=""/>
         <Behavior value="Detector5"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="ArmorMeltDamage">
+        <EditorCategories value=""/>
+        <Kind value="Ranged"/>
+        <Death value="Fire"/>
+    </CEffectDamage>
     <CEffectCreateUnit id="CreateNapalmFireInfernoChain">
         <EditorCategories value=""/>
         <WhichLocation Value="SourceUnit"/>
@@ -140,6 +145,12 @@
         <Behavior value="PlayerLivesEmergencyHeal"/>
         <WhichUnit Value="Caster"/>
     </CEffectApplyBehavior>
+    <CEffectCreateUnit id="NukeCreateRevealDummy2">
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <SpawnOwner Value="Neutral"/>
+        <SpawnUnit value="MissleRevealDummy"/>
+    </CEffectCreateUnit>
     <CEffectDamage id="Predator2">
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Armored" value="11"/>
@@ -215,6 +226,11 @@
         <AreaArray Radius="1.5" Effect="RetributionFieldDamage2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
+    <CEffectEnumArea id="ScorchedEarthEstimatedSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,RawResource,HarvestableResource,Missile,Item,Uncommandable,Invulnerable"/>
+        <AreaArray Radius="6"/>
+    </CEffectEnumArea>
     <CEffectModifyUnit id="SharedExperienceBonusTartarus">
         <EditorCategories value=""/>
         <XP value="80"/>
@@ -242,6 +258,34 @@
         <Chance value="0"/>
         <Flags index="Kill" value="0"/>
         <SearchFilters value="-;Heroic"/>
+    </CEffectDamage>
+    <CEffectDamage id="VolatileBurstU4" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ResponseFlags index="Acquire" value="0"/>
+        <ResponseFlags index="Flee" value="0"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Kind value="Splash"/>
+        <KindSplash value="Splash"/>
+        <Amount value="75"/>
+        <Death value="Disintegrate"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
+        <ExcludeArray Value="Outer"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="VolatileBurstU42" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ResponseFlags index="Acquire" value="0"/>
+        <ResponseFlags index="Flee" value="0"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Kind value="Splash"/>
+        <KindSplash value="Splash"/>
+        <Amount value="35"/>
+        <Death value="Disintegrate"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
+        <ExcludeArray Value="Outer"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="WraithCorrosiveAcidApplyDebuff">
         <EditorCategories value="Race:Zerg"/>
@@ -971,7 +1015,9 @@
     <CEffectModifyUnit id="MassDesignateSwitch">
         <EditorCategories value=""/>
         <ImpactUnit Value="Caster"/>
-        <VitalArray index="Energy" Change="-5"/>
+        <VitalArray index="Energy">
+            <Change value="-5"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectSwitch id="MindRavageDamageSwitchLevel1" parent="MindRavageDamageSwitchTemplate" Level="1"/>
     <CEffectSwitch id="MindRavageDamageSwitchLevel12" parent="MindRavageDamageSwitchTemplate" Level="2"/>
@@ -1349,8 +1395,13 @@
     </CEffectEnumArea>
     <CEffectModifyUnit id="ShieldEnergyDamage">
         <EditorCategories value=""/>
-        <VitalArray index="Shields" Change="-20" ChangeFraction="-0.5"/>
-        <VitalArray index="Energy" ChangeFraction="-0.5"/>
+        <VitalArray index="Shields">
+            <Change value="-20"/>
+            <ChangeFraction value="-0.5"/>
+        </VitalArray>
+        <VitalArray index="Energy">
+            <ChangeFraction value="-0.5"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectCreateUnit id="ShieldSatchel">
         <EditorCategories value=""/>
@@ -1435,7 +1486,6 @@
     <CEffectSet id="ChargeSetLevel2">
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="ChargeApplyLevel2"/>
-        <EffectArray value="ChargeApplyDummy"/>
         <EffectArray value="ChargeIssueOrder"/>
         <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
@@ -1679,8 +1729,8 @@
     </CEffectCreateUnit>
     <CEffectSwitch id="ErebosSporeDetonationDamage">
         <EditorCategories value=""/>
-        <CaseArray Validator="IsNightmare" Effect="VolatileBurstU"/>
-        <CaseDefault value="Shotgun"/>
+        <CaseArray Validator="IsNightmare" Effect="VolatileBurstU4"/>
+        <CaseDefault value="VolatileBurstU42"/>
     </CEffectSwitch>
     <CEffectSet id="ErebosSporeDetonationSet">
         <EditorCategories value=""/>
@@ -2002,7 +2052,9 @@
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/BlackoutDrainMana"/>
         <ImpactUnit Value="Source"/>
-        <VitalArray index="Energy" Change="-4.5"/>
+        <VitalArray index="Energy">
+            <Change value="-4.5"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectEnumArea id="MenoetesWormBurstCripple">
         <EditorCategories value=""/>
@@ -2106,7 +2158,9 @@
     </CEffectCreateUnit>
     <CEffectModifyUnit id="ModifyShieldEffects">
         <EditorCategories value=""/>
-        <VitalArray index="Shields" ChangeFraction="-0.32"/>
+        <VitalArray index="Shields">
+            <ChangeFraction value="-0.32"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="NanosteelNetLift">
         <ValidatorArray value="TargetIsAir"/>
@@ -2211,7 +2265,9 @@
     </CEffectSet>
     <CEffectModifyUnit id="Regenerate">
         <EditorCategories value=""/>
-        <VitalArray index="Life" ChangeFraction="1"/>
+        <VitalArray index="Life">
+            <ChangeFraction value="1"/>
+        </VitalArray>
         <Alert value="EileithyiaRegeneration"/>
     </CEffectModifyUnit>
     <CEffectCreatePersistent id="RegeneratePersistant">
@@ -2453,7 +2509,9 @@
     <CEffectModifyUnit id="SurgicalLaserLevel32">
         <EditorCategories value=""/>
         <Marker Link="Effect/SurgicalLaserLevel1"/>
-        <VitalArray index="Life" Change="40"/>
+        <VitalArray index="Life">
+            <Change value="40"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectEnumArea id="SurveillanceFlareSearch">
         <EditorCategories value=""/>
@@ -2485,14 +2543,18 @@
         <MinCount value="2"/>
     </CEffectEnumArea>
     <CEffectModifyUnit id="Transfusion2" parent="Transfusion">
-        <VitalArray index="Life" Change="200"/>
+        <VitalArray index="Life">
+            <Change value="200"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="TransfusionApplyBehavior">
         <EditorCategories value=""/>
         <Behavior value="TransfusionOvertimeHeal"/>
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="TransfusionPeriodicHeal" parent="Transfusion">
-        <VitalArray index="Life" Change="50"/>
+        <VitalArray index="Life">
+            <Change value="50"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectSet id="TransfusionSet">
         <EditorCategories value=""/>
@@ -2742,9 +2804,9 @@
     </CEffectSet>
     <CEffectCreatePersistent id="ChargePersistentLevel2">
         <EditorCategories value=""/>
-        <PeriodCount value="75"/>
+        <PeriodCount value="5"/>
         <PeriodicEffectArray value="ChargeSearchPushLevel2"/>
-        <PeriodicPeriodArray value="0.01"/>
+        <PeriodicPeriodArray value="0.1"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="ChargeSearchLevel2" parent="ChargeSearchTemplate">
         <AreaArray index="0" Radius="3" Effect="ChargeApplyTargetLevel2"/>
@@ -2758,7 +2820,7 @@
     <CEffectEnumArea id="ChargeSearchPushLevel2">
         <EditorCategories value=""/>
         <LaunchLocation Value="CasterUnit"/>
-        <AreaArray Radius="16" Effect="ChargePushSetLevel2"/>
+        <AreaArray Radius="3" Effect="ChargePushSetLevel2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ChargeStunApplyLevel2">
@@ -2767,7 +2829,7 @@
         <Behavior value="ChargeStunLevel2"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="CloakingFieldSearch">
-        <AreaArray index="0" Radius="3" Effect="CloakingField"/>
+        <AreaArray index="0" Radius="3"/>
     </CEffectEnumArea>
     <CEffectDamage id="DisruptionTowerLevel1DamageKill">
         <EditorCategories value="Race:Terran"/>
@@ -3998,12 +4060,13 @@
         <Flags index="Channeled" value="1"/>
         <PeriodCount value="4"/>
         <PeriodicEffectArray value="ScorchedEarthBurstPersistent"/>
-        <PeriodicOffsetArray value="-0.8,-0.8,0"/>
-        <PeriodicOffsetArray value="-0.8,0.8,0"/>
-        <PeriodicOffsetArray value="0.8,0.8,0"/>
-        <PeriodicOffsetArray value="0.8,-0.8,0"/>
+        <PeriodicOffsetArray value="-0.5,-0.5,0"/>
+        <PeriodicOffsetArray value="-0.5,0.5,0"/>
+        <PeriodicOffsetArray value="0.5,0.5,0"/>
+        <PeriodicOffsetArray value="0.5,-0.5,0"/>
         <PeriodicPeriodArray value="0.1"/>
         <HeightMap value="Ground"/>
+        <InitialEffect value="NukeCreateRevealDummy2"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="InboundSicknessApplyLevel1">
         <EditorCategories value=""/>
@@ -4280,7 +4343,9 @@
     <CEffectModifyUnit id="ShoottoMaimDrainMana">
         <EditorCategories value=""/>
         <ImpactUnit Value="Source"/>
-        <VitalArray index="Energy" Change="-1.5"/>
+        <VitalArray index="Energy">
+            <Change value="-1.5"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="FastFiveLevel1Apply">
         <EditorCategories value=""/>
@@ -4550,7 +4615,7 @@
     </CEffectDamage>
     <CEffectDamage id="L3GrenadeExplosionDummy">
         <EditorCategories value=""/>
-        <ArmorReduction value="1"/>
+        <ArmorReduction value="5"/>
         <Amount value="200"/>
         <Death value="Remove"/>
         <AreaArray Radius="2.75" Fraction="1"/>
@@ -4588,19 +4653,19 @@
         <DeathType value="Unknown"/>
     </CEffectLaunchMissile>
     <CEffectEnumArea id="LeviathanGroundAttackSearchAreaA">
-        <AreaArray index="0" MaxCount="1" Radius="7.5" Effect="LeviathanGroundAttackTargetPersistentA"/>
+        <AreaArray index="0" Radius="7.5"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="LeviathanGroundAttackSearchAreaB">
-        <AreaArray index="0" MaxCount="1" Radius="7.5" Effect="LeviathanGroundAttackTargetPersistentB"/>
+        <AreaArray index="0" Radius="7.5"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="LeviathanGroundAttackSearchAreaC">
-        <AreaArray index="0" MaxCount="1" Radius="7.5" Effect="LeviathanGroundAttackTargetPersistentC"/>
+        <AreaArray index="0" Radius="7.5"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="LeviathanGroundAttackSearchAreaD">
-        <AreaArray index="0" MaxCount="1" Radius="7.5" Effect="LeviathanGroundAttackTargetPersistentD"/>
+        <AreaArray index="0" Radius="7.5"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectLaunchMissile id="MadSparkLaunchLevel1">
@@ -4669,7 +4734,6 @@
     <CEffectSet id="ChargeSetLevel1">
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="ChargeApplyLevel1"/>
-        <EffectArray value="ChargeApplyDummy"/>
         <EffectArray value="ChargeIssueOrder"/>
         <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
@@ -4679,14 +4743,14 @@
     </CEffectApplyBehavior>
     <CEffectCreatePersistent id="ChargePersistentLevel1">
         <EditorCategories value=""/>
-        <PeriodCount value="75"/>
+        <PeriodCount value="5"/>
         <PeriodicEffectArray value="ChargeSearchPushLevel1"/>
-        <PeriodicPeriodArray value="0.01"/>
+        <PeriodicPeriodArray value="0.1"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="ChargeSearchPushLevel1">
         <EditorCategories value=""/>
         <LaunchLocation Value="CasterUnit"/>
-        <AreaArray Radius="16" Effect="ChargePushSetLevel1"/>
+        <AreaArray Radius="3" Effect="ChargePushSetLevel1"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectSet id="ChargePushSetLevel1">
@@ -5549,7 +5613,9 @@
         <Count value="100"/>
     </CEffectRemoveBehavior>
     <CEffectModifyUnit id="Restoration2">
-        <VitalArray index="Life" Change="40"/>
+        <VitalArray index="Life">
+            <Change value="40"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectSet id="RestorationSet">
         <EffectArray value="RestorationSearch"/>
@@ -5967,7 +6033,9 @@
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="AntiVenom">
         <EditorCategories value="Race:Terran"/>
-        <VitalArray index="Life" Change="10"/>
+        <VitalArray index="Life">
+            <Change value="10"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="AnticipationApply">
         <EditorCategories value=""/>
@@ -6243,7 +6311,9 @@
     </CEffectDamage>
     <CEffectModifyUnit id="BorrowedTime">
         <EditorCategories value=""/>
-        <VitalArray index="Energy" Change="50"/>
+        <VitalArray index="Energy">
+            <Change value="50"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectDamage id="BrutalizeDamage">
         <Amount value="10"/>
@@ -6870,7 +6940,9 @@
     </CEffectSet>
     <CEffectModifyUnit id="Medkit">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="8.333"/>
+        <VitalArray index="Life">
+            <Change value="8.333"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="Medpack">
         <ValidatorArray index="0" value="HiddenCompareBA"/>
@@ -7380,9 +7452,9 @@
     </CEffectDamage>
     <CEffectDamage id="MP9A2SubMachineGun" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
-        <AttributeBonus index="Light" value="10"/>
+        <AttributeBonus index="Light" value="14"/>
         <Kind value="Ranged"/>
-        <Amount value="12"/>
+        <Amount value="14"/>
         <AreaArray Radius="1.2" Fraction="1"/>
         <AreaArray Radius="1.8" Fraction="0.5"/>
         <ExcludeArray Value="Target"/>
@@ -7390,6 +7462,7 @@
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
+        <ArmorReduction value="1.2"/>
     </CEffectDamage>
     <CEffectDamage id="Crowbar">
         <EditorCategories value="Race:Terran"/>
@@ -7454,7 +7527,7 @@
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="PerditionTurretFlameThrowerSearchArea">
-        <AreaArray index="0" Radius="0.7" Effect="PerditionTurretFlameThrowerDamage"/>
+        <AreaArray index="0" Radius="0.7"/>
         <SearchFilters value="Ground;Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectSet id="PersesDamageSet">
@@ -8095,7 +8168,7 @@
         <RechargeVitalRate value="15"/>
     </CEffectCreateHealer>
     <CEffectEnumArea id="RetributionFieldSearch">
-        <AreaArray index="0" Radius="1.5" Effect="RetributionFieldDamage"/>
+        <AreaArray index="0" Radius="1.5"/>
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Structure,Missile,Item,Stasis,Dead,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectCreatePersistent id="BurstFirePersistentLevel2">
@@ -8308,7 +8381,9 @@
     </CEffectSet>
     <CEffectModifyUnit id="PlayerLivesSetHpToFull">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="450"/>
+        <VitalArray index="Life">
+            <Change value="450"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectDamage id="PlayerLivesSetHpToQuarter">
         <EditorCategories value=""/>
@@ -8323,7 +8398,9 @@
     </CEffectDamage>
     <CEffectModifyUnit id="FaithHeal">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="35"/>
+        <VitalArray index="Life">
+            <Change value="35"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectEnumArea id="FaithSearch">
         <EditorCategories value=""/>
@@ -9186,7 +9263,9 @@
     </CEffectCreatePersistent>
     <CEffectModifyUnit id="PsionicTempestEnergyDrain">
         <EditorCategories value=""/>
-        <VitalArray index="Energy" Change="-1.25"/>
+        <VitalArray index="Energy">
+            <Change value="-1.25"/>
+        </VitalArray>
         <ImpactUnit Value="Caster"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="RighteousnessApply">
@@ -9288,7 +9367,9 @@
         <ValidatorArray value="TargetUnitisStunned"/>
         <EditorCategories value=""/>
         <ImpactUnit Value="Caster"/>
-        <VitalArray index="Life" Change="35"/>
+        <VitalArray index="Life">
+            <Change value="35"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectCreatePersistent id="ShatterPersistent">
         <EditorCategories value=""/>
@@ -9595,14 +9676,22 @@
     </CEffectCreateUnit>
     <CEffectModifyUnit id="SupplyStationModifyLevel1">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="1"/>
-        <VitalArray index="Energy" Change="1"/>
+        <VitalArray index="Life">
+            <Change value="1"/>
+        </VitalArray>
+        <VitalArray index="Energy">
+            <Change value="1"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="SupplyStationModifyLevel2">
         <EditorCategories value=""/>
         <Marker Link="Effect/SupplyStationModifyLevel1"/>
-        <VitalArray index="Life" Change="2"/>
-        <VitalArray index="Energy" Change="2"/>
+        <VitalArray index="Life">
+            <Change value="2"/>
+        </VitalArray>
+        <VitalArray index="Energy">
+            <Change value="2"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectEnumArea id="SupplyStationSearchLevel1">
         <EditorCategories value=""/>
@@ -10360,7 +10449,7 @@
         <AmmoUnit value="UltrasonicPulseWeapon"/>
     </CEffectLaunchMissile>
     <CEffectEnumArea id="UltrasonicPulseSearchArea">
-        <AreaArray index="0" Radius="3" Effect="UltrasonicPulseApplyBehavior"/>
+        <AreaArray index="0" Radius="3"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="VengeanceApply">
@@ -10757,7 +10846,7 @@
     <CEffectDamage id="LaserRifleDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/GuassRifle"/>
-        <ArmorReduction value="-1"/>
+        <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
         <Amount value="26"/>
         <Death value="Fire"/>
@@ -10817,7 +10906,9 @@
     <CEffectModifyUnit id="NanoShieldModifyUnit">
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/DefensiveMatrixModifyUnit"/>
-        <VitalArray index="Shields" ChangeFraction="1"/>
+        <VitalArray index="Shields">
+            <ChangeFraction value="1"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectEnumArea id="ReaperMK13Limit">
         <EditorCategories value=""/>
@@ -11225,7 +11316,7 @@
     </CEffectDamage>
     <CEffectEnumArea id="RaynorSnipeSearch">
         <SearchFilters value="-;Self,Missile,Item,Dead,Invulnerable"/>
-        <AreaArray index="0" Radius="0.75" Effect="MonofilamentCartridgeLevel1ApplyStun"/>
+        <AreaArray index="0" Effect="MonofilamentCartridgeLevel1ApplyStun"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="MonofilamentCartridgeSearchAreaLevel2">
         <EditorCategories value="Race:Terran"/>
@@ -11280,8 +11371,12 @@
     <CEffectModifyUnit id="SadistLv1Healing">
         <EditorCategories value=""/>
         <ImpactUnit Value="Caster"/>
-        <VitalArray index="Life" Change="2"/>
-        <VitalArray index="Shields" Change="1"/>
+        <VitalArray index="Life">
+            <Change value="2"/>
+        </VitalArray>
+        <VitalArray index="Shields">
+            <Change value="1"/>
+        </VitalArray>
         <ValidatorArray value="KillerHasSadist1"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="SadistLv2HealingTemp">
@@ -11290,8 +11385,12 @@
     <CEffectModifyUnit id="SadistLv2Healing">
         <EditorCategories value=""/>
         <ImpactUnit Value="Caster"/>
-        <VitalArray index="Life" Change="4"/>
-        <VitalArray index="Shields" Change="2"/>
+        <VitalArray index="Life">
+            <Change value="4"/>
+        </VitalArray>
+        <VitalArray index="Shields">
+            <Change value="2"/>
+        </VitalArray>
         <ValidatorArray value="KillerHasSadist2"/>
     </CEffectModifyUnit>
     <CEffectDamage id="SatchelBeepDummy">
@@ -11497,7 +11596,7 @@
     </CEffectDamage>
     <CEffectDamage id="ExplodingBarrelLargeExplosion">
         <Amount value="300"/>
-        <AreaArray index="0" Radius="1" Fraction="1" Validator="IsNotaMarine"/>
+        <AreaArray index="0" Radius="1" Validator="IsNotaMarine"/>
         <AreaArray index="1" Radius="2" Fraction="0.75" Validator="IsNotaMarine"/>
         <AreaArray index="2" Radius="2.5" Fraction="0.5" Validator="IsNotaMarine"/>
         <SearchFilters value="-;Self,Missile,Item,Stasis,Dead,Hidden,Invulnerable,HasShields"/>
@@ -11565,8 +11664,12 @@
     </CEffectEnumArea>
     <CEffectModifyUnit id="Restoration">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="70"/>
-        <VitalArray index="Energy" Change="15"/>
+        <VitalArray index="Life">
+            <Change value="70"/>
+        </VitalArray>
+        <VitalArray index="Energy">
+            <Change value="15"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectDamage id="FerociousSpewDamage">
         <Amount value="250"/>
@@ -11696,7 +11799,7 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="NukeDamage">
         <Amount value="1200"/>
-        <AreaArray index="0" Radius="9" Fraction="1"/>
+        <AreaArray index="0" Radius="9"/>
         <AreaArray index="1" removed="1"/>
         <AreaArray index="2" removed="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Stasis,Dead,Invulnerable"/>
@@ -11711,7 +11814,9 @@
     </CEffectDamage>
     <CEffectModifyUnit id="Bandage">
         <EditorCategories value="Race:Terran"/>
-        <VitalArray index="Life" Change="50"/>
+        <VitalArray index="Life">
+            <Change value="50"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyPlayer id="ConcentratedFire1BonusCritOn">
         <Upgrades Upgrade="ConcentratedFireCriticalStrike" Count="1"/>
@@ -11752,17 +11857,23 @@
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="SalineIV">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="20"/>
+        <VitalArray index="Life">
+            <Change value="20"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="SalineIVLevel2">
         <EditorCategories value=""/>
         <Marker Link="Effect/SalineIV"/>
-        <VitalArray index="Life" Change="40"/>
+        <VitalArray index="Life">
+            <Change value="40"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="SalineIVLevel3">
         <EditorCategories value=""/>
         <Marker Link="Effect/SalineIV"/>
-        <VitalArray index="Life" Change="60"/>
+        <VitalArray index="Life">
+            <Change value="60"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectDamage id="StalkerClawsDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -11821,8 +11932,8 @@
         <Amount value="55"/>
         <ResponseFlags index="Flee" value="0"/>
         <ArmorReduction value="1.5"/>
-        <AreaArray index="0" Arc="45" Radius="2" Fraction="0.5"/>
-        <AreaArray index="1" Arc="180" Radius="2" Fraction="0.5"/>
+        <AreaArray index="0" Fraction="0.5"/>
+        <AreaArray index="1" Fraction="0.5"/>
         <AttributeBonus index="Armored" value="0"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <Kind value="Melee"/>
@@ -11879,17 +11990,23 @@
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="SurgicalLaserLevel1">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="10"/>
+        <VitalArray index="Life">
+            <Change value="10"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="SurgicalLaserLevel2">
         <EditorCategories value=""/>
         <Marker Link="Effect/SurgicalLaserLevel1"/>
-        <VitalArray index="Life" Change="20"/>
+        <VitalArray index="Life">
+            <Change value="20"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="SurgicalLaserLevel3">
         <EditorCategories value=""/>
         <Marker Link="Effect/SurgicalLaserLevel1"/>
-        <VitalArray index="Life" Change="30"/>
+        <VitalArray index="Life">
+            <Change value="30"/>
+        </VitalArray>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="SprintSpeedIncrease">
         <ValidatorArray index="0" value="HiddenCompareBA"/>
@@ -11925,7 +12042,7 @@
         <ResponseFlags index="Acquire" value="0"/>
         <ResponseFlags index="Flee" value="0"/>
         <ImpactLocation Value="TargetPoint"/>
-        <AreaArray index="0" Radius="2.5" Fraction="1"/>
+        <AreaArray index="0" Radius="2.5"/>
         <SearchFilters value="Ground;Self,Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="VolatileBurstU2">
@@ -12016,8 +12133,8 @@
         <ValidatorArray value="NotItem"/>
         <ValidatorArray value="UnitisNotaMine"/>
         <SearchFilters value="Ground;Self,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray index="1" Radius="0.7812" Fraction="0.75"/>
-        <AreaArray index="2" Radius="1.25" Fraction="0.5"/>
+        <AreaArray index="1" Fraction="0.75"/>
+        <AreaArray index="2" Fraction="0.5"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="WeaponsProficiencyLevel1Remove">
         <EditorCategories value=""/>

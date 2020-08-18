@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CAbilInventory default="1" id="InventoryTemplate">
         <?token id="EquipmentBag"?>
@@ -107,6 +107,10 @@
         <BehaviorArray value="PredatorCloak2"/>
         <LevelButtonOnTooltip value=""/>
     </CAbilBehavior>
+    <CAbilEffectInstant id="QuickUseItem">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="QuickUse"/>
+    </CAbilEffectInstant>
     <CAbilEffectTarget id="Reinforce">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Cost>
@@ -1531,7 +1535,7 @@
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Channel" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
-        <CursorEffect value="ScorchedEarthSearch"/>
+        <CursorEffect value="ScorchedEarthEstimatedSearch"/>
         <EffectRange index="0" value="5.5,500"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ScorchedEarth"/>
     </CAbilEffectTarget>
@@ -1693,7 +1697,7 @@
         </InfoArray>
     </CAbilMorph>
     <CAbilMorph id="BurrowInfestedAbominationUp">
-        <InfoArray index="0" Unit="Erebos" RandomDelayMax="0.5"/>
+        <InfoArray index="0" Unit="Erebos"/>
         <CmdButtonArray index="Execute">
             <Flags index="ToSelection" value="0"/>
         </CmdButtonArray>
@@ -2207,7 +2211,7 @@
         </CmdButtonArray>
     </CAbilMorph>
     <CAbilMorph id="BurrowRoachUp">
-        <InfoArray index="0" Unit="Stalker2" RandomDelayMax="0.1"/>
+        <InfoArray index="0" Unit="Stalker2"/>
         <CmdButtonArray index="Execute">
             <Flags index="ToSelection" value="0"/>
         </CmdButtonArray>
@@ -2292,6 +2296,7 @@
         <EffectRange index="0" value="3,15"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Charge2"/>
         <LevelButtonTooltip value="Charge Level 2"/>
+        <Flags index="RequireTargetVision" value="0"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="Chew">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3804,7 +3809,10 @@
     <CAbilBehavior id="ImYourFather">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="ImYourFather"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="ImYourFather"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel22"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
         <Cost>
             <Vital index="Energy" value="12"/>
             <Cooldown TimeUse="8"/>
@@ -3814,9 +3822,6 @@
         <BehaviorArray value="ImYourFatherLevel3"/>
         <LevelButtonOnTooltip value="Level 2 I&apos;m Your Father"/>
         <LevelButtonOnTooltip value="Level 3 I&apos;m Your Father"/>
-        <Flags index="Toggle" value="1"/>
-        <Flags index="Transient" value="1"/>
-        <AutoCastValidatorArray value="CasterNotIYFCombine"/>
     </CAbilBehavior>
     <CAbilBehavior id="MasterMarksman">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4135,7 +4140,7 @@
         <AutoCastCountMin value="1"/>
     </CAbilMorph>
     <CAbilMorph id="UpgradeToHive">
-        <InfoArray index="0" Score="1" Unit="Hive">
+        <InfoArray index="0">
             <SectionArray index="Abils">
                 <DurationArray index="Delay" value="1"/>
             </SectionArray>
@@ -4148,7 +4153,7 @@
         </InfoArray>
     </CAbilMorph>
     <CAbilMorph id="UpgradeToLair">
-        <InfoArray index="0" Score="1" Unit="Lair">
+        <InfoArray index="0">
             <SectionArray index="Abils">
                 <DurationArray index="Delay" value="1"/>
             </SectionArray>
@@ -4664,10 +4669,11 @@
         <BehaviorArray value="StealthLevel1"/>
         <BehaviorArray value="StealthLevel2"/>
         <LevelButtonOnTooltip value="Level 2 Stealth"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
-        <AutoCastValidatorArray value="CasterNotCloakedCombine"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel2222"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="ConcentratedFire">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4865,8 +4871,11 @@
     </CAbilEffectInstant>
     <CAbilBehavior id="Taunt2">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <CmdButtonArray index="On" DefaultButtonFace="Taunt"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Taunt2"/>
+        <CmdButtonArray index="On" DefaultButtonFace="Taunt2"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel222"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
         <Cost>
             <Vital index="Energy" value="10"/>
             <Cooldown TimeUse="8"/>
@@ -4876,9 +4885,6 @@
         <BehaviorArray value="TauntLevel3"/>
         <LevelButtonOnTooltip value="Level 2 Taunt"/>
         <LevelButtonOnTooltip value="Level 3 Taunt"/>
-        <Flags index="Toggle" value="1"/>
-        <Flags index="Transient" value="1"/>
-        <AutoCastValidatorArray value="CasterNotTauntCombine"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="TeamLocation">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4922,12 +4928,7 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="VultureSpiderMines">
         <Cost index="0">
-            <Charge>
-                <CountMax value="15"/>
-                <CountStart value="8"/>
-                <CountUse value="1"/>
-                <Location value="Unit"/>
-            </Charge>
+            <Charge CountMax="15" CountStart="8"/>
         </Cost>
         <Cost>
             <Charge>

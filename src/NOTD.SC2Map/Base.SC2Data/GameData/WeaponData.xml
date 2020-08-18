@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CWeaponLegacy id="90mmCannons">
         <Options index="ContinuousScan" value="1"/>
@@ -751,6 +751,7 @@
         <Period value="0.5"/>
         <DamagePoint value="0.3332"/>
         <Effect value="CrowbarSearchDamage"/>
+        <Tip value="Button/Tooltip/Crowbar2"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="MohandarPrismaticBeam">
         <Options index="OnlyFireWhileInAttackOrder" value="1"/>
@@ -954,6 +955,7 @@
         <ChaseFilters value="Ground;-"/>
         <AllowedMovement value="Slowing"/>
         <AcquireScanFilters value="-;Hidden,Invulnerable"/>
+        <Tip value="Button/Tooltip/FlamethrowerMK3"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="GlaiveWurm">
         <TargetFilters value="Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>

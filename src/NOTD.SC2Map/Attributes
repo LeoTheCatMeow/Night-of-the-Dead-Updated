@@ -26,26 +26,6 @@
         </Default>
     </Attribute>
     <Attribute>
-        <Id Value="1"/>
-        <Type Value="Global"/>
-        <Name Value="Attribute001/Name"/>
-        <Description Value="Attribute001/Desc"/>
-        <Availability Value="All"/>
-        <Visibility Value="Host"/>
-        <Access Value="Host"/>
-        <PublicLocked/>
-        <Hidden/>
-        <Value>
-            <Id Value="1"/>
-            <Name Value="Attribute001/Value001/Name"/>
-            <Description Value="Attribute001/Value001/Desc"/>
-        </Value>
-        <Default>
-            <Slot Id="Global"/>
-            <Value Id="1"/>
-        </Default>
-    </Attribute>
-    <Attribute>
         <Id Value="3"/>
         <Type Value="Global"/>
         <Name Value="Attribute003/Name"/>
@@ -169,6 +149,8 @@
         <AttributeHidden Namespace="999" Id="3110"/>
         <AttributeHidden Namespace="999" Id="3111"/>
         <AttributeHidden Namespace="999" Id="3001"/>
+        <AttributeHidden Namespace="999" Id="3015"/>
+        <AttributeHidden Namespace="0" Id="1"/>
         <Attribute Namespace="999" Id="1001">
             <Default>
                 <Slot Id="Global"/>
@@ -299,12 +281,6 @@
             <ValueHidden Id="1349676916" Slot="9"/>
             <ValueHidden Id="1349676916" Slot="10"/>
         </Attribute>
-        <Attribute Namespace="999" Id="3002">
-            <Default>
-                <Slot Id="8"/>
-                <Value Id="1952657465"/>
-            </Default>
-        </Attribute>
         <Attribute Namespace="999" Id="2012">
             <Default>
                 <Slot Id="0"/>
@@ -411,43 +387,47 @@
         <Attribute Namespace="999" Id="3013">
             <Default>
                 <Slot Id="0"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="1"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="2"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="3"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="4"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="5"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="6"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
             </Default>
             <Default>
                 <Slot Id="7"/>
-                <Value Id="1098019937"/>
+                <Value Id="0"/>
                 <Locked/>
+            </Default>
+            <Default>
+                <Slot Id="8"/>
+                <Value Id="0"/>
             </Default>
         </Attribute>
     </Variant>

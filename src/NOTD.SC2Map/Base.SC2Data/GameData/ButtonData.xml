@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CButton id="APAmmo">
         <Icon value="Assets\Textures\btn-techupgrade-terran-impalerrounds.dds"/>
@@ -45,6 +45,29 @@
         <Universal value="1"/>
         <SimpleDisplayText value="SimpleDisplay/Attack2"/>
     </CButton>
+    <CButton id="Cancel22">
+        <Icon value="Assets\Textures\btn-command-cancel.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-cancel.dds"/>
+        <HotkeyAlias value=""/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="Cancel222">
+        <Icon value="Assets\Textures\btn-command-cancel.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-cancel.dds"/>
+        <HotkeyAlias value=""/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="Cancel2222">
+        <Icon value="Assets\Textures\btn-command-cancel.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-cancel.dds"/>
+        <HotkeyAlias value=""/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="EmptySlot2">
+        <Icon value="Assets\Textures\btn-border-abilitycharge.dds"/>
+        <TintRacially value="1"/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
     <CButton id="L3GrenadeLauncher2">
         <TooltipFlags index="ShowResources" value="0"/>
         <Icon value="NOTD Generic Art\NOTD L3 Grenade Launcher.dds"/>
@@ -65,6 +88,9 @@
         <EditorCategories value="Race:Neutral"/>
         <TintRacially value="1"/>
         <Universal value="1"/>
+    </CButton>
+    <CButton id="QuickUse">
+        <Icon value="Assets\Textures\btn-ability-terran-deactivatemine.dds"/>
     </CButton>
     <CButton id="Reinforce">
         <Icon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>

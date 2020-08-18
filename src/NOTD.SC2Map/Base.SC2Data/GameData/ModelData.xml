@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CModel id="AiurOvermindIntestines">
         <Occlusion value="Hide"/>
@@ -47,8 +47,26 @@
     <CModel id="Crate">
         <Occlusion value="Show"/>
     </CModel>
+    <CModel id="DefensiveMatrixModel">
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+    </CModel>
     <CModel id="DestroyedNydusWorm">
         <Occlusion value="Hide"/>
+    </CModel>
+    <CModel id="GuardianoftheBeta2" parent="Unit" Race="Protoss">
+        <Model value="Assets\Effects\Protoss\Ascendant_PowerUp\Ascendant_PowerUp.m3"/>
+        <Radius value="0.000000"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+    <CModel id="GuardianoftheBetaDeathBurst">
+        <Model value="Assets\Effects\Neutral\MomentOfSilence_Coop_Ground\MomentOfSilence_Coop_Ground.m3"/>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+    </CModel>
+    <CModel id="GuardianoftheBetaWeaponImpact">
+        <Model value="Assets\Effects\Protoss\Alarak_DestructionWave_Impact\Alarak_DestructionWave_Impact.m3"/>
     </CModel>
     <CModel id="Infection" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\DiseaseCloud\DiseaseCloud.m3"/>
@@ -88,6 +106,9 @@
     </CModel>
     <CModel id="MinerMale">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
+    </CModel>
+    <CModel id="OrbitalLaserBeam">
+        <Model value="Assets\Effects\Protoss\Cybros_Beam\Cybros_Beam.m3"/>
     </CModel>
     <CModel id="PickupPlasmaRounds">
         <Occlusion value="Show"/>
@@ -150,6 +171,9 @@
         <EditorCategories value="Race:Terran"/>
         <Radius value="1.000000"/>
     </CModel>
+    <CModel id="ScorchedEarthIndicatorModel">
+        <Model value="Assets\COOP\Mengsk\Splats\DirtyBomb_Mengsk_COOP_Splat\DirtyBomb_Mengsk_COOP_Splat.m3"/>
+    </CModel>
     <CModel id="SiegeBreaker">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="1.700000"/>
     </CModel>
@@ -175,6 +199,22 @@
     </CModel>
     <CModel id="ThorAAWeapon">
         <Occlusion value="Show"/>
+    </CModel>
+    <CModel id="EnergyTransferBuffModel" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\RegenerativeBileBuffB\RegenerativeBileBuffB.m3"/>
+    </CModel>
+    <CModel id="ValhallaThorConstruction">
+        <Events index="0" removed="1"/>
+        <Events index="1" removed="1"/>
+        <Events index="2" removed="1"/>
+        <Events index="3" removed="1"/>
+        <Events index="4" removed="1"/>
+        <Events index="5" removed="1"/>
+        <Events index="6" removed="1"/>
+        <Events index="7" removed="1"/>
+        <Events index="8" removed="1"/>
+        <Events index="9" removed="1"/>
+        <Events index="10" removed="1"/>
     </CModel>
     <CModel id="WarhoundPortrait">
         <Model value="Assets\Portraits\Terran\ThorPortrait\ThorPortrait.m3"/>
@@ -206,7 +246,7 @@
         <UnitGlossaryCamera value="Star2CameraMid11"/>
     </CModel>
     <CModel id="GuardianoftheBeta" parent="Unit" Race="Protoss">
-        <Model value="Assets\Units\Protoss\DarkZealot\DarkZealot.m3"/>
+        <Model value="Assets\Units\Protoss\Zealot_Aiur\Zealot_Aiur.m3"/>
         <RequiredAnims value="Assets\Units\Protoss\Zealot_SwarmAnims\Zealot_SwarmAnims.m3a"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid05"/>
@@ -366,8 +406,7 @@
         <ScaleMin value="0.200000,0.200000,0.200000"/>
     </CModel>
     <CModel id="BattlecruiserHurricaneAttackImpact">
-        <ScaleMax value="6.000000,6.000000,6.000000"/>
-        <ScaleMin value="4.000000,4.000000,4.000000"/>
+        <Model value="Assets\Effects\Zerg\BioStasisMissileImpactEx1\BioStasisMissileImpactEx1.m3"/>
     </CModel>
     <CModel id="ChemicalExpertJuggernaught" parent="Unit">
         <Model value="Assets\Units\Terran\MurlocMarine\MurlocMarine.m3"/>
@@ -713,12 +752,10 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
     </CModel>
     <CModelFoliage id="VRLHeal">
-        <Model value="Assets\Effects\Zerg\Regeneration\Regeneration.m3"/>
+        <Model value="Assets\Effects\Zerg\RegenerativeBileBuff\RegenerativeBileBuff.m3"/>
         <EditorCategories value="Race:Terran"/>
         <Lighting value="SurgicalLaserBeam"/>
         <AnimSpeed value="2.500000"/>
-        <ScaleMax value="0.500000,0.500000,0.500000"/>
-        <ScaleMin value="0.500000,0.500000,0.500000"/>
     </CModelFoliage>
     <CModel id="TrickShotProjectile" parent="MissileFX">
         <Model value="Assets\Effects\Terran\GhostWeaponImpact\GhostWeaponImpact.m3"/>
@@ -759,10 +796,6 @@
     </CModel>
     <CModel id="HighYieldStorage">
         <AnimSpeed value="0.200000"/>
-    </CModel>
-    <CModel id="HunterSeekerAttackImpact">
-        <ScaleMax value="1.500000,1.500000,1.500000"/>
-        <ScaleMin value="1.500000,1.500000,1.500000"/>
     </CModel>
     <CModel id="HunterSeekerWeapon">
         <ScaleMax value="0.700000,0.700000,0.700000"/>
@@ -1285,9 +1318,6 @@
         <ScaleMax value="3.000000,3.000000,3.000000"/>
         <ScaleMin value="3.000000,3.000000,3.000000"/>
     </CModel>
-    <CModel id="ProtossSmallUnitDeathLow">
-        <ScaleMax value="1.000000,1.000000,1.000000"/>
-    </CModel>
     <CModel id="NanitesUpgradeSplat" parent="Splat">
         <Model value="Assets\UI\Feedback\PylonRadiusUnpowered\PylonRadiusUnpowered.m3"/>
         <EditorCategories value="Race:Protoss"/>
@@ -1752,12 +1782,12 @@
     <CModel id="MasterOfSubtletyLaunch" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\RecallImpactIn\RecallImpactIn.m3"/>
         <EditorCategories value="Race:Terran"/>
-        <Lighting value="TerranBuildingFireLarge"/>
+        <Lighting value=""/>
     </CModel>
     <CModel id="MasterOfSubtletyEnd" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\RecallImpactOut\RecallImpactOut.m3"/>
         <EditorCategories value="Race:Terran"/>
-        <Lighting value="TerranBuildingFireLarge"/>
+        <Lighting value=""/>
     </CModel>
     <CModel id="PersesBurst">
         <Model value="Assets\Effects\Protoss\XelNagaArtifactSpell\XelNagaArtifactSpell.m3"/>
@@ -2052,7 +2082,6 @@
     </CModel>
     <CModel id="PlasmaDetonatorDamage" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\HybridEnergyMissileImpact\HybridEnergyMissileImpact.m3"/>
-        <EditorCategories value="Race:Neutral"/>
         <Lighting value="ArtifactActivated"/>
     </CModel>
     <CModel id="IvaxsBane">
@@ -2632,7 +2661,7 @@
         <ScaleMin value="0.100000,0.100000,0.100000"/>
     </CModel>
     <CModel id="TauntAnimation" parent="OneShotSpellFX">
-        <Model value="Assets\Effects\Zerg\KerriganBirthRays\KerriganBirthRays.m3"/>
+        <Model value="Assets\Effects\Terran\Liberator_GroundTargetSplat_Placement\Liberator_GroundTargetSplat_Placement.m3"/>
         <AnimSpeed value="0.700000"/>
     </CModel>
     <CModel id="SpikedArmorTarget" parent="PersistentSpellFX">
@@ -2926,7 +2955,6 @@
         <EditorCategories value="Race:Terran"/>
     </CModel>
     <CModel id="PingBoss">
-        <Flags index="FOW" value="0"/>
         <ScaleMax value="2.000000,2.000000,2.000000"/>
         <ScaleMin value="2.000000,2.000000,2.000000"/>
     </CModel>

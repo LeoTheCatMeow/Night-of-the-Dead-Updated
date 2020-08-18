@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CItemEffectInstant id="APAmmo">
         <Flags index="DropOnDeath" value="1"/>
@@ -455,9 +455,9 @@
                 <CountMax value="6"/>
                 <CountStart value="3"/>
                 <CountUse value="1"/>
-                <Link value="Abil/Medpack"/>
+                <Link value="Abil/Bandage"/>
             </Charge>
-            <Cooldown Link="Abil/Medpack"/>
+            <Cooldown Link="Abil/Bandage"/>
         </EffectCost>
         <TargetFilters value="Biological;-"/>
         <Range value="1"/>

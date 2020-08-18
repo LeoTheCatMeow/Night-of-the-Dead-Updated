@@ -202,6 +202,7 @@ Abil/Name/Protect=Protect
 Abil/Name/ProtectReal=Protect (Real)
 Abil/Name/PsionicTempest=Psionic Tempest
 Abil/Name/QuickAim=Quick Aim
+Abil/Name/QuickUseItem=Quick Use Item
 Abil/Name/Rampage=Rampage
 Abil/Name/RavagingPhantom=Ravaging Phantom
 Abil/Name/RaynorSnipe=Monofilament Cartridge
@@ -327,10 +328,6 @@ Alert/Text/ShortRangeWeaponsActivating=(IVAX switches to <c val="FADB05">short-r
 Alert/Tooltip/AthenaWeakened=(Athena is <c val="FF0000">weakened</c> for 10 seconds...)
 Assault Jump Level 2=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 2 -- 300 damage, 8 range, AOE 3.5, grants 85% evasion for 1.5 seconds
 Assault Jump Level 3=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 3 -- 450 damage, 8 range, AOE 4, grants 90% evasion for 2 seconds
-Attribute001/Desc=Sets Values for Map Nights
-Attribute001/Name=Map Night
-Attribute001/Value001/Desc=Map Night is ON!!!
-Attribute001/Value001/Name=Enabled
 Attribute002/Name=Navy Cross
 Attribute002/Value001/Desc=Game will start with Navy Cross, all Medkits/Bandages will be removed.
 Attribute002/Value001/Name=Navy Cross Enabled
@@ -410,9 +407,6 @@ Behavior/Name/BurnHEAmmo=Burn (HE Ammo)
 Behavior/Name/BurnSigma=Burn (Sigma)
 Behavior/Name/ChargeStunLevel1=Charge (Stun) Level 1
 Behavior/Name/ChargeStunLevel2=Charge (Stun) Level 2
-Behavior/Name/ChemicalPlatingAuraLevel1=Chemical Plating Aura (Level 1)
-Behavior/Name/ChemicalPlatingAuraLevel2=Chemical Plating Aura (Level 2)
-Behavior/Name/ChemicalPlatingAuraLevel3=Chemical Plating Aura (Level 3)
 Behavior/Name/ChemicalPlatingAuraTemplate=Chemical Plating Aura Template
 Behavior/Name/ChemicalPlatingLevel1=Chemical Plating (Level 1)
 Behavior/Name/ChemicalPlatingLevel2=Chemical Plating (Level 2)
@@ -515,6 +509,9 @@ Behavior/Name/HarvesterofSorrowTarget=Harvester of Sorrow (Target)
 Behavior/Name/HeightenedSensesDebuff=Heightened Senses (Debuff)
 Behavior/Name/Helium3Acquired=Helium-3 Acquired
 Behavior/Name/Helium3Igniter=Helium-3 Igniter
+Behavior/Name/Helium3IgniterLevel1=Helium-3 Igniter Level 1
+Behavior/Name/Helium3IgniterLevel2=Helium-3 Igniter Level 2
+Behavior/Name/Helium3IgniterLevel3=Helium-3 Igniter Level 3
 Behavior/Name/Hugged=Hugged
 Behavior/Name/IVAXCloak=IVAX Cloak
 Behavior/Name/IVAXShockwave=IVAX Shockwave
@@ -538,6 +535,9 @@ Behavior/Name/InfernoChainTarget=Inferno (Chain Target)
 Behavior/Name/InfernoTarget=Inferno (Target)
 Behavior/Name/Intimidation=Intimidation
 Behavior/Name/IronHand=Iron Hand
+Behavior/Name/ItsMeAgainDamageLevel1=Its Me Again! Damage Level 1
+Behavior/Name/ItsMeAgainDamageLevel2=Its Me Again! Damage Level 2
+Behavior/Name/ItsMeAgainDamageLevel3=Its Me Again! Damage Level 3
 Behavior/Name/KillstoCasterGrenade=Kills to Caster Grenade
 Behavior/Name/KillstoOuter=Kills to Outer
 Behavior/Name/LaserDesignatorLevel1=Laser Designator (Level 1)
@@ -572,9 +572,6 @@ Behavior/Name/MonofilamentTrapDuration=Monofilament Trap Duration
 Behavior/Name/MonofilamentTrapIntialReveal=Monofilament Trap Intial Reveal
 Behavior/Name/MoreDoTs=Nano Sear
 Behavior/Name/MotionSensorArmorDebuff=Motion Sensor (Armor Debuff)
-Behavior/Name/NanitesUpgradeBuffLevel1=Nanites Upgrade (Aura - Level 1)
-Behavior/Name/NanitesUpgradeBuffLevel2=Nanites Upgrade (Aura - Level 2)
-Behavior/Name/NanitesUpgradeBuffLevel3=Nanites Upgrade (Aura - Level 3)
 Behavior/Name/NanitesUpgradeLevel1=Nanites Upgrade (Level 1)
 Behavior/Name/NanitesUpgradeLevel2=Nanites Upgrade (Level 2)
 Behavior/Name/NanitesUpgradeLevel3=Nanites Upgrade (Level 3)
@@ -685,7 +682,6 @@ Behavior/Name/SpikedArmorLevel1=Spiked Armor (Level 1)
 Behavior/Name/SpikedArmorLevel2=Spiked Armor (Level 2)
 Behavior/Name/SpikedArmorLevel3=Spiked Armor (Level 3)
 Behavior/Name/Sprint=Sprint
-Behavior/Name/Sprint2=Sprint Copy
 Behavior/Name/SprintLevel1=Sprint
 Behavior/Name/StaticShield=Static Shield
 Behavior/Name/StaticShieldAura=Static Shield Aura
@@ -732,8 +728,6 @@ Behavior/Name/VengeanceLevel2=Vengeance (Level 2)
 Behavior/Name/VengeanceLevel3=Vengeance (Level 3)
 Behavior/Name/VengeanceStun=Vengeance (Stun)
 Behavior/Name/Venom=Venom
-Behavior/Name/VenomEnergyTransferLevel1=Venom (Energy Transfer - Level 1)
-Behavior/Name/VenomEnergyTransferLevel2=Venom (Energy Transfer - Level 2)
 Behavior/Name/VenomousExplosion=Venomous Explosion
 Behavior/Name/VeteransFocus=Veteran's Focus
 Behavior/Name/VolatileBurstBuilding=Volatile Burst Building
@@ -781,13 +775,10 @@ Behavior/Tooltip/BringThemDownLevel3Slow=Unit is slowed by 35% for 4 seconds.
 Behavior/Tooltip/BurnHEAmmo=Unit is under effect of HE ammo.
 Behavior/Tooltip/ChargeStunLevel1=Unit is stunned for 2 seconds.
 Behavior/Tooltip/ChargeStunLevel2=Unit is stunned for 4 seconds.
-Behavior/Tooltip/ChemicalPlatingAuraLevel1=Attacks on the Chemical Expert and allies in 5 radius stack an oxalic poison that lasts for 30 seconds onto enemies. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/>Level 1 - 1 poison stack per attack
-Behavior/Tooltip/ChemicalPlatingAuraLevel2=Attacks on the Chemical Expert and allies in 5 radius stack an oxalic poison that lasts for 30 seconds onto enemies. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/>Level 2 - 2 poison stack per attack
-Behavior/Tooltip/ChemicalPlatingAuraLevel3=Attacks on the Chemical Expert and allies in 5 radius stack an oxalic poison that lasts for 30 seconds onto enemies. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/>Level 3 - 3 poison stack per attack
 Behavior/Tooltip/ChemicalPlatingAuraTemplate=Attacks on the Chem Expert and allies in 3 radius stack an oxalic poison that lasts for 30 seconds onto enemies. This poison slows movement by 3% and deals 5 damage per second. Maximum stack of 20.<n/>Level 1 - 1 poison stack per attack
-Behavior/Tooltip/ChemicalPlatingLevel1=Attacks on unit stacks an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 1 - 1 poison stack per attack
-Behavior/Tooltip/ChemicalPlatingLevel2=Attacks on unit stacks an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 2 - 2 poison stacks per attack
-Behavior/Tooltip/ChemicalPlatingLevel3=Attacks on unit stacks an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 3 - 3 poison stacks per attack
+Behavior/Tooltip/ChemicalPlatingLevel1=Attacks on unit stacks an oxalic poison that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 1 - 1 poison stack per attack
+Behavior/Tooltip/ChemicalPlatingLevel2=Attacks on unit stacks an oxalic poison that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 2 - 2 poison stacks per attack
+Behavior/Tooltip/ChemicalPlatingLevel3=Attacks on unit stacks an oxalic poison that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 3 - 3 poison stacks per attack
 Behavior/Tooltip/ChemicalPlatingOxalicPoison=Unit is poisoned - movement slowed by 4% and takes 5 damage per second. Stacks up to 20 times. 
 Behavior/Tooltip/ChemicalPlatingTemplate=Attacks on unit stacks an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 3% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 1 - 1 poison stack per attack
 Behavior/Tooltip/Chewed=Unit is chewed by Cerberus.
@@ -802,9 +793,9 @@ Behavior/Tooltip/ComplianceMatrix=Unit is under permanent control of Compliance 
 Behavior/Tooltip/ConcentratedFireLevel1=+50% attack speed and +1 sight range. -5% movespeed. +5% Critical Strike chance if talent is learnt. Lasts for 7 seconds
 Behavior/Tooltip/ConcentratedFireLevel2=+100% attack speed and +2 sight range. -5% movespeed. +10% Critical Strike chance if talent is learnt. Lasts for 7 seconds
 Behavior/Tooltip/ConcentratedFireLevel3=+150% attack speed and +3 sight range. -5% movespeed. +15% Critical Strike chance if talent is learnt. Lasts for 7 seconds
-Behavior/Tooltip/ConcentrationLevel1=Deals an extra 20% damage on next attack
-Behavior/Tooltip/ConcentrationLevel2=Deals an extra 40% damage on next attack
-Behavior/Tooltip/ConcentrationLevel3=Deals an extra 60% damage on next attack
+Behavior/Tooltip/ConcentrationLevel1=Deals an extra 20% damage on next attack. Does not consume stack if target is dead before bonus applies.
+Behavior/Tooltip/ConcentrationLevel2=Deals an extra 40% damage on next attack. Does not consume stack if target is dead before bonus applies.
+Behavior/Tooltip/ConcentrationLevel3=Deals an extra 60% damage on next attack. Does not consume stack if target is dead before bonus applies.
 Behavior/Tooltip/Corrosion=-1 armor. Stacks up to 20 times.
 Behavior/Tooltip/CorrosiveAcid=-1 armor for 30 seconds. Stacks up to 5 times.
 Behavior/Tooltip/Cripple=Unit has fractured bones and suffers from -30% movespeed. Can be cured via Medic's Surgical Laser.
@@ -863,6 +854,9 @@ Behavior/Tooltip/HarvesterofSorrow=The Assault gains 40% bonus Critical Strike, 
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
 Behavior/Tooltip/HeightenedSensesDebuff=Unit takes +25% damage for 15 seconds.
 Behavior/Tooltip/Helium3Igniter=Unit takes 10 damage over 3 seconds.
+Behavior/Tooltip/Helium3IgniterLevel1=Increased range of flamer by 1 and 10% increased damage.
+Behavior/Tooltip/Helium3IgniterLevel2=Increased range of flamer by 2 and 20% increased damage.
+Behavior/Tooltip/Helium3IgniterLevel3=Increased range of flamer by 3 and 30% increased damage.
 Behavior/Tooltip/Hugged=This unit is being immobilized by a Demeter's Cocoons, unit can only be saved by allies using combat knife. Unit takes 300 damage over 10 seconds. 
 Behavior/Tooltip/IVAXCloak=Cloaked for 5 seconds
 Behavior/Tooltip/ImYourFatherLevel1=Provokes all enemies in 7 radius to attack demo for 4 seconds. Taunted units deal 15% less damage.
@@ -882,6 +876,9 @@ Behavior/Tooltip/Infection=Unit is infected is slowly turning into a zombie.
 Behavior/Tooltip/Inferno=Unit is burned from within and will explode in 5 seconds dealing 200 damage in 3 radius.
 Behavior/Tooltip/Intimidation=-1 Life & Shield Armor for 4 seconds. Stacks up to 5 times.
 Behavior/Tooltip/IronHand=Iron Hand protocol activated. +100% attack speed for 5 seconds. Will suffer from Overheating subsequently.
+Behavior/Tooltip/ItsMeAgainLevel1=Each subsequent attack on same unit deals 7% additional damage. Stacks up to 5 times.
+Behavior/Tooltip/ItsMeAgainLevel2=Each subsequent attack on same unit deals 14% additional damage. Stacks up to 5 times.
+Behavior/Tooltip/ItsMeAgainLevel3=Each subsequent attack on same unit deals 21% additional damage. Stacks up to 5 times.
 Behavior/Tooltip/LaserDesignatorLevel1=Unit's armor is reduced by 1.
 Behavior/Tooltip/LaserDesignatorLevel2=Unit's armor is reduced by 3.
 Behavior/Tooltip/LaserDesignatorLevel3=Unit's armor is reduced by 5.
@@ -908,12 +905,9 @@ Behavior/Tooltip/MonofilamentCartridgeLevel2Stun=Stunned for 2 secs
 Behavior/Tooltip/MonofilamentCartridgeLevel3Stun=Stunned for 3 secs
 Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Stacks up to 5 times.
 Behavior/Tooltip/MotionSensorArmorDebuff=Unit armor is reduced by 1.
-Behavior/Tooltip/NanitesUpgradeBuffLevel1=+1 HP regeneration to non-biological allies nearby Technician
-Behavior/Tooltip/NanitesUpgradeBuffLevel2=+2 HP regeneration to non-biological allies nearby Technician
-Behavior/Tooltip/NanitesUpgradeBuffLevel3=+3 HP regeneration to non-biological allies nearby Technician
-Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician
-Behavior/Tooltip/NanitesUpgradeLevel2=+4 HP regeneration to Technician
-Behavior/Tooltip/NanitesUpgradeLevel3=+6 HP regeneration to Technician
+Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician and +1 HP regeneration to non-biological allies nearby Technician
+Behavior/Tooltip/NanitesUpgradeLevel2=+4 HP regeneration to Technician and +2 HP regeneration to non-biological allies nearby Technician
+Behavior/Tooltip/NanitesUpgradeLevel3=+6 HP regeneration to Technician and +3 HP regeneration to non-biological allies nearby Technician
 Behavior/Tooltip/NanoHasteLevel1=Unit's attack damage and movespeed increased by 10% for 35 seconds.
 Behavior/Tooltip/NanoHasteLevel2=Unit's attack damage and movespeed increased by 15% for 35 seconds.
 Behavior/Tooltip/NanoHasteLevel3=Unit's attack damage and movespeed increased by 20% for 35 seconds.
@@ -934,7 +928,7 @@ Behavior/Tooltip/NegativePolarity=Deals 35 per sec to anyone with Positive Polar
 Behavior/Tooltip/NeuralParasite=This unit is being immobilized by a Hugger.
 Behavior/Tooltip/NoQuarterAirborne=The Pathfinder is rising up for a massive drop
 Behavior/Tooltip/NoQuarterInvulnerable=Pathfinder is invulnerable for 4 seconds. 
-Behavior/Tooltip/OpenWound=Unit is bleeding and will lose HP over time. Can be cured with Bandage or Medic's Surgical Laser
+Behavior/Tooltip/OpenWound=Unit is bleeding and losing 1 hp per second. Can be cured with Bandage or Medic's Surgical Laser
 Behavior/Tooltip/Overheating=The turret's cannons are overheated. -80% attack speed for 5 seconds.
 Behavior/Tooltip/PenalLegion=You have been identified as a hacker by the Wardens. Delete your bank file and visit www.notdstarcraft.com with a screenshot to clear yourself.
 Behavior/Tooltip/PenanceLevel1=Unit's Life/Shield Armor is reduced by 10, and its attack damage is increased by 50% for 15 seconds.
@@ -965,6 +959,7 @@ Behavior/Tooltip/RepulseStun=Target is stunned and loses 10 armor for 3 seconds
 Behavior/Tooltip/Restoration=The effects of Anti-Venom and Surgical Laser are intensified. While active, Surgical Laser also removes Madness due to amplified healing streams calming the nerves.<n/><n/>Lasts for 7 seconds.
 Behavior/Tooltip/RighteousnessLevel1=+1 armor for each unit damaged by Smite. Lasts 8 seconds.
 Behavior/Tooltip/RighteousnessLevel2=+1 armor for each unit damaged by Smite. Lasts 16 seconds.
+Behavior/Tooltip/Safeguard=+1 Armor per stack
 Behavior/Tooltip/SapStun=Unit is stunned for 7 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SapStun2=Unit is stunned for 3 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SelfDestructStun=Unit is stunned for 2 seconds.
@@ -983,7 +978,7 @@ Behavior/Tooltip/ShockwaveBarrageStunLevel22=Unit is stunned and receives -4 arm
 Behavior/Tooltip/ShootToMaimLevel1=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%. Maximum stack of 3.
 Behavior/Tooltip/ShootToMaimLevel2=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 2 - +20% damage, each Maim stack slows by 7.5%. Maximum stack of 3.
 Behavior/Tooltip/ShootToMaimLevel3=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 3 - +30% damage, each Maim stack slows by 10%. Maximum stack of 4.
-Behavior/Tooltip/ShortCircuit=Unit's electrical systems are compromised temporarily. Can be remedied with Engineer's Repair.
+Behavior/Tooltip/ShortCircuit=Unit's electrical systems are compromised temporarily, losing 2 energy & shield per second. Can be remedied with Engineer's Repair.
 Behavior/Tooltip/Shriek=The Queen lets out a horrific shriek which stuns target for 8 seconds
 Behavior/Tooltip/ShrinkerLevel1=Unit movement speed increased by 30% and attack damage decreased by the same amount.
 Behavior/Tooltip/ShrinkerLevel2=Unit movement speed increased by 60% and attack damage decreased by the same amount.
@@ -1006,7 +1001,6 @@ Behavior/Tooltip/SpikedArmorLevel1=Deals 5 damage to any unit that attacks Demo.
 Behavior/Tooltip/SpikedArmorLevel2=Deals 10 damage to any unit that attacks Demo. +2 Shield Armor and +10 Shields.
 Behavior/Tooltip/SpikedArmorLevel3=Deals 20 damage to any unit that attacks Demo. +4 Shield Armor  and +15 Shields.
 Behavior/Tooltip/Sprint=Increases movespeed by 35% for 5 seconds.
-Behavior/Tooltip/Sprint2=Increases movespeed by 35% for 5 seconds.
 Behavior/Tooltip/SprintLevel1=Increases movespeed by 35% for 5 seconds.
 Behavior/Tooltip/StaticShield=Deals 25 damage to units that attack the Field Probe
 Behavior/Tooltip/StaticShieldAura=All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
@@ -1049,11 +1043,10 @@ Behavior/Tooltip/VengeanceLevel1=15% chance for attackers to be stunned for 2 se
 Behavior/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 seconds.
 Behavior/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
 Behavior/Tooltip/VengeanceStun=Unit is stunned for 2 seconds.
-Behavior/Tooltip/Venom=Unit is feeling feeling weak. Can be cured by Anti-Venom.
-Behavior/Tooltip/VenomEnergyTransferLevel1=Unit is feeling feeling weak but gains energy regeneration of 0.1 per second. Can stack up to 4 times. Can be cured by Anti-Venom.
-Behavior/Tooltip/VenomEnergyTransferLevel2=Unit is feeling feeling weak but gains energy regeneration of 0.2 per second. Can stack up to 4 times. Can be cured by Anti-Venom.
+Behavior/Tooltip/Venom=Unit is feeling feeling weak, losing 0.4 hp per second and slowed by 5%. Can be cured by Anti-Venom.
 Behavior/Tooltip/VenomousExplosion=Unit will explode in 5 secs, dealing 200 dmg to all units around 4 radius except self. 
 Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
+Behavior/Tooltip/ViscousDischarge2=Banelings cover their targets with a viscous discharge, slowing their movement speed for 1.5 seconds.
 Behavior/Tooltip/VolatileInjectionLevel1=-1 armor. When unit dies, it explodes and deals 75 damage in 4 radius. Stacks up to 4 times.
 Behavior/Tooltip/VolatileInjectionLevel2=-2 armor. When unit dies, it explodes and deals 150 damage in 4 radius. Stacks up to 4 times.
 Behavior/Tooltip/VortexBehavior=Units caught within the Gravity Grenade are pulled inwards until the effect ends.
@@ -1104,6 +1097,9 @@ Button/Name/C2Armor=C2 Armor
 Button/Name/C4Armor=C4 Armor
 Button/Name/C6Armor=<c val="00FFFF">C6 Armor</c>
 Button/Name/Cancel2=Cancel
+Button/Name/Cancel22=Cancel Taunt
+Button/Name/Cancel222=Cancel Taunt
+Button/Name/Cancel2222=Cancel Cloak
 Button/Name/CancelMarchoftheMachine=Cancel March of the Machine
 Button/Name/CancelMindLink=Cancel (Mind-Link)
 Button/Name/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c>
@@ -1153,6 +1149,7 @@ Button/Name/DisruptionTowerLevel23=Disruption Tower (Level 2)
 Button/Name/DroneInventory=Drone Inventory
 Button/Name/DropMagazine=Drop Magazine
 Button/Name/EmptySlot=Empty Slot
+Button/Name/EmptySlot2=Quick Use Slot
 Button/Name/EmptySlotArmor=Empty Slot (Armor)
 Button/Name/EmptySlotEnhancements=Empty Slot (Enhancements)
 Button/Name/EmptySlotWeapon=Empty Slot (Weapon)
@@ -1299,6 +1296,7 @@ Button/Name/Protect=Protect
 Button/Name/PsionicTempest=Psionic Tempest
 Button/Name/Purple=Purple
 Button/Name/QuickAim=Quick Aim
+Button/Name/QuickUse=Quick Use
 Button/Name/Rampage=Rampage
 Button/Name/RapidFire=Rapid Fire
 Button/Name/RapidRegeneration2=Rapid Regeneration
@@ -1417,14 +1415,14 @@ Button/Name/Yellow=Yellow
 Button/Name/Zeratul=Zeratul
 Button/Name/ZeratulBlink2=Blink Copy
 Button/Name/ZerglingPet=Zergling
-Button/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/>Produced by United Arms Heavy Industries, this ammunition can punch through the hardiest of armor.<n/>Attack Modifier: <c val="FFFFFF">-1 armor (Does not stack)</c><n/>Damage Modfier: <c val="FFFFFF">+7%</c><n/>Maximum Stack: <c val="FFFFFF">3</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"Know that you are a UGC Marine. And know that means no defense can stop you. Not steel plate or concrete bunker. Your round will always find the enemy's heart. "
+Button/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/>Produced by United Arms Heavy Industries, this ammunition can punch through the hardiest of armor.<n/><n/>Attack Modifier: <c val="FFFFFF">-1 armor (Does not stack)</c><n/>Damage Modfier: <c val="FFFFFF">+7% (Stacks 3x)</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"Know that you are a UGC Marine. And know that means no defense can stop you. Not steel plate or concrete bunker. Your round will always find the enemy's heart. "
 Button/Tooltip/Adrenaline=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Button/Tooltip/AirStrike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 75 damage. Stuns units for 3 seconds.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue. "
 Button/Tooltip/AirStrikeBombers=Tactical-strike aircraft.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AmmoBox=<c val="FFFF00">Ammo Box</c><n/>Stores magazines that provide rounds for your weapons. Higher magazine capacity frees up your inventory.<n/><n/>Credits: <c val="FFFFFF">35</c>
 Button/Tooltip/AmmoFeedLevel1=Increases maximum rounds carried to 80.
 Button/Tooltip/AmmoFeedLevel2=Increases maximum rounds carried to 120.
-Button/Tooltip/AntiVenom=<c val="FFFF00">Anti-Venom</c><n/>Cures venom and restores 10 HP.
+Button/Tooltip/AntiVenom=<c val="FFFF00">Anti-Venom</c><n/>Removes 1 stack of venom and restores 10 HP.
 Button/Tooltip/AntiVenom2=<c val="FFFF00">Anti-Venom</c><n/>Cures venom and restores 10 HP.<n/><n/>Credits: <c val="FFFFFF">10</c>
 Button/Tooltip/AnticipationLevel1=7 radius aura. Deals +15% extra damage when target is more than 9 distance away.
 Button/Tooltip/AnticipationLevel2=7 radius aura. Deals +30% extra damage when target is more than 9 distance away.
@@ -1439,9 +1437,9 @@ Button/Tooltip/Attack2=Orders selected units to move to the target point, fighti
 Button/Tooltip/BURN=Single target channeled, deals +25 dmg/sec and reduces target's armor up to a maximum of -10. Max damage is 200 dmg/sec. 9 range. Must have Flamethrower equipped.
 Button/Tooltip/Backpack=Your backpack carries supplies.<n/><n/>You need to equip Weapons/Armor/Enhancements on your Marine to use them.
 Button/Tooltip/BadKarma=Reduces target player's Karma by 1.
-Button/Tooltip/Bandage=<c val="FFFF00">Fibrin Bandage</c><n/>Instantly heals 50 HP. Also heals Open Wounds.<n/>Credits: <c val="FFFFFF">15</c>
+Button/Tooltip/Bandage=<c val="FFFF00">Fibrin Bandage</c><n/>Instantly heals 50 HP. Also removes 1 stack of Open Wounds.<n/><n/>Credits: <c val="FFFFFF">15</c>
 Button/Tooltip/Baneling=Suicide unit. Blinds target units in area.<n/><n/><c val="ffff8a">Can attack ground units.</c>
-Button/Tooltip/BarrettM112=<c val="972FFF">Barrett M112</c><n/>Heavy Sniper Rifle that is capable of inflicting massive damage. This powerful weapon also weighs down the Marine.<n/>Base Range: <c val="FFFFFF">25</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">6 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"This goes through armor, and the victim, and the wall, the tree outside....."
+Button/Tooltip/BarrettM112=<c val="972FFF">Barrett M112</c><n/>Heavy Sniper Rifle that is capable of inflicting massive damage.<n/>Each shot <c val="F2D737">slows</c> the user by 40% for 2 seconds. (Marksman excluded)<n/>Consumes 3 rounds per shot.<n/>Can't target allies.<n/><n/>Base Range: <c val="FFFFFF">25</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">6 secs</c><n/>Weight: <c val="FFFFFF">25</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"This goes through armor, and the victim, and the wall, the tree outside....."
 Button/Tooltip/BattlefieldIntelligence=Increases target unit's sight range by 3 for 60 seconds. Minimum sight range cannot be reduced below 5.
 Button/Tooltip/Beastling=Suicide unit. Does damage over a small area on death. <n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/Beastling2=Suicide unit. Does damage over a small area on death. <n/><n/><c val="ffff8a">Can attack ground units.</c>
@@ -1471,10 +1469,13 @@ Button/Tooltip/C2Armor=<c val="FFFF00">C2 Armor</c><n/>A durable polymer suit th
 Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking attachable plates that lock on to the combat suit to provide protection from blunt trauma to vital areas, while joints are bolstered by armored pads.<n/><n/>Adds 4 armor and 20% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"What do you mean it doesn't explode?" - NFG
 Button/Tooltip/C6Armor=<c val="00FFFF">C6 Armor</c><n/>A heavy armor that consists of a thick chestplate, gauntlets, boots, and attachable plates for the legs and upper arms. Extremely effective at dampening impact damage and blunt trauma, but does little to protect joints, leaving the wearer vulnerable to cuts and scrapes in the non-armored areas.<n/><n/>Adds 6 armor.<n/><n/>Weight: <c val="FFFFFF">22</c><n/><n/>"Does this make me look fat?"
 Button/Tooltip/Cancel2=Return to previous menu
+Button/Tooltip/Cancel22=Stop tauting
+Button/Tooltip/Cancel222=Stop tauting
+Button/Tooltip/Cancel2222=Reveal
 Button/Tooltip/CancelMarchoftheMachine=Cancels overdrive mode and returns to regular state.
 Button/Tooltip/CancelMindLink=Cancel Mind-Link.
 Button/Tooltip/CellularStructure=
-Button/Tooltip/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c><n/>This .50 caliber gun is great at mowing down masses. It's high impact rounds will penetrate armor completely.<n/>Base Range: <c val="FFFFFF">15</c></n>Splash: <c val="FFFFFF">2</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"The old man wanted me to be a rice farmer. Found that lead farming was more of my thing." - Private Ramirez
+Button/Tooltip/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c><n/>This .50 caliber gun is great at mowing down masses. It's high impact rounds will penetrate armor completely.<n/><n/>Base Range: <c val="FFFFFF">15</c></n>Splash: <c val="FFFFFF">2</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor</c><n/><n/>"The old man wanted me to be a rice farmer. Found that lead farming was more of my thing." - Private Ramirez
 Button/Tooltip/Charge=Intercepts nearby enemies. Also increases movement speed. Ability can only be used once every <d ref="Abil,Charge,Cost.Cooldown.TimeUse"/> seconds.
 Button/Tooltip/Charge2=Charges forward up to 15 distance to target point, knocking back any enemies in path. Deals 50 damage and stuns all affected enemies for 2 seconds. Deals +50% damage to Massive.
 Button/Tooltip/Charlie=A very unique Infestor
@@ -1489,7 +1490,7 @@ Button/Tooltip/CloseCockpit=Technician closes cockpit, rendering the Technician 
 Button/Tooltip/Cohesion2=Aura - Allies gain an armor of 1 in a radius of 7.
 Button/Tooltip/CohesionLevel2=Aura - Allies gain an armor of 2 in a radius of 7.
 Button/Tooltip/CombatKnife=Deals (15 +0.5 per rank) damage in forward arc of 1.5 radius. Slows targets by 70% for 2 seconds.<n/><n/>"There's always a right tool for a job, and a knife is the right tool for every job."
-Button/Tooltip/CombatMobilityAugment=<c val="80FF80">Combat Mobility Augment</c><n/>Increases movespeed by 10%<n/><n/>Maxiumum Stack: <c val="FFFFFF">1<n/></c>Credits: <c val="FFFFFF">250</c><n/><n/>"The Honda Asimo MK IV is the latest in augmentation technology. Now being tested by field units in the UGC Expeditionary Force" - New York Times, 13 April 2102
+Button/Tooltip/CombatMobilityAugment=<c val="80FF80">Combat Mobility Augment</c><n/>Increases movespeed by 10%<n/><n/>Maxiumum Stack: <c val="FFFFFF">1<n/>Weight: 5<n/></c>Credits: <c val="FFFFFF">250</c><n/><n/>"The Honda Asimo MK IV is the latest in augmentation technology. Now being tested by field units in the UGC Expeditionary Force" - New York Times, 13 April 2102
 Button/Tooltip/CominginHot=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
 Button/Tooltip/Commando=The Commando is trained for surgical strikes and high-precision combat.
 Button/Tooltip/ComplianceMatrix=Gains permanent control of target non-hero/non-mechanical unit.
@@ -1512,7 +1513,7 @@ Button/Tooltip/CritterCerberus=Unknown entity
 Button/Tooltip/CritterSheep2=Sheep
 Button/Tooltip/CritterUrsadakCalf=Man's best friend since 2049.<n/><n/>"I remembered back in year 2087, there was a brief attempt to preserve the nearly extinct cats, but once one of those poor fools ate the general's hamster, all attempts to save the kittens were terminated almost effective immediately" - Iman Plushinko, grandfather of Ivan
 Button/Tooltip/Cronus=
-Button/Tooltip/Crowbar2=<c val="F2D737">Crowbar</c><n/>Just an ordinary crowbar...in space.<n/>Base Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c><n/>
+Button/Tooltip/Crowbar2=<c val="F2D737">Crowbar</c><n/>Just an ordinary crowbar...in space.<n/>Does not damage ally marines.<n/><n/>Base Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor</c><n/><n/>"Man, I feel like I'm Gordon Freeman!"
 Button/Tooltip/Crowbar7=<c val="F2D737">Crowbar</c><n/>Just an ordinary crowbar...in space.<n/>Base Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c><n/>
 Button/Tooltip/CrytoplastInjector=Level 1 - Heals 90 HP instantly on target unit. 
 Button/Tooltip/DarkGreen=Changes Marine color to <c val="004040">Dark Green</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
@@ -1564,10 +1565,10 @@ Button/Tooltip/Eos=Eos the Zombie Queen. A dangerous creature which continues to
 Button/Tooltip/Equipment=Equip Weapons/Armor/Enhancements on your Marine
 Button/Tooltip/EquipmentsandSupplies= 
 Button/Tooltip/Erebos=An abomination that is capable of ranged attacks.
-Button/Tooltip/Escape=The Recon builds up a charge of energy in his suit and then releases it, empowering himself and his teammates with a 20% movespeed bonus and cloaking himself.<n/><n/>"He who fights and runs away will live to fight another day" - Demosthenes (338 B.C.)
+Button/Tooltip/Escape=Recon builds up a charge of energy in his suit and then releases it, empowering himself and his teammates with a 20% movespeed bonus and cloaking himself.<n/><n/>"He who fights and runs away will live to fight another day" - Demosthenes (338 B.C.)
 Button/Tooltip/Execute=The Recon stabs a unit with surgical precision, attempting to kill them with a single deadly strike. Massive and Heroic units take 400 damage and suffer 2 stacks of Open Wound. Deals 50% bonus damage if the unit is stabbed from behind.
 Button/Tooltip/Exhaust=Technician exhumes the hazardous exhaust produced by the exosuit, giving random ailments (barring Madness) to units in a 5 radius and reducing their movespeed by 10%. 
-Button/Tooltip/FMJAmmo=<c val="80FF80">Full Metal Jacket Ammo</c><n/>The jacket allows for higher muzzle velocities than bare lead without depositing significant amounts of metal in the bore.<n/>Attack Modifier: <c val="FFFFFF">+15% attack speed. -1 attack range (Stacks 3x)</c></n>Credits: <c val="FFFFF">50</c><n/><n/>"How many shots did you count just now?" - McCain
+Button/Tooltip/FMJAmmo=<c val="80FF80">Full Metal Jacket Ammo</c><n/>The jacket allows for higher muzzle velocities than bare lead without depositing significant amounts of metal in the bore.<n/><n/>Attack Modifier: <c val="FFFFFF">+15% attack speed. -1 attack range (Stacks 3x)</c><n/>Weight: 3</n>Credits: <c val="FFFFF">50</c><n/><n/>"How many shots did you count just now?" - McCain
 Button/Tooltip/Faith=HP reduced by 50% and burns shields completely. Deals 777 damage to all units in 7 radius, and stuns them for 7 seconds. Heals allies for 35 HP. Flamethrower gains 10 armor for 10 seconds. Also removes 3 stacks of Open Wounds and Venom from Flamethrower.
 Button/Tooltip/FastFive=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 1 -- Shots do 10% additional damage
 Button/Tooltip/FibrinBandage=Uses Fibrin Bandage in inventory to instantly heal 50 HP on target unit.
@@ -1579,7 +1580,7 @@ Button/Tooltip/FireVulnerability=Targets in 5 radius take 50% more damage from e
 Button/Tooltip/Flamethrower2=Specialized anti-infantry attacker.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/Flamethrower3=The Flamethrower excels at close proximity combat.
 Button/Tooltip/FlamethrowerGear=Switches to Flamethrower gear. Takes 3 seconds.
-Button/Tooltip/FlamethrowerMK3=<c val="FFFF00">Flamethrower MK-3</c><n/>Burns any living creature quickly.<n/>Base Range: <c val="FFFFFF">4.65</c></n>Splash: <c val="FFFFFF">Straight Line</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">15</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>“Never settle with words what you can accomplish with a flamethrower.” - Bruce Feirstein
+Button/Tooltip/FlamethrowerMK3=<c val="FFFF00">Flamethrower MK-3</c><n/>Burns any living creature quickly.<n/><n/>Base Range: <c val="FFFFFF">4.65</c></n>Splash: <c val="FFFFFF">Straight Line (hits up to 30x)</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">15</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor (<c val="FF0000">fire</c>)</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>“Never settle with words what you can accomplish with a flamethrower.” - Bruce Feirstein
 Button/Tooltip/Flare=Reveals area with radius of <d ref="Unit,FlareRevealDummy,Sight"/> for <d ref="Behavior,FlareRevealTimed,Duration[0]"/> seconds to all players. Reveals cloaked and burrowed units.
 Button/Tooltip/FlashFlareLevel1=Reveals area with radius of <d ref="Unit,FlareRevealDummy,Sight"/> for <d ref="Behavior,FlareRevealTimed,Duration[0]"/> seconds to all players. Reveals cloaked and burrowed units. Non heroic units are slowed 20% and lose detection for 10 seconds.
 Button/Tooltip/FlashFlareLevel2=Reveals area with radius of <d ref="Unit,FlareRevealDummy,Sight"/> for <d ref="Behavior,FlareRevealTimed,Duration[0]"/> seconds to all players. Reveals cloaked and burrowed units. Non heroic units are slowed 40%, Heroic units are slowed 20% and both lose detection for 10 seconds.
@@ -1592,13 +1593,13 @@ Button/Tooltip/FrenzyLevel1=+1% attack/move speed and +2% damage for each unit k
 Button/Tooltip/FrenzyLevel2=+2% attack/move speed and +4% damage for each unit killed by Burst Fire. Lasts 40 seconds. Max of 30 stack.
 Button/Tooltip/FuelCell=High density power source.
 Button/Tooltip/FullThrottle=The Pathfinder engages the afterburner and surges forward with a great burst of speed, knocking back lighter enemies in passing.<n/><n/>Level 1 -- 200% movespeed
-Button/Tooltip/GaussRifle=<c val="FFFF00">UA GPR-12</c><n/>The UGC Arms General Purpose Rifle was commissioned in 2083. Designed and field tested to work in all known operational environments.<n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">1.5</c><n/>Reload: <c val="FFFFFF">2.5 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/><n/>"If it moves, we can kill it." - Private Zoe
+Button/Tooltip/GaussRifle=<c val="FFFF00">UA GPR-12</c><n/>The UGC Arms General Purpose Rifle was commissioned in 2083. Designed and field tested to work in all known operational environments.<n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">1.5</c><n/>Reload: <c val="FFFFFF">2.5 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Adaptive: <c val="FFFFFF">-1/Armor</c><n/><n/>"If it moves, we can kill it." - Private Zoe
 Button/Tooltip/GiveKarma=Increases target player's Karma by 1.
 Button/Tooltip/GravityGrenade=Gravity Grenade<n/>Drags all units within an area to it for a short duration, clustering them together. Massive units are not dragged, but slowed by 50%.<n/><n/>Level 1 -- Affects units within a radius of 3 for 4 seconds<n/><n/><c val="FF0000">Warning: Gravity suction affects allies</c><n/><n/>"Hope you sons of bitches love each other, 'cause it's huggin' time!"
 Button/Tooltip/Green=Changes Marine color to <c val="008040">Green</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/GuardianoftheBeta=The Engineer.
-Button/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/>Produced by UGC Engineering Corps. This ammunition makes use of a high yield head which burns targets on impact.<n/>Damage Modifier: <c val="FFFFFF">+3% damage (Stacks 3x)</c><n/>Attack Modifier: Target takes 50% bonus damage from Fire for 5 seconds</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"You ain't seen gruesome until you've seen an enemy burn alive from the inside out."
-Button/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/>Produced by UGC Ballistics this ammunition is designed to cause major damage to targets.<n/>Damage Modifier: <c val="FFFFFF">+12% damage (Stacks 3x)</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>"When facing a human target shoot to maim. Against all else or other shoot to kill" - Lt. Breanne
+Button/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/>Produced by UGC Engineering Corps. This ammunition makes use of a high yield head which burns targets on impact.<n/><n/>Damage Modifier: <c val="FFFFFF">+3% damage (Stacks 3x)</c><n/>Attack Modifier: Target takes 50% bonus damage from Fire for 5 seconds</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"You ain't seen gruesome until you've seen an enemy burn alive from the inside out."
+Button/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/>Produced by UGC Ballistics this ammunition is designed to cause major damage to targets.<n/><n/>Damage Modifier: <c val="FFFFFF">+12% damage (Stacks 3x)</c><n/>Weight: 3<n/>Credits: <c val="FFFFFF">50</c><n/><n/>"When facing a human target shoot to maim. Against all else or other shoot to kill" - Lt. Breanne
 Button/Tooltip/HadesTentacle=Highly infectous tentacles.
 Button/Tooltip/HammeroftheGods=Technician deploys a Black Dog anti-personnel turret. The Black Dog is equipped with high explosive fragmentation shells, and causes open wounds on attacking targets. <n/><n/>Only 1 can be built at a time.
 Button/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing <d ref=" 100* (1 - Behavior,HarvesterofSorrow,Modification[0].MoveSpeedMultiplier[0])"/>% movespeed for <d ref="Behavior,HarvesterofSorrow,Duration[0]"/> seconds. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a <d ref="100 * ( 1 -Behavior,HarvesterofSorrowTarget,Modification[0].MoveSpeedMultiplier[0])"/>% attack and movespeed loss for <d ref="Behavior,HarvesterofSorrowTarget,Duration[0]" precision="1"/> seconds.
@@ -1609,7 +1610,7 @@ Button/Tooltip/Helium3IgniterLevel2=Increase range of flamer by 2 and damage by 
 Button/Tooltip/Helium3IgniterLevel3=Increase range of flamer by 3 and damage by 30%. Using flamer shoots blue flame (helion upgrade) and has after burn effect (10 dmg over 3 sec).
 Button/Tooltip/HellfireMissiles=Hellfire Missiles deal 300 damage in a area, knocking enemies back. Deals 20% Friendly Fire.
 Button/Tooltip/Hephaestus=Monstrous creature. Has a devastating melee attack.<n/><n/><c val="ffff8a">Can attack ground units.</c>
-Button/Tooltip/HighCapacityClip=<c val="80FF80">High- Capacity Magazine</c><n/>Allows your marine to use an additional magazine per reload while equipped.<n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c></n>Credits: <c val="FFFFFF">250</c><n/><n/>"But wait! There's more!"
+Button/Tooltip/HighCapacityClip=<c val="80FF80">High- Capacity Magazine</c><n/>Allows your marine to use an additional magazine per reload while equipped.<n/><n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c></n>Credits: <c val="FFFFFF">250</c><n/><n/>"But wait! There's more!"
 Button/Tooltip/Hugger=A zombie species known to incapacitate its targets.
 Button/Tooltip/Hugger2=A zombie species known to incapacitate its targets.
 Button/Tooltip/Hulk=A zombie with thick armor.
@@ -1651,15 +1652,15 @@ Button/Tooltip/Kerrigan=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Kerrigan2=Credits: <c val="71B8FF">5000</c><n/>Requirement: <c val="FFFF00">5000 XP</c>
 Button/Tooltip/KillSignal=Shocks the minds of all biological life-forms in 9 radius and deals 15 damage. The stress induced can kill its targets.
 Button/Tooltip/KineticAmmo=Reduces attack damage by 50%. Each attack damage regenerates 0.3 shields.
-Button/Tooltip/KineticArmor=<c val="00FFFF">Kinetic Armor</c><n/>Adds 1 Armor. Reduces ranged damage (below 200) to a maximum of 14 per source. <n/>Weight: <c val="FFFFFF">8</c>
+Button/Tooltip/KineticArmor=<c val="00FFFF">Kinetic Armor</c><n/>Reduces ranged damage (below 200) to a maximum of 14 per source. <n/><n/>Adds 1 Armor. <n/><n/>Weight: <c val="FFFFFF">8</c>
 Button/Tooltip/Kitten=Kitty!
 Button/Tooltip/Kittens=Since the Great Rat Plague of 2028, kittens have been a mainstay in every citizen's home - providing frontline defense against the next plague. Kittens are also cute. Be a responsible neighbour - order now.<n/><n/>Credits: <c val="71B8FF">1000</c><n/><n/>"It's too dangerous to go alone. Take this..."
-Button/Tooltip/L3GrenadeLauncher=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets.<n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
+Button/Tooltip/L3GrenadeLauncher=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets. <n/>If no contact is made, the grenade will plant itself in the ground for a while.<n/>Consumes 5 rounds per shot.<n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Adaptive: <c val="FFFFFF">-5/Armor (<c val="FF0000">fire</c>)</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
 Button/Tooltip/L3GrenadeLauncher2=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets.<n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
 Button/Tooltip/LargeZombieCocoon=Genetically modified cocoon.
 Button/Tooltip/LaserDesignator=Reduces armor of target unit by 1 and reveals target to allies. Lasts for 60 sec.
 Button/Tooltip/LaserDrillDrone=Basic worker unit. Can gather resources, build Terran structures, and repair.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
-Button/Tooltip/LaserRifle=<c val="F2D737">AER13 Laser Rifle</c><n/>The latest advances in combat-certified laser technology are found in this weapon. Deals searing damage to units with thick armor.<n/>Base Range: <c val="FFFFFF">12</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">3.3 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/><n/>"Patent pending" - BAE Systems
+Button/Tooltip/LaserRifle=<c val="F2D737">AER13 Laser Rifle</c><n/>The latest advances in combat-certified laser technology are found in this weapon. Deals searing damage to units with thick armor.<n/>Each shot deals extra <c val="FF0000">fire dmg</c> equal to the target's base armor.<n/><n/>Base Range: <c val="FFFFFF">12</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">3.3 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor (<c val="FF0000">fire</c>)</c><n/><n/>"Patent pending" - BAE Systems
 Button/Tooltip/Lelantos=Flying heavy-assault unit. Shoots Broodlings at its target. A Broodling is a small creature that can attack ground units.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/Leto=Heavy assault beast. Has an area-damage attack.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/LifetimeColorCustomization= 
@@ -1670,8 +1671,8 @@ Button/Tooltip/Look=Forces all enemies in 5 radius to stare at target. After 1 s
 Button/Tooltip/LtSheng=One of the surviving leaders of Apollo Security. He has seen too many good men die and is determined to keep his crew alive.<n/><n/>"Maybe, I'm dancing in the moonlight" - Lt. Sheng
 Button/Tooltip/M45AMarksmanRifle=<c val="FFFF00">M45A Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against Light units. The M45A is a modified variant for the Mobile Infantry.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">12</c><n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
 Button/Tooltip/M45MarksmanRifleMini=<c val="FFFF00">M45 Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against light units.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">50</c> (Requires <c val="FFFF00">500 XP</c> to purchase)<n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
-Button/Tooltip/M5PulseRifle=<c val="F2D737">M5 Pulse Rifle</c><n/>Capable of piercing armor more effectively than a standard GPR.<n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">1</c><n/>Reload: <c val="FFFFFF">2.5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">8</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"Take this. They come at night. . . mostly. . . "
-Button/Tooltip/MP9A2SubMachineGun=<c val="F2D737">MP9A2 Sub-Machine Gun</c><n/>Excellent close quarter combat weapon when mobility is needed. Makes quick work of lightly armored units. Depletes ammo rapidly.<n/>Base Range: <c val="FFFFFF">9</c><n/>Splash: <c val="FFFFFF">1.8</c><n/>Reload: <c val="FFFFFF">1.5 secs</c><n/>Equip: <c val="FFFFFF">0.7 secs</c><n/>Weight: <c val="FFFFFF">5<n/></c>Credits: <c val="FFFFFF">100</c><n/><n/>"My ancestor used one on Guadalcanal, I can see why."
+Button/Tooltip/M5PulseRifle=<c val="F2D737">M5 Pulse Rifle</c><n/>A mysterious weapon hidden deep within the lab of Apollo. Its real origin...?<n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">1</c><n/>Reload: <c val="FFFFFF">2.5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">8</c><n/>Adaptive: <c val="FFFFFF">-0.3/Armor</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"O shar'as shi'el... "
+Button/Tooltip/MP9A2SubMachineGun=<c val="F2D737">MP9A2 Sub-Machine Gun</c><n/>Excellent close quarter combat weapon when mobility is needed. Makes quick work of lightly armored units. Depletes ammo rapidly.<n/><n/>Base Range: <c val="FFFFFF">9</c><n/>Splash: <c val="FFFFFF">1.8</c><n/>Reload: <c val="FFFFFF">1.5 secs</c><n/>Equip: <c val="FFFFFF">0.7 secs</c><n/>Weight: <c val="FFFFFF">5<n/>Adaptive: <c val="FFFFFF">-1.2/Armor</c><n/></c>Credits: <c val="FFFFFF">100</c><n/><n/>"My ancestor used one on Guadalcanal, I can see why."
 Button/Tooltip/MadSpark=Launches a high frequency decoy beacon at target area, distracting and enraging enemies in 5 radius. Lasts 3.5 seconds.
 Button/Tooltip/MadSparkGrenade=Ranged attacker.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/Magazine=<c val="FFFF00">Magazine</c><n/>Consume to add 3 magazines to your ammuniton pool.<n/><n/>Credits: <c val="FFFFFF">10</c><n/><n/>"Third round from the bottom is a tracer. See that light and switch out recruit!" - Drill Instructor Sergeant Jordan
@@ -1688,7 +1689,7 @@ Button/Tooltip/MasterMarksman=Non-Boss units are stunned for 2 secs when attacke
 Button/Tooltip/MasterofSubtlety=Attacks made while stealthed deal 50% more damage.
 Button/Tooltip/Medic=The Medic provides vital protection in combat. Every team should have one.
 Button/Tooltip/MedicHeal=Heals a friendly biological target for 3 HP per second. 1 point of life costs 0.5 points of energy. Can also be used to Heal self.
-Button/Tooltip/Medkit=<c val="FFFF00">Medkit</c><n/>Heals 125 HP over 15 seconds. Can be used on self only.<n/>Maximum Effect Stack: <c val="FFFFFF">3</c><n/>Credits: <c val="FFFFFF">15</c><n/><n/>"Best cure out there for a hard night out." - Lt. Sheng
+Button/Tooltip/Medkit=<c val="FFFF00">Medkit</c><n/>Heals 125 HP over 15 seconds. Can be used on self only.<n/><n/>Maximum Effect Stack: <c val="FFFFFF">3</c><n/>Credits: <c val="FFFFFF">15</c><n/><n/>"Best cure out there for a hard night out." - Lt. Sheng
 Button/Tooltip/Menoetes=
 Button/Tooltip/MentalProjection=Creates 1 Hallucination of Psi Ops. Lasts 15 seconds.
 Button/Tooltip/MindBlast=Creates a focused blast of energy that stuns for 1 second and deals 20 damage to all enemies in the target area.
@@ -1708,7 +1709,7 @@ Button/Tooltip/MovePatrol=Orders selected units to patrol between their current 
 Button/Tooltip/MovePatrol2=Orders selected units to patrol between their current position and the target area. 
 Button/Tooltip/MurlocMarine=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/NanitesUpgrade=Not only for medical purposes, the Technician utilizes nanites in the upkeep of weaponry and for minor repairs. They are not limited to the Technician's exosuit, and will repair things around him in a radius of 0.5, increasing health regeneration by 2.
-Button/Tooltip/NanoHealthAugment=<c val="80FF80">Nano-Health Augment</c><n/>+0.4 HP regeneration per second. Ideal for Marines in the front lines.<n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c>
+Button/Tooltip/NanoHealthAugment=<c val="80FF80">Nano-Health Augment</c><n/>+0.4 HP regeneration per second. Ideal for Marines in the front lines.<n/><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c>
 Button/Tooltip/NanoSear=Deals 25 damage/sec to enemies in 5 radius over 60 seconds. Attack and move speed of affected units is reduced by 10%. Stacks up to 5 times.
 Button/Tooltip/NanoShield=Regenerates shields temporarily. Increases max shields by 30 and shield armor by 1. Lasts for 20 seconds.
 Button/Tooltip/NanoStrength=Increases target unit's attack damage and movespeed by 10% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
@@ -1718,21 +1719,21 @@ Button/Tooltip/NapalmBarrage=Artillery strike that burns targets in area for 30 
 Button/Tooltip/Nazara=
 Button/Tooltip/NoQuarter=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
 Button/Tooltip/NydusCanal=
-Button/Tooltip/OcularImplants2=<c val="FFFF00">Ocular Implants</c><n/>Increases Sight Radius by 3.<n/>Class: Enhancement (Must be Equipped)<n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">2</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"All the better to see you with, my dear" - PFC Wulf
+Button/Tooltip/OcularImplants2=<c val="FFFF00">Ocular Implants</c><n/>Increases Sight Radius by 3.<n/><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">2</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"All the better to see you with, my dear" - PFC Wulf
 Button/Tooltip/Ogilvy=Local Miner. The backbone of the economy.
 Button/Tooltip/OneShotOneKill=Deals 200 damage to target unit. <n/><n/> +30% damage with Barrett equipped. Procs Concentration
 Button/Tooltip/OpenCockpit=Technician opens cockpit. Due to life support systems not having to work as hard, gains increased energy regeneration of 1 energy/sec.
 Button/Tooltip/Orange=Changes Marine color to <c val="FF8000">Orange</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/OrbitalLaser=
 Button/Tooltip/Overdrive=X-1 Guardian activates its devastating twin plasma turrets. Lasts 20 seconds.
-Button/Tooltip/P45GaussPistol=<c val="FFFF00">P-45 Gauss Pistol</c><n/>A low-recoil close combat pistol suitable for most security encounters.<n/>Base Range: <c val="FFFFFF">6</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">1 second</c><n/>Equip: <c val="FFFFFF">0.3 seconds</c><n/>Weight: <c val="FFFFFF">3</c><n/><n/>"Step away from my sidearm, Private!" - Capt. Lockwood
+Button/Tooltip/P45GaussPistol=<c val="FFFF00">P-45 Gauss Pistol</c><n/>A low-recoil close combat pistol suitable for most security encounters.<n/><n/>Base Range: <c val="FFFFFF">6</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">1 second</c><n/>Equip: <c val="FFFFFF">0.3 seconds</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">-1.5/Armor</c><n/><n/>"Step away from my sidearm, Private!" - Capt. Lockwood
 Button/Tooltip/Parasite=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
 Button/Tooltip/Parasite2=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
 Button/Tooltip/Pathfinder=Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.
 Button/Tooltip/Penance=Unit's Life/Shield Armor is reduced by 10, and its attack damage is increased by 50% for 15 seconds.
 Button/Tooltip/Penetration=Deals -4 armor to target for 8 seconds. Can stack up to 2 times.
 Button/Tooltip/Perses=
-Button/Tooltip/PersonnelArcReactor=<c val="80FF80">Arc Reactor</c><n/>Increases Energy & Shield regeneration by 0.33 per sec.<n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c><n/><n/>"Manufactured by Stark Industries (2095)"
+Button/Tooltip/PersonnelArcReactor=<c val="80FF80">Arc Reactor</c><n/>Increases Energy & Shield regeneration by 0.33 per sec.<n/><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c><n/><n/>"Manufactured by Stark Industries (2095)"
 Button/Tooltip/PfcBrooks=Private Fist Class Brooks<n/>Apollo Security<n/>Clerance Level: 2<n/>Service date: 2102
 Button/Tooltip/Pink=Changes Marine color to <c val="FF80FF">Pink</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/PipedreamsEmporium=Trains Mercenary units.
@@ -1750,6 +1751,7 @@ Button/Tooltip/PsiOpsMentalProjection=
 Button/Tooltip/PsionicTempest=Channeled. Radiates psionic storms to target location (5 radius) until energy is depleted. Deals 85 damage/sec and consumes 5 energy per second.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
 Button/Tooltip/Purple=Changes Marine color to <c val="800080">Purple</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/QuickAim=+200% attack speed for 3 secs
+Button/Tooltip/QuickUse=Use/Equip the first item in your inventory immediately. Only applies to weapons, medkits, and bandages.
 Button/Tooltip/Ramirez=His only purpose is to die.
 Button/Tooltip/Rampage=Target goes on a Rampage for 12 seconds. +100% attack speed and +50% move speed.
 Button/Tooltip/RapidFire=Increases attack rate by 7%
@@ -1758,7 +1760,7 @@ Button/Tooltip/RapidRegeneration2=HP regeneration rate increased by 100%
 Button/Tooltip/RapidRegenerationLevel1=HP regeneration rate increased by 100%
 Button/Tooltip/RapidRegenerationLevel12=HP regeneration rate increased by 200%
 Button/Tooltip/RaynorSnipe=After carefully aiming, fires a Penetrator Round that strikes enemies along its path, dealing <d ref="Effect,RaynorSnipeDamage,Amount"/> damage.
-Button/Tooltip/ReactiveArmor=<c val="00FFFF">Reactive Armor</c><n/>Adds 1 Armor. Limits maximum damage (below 100)  taken to 25 per source.<n/>Weight: <c val="FFFFFF">18</c>
+Button/Tooltip/ReactiveArmor=<c val="00FFFF">Reactive Armor</c><n/>Limits maximum damage (below 100)  taken to 25 per source.<n/><n/>Adds 1 Armor. <n/><n/>Weight: <c val="FFFFFF">18</c>
 Button/Tooltip/ReaperMK13=Deploy a multi-purpose battlefield drone with the following features:</n>- Protect<n/>- Detect Invisible<n/>- 2 Inventory Slots<n/>- Hellfire Missle<n/><n/>"I'd like you to meet a dear and personal friend of mine. He is always watching over you"
 Button/Tooltip/Red=Changes Marine color to <c val="FF0000">Red</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Refresher=Refreshes all cooldowns on Recon. Restores 30 energy & shields.<n/><n/>"Absolute prowess is not merely the obtaining of a talent but the constant and consistent repetition thereof."
@@ -1774,9 +1776,9 @@ Button/Tooltip/Rifleman=The Rifleman is the backbone of every infantry squad. Ve
 Button/Tooltip/RiflemanGear=Switches to Rifleman gear. Takes 3 seconds.
 Button/Tooltip/RighteousnessLevel1=+1 armor for each unit damaged by Smite. Lasts 8 seconds.<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."
 Button/Tooltip/RighteousnessLevel2=+1 armor for each unit damaged by Smite. Lasts 16 seconds.<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."
-Button/Tooltip/RiotShield=<c val="80FF80">Riot Shield</c><n/>Standard issue carbon fiber shield, often made use of in times of civil unrest and rioting populations. Reduces damage done to life by 5 and -5% attack speed.<n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">10</c>
+Button/Tooltip/RiotShield=<c val="80FF80">Riot Shield</c><n/>Standard issue carbon fiber shield, often made use of in times of civil unrest and rioting populations. Reduces damage done to life by 5 and -5% attack speed.<n/><n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">10</c>
 Button/Tooltip/Roach=A deadly mutated beast.
-Button/Tooltip/RoadFlare=<c val="FFFF00">Road Flare</c><n/>Illuminates a 9 radius area for 60 seconds.<n/>Credits: <c val="FFFFFF">15</c>
+Button/Tooltip/RoadFlare=<c val="FFFF00">Road Flare</c><n/>Illuminates a 9 radius area for 60 seconds.<n/><n/>Credits: <c val="FFFFFF">15</c>
 Button/Tooltip/SadistLevel1=Gains 2 HP and 1 Shield for every enemy killed.
 Button/Tooltip/SadistLevel2=Gains 4 HP and 2 Shields for every enemy killed.
 Button/Tooltip/Safeguard=Gains +1 armor for each hit taken during a 5 seconds duration. Maximum +7 armor.
@@ -1804,7 +1806,7 @@ Button/Tooltip/ShockwaveBarrage=Artillery strike that stuns targets in 7 radius 
 Button/Tooltip/ShootGravityGun=Shoots Gravity Gun.
 Button/Tooltip/ShoottoMaim=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%, maximum stack of 3
 Button/Tooltip/ShoottoMaimTurnOff=Cancel Shoot to Maim.
-Button/Tooltip/Shotgun=<c val="F2D737">590A5 Combat Shotgun</c><n/>Deals damage to multiple units in a close distance. 30% chance to stun non-massive units for 0.1 seconds. Uses 2 rounds per shot. <n/>Deals both primary and splash damage to the initial target.<n/>Base Range: <c val="FFFFFF">4.5</c><n/>Splash: <c val="FFFFFF">4</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"I could aim but with this thing, I don't have to." - Sgt. Arnold
+Button/Tooltip/Shotgun=<c val="F2D737">590A5 Combat Shotgun</c><n/>Deals damage to multiple units in a close distance. 30% chance to <c val="F2D737">stun</c> non-massive units for 0.1 seconds. <n/>Consumes 2 rounds per shot. <n/>Deals both primary and splash damage to the initial target.<n/><n/>Base Range: <c val="FFFFFF">4.5</c><n/>Splash: <c val="FFFFFF">4</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Credits: <c val="FFFFFF">200</c><n/>Adaptive: <c val="FFFFFF">-1/Armor</c><n/><n/>"I could aim but with this thing, I don't have to." - Sgt. Arnold
 Button/Tooltip/Shrinker=The Chemical Expert shoots a special energy beam that reduces the size of target unit (including allies), reducing it's threat level, increasing it's speed by 30/60/90% and reduces it's attack damage by the same amount. Lasts for 20 seconds, does not work on enemy Heroic.<n/>Level 1 - 30% speed increase and attack damage reduction
 Button/Tooltip/Sigma=Burns all air units in 8 radius. Deals 50 damage per second over 11 seconds.
 Button/Tooltip/Slasher=A lethal viral strain of zombie. Origins unknown.
@@ -1812,7 +1814,7 @@ Button/Tooltip/Slasher2=A lethal viral strain of zombie. Origins unknown.
 Button/Tooltip/Slither=A quick creature that is highly resilient to damage. Has a highly venomous bite.
 Button/Tooltip/SlowRoast=Gains +3 Armor for 10 seconds. During this time, units attacked have movement and attack speed reduced by 10% for 5 seconds. Stacks up to 3 times.
 Button/Tooltip/Smite=Deals 10% current HP damage & 18% movespeed reduction for 4 seconds in 3 radius of target area. Less effective on Bosses.
-Button/Tooltip/SniperRifle=<c val="FFFF00">M45 Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against light units.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
+Button/Tooltip/SniperRifle=<c val="FFFF00">M45 Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against light units.<n/><n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Adaptive: <c val="FFFFFF">-0.2/Armor</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
 Button/Tooltip/SonicTrapLevel1=Creates an invulnerable beacon. When nearby enemies are detected, illuminates surrounding area (gives team vision). Non-Massive enemies in 5 radius are pushed back slightly and stunned for 0.3 seconds. Massive/Heroic units are slowed. 7 Charges on each trap.<n/><n/><c val="FFFF00">Limit of 5 active Sonic Traps.</c>
 Button/Tooltip/SpecialPet=Credits: <c val="71B8FF">5000</c><n/>Requirement: <c val="FFFF00">5000 XP</c>
 Button/Tooltip/Spectre=The Recon is the eye and ear of the team, providing utility support with his array of talents.
@@ -1834,7 +1836,7 @@ Button/Tooltip/Stealth22=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/StealthMatrixActivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
 Button/Tooltip/StealthMatrixDeactivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
 Button/Tooltip/Stim=Marine fires and moves 20% faster for 15 seconds.
-Button/Tooltip/StingerMK3=<c val="972FFF">Stinger MK-3</c><n/>Rocket Launcher that does significant splash damage. Consumes 10 rounds per attack. Use with extreme caution.<n/>Base Range: <c val="FFFFFF">20</c><n/>Splash: <c val="FFFFFF">5</c><n/>Reload: <c val="FFFFFF">6 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Say hello to my little friend" - Lt. Lee
+Button/Tooltip/StingerMK3=<c val="972FFF">Stinger MK-3</c><n/>Rocket Launcher that does significant splash damage. Use with extreme caution.<n/>Consumes 10 rounds per shot. <n/><c val="FF0000">Deals 25% friendly fire dmg.</c><n/><n/>Base Range: <c val="FFFFFF">20</c><n/>Splash: <c val="FFFFFF">5</c><n/>Reload: <c val="FFFFFF">6 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">325</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor (<c val="FF0000">fire</c>)</c><n/><n/>"Say hello to my little friend" - Lt. Lee
 Button/Tooltip/Strangler=An air creature that is capable of choking and incapacitating its targets
 Button/Tooltip/SupplyStation=Creates a supply station that replenishes 1 round/sec, 1 HP/sec, 1 energy/sec for all Marines in 2 radius. Supply Station lasts for 25 seconds.
 Button/Tooltip/SupplyStationLevel1=Replenishes 1 round/sec, 1 HP/sec, 1 energy/sec for all Marines in 2 radius.
@@ -1862,7 +1864,7 @@ Button/Tooltip/TeamLocation2=Pings location of all teammates for 5 seconds.
 Button/Tooltip/Technician=Armed in an extremely powerful exosuit, the technician can pulverize anything in its way.
 Button/Tooltip/TerraTron=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/TheHorror=The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds.<n/><n/><c val="FF0000">Warning: Can blind allies in target area</c><n/><n/>"You want to see something real scary?"
-Button/Tooltip/ThermalSight=<c val="FFFF00">Thermal Sight</c><n/>Used by Special Forces. Detects invisible units in 9 radius.<n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c><n/><n/>"I spy with my little eye."
+Button/Tooltip/ThermalSight=<c val="FFFF00">Thermal Sight</c><n/>Used by Special Forces. Detects invisible units in 9 radius.<n/><n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c><n/><n/>"I spy with my little eye."
 Button/Tooltip/ThrowGravityGun=Throw target towards point.
 Button/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains 8x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
 Button/Tooltip/Titan=An enormously tough zombie.
@@ -1870,7 +1872,7 @@ Button/Tooltip/TitanBurrowed=An enormously tough zombie.
 Button/Tooltip/TruckSemiUnit=Property of Apollo Mining Industries
 Button/Tooltip/Turbo=35% increased movespeed for 5 seconds.
 Button/Tooltip/TychusChaingun=The Assault is a heavy duty offensive and defensive unit.
-Button/Tooltip/UA420AssaultRifle=<c val="F2D737">UA420 Assault Rifle</c><n/>Slower firing than the UA General Purpose Rifle but packs a bigger punch. Also penetrates deeper into armor.<n/>Base Range: <c val="FFFFFF">15</c><n/>Splash: <c val="FFFFFF">0.75</c><n/>Reload: <c val="FFFFFF">2.8 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"This is my UA420 Assault Rifle, there are many like it but this one is mine." - Pvt. Benson
+Button/Tooltip/UA420AssaultRifle=<c val="F2D737">UA420 Assault Rifle</c><n/>Slower firing than the UA General Purpose Rifle but packs a bigger punch. Also penetrates deeper into armor.<n/><n/>Base Range: <c val="FFFFFF">15</c><n/>Splash: <c val="FFFFFF">0.75</c><n/>Reload: <c val="FFFFFF">2.8 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Adaptive: <c val="FFFFFF">-0.5/Armor</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"This is my UA420 Assault Rifle, there are many like it but this one is mine." - Pvt. Benson
 Button/Tooltip/UGCDropship=Customized Dropship used for mission insertions.
 Button/Tooltip/VRL772=VRL fires in a straight line, dealing 150 damage + 50 damage for any aliments stack and becomes dormant for 4 seconds, during which targets will take +20% damage. The virus then regains control.<n/><n/>Any heroic marines caught in the VRL Laser is cured of all viruses (Venom, Madness, Blind and Infection), and gain +25% attack & movement speed for 10 seconds. VRL is harmless to non-infested and mechanical units.
 Button/Tooltip/VengeanceLevel1=15% chance for attackers to be stunned for 2 seconds.
@@ -1893,7 +1895,7 @@ Button/Tooltip/X1GuardianLevel2=
 Button/Tooltip/X1GuardianLevel3=
 Button/Tooltip/X1GuardianUpgrade=Upgrades the X-1 Guardian to next version.
 Button/Tooltip/XM35GrenadeLauncher=Launches a Grenade. Deals <d ref="Effect,GrenadeLevel1Damage,Amount[0] - 3"/> Damage. +33% damage to Light units. Gains larger AoE while Focus Fire is active. Gains 3 damage per level of the Rifleman.
-Button/Tooltip/XS4Armor=<c val="00FFFF">XS-4 Armor</c><n/>Adds 4 shield armor and increases maximum shield capacity by 50%.<n/>Weight: <c val="FFFFFF">15</c><n/>Credits: <c val="FFFFFF">250</c>
+Button/Tooltip/XS4Armor=<c val="00FFFF">XS-4 Armor</c><n/>Adds 4 shield armor and increases maximum shield capacity by 50%.<n/><n/>Weight: <c val="FFFFFF">15</c><n/>Credits: <c val="FFFFFF">250</c>
 Button/Tooltip/Yellow=Changes Marine color to <c val="FFFF00">Yellow</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Zeratul=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/ZeratulBlink=Teleports to a nearby location.
@@ -1912,7 +1914,7 @@ Commander/Name/NOTD=NOTD
 DOCSTR_ArcanePariahMarksman=Hunter of Apollo
 DOCSTR_TestText=<info id="Rifleman" types="A,W"/>
 DocInfo/Author=Blueberry Entertainment
-DocInfo/DescLong=A humble personal attempt to bugfix and maintain the original NOTD, with potential QOL or community requested updates. No credit taken.<n/><n/>Note: may contain experimental features, back up your bank file if needed<n/><n/>Find more players in Discord  'NOTD Official': https://discord.gg/cDsWn9g<n/><n/><n/>
+DocInfo/DescLong=A humble personal attempt to bugfix and maintain the original NOTD, with potential QoL & community requested updates. No credit taken.<n/>Copy your original bank files into the new folder to keep your progress.<n/>Original bank folder: 1-S2-1-1557547<n/>New bank folder: 1-S2-1-11533459<n/><n/><n/>
 DocInfo/DescShort=8
 DocInfo/HowToPlayAdvanced00=Once your Marine is dead, you cannot respawn. Be cautious.
 DocInfo/HowToPlayAdvanced01=You can earn XP that is stored and accumulated each time you play NOTD. XP unlocks new classes and storylines.
@@ -2204,11 +2206,52 @@ DocInfo/PatchNote277= - Fixed handgun expertise adding wrong amount of damage to
 DocInfo/PatchNote278= - Pathfinder skilltree sometimes getting filled up (11 skills) using only 10 skill points (Niktos)
 DocInfo/PatchNote279= - Fixed Engineer Nexus shared vision not being removed on Nexus death (Niktos)
 DocInfo/PatchNote280= - Fixed Queen shrieking even if dead (Niktos)
-DocInfo/PatchNote281=-Fixed a bug that prevents Pathfinder from leveling up
-DocInfo/PatchNote282=-Reworked item purchasing & magazine dropping code to avoid bugs causing various ammo related issues
-DocInfo/PatchNote283=-Fixed a bug that causes item weights to not apply properly
-DocInfo/PatchNote284=-Experimenting with unsegmented health & energy bars
-DocInfo/PatchNote285=-Experimenting with ping panels 
+DocInfo/PatchNote281=- Fixed a bug that prevents Pathfinder from leveling up
+DocInfo/PatchNote282=- Reworked item purchasing & magazine dropping code to avoid bugs causing various ammo related issues
+DocInfo/PatchNote283=- Fixed a bug that causes item weights to not apply correctly
+DocInfo/PatchNote284=- Updated the drop pod attack at Erebos with more clear visuals and sounds (removed the weird shotgun sound)
+DocInfo/PatchNote285=- Experimenting with unsegmented status bars
+DocInfo/PatchNote286=- Experimenting with ping panels (alt and hold for options)
+DocInfo/PatchNote287=- Updated weapon tooltips to include armor reduction values
+DocInfo/PatchNote288=- UI update: a new bossbar and an icon for the Master of the Universe Rank
+DocInfo/PatchNote289=- EC Eos Kill Credit Reward increased from 50/50/100 to 50/75/150 (re/vet/nm)
+DocInfo/PatchNote290=- AC IVAX Kill Credit Reward increased from 0/80/215 to 0/160/500 (re/vet/nm)
+DocInfo/PatchNote291=- Removed collision for zombie cocoons and barrels
+DocInfo/PatchNote292=- Demolition & Assault's taunt skills can now be auto-cast
+DocInfo/PatchNote293=- Removed the smoke effect from taunt skills, added a range indicator for all taunt sources (including technician's mad spark)
+DocInfo/PatchNote294=- Updated visuals for Guardian of the Beta, Orbital Laser, and Nano-Shield
+DocInfo/PatchNote295=- MP9A2 Sub-Machine Gun damage increased from 12/22 (normal/light) to 14/28 (normal/light)
+DocInfo/PatchNote296=- Lv2 Zombies are now also marked as Light (consistent with Lv1 zombies)
+DocInfo/PatchNote297=- FO(AC) has been swapped with PF(Sec), their CP groups are now Demo/PF/Chem and Engineer/FO
+DocInfo/PatchNote298=- Visual effects overhaul for Chemical Expert, Scorched Earth cursor indicator is now more accurate and grants vision of the impact area
+DocInfo/PatchNote299=- Fixed CP mix-up after the PF/FO swap, you bank records are NOT affected, only the interpretation logic has been changed, 
+DocInfo/PatchNote300=  CP earned on PF will be attributed to FO in the original version and vice versa.
+DocInfo/PatchNote301=- Added 2 more chat commands: -bar on/off and -ping on/off to allow classic style status bars and a more tuned down ping system
+DocInfo/PatchNote302=- Marksman's Stealth can now be auto-cast
+DocInfo/PatchNote303=- Added a shield armor tooltip to all classes on their armor icon
+DocInfo/PatchNote304=- 5 CP bonus now offers 10 shield and 1 shield armor (consistent with the wiki) as opposed to just 10 shield
+DocInfo/PatchNote305=- AC IVAX payout reduced from 0/160/500 to 0/140/450
+DocInfo/PatchNote306=- Optimized Assault's charge skill with fewer hit checks to reduce lag, enabled targeting charge out of vision.
+DocInfo/PatchNote307=- MP9A2 Sub-Machine Gun adaptive value increased from -1/armor to -1.2/armor
+DocInfo/PatchNote308=- M5 Pulse Rifle added back to the game (single fixed location, experimental).
+DocInfo/PatchNote309=- Added a cursor indicator for marksman's Monofilament Cartridge
+DocInfo/PatchNote310=- Assault can now move through units during charge
+DocInfo/PatchNote311=- Fixed broken terrian (cracks) near the bottom hill
+DocInfo/PatchNote312=- AER13 Laser Rifle now deals bonus dmg based on the target's base armor (no longer affected by debuffs such as AP ammo)
+DocInfo/PatchNote313=- Updated some tooltips that were incorrect.
+DocInfo/PatchNote314=- Updated loading images
+DocInfo/PatchNote315=- Added a new behavior tracking bar to show behavior stacks and duration, temporarily disabled ammo UI move button to make room
+DocInfo/PatchNote316=- Added a Quick Use skill for every marine (hotkey x + x), allowing immediate usage of the first inventory item (weapon, medkit, bandage
+DocInfo/PatchNote317=  only) Fibrin Bandage skill hotkey changed to (x + w). Block Inventory Transfer button removed.
+DocInfo/PatchNote318=- Re-enabled ammo bar move button and made it more visible. It now allows the ammo bar to swap places with the new behavior bar.
+DocInfo/PatchNote319=- Added a second button after the ammo bar move button to allow enabling/disabling the new behavior bar.
+DocInfo/PatchNote320=- Greatly reduced the number of behaviors tracked by the new behavior bar to reduce distraction.
+DocInfo/PatchNote321=- Made some code-side changes in hope to optimize the performance of the new behavior bar.
+DocInfo/PatchNote322=- "-bar on/off" command simplified to just "-b", and it will toggle the status bar style.
+DocInfo/PatchNote323=- "-ping on/off" command simplified to "-qp" (standing for quiet pings).
+DocInfo/PatchNote324=- Messages are sent in the chat area to confirm any UI related changes.
+DocInfo/PatchNote325=- Misc. tooltip/icon changes to avoid confusion with the new behavior bar.
+DocInfo/PatchNote326=- Fixed some UI related errors upon marine death.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2219,7 +2262,7 @@ DocInfo/ScreenshotHowToPlay02=Engage enemies from high ground
 DocInfo/ScreenshotHowToPlay03=Complete missions together
 DocInfo/ScreenshotHowToPlay04=Save Apollo. Kill the Zombie Queen.
 DocInfo/ScreenshotHowToPlay05=NOTD User Interface Guide - Part 1
-DocInfo/Website=www.notdstarcraft.com
+DocInfo/Website=https://discord.gg/H8BMS39
 Effect/Name/AMRoundsApply=AM Rounds Apply
 Effect/Name/AMRoundsRemoveHEF=AM Rounds (Remove HE-F)
 Effect/Name/AMRoundsSet=AM Rounds Set
@@ -2302,6 +2345,7 @@ Effect/Name/ArmageddonSearchDamageEnemy=Armageddon Search Damage Enemy
 Effect/Name/ArmageddonSearchDamageFriendly=Armageddon Search Damage Friendly
 Effect/Name/ArmageddonSet=Armageddon Set
 Effect/Name/ArmageddonSlowSearch=Armageddon Slow Search
+Effect/Name/ArmorMeltDamage=Armor Melt Damage
 Effect/Name/AsgardHighPriorityTargetPersistent=Asgard High Priority Target Persistent
 Effect/Name/AssaultCritEffects=Assault Crit Effects
 Effect/Name/AssaultJumpDamageLevel1=Assault Jump Damage Level 1
@@ -3243,6 +3287,7 @@ Effect/Name/NoQuarterDamage12=No Quarter Damage
 Effect/Name/NoQuarterImpactSet=No Quarter Impact Set
 Effect/Name/NoQuarterLaunch=No Quarter Launch
 Effect/Name/NoQuarterSearch4=No Quarter Invulnerable Search
+Effect/Name/NukeCreateRevealDummy2=Scorched Earth Reveal Dummy
 Effect/Name/OSOKLevel1BarrettDamage=OSOK Level 1 (Barrett Damage)
 Effect/Name/OSOKLevel1BaseDamage=OSOK Level 1 (Base Damage)
 Effect/Name/OSOKLevel1DamageSet=OSOK Level 1 (Damage Set)
@@ -3495,6 +3540,7 @@ Effect/Name/ScopeReveal=Scope (Reveal)
 Effect/Name/ScorchedEarthBurstPersistent=Scorched Earth Burst Persistent
 Effect/Name/ScorchedEarthDamage=Scorched Earth Damage
 Effect/Name/ScorchedEarthDamageSet=Scorched Earth Damage Set
+Effect/Name/ScorchedEarthEstimatedSearch=Scorched Earth Estimated Search
 Effect/Name/ScorchedEarthLeftLaunch=Scorched Earth Left Launch
 Effect/Name/ScorchedEarthPersistent=Scorched Earth Persistent
 Effect/Name/ScorchedEarthRightLaunch=Scorched Earth Right Launch
@@ -3804,6 +3850,8 @@ Effect/Name/VolatileBurstBeastling=Volatile Burst
 Effect/Name/VolatileBurstBuildingBeastling=Volatile Burst
 Effect/Name/VolatileBurstSetBeastling=Volatile Burst
 Effect/Name/VolatileBurstU3=Erebos AOE Attack
+Effect/Name/VolatileBurstU4=Erebos Spore Detonation Nightmare Damage
+Effect/Name/VolatileBurstU42=Erebos Spore Detonation Default Damage
 Effect/Name/VolatileInjectionLevel1Apply=Volatile Injection Level 1 (Apply)
 Effect/Name/VolatileInjectionLevel1Damage=Volatile Injection Level 1 (Damage)
 Effect/Name/VolatileInjectionLevel1Search=Volatile Injection Level 1 (Search)
@@ -4000,22 +4048,35 @@ NOTDLoadingHint1=Press Z to sprint
 NOTDLoadingHint2=Press T to manually reload below 15 rounds
 One Shot, One Kill Level 2=Deals 400 damage to target unit. <n/><n/>+30% damage with Barrett equipped, Procs Concentration.
 One Shot, One Kill Level 3=Kills non-Heroics instantly. Deals 800 +1.2% of current HP damage to Bosses.<n/><n/>+30% base damage and additional +0.3% current HP damage with Barrett equipped. Percentage damage requires Concentration stack.
+Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> designates <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
+Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8= ~A~ Class Point awarded</s>
+Param/Expression/4CE48FDE=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend!
 Param/Expression/4D6170D4=<s val="InfoPaneHeroRank"><c val="FBC442">(~A~ awarded...)</s></c>
 Param/Expression/4FB8FD67=~A~<n/>
+Param/Expression/50E65A76=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to move!
+Param/Expression/559B8D7C=~A~: ~B~
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/749F018B=Survive (Wave ~A~/40)
 Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/8261F9D4=+~A~ XP for Speed Bonus
+Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to retreat!
+Param/Expression/A5DC8985=Attack ~A~
 Param/Expression/A91F7F6B=~A~~B~~C~
 Param/Expression/ABAE731B=~A~/~B~
+Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack!
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
 Param/Expression/FEC5EBF1=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Value/004D086A=<s val="GlueButton">Infestor
@@ -4024,6 +4085,7 @@ Param/Value/018D8BCF=Proceed to Epsilon Mining Site
 Param/Value/0193DE09=We've arrived at the source.
 Param/Value/01991E09=<s val="BriefingHanText">Survivors: 39</s>
 Param/Value/02115397=Search the Airlock for clues
+Param/Value/021B3BD8=Move
 Param/Value/02746C5B=<s val="BriefingHanText">Mine Site Epsilon</s>
 Param/Value/02779103=Ivan Plushenko
 Param/Value/0286289B=The civilians are escaping. There's no telling how many are infected.
@@ -4052,6 +4114,7 @@ Param/Value/062A9941=+2 XP for Mission Bonus
 Param/Value/069FDC3C=The power generators are scattered across Apollo.
 Param/Value/06A43C14=Keep the Sec Team unit alive for more fire power
 Param/Value/06C9BF47=We'll need more Marines to retake Apollo.
+Param/Value/0713C853=Quiet Ping Enabled
 Param/Value/074C6AA8=Doctor
 Param/Value/076B1E59=I'm making a call to UGC headquarters to inform them of our progress.
 Param/Value/07C1794C=Do not fight this. You are only making this harder.
@@ -4064,6 +4127,7 @@ Param/Value/08FC9F9B=/4)
 Param/Value/0904F780=Destroy Bio-Dome D
 Param/Value/092A9E89=Decrypting access console into airlock. Clear in 1 Mike.
 Param/Value/0991CB7B=The 1st Wave is coming. Brace yourself.
+Param/Value/09B9ED41=Defend
 Param/Value/09D7CA4D=Survive for 7 minutes until dropship arrives
 Param/Value/0A03D515=Providing covering fire. Stay in sight.
 Param/Value/0A295215=Apollo Lunar Facility
@@ -4202,12 +4266,13 @@ Param/Value/226488C6=The security cameras you've accessed earlier will now give 
 Param/Value/22C15AFE=Bergmann would be most keen on our discovery.
 Param/Value/236A95F9=We've got incoming from the East.
 Param/Value/2399241B=. Removal with 1 more vote.</s>
+Param/Value/23D8BC6D=Detailed Behavior Bar Shown
 Param/Value/23DC8EDE= will meet Bob.</s>
 Param/Value/23E8984F=You need to go down hard on this thing.
 Param/Value/241B89C3=Get in position. This one ain't going to be pretty.
 Param/Value/244B2E38=The reactors are through the airlock.
 Param/Value/2466CEB3=Huddle close. Provide covering fire.
-Param/Value/2482F8A0=You have 3 magazines in your inventory. Click on them to increase your magazine count. Your gun will not fire without ammo.
+Param/Value/2482F8A0=You have 2 magazines in your inventory. Click on them to increase your magazine count. Your gun will not fire without ammo.
 Param/Value/24C39421=<s val="BriefingHanText">(Downloading Sec Cam Feed...)</s>
 Param/Value/24CA23FD=</s>
 Param/Value/24EDA089=/3)
@@ -4223,6 +4288,7 @@ Param/Value/261B5256=
 Param/Value/26C70C28=Gen. Koller
 Param/Value/26E60809=-1 
 Param/Value/271AF673=Is everyone okay? We need to leave this place.
+Param/Value/272DC830=Quiet Ping Disabled
 Param/Value/275382AF=Avoid the deadly beams. Sprint if needed.
 Param/Value/2757CF11=You've got to be kidding me.
 Param/Value/275E16C1=Anti-Toxin Release
@@ -4275,6 +4341,7 @@ Param/Value/2D9A3D5E=(Nazara releases an EMP shockwave upon its destruction...)
 Param/Value/2DCF8FF4=We're airdropping more supplies into your sector.
 Param/Value/2DD8D951=<c val="FF0000">(Disabled)</c>
 Param/Value/2DDFDE54=Lt. Sheng
+Param/Value/2E16FBB2=
 Param/Value/2E1900EB=Investigate the Communications Tower
 Param/Value/2E588F08=
 Param/Value/2E973C55=This is the last dome. We got this.
@@ -4313,6 +4380,7 @@ Param/Value/33E4DF99=</c>)
 Param/Value/3445B423=Perses is in a weakened state when charging up.
 Param/Value/344A57E7=<s val="GlueButton"><c val="F4D72B">Unlocking Bio-Dome B. Aerial zombies, cover your six.</c>
 Param/Value/34A0856D=Who the - ...some survivors must have picked up our transmissions. You can't save them. Most of them are probably infected.
+Param/Value/34D579A6=<c val="ff0000">You have pinged too much.  Please wait a while.</c>
 Param/Value/34EBEAC5=<s val="GlueButton"><c val="F4D72B">Apollo needs to be destroyed. It hides something that threatens our collective safety.</c></s>
 Param/Value/34FC3D29=Rescue Civilians in Apollo. Bring them to the Containment Facility
 Param/Value/3542BD51=<s val="InfoPaneHeroRank">Supplies delivered into battlefield..</s>
@@ -4340,7 +4408,7 @@ Param/Value/386B4E98=Your team will set up an EVAC zone at a central location to
 Param/Value/3880148D=
 Param/Value/3885CC79=<s val="GlueButton"><c val="F4D72B">Deimos has severely damaged out IVAX unit!</c></s>
 Param/Value/38903A5B=Marine: <c val="F4D72B">Or restart those power generators. That'll give us access to all gates.</c>
-Param/Value/38912845=<s val="GlueButtonSmall">Engy/Pathfinder: 
+Param/Value/38912845=<s val="GlueButtonSmall">Engineer/FO: 
 Param/Value/38BFCA12=<s val="GlueButton"><c val="F4D72B">There's something alive in those cocoons.</c>
 Param/Value/39018B47=We've come to the end. Let's finish this.
 Param/Value/393F2E80=We need to put down the Queen. Danger close fire missions en route.
@@ -4449,7 +4517,7 @@ Param/Value/4D3249B2=The creature is back!
 Param/Value/4D3BD96A=We're airdropping more supplies into your sector.
 Param/Value/4D701111=+
 Param/Value/4DA6AE6B=The compliance field is de-stabilizing. One more Nexus and we'll shut them down.
-Param/Value/4DA754D2=Move
+Param/Value/4DA754D2=Swap Location
 Param/Value/4DC830E5=<s val="GlueButtonSmall">Survival: 
 Param/Value/4DD907D3='s Marine removed from game for inactivity.
 Param/Value/4DF03C45=(You are currently piloting a Thor...)
@@ -4511,6 +4579,7 @@ Param/Value/5519FB0D=What's going on here? We don't know any plan.
 Param/Value/556EE5F6=<c val="0080FF">.</c>
 Param/Value/55F8FC7E=Use area of effect weapons for Dome A
 Param/Value/55FF76F7=Accelerating targeting matrix...
+Param/Value/56673624=Enable/Disable Detailed Behavior Bar
 Param/Value/567C561B=<s val="InfoPaneHeroRank">Not eligible for Distinguished Service Medal</s>
 Param/Value/56A0DE58=
 Param/Value/56A9AA5D=The doctor has betrayed the team and escaped. Alpha Company must find him.
@@ -4639,6 +4708,7 @@ Param/Value/6E980D4F= Mobile Infantry remaining</s>
 Param/Value/6ECF4D5C=Stat Points Available: 
 Param/Value/6EE123F8=Engage Deimos and bring it down. Watch out for its minions.
 Param/Value/6EEE6DA0=More reinforcements have arrived.
+Param/Value/6EFB7AD0=Unsegmented Status Bar Disabled
 Param/Value/6F38C800=Alpha Company is harder than Easy Company storyline. Don't be discouraged!
 Param/Value/6F620108=<c val="FFC914">Perfect!</c>
 Param/Value/6F6A8D06=<s val="InfoPaneUnitInfo">
@@ -4723,6 +4793,7 @@ Param/Value/7DD5A798=(You notice Dr Tanaka acting suspiciously...)
 Param/Value/7DF35ACF=+
 Param/Value/7DFDE347=<s val="BriefingHanText">Directive: Lockdown Apollo</s>
 Param/Value/7DFE6CBB=</c>.
+Param/Value/7E0D8EF6=Detailed Behavior Bar Hidden
 Param/Value/7E2DE1DC=Gentlemen, choose your course of action..
 Param/Value/7E413997=<s val="GlueButtonSmall">Security Team: 
 Param/Value/7EBDCF5E=Enter the Colony Airlock
@@ -4814,6 +4885,7 @@ Param/Value/8D39612A=For your own safety, stay away from me.
 Param/Value/8DA740FE=These corpses are fresh. Those zombies are still here.
 Param/Value/8DA92150=<s val="GlueButton"><c val="F4D72B">Unlocking Bio-Dome D. This was the most badly infested area. You'll need all the firepower you got.</c>
 Param/Value/8DF57A55=<s val="BriefingHanText">   Special Thanks to Our Donors: <n/>   Michael Landau,  Gabriel Seow, Jacob Deleon Christian<n/>   Zhang Tian Hao, Christopher Cheaney, Karim Hashwani<n/>   Louisa Ko, Scott Koh, Michael Purdam, Marc Nuffer<n/>   Saulo Braz de Moura, Paul Varcoe, Dylan Masonholder<n/>   Moritz Brey, Christopher Kurland, Randy Phan</s>
+Param/Value/8DF58BD2=Attack
 Param/Value/8E30F23B=Rendezvous with Corpsmen at Armory
 Param/Value/8E5F3C21=
 Param/Value/8E89AAEF=Look at that command tower. It's infected by something. Take some tissue samples.
@@ -5101,7 +5173,7 @@ Param/Value/C0C84B70=Boss Approaching
 Param/Value/C0D70A82=Carry on. We received a distress signal from Apollo's Mine. Delivering additional ammunition to your coordinates.
 Param/Value/C0E903E4=Can anyone read me? .. Trapped ... in ... East of colony **lp!
 Param/Value/C0EF7F9B=Something's not right. I saw a few Nexuses earlier. Let's blow them before we become pets too.
-Param/Value/C0F5E603=<s val="GlueButtonSmall">Demo/FO/Chem: 
+Param/Value/C0F5E603=<s val="GlueButtonSmall">Demo/PF/Chem: 
 Param/Value/C15230BC=Their numbers are dwindling. We've got through this.
 Param/Value/C16ADD41=Don't get hit! Tartarus will tear you a new one.
 Param/Value/C17E81A3=</c>) (<c val="F1D845">
@@ -5176,6 +5248,7 @@ Param/Value/CCAD1762=Stay away from the bodies.
 Param/Value/CD5B26BE=Retrieve Weapons & Ammo from Armory
 Param/Value/CDB4532A=<s val="GlueButton"><c val="F4D72B">Motion sensors lit up like a Christmas tree, brace for a fast attack!</c></s>
 Param/Value/CDBBA6C1=You are in direct violation of UGC Article 11.
+Param/Value/CE13C562=Retreat
 Param/Value/CE164DAC=
 Param/Value/CE2186ED=Danger! Move away from the Queen.
 Param/Value/CE2E2FF6=Locate Dr. Bergmann
@@ -5268,6 +5341,7 @@ Param/Value/DC7774F5=You have my gratitude for killing him. He was...beyond rede
 Param/Value/DC9BD39A=
 Param/Value/DCCA4B69=We gain a new Talent Point when we level. Put it to good use.
 Param/Value/DCD19264=+10 XP for Victory Bonus
+Param/Value/DD18B7FF=Unsegmented Status Bar Enabled
 Param/Value/DD35AB49=Rounds
 Param/Value/DD54E7F3=<s val="BriefingHanText">   NOTD Community Leaders and Wardens<n/>   Robert Mills (NiteShade), Jayde Kobelt (MissHumpz), Fiona Chan (Miracle/神秘少女)<n/>   Loveandpeace (CN), Nicarco (NA), Extifer (NA), Yuey (SEA)<n/></s>
 Param/Value/DD58FFFD=<s val="GlueButton"><c val="F4D72B">The worms are spawning more zombies. We have to take them down to stop the spread.</c>
@@ -5312,6 +5386,7 @@ Param/Value/E298D78F= (<c val="E10000">
 Param/Value/E2C16EBA=Rendezvous with Corpsmen at Armory
 Param/Value/E2C4B148=Priyanka
 Param/Value/E2D10094=Destroy Compliance Nexuses (
+Param/Value/E3042A31=Move
 Param/Value/E32A665D=Deimos
 Param/Value/E3864FB9=Kill the Zombie Queen
 Param/Value/E3A8B054=Maybe. I'd like to question him myself when I get the chance.
@@ -5428,6 +5503,7 @@ Param/Value/F681A3C4=<s val="GlueButton"><c val="F4D72B">Humans, I am Ekvolbolli
 Param/Value/F6BC82F1=What's happening to me?
 Param/Value/F6D31C38=<s val="InfoPaneHeroRank">
 Param/Value/F70ACB5B=We can take either one of these entrances into the lab.
+Param/Value/F7623B46=Attack
 Param/Value/F79FB8D1=</s>
 Param/Value/F7A04BFC=+3 XP for Mission Bonus. 50 civilians rescued.
 Param/Value/F7AEF20F=<s val="BriefingHanText">Infestation Level: 89% (Probable)</s>
@@ -5528,10 +5604,8 @@ Text/Behavior/Reload=   Reloading
 TextTag/Reload=      Reloading
 UI/ChatHelp=Press %chatHotkey% to talk to other Marines
 UI/Difficulty01=Recruit
-UI/Difficulty01Campaign=Recruit
 UI/Difficulty02=Normal
 UI/Difficulty03=Nightmare
-UI/Difficulty03Campaign=Nightmare
 UI/DropPlayersLabelPlayer=Marine
 UI/FilePanelDetailsPanelPlayers_Colon=Marines:
 UI/Flamethrower Gear=Equipping Flamethrower Gear
@@ -5559,15 +5633,23 @@ UI/ResourceToolTip1=Magazines are used to replenish your rounds.
 UI/Rifleman Gear=Equipping Rifleman Gear
 UI/SystemAlert/LagMessageOtherGuilty=%player% is facing TacNet interference
 UI/WaitingForPlayers=Waiting for Marines...
+Unit/Assault/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,TychusChaingun,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,TychusChaingun,ShieldArmorLevel"/></c>)
 Unit/Category/ProtossUnits=UGC Marines
+Unit/ChemicalExpert/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ChemicalExpert,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ChemicalExpert,ShieldArmorLevel"/></c>)
+Unit/Commando/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Commando,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Commando,ShieldArmorLevel"/></c>)
+Unit/Demolitions/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,DominionKillTeam,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,DominionKillTeam,ShieldArmorLevel"/></c>)
+Unit/Engineer/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Engineer,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Engineer,ShieldArmorLevel"/></c>)
+Unit/Flamethrower/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Flamethrower3,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Flamethrower3,ShieldArmorLevel"/></c>)
+Unit/ForwardObserver/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ForwardObserver,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ForwardObserver,ShieldArmorLevel"/></c>)
 Unit/LifeArmorName/CritterGroundArmor=Carapace
-Unit/LifeArmorName/None=UGC Infantry Armor
 Unit/LifeArmorName/ProtossArmor=Armor
 Unit/LifeArmorName/TerranInfantryArmor=UGC Infantry Armor
 Unit/LifeArmorName/ZergAirArmor=
 Unit/LifeArmorName/ZergAthenaArmor=Carapace
 Unit/LifeArmorName/ZergBuildingArmor=
 Unit/LifeArmorName/ZergGroundArmor=Carapace
+Unit/Marksman/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Marksman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Marksman,ShieldArmorLevel"/></c>)
+Unit/Medic/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Medic2,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Medic2,ShieldArmorLevel"/></c>)
 Unit/Name/APAmmo=<c val="80FF80">AP Ammo</c>
 Unit/Name/APAmmoHighlightTooltip=<c val="80FF80">AP Ammo</c>
 Unit/Name/AcidMissile=Acid Missile
@@ -5758,6 +5840,7 @@ Unit/Name/MedpackHighlightTooltip=Medkit
 Unit/Name/Menoetes=Menoetes
 Unit/Name/Minion=Minion
 Unit/Name/Minion2=Minion
+Unit/Name/MissleRevealDummy=MissleRevealDummy
 Unit/Name/MobileInfantryFlamethrower=Mobile Infantry
 Unit/Name/MobileInfantryMarksman=Mobile Infantry
 Unit/Name/MobileInfantryRifleman=Mobile Infantry
@@ -5877,8 +5960,13 @@ Unit/Name/ZombieLevel1=Zombie
 Unit/Name/ZombieLevel12=Zombie
 Unit/Name/ZombieLevel2=Zombie
 Unit/Name/ZombieLevel22=Zombie
+Unit/Pathfinder/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Pathfinder,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Pathfinder,ShieldArmorLevel"/></c>)
+Unit/PsiOps/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,PsiOps,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,PsiOps,ShieldArmorLevel"/></c>)
+Unit/Recon/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Spectre,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Spectre,ShieldArmorLevel"/></c>)
+Unit/Rifleman/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Rifleman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Rifleman,ShieldArmorLevel"/></c>)
 Unit/ShieldArmorName/ProtossPlasmaShields=Plasma Shields
 Unit/ShieldArmorName/XelNagaShields=   
+Unit/Technician/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Technician,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Technician,ShieldArmorLevel"/></c>)
 UnitKillRank/CrawlerDrone1=Drone
 UnitKillRank/CrawlerDrone2=Killer Drone
 UnitKillRank/CrawlerDrone3=Master Drone
@@ -6063,7 +6151,7 @@ UserData/Classes/Technician_Class_Role=<s val="AchievementFrameName">Technician<
 UserData/CommunicationTowerCompletionMessages/Completion_Message=The transmissions we found are field reports the Security Team was trying to relay back to Earth. We need to bring these back safely.
 UserData/CommunicationTowerCompletionMessages/Completion_Message_001=The transmissions were scrambled by a military satellite before it reached Earth. Somebody didn't want news to break out.
 UserData/CommunicationTowerCompletionMessages/Completion_Message_002=The transmissions suggest that UGC knew about this outbreak from its inception. They failed to contain its spread and decided to bring us boots here.
-UserData/CustomNames/ArcanePariah_Name=Hunter of Apollo
+UserData/CustomNames/ArcanePariah_Name=My Little Marksman
 UserData/DeathTexts/Agron_Death Message=has been eviscerated by a <c val="FF0000">Agron</c>.
 UserData/DeathTexts/Baneling_Death Message=has been reduced to slag by a <c val="FF0000">Baneling</c>.
 UserData/DeathTexts/Beastling_Death Message=has been reduced to slag by a <c val="FF0000">Beastling</c>.<n/>
@@ -6571,7 +6659,6 @@ UserData/TeamKillTexts/Death Texts_Death Text_001= </c><c val="F4D72B">has been 
 UserData/TeamKillTexts/Death Texts_Death Text_002= </c><c val="F4D72B">has been murdered by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_003= </c><c val="F4D72B">has been betrayed by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_004= </c><c val="F4D72B">is not getting any love from </c><c val="FF0000">
-UserData/TestFunShit/Stupid_Blah=Blah Blah<n/>
 UserData/WeaponModData/Damage_Arrow_Tooltip=5% Damage
 UserData/WeaponModData/Damage_Name=Damage
 UserData/WeaponModData/Damage_Tooltip_Text=<c val="FFFF00">Damage</c><n/>Modifies weapon damage (+/-5%)
@@ -6668,8 +6755,6 @@ Weapon/Name/ZombieClawsLevel2=Zombie Claws (Level 2)
 Weapon/Tip/BlackDogTurretAMRounds=
 Weapon/Tip/BlackDogTurretHEFRounds=
 Weapon/Tip/BlindlingBurst=The Blinding explodes on contact and unleashes a deadly stream of blinding liquid.
-Weapon/Tip/Crowbar=Just an ordinary crowbar...in space.<n/>Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c>
-Weapon/Tip/Flamethrower=Burns any living creature quickly. <n/><n/>Range: 4.65<n/>Reload Time: 4.5 secs<n/><n/><c val="FF0000">Cannot attack air<n/></c><n/>“Never settle with words what you can accomplish with a flamethrower.” - Bruce Feirstein
 Weapon/Tip/FlamethrowerMK2=Burns any living creature quickly. <n/><n/>Range: 4.65<n/>Reload Time: 4.5 secs<n/><n/><c val="FF0000">Cannot attack air.<n/></c><n/>“Never settle with words what you can accomplish with a flamethrower.” - Bruce Feirstein
 Weapon/Tip/GaussRifleMini=<c val="FFFF00">General Purpose Rifle</c><n/>Standard-issue UGC Infantry Rifle commissioned in 2083. +4 damage vs large targets. <n/>Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">1.5</c><n/>Reload: <c val="FFFFFF">1.5 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">10</c><n/><n/>"If it moves, we can kill it." - Private Zoe
 Weapon/Tip/GravityGun=Gravity Gun does damage to multiple units in a forward arc.<n/><n/>Range: 4.5

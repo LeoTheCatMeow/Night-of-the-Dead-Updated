@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CUpgrade id="AssaultJumpLevel2">
         <EffectArray Operation="Set" Reference="Effect,AssaultJumpDamageLevel1,Amount[0]" Value="250"/>
@@ -245,7 +245,7 @@
         <Name value="Upgrade/Name/Helium3IgniterLevel2"/>
         <EffectArray index="0" Operation="Set" Reference="Weapon,Flamethrower,Range" Value="6.65"/>
         <EffectArray index="1" Operation="Set" Reference="Effect,FlameThrowerLevel2,Amount" Value="9.6"/>
-        <EffectArray index="2" Operation="Set" Reference="Effect,InfernalFlameThrower,Amount" Value="9.6"/>
+        <EffectArray index="2" Reference="Effect,InfernalFlameThrower,Amount" Value="9.6"/>
         <EffectArray index="3" removed="1"/>
         <EffectArray index="4" removed="1"/>
         <EffectArray index="5" removed="1"/>
