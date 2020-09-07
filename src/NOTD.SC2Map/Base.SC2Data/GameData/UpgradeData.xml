@@ -207,6 +207,21 @@
         <MaxLevel value="4"/>
         <AffectedUnitArray value="Ivax"/>
     </CUpgrade>
+    <CUpgrade id="ShellProductionUpgrade">
+        <EffectArray Operation="Subtract" Reference="Abil,AirStrike,Cost[0].Cooldown.TimeUse" Value="45.000000"/>
+        <EffectArray Reference="Abil,AirStrike,Cost[0].Charge.TimeUse" Value="40.000000"/>
+        <EffectArray Reference="Abil,AirStrike,Cost[0].Charge.CountMax" Value="2"/>
+        <EffectArray Operation="Set" Reference="Abil,AirStrike,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AirStrike,Cost[0].Vital[Energy]" Value="15"/>
+        <AffectedUnitArray value="ForwardObserver"/>
+    </CUpgrade>
+    <CUpgrade id="ShellProductionUpgrade2">
+        <EffectArray Operation="Subtract" Reference="Abil,FireMission,Cost[0].Vital[Energy]" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ShockwaveBarrage,Cost[0].Cooldown.TimeUse" Value="1.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,NapalmBarrage,Cost[0].Cooldown.TimeUse" Value="1.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,NapalmBarrage,Cost[0].Vital[Energy]" Value="3"/>
+        <AffectedUnitArray value="ForwardObserver"/>
+    </CUpgrade>
     <CUpgrade id="StealthMatrixLevel1">
         <Alert value=""/>
         <EffectArray Operation="Set" Reference="Effect,EscapeCloak,Behavior[0]" Value="EscapeCloakLevel2"/>

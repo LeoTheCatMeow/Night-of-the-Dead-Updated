@@ -228,6 +228,22 @@
                 <Anchor side="Left" relative="$parent" pos="Min" offset="#Column2"/>
                 <Anchor side="Top" relative="$parent" pos="Min" offset="#Row4"/>
             </Frame>
+            <Frame type="Frame" name="ShopItem59" template="Shop/ShopButtonTemplate">
+                <Anchor side="Left" relative="$parent" pos="Min" offset="#Column1"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="#Row5"/>
+            </Frame>
+            <Frame type="Frame" name="ShopItem60" template="Shop/ShopButtonTemplate">
+                <Anchor side="Left" relative="$parent" pos="Min" offset="#Column2"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="#Row5"/>
+            </Frame>
+            <Frame type="Frame" name="ShopItem61" template="Shop/ShopButtonTemplate">
+                <Anchor side="Left" relative="$parent" pos="Min" offset="#Column3"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="#Row5"/>
+            </Frame>
+            <Frame type="Frame" name="ShopItem62" template="Shop/ShopButtonTemplate">
+                <Anchor side="Left" relative="$parent" pos="Min" offset="#Column4"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="#Row5"/>
+            </Frame>
                     <!--<Add buttons here for new items>-->
         </Frame>
         <Frame type="Frame" name="ShopPage2" template="Shop/ShopPageTemplate">

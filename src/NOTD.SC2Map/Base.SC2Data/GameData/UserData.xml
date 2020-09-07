@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CUser id="ShopItemsCosmetics">
+        <Fields Id="Skin (Effect)" Type="GameLink" GameLinkType="Effect"/>
+        <Fields Id="XPRequirement" Type="Int"/>
+        <Fields Id="KarmaRequirement" Type="Int"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="ShopItem59">
+            <GameLink GameLink="Tier1Skin">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+            <Int Int="1700">
+                <Field Id="KarmaRequirement"/>
+            </Int>
+            <Int Int="15000">
+                <Field Id="XPRequirement"/>
+            </Int>
+        </Instances>
+        <Instances Id="ShopItem60">
+            <GameLink GameLink="Tier2Skin">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+            <Int Int="1800">
+                <Field Id="KarmaRequirement"/>
+            </Int>
+            <Int Int="75000">
+                <Field Id="XPRequirement"/>
+            </Int>
+        </Instances>
+        <Instances Id="ShopItem61">
+            <GameLink GameLink="Tier3Skin">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+            <Int Int="150000">
+                <Field Id="XPRequirement"/>
+            </Int>
+            <Int Int="1900">
+                <Field Id="KarmaRequirement"/>
+            </Int>
+        </Instances>
+        <Instances Id="ShopItem62">
+            <GameLink GameLink="Default">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+        </Instances>
+    </CUser>
     <CUser id="CustomNames">
         <Fields Id="Class" Type="Unit" EditorColumn="5"/>
         <Fields Id="Name" Type="String" EditorColumn="1"/>
@@ -3353,6 +3397,74 @@
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
+        <Instances Id="ShopItem59">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel1.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-1">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="Use &lt;c val=&quot;80FF80&quot;&gt;Rare Skin&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem59_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem60">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel2.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-1">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="Use &lt;c val=&quot;F2D737&quot;&gt;Epic Skin&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem60_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem61">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-1">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="Use &lt;c val=&quot;972FFF&quot;&gt;Legendary Skin&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem61_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem62">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel0.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-1">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="&lt;c val=&quot;FFFFFF&quot;&gt;Reset Skin&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem62_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
     </CUser>
     <CUser id="Staff">
         <Fields Id="Player Handle" Type="String" Count="500"/>
@@ -3509,7 +3621,7 @@
             <GameLink GameLink="ShockwaveBarrage">
                 <Field Id="Ability"/>
             </GameLink>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds">
+            <Image Image="Assets\Textures\btn-ability-spearofadun-orbitalstrike.dds">
                 <Field Id="Image"/>
             </Image>
             <Int Int="88">
@@ -3544,7 +3656,7 @@
             <GameLink GameLink="NapalmBarrage">
                 <Field Id="Ability"/>
             </GameLink>
-            <Image Image="Assets\Textures\btn-tips-walloffire.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-bomberplatform-napalm.dds">
                 <Field Id="Image"/>
             </Image>
             <Int Int="88">
@@ -6295,31 +6407,31 @@
         <Fields Id="Header Offset" Type="Int" Count="2"/>
         <Instances Id="[Default]"/>
         <Instances Id="Rifleman">
-            <Image Image="Assets\Textures\btn-ability-terran-experiencedplasmagun.dds">
+            <Image Image="Assets\Textures\btn-upgrade-nova-shotgun.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-maelstromrounds.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-maelstromrounds.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-infantryweaponslevel2.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-mechbioweaponupgrades-c.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-raynortossgrenade.dds">
+            <Image Image="Assets\Textures\btn-upgrade-nova-flashgrenade.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-zerg-plague.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-ghost-pyrokineticimmolation_orange.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-stimpack-color.dds">
+            <Image Image="Assets\Textures\btn-upgrade-stetmann-dualqueue.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-blink-color.dds">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionweaponslevel2.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-tips-crystal.dds">
+            <Image Image="Assets\Textures\btn-upgrade-tychus-reaper-explosivecharges.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-snipe.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-warpprism-transferlink.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
             <Image Image="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds">
@@ -6369,34 +6481,34 @@
             </Text>
         </Instances>
         <Instances Id="Medic">
-            <Image Image="Assets\Textures\btn-ability-terran-fireonthemove.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-observer-sensorarray.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-heal.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-topbar-healthconfiguration.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-defensivematrix.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-forcefield-color.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-chronoboost.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-protoncharge-color.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-prismaticbeam.dds">
+            <Image Image="Assets\Textures\btn-ability-tychus-medic-restorativeburst.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-tosh-mindblast.dds">
+            <Image Image="Assets\Textures\btn-ability-tychus-spectre-ultrasonicpulse.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-tomahawkpowercell.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-chronorift.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-disruptor-novabattery.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-zerg-explode.dds">
+            <Image Image="Assets\Textures\btn-upgrade-zagara-bilebombardment.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-zerg-rapidregeneration.dds">
+            <Image Image="Assets\Textures\btn-ability-zerg-darkswarm.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="152">
@@ -6443,34 +6555,34 @@
             </Text>
         </Instances>
         <Instances Id="Assault">
-            <Image Image="Assets\Textures\btn-techupgrade-terran-330mmbarragecannon.dds">
+            <Image Image="Assets\Textures\btn-upgrade-terran-nova-shotgunaoe.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-maelstromrounds.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-maelstromrounds.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-fullborecanisterammo.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-chronobeam.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-zerg-infestation.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-amoncloud.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-domination.dds">
+            <Image Image="Assets\Textures\btn-ability-alarak-reliquaryofsouls.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-tosh-mindblast.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-mindblast.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds">
+            <Image Image="Assets\Textures\btn-upgrade-tychus-armor-level3.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-feedback-color.dds">
+            <Image Image="Assets\Textures\btn-ability-nova-furyofone.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-selfixarmor.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-stetzonegenerator-speed.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-garystetelliteovercharge-speed.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="172">
@@ -6517,13 +6629,13 @@
             </Text>
         </Instances>
         <Instances Id="Recon">
-            <Image Image="Assets\Textures\btn-tips-challengecounter.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-raven-analyzetarget.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-minimap-ping.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-alarak-rangeincrease.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-scannersweep.dds">
+            <Image Image="Assets\Textures\btn-upgrade-tychus-detection.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
             <Image Image="Assets\Textures\btn-building-terran-ghostacademy.dds">
@@ -6535,10 +6647,10 @@
             <Image Image="Assets\Textures\btn-research-terran-orbitalstrikerally.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-shadowblade.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-nyxcloakingclassmodule.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-wraith-permanentcloak.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
             <Image Image="Assets\Textures\cyanstarflash.dds">
@@ -6591,34 +6703,34 @@
             </Text>
         </Instances>
         <Instances Id="Marksman">
-            <Image Image="Assets\Textures\btn-ability-terran-penetratorround.dds">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-trooper-plasmarifle.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
             <Image Image="Assets\Textures\btn-ability-protoss-feedback-color.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-tips-terran-penetrator.dds">
+            <Image Image="Assets\Textures\btn-upgrade-terran-nova-snipetripletap.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-snipe-color.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-envision.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-unit-terran-ghost.dds">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-improvedbunkersights.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-snipe.dds">
+            <Image Image="Assets\Textures\btn-ability-terran-snipe-color.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-maelstromrounds.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-maelstromrounds.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-criussuit.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-darktemplar-blink.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-consumption.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-shadowfury.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-cloakfield-color.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-hero-propheticvision.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="121">
@@ -6665,34 +6777,34 @@
             </Text>
         </Instances>
         <Instances Id="Demolitions">
-            <Image Image="Assets\Textures\btn-techupgrade-terran-extramines.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-replenishablemagazine.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-spidermine.dds">
+            <Image Image="Assets\Textures\btn-upgrade-siegetank-spidermines.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-building-terran-techreactor.dds">
+            <Image Image="Assets\Textures\btn-upgrade-terran-kd8chargeex3.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-antistructureweapon.dds">
+            <Image Image="Assets\Textures\btn-ability-zerg-fireroach-increasefiredamage.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-unit-terran-nukepack.dds">
+            <Image Image="Assets\Textures\btn-ability-terran-activatemine.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-zerg-buildingarmor.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-disruptionblast.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-tosh-consumption.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-resurgence.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-microfiltering.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-confusion.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-unit-terran-marauderkillsquad.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-corruptorcausticspray.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-zerg-frenzied-color.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="136">
@@ -6739,7 +6851,7 @@
             </Text>
         </Instances>
         <Instances Id="Engineer">
-            <Image Image="Assets\Textures\btn-ability-terran-d8charge.dds">
+            <Image Image="Assets\Textures\btn-upgrade-nova-btn-upgrade-nova-pulsegrenade.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
             <Image Image="Assets\Textures\btn-unit-terran-scvfusionwelder.dds">
@@ -6748,7 +6860,7 @@
             <Image Image="Assets\Textures\btn-research-zerg-psidisruptor.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-hardenedshields-color.dds">
+            <Image Image="Assets\Textures\btn-upgrade-nova-blink.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
             <Image Image="Assets\Textures\btn-unit-terran-widowmine.dds">
@@ -6757,16 +6869,16 @@
             <Image Image="Assets\Textures\btn-unit-terran-ares.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-clusterwarheads.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-behavior-incapacitated.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-battlecruiser-decksights.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-research-terran-commandcenterreactor.dds">
+            <Image Image="Assets\Textures\btn-progression-zeratul-02-prophecyfulfilled.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-planetcracker.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-carrier-solarbeam.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="118">
@@ -6819,7 +6931,7 @@
             <Image Image="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-tips-fallenheroes.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-sacrifice.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
             <Image Image="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds">
@@ -6828,19 +6940,19 @@
             <Image Image="Assets\Textures\btn-ability-terran-nuclearstrike-color.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-psidisruption.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-tips-defierbones.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-mindcontrol.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
             <Image Image="Assets\Textures\btn-ability-protoss-blackhole-color.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-projectileaccelerator.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-blinkcharges.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-tosh-mindblast.dds">
+            <Image Image="Assets\Textures\btn-upgrade-stetmann-banelingmanashieldefficiency.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="130">
@@ -6887,34 +6999,34 @@
             </Text>
         </Instances>
         <Instances Id="Flamethrower">
-            <Image Image="Assets\Textures\btn-upgrade-terran-reapernitropacks.dds">
+            <Image Image="Assets\Textures\btn-ability-zerg-yagdra-firewave.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-infernalpreigniter.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-incineratorgauntlets.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-jotunboosters.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-xelnagastasisturret-staggeringblast.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-domination.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-darkarchon-maelstrom.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-corvidreactor.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-marauder-shrapnel.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-psioniclash.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-purificationblast.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-domination.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-advancedhealingai.dds">
+            <Image Image="Assets\Textures\btn-upgrade-raynor-juggernautplating.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-blink.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-immortalchampionchargeexplode.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-nano-botinjectors.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-immortalchampionvortex.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="171">
@@ -6961,22 +7073,22 @@
             </Text>
         </Instances>
         <Instances Id="Forward Observer">
-            <Image Image="Assets\Textures\btn-techupgrade-terran-charonboosters.dds">
+            <Image Image="Assets\Textures\btn-progression-hornerhan-6-mirabuildtime.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
             <Image Image="Assets\Textures\btn-ability-terran-bombardmentstrike-color.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds">
+            <Image Image="Assets\Textures\btn-ability-spearofadun-orbitalstrike.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-unit-terran-wraith.dds">
+            <Image Image="Assets\Textures\btn-progression-hornerhan-5-fleetcalldown.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-tips-walloffire.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-bomberplatform-napalm.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-neosteelbunker.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-topbar-forcedconscription.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
             <Image Image="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds">
@@ -7035,34 +7147,34 @@
             </Text>
         </Instances>
         <Instances Id="Technician">
-            <Image Image="Assets\Textures\btn-ability-protoss-blink.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-ghost-staticempblast.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
             <Image Image="Assets\Textures\btn-research-terran-sciencevessel.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-scannersweep-color.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-raven-radar.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-tychustossgrenade.dds">
+            <Image Image="Assets\Textures\btn-upgrade-stetmann-ultraliskburrowchargestun.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
             <Image Image="Assets\Textures\btn-tips-flamingbetty.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-chronoriftdevice.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-darktemplar-backtotheshadows.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
-            <Image Image="Assets\Textures\btn-research-terran-ultracapacitors.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
             <Image Image="Assets\Textures\btn-unit-terran-vikingassault.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-research-zerg-shriketurret.dds">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-improvedartilleryrange.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-mobiusreactor.dds">
+            <Image Image="Assets\Textures\btn-ability-stetmann-ultraliskmechanicalassimilation.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="142">
@@ -7109,19 +7221,19 @@
             </Text>
         </Instances>
         <Instances Id="Chemical Expert">
-            <Image Image="Assets\Textures\btn-ability-zerg-generatecreep-color.dds">
+            <Image Image="Assets\Textures\btn-ability-zerg-blindingcloud.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
             <Image Image="Assets\Textures\btn-ability-zerg-banelingspooge.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-huntermissile-color.dds">
+            <Image Image="Assets\Textures\btn-upgrade-tychus-medic-matrixgenerator.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
             <Image Image="Assets\Textures\btn-building-terran-techreactor.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-zerg-airattacks-level1.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-topbar-contaminatedstrike.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
             <Image Image="Assets\Textures\btn-upgrade-terran-caduceusreactor.dds">
@@ -7130,13 +7242,13 @@
             <Image Image="Assets\Textures\btn-upgrade-protoss-airweaponslevel2.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-feedback-color.dds">
+            <Image Image="Assets\Textures\btn-upgrade-artanis-healingpsionicstorm.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-blink-color.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-chargedcrystal-psionicwinds.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-gather.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-oraclepulsarcannonon.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="171">
@@ -7183,34 +7295,34 @@
             </Text>
         </Instances>
         <Instances Id="Pathfinder">
-            <Image Image="Assets\Textures\btn-techupgrade-terran-330mmbarragecannon.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-dragoonovercharge.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-adept-recochetglaive.dds">
                 <Field Id="Talent Image"/>
             </Image>
             <Image Image="NOTD Generic Art\NOTD Pistol.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-psidisruption.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-viking-piercingattacks.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds">
+            <Image Image="Assets\Textures\btn-ability-hornerhan-reaper-flightmode.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-jetpack-color.dds">
+            <Image Image="Assets\Textures\btn-ability-neutral-ursadonleap.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
             <Image Image="Assets\Textures\btn-upgrade-terran-reapernitropacks.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-tips-walloffire.dds">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-fenix-zealotchampionengage.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-research-terran-ultracapacitors.dds">
+            <Image Image="Assets\Textures\btn-upgrade-karax-anionpulsecrystals.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds">
+            <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-orbitaldrop.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="153">
@@ -7260,31 +7372,31 @@
             <Image Image="Assets\Textures\btn-tips-terran-energynova.dds">
                 <Field Id="Talent Image" Index="1"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-phasemine-zeratul.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-marauder-selfabsorbshield.dds">
                 <Field Id="Talent Image"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-blink-zeratul.dds">
+            <Image Image="Assets\Textures\btn-ability-mengsk-ghost-pyrokineticimmolation_blue.dds">
                 <Field Id="Talent Image" Index="2"/>
             </Image>
-            <Image Image="Assets\Textures\btn-techupgrade-terran-ocularimplants.dds">
+            <Image Image="Assets\Textures\btn-upgrade-artanis-pylonpower.dds">
                 <Field Id="Talent Image" Index="3"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-psistorm-color.dds">
+            <Image Image="Assets\Textures\btn-ability-zeratul-avatarofform-psionicgale.dds">
                 <Field Id="Talent Image" Index="4"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-voidprison.dds">
+            <Image Image="Assets\Textures\btn-ability-terran-electricfield.dds">
                 <Field Id="Talent Image" Index="5"/>
             </Image>
             <Image Image="Assets\Textures\btn-ability-protoss-hallucination-color.dds">
                 <Field Id="Talent Image" Index="6"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-terran-nova-permacloak.dds">
+            <Image Image="Assets\Textures\btn-upgrade-nova-novarespawn.dds">
                 <Field Id="Talent Image" Index="7"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-zerg-creepmove.dds">
+            <Image Image="Assets\Textures\btn-ability-protoss-shadowdash.dds">
                 <Field Id="Talent Image" Index="8"/>
             </Image>
-            <Image Image="Assets\Textures\btn-ability-protoss-timebomb.dds">
+            <Image Image="Assets\Textures\btn-upgrade-nova-holographicdecoy.dds">
                 <Field Id="Talent Image" Index="9"/>
             </Image>
             <Int Int="136">

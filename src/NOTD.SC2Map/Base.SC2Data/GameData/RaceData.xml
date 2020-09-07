@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CRace id="Prot">
         <ShowResource index="Minerals" value="0"/>
@@ -8,8 +8,14 @@
     <CRace id="Terr">
         <GlossaryTeamColorIndex value="6"/>
         <MiniMapBorderColor value="100,12,149,250"/>
+        <ShowResource index="Minerals" value="0"/>
+        <ShowResource index="Vespene" value="0"/>
+        <StartingResource index="Minerals" value="0"/>
     </CRace>
     <CRace id="Zerg">
         <FoodCeiling value="300"/>
+        <ShowResource index="Minerals" value="0"/>
+        <ShowResource index="Vespene" value="0"/>
+        <StartingResource index="Minerals" value="0"/>
     </CRace>
 </Catalog>

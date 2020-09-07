@@ -485,7 +485,7 @@ const int gv_c_PINGMAXCOUNT = 3;
 const fixed gv_c_PINGRESETTIME = 2.0;
 const fixed gv_c_PINGSUPPRESSIONTIME = 0.25;
 const fixed gv_c_PINGLOCKOUTTIME = 5.0;
-const int gv_numberOfShopOptions = 58;
+const int gv_numberOfShopOptions = 62;
 const string gv_bossFightStart = "StartBossFight";
 const string gv_bossFightEnd = "EndBossFight";
 const string gv_bossUnit = "Boss";
@@ -565,6 +565,7 @@ const int ge_Ping_Disabled = 1;
 // Global Variables
 //--------------------------------------------------------------------------------------------------
 int gv_classSelectionOverrideIndex;
+string gv_overridingPlayerHandle;
 bool[gv_numberofPlayers + 1] gv_playerBanned;
 bool gv_warningTextBreak;
 int[121][gv_numberofPlayers + 1] gv_playerBankData;
@@ -794,6 +795,8 @@ unitgroup gv_infestors;
 bool gv_infestorLock;
 bool gv_infestorAggroMode;
 int gv_outbreakCounter;
+int[101] gv_positiveArmorCache;
+int[101] gv_negativeArmorCache;
 int gv_legionOfMeritCivsRescued;
 bool gv_distinguishedServiceMedalFailed;
 bool gv_navyCrossFailed;
@@ -1042,6 +1045,7 @@ int[9] gv_shellDialog;
 playergroup[9] gv_shellDialogObservers;
 int[9] gv_shellDialogObserved;
 unitgroup[9] gv_mobileInfantryGroup;
+fixed[9] gv_shellDispersionRadius;
 bool[9] gv_gunshipActive;
 unit[9] gv_gunshipUnit;
 bool[9] gv_gunshipCameraSwitch;
@@ -1090,6 +1094,7 @@ void InitGlobals () {
     int init_k;
     int init_i1;
 
+    gv_overridingPlayerHandle = "";
     gv_bankSize = 120;
     gv_defaultLighting = "UnknownLight";
     gv_primaryObjective = c_invalidObjectiveId;
@@ -1524,7 +1529,7 @@ void InitGlobals () {
         gv_mindLinkedGroup[init_i] = UnitGroupEmpty();
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
-        gv_barrageTime[init_i] = 8.0;
+        gv_barrageTime[init_i] = 5.0;
     }
     for (init_i = 0; init_i <= 4; init_i += 1) {
         for (init_j = 0; init_j <= 8; init_j += 1) {
@@ -1549,6 +1554,9 @@ void InitGlobals () {
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_mobileInfantryGroup[init_i] = UnitGroupEmpty();
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_shellDispersionRadius[init_i] = 2.5;
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_gunshipSpeed[init_i] = 40.0;
@@ -1744,6 +1752,7 @@ void gf_SmartSpawnWithBehaviorNOTD (string lp_spawningUnit, fixed lp_spawnRange,
 void gf_WaveSpawnAroundMarines (string lp_spawningUnit, fixed lp_spawnRange, int lp_spawnAmount);
 void gf_WaveSpawnAtRegion (string lp_spawningUnit, region lp_spawnRegion, int lp_spawnAmount);
 void gf_ClearZombieWave ();
+void gf_CalculateReduction (unit lp_unit);
 void gf_ZombieAIWorldEvents ();
 void gf_GameState ();
 void gf_BlackMaskApplication ();
@@ -1891,7 +1900,7 @@ void gf_ForwardObserverLaunchSound (int lp_forwardObserverOwner, point lp_point,
 void gf_ForwardObserverShellFlightSound (int lp_forwardObserverOwner, point lp_point, int lp_shellMode);
 void gf_ForwardObserverCreateShellDialog (int lp_forwardObserverOwner);
 void gf_ArtilleryCamaraShake (point lp_impactPoint);
-void gf_ArtilleryStart (int lp_artillaryType, color lp_pingColor, point lp_targetPoint, unit lp_forwardObserver, int lp_player);
+void gf_ArtilleryStart (int lp_artillaryType, color lp_pingColor, point lp_targetPoint, unit lp_forwardObserver, int lp_player, fixed lp_revealRadius);
 void gf_LevelUpTalentRifleman (int lp_itemNo, unit lp_triggUnit, int lp_trigPlayer);
 void gf_LevelUpTalentMedic (int lp_itemNo, unit lp_triggUnit, int lp_triggPlayer);
 void gf_LevelUpTalentAssault (int lp_itemNo, unit lp_triggUnit, int lp_triggPlayer);
@@ -1994,7 +2003,6 @@ trigger gt_KarmaBite;
 trigger gt_LevelUp;
 trigger gt_PetLevelUp;
 trigger gt_PredatorDies;
-trigger gt_UpdateShieldArmorTooltip;
 trigger gt_Helium3AcquiredCredits;
 trigger gt_OnMarineSelected;
 trigger gt_DeadMarine;
@@ -2023,6 +2031,9 @@ trigger gt_InfestorAmbientSpawns;
 trigger gt_InfestorAI;
 trigger gt_ClearImmortalEnemies;
 trigger gt_OutbreakSpawn;
+trigger gt_DamageReductionSystemInitialize;
+trigger gt_ApplyReductionOnPlayerUnitCreation;
+trigger gt_ApplyReductionOnUnitArmorChange;
 trigger gt_Barrels;
 trigger gt_BarrelKills;
 trigger gt_GateEnterAirlockMainGateOuter;
@@ -2030,7 +2041,7 @@ trigger gt_GateEnterAirlockMainGateInner;
 trigger gt_NavyCrossCheck;
 trigger gt_NightmareBonus;
 trigger gt_ChapterEndMedicRatingBonus;
-trigger gt_VetPugGameBonus;
+trigger gt_VetPubGameBonus;
 trigger gt_AFKCheck;
 trigger gt_PlayerLeavesGame;
 trigger gt_PlayerQuitsGame;
@@ -2321,9 +2332,12 @@ trigger gt_MindLinkShareVision;
 trigger gt_CancelMindLink;
 trigger gt_MiniTKPenalty;
 trigger gt_ModifyShellLimit;
+trigger gt_ModifyDispersion;
+trigger gt_AirstrikeKills;
 trigger gt_FireMission;
 trigger gt_ShockwaveBarrage;
 trigger gt_NapalmBarrage;
+trigger gt_NapalmKills;
 trigger gt_MobileInfantry;
 trigger gt_SurveillanceFlares;
 trigger gt_GunshipBuddy;
@@ -4245,7 +4259,7 @@ void gf_StartingBonuses (int lp_playerIndex) {
         UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "ShieldBonus", gv_marineHero[lp_playerIndex], 1);
     }
     if ((lv_classPoints >= 20)) {
-        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "ShieldBonus", gv_marineHero[lp_playerIndex], 1);
+        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "ShieldBonus2", gv_marineHero[lp_playerIndex], 1);
     }
 
     if ((lv_classPoints >= 40)) {
@@ -6368,7 +6382,7 @@ void gf_ShopButton (int lp_panel, int lp_player, int lp_itemNumber, int lp_page)
     lv_tempPanel = DialogControlLastCreated();
     DialogControlHookup(lv_tempPanel, c_triggerControlTypeButton, "Button");
     gv_shopButtons[lp_player][lp_itemNumber] = DialogControlLastCreated();
-    if ((lp_page == 1) && ((gv_noShopMode == true) || (gv_noNewbie == false))) {
+    if ((lp_page == 1) && (lp_itemNumber <= 58) && ((gv_noShopMode == true) || (gv_noNewbie == false))) {
         libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringToText(UserDataGetString("ShopItems", "ShopItem"+IntToString(lp_itemNumber), "Name", 1)) + StringExternal("Param/Value/3CFEA3BD") + UserDataGetText("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopTooltip", 1)), PlayerGroupAll());
         DialogControlHookup(lv_tempPanel, c_triggerControlTypeImage, "ShopImage");
         libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopImage", 1), PlayerGroupAll());
@@ -6419,8 +6433,22 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     lv_itemID = lp_itemID;
 
     // Implementation
-    if ((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noNewbie == true) && (gv_noShopMode == false)) {
+    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noNewbie == true) && (gv_noShopMode == false)) || (lv_itemID > 58))) {
         lv_itemCost = UserDataGetInt("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopCost", 1);
+        if ((lv_itemCost == -1)) {
+            if ((gv_playerXP[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "XPRequirement", 1)) && (gv_playerKarma[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "KarmaRequirement", 1))) {
+                PlayerCreateEffectUnit(lp_player, UserDataGetGameLink("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "Skin (Effect)", 1), gv_marineHero[lp_player]);
+            }
+            else {
+                TextTagCreate(StringExternal("Param/Value/AD36FA0F"), 20, UnitGetPosition(gv_marineHero[lv_buyingPlayer]), 1.5, true, true, PlayerGroupActive());
+                TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(79.22, 58.43, 100.00));
+                TextTagAttachToUnit(TextTagLastCreated(), gv_marineHero[lv_buyingPlayer], 2.0);
+                TextTagSetVelocity(TextTagLastCreated(), 0.25, 90.0);
+                Wait(5.0, c_timeGame);
+                TextTagDestroy(TextTagLastCreated());
+            }
+            return ;
+        }
         lv_item = UserDataGetGameLink("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopUnit", 1);
         if ((gv_playerCredits[lv_buyingPlayer] >= lv_itemCost) && ((gv_navyCrossMode == false) || ((lv_item != "Medpack") && (lv_item != "Bandage")))) {
             gf_UpdateCredits(lv_buyingPlayer, -lv_itemCost);
@@ -6902,6 +6930,33 @@ bool auto_gf_ClearZombieWave_TriggerFunc (bool testConds, bool runActions) {
 
     }
     return true;
+}
+
+void gf_CalculateReduction (unit lp_unit) {
+    // Variable Declarations
+    int lv_unitArmor;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    lv_unitArmor = MaxI(UnitGetPropertyInt(lp_unit, c_unitPropLifeArmor, c_unitPropCurrent), UnitGetPropertyInt(lp_unit, c_unitPropShieldArmor, c_unitPropCurrent));
+    if ((lv_unitArmor > 0)) {
+        UnitBehaviorRemove(lp_unit, "DamageReduction2", c_unitBehaviorCountAll);
+        libNtve_gf_SetBehaviorCount(lp_unit, "DamageReduction", lp_unit, gv_positiveArmorCache[MinI(lv_unitArmor, 100)]);
+    }
+    else if ((lv_unitArmor < 0)) {
+        UnitBehaviorRemove(lp_unit, "DamageReduction", c_unitBehaviorCountAll);
+        libNtve_gf_SetBehaviorCount(lp_unit, "DamageReduction2", lp_unit, gv_negativeArmorCache[MinI(-lv_unitArmor, 100)]);
+    }
+    else if ((lv_unitArmor == 0)) {
+        UnitBehaviorRemove(lp_unit, "DamageReduction", c_unitBehaviorCountAll);
+        UnitBehaviorRemove(lp_unit, "DamageReduction2", c_unitBehaviorCountAll);
+    }
+    if (UnitGroupHasUnit(gv_marines, lp_unit)) {
+        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(lp_unit), "LifeArmorLevel", UnitGetOwner(lp_unit), IntToString(UnitBehaviorCount(lp_unit, "DamageReduction")));
+        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(lp_unit), "ShieldArmorLevel", UnitGetOwner(lp_unit), FixedToString((UnitGetPropertyFixed(lp_unit, c_unitPropShieldArmor, c_unitPropCurrent) - UnitGetPropertyFixed(lp_unit, c_unitPropShieldArmor, c_unitPropNormal)), 0));
+    }
 }
 
 trigger auto_gf_ZombieAIWorldEvents_Trigger = null;
@@ -7470,9 +7525,9 @@ bool auto_gf_MarineSpeechNOTD_TriggerFunc (bool testConds, bool runActions) {
         lv_localTextTag = TextTagLastCreated();
         TextTagSetColor(lv_localTextTag, c_textTagColorText, Color(95.69, 84.31, 16.86));
         TextTagAttachToUnit(lv_localTextTag, lp_speechUnit, 1.5);
-        TextTagSetTime(lv_localTextTag, c_textTagTimeDuration, 7.0);
-        TextTagSetTime(lv_localTextTag, c_textTagTimeFadeDuration, 0.0);
-        TextTagSetTime(lv_localTextTag, c_textTagTimeFadeOut, 0.0);
+        TextTagSetTime(lv_localTextTag, c_textTagTimeDuration, 6.0);
+        TextTagSetTime(lv_localTextTag, c_textTagTimeFadeOut, 5.0);
+        TextTagSetTime(lv_localTextTag, c_textTagTimeFadeDuration, 1.0);
         gf_MissionLogAppend(lv_tempText);
     }
 
@@ -7525,7 +7580,7 @@ bool auto_gf_CoordinateTextNOTD_TriggerFunc (bool testConds, bool runActions) {
     SoundPlayAtPoint(SoundLink("Transmission", -1), PlayerGroupAll(), lp_displayPoint, 1.5, 20.0, 0.0);
     TextTagCreate(lp_speech, 24, lp_displayPoint, 1.0, true, false, PlayerGroupActive());
     lv_localTextTag = TextTagLastCreated();
-    Wait(7.0, c_timeGame);
+    Wait(5.0, c_timeGame);
     TextTagDestroy(lv_localTextTag);
     return true;
 }
@@ -13745,7 +13800,7 @@ void gf_ArtilleryCamaraShake (point lp_impactPoint) {
     }
 }
 
-void gf_ArtilleryStart (int lp_artillaryType, color lp_pingColor, point lp_targetPoint, unit lp_forwardObserver, int lp_player) {
+void gf_ArtilleryStart (int lp_artillaryType, color lp_pingColor, point lp_targetPoint, unit lp_forwardObserver, int lp_player, fixed lp_revealRadius) {
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetDialogItemText(gv_shellCounter[0][lp_player], IntToText(FixedToInt(UnitAbilityChargeInfo(lp_forwardObserver, AbilityCommand("FireMission", 0), c_unitAbilChargeCountLeft))), gv_shellDialogObservers[lp_player]);
@@ -13753,7 +13808,6 @@ void gf_ArtilleryStart (int lp_artillaryType, color lp_pingColor, point lp_targe
     gf_ForwardObserverShellFlightSound(lp_player, lp_targetPoint, lp_artillaryType);
     libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingWarning", lp_targetPoint, lp_pingColor, gv_barrageTime[lp_player], 270.0);
     Wait(gv_barrageTime[lp_player], c_timeGame);
-    VisRevealArea(lp_player, RegionCircle(lp_targetPoint, 7.0), 3.5, true);
 }
 
 void gf_LevelUpTalentRifleman (int lp_itemNo, unit lp_triggUnit, int lp_trigPlayer) {
@@ -13808,9 +13862,11 @@ void gf_LevelUpTalentMarksman (int lp_itemNo, unit lp_triggUnit, int lp_triggPla
             TriggerEnable(gt_Concentration, true);
         }
         else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
+            UnitBehaviorAdd(lp_triggUnit, "ConcentrationLevel2", lp_triggUnit, UnitBehaviorCount(lp_triggUnit, "ConcentrationLevel1"));
             UnitBehaviorRemove(lp_triggUnit, "ConcentrationLevel1", c_unitBehaviorCountAll);
         }
         else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 3)) {
+            UnitBehaviorAdd(lp_triggUnit, "ConcentrationLevel3", lp_triggUnit, UnitBehaviorCount(lp_triggUnit, "ConcentrationLevel2"));
             UnitBehaviorRemove(lp_triggUnit, "ConcentrationLevel2", c_unitBehaviorCountAll);
         }
     }
@@ -14048,7 +14104,15 @@ void gf_LevelUpTalentForwardObserver (int lp_itemNo, unit lp_triggUnit, int lp_t
     }
 
     if ((lp_itemNo == 2)) {
-        gv_barrageTime[lp_triggPlayer] = (gv_barrageTime[lp_triggPlayer] - 1.5);
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 1)) {
+            gv_barrageTime[lp_triggPlayer] = (gv_barrageTime[lp_triggPlayer] - 1.5);
+        }
+        else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
+            TechTreeUpgradeAddLevel(lp_triggPlayer, "ShellProductionUpgrade", 1);
+        }
+        else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 3)) {
+            TechTreeUpgradeAddLevel(lp_triggPlayer, "ShellProductionUpgrade2", 1);
+        }
     }
 
     if ((lp_itemNo == 4)) {
@@ -14099,6 +14163,14 @@ void gf_LevelUpTalentFlamethrower (int lp_itemNo, unit lp_triggUnit, int lp_trig
         }
         gf_StatsModDamage(gv_statsModProperties[2][lp_triggPlayer], lp_triggPlayer);
         gf_StatsModRange(gv_statsModProperties[1][lp_triggPlayer], lp_triggPlayer);
+    }
+
+    if ((lp_itemNo == 4)) {
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
+            TechTreeUpgradeAddLevel(lp_triggPlayer, "RighteousnessLevel2", 1);
+            UnitBehaviorRemove(lp_triggUnit, "FrenzyBuffLevel1", c_unitBehaviorCountAll);
+        }
+
     }
 
     if ((lp_itemNo == 8)) {
@@ -15346,7 +15418,7 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gf_HideAllDialogsForPlayer(EventPlayer());
+    TechTreeUpgradeAddLevel(EventPlayer(), "RiflemanModelUpgrade", 1);
     return true;
 }
 
@@ -15373,7 +15445,7 @@ bool gt_AddCredits_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gf_AwardCreditsNOTD(1000);
+    gf_AwardCreditsNOTD(10000);
     return true;
 }
 
@@ -15428,6 +15500,7 @@ bool gt_ClassSelectOverride_Func (bool testConds, bool runActions) {
     }
 
     gv_classSelectionOverrideIndex = StringToInt(EventChatMessage(false));
+    gv_overridingPlayerHandle = PlayerHandle(EventPlayer());
     UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/E8AE19CC"));
     return true;
 }
@@ -15610,8 +15683,6 @@ void gt_ShowPathtoMilitaryBase_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto49C330C1_g;
-    int auto49C330C1_var;
     playergroup auto986D890A_g;
     int auto986D890A_var;
     playergroup autoF42EC5FC_g;
@@ -15663,13 +15734,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
         SoundPlay(SoundLink("MarSaraIdlesAdjutantAdjutant00004", -1), PlayerGroupAll(), 100.0, 0.0);
     }
 
-    auto49C330C1_g = gv_activePlayers;
-    auto49C330C1_var = -1;
-    while (true) {
-        auto49C330C1_var = PlayerGroupNextPlayer(auto49C330C1_g, auto49C330C1_var);
-        if (auto49C330C1_var < 0) { break; }
-        PlayerOptionOverride(auto49C330C1_var, "tickedunitstatus", "0");
-    }
     if ((GameAttributeGameValue("4") == "0002")) {
         gv_noShopMode = true;
     }
@@ -15740,6 +15804,7 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
         PlayerOptionOverride(auto0E90487C_var, "selectuncontrolable", "1");
         PlayerOptionOverride(auto0E90487C_var, "simplecommandcard", "0");
         PlayerOptionOverride(auto0E90487C_var, "showalerts", "1");
+        PlayerOptionOverride(auto0E90487C_var, "tickedunitstatus", "0");
         PlayerGroupAdd(gv_marineSquad, auto0E90487C_var);
         gv_totalPlayers += 1;
         CameraLockInput(auto0E90487C_var, true);
@@ -16296,7 +16361,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
             }
 
             lv_randomRange = gf_GetRandomRange(lv_selectingPlayer);
-            if ((gv_classSelectionOverrideIndex != 0)) {
+            if ((gv_classSelectionOverrideIndex != 0) && (PlayerHandle(lv_selectingPlayer) == gv_overridingPlayerHandle)) {
                 gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", gv_classSelectionOverrideIndex);
             }
             else {
@@ -18296,41 +18361,6 @@ void gt_PredatorDies_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Update Shield  Armor Tooltip
-//--------------------------------------------------------------------------------------------------
-bool gt_UpdateShieldArmorTooltip_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string lv_triggeringUnitType;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_triggeringUnitType = UnitGetType(EventUnit());
-
-    // Conditions
-    if (testConds) {
-        if (!(gf_ValidPlayer(EventPlayer()))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CatalogFieldValueSet(c_gameCatalogUnit, lv_triggeringUnitType, "ShieldArmorLevel", EventPlayer(), FixedToString((UnitGetPropertyFixed(EventUnit(), c_unitPropShieldArmor, c_unitPropCurrent) - UnitGetPropertyFixed(EventUnit(), c_unitPropShieldArmor, c_unitPropNormal)), c_fixedPrecisionAny));
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_UpdateShieldArmorTooltip_Init () {
-    gt_UpdateShieldArmorTooltip = TriggerCreate("gt_UpdateShieldArmorTooltip_Func");
-    TriggerAddEventUnitProperty(gt_UpdateShieldArmorTooltip, null, c_unitPropShieldsMax);
-    TriggerAddEventUnitBehaviorChange(gt_UpdateShieldArmorTooltip, null, "TimetoDie", c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChange(gt_UpdateShieldArmorTooltip, null, "TimetoDie", c_unitBehaviorChangeDeactivate);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Helium-3 Acquired (Credits)
 //--------------------------------------------------------------------------------------------------
 bool gt_Helium3AcquiredCredits_Func (bool testConds, bool runActions) {
@@ -18955,6 +18985,10 @@ bool gt_QuickUseItem_Func (bool testConds, bool runActions) {
         if (auto8084B81A_var == null) { break; }
         if ((UnitInventoryContainer(auto8084B81A_var) == 1) && (UnitInventorySlot(auto8084B81A_var) == 2)) {
             if ((UnitGetType(auto8084B81A_var) == "Bandage")) {
+                if ((TriggerIsEnabled(gt_NavyCrossCheck) == true)) {
+                    TriggerExecute(gt_NavyCrossCheck, false, false);
+                }
+
                 UnitCreateEffectUnit(EventUnit(), "BandageSet", EventUnit());
                 UnitAddChargeUsed(auto8084B81A_var, "Abil/Bandage", 1.0);
                 if ((UnitGetChargeUsed(auto8084B81A_var, "Abil/Bandage") == CatalogFieldValueGetAsInt(c_gameCatalogItem, "Bandage", "EffectCost.Charge.CountMax", EventPlayer()))) {
@@ -18964,6 +18998,10 @@ bool gt_QuickUseItem_Func (bool testConds, bool runActions) {
                 return true;
             }
             else if ((UnitGetType(auto8084B81A_var) == "Medpack")) {
+                if ((TriggerIsEnabled(gt_NavyCrossCheck) == true)) {
+                    TriggerExecute(gt_NavyCrossCheck, false, false);
+                }
+
                 UnitBehaviorAdd(EventUnit(), "Medkit", EventUnit(), 1);
                 UnitAddChargeUsed(auto8084B81A_var, "Abil/Bandage", 1.0);
                 if ((UnitGetChargeUsed(auto8084B81A_var, "Abil/Bandage") == CatalogFieldValueGetAsInt(c_gameCatalogItem, "Medpack", "EffectCost.Charge.CountMax", EventPlayer()))) {
@@ -20039,6 +20077,96 @@ void gt_OutbreakSpawn_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Damage Reduction System Initialize
+//--------------------------------------------------------------------------------------------------
+bool gt_DamageReductionSystemInitialize_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int auto53E2E754_ae = 100;
+    int auto53E2E754_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto53E2E754_var = 1;
+    for ( ; auto53E2E754_var <= auto53E2E754_ae; auto53E2E754_var += 1 ) {
+        gv_positiveArmorCache[auto53E2E754_var] = RoundI(((auto53E2E754_var / (auto53E2E754_var + 100.0)) * 100.0));
+        gv_negativeArmorCache[auto53E2E754_var] = RoundI(((Pow(1.01, IntToFixed(auto53E2E754_var)) - 1.0) * 100.0));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DamageReductionSystemInitialize_Init () {
+    gt_DamageReductionSystemInitialize = TriggerCreate("gt_DamageReductionSystemInitialize_Func");
+    TriggerAddEventMapInit(gt_DamageReductionSystemInitialize);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Apply Reduction On Player Unit Creation
+//--------------------------------------------------------------------------------------------------
+bool gt_ApplyReductionOnPlayerUnitCreation_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnitCreatedUnit()) < 9))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnitCreatedUnit()) > 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitGetPropertyInt(EventUnitCreatedUnit(), c_unitPropLifeArmor, c_unitPropCurrent) != 0)) {
+        gf_CalculateReduction(EventUnitCreatedUnit());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ApplyReductionOnPlayerUnitCreation_Init () {
+    gt_ApplyReductionOnPlayerUnitCreation = TriggerCreate("gt_ApplyReductionOnPlayerUnitCreation_Func");
+    TriggerAddEventUnitCreated(gt_ApplyReductionOnPlayerUnitCreation, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Apply Reduction On Unit Armor Change
+//--------------------------------------------------------------------------------------------------
+bool gt_ApplyReductionOnUnitArmorChange_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(UnitBehaviorHasFlag(EventUnitBehavior(), c_unitBehaviorFlagUser12))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gf_CalculateReduction(EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ApplyReductionOnUnitArmorChange_Init () {
+    gt_ApplyReductionOnUnitArmorChange = TriggerCreate("gt_ApplyReductionOnUnitArmorChange_Func");
+    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeDecrease);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Barrels
 //--------------------------------------------------------------------------------------------------
 bool gt_Barrels_Func (bool testConds, bool runActions) {
@@ -20323,9 +20451,9 @@ void gt_ChapterEndMedicRatingBonus_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Vet Pug Game Bonus
+// Trigger: Vet Pub Game Bonus
 //--------------------------------------------------------------------------------------------------
-bool gt_VetPugGameBonus_Func (bool testConds, bool runActions) {
+bool gt_VetPubGameBonus_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     const int auto67F73D37_ae = gv_numberofPlayers;
     int auto67F73D37_var;
@@ -20348,9 +20476,9 @@ bool gt_VetPugGameBonus_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_VetPugGameBonus_Init () {
-    gt_VetPugGameBonus = TriggerCreate("gt_VetPugGameBonus_Func");
-    TriggerEnable(gt_VetPugGameBonus, false);
+void gt_VetPubGameBonus_Init () {
+    gt_VetPubGameBonus = TriggerCreate("gt_VetPubGameBonus_Func");
+    TriggerEnable(gt_VetPubGameBonus, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -22189,15 +22317,15 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
         }
     }
 
-    Wait(1.5, c_timeReal);
+    Wait(2.0, c_timeReal);
     auto1391D07C_g = UnitGroup("Magazine", c_playerAny, RegionFromId(14), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto1391D07C_u = UnitGroupCount(auto1391D07C_g, c_unitCountAll);
     for (;; auto1391D07C_u -= 1) {
         auto1391D07C_var = UnitGroupUnitFromEnd(auto1391D07C_g, auto1391D07C_u);
         if (auto1391D07C_var == null) { break; }
-        UnitBehaviorAddPlayer(auto1391D07C_var, "LaserDesignatorLevel1", 10, 1);
+        gf_PingBeaconAdd("PingPanelBeaconOnMyWay", UnitGetPosition(auto1391D07C_var), 0);
     }
-    Wait(1.5, c_timeReal);
+    Wait(1.0, c_timeReal);
     gf_StoryMessageNOTD(StringExternal("Param/Value/B7ED1099"));
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 80.0, 0.0);
     Wait(2.0, c_timeReal);
@@ -24657,6 +24785,7 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
             TriggerEnable(gt_ECEnterTruck, false);
             if ((gv_colonistsRescued < 20)) {
                 ObjectiveSetState(gv_secondaryObjective, c_objectiveStateFailed);
+                gf_AwardKarmaNOTD(-1);
             }
             Wait(10.0, c_timeGame);
         }
@@ -24760,6 +24889,7 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
             }
             if ((ObjectiveGetState(gv_secondaryObjective) != c_objectiveStateFailed) && (gv_colonistsRescued < 20)) {
                 ObjectiveSetState(gv_secondaryObjective, c_objectiveStateFailed);
+                gf_AwardKarmaNOTD(-1);
                 Wait(10.0, c_timeGame);
             }
 
@@ -24923,6 +25053,7 @@ bool gt_ECZombieTime_Func (bool testConds, bool runActions) {
     libNtve_gf_RemoveDoodadsinRegion(RegionFromId(39), "DecalProtoss");
     libNtve_gf_RemoveDoodadsinRegion(RegionFromId(167), "DecalProtoss");
     ObjectiveSetState(gv_secondaryObjective, c_objectiveStateFailed);
+    gf_AwardKarmaNOTD(-1);
     gv_colonyShipRescue = true;
     UnitFlashSelection(EventUnit(), 2.5);
     PingCreate(PlayerGroupActive(), "PingWarning", UnitGetPosition(EventUnit()), ColorWithAlpha(0.00, 50.20, 100.00, 0.00), 5.0);
@@ -26448,7 +26579,7 @@ bool gt_Chapter2Initialize_Func (bool testConds, bool runActions) {
     lv_chapter2CamChoice = lv_chapter2CamOptions[RandomInt(1, 3)];
     ObjectiveDestroy(gv_primaryObjective);
     TriggerExecute(gt_ChapterEndMedicRatingBonus, true, false);
-    TriggerExecute(gt_VetPugGameBonus, true, false);
+    TriggerExecute(gt_VetPubGameBonus, true, false);
     gf_StatsModifyLock();
     SoundtrackStop(PlayerGroupActive(), c_soundtrackCategoryMusic, true);
     SoundtrackPlay(PlayerGroupActive(), c_soundtrackCategoryMusic, "Music_EndCreditsD", c_soundtrackCueAny, c_soundtrackIndexAny, true);
@@ -31156,7 +31287,7 @@ bool gt_ACC2Initialize_Func (bool testConds, bool runActions) {
     SoundtrackStop(PlayerGroupActive(), c_soundtrackCategoryMusic, true);
     SoundtrackPlay(PlayerGroupActive(), c_soundtrackCategoryMusic, "Mission_MusicCue005", c_soundtrackCueAny, c_soundtrackIndexAny, true);
     TriggerExecute(gt_ChapterEndMedicRatingBonus, true, false);
-    TriggerExecute(gt_VetPugGameBonus, true, false);
+    TriggerExecute(gt_VetPubGameBonus, true, false);
     gf_StatsModifyLock();
     UnitIssueOrder(gv_charlie, OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(2214)), c_orderQueueReplace);
     Wait(5.5, c_timeReal);
@@ -35984,7 +36115,7 @@ bool gt_STC2Initialize_Func (bool testConds, bool runActions) {
     gf_StoryMessageNOTD(StringExternal("Param/Value/7DFDE347"));
     Wait(3.0, c_timeReal);
     TriggerExecute(gt_ChapterEndMedicRatingBonus, true, false);
-    TriggerExecute(gt_VetPugGameBonus, true, false);
+    TriggerExecute(gt_VetPubGameBonus, true, false);
     TriggerExecute(gt_NightmareBonus, true, false);
     TriggerExecute(gt_STC2ItemSpawn, true, false);
     TriggerExecute(gt_ACEnterSiteAlphaGate, false, false);
@@ -38754,7 +38885,7 @@ bool gt_STW16bBossExecuted_Func (bool testConds, bool runActions) {
     gf_EndBossFight();
     gv_gameVictoryTime = TimerGetElapsed(gv_gameTime);
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
-    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(0, 80, 135, 0), 500.0, libNtve_gf_DifficultyValueInt(0, 250, 650, 0), 0, 5);
+    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(0, 80, 135, 0), 500.0, libNtve_gf_DifficultyValueInt(0, 220, 600, 0), 0, 5);
     if ((RandomInt(0, 1) == 1)) {
         SoundPlay(SoundLink("TValerian02ARaynor00049", -1), PlayerGroupAll(), 100.0, 0.0);
     }
@@ -41840,6 +41971,76 @@ void gt_ModifyShellLimit_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Modify Dispersion
+//--------------------------------------------------------------------------------------------------
+bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(gv_marineHero[EventPlayer()]) == "ForwardObserver"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 1)) {
+        gv_shellDispersionRadius[EventPlayer()] = 2.5;
+        CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(5.0, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator22", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
+        UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/B4B4084C"));
+    }
+    else if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 2)) {
+        gv_shellDispersionRadius[EventPlayer()] = 3.5;
+        CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(6.0, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator22", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
+        UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/6CDABA30"));
+    }
+    else if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 3)) {
+        gv_shellDispersionRadius[EventPlayer()] = 4.5;
+        CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(7.0, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator22", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));
+        UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/E5895E8E"));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ModifyDispersion_Init () {
+    gt_ModifyDispersion = TriggerCreate("gt_ModifyDispersion_Func");
+    TriggerAddEventChatMessage(gt_ModifyDispersion, c_playerAny, "-dp", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Airstrike Kills
+//--------------------------------------------------------------------------------------------------
+bool gt_AirstrikeKills_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitCreateEffectUnit(EventUnit(), "SharedExperienceSearchSet", gv_marineHero[EventUnitDamageSourcePlayer()]);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_AirstrikeKills_Init () {
+    gt_AirstrikeKills = TriggerCreate("gt_AirstrikeKills_Func");
+    TriggerAddEventUnitDamaged(gt_AirstrikeKills, null, c_unitDamageTypeAny, c_unitDamageFatal, "Damage");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Fire Mission
 //--------------------------------------------------------------------------------------------------
 bool gt_FireMission_Func (bool testConds, bool runActions) {
@@ -41854,8 +42055,6 @@ bool gt_FireMission_Func (bool testConds, bool runActions) {
     unitgroup lv_unitsinRegion;
 
     // Automatic Variable Declarations
-    int auto428C50E9_n;
-    int auto428C50E9_i;
     int auto6B76F718_ae;
     int auto6B76F718_var;
 
@@ -41872,17 +42071,13 @@ bool gt_FireMission_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gf_ArtilleryStart(1, ColorWithAlpha(100.00, 100.00, 0.00, 0.00), EventUnitTargetPoint(), EventUnit(), lv_forwardObserverOwner);
-    auto428C50E9_n = lv_shellLimit;
-    for (auto428C50E9_i = 1; auto428C50E9_i <= auto428C50E9_n; auto428C50E9_i += 1) {
-    }
+    gf_ArtilleryStart(1, ColorWithAlpha(100.00, 100.00, 0.00, 0.00), EventUnitTargetPoint(), EventUnit(), lv_forwardObserverOwner, 5.0);
     auto6B76F718_ae = lv_shellLimit;
     auto6B76F718_var = 1;
     for ( ; auto6B76F718_var <= auto6B76F718_ae; auto6B76F718_var += 1 ) {
         lv_randomInteger = RandomInt(1, 3);
-        lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), 5.0));
+        lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), gv_shellDispersionRadius[lv_forwardObserverOwner]));
         UnitCreateEffectPoint(EventUnit(), UserDataGetGameLink("FireMissionDamageEffects", UserDataInstance("FireMissionDamageEffects", lv_fireMissionLevel), "Damage Effects", lv_randomInteger), lv_randomPoint);
-        gf_ArtilleryCamaraShake(lv_randomPoint);
         Wait(lv_barrageTimeInterval, c_timeGame);
     }
     return true;
@@ -41921,13 +42116,12 @@ bool gt_ShockwaveBarrage_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gf_ArtilleryStart(2, ColorWithAlpha(12.55, 56.08, 100.00, 0.00), EventUnitTargetPoint(), EventUnit(), lv_forwardObserverOwner);
+    gf_ArtilleryStart(2, ColorWithAlpha(12.55, 56.08, 100.00, 0.00), EventUnitTargetPoint(), EventUnit(), lv_forwardObserverOwner, 5.0);
     auto6DA45AD8_n = lv_shellLimit;
     for (auto6DA45AD8_i = 1; auto6DA45AD8_i <= auto6DA45AD8_n; auto6DA45AD8_i += 1) {
         lv_randomInteger = RandomInt(1, 2);
-        lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), 5.0));
+        lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), gv_shellDispersionRadius[lv_forwardObserverOwner]));
         UnitCreateEffectPoint(EventUnit(), UserDataGetGameLink("ShockwaveBarrageEffects", UserDataInstance("ShockwaveBarrageEffects", lv_shockwaveBarrageLevel), "Damage Effects", lv_randomInteger), lv_randomPoint);
-        gf_ArtilleryCamaraShake(lv_randomPoint);
         Wait(lv_barrageTimeInterval, c_timeGame);
     }
     return true;
@@ -41965,12 +42159,11 @@ bool gt_NapalmBarrage_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gf_ArtilleryStart(3, ColorWithAlpha(96.86, 31.37, 3.53, 0.00), EventUnitTargetPoint(), EventUnit(), lv_forwardObserverOwner);
+    gf_ArtilleryStart(3, ColorWithAlpha(96.86, 31.37, 3.53, 0.00), EventUnitTargetPoint(), EventUnit(), lv_forwardObserverOwner, 7.0);
     auto89C324DD_n = lv_shellLimit;
     for (auto89C324DD_i = 1; auto89C324DD_i <= auto89C324DD_n; auto89C324DD_i += 1) {
-        lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), 5.0));
+        lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), gv_shellDispersionRadius[lv_forwardObserverOwner]));
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "NapalmFire", c_unitCreateIgnorePlacement, lv_forwardObserverOwner, lv_randomPoint);
-        gf_ArtilleryCamaraShake(lv_randomPoint);
         Wait(lv_barrageTimeInterval, c_timeGame);
     }
     return true;
@@ -41980,6 +42173,27 @@ bool gt_NapalmBarrage_Func (bool testConds, bool runActions) {
 void gt_NapalmBarrage_Init () {
     gt_NapalmBarrage = TriggerCreate("gt_NapalmBarrage_Func");
     TriggerAddEventUnitAbility(gt_NapalmBarrage, null, AbilityCommand("NapalmBarrage", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Napalm Kills
+//--------------------------------------------------------------------------------------------------
+bool gt_NapalmKills_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetPropertyFixed(gv_marineHero[EventUnitDamageSourcePlayer()], c_unitPropKills, (libNtve_gf_UnitGetPropertyKills(gv_marineHero[EventUnitDamageSourcePlayer()], c_unitPropCurrent) + 1));
+    UnitCreateEffectUnit(EventUnit(), "SharedExperienceSearchSet", gv_marineHero[EventUnitDamageSourcePlayer()]);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_NapalmKills_Init () {
+    gt_NapalmKills = TriggerCreate("gt_NapalmKills_Func");
+    TriggerAddEventUnitDamaged(gt_NapalmKills, null, c_unitDamageTypeAny, c_unitDamageFatal, "NapalmBarrageDamage");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -42901,6 +43115,11 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
 
     auto4111D9D3_var = gv_indexBaseValue;
     for ( ; auto4111D9D3_var <= auto4111D9D3_ae; auto4111D9D3_var += 1 ) {
+        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && (gv_playerRandom[auto4111D9D3_var] == true) && (gv_noNewbie == false)) {
+            UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, StringExternal("Param/Value/FF26767E"));
+            gf_UpdateKarma(auto4111D9D3_var, 1);
+            continue;
+        }
         if (((UnitIsAlive(gv_marineHero[auto4111D9D3_var]) == true) || (gv_cPAwardException[auto4111D9D3_var] == true))) {
             lv_playerClass = UnitGetType(gv_marineHero[auto4111D9D3_var]);
             TextExpressionSetToken("Param/Expression/444E0DF8", "A", UserDataGetText("Classes", gv_playerClass[auto4111D9D3_var], "Class CP Name", 1));
@@ -43211,7 +43430,6 @@ void InitTriggers () {
     gt_LevelUp_Init();
     gt_PetLevelUp_Init();
     gt_PredatorDies_Init();
-    gt_UpdateShieldArmorTooltip_Init();
     gt_Helium3AcquiredCredits_Init();
     gt_OnMarineSelected_Init();
     gt_DeadMarine_Init();
@@ -43240,6 +43458,9 @@ void InitTriggers () {
     gt_InfestorAI_Init();
     gt_ClearImmortalEnemies_Init();
     gt_OutbreakSpawn_Init();
+    gt_DamageReductionSystemInitialize_Init();
+    gt_ApplyReductionOnPlayerUnitCreation_Init();
+    gt_ApplyReductionOnUnitArmorChange_Init();
     gt_Barrels_Init();
     gt_BarrelKills_Init();
     gt_GateEnterAirlockMainGateOuter_Init();
@@ -43247,7 +43468,7 @@ void InitTriggers () {
     gt_NavyCrossCheck_Init();
     gt_NightmareBonus_Init();
     gt_ChapterEndMedicRatingBonus_Init();
-    gt_VetPugGameBonus_Init();
+    gt_VetPubGameBonus_Init();
     gt_AFKCheck_Init();
     gt_PlayerLeavesGame_Init();
     gt_PlayerQuitsGame_Init();
@@ -43538,9 +43759,12 @@ void InitTriggers () {
     gt_CancelMindLink_Init();
     gt_MiniTKPenalty_Init();
     gt_ModifyShellLimit_Init();
+    gt_ModifyDispersion_Init();
+    gt_AirstrikeKills_Init();
     gt_FireMission_Init();
     gt_ShockwaveBarrage_Init();
     gt_NapalmBarrage_Init();
+    gt_NapalmKills_Init();
     gt_MobileInfantry_Init();
     gt_SurveillanceFlares_Init();
     gt_GunshipBuddy_Init();

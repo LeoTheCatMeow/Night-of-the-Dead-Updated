@@ -986,6 +986,7 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/ChemicalExpert/LifeArmorToolTip"/>
+        <LifeArmorLevel value="1"/>
     </CUnit>
     <CUnit id="Cow">
         <LifeMax value="150"/>
@@ -1246,6 +1247,7 @@
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeArmorTip value="Unit/Demolitions/LifeArmorToolTip"/>
+        <LifeArmorLevel value="2"/>
     </CUnit>
     <CUnit id="FieldNexus">
         <DeathRevealRadius value="3"/>
@@ -1654,13 +1656,13 @@
             <LayoutButtons Face="Cancel2222" Type="AbilCmd" AbilCmd="Stealth,Off" Row="1" Column="2"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>
-            <LayoutButtons Face="QuickAim" Type="AbilCmd" AbilCmd="QuickAim,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="Reload" Type="AbilCmd" AbilCmd="Reload,Execute" Row="0" Column="2"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="Shadowstep" Type="AbilCmd" AbilCmd="Shadowstep,On" Row="1" Column="1"/>
             <LayoutButtons Face="MonofilamentCartridge" Type="AbilCmd" AbilCmd="RaynorSnipe,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="OneShotOneKill" Type="AbilCmd" AbilCmd="Snipe,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="MarineActions" Type="Submenu" SubmenuCardId="2" Row="1" Column="4"/>
+            <LayoutButtons Face="QuickAim" Type="AbilCmd" AbilCmd="QuickAim,Execute" Row="1" Column="3"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
@@ -1701,15 +1703,20 @@
         <LifeArmorTip value="Unit/Marksman/LifeArmorTooltip"/>
     </CUnit>
     <CUnit id="Medic2" parent="BaseHeroLight" ClassInventory="InventoryMedic" ClassLearn="LearnMedic">
+        <Description value="Button/Tooltip/Medic"/>
         <LifeStart value="185"/>
         <LifeMax value="185"/>
         <LifeArmor value="1"/>
+        <LifeRegenDelay value="0.5"/>
         <LifeRegenRate value="0.1718"/>
+        <LifeArmorTip value="Unit/Medic/LifeArmorToolTip"/>
+        <LifeArmorLevel value="1"/>
         <EnergyStart value="200"/>
         <EnergyMax value="200"/>
         <EnergyRegenRate value="1.1992"/>
         <ShieldsStart value="30"/>
         <ShieldsMax value="30"/>
+        <ShieldRegenDelay value="0"/>
         <ShieldRegenRate value="1.75"/>
         <Speed value="2.586"/>
         <Sight value="9.5"/>
@@ -1729,8 +1736,8 @@
             <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="NanoStrength" Type="AbilCmd" AbilCmd="NanoStrength,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="MedicHeal" Type="AbilCmd" AbilCmd="heal,Execute" Row="2" Column="2"/>
-            <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="Restoration" Type="AbilCmd" AbilCmd="Restoration,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="MindBlast" Type="AbilCmd" AbilCmd="MindBlast,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="NanoShield" Type="AbilCmd" AbilCmd="NanoShield,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="NanoWeave" Type="AbilCmd" AbilCmd="NanoWeave,Execute" Row="2" Column="1"/>
@@ -1752,16 +1759,13 @@
             <LayoutButtons Face="Restoration" Type="AbilCmd" AbilCmd="Restoration,Execute" Row="0" Column="0"/>
         </CardLayouts>
         <SubgroupPriority value="10"/>
+        <EditorCategories value="ObjectType:Hero"/>
         <AIEvaluateAlias value="Medic2"/>
         <Fidget>
             <ChanceArray index="Anim" value="33"/>
             <ChanceArray index="Idle" value="33"/>
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
-        <Description value="Button/Tooltip/Medic"/>
-        <LifeRegenDelay value="0.5"/>
-        <ShieldRegenDelay value="0"/>
-        <LifeArmorTip value="Unit/Medic/LifeArmorToolTip"/>
     </CUnit>
     <CUnit id="Menoetes">
         <DeathRevealRadius value="3"/>
@@ -2103,9 +2107,9 @@
             <LayoutButtons index="11" Face="Attack" AbilCmd="attack,Execute" Row="0" Column="1"/>
             <LayoutButtons index="12" Face="SupplyStation" AbilCmd="SupplyStation,Execute" Column="1"/>
             <LayoutButtons index="13" Face="MassDesignate" AbilCmd="MassDesignate,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Execute" Type="AbilCmd" AbilCmd="Execute,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="StealthMatrixDeactivate" Type="AbilCmd" AbilCmd="StealthMatrix,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
-            <LayoutButtons Face="Execute" Type="AbilCmd" AbilCmd="Execute,Execute" Row="2" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
@@ -2745,6 +2749,7 @@
             <Cooldown Link="TychusChaingun/Revive"/>
         </ReviveInfoBase>
         <LifeArmorTip value="Unit/Technician/LifeArmorToolTip"/>
+        <LifeArmorLevel value="5"/>
     </CUnit>
     <CUnit id="DrGunjan">
         <DeathRevealRadius value="3"/>
@@ -3041,13 +3046,13 @@
                 <Row value="1"/>
                 <Column value="4"/>
             </LayoutButtons>
-            <LayoutButtons Face="HarvesterofSorrow" Type="AbilCmd" AbilCmd="HarvesterofSorrow,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="Taunt2" Type="AbilCmd" AbilCmd="Taunt2,On" Row="2" Column="1"/>
             <LayoutButtons Face="Cancel222" Type="AbilCmd" AbilCmd="Taunt2,Off" Row="2" Column="1"/>
-            <LayoutButtons Face="Charge2" Type="AbilCmd" AbilCmd="Charge2,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="BloodFrenzy" Type="AbilCmd" AbilCmd="BloodFrenzy,On" Row="1" Column="0"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
+            <LayoutButtons Face="HarvesterofSorrow" Type="AbilCmd" AbilCmd="HarvesterofSorrow,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge2" Type="AbilCmd" AbilCmd="Charge2,Execute" Row="2" Column="3"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
@@ -3072,6 +3077,7 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <SelectAlias value="Assault"/>
         <LifeArmorTip value="Unit/Assault/LifeArmorToolTip"/>
+        <LifeArmorLevel value="2"/>
     </CUnit>
     <CUnit id="Assault" parent="BaseHero">
         <DeathRevealFilters value="Visible;Player,Ally,Neutral,Missile,Dead,Hidden"/>
@@ -6459,6 +6465,7 @@
         </Fidget>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeArmorTip value="Unit/Flamethrower/LifeArmorTooltip"/>
+        <LifeArmorLevel value="3"/>
     </CUnit>
     <CUnit id="Predator2" parent="PetTemplate">
         <Name value="Unit/Name/Predator2"/>
@@ -8378,6 +8385,7 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/PsiOps/LifeArmorToolTip"/>
+        <LifeArmorLevel value="1"/>
     </CUnit>
     <CUnit id="Parasite" parent="Larva">
         <Name value="Unit/Name/Parasite"/>
@@ -10482,7 +10490,7 @@
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
-            <LayoutButtons Face="QuickUse" Type="AbilCmd" AbilCmd="QuickUseItem,Cancel" Row="1" Column="0"/>
+            <LayoutButtons Face="QuickUse" Type="AbilCmd" AbilCmd="QuickUseItem,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="DropMagazine" Type="AbilCmd" AbilCmd="DropMagazine,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="GhostHoldFire,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="GhostWeaponsFree,Execute" Row="2" Column="1"/>
@@ -10752,13 +10760,13 @@
             <LayoutButtons Face="PlasmaDischarge" Type="AbilCmd" AbilCmd="PlasmaDischarge,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
-            <LayoutButtons Face="X1Guardian" Type="AbilCmd" AbilCmd="X1Guardian,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Repair2" Type="AbilCmd" AbilCmd="RepairNOTD,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="FieldProbe" Type="AbilCmd" AbilCmd="FieldProbe,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="DisruptionTowerLevel23" Type="AbilCmd" AbilCmd="BuildEngineer,Build2" Row="1" Column="0"/>
             <LayoutButtons Face="DisruptionTowerLevel13" Type="AbilCmd" AbilCmd="BuildEngineer,Build1" Row="1" Column="0"/>
             <LayoutButtons Face="FieldNexus" Type="AbilCmd" AbilCmd="FieldNexus,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="BoomHeadshot" Type="AbilCmd" AbilCmd="BoomHeadshot,On" Row="1" Column="2"/>
+            <LayoutButtons Face="X1Guardian" Type="AbilCmd" AbilCmd="X1Guardian,Execute" Row="2" Column="3"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>
@@ -10795,6 +10803,7 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/Engineer/LifeArmorToolTip"/>
+        <LifeArmorLevel value="1"/>
     </CUnit>
     <CUnit id="NydusCanal">
         <LifeStart value="1500"/>

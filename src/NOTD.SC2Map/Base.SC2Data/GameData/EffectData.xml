@@ -95,9 +95,15 @@
         <EditorCategories value=""/>
         <Behavior value="Detector5"/>
     </CEffectApplyBehavior>
+    <CEffectCreateUnit id="AirStrikeRevealDummy">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <SpawnOwner Value="Neutral"/>
+        <SpawnUnit value="NukeRevealDummy"/>
+    </CEffectCreateUnit>
     <CEffectDamage id="ArmorMeltDamage">
         <EditorCategories value=""/>
-        <Kind value="Ranged"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectCreateUnit id="CreateNapalmFireInfernoChain">
@@ -108,6 +114,54 @@
         <SpawnUnit value="NapalmFire"/>
         <TypeFallbackUnit Value="Source"/>
     </CEffectCreateUnit>
+    <CEffectDamage id="Damage2">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="CasterUnit"/>
+        <Amount value="75"/>
+        <Death value="Impact"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="0.66"/>
+        <AreaArray Radius="4.5" Fraction="0.33"/>
+        <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="ArtillerySearchAreaDummy">
+        <EditorCategories value=""/>
+        <AreaArray Radius="5"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="FrenzyApplyBuffLevel12">
+        <ValidatorArray index="0" value="FrenzyLevel12"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="FrenzyBuffLevel1"/>
+        <Count value="10"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="FrenzyApplyBuffLevel22">
+        <ValidatorArray index="0" value="FrenzyLevel22"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="FrenzyBuffLevel2"/>
+        <Count value="10"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="InfernoDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="150"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="3" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="InfernoDamage3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="20"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="3" Fraction="1"/>
+        <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="InfernoRemove">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Inferno"/>
+    </CEffectRemoveBehavior>
     <CEffectDamage id="HotSBanelingExplodeLargeSearchDamage">
         <Amount value="60"/>
     </CEffectDamage>
@@ -119,17 +173,27 @@
         <EditorCategories value=""/>
         <Behavior value="InfernoChainTarget"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="InfernoDamage2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="10"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="1" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
     <CEffectEnumArea id="InfernoSearchTargetChain">
         <EditorCategories value=""/>
         <Chance value="0.4"/>
-        <SearchFilters value="Ground,Armored,Biological;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="1" Effect="InfernoApply"/>
+        <SearchFilters value="Biological;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <AreaArray Radius="5" Effect="InfernoApply"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
+        <MaxCount value="5"/>
     </CEffectEnumArea>
     <CEffectSet id="InfernoDamageSet">
         <EditorCategories value=""/>
-        <EffectArray value="InfernoSearchTargetCreateNapalm"/>
+        <EffectArray value="InfernoSearchTargetChain"/>
         <EffectArray value="InfernoDamage"/>
+        <EffectArray value="InfernoDamage3"/>
         <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
     <CEffectEnumArea id="InfernoSearchTargetCreateNapalm">
@@ -138,6 +202,12 @@
         <AreaArray Radius="3" Effect="InfernoApplyChainTarget"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
     </CEffectEnumArea>
+    <CEffectCreatePersistent id="NapalmFireHideBeforeDeath">
+        <EditorCategories value=""/>
+        <FinalEffect value="Suicide"/>
+        <PeriodCount value="1"/>
+        <PeriodicPeriodArray value="11"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="NeuralParasiteApplyTimedLife">
         <Behavior value=""/>
     </CEffectApplyBehavior>
@@ -246,6 +316,27 @@
     <CEffectModifyUnit id="SharedExperienceBonusBrainBug">
         <EditorCategories value=""/>
         <XP value="15"/>
+    </CEffectModifyUnit>
+    <CEffectCreatePersistent id="ShockwaveBarrageLevel1CreatePersistent2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/FireMissionLevel1CreatePersistent"/>
+        <InitialDelay value="5"/>
+        <PeriodCount value="1"/>
+        <PeriodicPeriodArray value="5"/>
+        <RevealRadius value="7"/>
+        <RevealFlags index="Unfog" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectModifyUnit id="Tier1Skin">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="Tier2Skin">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="Tier3Skin">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="Default">
+        <EditorCategories value=""/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="SprintSpeedIncrease2">
         <ValidatorArray index="0" value="HiddenCompareBA"/>
@@ -603,7 +694,7 @@
     <CEffectEnumArea id="BlazeofGloryEnemyDamage">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="6" Effect="InfernoDamage"/>
+        <AreaArray Radius="3" Effect="InfernoDamage"/>
     </CEffectEnumArea>
     <CEffectCreatePersistent id="BlazeofGloryPersistent">
         <EditorCategories value=""/>
@@ -1645,13 +1736,12 @@
     <CEffectDamage id="Damage">
         <EditorCategories value=""/>
         <LaunchLocation Value="CasterUnit"/>
-        <Kind value="Splash"/>
         <Amount value="75"/>
         <Death value="Impact"/>
         <AreaArray Radius="1.5" Fraction="1"/>
         <AreaArray Radius="3" Fraction="0.66"/>
         <AreaArray Radius="4.5" Fraction="0.33"/>
-        <SearchFilters value="Ground;RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="DeimosShockRifle">
         <EditorCategories value=""/>
@@ -2424,15 +2514,6 @@
         <ExpireDelay value="4"/>
         <ExpireEffect value="ShivaCost"/>
     </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="ShockwaveBarrageLevel1CreatePersistent2">
-        <EditorCategories value=""/>
-        <Marker Link="Effect/FireMissionLevel1CreatePersistent"/>
-        <InitialDelay value="9"/>
-        <PeriodCount value="1"/>
-        <PeriodicPeriodArray value="5"/>
-        <RevealRadius value="7"/>
-        <RevealFlags index="Unfog" value="1"/>
-    </CEffectCreatePersistent>
     <CEffectCreatePersistent id="ShockwaveBarrageLevel2CreatePersistent2">
         <EditorCategories value=""/>
         <InitialDelay value="9"/>
@@ -2589,7 +2670,7 @@
         <RevealFlags index="Unfog" value="1"/>
         <RevealFlags index="LoS" value="1"/>
         <PeriodicValidator value="LaserDesignatorSet"/>
-        <ValidatorArray value="TargetIsVisible"/>
+        <ValidatorArray value="LaserDesignatorSet"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="LifeDamage">
         <EditorCategories value=""/>
@@ -4473,7 +4554,6 @@
         <EditorCategories value=""/>
         <EffectArray value="SonicTrapPush"/>
         <EffectArray value="SonicTrapLevel2Height"/>
-        <MaxCount value="4294967295"/>
     </CEffectSet>
     <CEffectRemoveBehavior id="HandgunExpertiseRemoveLevel1">
         <EditorCategories value=""/>
@@ -4608,26 +4688,26 @@
         <Amount value="200"/>
         <AreaArray Radius="2.75" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
-        <ArmorReduction value="5"/>
         <KindSplash value="Splash"/>
         <Flags index="Notification" value="1"/>
         <ExcludeArray Value="Target"/>
+        <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectDamage id="L3GrenadeExplosionDummy">
         <EditorCategories value=""/>
-        <ArmorReduction value="5"/>
         <Amount value="200"/>
         <Death value="Remove"/>
         <AreaArray Radius="2.75" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,Hover,RawResource,HarvestableResource,Item,Dead,Invulnerable"/>
+        <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectDamage id="L3GrenadeExplosionAlly">
         <EditorCategories value=""/>
-        <Amount value="80"/>
+        <Amount value="70"/>
         <AreaArray Radius="2" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,Item,Dead,Invulnerable"/>
-        <ArmorReduction value="5"/>
         <KindSplash value="Splash"/>
+        <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectEnumArea id="InfernalFlameThrowerE">
         <SearchFilters value="Ground;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Hidden,Invulnerable"/>
@@ -6113,17 +6193,17 @@
         <WhichUnit Value="Caster"/>
     </CEffectApplyBehavior>
     <CEffectCreatePersistent id="BURNPersistentDummy">
-        <ValidatorArray value="NotDead"/>
+        <ValidatorArray value="NotDeadandNotInvulnerableBurn"/>
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
         <Flags index="Channeled" value="1"/>
         <Flags index="PersistUntilDestroyed" value="1"/>
         <InitialEffect value="BURNDummy1"/>
         <PeriodCount value="2"/>
-        <PeriodicValidator value="NotDead"/>
+        <PeriodicValidator value="NotDeadandNotInvulnerableBurn"/>
         <PeriodicEffectArray value="BURNDummy1"/>
         <PeriodicEffectArray value="BURNDummy2"/>
-        <PeriodicPeriodArray value="0.5"/>
+        <PeriodicPeriodArray value="0.1"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="BURNApplyLevel1">
         <EditorCategories value=""/>
@@ -6141,19 +6221,15 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="BURNDamageLevel1">
         <EditorCategories value=""/>
-        <Amount value="25"/>
+        <Amount value="40"/>
         <Death value="Fire"/>
-        <AttributeBonus index="Armored" value="1"/>
-        <AttributeBonus index="Massive" value="1"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="BURNDamageLevel2">
         <EditorCategories value=""/>
-        <Amount value="50"/>
+        <Amount value="40"/>
         <Death value="Fire"/>
-        <AttributeBonus index="Armored" value="2"/>
-        <AttributeBonus index="Massive" value="2"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -6181,7 +6257,7 @@
         <PeriodCount value="5"/>
         <PeriodicValidator value="NotDeadandNotInvulnerableBurn"/>
         <PeriodicEffectArray value="BURNApplyLevel2"/>
-        <PeriodicPeriodArray value="1"/>
+        <PeriodicPeriodArray value="0.4"/>
     </CEffectCreatePersistent>
     <CEffectSet id="BURNSetLevel1">
         <EditorCategories value=""/>
@@ -8516,14 +8592,6 @@
         <EditorCategories value=""/>
         <Behavior value="Inferno"/>
     </CEffectApplyBehavior>
-    <CEffectDamage id="InfernoDamage">
-        <EditorCategories value=""/>
-        <Amount value="200"/>
-        <Death value="Fire"/>
-        <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <ImpactLocation Value="TargetUnit"/>
-    </CEffectDamage>
     <CEffectLaunchMissile id="InfernoLaunchMissile">
         <ValidatorArray index="0" value="InfernoTarget"/>
         <EditorCategories value="Race:Terran"/>
@@ -8565,16 +8633,6 @@
         <EditorCategories value=""/>
         <Behavior value="FrenzyDummy"/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="FrenzyRemoveLevel1">
-        <EditorCategories value=""/>
-        <BehaviorLink value="FrenzyLevel1"/>
-        <Count value="1"/>
-    </CEffectRemoveBehavior>
-    <CEffectSet id="FrenzySetLevel2">
-        <EditorCategories value=""/>
-        <EffectArray value="FrenzyRemoveLevel1"/>
-        <EffectArray value="FrenzyApplyDummy"/>
-    </CEffectSet>
     <CEffectApplyBehavior id="Helium3IgniterApply">
         <ValidatorArray index="0" removed="1"/>
         <EditorCategories value=""/>
@@ -8610,6 +8668,7 @@
     <CEffectSet id="ImpactSet">
         <EditorCategories value=""/>
         <EffectArray value="Damage"/>
+        <EffectArray value="Damage2"/>
         <EffectArray value="AirStrikeSearchStun"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
@@ -8949,12 +9008,12 @@
     <CEffectEnumArea id="InfernoSearchApplyTarget">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1" Effect="InfernoApplyTarget"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="InfernoSearchTarget">
         <EditorCategories value=""/>
-        <SearchFilters value="Ground;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="12" Effect="InfernoLaunchMissile"/>
         <MaxCount value="6"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
@@ -8974,6 +9033,8 @@
         <EffectArray value="InfernoPersistentSearch4"/>
         <EffectArray value="InfernoPersistentSearch5"/>
         <EffectArray value="InfernoSearchTargetPersistent"/>
+        <EffectArray value="FrenzyApplyBuffLevel12"/>
+        <EffectArray value="FrenzyApplyBuffLevel22"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectCreatePersistent id="Initial">
@@ -8992,6 +9053,7 @@
         <PeriodicPeriodArray value="0.9"/>
         <PeriodicPeriodArray value="0"/>
         <PeriodicPeriodArray value="6.9"/>
+        <InitialEffect value="AirStrikeRevealDummy"/>
     </CEffectCreatePersistent>
     <CEffectIssueOrder id="IssueMoveOrder">
         <EditorCategories value=""/>
@@ -9784,88 +9846,80 @@
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel1CreatePersistent">
         <EditorCategories value=""/>
-        <InitialDelay value="9"/>
+        <InitialDelay value="5"/>
         <PeriodCount value="1"/>
         <PeriodicPeriodArray value="3.5"/>
-        <RevealRadius value="7"/>
+        <RevealRadius value="5"/>
         <AINotifyFlags index="HurtFriend" value="1"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
         <AINotifyFlags index="MinorDanger" value="1"/>
         <AINotifyEffect value="FireMissionLevel1SearchAreaDummy"/>
+        <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="FireMissionLevel1DamageVar1">
         <EditorCategories value=""/>
-        <Amount value="25"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="50"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
-        <AttributeBonus index="Massive" value="12"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar2">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="25"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="50"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
-        <AttributeBonus index="Massive" value="12"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar3">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="25"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="50"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
-        <AttributeBonus index="Massive" value="12"/>
     </CEffectDamage>
-    <CEffectEnumArea id="FireMissionLevel1SearchAreaDummy">
-        <EditorCategories value=""/>
-        <AreaArray Radius="7"/>
-    </CEffectEnumArea>
     <CEffectCreatePersistent id="FireMissionLevel2CreatePersistent">
         <EditorCategories value=""/>
-        <InitialDelay value="9"/>
+        <InitialDelay value="5"/>
         <PeriodCount value="1"/>
         <PeriodicPeriodArray value="3.5"/>
-        <RevealRadius value="7"/>
+        <RevealRadius value="5"/>
         <AINotifyFlags index="HurtFriend" value="1"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
         <AINotifyEffect value="FireMissionLevel1SearchAreaDummy"/>
+        <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="FireMissionLevel2DamageVar1">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="50"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="75"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
+        <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel2DamageVar2">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="50"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="75"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
+        <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel2DamageVar3">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="50"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="75"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
+        <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel3CreatePersistent">
         <EditorCategories value=""/>
-        <InitialDelay value="9"/>
+        <InitialDelay value="5"/>
         <PeriodCount value="1"/>
         <PeriodicPeriodArray value="3.5"/>
-        <RevealRadius value="7"/>
+        <RevealRadius value="5"/>
         <RevealFlags index="Unfog" value="1"/>
         <AINotifyFlags index="HurtFriend" value="1"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
@@ -9875,28 +9929,28 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
-        <AttributeBonus index="Massive" value="33"/>
+        <AttributeBonus index="Armored" value="25"/>
+        <AttributeBonus index="Massive" value="75"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel3DamageVar2">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
-        <AttributeBonus index="Massive" value="33"/>
+        <AttributeBonus index="Armored" value="25"/>
+        <AttributeBonus index="Massive" value="75"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel3DamageVar3">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
-        <AttributeBonus index="Massive" value="33"/>
+        <AttributeBonus index="Armored" value="25"/>
+        <AttributeBonus index="Massive" value="75"/>
     </CEffectDamage>
     <CEffectEnumArea id="ForwardObserverLaunch">
         <EditorCategories value=""/>
@@ -9957,13 +10011,14 @@
         <EditorCategories value=""/>
         <Amount value="30"/>
         <Death value="Fire"/>
+        <AttributeBonus index="Armored" value="10"/>
         <AttributeBonus index="Massive" value="30"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="NapalmBarrageSearch">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="NapalmBarrageApply"/>
+        <AreaArray Radius="2.5" Effect="NapalmBarrageApply"/>
     </CEffectEnumArea>
     <CEffectDamage id="NeedleSpinesDamage">
         <Amount value="15"/>
@@ -10362,18 +10417,18 @@
     <CEffectCreatePersistent id="ShockwaveBarrageLevel1CreatePersistent">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1CreatePersistent"/>
-        <InitialDelay value="9"/>
+        <InitialDelay value="5"/>
         <PeriodCount value="1"/>
         <PeriodicPeriodArray value="3.5"/>
-        <RevealRadius value="7"/>
+        <RevealRadius value="5"/>
         <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="ShockwaveBarrageLevel2CreatePersistent">
         <EditorCategories value=""/>
-        <InitialDelay value="9"/>
+        <InitialDelay value="5"/>
         <PeriodCount value="1"/>
         <PeriodicPeriodArray value="3.5"/>
-        <RevealRadius value="7"/>
+        <RevealRadius value="5"/>
         <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="ShockwaveBarrageLevel3CreatePersistent">
@@ -10388,28 +10443,28 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel1"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ShockwaveBarrageSearchLevel1Var2">
         <EditorCategories value=""/>
         <Marker Link="Effect/ShockwaveBarrageSearchLevel1"/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel1"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ShockwaveBarrageSearchLevel2Var1">
         <EditorCategories value=""/>
         <Marker Link="Effect/ShockwaveBarrageSearchLevel1"/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel2"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel2"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ShockwaveBarrageSearchLevel2Var12">
         <EditorCategories value=""/>
         <Marker Link="Effect/ShockwaveBarrageSearchLevel1"/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel2"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel2"/>
     </CEffectEnumArea>
     <CEffectDamage id="DevourerClawsDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -10666,7 +10721,6 @@
         <EditorCategories value=""/>
         <EffectArray value="SonicTrapPush"/>
         <EffectArray value="SonicTrapLevel1Height"/>
-        <MaxCount value="4294967295"/>
     </CEffectSet>
     <CEffectCreatePersistent id="SonicTrapLevel1Shockwave">
         <EditorCategories value=""/>
@@ -11112,7 +11166,7 @@
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="TauntLevel1SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
-        <AreaArray index="0" Radius="5" Effect="TauntLevel1Set"/>
+        <AreaArray index="0" Radius="8" Effect="TauntLevel1Set"/>
     </CEffectEnumArea>
     <CEffectSet id="TauntLevel2Set">
         <EditorCategories value=""/>
@@ -11120,7 +11174,7 @@
         <EffectArray value="TauntLevel2ApplyBehavior"/>
     </CEffectSet>
     <CEffectEnumArea id="TauntLevel2SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
-        <AreaArray index="0" Radius="6" Effect="TauntLevel2Set"/>
+        <AreaArray index="0" Radius="8" Effect="TauntLevel2Set"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="TauntLevel2ApplyBehavior">
         <ValidatorArray index="0" value="ImYourFatherApplyBehaviorTargetFilters"/>
@@ -11157,7 +11211,7 @@
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead"/>
-        <AreaArray Radius="5" Effect="TauntIssueStop"/>
+        <AreaArray Radius="8" Effect="TauntIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectSet id="ImYourFatherSetLevel1">
@@ -11968,7 +12022,7 @@
         <ValidatorArray value="HiddenCompareAB"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="TauntLevel3SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
-        <AreaArray index="0" Radius="7" Effect="TauntLevel3Set"/>
+        <AreaArray index="0" Radius="8" Effect="TauntLevel3Set"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="StimpackMarauder">
         <ValidatorArray index="0" value="HiddenCompareBA"/>
@@ -12021,7 +12075,7 @@
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead"/>
-        <AreaArray Radius="7" Effect="TauntIssueStop"/>
+        <AreaArray Radius="8" Effect="TauntIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="TauntLevel2SearchIssueStop">
@@ -12030,7 +12084,7 @@
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead"/>
-        <AreaArray Radius="6" Effect="TauntIssueStop"/>
+        <AreaArray Radius="8" Effect="TauntIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectDamage id="VolatileBurstFriendlyUnitDamage">

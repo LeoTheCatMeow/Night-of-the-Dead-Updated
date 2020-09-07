@@ -135,6 +135,16 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="SlowRoast"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="FrenzyLevel12">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="FrenzyDummy"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="FrenzyLevel22">
+        <WhichUnit Value="Caster"/>
+        <Value value="2"/>
+        <Behavior value="FrenzyDummy"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="HasBlind">
         <Compare value="GT"/>
         <Behavior value="Blind"/>
@@ -146,6 +156,14 @@
     <CValidatorUnitCompareBehaviorCount id="HasInfection">
         <Compare value="GT"/>
         <Behavior value="Infection"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasLaserDesignatorLevel2">
+        <Compare value="GT"/>
+        <Behavior value="LaserDesignatorLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasLaserDesignatorLevel3">
+        <Compare value="GT"/>
+        <Behavior value="LaserDesignatorLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="HasMadness">
         <Compare value="GT"/>
@@ -162,6 +180,10 @@
     <CValidatorUnitCompareBehaviorCount id="HasVenom">
         <Compare value="GT"/>
         <Behavior value="Venom"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasLaserDesignatorLevel1">
+        <Compare value="GT"/>
+        <Behavior value="LaserDesignatorLevel1"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="KillerHasRavagingPhantom">
         <CombineArray value="CasterhasRavagingPhantomLevel1"/>
@@ -269,6 +291,7 @@
         <Type value="And"/>
         <CombineArray value="TargetIsVisible"/>
         <CombineArray value="Targetisalive"/>
+        <CombineArray value="TargetisDesignated"/>
     </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="MarineAboveLevel1">
         <Compare value="GE"/>
@@ -858,6 +881,7 @@
         <CombineArray value="NotDead"/>
         <CombineArray value="NotInvulnerable"/>
         <CombineArray value="Within10Distance"/>
+        <CombineArray value="TargetIsVisible"/>
     </CValidatorCombine>
     <CValidatorUnitFilters id="NotItem">
         <Filters value="-;Item"/>
@@ -934,6 +958,11 @@
     <CValidatorUnitFilters id="TargetisArmored">
         <Filters value="Armored;-"/>
     </CValidatorUnitFilters>
+    <CValidatorCombine id="TargetisDesignated">
+        <CombineArray value="HasLaserDesignatorLevel1"/>
+        <CombineArray value="HasLaserDesignatorLevel2"/>
+        <CombineArray value="HasLaserDesignatorLevel3"/>
+    </CValidatorCombine>
     <CValidatorUnitType id="TargetisEngineer">
         <Value value="Engineer"/>
     </CValidatorUnitType>

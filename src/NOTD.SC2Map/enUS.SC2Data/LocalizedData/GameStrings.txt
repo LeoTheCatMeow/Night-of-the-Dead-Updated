@@ -157,7 +157,7 @@ Abil/Name/LearnTechnician=Learn (Technician)
 Abil/Name/LightningField=Lightning Field
 Abil/Name/LightningField2=Lightning Field Copy
 Abil/Name/Look=Look!
-Abil/Name/LunarBoosters=Lunar Boosters
+Abil/Name/LunarBoosters=Tech Upgrades
 Abil/Name/MadSpark=Mad Spark
 Abil/Name/Magazine=Magazine
 Abil/Name/MaintenanceDrone=Maintenance Drone
@@ -328,6 +328,38 @@ Alert/Text/ShortRangeWeaponsActivating=(IVAX switches to <c val="FADB05">short-r
 Alert/Tooltip/AthenaWeakened=(Athena is <c val="FF0000">weakened</c> for 10 seconds...)
 Assault Jump Level 2=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 2 -- 300 damage, 8 range, AOE 3.5, grants 85% evasion for 1.5 seconds
 Assault Jump Level 3=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 3 -- 450 damage, 8 range, AOE 4, grants 90% evasion for 2 seconds
+Attribute001/Name=Role
+Attribute001/Value001/Desc=Required: 0xp
+Attribute001/Value001/Name=Rifle
+Attribute001/Value002/Desc=Required: 0xp
+Attribute001/Value002/Name=Medic
+Attribute001/Value003/Desc=Required: 0xp (EC)
+Attribute001/Value003/Name=Assault
+Attribute001/Value004/Desc=Required: 1000xp (AC)
+Attribute001/Value004/Name=Flamer
+Attribute001/Value005/Desc=Required: 3000xp (Sec)
+Attribute001/Value005/Name=Tech
+Attribute001/Value006/Desc=Required: 100xp
+Attribute001/Value006/Name=Recon
+Attribute001/Value007/Desc=Required: 500xp
+Attribute001/Value007/Name=MM
+Attribute001/Value008/Desc=Required: 2000xp (EC)
+Attribute001/Value008/Name=Demo
+Attribute001/Value009/Desc=Required: 2000xp (AC)
+Attribute001/Value009/Name=PF
+Attribute001/Value010/Desc=Required: 3000xp (Sec)
+Attribute001/Value010/Name=Chem
+Attribute001/Value011/Desc=Required: 5000xp (EC/AC)
+Attribute001/Value011/Name=Engy
+Attribute001/Value012/Desc=Required: 5000xp (Sec)
+Attribute001/Value012/Name=FO
+Attribute001/Value013/Desc=Required: 10000xp (EC/AC)
+Attribute001/Value013/Name=Mando
+Attribute001/Value014/Desc=Required: 10000xp (Sec)
+Attribute001/Value014/Name=PO
+Attribute001/Value015/Desc=Full random requires 10000xp
+Attribute001/Value015/Name=Random
+Attribute001/Value016/Name=Fill
 Attribute002/Name=Navy Cross
 Attribute002/Value001/Desc=Game will start with Navy Cross, all Medkits/Bandages will be removed.
 Attribute002/Value001/Name=Navy Cross Enabled
@@ -352,6 +384,32 @@ Attribute004/Value001/Desc=Shop is available in non recruit modes.
 Attribute004/Value001/Name=Standard
 Attribute004/Value002/Desc=Buying of one game items is disabled.
 Attribute004/Value002/Name=Restricted
+Attribute005/Name=Mission
+Attribute005/Value001/Desc=Required: 0xp
+Attribute005/Value001/Name=EC
+Attribute005/Value002/Desc=Required: 1000xp
+Attribute005/Value002/Name=AC
+Attribute005/Value003/Desc=Required: 3000xp
+Attribute005/Value003/Name=Sec
+Attribute005/Value004/Desc=Required: 1000xp
+Attribute005/Value004/Name=Surv
+Attribute005/Value005/Name=Any
+Attribute005/Value006/Desc=Required: 500xp
+Attribute005/Value006/Name=NMEC
+Attribute005/Value007/Desc=Required: 1000xp
+Attribute005/Value007/Name=NMAC
+Attribute005/Value008/Desc=Required: 1000xp
+Attribute005/Value008/Name=NMSurv
+Attribute005/Value009/Desc=Required: 3000xp
+Attribute005/Value009/Name=NMSec
+Attribute005/Value010/Desc=Veterans Only
+Attribute005/Value010/Name=OBEC
+Attribute005/Value011/Desc=Veterans Only
+Attribute005/Value011/Name=OBAC
+Attribute005/Value012/Desc=Veterans Only
+Attribute005/Value012/Name=OBSec
+Attribute005/Value013/Desc=Veterans Only
+Attribute005/Value013/Name=OBSurv
 Barret/MMRifle Equipped=M45 Marksman Rifle or Barret M112 Equipped
 Behavior/Name/AMRounds=AM Rounds
 Behavior/Name/APAmmo=<c val="80FF80">AP Ammo</c>
@@ -463,7 +521,6 @@ Behavior/Name/EscapeLevel3=Escape Level 3
 Behavior/Name/EscapeSelfCloakLevel1=Escape Self Cloak Level 1
 Behavior/Name/EscapeSelfCloakLevel2=Escape Self Cloak Level 2
 Behavior/Name/EscapeSelfCloakLevel3=Escape Self Cloak Level 3
-Behavior/Name/ExecuteMovespeedBonus=Execute Movespeed Bonus
 Behavior/Name/ExhaustSlow=Exhaust (Slow)
 Behavior/Name/ExperimentBehavior=Experiment Behavior
 Behavior/Name/FMJAmmo=<c val="80FF80">FMJ Ammo</c>
@@ -508,10 +565,7 @@ Behavior/Name/HarvesterofSorrow=Harvester of Sorrow
 Behavior/Name/HarvesterofSorrowTarget=Harvester of Sorrow (Target)
 Behavior/Name/HeightenedSensesDebuff=Heightened Senses (Debuff)
 Behavior/Name/Helium3Acquired=Helium-3 Acquired
-Behavior/Name/Helium3Igniter=Helium-3 Igniter
-Behavior/Name/Helium3IgniterLevel1=Helium-3 Igniter Level 1
-Behavior/Name/Helium3IgniterLevel2=Helium-3 Igniter Level 2
-Behavior/Name/Helium3IgniterLevel3=Helium-3 Igniter Level 3
+Behavior/Name/Helium3Igniter=Helium-3 Igniter Burn
 Behavior/Name/Hugged=Hugged
 Behavior/Name/IVAXCloak=IVAX Cloak
 Behavior/Name/IVAXShockwave=IVAX Shockwave
@@ -728,6 +782,8 @@ Behavior/Name/VengeanceLevel2=Vengeance (Level 2)
 Behavior/Name/VengeanceLevel3=Vengeance (Level 3)
 Behavior/Name/VengeanceStun=Vengeance (Stun)
 Behavior/Name/Venom=Venom
+Behavior/Name/VenomEnergyTransferLevel1=Venom (Energy Transfer - Level 1)
+Behavior/Name/VenomEnergyTransferLevel2=Venom (Energy Transfer - Level 2)
 Behavior/Name/VenomousExplosion=Venomous Explosion
 Behavior/Name/VeteransFocus=Veteran's Focus
 Behavior/Name/VolatileBurstBuilding=Volatile Burst Building
@@ -738,7 +794,7 @@ Behavior/Name/WraithCorrosiveAcid=Wraith Corrosive Acid
 Behavior/Name/X1BotVeterancy=X-1 Bot Veterancy
 Behavior/Name/ZEffect=Z Effect
 Behavior/Tooltip/AMRounds=The Black Dog is using AM (Anti-Matter) Rounds. Deals significant damage to a single target. Stuns non-boss units for 1 second and slows bosses by 35% for 1 second.
-Behavior/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/><n/>Attack Modifier: -1 armor (Does not stack)<n/>Damage Modifier +7% (Stacks 3x)
+Behavior/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/><n/>Attack Modifier: -1 armor (Stacks 3x)<n/>Damage Modifier +7% (Stacks 3x)
 Behavior/Tooltip/AdrenalineLevel1=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 sec.
 Behavior/Tooltip/AdrenalineLevel2=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 sec.
 Behavior/Tooltip/AdrenalineLevel3=Each attack grants +6% attack speed. Stacks up to 30 times. Last 20 sec.
@@ -806,9 +862,9 @@ Behavior/Tooltip/DisorientAssaultJumpLevel2=Unit is stunned.
 Behavior/Tooltip/DisorientedBoomHeadshotLevel1=Unit is disoriented.
 Behavior/Tooltip/DisorientedBoomHeadshotLevel2=Unit is disoriented.
 Behavior/Tooltip/DropMagazine=Drops a magazine into your inventory. This allows you to share ammo with others.
-Behavior/Tooltip/EnergyBattery=Unit gains +0.35 energy regeneration.<n/><n/><c val="00FF00">Engineer Buff</c>
-Behavior/Tooltip/EnergyBatteryLevel1=Increased base energy of 50. 5 radius energy regeneration aura to allies (+35% regen rate).
-Behavior/Tooltip/EnergyBatteryLevel2=Increased base energy of 100. 10 radius energy regeneration aura to allies (+35% regen rate).
+Behavior/Tooltip/EnergyBattery=Unit gains +0.35 energy regeneration.
+Behavior/Tooltip/EnergyBatteryLevel1=Increased base energy of 50. 5 radius energy regeneration aura to allies (+0.35/s).
+Behavior/Tooltip/EnergyBatteryLevel2=Increased base energy of 100. 10 radius energy regeneration aura to allies (+0.35/s).
 Behavior/Tooltip/EnergyFieldProtected=Unit is protected from Perses' waves of fire.
 Behavior/Tooltip/EnergyVortex=Erebos has unlocked its true psionic potential and is able to create physical manifestations of energy that burns matter.
 Behavior/Tooltip/Enraged=Unit attack speed +200%.
@@ -850,21 +906,18 @@ Behavior/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/><n/>Damage Mo
 Behavior/Tooltip/HEFRounds=The Black Dog is using HE-F (High Explosive - Fragmentation) Rounds. Deals damage in a 3 radius and causes the Open Wound effect on enemies. <n/><n/><c val="FF0000">WARNING: Can cause Open Wound on any direct target (including friendlies).
 Behavior/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/><n/>Damage Modifier: +12% damage.
 Behavior/Tooltip/HandgunExpertiseLevel2=The Pathfinder proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 2 - Increases range by 4, Damage by 6, and increases armor penetration by 0.35
-Behavior/Tooltip/HarvesterofSorrow=The Assault gains 40% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 50% attack and movespeed loss for 0.5 seconds.
+Behavior/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
 Behavior/Tooltip/HeightenedSensesDebuff=Unit takes +25% damage for 15 seconds.
 Behavior/Tooltip/Helium3Igniter=Unit takes 10 damage over 3 seconds.
-Behavior/Tooltip/Helium3IgniterLevel1=Increased range of flamer by 1 and 10% increased damage.
-Behavior/Tooltip/Helium3IgniterLevel2=Increased range of flamer by 2 and 20% increased damage.
-Behavior/Tooltip/Helium3IgniterLevel3=Increased range of flamer by 3 and 30% increased damage.
 Behavior/Tooltip/Hugged=This unit is being immobilized by a Demeter's Cocoons, unit can only be saved by allies using combat knife. Unit takes 300 damage over 10 seconds. 
 Behavior/Tooltip/IVAXCloak=Cloaked for 5 seconds
 Behavior/Tooltip/ImYourFatherLevel1=Provokes all enemies in 7 radius to attack demo for 4 seconds. Taunted units deal 15% less damage.
 Behavior/Tooltip/ImYourFatherLevel2=Provokes all enemies in 7 radius to attack demo for 6 sec. Taunted units deal 30% less damage.
 Behavior/Tooltip/ImYourFatherLevel3=Provokes all enemies in 7 radius to attack demo for 8 sec. Taunted units deal 45% less damage.
-Behavior/Tooltip/ImYourFatherTauntedLevel1=Provoked to attack Demolitions. -15% damage dealt.
+Behavior/Tooltip/ImYourFatherTauntedLevel1=Provoked to attack Demolitions. -20% damage dealt.
 Behavior/Tooltip/ImYourFatherTauntedLevel2=Provoked to attack Demolitions. -30% damage dealt.
-Behavior/Tooltip/ImYourFatherTauntedLevel3=Provoked to attack Demolitions. -45% damage dealt.
+Behavior/Tooltip/ImYourFatherTauntedLevel3=Provoked to attack Demolitions. -40% damage dealt.
 Behavior/Tooltip/ImprovedEquipment=+<d ref="100 * Behavior,ImprovedEquipment,Modification[0].VitalMaxFractionArray[Life]"/>% HP. +<d ref="100 * Behavior,ImprovedEquipment,Modification[0].DamageDealtFraction[Ranged]"/>% movespeed and damage.
 Behavior/Tooltip/ImprovedSprintLevel1=Increases movespeed by 70% for 5 seconds.
 Behavior/Tooltip/ImprovedSprintLevel2=Increases movespeed by 105% for 5 seconds.
@@ -911,8 +964,8 @@ Behavior/Tooltip/NanitesUpgradeLevel3=+6 HP regeneration to Technician and +3 HP
 Behavior/Tooltip/NanoHasteLevel1=Unit's attack damage and movespeed increased by 10% for 35 seconds.
 Behavior/Tooltip/NanoHasteLevel2=Unit's attack damage and movespeed increased by 15% for 35 seconds.
 Behavior/Tooltip/NanoHasteLevel3=Unit's attack damage and movespeed increased by 20% for 35 seconds.
-Behavior/Tooltip/NanoShieldLevel1=While active, the Nano Shield blocks all incoming damage, up to a maximum of 30.
-Behavior/Tooltip/NanoShieldLevel2=While active, the Nano Shield blocks all incoming damage, up to a maximum of 60.
+Behavior/Tooltip/NanoShieldLevel1=Unit gains 30 max shields and 1 shield armor.
+Behavior/Tooltip/NanoShieldLevel2=Unit gains 60 max shields and 2 shield armor.
 Behavior/Tooltip/NanoWeaveLevel1=Unit heals 5 HP/sec.
 Behavior/Tooltip/NanoWeaveLevel2=Unit heals 8 HP/sec.
 Behavior/Tooltip/NanosteelNetLevel1=Unit is snared for 3 seconds. Slows units around by 20% in 1 radius.
@@ -999,7 +1052,7 @@ Behavior/Tooltip/SpectreHoldFire=Hold Fire activated. +10% movespeed.
 Behavior/Tooltip/SpeedofThoughtStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SpikedArmorLevel1=Deals 5 damage to any unit that attacks Demo. +1 Shield Armor and +5 Shields.
 Behavior/Tooltip/SpikedArmorLevel2=Deals 10 damage to any unit that attacks Demo. +2 Shield Armor and +10 Shields.
-Behavior/Tooltip/SpikedArmorLevel3=Deals 20 damage to any unit that attacks Demo. +4 Shield Armor  and +15 Shields.
+Behavior/Tooltip/SpikedArmorLevel3=Deals 20 damage to any unit that attacks Demo. +3 Shield Armor  and +15 Shields.
 Behavior/Tooltip/Sprint=Increases movespeed by 35% for 5 seconds.
 Behavior/Tooltip/SprintLevel1=Increases movespeed by 35% for 5 seconds.
 Behavior/Tooltip/StaticShield=Deals 25 damage to units that attack the Field Probe
@@ -1023,9 +1076,9 @@ Behavior/Tooltip/TargetingArrayBuffLevel2=40% damage increase.
 Behavior/Tooltip/TargetingArrayLevel1=Provides +20% damage increase to allies around 8 radius.
 Behavior/Tooltip/TargetingArrayLevel2=Provides +40% damage increase to allies around 8 radius.
 Behavior/Tooltip/TargetingComputer=+25% attack speed for 10 seconds.
-Behavior/Tooltip/TauntLevel1=Forces enemies in 6 radius to attack Assault for 5 seconds. Taunted units deal 10% less damage.
+Behavior/Tooltip/TauntLevel1=Forces enemies in 8 radius to attack Assault for 5 seconds. Taunted units deal 10% less damage.
 Behavior/Tooltip/TauntLevel2=Forces enemies in 8 radius to attack Assault for 6 seconds. Taunted units deal 20% less damage.
-Behavior/Tooltip/TauntLevel3=Forces enemies in 10 radius to attack Assault for 7 seconds. Taunted units deal 30% less damage.
+Behavior/Tooltip/TauntLevel3=Forces enemies in 8 radius to attack Assault for 7 seconds. Taunted units deal 30% less damage.
 Behavior/Tooltip/TauntTemplate=Forces enemies in 10 radius to attack Assault for 7 seconds. Taunted units deal 30% less damage.
 Behavior/Tooltip/TauntedLevel1=Taunted to attack Assault. Damage dealt lowered by 10%.
 Behavior/Tooltip/TauntedLevel2=Taunted to attack Assault. Damage dealt lowered by 20%.
@@ -1033,7 +1086,7 @@ Behavior/Tooltip/TauntedLevel3=Taunted to attack Assault. Damage dealt lowered b
 Behavior/Tooltip/TheHorror=Target is blinded and has attacks disabled for 10 seconds.
 Behavior/Tooltip/TheHorrorHeroic=Target is blinded and has attacks disabled for 10 seconds.
 Behavior/Tooltip/ThermalSight=Detects invisible units in 9 radius.
-Behavior/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains 8x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
+Behavior/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains 7x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
 Behavior/Tooltip/TimetoDieStun=Unit is stunned for 1 sec.
 Behavior/Tooltip/Turbo=35% increased movespeed.
 Behavior/Tooltip/UnstableMutation=-50% HP and +20% movespeed
@@ -1044,6 +1097,8 @@ Behavior/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 se
 Behavior/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
 Behavior/Tooltip/VengeanceStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/Venom=Unit is feeling feeling weak, losing 0.4 hp per second and slowed by 5%. Can be cured by Anti-Venom.
+Behavior/Tooltip/VenomEnergyTransferLevel1=Unit is losing 0.5 health per second but gains 0.1 energy regeneration. Can stack up to 4 times. Can be cured by Anti-Venom.
+Behavior/Tooltip/VenomEnergyTransferLevel2=Unit is losing 0.5 health per second but gains 0.2 energy regeneration. Can stack up to 4 times. Can be cured by Anti-Venom.
 Behavior/Tooltip/VenomousExplosion=Unit will explode in 5 secs, dealing 200 dmg to all units around 4 radius except self. 
 Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
 Behavior/Tooltip/ViscousDischarge2=Banelings cover their targets with a viscous discharge, slowing their movement speed for 1.5 seconds.
@@ -1415,7 +1470,7 @@ Button/Name/Yellow=Yellow
 Button/Name/Zeratul=Zeratul
 Button/Name/ZeratulBlink2=Blink Copy
 Button/Name/ZerglingPet=Zergling
-Button/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/>Produced by United Arms Heavy Industries, this ammunition can punch through the hardiest of armor.<n/><n/>Attack Modifier: <c val="FFFFFF">-1 armor (Does not stack)</c><n/>Damage Modfier: <c val="FFFFFF">+7% (Stacks 3x)</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"Know that you are a UGC Marine. And know that means no defense can stop you. Not steel plate or concrete bunker. Your round will always find the enemy's heart. "
+Button/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/>Produced by United Arms Heavy Industries, this ammunition can punch through the hardiest of armor.<n/><n/>Attack Modifier: <c val="FFFFFF">-1 armor (Stacks 3x)</c><n/>Damage Modfier: <c val="FFFFFF">+7% (Stacks 3x)</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"Know that you are a UGC Marine. And know that means no defense can stop you. Not steel plate or concrete bunker. Your round will always find the enemy's heart. "
 Button/Tooltip/Adrenaline=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Button/Tooltip/AirStrike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 75 damage. Stuns units for 3 seconds.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue. "
 Button/Tooltip/AirStrikeBombers=Tactical-strike aircraft.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -1434,7 +1489,7 @@ Button/Tooltip/Assault=
 Button/Tooltip/AssaultJump=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 1 -- 150 damage, 8 range, AOE 3, grants 80% evasion for 1 second
 Button/Tooltip/Athena=
 Button/Tooltip/Attack2=Orders selected units to move to the target point, fighting nearby enemies along the way. Targeting a unit with the Attack command orders that it be attacked until it is destroyed.
-Button/Tooltip/BURN=Single target channeled, deals +25 dmg/sec and reduces target's armor up to a maximum of -10. Max damage is 200 dmg/sec. 9 range. Must have Flamethrower equipped.
+Button/Tooltip/BURN=Single target channeled, deals +40 dmg/sec and reduces target's armor up to a maximum of -10. Max damage is 200 dmg/sec. 9 range. 0Must have Flamethrower equipped.
 Button/Tooltip/Backpack=Your backpack carries supplies.<n/><n/>You need to equip Weapons/Armor/Enhancements on your Marine to use them.
 Button/Tooltip/BadKarma=Reduces target player's Karma by 1.
 Button/Tooltip/Bandage=<c val="FFFF00">Fibrin Bandage</c><n/>Instantly heals 50 HP. Also removes 1 stack of Open Wounds.<n/><n/>Credits: <c val="FFFFFF">15</c>
@@ -1469,13 +1524,13 @@ Button/Tooltip/C2Armor=<c val="FFFF00">C2 Armor</c><n/>A durable polymer suit th
 Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking attachable plates that lock on to the combat suit to provide protection from blunt trauma to vital areas, while joints are bolstered by armored pads.<n/><n/>Adds 4 armor and 20% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"What do you mean it doesn't explode?" - NFG
 Button/Tooltip/C6Armor=<c val="00FFFF">C6 Armor</c><n/>A heavy armor that consists of a thick chestplate, gauntlets, boots, and attachable plates for the legs and upper arms. Extremely effective at dampening impact damage and blunt trauma, but does little to protect joints, leaving the wearer vulnerable to cuts and scrapes in the non-armored areas.<n/><n/>Adds 6 armor.<n/><n/>Weight: <c val="FFFFFF">22</c><n/><n/>"Does this make me look fat?"
 Button/Tooltip/Cancel2=Return to previous menu
-Button/Tooltip/Cancel22=Stop tauting
-Button/Tooltip/Cancel222=Stop tauting
+Button/Tooltip/Cancel22=Stop Taunting
+Button/Tooltip/Cancel222=Stop Taunting
 Button/Tooltip/Cancel2222=Reveal
 Button/Tooltip/CancelMarchoftheMachine=Cancels overdrive mode and returns to regular state.
 Button/Tooltip/CancelMindLink=Cancel Mind-Link.
 Button/Tooltip/CellularStructure=
-Button/Tooltip/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c><n/>This .50 caliber gun is great at mowing down masses. It's high impact rounds will penetrate armor completely.<n/><n/>Base Range: <c val="FFFFFF">15</c></n>Splash: <c val="FFFFFF">2</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor</c><n/><n/>"The old man wanted me to be a rice farmer. Found that lead farming was more of my thing." - Private Ramirez
+Button/Tooltip/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c><n/>This .50 caliber gun is great at mowing down masses. It's high impact rounds will penetrate armor completely.<n/><n/>Base Range: <c val="FFFFFF">15</c></n>Splash: <c val="FFFFFF">2</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/>Adaptive: <c val="FFFFFF">-0/Armor</c><n/><n/>"The old man wanted me to be a rice farmer. Found that lead farming was more of my thing." - Private Ramirez
 Button/Tooltip/Charge=Intercepts nearby enemies. Also increases movement speed. Ability can only be used once every <d ref="Abil,Charge,Cost.Cooldown.TimeUse"/> seconds.
 Button/Tooltip/Charge2=Charges forward up to 15 distance to target point, knocking back any enemies in path. Deals 50 damage and stuns all affected enemies for 2 seconds. Deals +50% damage to Massive.
 Button/Tooltip/Charlie=A very unique Infestor
@@ -1513,7 +1568,7 @@ Button/Tooltip/CritterCerberus=Unknown entity
 Button/Tooltip/CritterSheep2=Sheep
 Button/Tooltip/CritterUrsadakCalf=Man's best friend since 2049.<n/><n/>"I remembered back in year 2087, there was a brief attempt to preserve the nearly extinct cats, but once one of those poor fools ate the general's hamster, all attempts to save the kittens were terminated almost effective immediately" - Iman Plushinko, grandfather of Ivan
 Button/Tooltip/Cronus=
-Button/Tooltip/Crowbar2=<c val="F2D737">Crowbar</c><n/>Just an ordinary crowbar...in space.<n/>Does not damage ally marines.<n/><n/>Base Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor</c><n/><n/>"Man, I feel like I'm Gordon Freeman!"
+Button/Tooltip/Crowbar2=<c val="F2D737">Crowbar</c><n/>Just an ordinary crowbar...in space.<n/>Does not damage ally marines.<n/><n/>Base Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">-0/Armor</c><n/><n/>"Man, I feel like I'm Gordon Freeman!"
 Button/Tooltip/Crowbar7=<c val="F2D737">Crowbar</c><n/>Just an ordinary crowbar...in space.<n/>Base Range: <c val="FFFFFF">1.25</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">N/A</c><n/>Equip: <c val="FFFFFF">0.1 secs</c><n/>Weight: <c val="FFFFFF">3</c><n/>
 Button/Tooltip/CrytoplastInjector=Level 1 - Heals 90 HP instantly on target unit. 
 Button/Tooltip/DarkGreen=Changes Marine color to <c val="004040">Dark Green</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
@@ -1575,12 +1630,12 @@ Button/Tooltip/FibrinBandage=Uses Fibrin Bandage in inventory to instantly heal 
 Button/Tooltip/FieldNexus=Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all non-boss air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
 Button/Tooltip/FieldProbe=Creates a 150 HP (50 Shields) mobile probe with following abilities: <n/> i) Shock - Deals -50% ms on target for 5 seconds <n/> ii) Penetrate - Deals -4 armor on target for 8 seconds. Stacks up to 2 times.
 Button/Tooltip/FieldRetrofit=<c val="FFFF00">Field Retrofit</c><n/>Cures Short Circuit. The materials required render the Maintenance Drone inoperative.
-Button/Tooltip/FireMission=Artillery strike that deals 25 damage per shell (each shell has 2 radius) in a 7 radius area. 8 sec barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Button/Tooltip/FireMission=Artillery strike that deals 50 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/FireVulnerability=Targets in 5 radius take 50% more damage from explosives. Lasts for 10 seconds.
 Button/Tooltip/Flamethrower2=Specialized anti-infantry attacker.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/Flamethrower3=The Flamethrower excels at close proximity combat.
 Button/Tooltip/FlamethrowerGear=Switches to Flamethrower gear. Takes 3 seconds.
-Button/Tooltip/FlamethrowerMK3=<c val="FFFF00">Flamethrower MK-3</c><n/>Burns any living creature quickly.<n/><n/>Base Range: <c val="FFFFFF">4.65</c></n>Splash: <c val="FFFFFF">Straight Line (hits up to 30x)</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">15</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor (<c val="FF0000">fire</c>)</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>“Never settle with words what you can accomplish with a flamethrower.” - Bruce Feirstein
+Button/Tooltip/FlamethrowerMK3=<c val="FFFF00">Flamethrower MK-3</c><n/>Burns any living creature quickly.<n/><n/>Base Range: <c val="FFFFFF">4.65</c></n>Splash: <c val="FFFFFF">Straight Line (hits up to 30x)</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">15</c><n/>Adaptive: <c val="FFFFFF">-0/Armor (<c val="FF0000">Fire</c>)</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>“Never settle with words what you can accomplish with a flamethrower.” - Bruce Feirstein
 Button/Tooltip/Flare=Reveals area with radius of <d ref="Unit,FlareRevealDummy,Sight"/> for <d ref="Behavior,FlareRevealTimed,Duration[0]"/> seconds to all players. Reveals cloaked and burrowed units.
 Button/Tooltip/FlashFlareLevel1=Reveals area with radius of <d ref="Unit,FlareRevealDummy,Sight"/> for <d ref="Behavior,FlareRevealTimed,Duration[0]"/> seconds to all players. Reveals cloaked and burrowed units. Non heroic units are slowed 20% and lose detection for 10 seconds.
 Button/Tooltip/FlashFlareLevel2=Reveals area with radius of <d ref="Unit,FlareRevealDummy,Sight"/> for <d ref="Behavior,FlareRevealTimed,Duration[0]"/> seconds to all players. Reveals cloaked and burrowed units. Non heroic units are slowed 40%, Heroic units are slowed 20% and both lose detection for 10 seconds.
@@ -1630,7 +1685,7 @@ Button/Tooltip/Inception=The universe around you slows down. You are free to act
 Button/Tooltip/IncompleteIvax=Heavy assault mech. Can use 250mm Strike Cannons.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/InfantrySpecializationLevel1=Allows Mobile Infantry to land Flamethrowers. You can customize your drop team in a sub-menu.
 Button/Tooltip/InfantrySpecializationLevel2=Allows Mobile Infantry to land Snipers. You can customize your drop team in a sub-menu.
-Button/Tooltip/Inferno=Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units with incendiary pallets are slowed by 60% while burning from within and explode after 5 seconds, dealing 200 damage to all ground units in 3 radius. Non-heroic armored biological ground units that die to the blast burst into pillars of fire that last 10 seconds. Units caught in the flames have a 40% chance per second of spreading Inferno, potentially causing a chain reaction.<n/><n/><c val="FF0000">Warning: Inferno creates fires that can engulf friendlies. Use with extreme caution!</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville
+Button/Tooltip/Inferno=Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing 150 damage to all units in 3 radius. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/>Grants 10 stacks of Frenzy on cast.<n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville
 Button/Tooltip/InfestedAbomination=An abomination that is capable of ranged attacks.
 Button/Tooltip/InfestedCocoon=Zombie cocoon. Destroy it before it can hatch.
 Button/Tooltip/InfestedColonistShip=Colony Ship that has been Infested. Likely used as a massive nest and breeding ground.
@@ -1655,12 +1710,12 @@ Button/Tooltip/KineticAmmo=Reduces attack damage by 50%. Each attack damage rege
 Button/Tooltip/KineticArmor=<c val="00FFFF">Kinetic Armor</c><n/>Reduces ranged damage (below 200) to a maximum of 14 per source. <n/><n/>Adds 1 Armor. <n/><n/>Weight: <c val="FFFFFF">8</c>
 Button/Tooltip/Kitten=Kitty!
 Button/Tooltip/Kittens=Since the Great Rat Plague of 2028, kittens have been a mainstay in every citizen's home - providing frontline defense against the next plague. Kittens are also cute. Be a responsible neighbour - order now.<n/><n/>Credits: <c val="71B8FF">1000</c><n/><n/>"It's too dangerous to go alone. Take this..."
-Button/Tooltip/L3GrenadeLauncher=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets. <n/>If no contact is made, the grenade will plant itself in the ground for a while.<n/>Consumes 5 rounds per shot.<n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Adaptive: <c val="FFFFFF">-5/Armor (<c val="FF0000">fire</c>)</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
+Button/Tooltip/L3GrenadeLauncher=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets. <n/>If no contact is made, the grenade will plant itself in the ground for a while.<n/>Consumes 5 rounds per shot.<n/><c val="FF0000">Deals 35% friendly fire damage.</c><n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Adaptive: <c val="FFFFFF">-0/Armor (<c val="FF0000">Fire</c>)</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
 Button/Tooltip/L3GrenadeLauncher2=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets.<n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
 Button/Tooltip/LargeZombieCocoon=Genetically modified cocoon.
 Button/Tooltip/LaserDesignator=Reduces armor of target unit by 1 and reveals target to allies. Lasts for 60 sec.
 Button/Tooltip/LaserDrillDrone=Basic worker unit. Can gather resources, build Terran structures, and repair.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
-Button/Tooltip/LaserRifle=<c val="F2D737">AER13 Laser Rifle</c><n/>The latest advances in combat-certified laser technology are found in this weapon. Deals searing damage to units with thick armor.<n/>Each shot deals extra <c val="FF0000">fire dmg</c> equal to the target's base armor.<n/><n/>Base Range: <c val="FFFFFF">12</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">3.3 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor (<c val="FF0000">fire</c>)</c><n/><n/>"Patent pending" - BAE Systems
+Button/Tooltip/LaserRifle=<c val="F2D737">AER13 Laser Rifle</c><n/>The latest advances in combat-certified laser technology are found in this weapon. Deals searing damage to units with thick armor.<n/>Each shot deals extra <c val="FF0000">Fire Damage</c> equal to the target's base armor.<n/><n/>Base Range: <c val="FFFFFF">12</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">3.3 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Adaptive: <c val="FFFFFF">-0/Armor (<c val="FF0000">Fire</c>)</c><n/><n/>"Patent pending" - BAE Systems
 Button/Tooltip/Lelantos=Flying heavy-assault unit. Shoots Broodlings at its target. A Broodling is a small creature that can attack ground units.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/Leto=Heavy assault beast. Has an area-damage attack.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/LifetimeColorCustomization= 
@@ -1688,7 +1743,7 @@ Button/Tooltip/MassDesignate=The Recon casts the current level of Laser Designat
 Button/Tooltip/MasterMarksman=Non-Boss units are stunned for 2 secs when attacked from more than 10 distance away. Requires Sniper Rifle.
 Button/Tooltip/MasterofSubtlety=Attacks made while stealthed deal 50% more damage.
 Button/Tooltip/Medic=The Medic provides vital protection in combat. Every team should have one.
-Button/Tooltip/MedicHeal=Heals a friendly biological target for 3 HP per second. 1 point of life costs 0.5 points of energy. Can also be used to Heal self.
+Button/Tooltip/MedicHeal=Heals a friendly biological target for 3 HP per second. 1 point of life costs 0.5 points of energy. Can also be used to Heal self.<n/><n/><c val="FFFF00">Right click a target to smart cast.</c>
 Button/Tooltip/Medkit=<c val="FFFF00">Medkit</c><n/>Heals 125 HP over 15 seconds. Can be used on self only.<n/><n/>Maximum Effect Stack: <c val="FFFFFF">3</c><n/>Credits: <c val="FFFFFF">15</c><n/><n/>"Best cure out there for a hard night out." - Lt. Sheng
 Button/Tooltip/Menoetes=
 Button/Tooltip/MentalProjection=Creates 1 Hallucination of Psi Ops. Lasts 15 seconds.
@@ -1709,13 +1764,13 @@ Button/Tooltip/MovePatrol=Orders selected units to patrol between their current 
 Button/Tooltip/MovePatrol2=Orders selected units to patrol between their current position and the target area. 
 Button/Tooltip/MurlocMarine=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/NanitesUpgrade=Not only for medical purposes, the Technician utilizes nanites in the upkeep of weaponry and for minor repairs. They are not limited to the Technician's exosuit, and will repair things around him in a radius of 0.5, increasing health regeneration by 2.
-Button/Tooltip/NanoHealthAugment=<c val="80FF80">Nano-Health Augment</c><n/>+0.4 HP regeneration per second. Ideal for Marines in the front lines.<n/><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c>
+Button/Tooltip/NanoHealthAugment=<c val="80FF80">Nano-Health Augment</c><n/>Adds 0.4 health regeneration per second. Ideal for Marines in the front lines.<n/><n/>Health Bonus: <c val="FFFFFF">+22 (Does not stack)</c><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c>
 Button/Tooltip/NanoSear=Deals 25 damage/sec to enemies in 5 radius over 60 seconds. Attack and move speed of affected units is reduced by 10%. Stacks up to 5 times.
 Button/Tooltip/NanoShield=Regenerates shields temporarily. Increases max shields by 30 and shield armor by 1. Lasts for 20 seconds.
 Button/Tooltip/NanoStrength=Increases target unit's attack damage and movespeed by 10% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Button/Tooltip/NanoWeave=Level 1 - Heals 5 HP/sec on target unit for 15 seconds.
 Button/Tooltip/NanosteelNet=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 20% by its thrashing attempts to escape. Lasts 3 seconds.
-Button/Tooltip/NapalmBarrage=Artillery strike that burns targets in area for 30 dmg/sec for 10 secs per shell in 7 radius area. 8 sec barrage time.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
+Button/Tooltip/NapalmBarrage=Artillery strike that burns targets for 30 (+10/30 vs armored/massive) dmg/sec for 10 secs per shell in a 5 radius area, stacking up to 3 times. 5 sec barrage time. Slows affected units by 30%.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
 Button/Tooltip/Nazara=
 Button/Tooltip/NoQuarter=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
 Button/Tooltip/NydusCanal=
@@ -1768,7 +1823,7 @@ Button/Tooltip/Reinforce=Increases target mechanical unit's armor by 5 for 60 se
 Button/Tooltip/Reload=Reloads your current weapon. All rounds in remaining magazine are discarded. Reloads 30% faster vs automatic reloads.
 Button/Tooltip/Repair2=Repairs shields/mechanical at rate of 1 per second. Has a 33% chance per second to remove Short Circuit.
 Button/Tooltip/Repulse=Units in 7 radius are stunned and lose 10 armor for 3 seconds. Deals 125 damage to affected units. Massive and Armored units take more damage. Increases Rifleman's movespeed by 50% & armor by 2 for 10 seconds. Grants detection.
-Button/Tooltip/Restoration=Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Buff amplifies effects of Medic's Anti-Venom and Surgical Laser.
+Button/Tooltip/Restoration=Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Buff amplifies effects of Medic's Anti-Venom and Surgical Laser.<n/>
 Button/Tooltip/RetributionFieldPet=The Pet unleashes a deadly field of electricity in a 1.5 radius. Deals 30 damage and completely penetrates armor.
 Button/Tooltip/RetributionFieldPet2=The Pet unleashes a deadly field of electricity in a 1.5 radius. Deals 30 damage and completely penetrates armor.
 Button/Tooltip/RetrieveMine=Retrieves a planted Mine from the ground.
@@ -1802,7 +1857,7 @@ Button/Tooltip/Shatter=Deals 150 damage to target unit. Deals 2x damage to bosse
 Button/Tooltip/ShellMode=Unit gains +10 Armor and slight HP regeneration. Attack speed reduced to 20%. 
 Button/Tooltip/Shiva=<c val="972FFF">Shiva</c><n/>The highly-classified Shiva Launcher is capable of destroying almost everything in its path in a 30 radius. No human will survive this. <n/><n/><c val="FF0000">Use with extreme caution</c><n/><n/>Equip: <c val="FFFFFF">3 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/><n/>"Eats Tac Nukes for breakfast" - Shiva Commercial
 Button/Tooltip/Shock=Inflicts -50% movespeed on target for 5 seconds.
-Button/Tooltip/ShockwaveBarrage=Artillery strike that stuns targets in 7 radius area. Each Shell stuns and reduces 2 armor for 3 secs (not-stackable). Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
+Button/Tooltip/ShockwaveBarrage=Artillery strike that stuns targets in 5 radius area. Each Shell stuns and reduces 2 armor for 3 secs (not-stackable). Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
 Button/Tooltip/ShootGravityGun=Shoots Gravity Gun.
 Button/Tooltip/ShoottoMaim=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%, maximum stack of 3
 Button/Tooltip/ShoottoMaimTurnOff=Cancel Shoot to Maim.
@@ -1836,14 +1891,14 @@ Button/Tooltip/Stealth22=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/StealthMatrixActivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
 Button/Tooltip/StealthMatrixDeactivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
 Button/Tooltip/Stim=Marine fires and moves 20% faster for 15 seconds.
-Button/Tooltip/StingerMK3=<c val="972FFF">Stinger MK-3</c><n/>Rocket Launcher that does significant splash damage. Use with extreme caution.<n/>Consumes 10 rounds per shot. <n/><c val="FF0000">Deals 25% friendly fire dmg.</c><n/><n/>Base Range: <c val="FFFFFF">20</c><n/>Splash: <c val="FFFFFF">5</c><n/>Reload: <c val="FFFFFF">6 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">325</c><n/>Adaptive: <c val="FFFFFF">Ignore Armor (<c val="FF0000">fire</c>)</c><n/><n/>"Say hello to my little friend" - Lt. Lee
+Button/Tooltip/StingerMK3=<c val="972FFF">Stinger MK-3</c><n/>Rocket Launcher that does significant splash damage. Use with extreme caution.<n/>Consumes 10 rounds per shot. <n/><c val="FF0000">Deals 25% friendly fire dmg.</c><n/><n/>Base Range: <c val="FFFFFF">20</c><n/>Splash: <c val="FFFFFF">5</c><n/>Reload: <c val="FFFFFF">6 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">325</c><n/>Adaptive: <c val="FFFFFF">-0/Armor (<c val="FF0000">Fire</c>)</c><n/><n/>"Say hello to my little friend" - Lt. Lee
 Button/Tooltip/Strangler=An air creature that is capable of choking and incapacitating its targets
 Button/Tooltip/SupplyStation=Creates a supply station that replenishes 1 round/sec, 1 HP/sec, 1 energy/sec for all Marines in 2 radius. Supply Station lasts for 25 seconds.
 Button/Tooltip/SupplyStationLevel1=Replenishes 1 round/sec, 1 HP/sec, 1 energy/sec for all Marines in 2 radius.
 Button/Tooltip/SupplyStationLevel2=Replenishes 2 rounds/sec, 2 HP/sec, 2 energy/sec for all Marines in 2 radius.
 Button/Tooltip/SurgicalLaser=Level 1 - Instantly heals target for 10 HP and removes Cripple, Blind and Open Wound ailments.
 Button/Tooltip/SurgicalStrike=Increase attack damage by 50% for 15 sec. 15 sec recovery (attack damage reduced by 30%).
-Button/Tooltip/SurveillanceFlare=Fires a flare from an orbitting military satellite towards target area that lasts for 60 seconds. Deployment accuracy in low gravity environments still leaves much to be desired.<n/><n/>Flare is 2x more accurate when Forward Observer has Battlefield Intelligence.
+Button/Tooltip/SurveillanceFlare=Fires a flare from an orbitting military satellite towards target area that lasts for 120 seconds. Up to 2 flares may be on standby. Deployment accuracy in low gravity environments still leaves much to be desired.<n/><n/>Flare is 2x more accurate when Forward Observer has Battlefield Intelligence.
 Button/Tooltip/SwitchtoAMRounds=Anti-Matter Rounds deal significant concentrated damage to a single target.<n/>Base Range: 20<n/>Base Damage: 240 (+100 vs. Armored)<n/>Base Attack Speed: 2.2<n/>Targets: Ground only
 Button/Tooltip/SwitchtoHEFRounds=High-Explosive Fragmentation (HE-F) Rounds deal damage in a 3 radius and cause targets to bleed.<n/>Base Range: 18<n/>Base Damage: 160 (3 radius splash)<n/>Base Attack Speed: 2.5<n/>Targets: Air and Ground
 Button/Tooltip/SynergyLevel1=When Guardian and Engineer attack the same target, deals 20% more damage. 
@@ -1856,7 +1911,7 @@ Button/Tooltip/TargetingArray=The Technician deploys an array that assists the n
 Button/Tooltip/TargetingComputer=+25% attack speed for 10 seconds.
 Button/Tooltip/Tartarus=A deadly creature that spawns volatile mutations.
 Button/Tooltip/Tassadar=Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/Taunt2=Forces enemies in 6 radius to attack you for 5 seconds. Taunted units deal 10% less damage.
+Button/Tooltip/Taunt2=Forces enemies in 8 radius to attack you for 5 seconds. Taunted units deal 10% less damage.
 Button/Tooltip/TaurenSpaceMarine=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Teal=Changes Marine color to <c val="00FFFF">Teal</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/TeamLocation=Pings location of all teammates for 5 seconds.
@@ -2252,6 +2307,82 @@ DocInfo/PatchNote323=- "-ping on/off" command simplified to "-qp" (standing for 
 DocInfo/PatchNote324=- Messages are sent in the chat area to confirm any UI related changes.
 DocInfo/PatchNote325=- Misc. tooltip/icon changes to avoid confusion with the new behavior bar.
 DocInfo/PatchNote326=- Fixed some UI related errors upon marine death.
+DocInfo/PatchNote327=- Assault Taunt range increased from 5/6/7 to 7/8/9, fixed tooltip incorrectly stating the range being 6/8/10.
+DocInfo/PatchNote328=- Fixed Forward Observer not having the Quick Use ability, updated the icon art for Quick Use and Team Location.
+DocInfo/PatchNote329=- Fixed NC not breaking when using medkits or bandages with Quick Use.
+DocInfo/PatchNote330=- Marine Speech (yellow dialogue over head) now stays visible for a while instead of fading immediately.
+DocInfo/PatchNote331=- Lelantos (Brood Lord) and Mini Nydus now have their health bars displayed.
+DocInfo/PatchNote332=- Experimental: Each armor or shield armor (pick the greater one) now provides additional % dmg reduction, at roughly 1% per armor,
+DocInfo/PatchNote333=  scaling up to 50% at 100 armor. Negative armor points now increase dmg taken, at roughly 1% per negative armor, scaling up to 270%
+DocInfo/PatchNote334=  increased dmg taken at -100 armor. All % calculation is done after flat armor calculation.
+DocInfo/PatchNote335=  Reference formula for positive armor: (armor * 0.01) / (1 + armor * 0.01) reduced
+DocInfo/PatchNote336=  Reference formula for negative armor: 1.01 ^ armor - 1 amplified
+DocInfo/PatchNote337=- Demo - I'm Your Father enemy damage reduction rescaled from 15%/30%/45% to 20%/30%/40%.
+DocInfo/PatchNote338=- Demo - Time to Die defense multiplier reduced from 8 to 7, energy cost reduced from 25 to 22.
+DocInfo/PatchNote339=- Assault - Defensive Plating changed from +2/3/4 armor to +2/3/3 armor, 0/5/10 life, and 0/0/20% life regen amp.
+DocInfo/PatchNote340=- Assault - Safeguard maximum stack reduced from 7 to 6, duration increased from 5 to 6.
+DocInfo/PatchNote341=- Removed some uncessary behaviors from the detailed behavior bar, added some others.
+DocInfo/PatchNote342=- Spells now ignore the % dmg reduction from armor. (But can still be amplified by negative armor).
+DocInfo/PatchNote343=- AP Ammo -armor debuff now stacks up to 3 times.
+DocInfo/PatchNote344=- Added dropdown menus for mission and role preferences in the lobby. Currently only acting as a visual indicator.
+DocInfo/PatchNote345=- Minor tooltip updates & fixes.
+DocInfo/PatchNote346=- Fixed anticipation buff becoming permanent once learned.
+DocInfo/PatchNote347=- Added nm and ob options in mission preference. (only visual)
+DocInfo/PatchNote348=- Visual indicator update for Forward Observer.
+DocInfo/PatchNote349=- Forward Observer - Fire Mission dmg changed from 25/50/75 (+50% vs massive) to 50/75/75 + 0/25/25 vs armored + 0/0/50 vs massive.
+DocInfo/PatchNote350=- Forward Observer - All shells impact radius increased from 2 to 2.5, call down wait time reduced from 8 to 5 sec.
+DocInfo/PatchNote351=- Forward Observer - Fire Mission/Shockwave Barrage random hit radius reduced from 5 to 2.5 (more accurate), Total possible impact radius
+DocInfo/PatchNote352=  reduced from 7 (5+2) to 5(2.5+2.5). Napalm Barrage total impact radius unchanged (7).
+DocInfo/PatchNote353=- Forward Observer - Starting and max shell count reduced to 1300 from 1600. Now 1 shell is produced every 12 sec (5 shell / min).
+DocInfo/PatchNote354=- Forward Observer - Lunar Booster reworked into Tech Upgrades: 
+DocInfo/PatchNote355=   lv1 Lunar Booster: reduces call down time by 1.5 seconds, resulting a 3.5 sec call down time consistent with previous lv3 Lunar Booster.
+DocInfo/PatchNote356=   lv2 Smart Sensors: negates friendly fire damage from air strikes. 
+DocInfo/PatchNote357=   lv3 Rapid Production: produces 5 more shells every minute (12sec / shell -> 6sec / shell).
+DocInfo/PatchNote358=- Forward Observer shell count reverted to 1600. Shells are no longer produced over time.
+DocInfo/PatchNote359=- Forward Observer passive reworked again:
+DocInfo/PatchNote360=  Lv1 - Reduces call down time by 1.5 sec (unchanged).
+DocInfo/PatchNote361=  Lv2 - Reduces the cooldown and energy costs of airstrike, allowing up to 2 charges.
+DocInfo/PatchNote362=  Lv3 - Reduces the cooldown and energy costs of most barrage call downs.
+DocInfo/PatchNote363=- Units killed by napalm fire now provide shared XP to FO's nearby teammates. FO only gains partial XP.
+DocInfo/PatchNote364=- Units killed by airstrike bombs now provide shared XP to FO's nearby teammates. (FO already gains full xp from airstrike kills).
+DocInfo/PatchNote365=- Surveillance flare duration increased to 120s, cooldown increased to 90s. Range matches artillery skills. Allowing a maximum of 2 charges.
+DocInfo/PatchNote366=- Fire Mission lv2 damage changed from 75(+25 vs armored) to 75(+25 vs armored/massive).
+DocInfo/PatchNote367=- Fire Mission lv3 damage changed from 75(+25/50 vs armored/massive) to 75(+25/75 vs armored/massive).
+DocInfo/PatchNote368=- Napalm Barrage burn maximum stacks reduced from 6 to 3, slow reduced from 40% to 30%.
+DocInfo/PatchNote369=- Disabled the camera shake for shell impact.
+DocInfo/PatchNote370=- Icon update for Forward Observer.
+DocInfo/PatchNote371=- Fixed Rifleman Sonic Trap bug.
+DocInfo/PatchNote372=- Visual update for Rifleman.
+DocInfo/PatchNote373=- Sec Hades payout reduced from 0/250/650 to 0/220/600 (to counter "inflation").
+DocInfo/PatchNote374=- Nano-Health Augment now adds 22 health in addition to the 0.4 health regen. Bonus health does not stack.
+DocInfo/PatchNote375=- Flamethrower (Hero) - BURN! channel time to max damage/armor reduction reduced from 8s/4s to 5s/2s. Effect now persists for 3.5 seconds
+DocInfo/PatchNote376=  after channelling stops. (Does not gain new stacks).
+DocInfo/PatchNote377=- Fixed a bug causing Pathfinder's shield armor to be displayed incorrectly.
+DocInfo/PatchNote378=- Forward Observer players can now type "-dp 1/2/3" to control the dispersion of shells (default is 1).
+DocInfo/PatchNote379=- Forward Observer skills ranges now display correctly when hovering over the buttons.
+DocInfo/PatchNote380=- Flamethrower - Inferno (Ultimate) rework:
+DocInfo/PatchNote381=  Can affect air units, affected units now burn itself and nearby enemies for 50 dmg over the duration of 5 sec, then explode for 150 dmg.
+DocInfo/PatchNote382=  No longer creates naplam on explosion. Explosion still has a 40% chance to spread inferno to nearby biological enemies.
+DocInfo/PatchNote383=  Explosions now deal minor friendly fire damage, caution advised.
+DocInfo/PatchNote384=  Flamethrower now gains 10 stacks of frenzy (if learned) upon casting Inferno.
+DocInfo/PatchNote385=  Burst Fire now immdiately triggers Inferno explosion.
+DocInfo/PatchNote386=  Inferno Cooldown increased from 9 seconds to 15 seconds.
+DocInfo/PatchNote387=- Fixed BURN still playing the animation when the target is already out of vision. Added sound effects for BURN.
+DocInfo/PatchNote388=- Added some visual updates for Flamethrower, Assault, Recon, Medic.
+DocInfo/PatchNote389=- Demolitions - Spiked Armor shield armor bonus reduce from +1/2/4 to +1/2/3
+DocInfo/PatchNote390=- Assault - Defensive Plating health bonus removed, armor bonus changed from 2/3/3 to 2/2/3, lv2/lv3 grants 10%/20% more hp regen.
+DocInfo/PatchNote391=  (Burst heal effects such as surgical laser, restoration, bandage, are not considered as hp regen)
+DocInfo/PatchNote392=- Assault - Taunt radius changed from 7/8/9 to 8 at all levels.
+DocInfo/PatchNote393=- 5 CP bonus changed from 10 shield and +1 shield armor to 10 shield and +1 unscaled melee damage.
+DocInfo/PatchNote394=- Minor tooltip fixes.
+DocInfo/PatchNote395=- Added some visual updates for Demolitions, Technician, Engineer, Marksman, Pathfinder, Chemical Expert, Psi Ops, and Commando.
+DocInfo/PatchNote396=- Players with over 10k xp now gains 1 additional karma upon finishing a recruit game with randomed class.
+DocInfo/PatchNote397=- Marine skill icons reverted to their old locations.
+DocInfo/PatchNote398=- Players with over 10k xp no longer gains or loses class proficiency points when random in recruit games.
+DocInfo/PatchNote399=- Players now lose 1 karma for failing the civs quest at Delta-1 (including when civs have all turned into zombies due to delay).
+DocInfo/PatchNote400=- Added skins for various classes, XP and Karma act as qualifications for skin usage, no credit needed.
+DocInfo/PatchNote401=- Marksman - Leveling up concentration replaces the previous stacks instead of simply removing them.
+DocInfo/PatchNote402=- Minor visual changes and bug fixes.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2291,6 +2422,7 @@ Effect/Name/AdrenalineLevel3ApplyBehaviour=Adrenaline Level 3 (Apply Behaviour)
 Effect/Name/AdvancedMutation=Advanced Mutation
 Effect/Name/AdvancedMutationApplyBehavior=Advanced Mutation Apply Behavior
 Effect/Name/AdvancedMutationApplyBehaviorNigthmare=Advanced Mutation Apply Behavior Nigthmare
+Effect/Name/AirStrikeRevealDummy=Air Strike Reveal Dummy
 Effect/Name/AirStrikeSearchStun=Air Strike (Search Stun)
 Effect/Name/AntiVenom=Anti-Venom
 Effect/Name/AntiVenomRemoveInfection=Anti-Venom (Remove Infection)
@@ -2346,6 +2478,7 @@ Effect/Name/ArmageddonSearchDamageFriendly=Armageddon Search Damage Friendly
 Effect/Name/ArmageddonSet=Armageddon Set
 Effect/Name/ArmageddonSlowSearch=Armageddon Slow Search
 Effect/Name/ArmorMeltDamage=Armor Melt Damage
+Effect/Name/ArtillerySearchAreaDummy=Artillery Search Area (Dummy)
 Effect/Name/AsgardHighPriorityTargetPersistent=Asgard High Priority Target Persistent
 Effect/Name/AssaultCritEffects=Assault Crit Effects
 Effect/Name/AssaultJumpDamageLevel1=Assault Jump Damage Level 1
@@ -2586,7 +2719,9 @@ Effect/Name/CronusInitialAnticlockwise=Cronus Initial Anticlockwise
 Effect/Name/CronusNightmareBeamPersistent=Cronus Nightmare Beam Persistent
 Effect/Name/Crowbar=Crowbar
 Effect/Name/CrowbarSearchDamage=Crowbar Search Damage
-Effect/Name/Damage=Damage
+Effect/Name/Damage=Missle Damage
+Effect/Name/Damage2=Missle Damage (Ally)
+Effect/Name/Default=Default Skin
 Effect/Name/DeimosShockRifle=Deimos Shock Rifle
 Effect/Name/DesolationApplyLevel1=Desolation Apply Level 1
 Effect/Name/DesolationApplyLevel2=Desolation Apply Level 2
@@ -2698,7 +2833,6 @@ Effect/Name/FireMissionLevel1CreatePersistent=Fire Mission Level 1 (Create Persi
 Effect/Name/FireMissionLevel1DamageVar1=Fire Mission Level 1 (Damage) Var 1
 Effect/Name/FireMissionLevel1DamageVar2=Fire Mission Level 1 (Damage) Var 2
 Effect/Name/FireMissionLevel1DamageVar3=Fire Mission Level 1 (Damage) Var 3
-Effect/Name/FireMissionLevel1SearchAreaDummy=Fire Mission Level 1 (Search Area) Dummy
 Effect/Name/FireMissionLevel2CreatePersistent=Fire Mission Level 2 (Create Persistent) 
 Effect/Name/FireMissionLevel2DamageVar1=Fire Mission Level 2 (Damage) Var 1
 Effect/Name/FireMissionLevel2DamageVar2=Fire Mission Level 2 (Damage) Var 2
@@ -2826,11 +2960,11 @@ Effect/Name/ForesightLevel2Set=Foresight Level 2 (Set)
 Effect/Name/ForwardObserverLaunch=Forward Observer Launch
 Effect/Name/ForwardObserverShellFlight=Forward Observer Shell Flight
 Effect/Name/FrenzyApplyBuffLevel1=Frenzy Apply Buff Level 1
+Effect/Name/FrenzyApplyBuffLevel12=Frenzy Apply Buff Level 1 (Inferno)
 Effect/Name/FrenzyApplyBuffLevel2=Frenzy Apply Buff Level 2
+Effect/Name/FrenzyApplyBuffLevel22=Frenzy Apply Buff Level 2 (Inferno)
 Effect/Name/FrenzyApplyBuffSet=Frenzy Apply Buff Set
 Effect/Name/FrenzyApplyDummy=Frenzy (Apply - Dummy)
-Effect/Name/FrenzyRemoveLevel1=Frenzy Remove Level 1
-Effect/Name/FrenzySetLevel2=Frenzy (Set) Level 2
 Effect/Name/FullThrottleApplyTarget=Full Throttle Apply Target
 Effect/Name/FullThrottleDrop=Full Throttle Drop
 Effect/Name/FullThrottleHeight=Full Throttle Height
@@ -3005,6 +3139,8 @@ Effect/Name/InfernoApplyChainNapalm=Inferno (Apply Chain)
 Effect/Name/InfernoApplyChainTarget=Inferno (Apply Chain Target)
 Effect/Name/InfernoApplyTarget=Inferno (Apply Target)
 Effect/Name/InfernoDamage=Inferno (Damage)
+Effect/Name/InfernoDamage2=Inferno (Damage Periodic)
+Effect/Name/InfernoDamage3=Inferno (Damage Friendly)
 Effect/Name/InfernoDamageSet=Inferno (Damage Set)
 Effect/Name/InfernoLaunchMissile=Inferno (Launch Missile)
 Effect/Name/InfernoPersistentSearch1=Inferno (Persistent Search 1)
@@ -3012,6 +3148,7 @@ Effect/Name/InfernoPersistentSearch2=Inferno (Persistent Search 2)
 Effect/Name/InfernoPersistentSearch3=Inferno (Persistent Search 3)
 Effect/Name/InfernoPersistentSearch4=Inferno (Persistent Search 4)
 Effect/Name/InfernoPersistentSearch5=Inferno (Persistent Search 5)
+Effect/Name/InfernoRemove=Inferno Remove
 Effect/Name/InfernoSearchApplyTarget=Inferno (Search Apply Target)
 Effect/Name/InfernoSearchTarget=Inferno (Search Target)
 Effect/Name/InfernoSearchTargetChain=Inferno (Search Target - Chain)
@@ -3275,6 +3412,7 @@ Effect/Name/NapalmApply=Napalm (Apply)
 Effect/Name/NapalmBarrageApply=Napalm Barrage (Apply)
 Effect/Name/NapalmBarrageDamage=Napalm Barrage (Damage)
 Effect/Name/NapalmBarrageSearch=Napalm Barrage (Search)
+Effect/Name/NapalmFireHideBeforeDeath=Napalm Fire Hide Before Death
 Effect/Name/NeedleClaws2=Needle Claws Copy
 Effect/Name/NeedleSpinesDamage2=Needle Spines
 Effect/Name/NeuralParasiteApplyTargeted=Neural Parasite (Apply Targeted)
@@ -3695,9 +3833,9 @@ Effect/Name/SonicTrapMassiveHeroicSearchSetLevel1=Sonic Trap Massive/Heroic Sear
 Effect/Name/SonicTrapMassiveHeroicSearchSetLevel2=Sonic Trap Massive/Heroic Search Set Level 2
 Effect/Name/SonicTrapPush=Sonic Trap (Push)
 Effect/Name/SonicTrapSetLevel1=Sonic Trap Set Level 1
-Effect/Name/SonicTrapSetLevel12=Sonic Trap (Set) Level 1
+Effect/Name/SonicTrapSetLevel12=Sonic Trap Impact (Set) Level 1
 Effect/Name/SonicTrapSetLevel2=Sonic Trap Set Level 2
-Effect/Name/SonicTrapSetLevel22=Sonic Trap (Set) Level 2
+Effect/Name/SonicTrapSetLevel22=Sonic Trap Impact (Set) Level 2
 Effect/Name/SpawnCreeponDeath=Spawn Creep on Death
 Effect/Name/SpawnCreeponDeathPersistant=Spawn Creep on Death Persistant
 Effect/Name/SpawnSeeker=Spawn Seeker
@@ -3796,6 +3934,9 @@ Effect/Name/TheHorrorHeroicApply=The Horror (Heroic) Apply
 Effect/Name/TheHorrorLaunch=The Horror Launch
 Effect/Name/TheHorrorSearch=The Horror Search
 Effect/Name/TheHorrorSet=The Horror Set
+Effect/Name/Tier1Skin=Tier1 Skin
+Effect/Name/Tier2Skin=Tier2 Skin
+Effect/Name/Tier3Skin=Tier3 Skin
 Effect/Name/TimetoDieApplyStun=Time to Die Apply Stun
 Effect/Name/TimetoDieDamage=Time to Die Damage
 Effect/Name/TimetoDieDamageSet=Time to Die Damage Set
@@ -3884,8 +4025,8 @@ Fast Five Level 2=Using superior reflexes and skill, the Pathfinder fires off fi
 Fast Five Level 3=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 3 -- Shots do 30% additional damage
 Fast Five Level 4=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 4 -- Shots do 40% additional damage
 Field Probe Level 2=Build 2 Field Probes.
-Fire Mission Level 2=Artillery strike that deals 50 damage per shell (each shell has 2 radius) in a 7 radius area. 8 sec barrage time.
-Fire Mission Level 3=Artillery strike that deals 75 damage per shell (each shell has 2 radius) in a 7 radius area. 8 sec barrage time.
+Fire Mission Level 2=Artillery strike that deals 75 (+25/25 vs armored/massive) damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.
+Fire Mission Level 3=Artillery strike that deals 75 (+25/75 vs armored/massive) damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.
 First=Test
 Flamer Equipped=Flamethrower Mk-3 Equipped
 Focused Fire Level 2=Increases attack damage by 25% and sight range by 3. Reduces attack speed by 18%. Targets are slowed by 5%. Lasts for 5 seconds.
@@ -3894,8 +4035,8 @@ Focused Fire Level 4=Increases attack damage by 25% and sight range by 3. Reduce
 Full Throttle Level 2=The Pathfinder engages the afterburner and surges forward with a great burst of speed, knocking back lighter enemies in passing.<n/><n/>Level 2 -- 300% movespeed, range of 9
 Full Throttle Level 3=The Pathfinder engages the afterburner and surges forward with a great burst of speed, knocking back lighter enemies in passing.<n/><n/>Level 3 -- 400% movespeed, range of 12
 Grenade Level 2XM35GrenadeLauncher Level 2=Launches a grenade. Deals <d ref="Effect,GrenadeLevel2Damage,Amount[0]"/> damage. +33% damage to Light units. Gains larger AoE while Focus Fire is active.
-Heal Level 2=Heals a friendly biological target for 5 HP per second. 1 point of life costs 0.475 points of energy. Can also be used to Heal self.
-Heal Level 3=Heals a friendly biological target for 7 HP per second. 1 point of life costs 0.45 points of energy. Can also be used to Heal self.
+Heal Level 2=Heals a friendly biological target for 5 HP per second. 1 point of life costs 0.475 points of energy. Can also be used to Heal self.<n/><n/><c val="FFFF00">Right click a target to smart cast.</c>
+Heal Level 3=Heals a friendly biological target for 7 HP per second. 1 point of life costs 0.45 points of energy. Can also be used to Heal self.<n/><n/><c val="FFFF00">Right click a target to smart cast.</c>
 Hotkey/Heros=Marine Classes
 Hotkey/Minis=Minions
 Info/Bandage=Instantly heals 50 HP. Also heals Open Wounds
@@ -3913,7 +4054,7 @@ Level 2=Level 2 - Injects a weaponized chemical compound onto a target and reduc
 Level 2 - Cloak=Cloaks Recon. He will be invisible to most units. Able to detect invisible units up to 12 radius. 0.85 energy consumed per second.<n/><n/>"To be unseen to the world, to be a mere afterthought, to be a spectre itself"
 Level 2 Adrenaline=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Level 2 Air Strike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 150 damage. Stuns units for 3 seconds.<n/><n/>"Like a bolt out of the blue. "
-Level 2 BURN!=Single target channeled, deals +50 dmg/sec and reduces target's armor up to a maximum of -10. Max damage is 200 dmg/sec. 9 range. Must have Flamethrower equipped.
+Level 2 BURN!=Single target channeled, deals +100 dmg/sec and reduces target's armor up to a maximum of -10. Max damage is 200 dmg/sec. 9 range. Must have Flamethrower equipped.
 Level 2 Bite=Target loses100 HP, Bob gains 40 HP. Target is stunned for 3 seconds. You can..MUST...not bite allies.
 Level 2 Blackout=Toggled. All attacks Blind targets. Each attack costs 2 Energy. 5% chance to turn non-Hero target into uncontrollable allied units for 5 seconds.
 Level 2 BlackoutLevel 2 Blackout2Level 2 BlackoutLevel 2 OpenCockpit=Toggled. All attacks Blind targets. Each attack costs 2 Energy. 5% chance to turn non-Hero target into uncontrollable allied units for 5 seconds.
@@ -3968,7 +4109,7 @@ Level 2 Satchel=Plants a timed explosive that detonates in 5 seconds, dealing 28
 Level 2 Sensor Tower=Reveals enemy units in 25 radius. Stationary and can only build 3 at a time.
 Level 2 Shadowstep=Allows Marksman to move very quickly (+300% movespeed) for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
 Level 2 Shatter=Deals 300 damage to target unit. Deals 2x damage to bosses. If unit is stunned, gain 70 HP.
-Level 2 Shockwave Barrage=Artillery strike that stuns targets in 7 radius area. Each Shell stuns and reduces 4 armor for 6 secs (not-stackable). Effect on Bosses is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
+Level 2 Shockwave Barrage=Artillery strike that stuns targets in 5 radius area. Each Shell stuns and reduces 4 armor for 6 secs (not-stackable). Effect on Bosses is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
 Level 2 Shoot To Maim=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 2 - +20% damage, each Maim stack slows by 7.5%, maximum stack of 3
 Level 2 Shrinker=The Chemical Expert shoots a special energy beam that reduces the size of target unit (including allies), reducing it's threat level, increasing it's speed by 60% and reduces it's attack damage by the same amount. Lasts for 20 seconds, does not work on enemy Heroic.
 Level 2 SmiteLevel 2 SmiteRangeLevel 2 SmiteLevel 2 Smite=Deals 20% current HP damage & 36% movespeed reduction for 4 seconds in 3 radius of target area. Less effective on Bosses.
@@ -4017,9 +4158,9 @@ Level 3 Spiked Armor=Deals 20 damage to any unit that attacks Demo. Shield armor
 Level 3 Surgical Strike=Increase attack damage by 150% for 15 sec. 15 sec recovery (attack damage reduced by 30%).
 Level 3 Surveillance Drone=Technician releases a retooled aerial repair drone with 150 HP and 10 sight radius to scout for him. Detects invisible and can cure Short Circuit.
 Level 3 Surveillance Flares=Surveillance Flares - Fires 5 flares from a hovering support plane spread out randomly around target area of 15 radius.
-Level 3 Taunt=Forces enemies in 10 radius to attack you for 7 seconds. Taunted units deal 30% less damage.
+Level 3 Taunt=Forces enemies in 8 radius to attack you for 7 seconds. Taunted units deal 30% less damage.
 Level 3 X-1 Guardian=Summons a 225 HP battle bot. Deals 24 damage per attack (1.3 attack speed). Attacks penetrate armor.
-LoadingScreen/Tip=Find 'NOTD Official' on Discord for regular updates
+LoadingScreen/Tip=Type "/join Night of the Dead" in any channel to join the chat and find more players.
 MapInfo/Player00/Name=Neutral
 MapInfo/Player01/Name=Marine 1
 MapInfo/Player02/Name=Marine 2
@@ -4694,6 +4835,7 @@ Param/Value/6C5FF689=Destroy Perses
 Param/Value/6C7D2389=
 Param/Value/6C897E06=I recommend looking for him at these areas.
 Param/Value/6CC62F53=<s val="GlueButton"><c val="F4D72B">There's something you should see.</c></s>
+Param/Value/6CDABA30=Artillery Dispersion: <c val="FFFF00">Normal</c>
 Param/Value/6D589165=Where is he?
 Param/Value/6D6D3BA3=Your team will maintain the integrity of mining operations to ensure undisrupted flow of energy to Earth.
 Param/Value/6D8042EE=Marines! Anyone in there?
@@ -5070,6 +5212,7 @@ Param/Value/ACA7AE15=Let's sweep the rest of the airlock once we're ready.
 Param/Value/ACB8A4E6=Bring it down for good.
 Param/Value/ACBFAED5=This is wrong. This is a date that will live in infamy.
 Param/Value/ACC6387D=I wonder how many more of those things are out there?
+Param/Value/AD36FA0F=Requirements not met
 Param/Value/AD49B184=<s val="GlueButton">
 Param/Value/AD6DE3C6=Our lines have been compromised! Broken arrow.
 Param/Value/AD923496=You're Short Circuited. An Engineer can repair your suit.
@@ -5103,6 +5246,7 @@ Param/Value/B325C06C=Your experience is saved after every game.
 Param/Value/B3B45980=Good to see you, Lieutenant.
 Param/Value/B41BEB9B=We need to work together to stay alive.
 Param/Value/B4A4C624=Found her!
+Param/Value/B4B4084C=Artillery Dispersion: <c val="FFFF00">Concentrated</c>
 Param/Value/B4CBD119=She must have found a way to transfer her essential functions to another platform.
 Param/Value/B4E088A7=Remember, we can also unlock the scrapyard gate. But it's probably safer to find another path. Too many confined spaces from that entrance.
 Param/Value/B4E20E81=
@@ -5397,6 +5541,7 @@ Param/Value/E461E750=Situation under control. We've got this.
 Param/Value/E4DFE6B3=<s val="InfoPaneHeroRank">
 Param/Value/E51F85FC=Tanks have arrived. They will provide heavy support.
 Param/Value/E551D186=<s val="InfoPaneHeroRank">(Dr. Tanaka activates his console...)</s>
+Param/Value/E5895E8E=Artillery Dispersion: <c val="FFFF00">Wide</c>
 Param/Value/E5BA10F6=Hold position at Mine until data transfer is complete.
 Param/Value/E6187E1A=The transport ship Delta-1 in airlock may hold survivors that need to be rescued.
 Param/Value/E62A0C52=</n><s val="Swarm_RegularXSmall"><c val="FF0000">Stats modification locked.</c></s>
@@ -5547,6 +5692,7 @@ Param/Value/FE50CD1F=Switch to a M45 Marksman Rifle if you have one. They are hi
 Param/Value/FE5121B3=+3 XP for Performance Bonus
 Param/Value/FE8803E4=Incoming.
 Param/Value/FEF9177A=Doctor
+Param/Value/FF26767E=No CP changes when random in recruit difficulty. (XP > 10000)
 Param/Value/FF39EBA6=<s val="ChatBar">HAL: <c val="F4D72B"></c><c val="FF0000"><Imminent system failure></s></c>
 Param/Value/FF4D0407=I hope it won't come to that. Keep your distance from the creatures.
 Param/Value/FF63624E=Roger.
@@ -5633,23 +5779,24 @@ UI/ResourceToolTip1=Magazines are used to replenish your rounds.
 UI/Rifleman Gear=Equipping Rifleman Gear
 UI/SystemAlert/LagMessageOtherGuilty=%player% is facing TacNet interference
 UI/WaitingForPlayers=Waiting for Marines...
-Unit/Assault/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,TychusChaingun,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,TychusChaingun,ShieldArmorLevel"/></c>)
+Unit/Assault/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,TychusChaingun,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,TychusChaingun,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,TychusChaingun,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/Category/ProtossUnits=UGC Marines
-Unit/ChemicalExpert/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ChemicalExpert,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ChemicalExpert,ShieldArmorLevel"/></c>)
-Unit/Commando/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Commando,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Commando,ShieldArmorLevel"/></c>)
-Unit/Demolitions/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,DominionKillTeam,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,DominionKillTeam,ShieldArmorLevel"/></c>)
-Unit/Engineer/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Engineer,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Engineer,ShieldArmorLevel"/></c>)
-Unit/Flamethrower/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Flamethrower3,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Flamethrower3,ShieldArmorLevel"/></c>)
-Unit/ForwardObserver/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ForwardObserver,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ForwardObserver,ShieldArmorLevel"/></c>)
+Unit/ChemicalExpert/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ChemicalExpert,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ChemicalExpert,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,ChemicalExpert,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Commando/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Commando,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Commando,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Commando,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Demolitions/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,DominionKillTeam,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,DominionKillTeam,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,DominionKillTeam,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Engineer/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Engineer,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Engineer,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Engineer,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Flamethrower/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Flamethrower3,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Flamethrower3,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Flamethrower3,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/ForwardObserver/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ForwardObserver,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ForwardObserver,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,ForwardObserver,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/LifeArmorName/CritterGroundArmor=Carapace
+Unit/LifeArmorName/None=UGC Infantry Armor
 Unit/LifeArmorName/ProtossArmor=Armor
 Unit/LifeArmorName/TerranInfantryArmor=UGC Infantry Armor
 Unit/LifeArmorName/ZergAirArmor=
 Unit/LifeArmorName/ZergAthenaArmor=Carapace
 Unit/LifeArmorName/ZergBuildingArmor=
 Unit/LifeArmorName/ZergGroundArmor=Carapace
-Unit/Marksman/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Marksman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Marksman,ShieldArmorLevel"/></c>)
-Unit/Medic/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Medic2,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Medic2,ShieldArmorLevel"/></c>)
+Unit/Marksman/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Marksman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Marksman,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Marksman,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Medic/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Medic2,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Medic2,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Medic2,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/Name/APAmmo=<c val="80FF80">AP Ammo</c>
 Unit/Name/APAmmoHighlightTooltip=<c val="80FF80">AP Ammo</c>
 Unit/Name/AcidMissile=Acid Missile
@@ -5960,13 +6107,13 @@ Unit/Name/ZombieLevel1=Zombie
 Unit/Name/ZombieLevel12=Zombie
 Unit/Name/ZombieLevel2=Zombie
 Unit/Name/ZombieLevel22=Zombie
-Unit/Pathfinder/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Pathfinder,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Pathfinder,ShieldArmorLevel"/></c>)
-Unit/PsiOps/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,PsiOps,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,PsiOps,ShieldArmorLevel"/></c>)
-Unit/Recon/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Spectre,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Spectre,ShieldArmorLevel"/></c>)
-Unit/Rifleman/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Rifleman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Rifleman,ShieldArmorLevel"/></c>)
+Unit/Pathfinder/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Pathfinder,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Pathfinder,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Pathfinder,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/PsiOps/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,PsiOps,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,PsiOps,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,PsiOps,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Recon/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Spectre,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Spectre,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Spectre,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
+Unit/Rifleman/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Rifleman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Rifleman,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Rifleman,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/ShieldArmorName/ProtossPlasmaShields=Plasma Shields
 Unit/ShieldArmorName/XelNagaShields=   
-Unit/Technician/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Technician,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Technician,ShieldArmorLevel"/></c>)
+Unit/Technician/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Technician,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Technician,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="Unit,Technician,LifeArmorLevel"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 UnitKillRank/CrawlerDrone1=Drone
 UnitKillRank/CrawlerDrone2=Killer Drone
 UnitKillRank/CrawlerDrone3=Master Drone
@@ -6017,6 +6164,8 @@ Upgrade/Name/RiflemanGrenades=Rifleman Grenades
 Upgrade/Name/RighteousnessLevel2=Righteousness Level 2
 Upgrade/Name/SatchelDeployment=Satchel Deployment
 Upgrade/Name/ShatterLevel2=Shatter Level 2
+Upgrade/Name/ShellProductionUpgrade=Fire Support Efficiency Upgrade Level 1
+Upgrade/Name/ShellProductionUpgrade2=Fire Support Efficiency Upgrade Level 2
 Upgrade/Name/StealthMatrix=Stealth Matrix
 Upgrade/Name/StealthMatrixLevel1=Stealth Matrix Upgrade
 Upgrade/Name/SurveillanceFlare=Surveillance Flare
@@ -6366,8 +6515,11 @@ UserData/ShopItems/ShopItem55_ShopTooltip=Instantly heals 50 HP. Also heals Open
 UserData/ShopItems/ShopItem56_ShopTooltip=Cures venom and restores 10 HP.<n/><n/>Credits: <c val="71B8FF">10</c>
 UserData/ShopItems/ShopItem57_ShopTooltip=Consume to add 3 magazines to your ammuniton pool.<n/><n/>Credits: <c val="71B8FF">10</c><n/><n/><s val="Swarm_RegularXSmall">"Third round from the bottom is a tracer. See that light and switch out recruit!" - Drill Instructor Sergeant Jordan</s>
 UserData/ShopItems/ShopItem58_ShopTooltip=Stores magazines that provide rounds for your weapons. Higher magazine capacity frees up your inventory.<n/><n/>Credits: <c val="71B8FF">35</c>
+UserData/ShopItems/ShopItem59_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">15000</c><n/>Karma Requirement: <c val="FFFFFF">1700</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Assault, Flamethrower, Technician, Recon, Marksman, Demolitions, Pathfinder, Chemical Expert, Engineer, Commando, Psi Ops.</c>
 UserData/ShopItems/ShopItem5_ShopTooltip=Changes Marine color to <c val="331ac8">Purple</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
-UserData/ShopItems/ShopItem60_ShopTooltip=Since the Great Rat Plague of 2028, kittens have been a mainstay in every citizen's home - providing frontline defense against the next plague. Kittens are also cute. Be a responsible neighbour - order now.<n/><n/>Credits: <c val="71B8FF">1000</c><n/><n/><s val="Swarm_RegularXSmall">"It's too dangerous to go alone. Take this..."</s>
+UserData/ShopItems/ShopItem60_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">75000</c><n/>Karma Requirement: <c val="FFFFFF">1800</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Recon, Technician, Marksman, Demolitions, Pathfinder, Psi Ops.</c>
+UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">150000</c><n/>Karma Requirement: <c val="FFFFFF">1900</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Demolitions.</c>
+UserData/ShopItems/ShopItem62_ShopTooltip=Change back to the default skin.
 UserData/ShopItems/ShopItem6_ShopTooltip=Changes Marine color to <c val="ebe129">Yellow</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem70_ShopTooltip=Rank icon of Marine replaced with Black Ops Insignia.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
 UserData/ShopItems/ShopItem7_ShopTooltip=Changes Marine color to <c val="fe8a0e">Orange</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
@@ -6493,11 +6645,11 @@ UserData/TalentTrees/Assault_Talent Tootips_001=<s val="AchievementFrameName">Cr
 UserData/TalentTrees/Assault_Talent Tootips_002=<s val="AchievementFrameName">Ammo Feed<n/>(Passive)</s><n/>Level 1 - Increases round capacity to 80. 2 Magazines consumed per reload,<n/>Level 2 - Increases round capacity to 120. 3 Magazines consumed per reload,<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_003=<s val="AchievementFrameName">Blood Frenzy</s><n/>Assault gains attack damage. Critical Strike slows target's movespeed and attack speed by 30% for 1 second. Lasts for 10 seconds.<n/>Level 1 - +20% damage<n/>Level 2 - +40% damage<n/><n/>"Sit. Stay. Die!"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_004=<s val="AchievementFrameName">Harvester of Sorrow</s><n/>The Assault sings a song of war, attacking with hateful zeal and bringing doom to his foes. <n/><n/>The Assault gains 20% bonus Critical Strike, while losing 10% movespeed for 20 seconds. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.<n/><n/>"Let the beatings begin!"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">Taunt</s> <n/>Forces enemies in a radius to attack Assault for a short duration. Taunted units deal less damage.<n/>Level 1 - 6 radius, 5 seconds duration. -10% damge.<n/>Level 2 - 8 radius, 6 seconds duration. -20% damage.<n/>Level 3 - 10 radius, 7 seconds duration. -30% damage.<n/><n/>"First day out of jail, I picked a fight in a bar. Turns out my opponent was a Marine. Join the Marines he said. Could use someone like you. So here I am" - Private Bruce
-UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor.<n/>Level 1 - +2 armor<n/>Level 2 - +3 armor<n/>Level 3 - +4 armor
+UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">Taunt</s> <n/>Forces enemies in 8 radius to attack Assault for a short duration. Taunted units deal less damage.<n/>Level 1 - 5 seconds duration. -10% damge.<n/>Level 2 - 6 seconds duration. -20% damage.<n/>Level 3 - 7 seconds duration. -30% damage.<n/><n/>"First day out of jail, I picked a fight in a bar. Turns out my opponent was a Marine. Join the Marines he said. Could use someone like you. So here I am" - Private Bruce
+UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor and regeneration.<n/>Level 1 - +2 armor<n/>Level 2 - +2 armor, +10% HP regen.<n/>Level 3 - +3 armor, +20% HP regen.
 UserData/TalentTrees/Assault_Talent Tootips_007=<s val="AchievementFrameName">Charge</s><n/>Charges forward up to 15 distance to target point, knocking back any enemies in path. Deals damage and stuns all affected enemies. Deals +50% damage to Massive.<n/>Level 1 - Enemies in path receive 50 damage and are stunned for 2 seconds<n/>Level 2 - Enemies in path receive 100 damage and are stunned for 4 seconds<n/><n/>"He charged forth, borne upon red wings of rage."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">Cohesion<n/>(Passive)</s> <n/>Allies in 7 radius gain armor bonus (This includes Assault).<n/>Level 1 - +1 armor<n/>Level 2 - +2 armor<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">Safeguard<n/>(Passive)</s><n/>Assault gains +1 armor for each hit taken. Each point gained lasts for 5 second. Maximum +7 armor.<n/><n/>"Even a Nuke won't stop you!" - Ogilvy Defense Industries<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">Safeguard<n/>(Passive)</s><n/>Assault gains +1 armor for each hit taken. Each point gained lasts for 6 second. Maximum +6 armor.<n/><n/>"Even a Nuke won't stop you!" - Ogilvy Defense Industries<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Headers=<s val="HelpPanelListBoxItemTitle">Desolator</s>
 UserData/TalentTrees/Chemical Expert_Headers_001=<s val="HelpPanelListBoxItemTitle">Ground Support</s>
 UserData/TalentTrees/Chemical Expert_Talent Tootips=<s val="AchievementFrameName">Desolation</s><n/>Releases a spray of chemical gas in a forward arc dealing damage and giving targets venom.<n/>Level 1 - 50 damage. Inflicts 1 stack of venom.<n/>Level 2 - 100 damage. Inflicts 2 stacks of venom.<n/>Level 3 - 150 damage. Inflicts 4 stacks of venom.<n/><n/><c val="FF0000">Warning: Deals 40% friendly fire damage</c><n/>
@@ -6529,11 +6681,11 @@ UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName
 UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 5 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 3 seconds to arm. During the 3 seconds to arming, the charge sends tremors through the ground which reduces movement speed of all ground units within 5 radius by 15% per tremor. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><c val="FF0000"><n/>Limit of 3 Armageddon Charges at any given time. Can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Armor<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +4 and +15 Shields<n/><n/>"I'll cut you" - Yuki
-UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - -15% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - -45% damage for 8 seconds
+UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Shield<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +3 and +15 Shields<n/><n/>"I'll cut you" - Yuki
+UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - -20% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - -40% damage for 8 seconds
 UserData/TalentTrees/Demolitions_Talent Tootips_007=<s val="AchievementFrameName">Look!</s><n/>Forces enemies in 5 radius to stare at target. After a short duration, 50% chance for affected units to attack target. <n/>Level 1 - 1 second<n/>Level 2 - 2 seconds<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_008=<s val="AchievementFrameName">Sadist<n/>(Passive)</s><n/>Level 1 - Restores 2 HP and 1 Shield for each kill<n/>Level 2 - Restores 4 HP and 2 Shields for each kill<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_009=<s val="AchievementFrameName">Time to Die</s><n/>Demo is highly resistant to most damage for 10 seconds and gains an 8x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 sec interval.<n/><n/>"All those moments will be lost in time... like tears in rain... Time to die. "<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Demolitions_Talent Tootips_009=<s val="AchievementFrameName">Time to Die</s><n/>Demo is highly resistant to most damage for 10 seconds and gains an 7x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 sec interval.<n/><n/>"All those moments will be lost in time... like tears in rain... Time to die. "<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Headers=<s val="HelpPanelListBoxItemTitle">Field Support</s>
 UserData/TalentTrees/Engineer_Headers_001=<s val="HelpPanelListBoxItemTitle">Combat</s>
 UserData/TalentTrees/Engineer_Talent Tootips=<s val="AchievementFrameName">Field Probe</s><n/>Create a 150 HP (50 Shields) mobile probe with following abilities: <n/>   i) Shock (Deals -50% ms on target for 5 seconds.) <n/>   ii) Penetrate (Deals -4 armor on target for 8 seconds. Stacks up to 2 times)<n/><n/>Level 1 -  Can build 1 at a time.<n/>Level 2 -  Can build 2 at a time.<n/>Level 3 -  Can build 3 at a time.
@@ -6541,7 +6693,7 @@ UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">P
 UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/>Level 1 - 8 damage every 2 seconds. Affects 4 units.<n/>Level 2 - 16 damage every 2 seconds. Affects 8 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Increases Engineer's base energy. Aura grants +0.35 energy regeneration to allies.<n/>Level 1 - +50 base energy. 5 radius aura.<n/>Level 2 - +100 base energy. 10 radius aura.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 12 damage per attack.<n/>Level 2 - 150 HP. 18 damage per attack.<n/>Level 3 - 225 HP. 24 damage per attack and attacks penetrate armor.
+UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 12 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 18 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 24 damage per attack. (Ignore armor)
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">It's Me Again!<n/>(Passive)</s><n/>Each subsequent attack on same target deals extra damage.<n/>Level 1 - +7% damage<n/>Level 2 - +14% damage<n/>Level 3 - +21% damage<n/><n/>Stacks up to 5 times.
 UserData/TalentTrees/Engineer_Talent Tootips_007=<s val="AchievementFrameName">Boom! Headshot</s><n/>Attacks by Engineer/Guardian disorients enemies, reduces armor. Each level also increases attack speed by +10% when active.<n/>Level 1 - Stuns non-Heroics (slows Heroics by 15%) and -2 armor for 1 second. Attack modifier lasts 5 seconds.<n/>Level 2 - Stuns non-Heroics (slows Heroics by 30%) and -4 armor for 2 seconds. Attack modifier lasts 7 seconds.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_008=<s val="AchievementFrameName">Synergy<n/>(Passive)</s><n/>When Guardian and Engineer attack same target, deals more damage. <n/>Level 1 - +20% damage<n/>Level 2 - +40% damage<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6550,9 +6702,9 @@ UserData/TalentTrees/Flamethrower_Headers=<s val="HelpPanelListBoxItemTitle">Pyr
 UserData/TalentTrees/Flamethrower_Headers_001=<s val="HelpPanelListBoxItemTitle">Order</s>
 UserData/TalentTrees/Flamethrower_Talent Tootips=<s val="AchievementFrameName">Helium-3 Igniter<n/>(Passive)</s><n/>Increase range of flamer and damage.<n/>Level 1 - +1 range and +10% damage<n/>Level 2 - +2 range and +20% damage<n/>Level 3 - +3 range and +30% damage. Fires plasma flame that burns targets for +10 dmg over 3 seconds.
 UserData/TalentTrees/Flamethrower_Talent Tootips_001=<s val="AchievementFrameName">Burst Fire</s><n/>Deals damage to units in a forward arc. Deals 40% extra damage to Light units. Must have Flamethrower weapon equipped.<n/>Level 1 - 50 damage<n/>Level 2 - 100 damage<n/>Level 3 - 150 damage<n/><n/>6 range. Affects air units too.
-UserData/TalentTrees/Flamethrower_Talent Tootips_002=<s val="AchievementFrameName">BURN!</s><n/>The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Reduces target's armor up to a maximum of -10 when under effects of Burn. Must have Flamethrower equipped.<n/>Level 1 - Deals +25 damage/second <n/>Level 2 - Deals +50 damage/second <n/><n/>Caps out at a maximum of 200 damage/second. <n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_002=<s val="AchievementFrameName">BURN!</s><n/>The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Reduces target's armor up to a maximum of -10. Burn persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 1 - Deals +40 damage/second <n/>Level 2 - Deals +100 damage/second <n/><n/>Caps out at a maximum of 200 damage/second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Flamethrower_Talent Tootips_003=<s val="AchievementFrameName">Frenzy<n/>(Passive)</s><n/>Flamethrower gains increased attack/move speed and damage for each unit killed by Burst Fire and Burn. 30% chance to add 1 stack of Frenzy for each kill made by Inferno. Lasts for 30 seconds. Max stack of 30.<n/>Level 1 - +1% attack/move and +2% damage<n/>Level 2 - +2% attack/move and +4% damage<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">Inferno</s><n/>Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units with incendiary pallets are slowed by 60% while burning from within and explode after 5 seconds, dealing 200 damage to all ground units in 3 radius. Non-heroic armored biological ground units that die to the blast burst into pillars of fire that last 10 seconds. Units caught in the flames have a 40% chance per second of spreading Inferno, potentially causing a chain reaction.<n/><n/><c val="FF0000">Warning: Inferno creates fires that can engulf friendlies. Use with extreme caution!</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">Inferno</s><n/>Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing 150 damage to all units in 3 radius. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/>Grants 10 stacks of Frenzy on cast.<n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Flamethrower_Talent Tootips_005=<s val="AchievementFrameName">Smite</s><n/>Deals damage based on current HP and movespeed reduction to enemies in 3 radius of target area for 4 seconds. Less effective on Bosses.<n/>Level 1 - 10% of current HP and -18% movespeed<n/>Level 2 - 20% of current HP and -36% movespeed<n/>Level 3 - 30% of current HP and -54% movespeed
 UserData/TalentTrees/Flamethrower_Talent Tootips_006=<s val="AchievementFrameName">Vengeance<n/>(Passive)</s><n/>Chance for attackers to be stunned for 2 seconds. <n/>Level 1 - 15% chance<n/>Level 2 - 30% chance<n/>Level 3 - 45% chance<n/><n/>"And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the LORD when I lay my vengeance upon thee." - Ezekiel 25:17
 UserData/TalentTrees/Flamethrower_Talent Tootips_007=<s val="AchievementFrameName">Righteousness</s><n/>+1 armor for each unit damaged by Smite.<n/>Level 1 - Lasts 8 secs<n/>Level 2 - Lasts 16 secs<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6560,11 +6712,11 @@ UserData/TalentTrees/Flamethrower_Talent Tootips_008=<s val="AchievementFrameNam
 UserData/TalentTrees/Flamethrower_Talent Tootips_009=<s val="AchievementFrameName">Faith</s><n/>HP reduced by 50% and burns shields completely. Deals 777 damage to all units in 7 radius, and stuns them for 7 seconds. Heals allies for 35 HP. Flamethrower gains 10 armor for 10 seconds. Also removes 3 stacks of Open Wounds and Venom from Flamethrower.<n/><n/>"I find your lack of faith disturbing."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle">Fire Support</s>
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
-UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 7 radius area. Deals 50% extra damage to Massive units.<n/>Level 1 - 25 damage per shell.<n/>Level 2 - 50 damage per shell.<n/>Level 3 - 75 damage per shell.<n/><n/>Each shell has 2 radius. 8 second barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
-UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Boosters (Passive)</s><n/>Reduces delay between calling down a barrage and actual hits.<n/>Level 1 - 1.5 second reduction<n/>Level 2 - 3 second reduction<n/>Level 3 - 4.5 second reduction<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
-UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 7 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 6 seconds (not-stackable).<n/><n/>8 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals bonus damage to armored and massive units at higher levels.<n/>Level 1 - 50 dmg per shell.<n/>Level 2 - 75 (+25/25 vs armored/massive) dmg per shell.<n/>Level 3 - 75 (+25/75 vs armored/massive) dmg per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
+UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 sec.<n/>Level 2 - Reduces the cooldown and energy costs of airstrike, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown and energy costs of most barrage call downs.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
+UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 6 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 7 radius of area. Each shell deals 30 dmg/sec for 10 seconds. 8 sec barrage time. Units burnt in Napalm move 40% slower. Deals 100% additional damage to Massive units.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 3 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Firebat's MK-3 Flamethrower projectile width increased by .15, increases Firebat armor by 3, grants Slow Roast<n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6584,7 +6736,7 @@ UserData/TalentTrees/Marksman_Talent Tootips_008=<s val="AchievementFrameName">S
 UserData/TalentTrees/Marksman_Talent Tootips_009=<s val="AchievementFrameName">Master of Subtlety<n/>(Passive)</s><n/>When cloaked, the Marksman's attacks deal +50% damage. Level 2 Shadowstep now cloaks the Marksman.<n/><n/>"I am the nightmare that lurks in the dark."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Headers=<s val="HelpPanelListBoxItemTitle">Field Aid</s>
 UserData/TalentTrees/Medic_Headers_001=<s val="HelpPanelListBoxItemTitle">Nanotech</s>
-UserData/TalentTrees/Medic_Talent Tootips=<s val="AchievementFrameName">Heal</s><n/>Heals a friendly biological target. Each level improves HP to Energy efficiency ratio slightly.<n/>Level 1 - Heals 3 HP per second<n/>Level 2 - Heals 5 HP per second<n/>Level 3 - Heals 7 HP per second<n/><n/>"Death smiles at us all, but only UGC Marine Corpsmen smile back."
+UserData/TalentTrees/Medic_Talent Tootips=<s val="AchievementFrameName">Heal</s><n/>Heals a friendly biological target. Each level improves HP to Energy efficiency ratio slightly.<n/>Level 1 - Heals 3 HP per second<n/>Level 2 - Heals 5 HP per second<n/>Level 3 - Heals 7 HP per second<n/><n/><c val="FFFF00">Right click a target to smart cast.</c><n/><n/>"Death smiles at us all, but only UGC Marine Corpsmen smile back."
 UserData/TalentTrees/Medic_Talent Tootips_001=<s val="AchievementFrameName">Surgical Laser Module</s><n/>The Medic upgrades her standard-issue field laser to improve delivery times of a treatment that instantly heals and relieves 1 stack of Open Wounds, Blindness and Cripple on target friendly unit.<n/>Level 2 - 20 HP healed. 8 second cooldown.<n/>Level 3 - 30 HP healed. 6 second cooldown.<n/>Level 4 - 40 HP healed. 4 second cooldown.<n/><n/>"Not all lasers go pew pew" - Corpsman Holly
 UserData/TalentTrees/Medic_Talent Tootips_002=<s val="AchievementFrameName">Nano-Shield</s><n/>Regenerates shields temporarily and increases max shields and shield armor. Lasts 20 seconds.<n/>Level 1 - +30 max shields and +1 shield armor<n/>Level 2 - +60 max shields and +2 shield armor<n/><n/>"I've been living in a bubble all my life" - Nano Shield Test Subject 31<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_003=<s val="AchievementFrameName">Nano-Weave</s><n/>Heals target over 15 seconds.<n/>Level 1 - 5 HP/second<n/>Level 2 - 8 HP/second<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6653,7 +6805,7 @@ UserData/TalentTrees/Technician_Talent Tootips_005=<s val="AchievementFrameName"
 UserData/TalentTrees/Technician_Talent Tootips_006=<s val="AchievementFrameName">Nanites Upgrade</s><n/>Not only for medical purposes, the Technician utilizes nanites in the upkeep of weaponry and for minor repairs. They are not limited to the Technician's exosuit, and will repair things around him in a small area.<n/>Level 1 - +2 HP Regen to self. +1 HP regen to non-biological allies in 0.5 radius.<n/>Level 2 - +4 HP Regen to self. +2 HP regen to non-biological allies in 1 radius.<n/>Level 3 - +6 HP Regen to self. +3 HP regen to non-biological allies in 1.5 radius.
 UserData/TalentTrees/Technician_Talent Tootips_007=<s val="AchievementFrameName">Crawler Drone</s><n/>Technician sacrifices some of the plating of his exosuit and a healthy amount of nanites to create a Crawler Drone, search and rescue drones retooled with kinetic catapults that they use to launch debris at enemy targets. Maximum of 10.<n/>Level 1 - Crawler Drones have 60 health and deal 7 damage.<n/>Level 2 - Crawler Drones have 120 health and deal 14 damage.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Technician_Talent Tootips_008=<s val="AchievementFrameName">Ballistics</s><n/>Technician's modifications to the exosuit reduce recoil and increase stability, allowing an increase in expected damage and range of any weapons he equips.<n/>Level 1 - +12% weapon damage and +1 range<n/>Level 2 - +24% weapon damage and +2 range<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Technician_Talent Tootips_009=<s val="AchievementFrameName">March of the Machines</s><n/>Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out...Technician gains +300% armor & health and +100% damage. -25% attack speed and movespeed. Will attack allies if not managed. No effect on Shiva damage.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c><n/><n/>"You have 20 seconds to comply..."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Technician_Talent Tootips_009=<s val="AchievementFrameName">March of the Machines</s><n/>Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out...Technician gains +300% armor & health and +100% damage. -25% attack speed and movespeed. Will attack allies if not managed.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c><n/><n/>"You have 20 seconds to comply..."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TeamKillTexts/Death Texts_Death Text= </c><c val="F4D72B">has been accidentally slaughtered by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_001= </c><c val="F4D72B">has been sacrificed to the Gods by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_002= </c><c val="F4D72B">has been murdered by </c><c val="FF0000">
@@ -6680,9 +6832,9 @@ UserData/WeaponModData/Switch_Tooltip_Text=<c val="FFFF00">Switch</c><n/>Modifie
 UserData/WeaponModData/Weight_Arrow_Tooltip=7.5% Weight Reduction
 UserData/WeaponModData/Weight_Name=Weight Reduction
 UserData/WeaponModData/Weight_Tooltip_Text=<c val="FFFF00">Weight Reduction</c><n/>Modifies weapon weight (-/+5%)
-Variant001/ModeDesc=Investigate the outbreak on the Apollo Mining Colony
-Variant001/ModeName=Night of the Dead
 Variant001/Name=Survival
+Variant002/ModeDesc=Investigate the outbreak on the Apollo Mining Colony
+Variant002/ModeName=Night of the Dead
 Weapon/Name/AcidMissiles=Acid Missiles
 Weapon/Name/AcidSaliva2=Acid Saliva
 Weapon/Name/AcidSpit=Acid Spit

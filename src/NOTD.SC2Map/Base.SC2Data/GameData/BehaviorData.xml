@@ -91,6 +91,32 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="DamageReduction">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="Countdown" value="0"/>
+        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
+        <MaxStackCount value="100"/>
+        <Modification>
+            <DamageTakenFraction index="Melee" value="-0.01"/>
+            <DamageTakenFraction index="Ranged" value="-0.01"/>
+            <DamageTakenFraction index="Splash" value="-0.01"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DamageReduction2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="Countdown" value="0"/>
+        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
+        <MaxStackCount value="300"/>
+        <Modification>
+            <DamageTakenFraction index="Spell" value="0.01"/>
+            <DamageTakenFraction index="Melee" value="0.01"/>
+            <DamageTakenFraction index="Ranged" value="0.01"/>
+            <DamageTakenFraction index="Splash" value="0.01"/>
+            <DamageTakenFraction index="NoProc" value="0.01"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="InfernoChainNapalm">
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -131,6 +157,14 @@
         <Duration value="4"/>
         <ExpireEffect value="Suicide"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHealthAugmentBonusHP">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Modification>
+            <VitalMaxArray index="Life" value="22"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="NeuralTimedLife">
         <Duration value="0.1"/>
         <FinalEffect value=""/>
@@ -142,6 +176,15 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SJHyperionIonThrusters">
         <DamageResponse Evade="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShieldBonus2">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Modification ShieldArmorBonus="1">
+            <VitalMaxArray index="Shields" value="10"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="TacticalEvaluation">
         <InfoIcon value="Assets\Textures\btn-ability-nova-domination.dds"/>
@@ -354,6 +397,7 @@
         <Modification>
             <LifeArmorBonus value="5"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Benign"/>
     <CBehaviorBuff id="CorrosiveAcid">
@@ -370,11 +414,13 @@
             <Duration value="24"/>
             <ValidatorArray value="IsRecruit"/>
         </DurationOverride>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DifficultyScalingHP">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-siphon.dds"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorCreepSource id="MakeCreep5x5NOTD">
         <InfoFlags index="Hidden" value="1"/>
@@ -505,7 +551,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AssaultJumpEvasionLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-disguise.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-neutral-ursadonleap.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="1"/>
         <Modification MoveSpeedMultiplier="1.15"/>
@@ -516,7 +562,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AssaultJumpEvasionLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-disguise.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-neutral-ursadonleap.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="2"/>
         <Modification MoveSpeedMultiplier="1.15"/>
@@ -527,7 +573,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AssaultJumpEvasionLevel3">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-disguise.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-neutral-ursadonleap.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="3"/>
         <Modification MoveSpeedMultiplier="1.15"/>
@@ -628,7 +674,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="BloodFrenzySlow">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-infestation.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-amoncloud.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCount value="2"/>
         <MaxStackCountPerCaster value="2"/>
@@ -675,6 +721,7 @@
         <Modification AttackSpeedMultiplier="1.1">
             <LifeArmorBonus value="2"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CrawlerDroneLimit">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1032,6 +1079,7 @@
         </Modification>
         <ExpireEffect value="ApplyStealthMatrix"/>
         <Tooltip value="Button/Tooltip/Escape"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeSelfCloakLevel2">
         <Alignment value="Positive"/>
@@ -1043,6 +1091,7 @@
         </Modification>
         <ExpireEffect value="ApplyStealthMatrix"/>
         <Tooltip value="Button/Tooltip/Escape"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeSelfCloakLevel3">
         <Alignment value="Positive"/>
@@ -1054,6 +1103,7 @@
         </Modification>
         <ExpireEffect value="ApplyStealthMatrix"/>
         <Tooltip value="Button/Tooltip/Escape"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeCloakLevel2">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1087,6 +1137,7 @@
         <Modification MoveSpeedMultiplier="1.1"/>
         <InitialEffect value="ExecuteNoCollsion"/>
         <RefreshEffect value="ExecuteNoCollsion"/>
+        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ExecuteNoCollision">
         <InfoFlags index="Hidden" value="1"/>
@@ -1169,7 +1220,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="FocusedFire">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-blink.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-havoctargetlockbuffed.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="5"/>
         <Modification SightBonus="3" AttackSpeedMultiplier="0.8">
@@ -1200,6 +1251,7 @@
             <DamageDealtFraction index="Ranged" value="0.3"/>
             <DamageDealtFraction index="Splash" value="0.3"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="GOTBSprintReaction">
         <InfoFlags index="Hidden" value="1"/>
@@ -1502,7 +1554,7 @@
             <DamageDealtFraction index="Splash" value="0.07"/>
         </Modification>
         <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel1"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-shapedblast.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItsMeAgainDamageLevel2">
@@ -1530,7 +1582,7 @@
             </Cost>
         </DamageResponse>
         <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel2"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-shapedblast.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItsMeAgainDamageLevel3">
@@ -1558,7 +1610,7 @@
             </Cost>
         </DamageResponse>
         <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel3"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-shapedblast.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItsMeAgainTarget">
@@ -1642,7 +1694,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Overdrive">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-planetcracker.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-carrier-solarbeam.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="20"/>
         <Modification>
@@ -1715,7 +1767,7 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="QuickAimLevel1">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="3"/>
         <Modification AttackSpeedMultiplier="3"/>
@@ -1726,7 +1778,7 @@
             <Charge Link="Behavior/QuickAimLevel1"/>
             <Cooldown Link="Behavior/QuickAimLevel1"/>
         </Cost>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="3"/>
         <Modification AttackSpeedMultiplier="4">
@@ -1750,7 +1802,7 @@
             <Charge Link="Behavior/QuickAimLevel1"/>
             <Cooldown Link="Behavior/QuickAimLevel1"/>
         </Cost>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="3"/>
         <Modification AttackSpeedMultiplier="5">
@@ -1879,7 +1931,7 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixSelfCloakLevel2">
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-nyxcloakingclassmodule.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-permanentcloak.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <RemoveValidatorArray value="CasterHasEnergy"/>
         <RemoveValidatorArray value="CasterisnotFiringL3"/>
@@ -1919,7 +1971,7 @@
             <ExcludeEffectArray value="Backstab"/>
             <Chance value="1"/>
         </DamageResponse>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-nyxcloakingclassmodule.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-permanentcloak.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InsufficientAmmo">
@@ -2025,13 +2077,13 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="TimetoDie">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-titaniumhousing.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="10"/>
         <Period value="3.3"/>
         <InitialEffect value="TimetoDieSearch"/>
         <PeriodicEffect value="TimetoDieSearch"/>
-        <Modification MoveSpeedMultiplier="1.25" LifeArmorMultiplier="8" ShieldArmorMultiplier="8">
+        <Modification MoveSpeedMultiplier="1.25" LifeArmorMultiplier="7" ShieldArmorMultiplier="7">
             <DamageDealtFraction index="Spell" value="1"/>
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
@@ -2045,6 +2097,7 @@
             <Chance value="1"/>
         </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="TowerLimit">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2178,7 +2231,7 @@
             <Charge TimeUse="2"/>
             <Cooldown TimeUse="7"/>
         </Cost>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-alarak-reliquaryofsouls.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="20"/>
@@ -2242,7 +2295,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="VenomEnergyTransferLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level0.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-chargedcrystal-psionicwinds.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <MaxStackCount value="4"/>
         <Duration value="180"/>
@@ -2257,11 +2310,10 @@
             </DeathResponse>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
-        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VenomEnergyTransferLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level0.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-chargedcrystal-psionicwinds.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <MaxStackCount value="4"/>
         <Duration value="180"/>
@@ -2276,7 +2328,6 @@
             </DeathResponse>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
-        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RiotShield">
         <InfoFlags index="Hidden" value="1"/>
@@ -2350,10 +2401,11 @@
         <Alignment value="Positive"/>
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <Modification ShieldArmorBonus="1">
+        <Modification>
+            <DamageDealtUnscaled index="Melee" value="1"/>
             <VitalMaxArray index="Shields" value="10"/>
         </Modification>
-        <MaxStackCount value="3"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SightBonus">
         <Alignment value="Positive"/>
@@ -2474,6 +2526,7 @@
         <Modification MoveSpeedMultiplier="0.7" AccelerationMultiplier="0.7">
             <LifeArmorBonus value="-4"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BringThemDownLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2636,6 +2689,7 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <MaxStackCount value="3"/>
         <Modification ShieldArmorBonus="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="IronHand">
         <Alignment value="Positive"/>
@@ -2693,7 +2747,7 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="VRL772Buff">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-gather.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-oraclepulsarcannonon.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="10"/>
         <Modification MoveSpeedMultiplier="1.25" AttackSpeedMultiplier="1.25"/>
@@ -2709,7 +2763,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="VRL772Stun">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-gather.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-oraclepulsarcannonon.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="4"/>
         <PeriodCount value="0"/>
@@ -2793,6 +2847,7 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Modification MoveSpeedMultiplier="1.2" AccelerationMultiplier="1.35" LifeArmorMultiplier="0.1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FullThrottleLevel1" parent="FullThrottleTemplate">
         <Modification MoveSpeedMultiplier="2"/>
@@ -2835,7 +2890,7 @@
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NoQuarterInvulnerable">
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-mengsk-engineeringbay-orbitaldrop.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="4"/>
         <Modification>
@@ -2844,7 +2899,7 @@
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PenanceLevel1">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-feedback-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-artanis-healingpsionicstorm.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="15"/>
         <Modification ShieldArmorBonus="-10">
@@ -2856,9 +2911,10 @@
         </Modification>
         <Alignment value="Negative"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PenanceLevel2">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-feedback-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-artanis-healingpsionicstorm.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="15"/>
         <Modification ShieldArmorBonus="-10">
@@ -2870,6 +2926,7 @@
         </Modification>
         <Alignment value="Negative"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShrinkerLevel1">
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-airweaponslevel2.dds"/>
@@ -3285,6 +3342,7 @@
             <LifeArmorBonus value="-1"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Enraged">
         <Alignment value="Negative"/>
@@ -3384,7 +3442,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherTauntedLevel2">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-consumption.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.999"/>
         <Player Value="Target"/>
@@ -3397,15 +3455,15 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherTauntedLevel3">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-consumption.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.999"/>
         <Player Value="Target"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="-0.45"/>
-            <DamageDealtFraction index="Melee" value="-0.45"/>
-            <DamageDealtFraction index="Ranged" value="-0.45"/>
-            <DamageDealtFraction index="Splash" value="-0.45"/>
+            <DamageDealtFraction index="Spell" value="-0.4"/>
+            <DamageDealtFraction index="Melee" value="-0.4"/>
+            <DamageDealtFraction index="Ranged" value="-0.4"/>
+            <DamageDealtFraction index="Splash" value="-0.4"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="DisableAttack">
@@ -3494,9 +3552,10 @@
             <VitalMaxFractionArray index="Life" value="3"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanitesUpgradeBuffLevel1">
-        <InfoIcon value="Assets/Textures/btn-research-terran-ultracapacitors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.05"/>
         <Modification>
@@ -3505,7 +3564,7 @@
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanitesUpgradeLevel1">
-        <InfoIcon value="Assets/Textures/btn-research-terran-ultracapacitors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="NanitesUpgradeLevel1"/>
         <Period value="1"/>
@@ -3516,7 +3575,7 @@
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanitesUpgradeBuffLevel2">
-        <InfoIcon value="Assets/Textures/btn-research-terran-ultracapacitors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.05"/>
         <Modification>
@@ -3525,7 +3584,7 @@
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanitesUpgradeBuffLevel3">
-        <InfoIcon value="Assets/Textures/btn-research-terran-ultracapacitors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.05"/>
         <Modification>
@@ -3534,7 +3593,7 @@
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanitesUpgradeLevel2">
-        <InfoIcon value="Assets/Textures/btn-research-terran-ultracapacitors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="NanitesUpgradeLevel2"/>
         <Period value="1"/>
@@ -3545,7 +3604,7 @@
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanitesUpgradeLevel3">
-        <InfoIcon value="Assets/Textures/btn-research-terran-ultracapacitors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garyselfhealing.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="NanitesUpgradeLevel3"/>
         <Period value="1"/>
@@ -3607,6 +3666,7 @@
             <DamageDealtFraction index="Ranged" value="-0.2"/>
             <DamageDealtFraction index="Splash" value="-0.2"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Recoil">
         <Alignment value="Negative"/>
@@ -3794,6 +3854,7 @@
         <Modification MoveSpeedMultiplier="0.85" AccelerationMultiplier="0.85">
             <LifeArmorBonus value="-2"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Weakness50PermaMS">
         <Alignment value="Negative"/>
@@ -3976,7 +4037,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationAuraLevel1">
         <InfoFlags index="Hidden" value="1"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="AnticipationLevel1"/>
         <Period value="1"/>
@@ -3984,7 +4045,7 @@
         <Alignment value="Positive"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationLevel1">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <RemoveValidatorArray value="UnitdoesnothaveAnticipationLevel2"/>
         <MaxStackCountPerCaster value="10"/>
@@ -3997,10 +4058,11 @@
         </Modification>
         <Alignment value="Positive"/>
         <BehaviorCategories index="User1" value="1"/>
+        <Duration value="1.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationAuraLevel2">
         <InfoFlags index="Hidden" value="1"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="AnticipationLevel2"/>
         <Period value="1"/>
@@ -4011,7 +4073,7 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationLevel2">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-snipe-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="10"/>
         <Alignment value="Positive"/>
@@ -4019,6 +4081,7 @@
             <BehaviorLinkDisableArray value="AnticipationLevel1"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
+        <Duration value="1.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ArmorDebuffAPAmmo">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-impalerrounds.dds"/>
@@ -4028,6 +4091,8 @@
             <LifeArmorBonus value="-1"/>
         </Modification>
         <Alignment value="Negative"/>
+        <BehaviorCategories index="User12" value="1"/>
+        <MaxStackCount value="3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BURNDummy1">
         <InfoFlags index="Hidden" value="1"/>
@@ -4054,29 +4119,31 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-jotunboosters.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <BuffFlags index="Channeled" value="1"/>
-        <MaxStackCount value="8"/>
-        <MaxStackCountPerCaster value="8"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="5"/>
+        <MaxStackCountPerCaster value="5"/>
         <Period value="1"/>
         <PeriodicEffect value="BURNDamageLevel1"/>
         <Modification>
-            <LifeArmorBonus value="-1.25"/>
+            <LifeArmorBonus value="-2"/>
         </Modification>
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
             <Chance value="1"/>
         </DamageResponse>
+        <BehaviorCategories index="User12" value="1"/>
+        <Duration value="3.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BURNLevel2">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-jotunboosters.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <BuffFlags index="Channeled" value="1"/>
-        <MaxStackCount value="4"/>
-        <MaxStackCountPerCaster value="4"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="5"/>
+        <MaxStackCountPerCaster value="5"/>
         <Period value="1"/>
         <PeriodicEffect value="BURNDamageLevel2"/>
         <Modification>
-            <LifeArmorBonus value="-2.5"/>
+            <LifeArmorBonus value="-2"/>
             <DeathResponse>
                 <Cost>
                     <Charge Link="Behavior/BURNLevel1"/>
@@ -4086,9 +4153,11 @@
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
             <Chance value="1"/>
         </DamageResponse>
+        <BehaviorCategories index="User12" value="1"/>
+        <Duration value="3.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Backstab">
-        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-shadowblade.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BrainBugPeriodicRampageCast">
@@ -4200,6 +4269,7 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Modification MoveSpeedMultiplier="2" AccelerationMultiplier="1.35" LifeArmorMultiplier="0.1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="GhostHoldFire">
         <Modification MoveSpeedMultiplier="1.1"/>
@@ -4215,6 +4285,7 @@
         <Modification>
             <LifeArmorBonus value="-1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="HugBehaviour">
         <InfoFlags index="Hidden" value="1"/>
@@ -4344,6 +4415,7 @@
             </DeathResponse>
         </Modification>
         <InitialEffect value="ModifyShieldEffects"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CombatKnife">
         <InfoIcon value="Assets\Textures\btn-tips-mercenary.dds"/>
@@ -4352,13 +4424,14 @@
         <Duration value="2.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Faith">
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-nano-botinjectors.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-immortalchampionvortex.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
         <Modification>
             <LifeArmorBonus value="10"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FocusedFireTarget">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4370,6 +4443,7 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Modification MoveSpeedMultiplier="1.35" AccelerationMultiplier="1.35" LifeArmorMultiplier="0.1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AdvancedMutation">
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
@@ -4569,7 +4643,7 @@
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <MaxStackCount value="2"/>
         <PeriodCount value="0"/>
-        <Modification DetectArc="0" RadarArc="0">
+        <Modification>
             <VitalRegenArray index="Life" value="0.3984"/>
         </Modification>
         <MaxStackCountPerCaster value="2"/>
@@ -4592,6 +4666,7 @@
             <Kind index="Melee" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="HighCapacityClip">
         <Alignment value="Positive"/>
@@ -4660,6 +4735,7 @@
         </DamageResponse>
         <MaxStackCountPerCaster value="1"/>
         <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="C6Armor">
         <Alignment value="Positive"/>
@@ -4681,6 +4757,7 @@
                 <Cooldown Link="Behavior/C2Armor"/>
             </Cost>
         </DamageResponse>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ComplianceMatrix">
         <InfoIcon value="Assets\Textures\btn-ability-terran-chronoriftdevice.dds"/>
@@ -4954,6 +5031,7 @@
         <Modification>
             <LifeArmorBonus value="-4"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaDischargeLevel1">
         <Alignment value="Negative"/>
@@ -4963,6 +5041,7 @@
         <Modification MoveSpeedMultiplier="0.7">
             <LifeArmorBonus value="-2"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaDischargeExplosion">
         <InfoFlags index="Hidden" value="1"/>
@@ -4986,6 +5065,7 @@
                 </Cost>
             </DeathResponse>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaDischargeLevel3">
         <Alignment value="Negative"/>
@@ -5000,6 +5080,7 @@
                 </Cost>
             </DeathResponse>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Rampage">
         <InfoIcon value="Assets\Textures\btn-ability-zerg-infestation.dds"/>
@@ -5017,13 +5098,13 @@
             <DamageDealtFraction index="Splash" value="-0.2"/>
         </Modification>
         <MaxStackCount value="3"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InfernoTarget">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="10"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
-        <Modification MoveSpeedMultiplier="0.4"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight1">
         <InfoFlags index="Hidden" value="1"/>
@@ -5314,6 +5395,7 @@
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
             <Chance value="1"/>
         </DamageResponse>
+        <FinalEffect value="InfernoRemove"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BurstFireLevel2">
         <InfoFlags index="Hidden" value="1"/>
@@ -5325,6 +5407,7 @@
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
             <Chance value="1"/>
         </DamageResponse>
+        <FinalEffect value="InfernoRemove"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BurstFireLevel3">
         <InfoFlags index="Hidden" value="1"/>
@@ -5336,6 +5419,7 @@
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
             <Chance value="1"/>
         </DamageResponse>
+        <FinalEffect value="InfernoRemove"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ReaperMK13Limit">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -5501,7 +5585,7 @@
         <MaxStackCount value="30"/>
         <MaxStackCountPerCaster value="30"/>
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-darkarchon-maelstrom.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FrenzyBuffLevel2">
@@ -5516,7 +5600,7 @@
         <MaxStackCount value="30"/>
         <MaxStackCountPerCaster value="30"/>
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-darkarchon-maelstrom.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FrenzyDummy">
@@ -5527,22 +5611,22 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="FrenzyLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-darkarchon-maelstrom.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="FrenzyLevel1"/>
-        <Period value="-1"/>
+        <Period value="0.01"/>
         <PeriodCount value="1"/>
         <PeriodicEffect value="FrenzyApplyDummy"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FrenzyLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-darkarchon-maelstrom.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="FrenzyLevel2"/>
-        <Period value="-1"/>
+        <Period value="0.01"/>
         <PeriodCount value="1"/>
-        <PeriodicEffect value="FrenzySetLevel2"/>
+        <PeriodicEffect value="FrenzyApplyDummy"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Helium3Igniter">
@@ -5566,6 +5650,7 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infernalpreigniter.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="Helium3IgniterLevel1"/>
+        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Helium3IgniterLevel2">
         <Alignment value="Positive"/>
@@ -5573,6 +5658,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="Helium3IgniterLevel2"/>
         <PeriodCount value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Helium3IgniterLevel3">
         <Alignment value="Positive"/>
@@ -5581,6 +5667,7 @@
         <Requirements value="Helium3IgniterLevel3"/>
         <MaxStackCount value="2"/>
         <MaxStackCountPerCaster value="2"/>
+        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InfantrySpecializationDummyLevel1">
         <InfoFlags index="Hidden" value="1"/>
@@ -5601,15 +5688,14 @@
         <DisplayDuration index="Ally" value="1"/>
         <DisplayDuration index="Neutral" value="1"/>
         <DisplayDuration index="Enemy" value="1"/>
-        <MaxStackCount value="10"/>
-        <MaxStackCountPerCaster value="10"/>
-        <PeriodCount value="0"/>
         <ExpireEffect value="InfernoDamageSet"/>
         <FinalEffect value="InfernoDamageSet"/>
-        <DisableValidatorArray value="HasInception"/>
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
             <Chance value="0.3"/>
         </DamageResponse>
+        <Period value="1"/>
+        <PeriodicEffect value="InfernoDamage2"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MercAirDropC">
         <FinalEffect value="MoveOrderOffset"/>
@@ -5623,7 +5709,6 @@
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BlackoutControlled">
         <Cost>
@@ -5678,7 +5763,6 @@
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MindLinkLevel3">
         <Alignment value="Positive"/>
@@ -5689,7 +5773,6 @@
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MobileInfantryUnselectable">
         <InfoFlags index="Hidden" value="1"/>
@@ -5709,13 +5792,13 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-tips-walloffire.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="6"/>
+        <MaxStackCount value="3"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="10"/>
         <Period value="1"/>
         <InitialEffect value="NapalmBarrageDamage"/>
         <PeriodicEffect value="NapalmBarrageDamage"/>
-        <Modification MoveSpeedMultiplier="0.6"/>
+        <Modification MoveSpeedMultiplier="0.7"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NapalmAnimationDummy">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -5735,7 +5818,7 @@
         <Duration value="10"/>
         <Period value="1"/>
         <PeriodicEffect value="NapalmBarrageSearch"/>
-        <FinalEffect value="Suicide"/>
+        <FinalEffect value="NapalmFireHideBeforeDeath"/>
         <ExpireEffect value="NapalmBarrageSearch"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ProtectSpeed">
@@ -5786,14 +5869,15 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <RemoveValidatorArray value="RighteousnessCount"/>
-        <MaxStackCount value="99"/>
-        <MaxStackCountPerCaster value="99"/>
+        <MaxStackCount value="100"/>
+        <MaxStackCountPerCaster value="100"/>
         <Duration value="8"/>
         <Modification>
             <LifeArmorBonus value="1"/>
         </Modification>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-raynor-juggernautplating.dds"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RighteousnessCount">
         <InfoFlags index="Hidden" value="1"/>
@@ -5926,6 +6010,7 @@
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShockwaveBarrageStunLevel12">
         <Alignment value="Negative"/>
@@ -5940,6 +6025,7 @@
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShockwaveBarrageStunLevel2">
         <Alignment value="Negative"/>
@@ -5955,6 +6041,7 @@
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ForcePushHeightLevel1">
         <InfoFlags index="Hidden" value="1"/>
@@ -5996,6 +6083,7 @@
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="StunGunshipFire">
         <Alignment value="Negative"/>
@@ -6137,7 +6225,7 @@
     <CBehaviorBuff id="SurveillanceFlaresDrop1st">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="60"/>
+        <Duration value="120"/>
         <Period value="0.5"/>
         <PeriodCount value="1"/>
         <InitialEffect value="SurveillanceFlaresLift1st"/>
@@ -6476,7 +6564,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="BloodFrenzyLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-infestation.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-amoncloud.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
         <Modification>
@@ -6530,7 +6618,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="BloodFrenzyLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-infestation.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-amoncloud.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
         <Modification>
@@ -6547,7 +6635,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="BoomHeadshotLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-behavior-incapacitated.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-mengsk-battlecruiser-decksights.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="5"/>
         <DamageResponse Handled="BoomHeadshotLevel1Set" Location="Attacker">
@@ -6559,7 +6647,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="BoomHeadshotLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-behavior-incapacitated.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-mengsk-battlecruiser-decksights.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="7"/>
         <Modification AttackSpeedMultiplier="1.2"/>
@@ -6578,7 +6666,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="CohesionLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-selfixarmor.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetzonegenerator-speed.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <TimeScaleSource Value="Global"/>
         <Duration value="1"/>
@@ -6586,6 +6674,7 @@
             <LifeArmorBonus value="2"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CombatMobilityAugment">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-charge-color.dds"/>
@@ -6605,6 +6694,7 @@
             <LifeArmorBonus value="-2"/>
         </Modification>
         <RemoveValidatorArray value="UnitisnotHeroic"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DisorientedBoomHeadshotLevel2">
         <Alignment value="Negative"/>
@@ -6618,6 +6708,7 @@
             <LifeArmorBonus value="-4"/>
         </Modification>
         <RemoveValidatorArray value="UnitisnotHeroic"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DisruptionTowerLevel1Search">
         <InfoFlags index="Hidden" value="1"/>
@@ -6634,16 +6725,17 @@
         <PeriodicEffect value="DisruptionTowerSearchSetLevel2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyBattery">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-hardenedshields-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.01"/>
         <Modification>
             <VitalRegenArray index="Energy" value="0.3515"/>
         </Modification>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyBatteryLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-hardenedshields-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="EnergyBatteryLevel1"/>
         <Period value="1"/>
@@ -6651,11 +6743,10 @@
         <Modification>
             <VitalMaxArray index="Energy" value="50"/>
         </Modification>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyBatteryLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-hardenedshields-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="EnergyBatteryLevel2"/>
         <Period value="1"/>
@@ -6663,7 +6754,6 @@
         <Modification>
             <VitalMaxArray index="Energy" value="100"/>
         </Modification>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FireVulnerabilityHEAmmo">
         <Alignment value="Negative"/>
@@ -6686,6 +6776,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -6773,6 +6864,7 @@
         <DamageResponse ModifyMinimumDamage="1"/>
         <InitialEffect value="NanoShieldRemoveLevel2"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="HEAmmo">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-jackhammerconcussion.dds"/>
@@ -6821,8 +6913,9 @@
         <Modification>
             <LifeArmorBonus value="1"/>
         </Modification>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-selfixarmor.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetzonegenerator-speed.dds"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ConcentrationLevel1">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-feedback-color.dds"/>
@@ -6890,12 +6983,14 @@
             <LifeArmorBonus value="2"/>
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Bloodlust">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-plague.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-mengsk-ghost-pyrokineticimmolation_orange.dds"/>
         <BehaviorCategories index="Temporary" value="1"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <MaxStackCount value="5"/>
         <Duration value="10"/>
@@ -6916,6 +7011,7 @@
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel1.dds"/>
         <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="C2Armor">
         <Alignment value="Positive"/>
@@ -6925,6 +7021,7 @@
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
         <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CriticalStrikeLevel1Dummy">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -6940,18 +7037,25 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="DefensivePlatingLevel2"/>
         <Modification>
-            <LifeArmorBonus value="1"/>
+            <LifeArmorBonus value="2"/>
+            <VitalRegenMultiplier index="Life" value="0.1"/>
+            <BehaviorLinkDisableArray value="DefensivePlatingLevel1"/>
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DefensivePlatingLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="DefensivePlatingLevel3"/>
         <Modification>
-            <LifeArmorBonus value="1"/>
+            <LifeArmorBonus value="3"/>
+            <VitalRegenMultiplier index="Life" value="0.2"/>
+            <BehaviorLinkDisableArray value="DefensivePlatingLevel1"/>
+            <BehaviorLinkDisableArray value="DefensivePlatingLevel2"/>
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Detector5" parent="Detector">
         <Alignment value="Positive"/>
@@ -6976,6 +7080,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -6987,7 +7092,7 @@
             <Chance value="1"/>
         </DamageResponse>
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-antistructureweapon.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-fireroach-increasefiredamage.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
     </CBehaviorBuff>
@@ -7009,6 +7114,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -7019,7 +7125,7 @@
             <RequireEffectArray value="StingerMK3Damage"/>
             <Chance value="1"/>
         </DamageResponse>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-antistructureweapon.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-fireroach-increasefiredamage.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
     </CBehaviorBuff>
@@ -7042,20 +7148,20 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherTauntedLevel1">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-consumption.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.999"/>
         <PeriodCount value="0"/>
         <Player Value="Target"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="-0.15"/>
-            <DamageDealtFraction index="Melee" value="-0.15"/>
-            <DamageDealtFraction index="Ranged" value="-0.15"/>
-            <DamageDealtFraction index="Splash" value="-0.15"/>
+            <DamageDealtFraction index="Spell" value="-0.2"/>
+            <DamageDealtFraction index="Melee" value="-0.2"/>
+            <DamageDealtFraction index="Ranged" value="-0.2"/>
+            <DamageDealtFraction index="Splash" value="-0.2"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherLevel1">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-consumption.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="4"/>
         <Period value="0.25"/>
@@ -7063,9 +7169,10 @@
         <InitialEffect value="ImYourFatherSearchIssueAttackLevel1"/>
         <PeriodicEffect value="ImYourFatherSearchIssueAttackLevel1"/>
         <FinalEffect value="ImYourFatherSearchIssueStop"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherLevel2">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-consumption.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="6"/>
         <Period value="0.25"/>
@@ -7073,9 +7180,10 @@
         <InitialEffect value="ImYourFatherSearchIssueAttackLevel2"/>
         <PeriodicEffect value="ImYourFatherSearchIssueAttackLevel2"/>
         <FinalEffect value="ImYourFatherSearchIssueStop"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherLevel3">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-consumption.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="8"/>
         <Period value="0.25"/>
@@ -7083,6 +7191,7 @@
         <InitialEffect value="ImYourFatherSearchIssueAttackLevel3"/>
         <PeriodicEffect value="ImYourFatherSearchIssueAttackLevel3"/>
         <FinalEffect value="ImYourFatherSearchIssueStop"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="LookTarget">
         <Alignment value="Negative"/>
@@ -7107,6 +7216,7 @@
         <DamageResponse ModifyMinimumDamage="1"/>
         <InitialEffect value="NanoShieldRemoveLevel1"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="OpenWound2">
         <InfoFlags index="Hidden" value="1"/>
@@ -7153,7 +7263,6 @@
             <Chance value="1"/>
         </DamageResponse>
         <InfoFlags index="Hidden" value="1"/>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SadistLv1HealingTemp">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -7174,7 +7283,6 @@
             <Chance value="1"/>
         </DamageResponse>
         <InfoFlags index="Hidden" value="1"/>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SadistLv2HealingTemp">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -7287,6 +7395,7 @@
         <Modification ShieldArmorBonus="1">
             <VitalMaxArray index="Shields" value="5"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SpikedArmorLevel2">
         <Alignment value="Positive"/>
@@ -7309,6 +7418,7 @@
             <VitalMaxArray index="Shields" value="10"/>
             <BehaviorLinkDisableArray value="SpikedArmorLevel1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SpikedArmorLevel3">
         <Alignment value="Positive"/>
@@ -7327,11 +7437,12 @@
             <TargetFilters value="-;Player,Ally,Invulnerable"/>
             <Chance value="1"/>
         </DamageResponse>
-        <Modification ShieldArmorBonus="4">
+        <Modification ShieldArmorBonus="3">
             <VitalMaxArray index="Shields" value="15"/>
             <BehaviorLinkDisableArray value="SpikedArmorLevel1"/>
             <BehaviorLinkDisableArray value="SpikedArmorLevel2"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="IntelligenceStat">
         <InfoFlags index="Hidden" value="1"/>
@@ -7429,7 +7540,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntedLevel1">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.999"/>
         <Modification>
@@ -7441,7 +7552,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntedLevel2">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.999"/>
         <Modification>
@@ -7453,7 +7564,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntedLevel3">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.999"/>
         <Modification>
@@ -7524,6 +7635,7 @@
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLeve3"/>
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLevel2"/>
         <RemoveValidatorArray value="TargetIsVisible"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="LaserDesignatorLevel2">
         <Alignment value="Negative"/>
@@ -7537,6 +7649,7 @@
         </Modification>
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLeve3"/>
         <RemoveValidatorArray value="TargetIsVisible"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="LaserDesignatorLevel3">
         <Alignment value="Negative"/>
@@ -7549,6 +7662,7 @@
             <LifeArmorBonus value="-5"/>
         </Modification>
         <RemoveValidatorArray value="TargetIsVisible"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="GunshipDesignator">
         <Alignment value="Negative"/>
@@ -7574,7 +7688,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="MasterofSubtlety">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-cloakfield-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-hero-propheticvision.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="MasterofSubtlety"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -7704,7 +7818,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-tomahawkpowercell.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <TimeScaleSource Value="Global"/>
         <Duration value="35"/>
@@ -7723,7 +7837,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-tomahawkpowercell.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <TimeScaleSource Value="Global"/>
         <Duration value="35"/>
@@ -7742,7 +7856,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel3">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-tomahawkpowercell.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <TimeScaleSource Value="Global"/>
         <Duration value="35"/>
@@ -7761,7 +7875,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoWeaveLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-chronoboost.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-protoncharge-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <MaxStackCount value="2"/>
         <Duration value="15"/>
@@ -7775,7 +7889,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoWeaveLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-chronoboost.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-protoncharge-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <MaxStackCount value="2"/>
         <Duration value="15"/>
@@ -7849,8 +7963,9 @@
         <Modification MoveSpeedMultiplier="1.5" Detect="7">
             <LifeArmorBonus value="2"/>
         </Modification>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-voidprison.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RepulseStun">
         <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
@@ -7864,17 +7979,19 @@
             <AbilClassEnableArray index="CAbilInventory" value="1"/>
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Safeguard">
-        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-stetmann-garystetelliteovercharge-speed.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Requirements value="Safeguard"/>
-        <MaxStackCount value="7"/>
-        <Duration value="5"/>
+        <MaxStackCount value="6"/>
+        <Duration value="6"/>
         <Modification>
             <LifeArmorBonus value="1"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShadowstepLevel1">
         <Alignment value="Positive"/>
@@ -7903,7 +8020,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-criussuit.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-darktemplar-blink.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="StealthLevel1"/>
         <Duration value="6"/>
@@ -7914,7 +8031,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-criussuit.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-darktemplar-blink.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="StealthLevel2"/>
         <Duration value="12"/>
@@ -7925,7 +8042,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ConcentratedFireLevel1">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-330mmbarragecannon.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-nova-shotgunaoe.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="7"/>
@@ -8004,7 +8121,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ConcentratedFireLevel2">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-330mmbarragecannon.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-nova-shotgunaoe.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="7"/>
@@ -8020,7 +8137,7 @@
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ConcentratedFireLevel3">
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-330mmbarragecannon.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-nova-shotgunaoe.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="7"/>
@@ -8040,12 +8157,16 @@
         <PeriodCount value="23"/>
         <Period value="0.25"/>
         <Alignment value="Neutral"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntLevel3" parent="TauntTemplate" Level="3">
         <Duration value="7"/>
         <PeriodCount value="27"/>
         <Period value="0.25"/>
         <Alignment value="Neutral"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Madness">
         <Alignment value="Negative"/>
@@ -8070,6 +8191,7 @@
         <Modification>
             <LifeArmorBonus value="-1"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel2">
         <Alignment value="Negative"/>
@@ -8087,6 +8209,7 @@
         </Modification>
         <FinalEffect value="VolatileInjectionLevel2Search"/>
         <MaxStackCount value="4"/>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="WeaponExpertiseLevel1">
         <Alignment value="Positive"/>
@@ -8190,6 +8313,8 @@
         <PeriodCount value="19"/>
         <Period value="0.25"/>
         <Alignment value="Neutral"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ZeratulStun">
         <Duration value="7"/>
