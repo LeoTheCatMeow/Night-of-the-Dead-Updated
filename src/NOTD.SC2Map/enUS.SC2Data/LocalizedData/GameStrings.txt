@@ -437,6 +437,7 @@ Behavior/Name/ArmorDebuffAPAmmo=Armor Debuff (AP Ammo)
 Behavior/Name/AssaultJumpEvasionLevel1=Assault Jump Evasion Level 1
 Behavior/Name/AssaultJumpEvasionLevel2=Assault Jump Evasion Level 2
 Behavior/Name/AssaultJumpEvasionLevel3=Assault Jump Evasion Level 3
+Behavior/Name/Atrocious=Atrocious
 Behavior/Name/BURNLevel1=BURN! Level 1
 Behavior/Name/BURNLevel2=BURN! Level 2
 Behavior/Name/Backstab=Backstab
@@ -561,6 +562,7 @@ Behavior/Name/HEFRounds=HE-F Rounds
 Behavior/Name/HPAmmo=<c val="80FF80">HP Ammo</c>
 Behavior/Name/HammeroftheGodsUnqiue2=Maintenence Drone Unqiue
 Behavior/Name/HandgunExpertiseLevel2=Handgun Expertise (Level 2)
+Behavior/Name/Hardened=Hardened
 Behavior/Name/HarvesterofSorrow=Harvester of Sorrow
 Behavior/Name/HarvesterofSorrowTarget=Harvester of Sorrow (Target)
 Behavior/Name/HeightenedSensesDebuff=Heightened Senses (Debuff)
@@ -624,6 +626,7 @@ Behavior/Name/MonofilamentCartridgeLevel2Stun=Monofilament Cartridge Level 2 (St
 Behavior/Name/MonofilamentCartridgeLevel3Stun=Monofilament Cartridge Level 3 (Stun)
 Behavior/Name/MonofilamentTrapDuration=Monofilament Trap Duration
 Behavior/Name/MonofilamentTrapIntialReveal=Monofilament Trap Intial Reveal
+Behavior/Name/Monstrous=Monstrous
 Behavior/Name/MoreDoTs=Nano Sear
 Behavior/Name/MotionSensorArmorDebuff=Motion Sensor (Armor Debuff)
 Behavior/Name/NanitesUpgradeLevel1=Nanites Upgrade (Level 1)
@@ -697,10 +700,12 @@ Behavior/Name/RighteousnessLevel2=Righteousness (Level 2)
 Behavior/Name/Safeguard=Safeguard
 Behavior/Name/SapStun=Sap (Stun)
 Behavior/Name/SapStun2=Sap (Stun)
+Behavior/Name/Scorching=Scorching
 Behavior/Name/SeekerSpawn=Seeker Spawn
 Behavior/Name/SelfDestructStun=Self-Destruct (Stun)
 Behavior/Name/SensoryConfusionCloak=Sensory Confusion (Cloak)
 Behavior/Name/ShadowPulse=Shadow Pulse
+Behavior/Name/Shadowed=Shadowed
 Behavior/Name/ShadowstepLevel1=Shadowstep (Level 1)
 Behavior/Name/ShadowstepLevel2=Shadowstep (Level 2)
 Behavior/Name/ShellMode=Shell Mode
@@ -1015,6 +1020,7 @@ Behavior/Tooltip/RighteousnessLevel2=+1 armor for each unit damaged by Smite. La
 Behavior/Tooltip/Safeguard=+1 Armor per stack
 Behavior/Tooltip/SapStun=Unit is stunned for 7 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SapStun2=Unit is stunned for 3 seconds. Stun breaks if unit is attacked.
+Behavior/Tooltip/Scorching=
 Behavior/Tooltip/SelfDestructStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SensoryConfusionCloak=Unit is cloaked for 10 seconds.
 Behavior/Tooltip/ShadowPulse=+75% movespeed for 3 secs
@@ -1974,8 +1980,8 @@ DocInfo/DescShort=8
 DocInfo/HowToPlayAdvanced00=Once your Marine is dead, you cannot respawn. Be cautious.
 DocInfo/HowToPlayAdvanced01=You can earn XP that is stored and accumulated each time you play NOTD. XP unlocks new classes and storylines.
 DocInfo/HowToPlayAdvanced02=Bosses require teamwork to take down. Listen to veterans in your game.
-DocInfo/HowToPlayAdvanced03=Find more players in channel 'NOTD'
-DocInfo/HowToPlayAdvanced04=Play NOTD Boot Camp to familiarize yourself with game basics
+DocInfo/HowToPlayAdvanced03=Type /join Night of the Dead in any channel to join the chat and find more players.
+DocInfo/HowToPlayAdvanced04=Google "Starcraft II bank file" to learn more about the location of your save file, follow the map info to transfer you save if needed.
 DocInfo/HowToPlayBasic00=Stay with your team
 DocInfo/HowToPlayBasic01=Find ammo, weapons and other supplies
 DocInfo/HowToPlayBasic02=Complete mission objectives
@@ -2383,6 +2389,18 @@ DocInfo/PatchNote399=- Players now lose 1 karma for failing the civs quest at De
 DocInfo/PatchNote400=- Added skins for various classes, XP and Karma act as qualifications for skin usage, no credit needed.
 DocInfo/PatchNote401=- Marksman - Leveling up concentration replaces the previous stacks instead of simply removing them.
 DocInfo/PatchNote402=- Minor visual changes and bug fixes.
+DocInfo/PatchNote403=- Credit rewards re-adjusted so that the total credits from all missions match the original NOTD. Slight shifts in payout are made as below:
+DocInfo/PatchNote404=  EC: 50 credits more than original EC  |  AC: 100 credits more than original AC  |  Sec: 150 credits less than original Sec;
+DocInfo/PatchNote405=- MP9A2 Sub-machine gun damage lower from 14(+14 vs light) to 12(+12 vs light).
+DocInfo/PatchNote406=- Forward Observer individual shell impact radius reverted to original (2 radius instead of 2.5). 
+DocInfo/PatchNote407=- Forward Observer Shockwave & Napalm Barrage cooldown increased by 1.
+DocInfo/PatchNote408=- Forward Observer Lunar Technologies lv2 no longer reduces Airstrike cooldown, still reduces energy cost and allows 2 charges.
+DocInfo/PatchNote409=- Recon Laser Designator model reverted to the old model (laser drill lock-on).
+DocInfo/PatchNote410=- Added some moderate ambient spawn for Sec (starting after rescue).
+DocInfo/PatchNote411=- Elite Mutation Mode added. Activate using "-elite mutation" or "-em" command, similar to -ob.
+DocInfo/PatchNote412=- Mutated enemies spawn after 180 game seconds, mutation frequency scales up as game goes on.
+DocInfo/PatchNote413=- Additional skins added.
+DocInfo/PatchNote414=- Flamethrower - Burst Fire energy cost reduced from 18 to 15, Inferno energy cost reduced from 35 to 30.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2493,6 +2511,8 @@ Effect/Name/AssaultJumpImpactSetLevel3=Assault Jump Impact Set Level 3
 Effect/Name/AssaultJumpLaunchLevel1=Assault Jump Launch Level 1
 Effect/Name/AssaultJumpLaunchLevel2=Assault Jump Launch Level 2
 Effect/Name/AssaultJumpLaunchLevel3=Assault Jump Launch Level 3
+Effect/Name/AtrociousApplyDebuff=Atrocious Apply Debuff
+Effect/Name/AtrociousDebuffSearch=Atrocious Debuff Search Area
 Effect/Name/BURNApplyLevel1=BURN! (Apply) Level 1
 Effect/Name/BURNApplyLevel2=BURN! (Apply) Level 2
 Effect/Name/BURNDamageLevel1=BURN! Damage Level 1
@@ -4325,6 +4345,7 @@ Param/Value/1311397C=
 Param/Value/1314AC76=We've got to kill Ivax.
 Param/Value/1318F7C5=Are you...releasing me?
 Param/Value/135D702F=
+Param/Value/136671CD=<s val="InfoPaneHeroRank">Elite Mutation activated</s><n/>- Enemies spawn with deadly mutations.<n/>- Flexible counter strategies needed.
 Param/Value/1366F3ED=<n/><s val="ModLeftSize12">
 Param/Value/136BAE3A=<c val="FFFF00">Strength</c><n/>Adds +11.5 HP and increased Weight Tolerance per Stat Point.
 Param/Value/138747BD=Use Anti-Armor weapons for Dome C
@@ -4865,6 +4886,7 @@ Param/Value/711360DA=Boys, we're attracting a lot of attention!
 Param/Value/713DE317=It all started wi-
 Param/Value/71DA941A=<n/></c>Hits Taken: <c val="F4D72B">
 Param/Value/72189A49=Kill all zombies from Bio-Dome B
+Param/Value/723F181B=[Elite Mutation]
 Param/Value/723F3D0D=Sec Team B, do you read me?
 Param/Value/72600180=Yes, it carries some heavy firepower.
 Param/Value/72864709=<s val="GlueButton">Charlie
@@ -6517,7 +6539,7 @@ UserData/ShopItems/ShopItem57_ShopTooltip=Consume to add 3 magazines to your amm
 UserData/ShopItems/ShopItem58_ShopTooltip=Stores magazines that provide rounds for your weapons. Higher magazine capacity frees up your inventory.<n/><n/>Credits: <c val="71B8FF">35</c>
 UserData/ShopItems/ShopItem59_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">15000</c><n/>Karma Requirement: <c val="FFFFFF">1700</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Assault, Flamethrower, Technician, Recon, Marksman, Demolitions, Pathfinder, Chemical Expert, Engineer, Commando, Psi Ops.</c>
 UserData/ShopItems/ShopItem5_ShopTooltip=Changes Marine color to <c val="331ac8">Purple</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
-UserData/ShopItems/ShopItem60_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">75000</c><n/>Karma Requirement: <c val="FFFFFF">1800</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Recon, Technician, Marksman, Demolitions, Pathfinder, Psi Ops.</c>
+UserData/ShopItems/ShopItem60_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">75000</c><n/>Karma Requirement: <c val="FFFFFF">1800</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Recon, Flamethrower, Technician, Marksman, Demolitions, Pathfinder, Psi Ops, Commando.</c>
 UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">150000</c><n/>Karma Requirement: <c val="FFFFFF">1900</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Demolitions.</c>
 UserData/ShopItems/ShopItem62_ShopTooltip=Change back to the default skin.
 UserData/ShopItems/ShopItem6_ShopTooltip=Changes Marine color to <c val="ebe129">Yellow</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
@@ -6713,7 +6735,7 @@ UserData/TalentTrees/Flamethrower_Talent Tootips_009=<s val="AchievementFrameNam
 UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle">Fire Support</s>
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
 UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals bonus damage to armored and massive units at higher levels.<n/>Level 1 - 50 dmg per shell.<n/>Level 2 - 75 (+25/25 vs armored/massive) dmg per shell.<n/>Level 3 - 75 (+25/75 vs armored/massive) dmg per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
-UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 sec.<n/>Level 2 - Reduces the cooldown and energy costs of airstrike, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown and energy costs of most barrage call downs.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
+UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 6 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 3 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>

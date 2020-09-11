@@ -169,6 +169,15 @@
         <On Terms="Effect.ApoptosisBloodWave.Start; PassChance 10.000000" Send="Create"/>
         <Sound value="Mutalisk_Attack"/>
     </CActorSound>
+    <CActorModel id="Shadowed" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Shadowed.On" Send="Create"/>
+        <On Terms="Behavior.Shadowed.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetOpacity 0.700000"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
     <CActorUnit id="Brutalisk22" parent="GenericUnitBase" unitName="BlaqkQueen">
         <Macros value=""/>
         <Macros value=""/>
@@ -326,6 +335,21 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="GuardianoftheBeta2"/>
     </CActorModel>
+    <CActorModel id="Atrocious" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Atrocious.On" Send="Create"/>
+        <On Terms="Behavior.Atrocious.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="0.800000"/>
+    </CActorModel>
+    <CActorModel id="Scorching" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Scorching.On" Send="Create"/>
+        <On Terms="Behavior.Scorching.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor 255,128,128"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="0.500000"/>
+    </CActorModel>
     <CActorSplat id="ImYourFatherTauntSplat" parent="GenericUnitSplat">
         <EditorCategories value=""/>
         <On Terms="Behavior.ImYourFatherLevel1.On" Send="Create"/>
@@ -349,6 +373,15 @@
     <CActorModel id="Infection" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.Infection.On" Send="Create"/>
         <On Terms="Behavior.Infection.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="Hardened" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Hardened.On" Send="Create"/>
+        <On Terms="Behavior.Hardened.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor {243,243,243 3.000000}"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 192,192,192 228,228,228"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="0.500000"/>
     </CActorModel>
     <CActorModel id="LevelUp2" parent="ModelAddition">
         <Terms value="ValidateUnit AboveLevel1"/>
@@ -1112,6 +1145,13 @@
         <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
         <Model value="ScorchedEarthIndicatorModel"/>
         <Scale value="1.450000"/>
+    </CActorModel>
+    <CActorModel id="Monstrous" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Monstrous.On" Send="Create"/>
+        <On Terms="Behavior.Monstrous.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="2.500000"/>
     </CActorModel>
     <CActorText id="SethPolarityNegative">
         <On Terms="Behavior.NegativePolarity.On" Send="Create"/>
@@ -11076,6 +11116,7 @@
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
         <On Terms="Behavior.BURNDummy2.On" Send="AnimBracketStart Attack Attack {} {} ContentPlayOnce"/>
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap FlamethrowerSkin1"/>
+        <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap FlamethrowerSkin2"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap DevilDog"/>
     </CActorUnit>
     <CActorSound id="ForwardObserverLaunch" parent="SoundOneShot">
@@ -15059,6 +15100,7 @@
         <On Terms="Abil.GravityGrenade.SourceCastStart" Send="AnimSetTimeScale Grenade 2.500000"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap CommandoSkin1"/>
+        <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap CommandoSkin2"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap WarPig"/>
         <Model value="WarPig"/>
         <BuildModel value="WarPig"/>
@@ -15780,7 +15822,6 @@
     <!--                                                                                         -->
     <CActorUnit id="Ultralisk">
         <BarWidth value="90"/>
-        <On Terms="UnitBirth.Ultralisk" Send="SetTintColor {233,140,135 0.800000}"/>
         <On Terms="ActorCreation" Send="AttachModelOffset AgronInfestation AgronInfest {Target 1} 0.400000,0.400000,0.000000 {-0.000000,1.000000,-0.000000 0.242536,0.000000,0.970142}"/>
         <On Terms="ActorCreation" Send="AttachModelOffset AgronInfestation AgronInfest {Target 1} 0.300000,-0.100000,-0.100000 {-0.000000,1.000000,-0.000000 0.242536,0.000000,0.970142}"/>
         <On Terms="ActorCreation" Send="AttachModelOffset AgronInfestation AgronInfest {Target 1} -0.400000,0.400000,0.000000 {-0.000000,1.000000,-0.000000 -0.242536,0.000000,0.970142}"/>

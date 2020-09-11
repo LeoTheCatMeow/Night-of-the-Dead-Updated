@@ -11,6 +11,37 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
     </CModel>
+    <CModel id="CommandoSkin2" parent="Unit">
+        <Model value="Assets\Units\CovertOps_AssaultTrooper.m3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <EditorCategories value="Race:Terran"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="1.250000,1.250000,1.100000"/>
+        <ScaleMin value="1.250000,1.250000,1.100000"/>
+        <SelectionRadius value="0.340800"/>
+        <ShadowRadius value="0.340800"/>
+        <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <UnitGlossaryCamera value="Star2CameraMid03"/>
+    </CModel>
+    <CModel id="FlamethrowerSkin2" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\SC_Blaze\SC_Blaze2.m3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
+        <Occlusion value="Show"/>
+        <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <TextureDeclares Prefix="incinerator_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="merc_incinerator_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+    </CModel>
+    <CModel id="Shadowed">
+        <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
+        <Lighting value=""/>
+    </CModel>
     <CModel id="BloodTargetImpact2" parent="ImpactFX">
         <Model value="Assets\Effects\Other\BloodTargetImpact\BloodTargetImpact.m3"/>
         <EditorCategories value="Race:Neutral"/>
@@ -70,7 +101,7 @@
         <ScaleMin value="0.800000,0.800000,0.800000"/>
     </CModel>
     <CModel id="DemolitionsSkin2" parent="MarauderBase">
-        <Model value="Assets\Units\Terran\Marauder_Umojan\Marauder_Umojan.m3"/>
+        <Model value="Assets\Units\C_Marauder.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
     </CModel>
     <CModel id="DemolitionsSkin3" parent="MarauderBase">
@@ -131,6 +162,19 @@
     <CModel id="GuardianoftheBetaWeaponImpact">
         <Model value="Assets\Effects\Protoss\Alarak_DestructionWave_Impact\Alarak_DestructionWave_Impact.m3"/>
     </CModel>
+    <CModel id="Hardened">
+        <Model value="Assets\Effects\Zerg\Primal_Guardian_Coop_Fury\Primal_Guardian_Coop_Fury.m3"/>
+        <Lighting value=""/>
+    </CModel>
+    <CModel id="Atrocious">
+        <Model value="Assets\Effects\Zerg\Defiler_Plague\Defiler_Plague.m3"/>
+        <Lighting value=""/>
+    </CModel>
+    <CModel id="Roach"/>
+    <CModel id="Scorching">
+        <Model value="Assets\Effects\Zerg\PsionicShift\PsionicShift.m3"/>
+        <Lighting value=""/>
+    </CModel>
     <CModel id="Infection" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\DiseaseCloud\DiseaseCloud.m3"/>
         <ScaleMax value="2.000000,2.000000,2.000000"/>
@@ -171,7 +215,7 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
     </CModel>
     <CModel id="DemolitionsSkin1" parent="MarauderBase">
-        <Model value="Assets\Units\Terran\Marauder_Deluxe_Collection\Marauder_Deluxe_Collection.m3"/>
+        <Model value="Assets\Units\Terran\Marauder_Umojan\Marauder_Umojan.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
     </CModel>
     <CModel id="MarksmanSkin1" parent="GhostBase">
@@ -398,6 +442,10 @@
     </CModel>
     <CModel id="ScorchedEarthIndicatorModel">
         <Model value="Assets\COOP\Mengsk\Splats\DirtyBomb_Mengsk_COOP_Splat\DirtyBomb_Mengsk_COOP_Splat.m3"/>
+    </CModel>
+    <CModel id="Monstrous">
+        <Model value="Assets\Effects\Protoss\Amon_Possession_Unit\Amon_Possession_Unit.m3"/>
+        <Lighting value=""/>
     </CModel>
     <CModel id="SiegeBreaker">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="1.700000"/>
@@ -3245,7 +3293,7 @@
         <EditorCategories value="Race:Terran"/>
     </CModel>
     <CModel id="LaserDesignator" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Terran\MiraHorner_Raven_Coop_Target_Impact\MiraHorner_Raven_Coop_Target_Impact.m3"/>
+        <Model value="Assets\UI\LaserDrillTargetingUI\LaserDrillTargetingUI.m3"/>
         <EditorCategories value="Race:Terran"/>
         <Lighting value="LaserDrillTargetingUI"/>
     </CModel>

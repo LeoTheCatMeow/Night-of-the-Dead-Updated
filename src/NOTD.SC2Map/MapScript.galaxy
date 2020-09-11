@@ -769,6 +769,7 @@ bool gv_navyCrossMode;
 int gv_noRandoms;
 int gv_maxRandom;
 bool gv_outbreakActivated;
+bool gv_eliteMutationActivated;
 int[9] gv_marineMags;
 int gv_magazineAdjustment;
 int[9] gv_marineRounds;
@@ -795,6 +796,8 @@ unitgroup gv_infestors;
 bool gv_infestorLock;
 bool gv_infestorAggroMode;
 int gv_outbreakCounter;
+int[6] gv_mutationTrend;
+fixed gv_mutationChance;
 int[101] gv_positiveArmorCache;
 int[101] gv_negativeArmorCache;
 int gv_legionOfMeritCivsRescued;
@@ -1290,6 +1293,7 @@ void InitGlobals () {
     }
     gv_infestors = UnitGroupEmpty();
     gv_outbreakCounter = 100;
+    gv_mutationChance = 5.0;
     for (init_i = 0; init_i <= 4; init_i += 1) {
         for (init_j = 0; init_j <= 8; init_j += 1) {
             gv_medalsAwardedImages[init_i][init_j] = "Assets\\Textures\\black.dds";
@@ -1829,6 +1833,7 @@ void gf_GasCameraCycle ();
 void gf_ACRescueSharedEventsAction (unit lp_radioUnit);
 void gf_ACClosingCinematic ();
 void gf_STEnvironmentalChanges ();
+void gf_STC1AmbientSpawns ();
 void gf_DeimosMinionAI ();
 void gf_STC2AmbientSpawns ();
 void gf_BergmannAI (unit lp_rescueMarine);
@@ -1982,6 +1987,7 @@ trigger gt_MaxRandom;
 trigger gt_DisableRandomButton;
 trigger gt_NightmareMode;
 trigger gt_OutbreakCommand;
+trigger gt_EliteMutationCommand;
 trigger gt_SpectatorModeType;
 trigger gt_SpectatorModeClick;
 trigger gt_SpectatorModeOff;
@@ -2031,6 +2037,8 @@ trigger gt_InfestorAmbientSpawns;
 trigger gt_InfestorAI;
 trigger gt_ClearImmortalEnemies;
 trigger gt_OutbreakSpawn;
+trigger gt_EliteMutation;
+trigger gt_EliteMutationChanceRotation;
 trigger gt_DamageReductionSystemInitialize;
 trigger gt_ApplyReductionOnPlayerUnitCreation;
 trigger gt_ApplyReductionOnUnitArmorChange;
@@ -3231,6 +3239,7 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     Wait(20.0, c_timeReal);
     TriggerEnable(gt_NightmareMode, false);
     TriggerEnable(gt_OutbreakCommand, false);
+    TriggerEnable(gt_EliteMutationCommand, false);
     return true;
 }
 
@@ -4994,6 +5003,9 @@ void gf_DisplaySquadInformation () {
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
     if ((gv_outbreakActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/3EC532D7")) + gv_endStyling));
+    }
+    if ((gv_eliteMutationActivated == true)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/723F181B")) + gv_endStyling));
     }
     if ((gv_navyCrossFailed == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/A0E38EFB"));
@@ -11310,6 +11322,40 @@ bool auto_gf_STEnvironmentalChanges_TriggerFunc (bool testConds, bool runActions
     return true;
 }
 
+trigger auto_gf_STC1AmbientSpawns_Trigger = null;
+
+void gf_STC1AmbientSpawns () {
+    if (auto_gf_STC1AmbientSpawns_Trigger == null) {
+        auto_gf_STC1AmbientSpawns_Trigger = TriggerCreate("auto_gf_STC1AmbientSpawns_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_STC1AmbientSpawns_Trigger, false, false);
+}
+
+bool auto_gf_STC1AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Implementation
+    while ((gv_gameOver == false)) {
+        Wait((3.0 * (9.0 / gv_spawnFactor)), c_timeReal);
+        if ((RandomInt(0, 2) == 1)) {
+            gf_SmartSpawnNOTD("ZombieLevel22", 50.0);
+        }
+        else if ((RandomInt(0, 5) == 1)) {
+            gf_SmartSpawnNOTD("RoachBurrowed", 50.0);
+        }
+        else if ((RandomInt(0, 5) == 1)) {
+            gf_SmartSpawnNOTD("Mutalisk", 70.0);
+        }
+        else if ((RandomInt(0, 9) == 1)) {
+            gf_SmartSpawnNOTD("InfestorTerran2", 70.0);
+        }
+        else if ((RandomInt(0, 9) == 1)) {
+            gf_SmartSpawnNOTD("HulkBurrowed", 50.0);
+        }
+    }
+    return true;
+}
+
 trigger auto_gf_DeimosMinionAI_Trigger = null;
 
 void gf_DeimosMinionAI () {
@@ -11412,25 +11458,31 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
 
     // Implementation
     while ((gv_gameOver == false)) {
-        Wait(5.7, c_timeReal);
-        if ((RandomInt(0, 7) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 90) && (gv_alivePlayers > 3)) {
+        Wait((3.0 * (9.0 / gv_spawnFactor)), c_timeReal);
+        if ((RandomInt(0, 7) == 1) && (gv_alivePlayers > 3)) {
             gf_SmartSpawnNOTD("Strangler", 80.0);
         }
-        else if ((RandomInt(0, 3) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 90) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("UltraliskBurrowed", 50.0);
         }
-        else if ((RandomInt(0, 4) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 90)) {
+        else if ((RandomInt(0, 7) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+            gf_SmartSpawnNOTD("Slasher2", 50.0);
+        }
+        else if ((RandomInt(0, 24) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+            gf_SmartSpawnNOTD("BrainBug2", 50.0);
+        }
+        else if ((RandomInt(0, 4) == 1)) {
             gf_SmartSpawnNOTD("Wraith2", 70.0);
         }
-        else if ((RandomInt(0, 3) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 90) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 1) == 1)) {
+            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
+        }
+        else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             auto5BDB808E_n = gv_spawnFactor;
             for (auto5BDB808E_i = 1; auto5BDB808E_i <= auto5BDB808E_n; auto5BDB808E_i += 1) {
                 gf_SmartSpawnNOTD("SeekerBurrowed", 70.0);
                 Wait(0.2, c_timeReal);
             }
-        }
-        else if ((PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 80) && (UnitIsAlive(gv_finalBoss) == false)) {
-            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
         }
     }
     return true;
@@ -15413,12 +15465,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TechTreeUpgradeAddLevel(EventPlayer(), "RiflemanModelUpgrade", 1);
     return true;
 }
 
@@ -15725,6 +15771,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_PlayerIntialize, true, true);
     TriggerEnable(gt_NightmareMode, true);
     TriggerEnable(gt_OutbreakCommand, true);
+    TriggerEnable(gt_EliteMutationCommand, true);
     DialogCreate(66, 66, c_anchorBottom, -450, 230, true);
     gv_equipment = DialogLastCreated();
     DialogSetImageVisible(DialogLastCreated(), false);
@@ -17256,6 +17303,41 @@ void gt_OutbreakCommand_Init () {
     TriggerAddEventChatMessage(gt_OutbreakCommand, 1, "-ob", true);
     TriggerAddEventChatMessage(gt_OutbreakCommand, 2, "-outbreak", true);
     TriggerAddEventChatMessage(gt_OutbreakCommand, 2, "-ob", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Elite Mutation Command
+//--------------------------------------------------------------------------------------------------
+bool gt_EliteMutationCommand_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/136671CD"));
+    SoundPlayForPlayer(SoundLink("UI_TerranKlaxonAlert", -1), c_maxPlayers, PlayerGroupAll(), 75.0, 0.0);
+    gv_eliteMutationActivated = true;
+    gv_mutationTrend[1] = (25 + RandomInt(-10, 10));
+    gv_mutationTrend[2] = (50 + RandomInt(-10, 10));
+    gv_mutationTrend[3] = (70 + RandomInt(-10, 10));
+    gv_mutationTrend[4] = (90 + RandomInt(-10, 10));
+    gv_mutationTrend[5] = 105;
+    libNtve_gf_WaitForTimer(gv_gameTime, 180.0, true);
+    TriggerEnable(gt_EliteMutation, true);
+    TriggerEnable(gt_EliteMutationChanceRotation, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_EliteMutationCommand_Init () {
+    gt_EliteMutationCommand = TriggerCreate("gt_EliteMutationCommand_Func");
+    TriggerEnable(gt_EliteMutationCommand, false);
+    TriggerAddEventChatMessage(gt_EliteMutationCommand, 1, "-elite mutation", true);
+    TriggerAddEventChatMessage(gt_EliteMutationCommand, 1, "-em", true);
+    TriggerAddEventChatMessage(gt_EliteMutationCommand, 2, "-elite mutation", true);
+    TriggerAddEventChatMessage(gt_EliteMutationCommand, 2, "-em", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -20074,6 +20156,126 @@ void gt_OutbreakSpawn_Init () {
     gt_OutbreakSpawn = TriggerCreate("gt_OutbreakSpawn_Func");
     TriggerEnable(gt_OutbreakSpawn, false);
     TriggerAddEventTimePeriodic(gt_OutbreakSpawn, 60.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Elite Mutation
+//--------------------------------------------------------------------------------------------------
+bool gt_EliteMutation_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_localMutationChance;
+    int lv_eliteMutationType;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_localMutationChance = gv_mutationChance;
+
+    // Conditions
+    if (testConds) {
+        if (!(!(UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure)))) {
+            return false;
+        }
+
+        if (!(!(UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeMapBoss)))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Parasite"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Parasite2"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Zergling"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "ZerglingBurrowed"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Blindling"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Blindling2"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Infestor2"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "InfestorBurrowed2"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeArmored)) {
+        lv_localMutationChance = (gv_mutationChance * 1.5);
+    }
+    if (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeMassive)) {
+        lv_localMutationChance = (gv_mutationChance * 2.25);
+    }
+    if ((RandomFixed(0.0, 100.0) > lv_localMutationChance)) {
+        return true;
+    }
+    lv_eliteMutationType = RandomInt(1, gv_mutationTrend[5]);
+    if ((lv_eliteMutationType <= gv_mutationTrend[1])) {
+        UnitBehaviorAddPlayer(EventUnit(), "Hardened", 14, 1);
+    }
+    else if ((lv_eliteMutationType <= gv_mutationTrend[2])) {
+        UnitBehaviorAddPlayer(EventUnit(), "Scorching", 14, 1);
+    }
+    else if ((lv_eliteMutationType <= gv_mutationTrend[3])) {
+        UnitBehaviorAddPlayer(EventUnit(), "Atrocious", 14, 1);
+    }
+    else if ((lv_eliteMutationType <= gv_mutationTrend[4])) {
+        UnitBehaviorAddPlayer(EventUnit(), "Monstrous", 14, 1);
+    }
+    else if ((lv_eliteMutationType <= gv_mutationTrend[5])) {
+        UnitBehaviorAddPlayer(EventUnit(), "Shadowed", 14, 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_EliteMutation_Init () {
+    gt_EliteMutation = TriggerCreate("gt_EliteMutation_Func");
+    TriggerEnable(gt_EliteMutation, false);
+    TriggerAddEventUnitBehaviorChange(gt_EliteMutation, null, "DifficultyScalingHP", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Elite Mutation Chance Rotation
+//--------------------------------------------------------------------------------------------------
+bool gt_EliteMutationChanceRotation_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_mutationTrend[1] = (25 + RandomInt(-10, 10));
+    gv_mutationTrend[2] = (50 + RandomInt(-10, 10));
+    gv_mutationTrend[3] = (70 + RandomInt(-10, 10));
+    gv_mutationTrend[4] = (90 + RandomInt(-10, 10));
+    gv_mutationChance = ((SquareRoot(TimerGetElapsed(gv_gameTime)) / 6.0) + 5.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_EliteMutationChanceRotation_Init () {
+    gt_EliteMutationChanceRotation = TriggerCreate("gt_EliteMutationChanceRotation_Func");
+    TriggerEnable(gt_EliteMutationChanceRotation, false);
+    TriggerAddEventTimePeriodic(gt_EliteMutationChanceRotation, 300.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -33302,7 +33504,7 @@ bool gt_ACIVAXKilled_Func (bool testConds, bool runActions) {
     else {
         gf_RadioNOTD(gv_characterIVAX, StringExternal("Param/Value/54E03E28"));
     }
-    gf_UnifiedAwards(25, 1000.0, libNtve_gf_DifficultyValueInt(0, 140, 450, 0), 0, 2);
+    gf_UnifiedAwards(25, 1000.0, libNtve_gf_DifficultyValueInt(0, 125, 315, 0), 0, 2);
     Wait(5.0, c_timeReal);
     UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMinimapPanel, true);
     gf_RadioNOTD(gv_characterHAL, StringExternal("Param/Value/2F9E53FC"));
@@ -34839,6 +35041,7 @@ bool gt_STW1EnterEastWingGateRESCUE_Func (bool testConds, bool runActions) {
     gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/F3E4787B"));
     PingCreate(PlayerGroupActive(), "PingObjective", RegionGetCenter(RegionFromId(122)), ColorWithAlpha(0.00, 50.20, 100.00, 0.00), 30.0);
     TriggerEnable(gt_STW2EnterArmoryDeimos, true);
+    gf_STC1AmbientSpawns();
     ObjectiveDestroy(gv_primaryObjective);
     ObjectiveCreate(StringExternal("Param/Value/C226EB8D"), StringExternal("Param/Value/CD5B26BE"), c_objectiveStateActive, true);
     gv_primaryObjective = ObjectiveLastCreated();
@@ -36371,7 +36574,7 @@ bool gt_STW8DrBergmannSearchAmbientSpawns_Func (bool testConds, bool runActions)
 
     while ((gv_drBergmannFound == false)) {
         Wait(5.0, c_timeReal);
-        if ((RandomInt(0, 7) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 100)) {
+        if ((RandomInt(0, 7) == 1)) {
             auto164DE13B_n = (gv_spawnFactor * 1);
             for (auto164DE13B_i = 1; auto164DE13B_i <= auto164DE13B_n; auto164DE13B_i += 1) {
                 if ((RandomInt(0, 5) == 1) && (gv_alivePlayers >= 4)) {
@@ -36383,7 +36586,7 @@ bool gt_STW8DrBergmannSearchAmbientSpawns_Func (bool testConds, bool runActions)
                 Wait(RandomFixed(0.1, 1.2), c_timeGame);
             }
         }
-        else if ((RandomInt(0, 5) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 100)) {
+        else if ((RandomInt(0, 5) == 1)) {
             auto82E99525_n = (gv_spawnFactor * 1);
             for (auto82E99525_i = 1; auto82E99525_i <= auto82E99525_n; auto82E99525_i += 1) {
                 if ((RandomInt(0, 2) == 1)) {
@@ -36395,7 +36598,7 @@ bool gt_STW8DrBergmannSearchAmbientSpawns_Func (bool testConds, bool runActions)
                 Wait(RandomFixed(0.1, 1.2), c_timeGame);
             }
         }
-        else if ((RandomInt(0, 2) == 1) && (PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 100)) {
+        else if ((RandomInt(0, 2) == 1)) {
             autoA94021A1_n = (gv_spawnFactor * 2);
             for (autoA94021A1_i = 1; autoA94021A1_i <= autoA94021A1_n; autoA94021A1_i += 1) {
                 gf_SmartSpawnNOTD("ZombieLevel22", 60.0);
@@ -36693,6 +36896,8 @@ bool gt_STW10IVAXMission_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     int auto9EB44215_n;
     int auto9EB44215_i;
+    int auto31DBA5F7_n;
+    int auto31DBA5F7_i;
     int autoBE1FEB56_n;
     int autoBE1FEB56_i;
 
@@ -36761,6 +36966,15 @@ bool gt_STW10IVAXMission_Func (bool testConds, bool runActions) {
     else {
         UnitIssueOrder(lv_iVAXFriendly, OrderTargetingPoint(AbilityCommand("attack", 0), PointFromId(3194)), c_orderQueueReplace);
         gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/27BB3E98"));
+    }
+    auto31DBA5F7_n = (gv_spawnFactor / 2);
+    for (auto31DBA5F7_i = 1; auto31DBA5F7_i <= auto31DBA5F7_n; auto31DBA5F7_i += 1) {
+        if ((RandomInt(0, 1) == 1)) {
+            gf_SmartSpawnNOTD("Lelantos", 120.0);
+        }
+        else {
+            gf_SmartSpawnNOTD("TitanBurrowed", 70.0);
+        }
     }
     Wait(15.0, c_timeReal);
     if ((lv_iVAXMissionPath == 1)) {
@@ -38885,7 +39099,7 @@ bool gt_STW16bBossExecuted_Func (bool testConds, bool runActions) {
     gf_EndBossFight();
     gv_gameVictoryTime = TimerGetElapsed(gv_gameTime);
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
-    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(0, 80, 135, 0), 500.0, libNtve_gf_DifficultyValueInt(0, 220, 600, 0), 0, 5);
+    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(0, 80, 135, 0), 500.0, libNtve_gf_DifficultyValueInt(0, 200, 500, 0), 0, 5);
     if ((RandomInt(0, 1) == 1)) {
         SoundPlay(SoundLink("TValerian02ARaynor00049", -1), PlayerGroupAll(), 100.0, 0.0);
     }
@@ -41988,7 +42202,7 @@ bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
     }
 
     if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 1)) {
-        gv_shellDispersionRadius[EventPlayer()] = 2.5;
+        gv_shellDispersionRadius[EventPlayer()] = 3.0;
         CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(5.0, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
@@ -41996,7 +42210,7 @@ bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
         UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/B4B4084C"));
     }
     else if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 2)) {
-        gv_shellDispersionRadius[EventPlayer()] = 3.5;
+        gv_shellDispersionRadius[EventPlayer()] = 4.0;
         CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(6.0, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
@@ -42004,7 +42218,7 @@ bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
         UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/6CDABA30"));
     }
     else if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 3)) {
-        gv_shellDispersionRadius[EventPlayer()] = 4.5;
+        gv_shellDispersionRadius[EventPlayer()] = 5.0;
         CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(7.0, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));
@@ -43409,6 +43623,7 @@ void InitTriggers () {
     gt_DisableRandomButton_Init();
     gt_NightmareMode_Init();
     gt_OutbreakCommand_Init();
+    gt_EliteMutationCommand_Init();
     gt_SpectatorModeType_Init();
     gt_SpectatorModeClick_Init();
     gt_SpectatorModeOff_Init();
@@ -43458,6 +43673,8 @@ void InitTriggers () {
     gt_InfestorAI_Init();
     gt_ClearImmortalEnemies_Init();
     gt_OutbreakSpawn_Init();
+    gt_EliteMutation_Init();
+    gt_EliteMutationChanceRotation_Init();
     gt_DamageReductionSystemInitialize_Init();
     gt_ApplyReductionOnPlayerUnitCreation_Init();
     gt_ApplyReductionOnUnitArmorChange_Init();

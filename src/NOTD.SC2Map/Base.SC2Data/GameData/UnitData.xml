@@ -601,6 +601,7 @@
         <Attributes index="Biological" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="15000"/>
         <LifeMax value="15000"/>
         <LifeArmor value="2"/>
@@ -1321,7 +1322,11 @@
     <CUnit id="InfestedAbominationBurrowed">
         <FlagArray index="Hero" value="1"/>
         <FlagArray index="Undetectable" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Armored" value="0"/>
+        <Attributes index="Psionic" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="3900"/>
         <LifeMax value="3900"/>
         <LifeArmor value="25"/>
@@ -1780,6 +1785,7 @@
         <Attributes index="Biological" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="5000"/>
         <LifeMax value="5000"/>
         <LifeArmor value="1"/>
@@ -3589,6 +3595,7 @@
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="18000"/>
         <LifeMax value="18000"/>
         <LifeArmor value="3"/>
@@ -3678,6 +3685,7 @@
         <Attributes index="Biological" value="1"/>
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="75000"/>
         <LifeMax value="75000"/>
         <LifeArmor value="20"/>
@@ -5251,6 +5259,7 @@
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="85000"/>
         <LifeMax value="85000"/>
         <LifeArmor value="5"/>
@@ -5677,6 +5686,7 @@
         <Collide index="Ground" value="1"/>
         <Attributes index="Biological" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="42000"/>
         <LifeMax value="42000"/>
         <LifeArmor value="3"/>
@@ -5868,6 +5878,7 @@
         <Attributes index="Armored" value="1"/>
         <Attributes index="Biological" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="15000"/>
         <LifeMax value="15000"/>
         <LifeArmor value="2"/>
@@ -6105,6 +6116,7 @@
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="18000"/>
         <LifeMax value="18000"/>
         <LifeArmor value="3"/>
@@ -6831,6 +6843,7 @@
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="45000"/>
         <LifeMax value="45000"/>
         <LifeArmor value="5"/>
@@ -7960,6 +7973,7 @@
         <FlagArray index="Untargetable" value="0"/>
         <FlagArray index="Hero" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <MinimapRadius value="3"/>
         <StationaryTurningRate value="99.8437"/>
         <TurningRate value="99.8437"/>
@@ -8171,6 +8185,7 @@
         <FlagArray index="Hero" value="1"/>
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <DeathTime value="5"/>
         <Race value="Zerg"/>
@@ -8194,6 +8209,7 @@
         <Attributes index="Light" value="1"/>
         <Attributes index="Mechanical" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="20000"/>
         <LifeMax value="20000"/>
         <LifeArmor value="10"/>
@@ -9007,6 +9023,7 @@
         <Attributes index="Biological" value="1"/>
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="6000"/>
         <LifeMax value="6000"/>
         <LifeArmor value="12"/>
@@ -10911,6 +10928,7 @@
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="100000"/>
         <LifeMax value="100000"/>
         <LifeArmor value="20"/>
@@ -11044,6 +11062,7 @@
         <Attributes index="Biological" value="1"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="6000"/>
         <LifeMax value="6000"/>
         <LifeArmor value="2"/>
@@ -11355,7 +11374,8 @@
         <LifeStart value="900"/>
         <LifeMax value="900"/>
         <BehaviorArray index="0" Link="DifficultyScalingHP"/>
-        <BehaviorArray Link="Frenzy"/>
+        <BehaviorArray index="2" Link="Frenzy"/>
+        <BehaviorArray Link="UltraliskOutOfCombat1"/>
         <BehaviorArray Link="Charging"/>
         <BehaviorArray Link="DetectorRange3"/>
         <BehaviorArray Link="SpawnCreeponDeath"/>
@@ -11390,8 +11410,10 @@
         <Sight value="15"/>
         <FlagArray index="Hero" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <Food value="-4"/>
+        <BehaviorArray index="2" Link="UltraliskOutOfCombat1"/>
         <BehaviorArray index="3" Link="Detector5"/>
         <BehaviorArray index="4" Link="ZeusLetoHardenedArmor"/>
         <BehaviorArray index="5" removed="1"/>
@@ -11423,8 +11445,10 @@
         <Sight value="10"/>
         <FlagArray index="Hero" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <Food value="-4"/>
+        <BehaviorArray index="2" Link="UltraliskOutOfCombat1"/>
         <BehaviorArray index="3" Link="Detector5"/>
         <BehaviorArray index="4" Link="ZeusLetoHardenedArmor"/>
         <BehaviorArray index="5" removed="1"/>
@@ -11621,6 +11645,7 @@
         <Attributes index="Light" value="0"/>
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
         <LifeStart value="70000"/>
         <LifeMax value="70000"/>
         <LifeArmor value="5"/>

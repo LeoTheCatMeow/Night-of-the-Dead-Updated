@@ -2730,7 +2730,7 @@
         <Effect value="BurstFirePersistentLevel2"/>
         <Effect value="BurstFirePersistentLevel3"/>
         <Cost>
-            <Vital index="Energy" value="18"/>
+            <Vital index="Energy" value="15"/>
         </Cost>
         <Range value="6"/>
         <PrepTime value="0.25"/>
@@ -2842,7 +2842,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="InfernoSet"/>
         <Cost>
-            <Vital index="Energy" value="35"/>
+            <Vital index="Energy" value="30"/>
             <Cooldown TimeUse="15"/>
         </Cost>
         <Range value="12"/>
@@ -3156,7 +3156,7 @@
                 <Link value="Abil/FireMission"/>
                 <Location value="Unit"/>
             </Charge>
-            <Cooldown TimeUse="7"/>
+            <Cooldown TimeUse="8"/>
         </Cost>
         <Range value="90"/>
         <CursorEffect value="ArtillerySearchAreaDummy"/>
@@ -3193,7 +3193,7 @@
                 <Link value="Abil/FireMission"/>
                 <Location value="Unit"/>
             </Charge>
-            <Cooldown TimeUse="7"/>
+            <Cooldown TimeUse="8"/>
         </Cost>
         <Range value="90"/>
         <CursorEffect value="ArtillerySearchAreaDummy"/>

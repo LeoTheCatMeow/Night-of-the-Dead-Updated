@@ -91,6 +91,25 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AtrociousDebuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.7" AttackSpeedMultiplier="0.7"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Monstrous">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.5">
+            <DamageDealtFraction index="Spell" value="1"/>
+            <DamageDealtFraction index="Melee" value="1"/>
+            <DamageDealtFraction index="Ranged" value="1"/>
+            <DamageDealtFraction index="Splash" value="1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="2.2"/>
+        </Modification>
+        <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="DamageReduction">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -143,6 +162,53 @@
             <AbilLinkDisableArray value="L3LaunchGrenade"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Hardened">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.1">
+            <DamageDealtFraction index="Spell" value="0.1"/>
+            <DamageDealtFraction index="Melee" value="0.1"/>
+            <DamageDealtFraction index="Ranged" value="0.1"/>
+            <DamageDealtFraction index="Splash" value="0.1"/>
+            <LifeArmorBonus value="50"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="1.4"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Scorching">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <PeriodicEffect value="InfernoDamage2"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <VitalMaxAdditiveMultiplierArray index="Life" value="1.4"/>
+        </Modification>
+        <DamageResponse ModifyFraction="0.5">
+            <RequireEffectArray value="ArmageddonDamage"/>
+            <RequireEffectArray value="VultureSpiderMinesDamage"/>
+            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="SatchelLevel1Damage"/>
+            <RequireEffectArray value="SatchelLevel2Damage"/>
+            <RequireEffectArray value="NapalmBarrageDamage"/>
+            <RequireEffectArray value="InfernalFlameThrower"/>
+            <RequireEffectArray value="FlameThrowerLevel2"/>
+            <RequireEffectArray value="FlameThrowerLevel3"/>
+            <RequireEffectArray value="BURNDamageLevel1"/>
+            <RequireEffectArray value="BURNDamageLevel2"/>
+            <RequireEffectArray value="BurstFireDamageLevel1"/>
+            <RequireEffectArray value="BurstFireDamageLevel2"/>
+            <RequireEffectArray value="BurstFireDamageLevel3"/>
+            <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="InfernoDamage2"/>
+            <RequireEffectArray value="ThermalLancesMU"/>
+            <RequireEffectArray value="SigmaDamage"/>
+            <RequireEffectArray value="NukeDamage"/>
+            <RequireEffectArray value="L3GrenadeExplosion"/>
+            <RequireEffectArray value="LaserRifleDamage"/>
+            <RequireEffectArray value="ArmorMeltDamage"/>
+            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
+            <RequireEffectArray value="StingerMK3Damage"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="KittenBeacon2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -176,6 +242,32 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SJHyperionIonThrusters">
         <DamageResponse Evade="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Atrocious">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodicEffect value="AtrociousDebuffSearch"/>
+        <Modification>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
+            <VitalRegenArray index="Life" value="50"/>
+        </Modification>
+        <VitalRegenVitalsRemain index="Life" RegenModification="0.0507"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Shadowed">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="Benign" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
+            <BehaviorLinkDisableArray value="TauntedLevel1"/>
+            <BehaviorLinkDisableArray value="TauntedLevel2"/>
+            <BehaviorLinkDisableArray value="TauntedLevel3"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel1"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
+            <BehaviorLinkDisableArray value="MadSparkTaunted"/>
+        </Modification>
+        <InitialEffect value="ShadowedApplyJump"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShieldBonus2">
         <Alignment value="Positive"/>
