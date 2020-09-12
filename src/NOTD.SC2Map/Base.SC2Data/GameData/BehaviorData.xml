@@ -4859,6 +4859,11 @@
         <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="0.6" Food="5">
             <LifeArmorBonus value="2"/>
             <VitalRegenArray index="Life" value="1"/>
+            <BehaviorLinkDisableArray value="Shadowed"/>
+            <BehaviorLinkDisableArray value="Hardened"/>
+            <BehaviorLinkDisableArray value="Monstrous"/>
+            <BehaviorLinkDisableArray value="Scorching"/>
+            <BehaviorLinkDisableArray value="Atrocious"/>
         </Modification>
         <MaxStackCountPerCaster value="1"/>
     </CBehaviorBuff>
