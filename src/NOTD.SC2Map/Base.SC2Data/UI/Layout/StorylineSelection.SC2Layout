@@ -3,15 +3,16 @@
     <Frame type="Frame" name="StorylineSelectionUI">
         <Height val="1235"/>
         <Width val="1225"/>
+
         <Frame type="Image" name="StorylineSelectionBorder">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="-20"/>
-            <Texture val="Assets\Textures\ui_replay_frame_detail_protoss.dds"/>
-            <TextureType val="Normal"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="25"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="100"/>
+            <Texture val="Assets\Textures\ui_battlenet_glue_frame_bucket_long.dds"/>
+            <TextureType val="NineSlice"/>
             <BlendMode val="Normal"/>
             <Color val="255,255,255"/>
-            <Height val="1235"/>
-            <Width val="1225"/>
+            <Height val="1185"/>
+            <Width val="1025"/>
         </Frame>
 
         <Frame type="Label" name="StorylineSelectionLabel">
@@ -27,9 +28,10 @@
         <!-- Easy Company -->
         <Frame type="Button" name="EasyCompanyButton">
             <Anchor side="Top" relative="$parent" pos="Min" offset="120"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="125"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="145"/>
             <Height val="310"/>
             <Width val="940"/>
+
             <Frame type="Image" name="EasyCompanyImage">
                 <Height val="310"/>
                 <Width val="940"/>
@@ -40,7 +42,7 @@
 
         <Frame type="Label" name="EasyCompanyTitle">
             <Anchor side="Top" relative="$parent/EasyCompanyButton" pos="Min" offset="200"/>
-            <Anchor side="Left" relative="$parent/EasyCompanyButton" pos="Min" offset="25"/>
+            <Anchor side="Left" relative="$parent/EasyCompanyButton" pos="Min" offset="45"/>
             <Color val="255,255,255"/>
             <Text val="Easy Company"/>
             <Height val="50"/>
@@ -50,7 +52,7 @@
 
         <Frame type="Label" name="EasyCompanySubtitle">
             <Anchor side="Top" relative="$parent/EasyCompanyTitle" pos="Max" offset="0"/>
-            <Anchor side="Left" relative="$parent/EasyCompanyTitle" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/EasyCompanyTitle" pos="Min" offset="20"/>
             <Color val="127,127,10"/>
             <Text val="Sample Subtitle"/>
             <Height val="60"/>
@@ -64,6 +66,7 @@
             <Anchor side="Left" relative="$parent/EasyCompanyButton" pos="Min" offset="0"/>
             <Height val="310"/>
             <Width val="940"/>
+
             <Frame type="Image" name="AlphaCompanyImage">
                 <Height val="310"/>
                 <Width val="940"/>
@@ -74,7 +77,7 @@
 
         <Frame type="Label" name="AlphaCompanyTitle">
             <Anchor side="Top" relative="$parent/AlphaCompanyButton" pos="Min" offset="200"/>
-            <Anchor side="Left" relative="$parent/AlphaCompanyButton" pos="Min" offset="25"/>
+            <Anchor side="Left" relative="$parent/AlphaCompanyButton" pos="Min" offset="45"/>
             <Color val="255,255,255"/>
             <Text val="Alpha Company"/>
             <Height val="50"/>
@@ -84,7 +87,7 @@
 
         <Frame type="Label" name="AlphaCompanySubtitle">
             <Anchor side="Top" relative="$parent/AlphaCompanyTitle" pos="Max" offset="0"/>
-            <Anchor side="Left" relative="$parent/AlphaCompanyTitle" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/AlphaCompanyTitle" pos="Min" offset="20"/>
             <Color val="127,127,10"/>
             <Height val="60"/>
             <Width val="900"/>
@@ -95,7 +98,7 @@
             <Anchor side="Top" relative="$parent/AlphaCompanyButton" pos="Min" offset="40"/>
             <Anchor side="Right" relative="$parent/AlphaCompanyButton" pos="Max" offset="25"/>
             <Color val="0,255,0"/>
-            <Text val="All Players > 1000xp requirement met."/>
+            <Text val="All Players &gt; 1000xp requirement met."/>
             <Height val="250"/>
             <Width val="275"/>
             <Style val="HeaderExtendedTemplate"/>
@@ -107,6 +110,7 @@
             <Anchor side="Left" relative="$parent/AlphaCompanyButton" pos="Min" offset="0"/>
             <Height val="310"/>
             <Width val="940"/>
+
             <Frame type="Image" name="ApolloSecurityImage">
                 <Height val="310"/>
                 <Width val="940"/>
@@ -117,7 +121,7 @@
 
         <Frame type="Label" name="ApolloSecurityTitle">
             <Anchor side="Top" relative="$parent/ApolloSecurityButton" pos="Min" offset="200"/>
-            <Anchor side="Left" relative="$parent/ApolloSecurityButton" pos="Min" offset="25"/>
+            <Anchor side="Left" relative="$parent/ApolloSecurityButton" pos="Min" offset="45"/>
             <Color val="255,255,255"/>
             <Height val="50"/>
             <Width val="900"/>
@@ -126,7 +130,7 @@
 
         <Frame type="Label" name="ApolloSecuritySubtitle">
             <Anchor side="Top" relative="$parent/ApolloSecurityTitle" pos="Max" offset="0"/>
-            <Anchor side="Left" relative="$parent/ApolloSecurityTitle" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/ApolloSecurityTitle" pos="Min" offset="20"/>
             <Color val="127,127,10"/>
             <Height val="60"/>
             <Width val="900"/>
@@ -137,7 +141,7 @@
             <Anchor side="Top" relative="$parent/ApolloSecurityButton" pos="Min" offset="40"/>
             <Anchor side="Right" relative="$parent/ApolloSecurityButton" pos="Max" offset="25"/>
             <Color val="0,255,0"/>
-            <Text val="All Players > 3000xp requirement met."/>
+            <Text val="All Players &gt; 3000xp requirement met."/>
             <Height val="250"/>
             <Width val="275"/>
             <Style val="HeaderExtendedTemplate"/>
@@ -145,14 +149,15 @@
 
         <!-- Survival Mode -->
         <Frame type="Button" name="SurvivalButton">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="40"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="43"/>
             <Anchor side="Right" relative="$parent" pos="Max" offset="-170"/>
             <Height val="56"/>
             <Width val="400"/>
+
             <Frame type="Image" name="SurvivalImage">
                 <Height val="56"/>
                 <Width val="400"/>
-                <Texture val="Assets\Textures\ui_techtree_buttonframe_disabled.dds"/>
+                <Texture val="Assets\Textures\ui_battlenet_loading_frame_playerbox_normal.dds"/>
                 <TextureType val="Normal"/>
                 <Anchor relative="$parent"/>
             </Frame>
@@ -171,7 +176,7 @@
             <Anchor side="Top" relative="$parent/SurvivalButton" pos="Min" offset="0"/>
             <Anchor side="Right" relative="$parent/SurvivalButton" pos="Max" offset="-15"/>
             <Color val="0,255,0"/>
-            <Text val="All Players > 1000xp requirement met."/>
+            <Text val="All Players &gt; 1000xp requirement met."/>
             <Height val="56"/>
             <Width val="200"/>
             <Style val="ModCenterSize12"/>
@@ -183,6 +188,7 @@
             <Anchor side="Left" relative="$parent/ApolloSecurityButton" pos="Min" offset="10"/>
             <Height val="120"/>
             <Width val="300"/>
+
             <Frame type="Image" name="NormalModeImage">
                 <Height val="60"/>
                 <Width val="300"/>
@@ -198,6 +204,7 @@
             <Height val="120"/>
             <Width val="300"/>
             <Enabled val="false"/>
+
             <Frame type="Image" name="NightmareModeImage">
                 <Height val="120"/>
                 <Width val="300"/>
@@ -213,12 +220,213 @@
             <Height val="120"/>
             <Width val="300"/>
             <Enabled val="false"/>
+
             <Frame type="Image" name="HellModeImage">
                 <Height val="120"/>
                 <Width val="300"/>
                 <Texture val="Difficulty Buttons\NOTDHell2.dds"/>
                 <TextureType val="Normal"/>
                 <Anchor relative="$parent"/>
+            </Frame>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="StorylineModUILeft">
+        <Height val="500"/>
+        <Width val="345"/>
+
+        <Frame type="Button" name="EliteMutationButton">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Height val="150"/>
+            <Width val="345"/>
+
+            <Frame type="Image" name="EliteMutationImageFrame">
+                <Height val="150"/>
+                <Width val="330"/>
+                <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
+                <TextureType val="NineSlice"/>
+                <Anchor relative="$parent"/>
+                <Frame type="Image" name="EliteMutationImage">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+                    <Height val="120"/>
+                    <Width val="315"/>
+                    <Texture val="Assets\Textures\ui_battlereports_thedream.dds"/>  
+                    <Frame type="Label" name="EliteMutationTitle">
+                         <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
+                         <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
+                         <Color val="255,255,255"/>
+                         <Height val="120"/>
+                         <Width val="315"/>
+                         <Text val="Elite Mutation"/>
+                         <Style val="HelpPanelListBoxItemTitle"/>
+                    </Frame>       
+                </Frame>
+            </Frame>
+        </Frame>
+
+        <Frame type="Button" name="RealismButton">
+            <Anchor side="Top" relative="$parent/EliteMutationButton" pos="Min" offset="175"/>
+            <Anchor side="Left" relative="$parent/EliteMutationButton" pos="Min" offset="0"/>
+            <Height val="150"/>
+            <Width val="345"/>
+
+            <Frame type="Image" name="RealismImageFrame">
+                <Height val="150"/>
+                <Width val="330"/>
+                <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
+                <TextureType val="NineSlice"/>
+                <Anchor relative="$parent"/>
+
+                <Frame type="Image" name="RealismImage">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+                    <Height val="120"/>
+                    <Width val="315"/>
+                    <Texture val="Assets\Textures\ui_battlereports_raynorintro.dds"/>
+                    <Frame type="Label" name="RealismTitle">
+                         <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
+                         <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
+                         <Color val="255,255,255"/>
+                         <Height val="120"/>
+                         <Width val="315"/>
+                         <Text val="Realism"/>
+                         <Style val="HelpPanelListBoxItemTitle"/>
+                    </Frame>  
+                </Frame>
+            </Frame>
+        </Frame>
+
+        <Frame type="Button" name="OutbreakButton">
+            <Anchor side="Top" relative="$parent/RealismButton" pos="Min" offset="175"/>
+            <Anchor side="Left" relative="$parent/RealismButton" pos="Min" offset="0"/>
+            <Height val="150"/>
+            <Width val="345"/>
+
+            <Frame type="Image" name="OutbreakImageFrame">
+                <Height val="150"/>
+                <Width val="345"/>
+                <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
+                <TextureType val="NineSlice"/>
+                <Anchor relative="$parent"/>
+
+                <Frame type="Image" name="OutbreakImage">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+                    <Height val="120"/>
+                    <Width val="315"/>
+                    <Texture val="Assets\Textures\ui_battlereports_charbattlefieldend.dds"/>
+                    <Frame type="Label" name="OutbreakTitle">
+                         <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
+                         <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
+                         <Color val="255,255,255"/>
+                         <Height val="120"/>
+                         <Width val="315"/>
+                         <Text val="Outbreak"/>
+                         <Style val="HelpPanelListBoxItemTitle"/>
+                    </Frame>  
+                </Frame>
+            </Frame>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="StorylineModUIRight">
+        <Height val="500"/>
+        <Width val="345"/>
+
+        <Frame type="Button" name="NoRandomButton">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Height val="150"/>
+            <Width val="345"/>
+
+            <Frame type="Image" name="NoRandomImageFrame">
+                <Height val="150"/>
+                <Width val="330"/>
+                <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
+                <TextureType val="NineSlice"/>
+                <Anchor relative="$parent"/>
+                <Frame type="Image" name="NoRandomImage">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+                    <Height val="120"/>
+                    <Width val="315"/>
+                    <Texture val="Assets\Textures\ui_battlereports_buildabettermarine.dds"/>  
+                    <Frame type="Label" name="NoRandomTitle">
+                         <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
+                         <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
+                         <Color val="255,255,255"/>
+                         <Height val="120"/>
+                         <Width val="315"/>
+                         <Text val="No Random"/>
+                         <Style val="HelpPanelListBoxItemTitle"/>
+                    </Frame>       
+                </Frame>
+            </Frame>
+        </Frame>
+
+        <Frame type="Button" name="AllRandomButton">
+            <Anchor side="Top" relative="$parent/NoRandomButton" pos="Min" offset="175"/>
+            <Anchor side="Left" relative="$parent/NoRandomButton" pos="Min" offset="0"/>
+            <Height val="150"/>
+            <Width val="345"/>
+
+            <Frame type="Image" name="AllRandomImageFrame">
+                <Height val="150"/>
+                <Width val="330"/>
+                <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
+                <TextureType val="NineSlice"/>
+                <Anchor relative="$parent"/>
+
+                <Frame type="Image" name="AllRandomImage">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+                    <Height val="120"/>
+                    <Width val="315"/>
+                    <Texture val="Assets\Textures\ui_battlereports_barfight.dds"/>
+                    <Frame type="Label" name="AllRandomTitle">
+                         <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
+                         <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
+                         <Color val="255,255,255"/>
+                         <Height val="120"/>
+                         <Width val="315"/>
+                         <Text val="All Random"/>
+                         <Style val="HelpPanelListBoxItemTitle"/>
+                    </Frame>  
+                </Frame>
+            </Frame>
+        </Frame>
+
+        <Frame type="Button" name="NavyCrossButton">
+            <Anchor side="Top" relative="$parent/AllRandomButton" pos="Min" offset="175"/>
+            <Anchor side="Left" relative="$parent/AllRandomButton" pos="Min" offset="0"/>
+            <Height val="150"/>
+            <Width val="345"/>
+
+            <Frame type="Image" name="NavyCrossImageFrame">
+                <Height val="150"/>
+                <Width val="345"/>
+                <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
+                <TextureType val="NineSlice"/>
+                <Anchor relative="$parent"/>
+
+                <Frame type="Image" name="NavyCrossImage">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+                    <Height val="120"/>
+                    <Width val="315"/>
+                    <Texture val="Assets\Textures\ui_battlereports_hansonenda.dds"/>
+                    <Frame type="Label" name="NavyCrossTitle">
+                         <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
+                         <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
+                         <Color val="255,255,255"/>
+                         <Height val="120"/>
+                         <Width val="315"/>
+                         <Text val="Navy Cross"/>
+                         <Style val="HelpPanelListBoxItemTitle"/>
+                    </Frame>  
+                </Frame>
             </Frame>
         </Frame>
     </Frame>

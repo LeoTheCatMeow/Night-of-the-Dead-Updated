@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CRequirementConst id="0TechTreeCheat">
+        <Flags index="TechTreeCheat" value="1"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+    </CRequirementConst>
     <CRequirementAllowAbil id="AllowAbil180611996TechTreeCheat">
         <Flags index="TechTreeCheat" value="1"/>
         <Index value="1"/>
@@ -12,7 +16,6 @@
         <Link value="MassDesignate"/>
     </CRequirementAllowAbil>
     <CRequirementAnd id="AndEqCountAbilMasterofSubtletyCompleteOnlyAtUnit1GTESumCountBehaviorStealthLevel1CompleteOnlyAtUnitCountBehaviorStealthLevel2CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel1CompleteOnlyAtUnitCountBeha180059109">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="EqCountAbilMasterofSubtletyCompleteOnlyAtUnit1"/>
         <OperandArray value="GTESumCountBehaviorStealthLevel1CompleteOnlyAtUnitCountBehaviorStealthLevel2CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel1CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel2CompleteOnlyAtUnitCountBehav3917358420"/>
     </CRequirementAnd>
@@ -196,7 +199,6 @@
     </CRequirementCountBehavior>
     <CRequirementCountBehavior id="CountBehaviorCloakFieldEffectCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="CloakFieldEffect" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
     <CRequirementCountBehavior id="CountBehaviorEscapeCloakLevel1CompleteOnlyAtUnit">
@@ -305,6 +307,10 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
         <Count Link="FireUp" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeRealismCompleteOnlyTechTreeCheat">
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="Realism" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementEq id="Eq4239871994CountAbilOverdriveCompleteOnly2">
         <OperandArray index="0" value="CountAbilOverdriveCompleteOnly"/>
@@ -772,7 +778,6 @@
         <OperandArray index="1" value="1"/>
     </CRequirementGTE>
     <CRequirementGTE id="GTECountBehaviorPetVeterancyCompleteOnlyAtUnit10">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountBehaviorPetVeterancyCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="10"/>
     </CRequirementGTE>
@@ -798,10 +803,15 @@
         <OperandArray index="1" value="3"/>
     </CRequirementGTE>
     <CRequirementGTE id="GTESumCountBehaviorStealthLevel1CompleteOnlyAtUnitCountBehaviorStealthLevel2CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel1CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel2CompleteOnlyAtUnitCountBehav3917358420">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="SumCountBehaviorStealthLevel1CompleteOnlyAtUnitCountBehaviorStealthLevel2CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel1CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel2CompleteOnlyAtUnitCountBehavior2144766115"/>
         <OperandArray index="1" value="1"/>
     </CRequirementGTE>
+    <CRequirementGT id="GTTechTreeCheatCountUpgradeRealismCompleteOnlyTechTreeCheat0TechTreeCheat">
+        <Flags index="TechTreeCheat" value="1"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <OperandArray index="0" value="CountUpgradeRealismCompleteOnlyTechTreeCheat"/>
+        <OperandArray index="1" value="0TechTreeCheat"/>
+    </CRequirementGT>
     <CRequirementLT id="LT3507390604SumCountUnitMobileInfantryFlamethrowerCompleteOnlyCountUnitMobileInfantryMarksmanCompleteOnlyCountUnitMobileInfantryRiflemanCompleteOnlyCountAbilMobileInfantryCompleteOnlyAtUnit">
         <OperandArray index="0" value="SumCountUnitMobileInfantryFlamethrowerCompleteOnlyCountUnitMobileInfantryMarksmanCompleteOnlyCountUnitMobileInfantryRiflemanCompleteOnly"/>
         <OperandArray index="1" value="CountAbilMobileInfantryCompleteOnlyAtUnit"/>
@@ -819,7 +829,6 @@
         <OperandArray index="1" value="3"/>
     </CRequirementLTE>
     <CRequirementSum id="SumCountBehaviorStealthLevel1CompleteOnlyAtUnitCountBehaviorStealthLevel2CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel1CompleteOnlyAtUnitCountBehaviorEscapeCloakLevel2CompleteOnlyAtUnitCountBehavior2144766115">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="CountBehaviorStealthLevel1CompleteOnlyAtUnit"/>
         <OperandArray value="CountBehaviorStealthLevel2CompleteOnlyAtUnit"/>
         <OperandArray value="CountBehaviorEscapeCloakLevel1CompleteOnlyAtUnit"/>

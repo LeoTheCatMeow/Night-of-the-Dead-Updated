@@ -185,6 +185,10 @@
     <CRequirement id="UseCharge">
         <NodeArray index="Use" Link=""/>
     </CRequirement>
+    <CRequirement id="HasRealismUpgrade">
+        <EditorCategories value="Race:Terran,TechType:Ability"/>
+        <NodeArray index="Use" Link="GTTechTreeCheatCountUpgradeRealismCompleteOnlyTechTreeCheat0TechTreeCheat"/>
+    </CRequirement>
     <CRequirement id="VengeanceLevel1">
         <NodeArray index="Use" Link="GTECountAbilVengeanceCompleteOnlyAtUnitTechTreeCheat1"/>
         <NodeArray index="Show" Link="GTECountAbilVengeanceCompleteOnlyAtUnitTechTreeCheat1"/>

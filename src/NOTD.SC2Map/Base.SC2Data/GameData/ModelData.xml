@@ -12,7 +12,7 @@
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
     </CModel>
     <CModel id="CommandoSkin2" parent="Unit">
-        <Model value="Assets\Units\CovertOps_AssaultTrooper.m3"/>
+        <Model value="Assets\Units\CovertOps_AssaultTrooper_Bayonet.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <EditorCategories value="Race:Terran"/>
         <Flags index="AutoUnload" value="1"/>
@@ -37,6 +37,32 @@
             <Adaptions Slot="main"/>
         </TextureDeclares>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
+    </CModel>
+    <CModel id="Cronus2" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\InfestedColonist\InfestedColonist.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\InfestedColonist_RequiredAnims\InfestedColonist_RequiredAnims.m3a"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="1.100000"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <TextureDeclares Prefix="infestedcolonist_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <VariationCount value="3"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main.diffuse" Expression="RequireAny 06"/>
+        </Variations>
+    </CModel>
+    <CModel id="HelsAngelAssault">
+        <Radius value="1.600000"/>
+    </CModel>
+    <CModel id="Lurker">
+        <Radius value="1.300000"/>
+    </CModel>
+    <CModel id="SS_SwarmGuardian">
+        <Radius value="1.500000"/>
     </CModel>
     <CModel id="Shadowed">
         <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
@@ -627,7 +653,7 @@
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
     </CModel>
     <CModel id="CommandoSkin1" parent="Unit">
-        <Model value="Assets\Units\Terran\MarineXPReward\MarineXPReward.m3"/>
+        <Model value="Assets\Units\Terran\Marine_Junker_Collection\Marine_Junker_Collection.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <EditorCategories value="Race:Terran"/>
         <Flags index="AutoUnload" value="1"/>
@@ -674,7 +700,7 @@
         <RequiredAnims value="Assets\Units\Protoss\Zealot_SwarmAnims\Zealot_SwarmAnims.m3a"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid05"/>
-        <Radius value="0.375000"/>
+        <Radius value="1.200000"/>
         <ScaleMax value="0.900000,0.900000,0.900000"/>
         <ScaleMin value="0.900000,0.900000,0.900000"/>
         <SelectionRadius value="0.416500"/>
@@ -688,7 +714,7 @@
         <RequiredAnims value="Assets\Units\Zerg\Overlord_SwarmAnims\Overlord_SwarmAnims.m3a"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraLow09"/>
-        <Radius value="0.800000"/>
+        <Radius value="1.500000"/>
         <ScaleMax value="0.800000,0.800000,0.800000"/>
         <ScaleMin value="0.800000,0.800000,0.800000"/>
         <SelectionOffset value="0.000000,0.000000,-0.700000"/>
@@ -806,7 +832,7 @@
         </Events>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraHigh13"/>
-        <Radius value="1.250000"/>
+        <Radius value="1.100000"/>
         <ScaleMax value="0.850000,0.850000,0.850000"/>
         <ScaleMin value="0.850000,0.850000,0.850000"/>
         <SelectionRadius value="0.900000"/>
@@ -945,6 +971,7 @@
     <CModel id="Brutalisk">
         <ScaleMax value="1.000000,1.000000,1.000000"/>
         <ScaleMin value="1.000000,1.000000,1.000000"/>
+        <Radius value="1.100000"/>
     </CModel>
     <CModel id="Civilian">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.010000"/>
@@ -988,6 +1015,7 @@
     </CModel>
     <CModel id="Leviathan">
         <Flags index="VariationFallback" value="0"/>
+        <Radius value="1.200000"/>
     </CModel>
     <CModel id="AntiVenomCrate">
         <Model value="Assets\Doodads\PickupChronoRiftDevice\PickupChronoRiftDevice.m3"/>
@@ -1014,7 +1042,7 @@
         <RequiredAnims value="Assets\Units\Zerg\Queen_SwarmAnims\Queen_SwarmAnims.m3a"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraHigh08"/>
-        <Radius value="1.000000"/>
+        <Radius value="1.200000"/>
         <ScaleMax value="0.800000,0.800000,0.800000"/>
         <ScaleMin value="0.800000,0.800000,0.800000"/>
         <SelectionRadius value="0.972100"/>
@@ -1438,6 +1466,7 @@
         <PlanetPanelCamera value="Star2CameraMid04"/>
         <ScaleMax value="3.000000,3.000000,3.000000"/>
         <ScaleMin value="3.000000,3.000000,3.000000"/>
+        <Radius value="1.500000"/>
     </CModel>
     <CModel id="DeimosEye">
         <Model value="Assets\Doodads\CharTriArms\CharTriArms_00.m3"/>
@@ -1599,7 +1628,7 @@
     <CModel id="Nazara" parent="Unit" Race="Terran">
         <Model value="Assets\Buildings\Terran\GhostAcademy\GhostAcademy.m3"/>
         <Occlusion value="Show"/>
-        <Radius value="1.000000"/>
+        <Radius value="1.200000"/>
         <SquibTypeDefault value="Metal"/>
         <TechPurchaseCamera value="TechPurchaseBattlecruiser"/>
         <UnitGlossaryCamera value="Star2CameraLow12"/>
@@ -1775,7 +1804,7 @@
             <Keys index="SetA" value="1"/>
         </AttachProps>
         <Occlusion value="Show"/>
-        <Radius value="1.400000"/>
+        <Radius value="1.300000"/>
         <SquibTypeDefault value="Metal"/>
         <TechPurchaseCamera value="TechPurchaseThor"/>
         <UnitGlossaryCamera value="Star2CameraHigher20"/>
@@ -1938,7 +1967,7 @@
     <CModel id="Baneling2" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\Baneling\Baneling.m3"/>
         <Occlusion value="Show"/>
-        <Radius value="0.400000"/>
+        <Radius value="1.100000"/>
         <TechPurchaseCamera value="Star2CameraMid04"/>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
@@ -1990,6 +2019,7 @@
     </CModel>
     <CModel id="DemeterSpine">
         <Model value="Assets\Buildings\Zerg\SpineCrawler\SpineCrawler.m3"/>
+        <Radius value="1.500000"/>
     </CModel>
     <CModel id="DevouverScyth" parent="Unit" Race="Zerg">
         <Model value="Assets\Effects\Zerg\FungalInfestationPod\FungalInfestationPod.m3"/>
@@ -2149,6 +2179,7 @@
     </CModel>
     <CModel id="InfestedAbomination">
         <Lighting value="AiurSpaceCinematic"/>
+        <Radius value="1.000000"/>
     </CModel>
     <CModel id="Madness" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\SwarmInfestationBirth\swarminfestationbirth.m3"/>
@@ -2905,7 +2936,7 @@
     <CModel id="Tartarus" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\Fatty\Fatty.m3"/>
         <Occlusion value="Show"/>
-        <Radius value="0.650000"/>
+        <Radius value="1.300000"/>
         <SquibTypeDefault value="Flesh"/>
         <TechPurchaseCamera value="Star2CameraMid04"/>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
@@ -3600,7 +3631,7 @@
         </Events>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraHigh13"/>
-        <Radius value="1.250000"/>
+        <Radius value="1.200000"/>
         <ScaleMax value="0.850000,0.850000,0.850000"/>
         <ScaleMin value="0.850000,0.850000,0.850000"/>
         <SelectionRadius value="0.950000"/>

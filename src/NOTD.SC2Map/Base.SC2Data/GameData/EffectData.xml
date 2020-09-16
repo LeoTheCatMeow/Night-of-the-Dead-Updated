@@ -110,6 +110,8 @@
         <EditorCategories value=""/>
         <SearchFilters value="Biological;Self,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="3" Effect="AtrociousApplyDebuff"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectCreateUnit id="CreateNapalmFireInfernoChain">
         <EditorCategories value=""/>
@@ -183,16 +185,17 @@
         <ImpactLocation Value="TargetUnit"/>
         <Amount value="10"/>
         <Death value="Fire"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectDamage>
     <CEffectEnumArea id="InfernoSearchTargetChain">
         <EditorCategories value=""/>
         <Chance value="0.4"/>
         <SearchFilters value="Biological;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="5" Effect="InfernoApply"/>
+        <AreaArray Radius="6" Effect="InfernoApply"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
-        <MaxCount value="5"/>
+        <MaxCount value="6"/>
     </CEffectEnumArea>
     <CEffectSet id="InfernoDamageSet">
         <EditorCategories value=""/>
@@ -9850,7 +9853,7 @@
         <Amount value="15"/>
         <Death value="Eviscerate"/>
         <Kind value="Melee"/>
-        <KindSplash value="Splash"/>
+        <KindSplash value="Melee"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel1CreatePersistent">
@@ -11362,7 +11365,6 @@
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/RaynorSnipeDamage"/>
         <ImpactLocation Value="TargetUnit"/>
-        <Kind value="Splash"/>
         <Amount value="80"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Dead,Invulnerable"/>
@@ -11373,7 +11375,6 @@
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/RaynorSnipeDamage"/>
         <ImpactLocation Value="TargetUnit"/>
-        <Kind value="Splash"/>
         <Amount value="160"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Dead,Invulnerable"/>
@@ -11874,7 +11875,7 @@
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Dead,Invulnerable"/>
         <ValidatorArray index="0" value="TargetIsEnemy"/>
-        <Kind value="Splash"/>
+        <Kind value="Spell"/>
         <AttributeBonus index="Massive" value="20"/>
     </CEffectDamage>
     <CEffectModifyUnit id="Bandage">

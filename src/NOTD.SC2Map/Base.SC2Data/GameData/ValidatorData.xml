@@ -169,6 +169,9 @@
         <Compare value="GT"/>
         <Behavior value="Madness"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="IsNotRealism">
+        <Value value="HasRealismUpgrade"/>
+    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="HasOpenWound">
         <Compare value="GT"/>
         <Behavior value="OpenWound"/>

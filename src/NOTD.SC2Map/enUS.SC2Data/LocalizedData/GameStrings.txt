@@ -438,6 +438,7 @@ Behavior/Name/AssaultJumpEvasionLevel1=Assault Jump Evasion Level 1
 Behavior/Name/AssaultJumpEvasionLevel2=Assault Jump Evasion Level 2
 Behavior/Name/AssaultJumpEvasionLevel3=Assault Jump Evasion Level 3
 Behavior/Name/Atrocious=Atrocious
+Behavior/Name/AtrociousBoss=Atrocious (Boss)
 Behavior/Name/BURNLevel1=BURN! Level 1
 Behavior/Name/BURNLevel2=BURN! Level 2
 Behavior/Name/Backstab=Backstab
@@ -563,6 +564,7 @@ Behavior/Name/HPAmmo=<c val="80FF80">HP Ammo</c>
 Behavior/Name/HammeroftheGodsUnqiue2=Maintenence Drone Unqiue
 Behavior/Name/HandgunExpertiseLevel2=Handgun Expertise (Level 2)
 Behavior/Name/Hardened=Hardened
+Behavior/Name/HardenedBoss=Hardened (Boss)
 Behavior/Name/HarvesterofSorrow=Harvester of Sorrow
 Behavior/Name/HarvesterofSorrowTarget=Harvester of Sorrow (Target)
 Behavior/Name/HeightenedSensesDebuff=Heightened Senses (Debuff)
@@ -627,6 +629,7 @@ Behavior/Name/MonofilamentCartridgeLevel3Stun=Monofilament Cartridge Level 3 (St
 Behavior/Name/MonofilamentTrapDuration=Monofilament Trap Duration
 Behavior/Name/MonofilamentTrapIntialReveal=Monofilament Trap Intial Reveal
 Behavior/Name/Monstrous=Monstrous
+Behavior/Name/MonstrousBoss=Monstrous (Boss)
 Behavior/Name/MoreDoTs=Nano Sear
 Behavior/Name/MotionSensorArmorDebuff=Motion Sensor (Armor Debuff)
 Behavior/Name/NanitesUpgradeLevel1=Nanites Upgrade (Level 1)
@@ -701,11 +704,13 @@ Behavior/Name/Safeguard=Safeguard
 Behavior/Name/SapStun=Sap (Stun)
 Behavior/Name/SapStun2=Sap (Stun)
 Behavior/Name/Scorching=Scorching
+Behavior/Name/ScorchingBoss=Scorching (Boss)
 Behavior/Name/SeekerSpawn=Seeker Spawn
 Behavior/Name/SelfDestructStun=Self-Destruct (Stun)
 Behavior/Name/SensoryConfusionCloak=Sensory Confusion (Cloak)
 Behavior/Name/ShadowPulse=Shadow Pulse
 Behavior/Name/Shadowed=Shadowed
+Behavior/Name/ShadowedBoss=Shadowed (Boss)
 Behavior/Name/ShadowstepLevel1=Shadowstep (Level 1)
 Behavior/Name/ShadowstepLevel2=Shadowstep (Level 2)
 Behavior/Name/ShellMode=Shell Mode
@@ -810,6 +815,8 @@ Behavior/Tooltip/AnticipationLevel2=Unit deals +30% extra damage when target is 
 Behavior/Tooltip/ArmageddonAfterShock=Unit is being damaged by the after shock of the Armageddon Charge.
 Behavior/Tooltip/ArmageddonSlow=Unit is slowed by 15% for 5 seconds. Stacks up to 3 times.
 Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
+Behavior/Tooltip/Atrocious=
+Behavior/Tooltip/AtrociousBoss=
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/Backstab=Deals +50% damage when attacking targets from side or back<n/><n/>"Et Tu Brute" - Lujius Saecar
@@ -1021,6 +1028,7 @@ Behavior/Tooltip/Safeguard=+1 Armor per stack
 Behavior/Tooltip/SapStun=Unit is stunned for 7 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SapStun2=Unit is stunned for 3 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/Scorching=
+Behavior/Tooltip/ScorchingBoss=
 Behavior/Tooltip/SelfDestructStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SensoryConfusionCloak=Unit is cloaked for 10 seconds.
 Behavior/Tooltip/ShadowPulse=+75% movespeed for 3 secs
@@ -1032,8 +1040,8 @@ Behavior/Tooltip/Shock=Unit suffers -50% movespeed for 5 seconds.
 Behavior/Tooltip/Shocked=Unit is slowed by 60%.
 Behavior/Tooltip/ShockwaveBarrageStunLevel1=Unit is stunned and receives -2 armor for 3 seconds.
 Behavior/Tooltip/ShockwaveBarrageStunLevel12=Unit is stunned and receives -2 armor for 1.5 seconds.
-Behavior/Tooltip/ShockwaveBarrageStunLevel2=Unit is stunned and receives -4 armor for 6 seconds.
-Behavior/Tooltip/ShockwaveBarrageStunLevel22=Unit is stunned and receives -4 armor for 3 seconds.
+Behavior/Tooltip/ShockwaveBarrageStunLevel2=Unit is stunned and receives -4 armor for 5 seconds.
+Behavior/Tooltip/ShockwaveBarrageStunLevel22=Unit is stunned and receives -4 armor for 2.5 seconds.
 Behavior/Tooltip/ShootToMaimLevel1=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%. Maximum stack of 3.
 Behavior/Tooltip/ShootToMaimLevel2=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 2 - +20% damage, each Maim stack slows by 7.5%. Maximum stack of 3.
 Behavior/Tooltip/ShootToMaimLevel3=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 3 - +30% damage, each Maim stack slows by 10%. Maximum stack of 4.
@@ -2397,11 +2405,22 @@ DocInfo/PatchNote407=- Forward Observer Shockwave & Napalm Barrage cooldown incr
 DocInfo/PatchNote408=- Forward Observer Lunar Technologies lv2 no longer reduces Airstrike cooldown, still reduces energy cost and allows 2 charges.
 DocInfo/PatchNote409=- Recon Laser Designator model reverted to the old model (laser drill lock-on).
 DocInfo/PatchNote410=- Added some moderate ambient spawn for Sec (starting after rescue).
-DocInfo/PatchNote411=- Elite Mutation Mode added. Activate using "-elite mutation" or "-em" command, avaliable in all difficulties.
+DocInfo/PatchNote411=- Elite Mutation Mode added. Activate using "-elite mutation" or "-em" command, available in all difficulties.
 DocInfo/PatchNote412=- Must be typed at the beginning of a game, similar to -nm and -ob commands.
 DocInfo/PatchNote413=- Mutated enemies spawn after 180 game seconds, mutation frequency scales up as game goes on.
-DocInfo/PatchNote414=- Additional skins added.
-DocInfo/PatchNote415=- Flamethrower - Burst Fire energy cost reduced from 18 to 15, Inferno energy cost reduced from 35 to 30.
+DocInfo/PatchNote414=-----------
+DocInfo/PatchNote415=- Realism Mode added. Active using "-realism" or "-real" command, can be toggled.
+DocInfo/PatchNote416=- Must be typed at the beginning of a game, hides most UI and visual aids.
+DocInfo/PatchNote417=----------
+DocInfo/PatchNote418=- Additional skins added.
+DocInfo/PatchNote419=- Flamethrower - Burst Fire energy cost reduced from 18 to 15, Inferno energy cost reduced from 35 to 30.
+DocInfo/PatchNote420=- Forward Observer - Shockwave Barrage lv2 stun duration reduced from 6 to 5 seconds.
+DocInfo/PatchNote421=- Fibrin Bandage hotkey reverted to the old x + x, quick use item hotkey becomes x + w instead.
+DocInfo/PatchNote422=- Survival mode IVAX and Seth health now scales with difficulty.
+DocInfo/PatchNote423=- Reduced the spin speed of Forward Observer's gunship to avoid motion sickness, the camera angle of the gunship has also been raised.
+DocInfo/PatchNote424=- Added additional UI at the mission select panel for special mods such as Elite Mutation, Realism, Outbreak... etc.
+DocInfo/PatchNote425=- Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
+DocInfo/PatchNote426=- Additional balancing tweaks on elite mutation mode and further lowered muta spawns during Sec.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4524,6 +4543,7 @@ Param/Value/30A09D44=Infestation detected in Apollo perimeter! Lethal force enga
 Param/Value/30F0E2B0=What's happening!?
 Param/Value/31763C9E=
 Param/Value/317B23C0=<s val="BriefingHanText">Immigration & Military Facility</s>
+Param/Value/31C1E4F1=<s val="InfoPaneHeroRank">Navy Cross</s><n/>- All medical supplies removed from game.
 Param/Value/3205EB83=Lab Rats
 Param/Value/324269D7=<s val="GlueButton"><c val="F4D72B">Deimos has released a swarm of Titans from containment!</c></s>
 Param/Value/3258859A=HAL, shut down those orbital lasers. We're on the same side.
@@ -4946,6 +4966,7 @@ Param/Value/7B981C01=If you have wounded, our Corpsmen are here to help.
 Param/Value/7BABE330=Apollo Sec needs to re-establish communication lines to notify UGC Space Command on dire situation.
 Param/Value/7BB52C15=Stay out of sight.
 Param/Value/7BCC56D3=You need to destroy Apollo's reactor core.
+Param/Value/7BD04013=<s val="InfoPaneHeroRank">No Random</s><n/>- Random class selection disabled.
 Param/Value/7C001D62= life remaining.
 Param/Value/7CDB0760=Different weapons work more effectively against different enemies.
 Param/Value/7CFBC0B6=[<c val="FF0000">Priority Transmission</c>]<n/>Field Marshal Kim: <n/>Fantastic work on the reactor. I've prepped a dropship to extract you and I need you to make a run for it. You're almost home.
@@ -5123,6 +5144,7 @@ Param/Value/98CC211C=<s val="BriefingHanText">(1 Infestor remaining..)</s>
 Param/Value/9903C46A=<s val="InfoPaneHeroRank">SELECTION: B - Reactivate Mining controls to restore Helium-3 processing</s>
 Param/Value/990943B5=<s val="BriefingHanText">(Dr. Tanaka has successfully escaped...)</s>
 Param/Value/994123F6=The nearby fort is a good spot to hunker down
+Param/Value/997DA716=<s val="InfoPaneHeroRank">Outbreak</s><n/>- Large groups of enemies attack periodically.<n/>- Number of enemies is increased over time.
 Param/Value/99B5F70D=Those Cellular Structures are immune to small arms fire. Pull out your knives.
 Param/Value/99C9601E=What we saw in the underground quarters will scar my men.
 Param/Value/99D46EAC=(Erebos loses his regenerative shell...)
@@ -5151,6 +5173,7 @@ Param/Value/9D2C0E2F=Target neutralized.
 Param/Value/9D795DCA=Banelings are approaching!
 Param/Value/9DAA9819=Get to the evac point!
 Param/Value/9DAEEBF7=We had to seal the main Airlock doors shut. Something's growing in there.
+Param/Value/9DCA133F=<s val="InfoPaneHeroRank">All Random</s><n/>- Good luck.
 Param/Value/9E09463D=You're crippled. A Medic can heal you with Surgical Laser.
 Param/Value/9E26F3BA=(Dr. Bergmann disappears)
 Param/Value/9E7BFF45=Compliance Nexuses are supposed to help suppress violent behavior. What's a chip doing on him?
@@ -5209,6 +5232,7 @@ Param/Value/A86CF95E=We need heavy weapons here.
 Param/Value/A8828B40=It's done. No turning back now.
 Param/Value/A883B797=<s val="InfoPaneHeroRank">SELECTION: B - Reactivate Mining controls to restore Helium-3 processing</s>
 Param/Value/A8D3B993=Seal chemical leaks in scrapyard
+Param/Value/A8DB2FB8=<s val="InfoPaneHeroRank">Realism activated</s><n/>- Reduced UI and Visual Aid.
 Param/Value/A91914B9=I'm unlocking the Bio-Domes. Clear the zombies and you'll cleanse Apollo of the infestation.
 Param/Value/A94A1617=Destroy Cellular Structures when Athena is near one to weaken her.
 Param/Value/A95F9F3A=Felt like I was in a nightmare.
@@ -5508,6 +5532,7 @@ Param/Value/DC7774F5=You have my gratitude for killing him. He was...beyond rede
 Param/Value/DC9BD39A=
 Param/Value/DCCA4B69=We gain a new Talent Point when we level. Put it to good use.
 Param/Value/DCD19264=+10 XP for Victory Bonus
+Param/Value/DCFAE312=<s val="InfoPaneHeroRank">Elite Mutation</s><n/>- Enemies spawn with deadly mutations.<n/>- Flexible counter strategies needed.
 Param/Value/DD18B7FF=Unsegmented Status Bar Enabled
 Param/Value/DD35AB49=Rounds
 Param/Value/DD54E7F3=<s val="BriefingHanText">   NOTD Community Leaders and Wardens<n/>   Robert Mills (NiteShade), Jayde Kobelt (MissHumpz), Fiona Chan (Miracle/神秘少女)<n/>   Loveandpeace (CN), Nicarco (NA), Extifer (NA), Yuey (SEA)<n/></s>
@@ -5604,6 +5629,7 @@ Param/Value/EA780536=Not again. Brace yourselves.
 Param/Value/EA8C7D2D=Search for survivors in Apollo
 Param/Value/EACCCFD6=+3 XP for Performance Bonus
 Param/Value/EAE4AD6B=Use AOE abilities to conserve ammo
+Param/Value/EB366E98=<s val="InfoPaneHeroRank">Realism</s><n/>- Reduced UI and Visual Aid.
 Param/Value/EC3FECA5=(You notice a Compliance Implant at Tanaka's neck...)
 Param/Value/EC412052=A Blueberry Production
 Param/Value/EC54227A=</c>)
@@ -6183,6 +6209,7 @@ Upgrade/Name/PerceptionCriticalStrike=Perception Critical Strike
 Upgrade/Name/PlasmaDischargeLevel2=Plasma Discharge Level 2
 Upgrade/Name/PlasmaDischargeLevel3=Plasma Discharge Level 3
 Upgrade/Name/ProbeLimit=Probe Limit
+Upgrade/Name/Realism=Realism
 Upgrade/Name/RiflemanGrenades=Rifleman Grenades
 Upgrade/Name/RighteousnessLevel2=Righteousness Level 2
 Upgrade/Name/SatchelDeployment=Satchel Deployment
@@ -6737,7 +6764,7 @@ UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle"
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
 UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals bonus damage to armored and massive units at higher levels.<n/>Level 1 - 50 dmg per shell.<n/>Level 2 - 75 (+25/25 vs armored/massive) dmg per shell.<n/>Level 3 - 75 (+25/75 vs armored/massive) dmg per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
-UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 6 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 5 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 3 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black

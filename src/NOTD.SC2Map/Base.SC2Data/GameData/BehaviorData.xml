@@ -91,11 +91,63 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AtrociousBoss">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodicEffect value="AtrociousDebuffSearch"/>
+        <Modification>
+            <DamageTakenFraction index="Spell" value="0.1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.18"/>
+            <VitalRegenArray index="Life" value="30"/>
+        </Modification>
+        <VitalRegenVitalsRemain index="Life" RegenModification="0.0117"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousDebuff">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="3"/>
         <Modification MoveSpeedMultiplier="0.7" AttackSpeedMultiplier="0.7"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="HardenedBoss">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.1">
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
+        </Modification>
+        <DamageResponse ModifyFraction="0.75">
+            <RequireEffectArray value="GuassRifle"/>
+            <RequireEffectArray value="MP9A2SubMachineGun"/>
+            <RequireEffectArray value="C10CanisterRifle"/>
+            <RequireEffectArray value="M45MarksmanRifleMini"/>
+            <RequireEffectArray value="M45AMarksmanRifle"/>
+            <RequireEffectArray value="XM814HeavyMachineGun"/>
+            <RequireEffectArray value="Crowbar"/>
+            <RequireEffectArray value="BarrettM112"/>
+            <RequireEffectArray value="UA420AssaultRifle"/>
+            <RequireEffectArray value="P38ScytheGuassPistol"/>
+            <RequireEffectArray value="Shotgun"/>
+            <RequireEffectArray value="ExecuteHeroicMassiveDamage"/>
+            <RequireEffectArray value="ChargeDamageLevel1"/>
+            <RequireEffectArray value="ChargeDamageLevel2"/>
+            <RequireEffectArray value="SpikedArmorLevel1Damage"/>
+            <RequireEffectArray value="SpikedArmorLevel2Damage"/>
+            <RequireEffectArray value="SpikedArmorLevel3Damage"/>
+            <RequireEffectArray value="CombatKnifeDamage"/>
+            <RequireEffectArray value="Predator"/>
+            <RequireEffectArray value="KineticCatapultLevel1Damage"/>
+            <RequireEffectArray value="KineticCatapultLevel2Damage"/>
+            <RequireEffectArray value="BlackDogDamageAMRounds"/>
+            <RequireEffectArray value="AutoTurret"/>
+            <RequireEffectArray value="OSOKLevel1BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel2BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettBossDamage"/>
+            <RequireEffectArray value="OSOKLevel3MarksmanBossDamage"/>
+            <RequireEffectArray value="PrecisionShotLevel1Damage"/>
+            <RequireEffectArray value="PrecisionShotLevel2Damage"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -104,6 +156,8 @@
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
+            <DamageTakenFraction index="Spell" value="1.5"/>
+            <VitalMaxArray index="Life" value="200"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="2.2"/>
         </Modification>
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
@@ -165,13 +219,64 @@
     <CBehaviorBuff id="Hardened">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="1.1">
+            <StateFlags index="UnitAttrOnHeroic" value="1"/>
             <DamageDealtFraction index="Spell" value="0.1"/>
             <DamageDealtFraction index="Melee" value="0.1"/>
             <DamageDealtFraction index="Ranged" value="0.1"/>
             <DamageDealtFraction index="Splash" value="0.1"/>
-            <LifeArmorBonus value="50"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="1.4"/>
+            <VitalMaxArray index="Life" value="200"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
         </Modification>
+        <DamageResponse ModifyFraction="0.25">
+            <RequireEffectArray value="GuassRifle"/>
+            <RequireEffectArray value="MP9A2SubMachineGun"/>
+            <RequireEffectArray value="C10CanisterRifle"/>
+            <RequireEffectArray value="M45MarksmanRifleMini"/>
+            <RequireEffectArray value="M45AMarksmanRifle"/>
+            <RequireEffectArray value="XM814HeavyMachineGun"/>
+            <RequireEffectArray value="Crowbar"/>
+            <RequireEffectArray value="BarrettM112"/>
+            <RequireEffectArray value="UA420AssaultRifle"/>
+            <RequireEffectArray value="P38ScytheGuassPistol"/>
+            <RequireEffectArray value="Shotgun"/>
+            <RequireEffectArray value="ExecuteHeroicMassiveDamage"/>
+            <RequireEffectArray value="ChargeDamageLevel1"/>
+            <RequireEffectArray value="ChargeDamageLevel2"/>
+            <RequireEffectArray value="SpikedArmorLevel1Damage"/>
+            <RequireEffectArray value="SpikedArmorLevel2Damage"/>
+            <RequireEffectArray value="SpikedArmorLevel3Damage"/>
+            <RequireEffectArray value="CombatKnifeDamage"/>
+            <RequireEffectArray value="Predator"/>
+            <RequireEffectArray value="KineticCatapultLevel1Damage"/>
+            <RequireEffectArray value="KineticCatapultLevel2Damage"/>
+            <RequireEffectArray value="BlackDogDamageAMRounds"/>
+            <RequireEffectArray value="AutoTurret"/>
+            <RequireEffectArray value="OSOKLevel1BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel2BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettBossDamage"/>
+            <RequireEffectArray value="OSOKLevel3MarksmanBossDamage"/>
+            <RequireEffectArray value="PrecisionShotLevel1Damage"/>
+            <RequireEffectArray value="PrecisionShotLevel2Damage"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MonstrousBoss">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.7">
+            <DamageDealtFraction index="Spell" value="0.3"/>
+            <DamageDealtFraction index="Melee" value="0.3"/>
+            <DamageDealtFraction index="Ranged" value="0.3"/>
+            <DamageDealtFraction index="Splash" value="0.3"/>
+            <DamageTakenFraction index="Spell" value="0.1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.22"/>
+        </Modification>
+        <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="Scorching">
         <Alignment value="Positive"/>
@@ -179,9 +284,11 @@
         <Period value="1"/>
         <PeriodicEffect value="InfernoDamage2"/>
         <Modification MoveSpeedMultiplier="1.1">
-            <VitalMaxAdditiveMultiplierArray index="Life" value="1.4"/>
+            <StateFlags index="UnitAttrOnHeroic" value="1"/>
+            <VitalMaxArray index="Life" value="200"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
         </Modification>
-        <DamageResponse ModifyFraction="0.5">
+        <DamageResponse ModifyFraction="0.25">
             <RequireEffectArray value="ArmageddonDamage"/>
             <RequireEffectArray value="VultureSpiderMinesDamage"/>
             <RequireEffectArray value="ArmageddonAfterShockDamage"/>
@@ -247,10 +354,48 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification>
+            <DamageTakenFraction index="Spell" value="1.5"/>
+            <VitalMaxArray index="Life" value="200"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
-            <VitalRegenArray index="Life" value="50"/>
+            <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" RegenModification="0.0507"/>
+        <VitalRegenVitalsRemain index="Life" RegenModification="0.0312"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ScorchingBoss">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <PeriodicEffect value="InfernoDamage2"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
+        </Modification>
+        <DamageResponse ModifyFraction="0.75">
+            <RequireEffectArray value="ArmageddonDamage"/>
+            <RequireEffectArray value="VultureSpiderMinesDamage"/>
+            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="SatchelLevel1Damage"/>
+            <RequireEffectArray value="SatchelLevel2Damage"/>
+            <RequireEffectArray value="NapalmBarrageDamage"/>
+            <RequireEffectArray value="InfernalFlameThrower"/>
+            <RequireEffectArray value="FlameThrowerLevel2"/>
+            <RequireEffectArray value="FlameThrowerLevel3"/>
+            <RequireEffectArray value="BURNDamageLevel1"/>
+            <RequireEffectArray value="BURNDamageLevel2"/>
+            <RequireEffectArray value="BurstFireDamageLevel1"/>
+            <RequireEffectArray value="BurstFireDamageLevel2"/>
+            <RequireEffectArray value="BurstFireDamageLevel3"/>
+            <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="InfernoDamage2"/>
+            <RequireEffectArray value="ThermalLancesMU"/>
+            <RequireEffectArray value="SigmaDamage"/>
+            <RequireEffectArray value="NukeDamage"/>
+            <RequireEffectArray value="L3GrenadeExplosion"/>
+            <RequireEffectArray value="LaserRifleDamage"/>
+            <RequireEffectArray value="ArmorMeltDamage"/>
+            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
+            <RequireEffectArray value="StingerMK3Damage"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="Shadowed">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -258,7 +403,10 @@
             <StateFlags index="Cloak" value="1"/>
             <StateFlags index="Benign" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
+            <DamageTakenFraction index="Spell" value="-0.5"/>
+            <DamageTakenFraction index="Splash" value="-0.5"/>
+            <VitalMaxArray index="Life" value="100"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.25"/>
             <BehaviorLinkDisableArray value="TauntedLevel1"/>
             <BehaviorLinkDisableArray value="TauntedLevel2"/>
             <BehaviorLinkDisableArray value="TauntedLevel3"/>
@@ -268,6 +416,25 @@
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
         <InitialEffect value="ShadowedApplyJump"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShadowedBoss">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="ShadowedApplyJump"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="Benign" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <DamageTakenFraction index="Spell" value="-0.1"/>
+            <DamageTakenFraction index="Splash" value="-0.1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="-0.25"/>
+            <BehaviorLinkDisableArray value="TauntedLevel1"/>
+            <BehaviorLinkDisableArray value="TauntedLevel2"/>
+            <BehaviorLinkDisableArray value="TauntedLevel3"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel1"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
+            <BehaviorLinkDisableArray value="MadSparkTaunted"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShieldBonus2">
         <Alignment value="Positive"/>
@@ -4859,11 +5026,6 @@
         <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="0.6" Food="5">
             <LifeArmorBonus value="2"/>
             <VitalRegenArray index="Life" value="1"/>
-            <BehaviorLinkDisableArray value="Shadowed"/>
-            <BehaviorLinkDisableArray value="Hardened"/>
-            <BehaviorLinkDisableArray value="Monstrous"/>
-            <BehaviorLinkDisableArray value="Scorching"/>
-            <BehaviorLinkDisableArray value="Atrocious"/>
         </Modification>
         <MaxStackCountPerCaster value="1"/>
     </CBehaviorBuff>
@@ -6128,7 +6290,7 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="6"/>
+        <Duration value="5"/>
         <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
             <ModifyFlags index="SuppressMoving" value="1"/>
@@ -6170,7 +6332,7 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="3"/>
+        <Duration value="2.5"/>
         <Modification SightMaximum="1">
             <ModifyFlags index="DisableAbils" value="1"/>
             <ModifyFlags index="SuppressMoving" value="1"/>
