@@ -4019,6 +4019,9 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     gf_EquipmentDialogCreation(lp_playerIndex);
     gf_BehaviorTrackerUICreation(lp_playerIndex);
     UnitSelect(gv_marineHero[lp_playerIndex], lp_player, true);
+    if ((gv_realismActivated == false)) {
+        gf_EnableDisablePingPanel(true, PlayerGroupSingle(lp_player));
+    }
     if ((gv_playerRandom[lp_playerIndex] == true)) {
         gf_UpdateKarma(lp_playerIndex, -5);
     }
@@ -15511,6 +15514,12 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(UnitFromId(1957271923), "ScorchingBoss", 1, 1);
     return true;
 }
 
@@ -15918,7 +15927,6 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
         gf_StatsLoadPlayerWeaponModPoints(autoCC32BB0F_var);
         PlayerModifyPropertyInt(autoCC32BB0F_var, c_playerPropCustom, c_playerPropOperSetTo, gv_playerXP[autoCC32BB0F_var]);
     }
-    gf_EnableDisablePingPanel(true, gv_marineSquad);
     return true;
 }
 

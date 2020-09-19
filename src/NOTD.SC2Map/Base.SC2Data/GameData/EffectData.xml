@@ -108,7 +108,7 @@
     </CEffectDamage>
     <CEffectEnumArea id="AtrociousDebuffSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="Biological;Self,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <SearchFilters value="Biological;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="3" Effect="AtrociousApplyDebuff"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
@@ -186,7 +186,7 @@
         <Amount value="10"/>
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectDamage>
     <CEffectEnumArea id="InfernoSearchTargetChain">
@@ -308,6 +308,18 @@
         <EditorCategories value=""/>
         <SearchFilters value="-;Self,RawResource,HarvestableResource,Missile,Item,Uncommandable,Invulnerable"/>
         <AreaArray Radius="6"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="ScorchingDamage">
+        <EditorCategories value=""/>
+        <Type value="Fire"/>
+        <Amount value="10"/>
+        <Death value="Fire"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="ScorchingSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="ScorchingDamage"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectModifyUnit id="SharedExperienceBonusTartarus">
         <EditorCategories value=""/>
