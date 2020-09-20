@@ -2420,9 +2420,12 @@ DocInfo/PatchNote422=- Survival mode IVAX and Seth health now scales with diffic
 DocInfo/PatchNote423=- Reduced the spin speed of Forward Observer's gunship to avoid motion sickness, the camera angle of the gunship has also been raised.
 DocInfo/PatchNote424=- Added additional UI at the mission select panel for special mods such as Elite Mutation, Realism, Outbreak... etc.
 DocInfo/PatchNote425=- Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
-DocInfo/PatchNote426=- Additional balancing tweaks on elite mutation mode and further lowered muta spawns during Sec.
-DocInfo/PatchNote427=- Fixed some bugs with elite mutation that potentially caused lag.
+DocInfo/PatchNote426=- Minor balancing tweaks and fixed some bugs with elite mutation mode that potentially caused lag.
+DocInfo/PatchNote427=- Boss mutations in elite mutation now wears off after 900 seconds game time (roughly 10+ minutes real time).
 DocInfo/PatchNote428=- Fixed ping panel not working properly.
+DocInfo/PatchNote429=- Reduced the recently added early ambient spawn in Sec to prevent over leveling and disabled most of that during the final boss.
+DocInfo/PatchNote430=- Demolitions - Spiked Armor reverted to +4 shield armor at lv3, Time to Die energy cost reverted to 25 from 22.
+DocInfo/PatchNote431=- Fixed a game-breaking bug incorrectly stating Devastators as "Thors".
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4997,7 +5000,7 @@ Param/Value/7FE27F29=<s val="InfoPaneHeroRank">SELECTION: A - Destroy Apollo and
 Param/Value/7FF99FC6=<s val="GlueButton">
 Param/Value/80A4B9DE=What attacked you may have got to the Mine as well. Get there quickly!
 Param/Value/80A649EA=Your team needs to secure landing facilities for additional forces to arrive.
-Param/Value/80F5FFAE=We need to prevent anything from getting out of Apollo. Get to the Thors in the airlock and quarantine the place.
+Param/Value/80F5FFAE=We need to prevent anything from getting out of Apollo. Get to the Devastators in the airlock and quarantine the place.
 Param/Value/80F76E70=Killing Infestors reduce enemy spawns
 Param/Value/81199D5B=
 Param/Value/81584031=We need to bring any survivors we can find to Delta-1. It's docked in the airlock.
@@ -6735,7 +6738,7 @@ UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName
 UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 5 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 3 seconds to arm. During the 3 seconds to arming, the charge sends tremors through the ground which reduces movement speed of all ground units within 5 radius by 15% per tremor. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><c val="FF0000"><n/>Limit of 3 Armageddon Charges at any given time. Can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Shield<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +3 and +15 Shields<n/><n/>"I'll cut you" - Yuki
+UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Armor<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +4 and +15 Shields<n/><n/>"I'll cut you" - Yuki
 UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - -20% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - -40% damage for 8 seconds
 UserData/TalentTrees/Demolitions_Talent Tootips_007=<s val="AchievementFrameName">Look!</s><n/>Forces enemies in 5 radius to stare at target. After a short duration, 50% chance for affected units to attack target. <n/>Level 1 - 1 second<n/>Level 2 - 2 seconds<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_008=<s val="AchievementFrameName">Sadist<n/>(Passive)</s><n/>Level 1 - Restores 2 HP and 1 Shield for each kill<n/>Level 2 - Restores 4 HP and 2 Shields for each kill<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>

@@ -95,11 +95,12 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification>
-            <DamageTakenFraction index="Spell" value="0.1"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.18"/>
-            <VitalRegenArray index="Life" value="30"/>
+            <DamageTakenFraction index="Spell" value="0.15"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.17"/>
+            <VitalRegenArray index="Life" value="15"/>
         </Modification>
         <VitalRegenVitalsRemain index="Life" RegenModification="0.0117"/>
+        <Duration value="1100"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousDebuff">
         <InfoFlags index="Hidden" value="1"/>
@@ -271,7 +272,7 @@
             <DamageDealtFraction index="Melee" value="0.3"/>
             <DamageDealtFraction index="Ranged" value="0.3"/>
             <DamageDealtFraction index="Splash" value="0.3"/>
-            <DamageTakenFraction index="Spell" value="0.1"/>
+            <DamageTakenFraction index="Spell" value="0.15"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.22"/>
         </Modification>
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
@@ -356,7 +357,7 @@
         <Modification>
             <DamageTakenFraction index="Spell" value="1.5"/>
             <VitalMaxArray index="Life" value="200"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="1.7"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
         <VitalRegenVitalsRemain index="Life" RegenModification="0.0312"/>
@@ -415,11 +416,9 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
-        <InitialEffect value="ShadowedApplyJump"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShadowedBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <InitialEffect value="ShadowedApplyJump"/>
         <Modification>
             <StateFlags index="Cloak" value="1"/>
             <StateFlags index="Benign" value="1"/>
@@ -7696,7 +7695,7 @@
             <TargetFilters value="-;Player,Ally,Invulnerable"/>
             <Chance value="1"/>
         </DamageResponse>
-        <Modification ShieldArmorBonus="3">
+        <Modification ShieldArmorBonus="4">
             <VitalMaxArray index="Shields" value="15"/>
             <BehaviorLinkDisableArray value="SpikedArmorLevel1"/>
             <BehaviorLinkDisableArray value="SpikedArmorLevel2"/>
