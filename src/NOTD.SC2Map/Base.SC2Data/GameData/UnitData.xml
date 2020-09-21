@@ -987,7 +987,6 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/ChemicalExpert/LifeArmorToolTip"/>
-        <LifeArmorLevel value="1"/>
     </CUnit>
     <CUnit id="Cow">
         <LifeMax value="150"/>
@@ -1248,7 +1247,6 @@
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeArmorTip value="Unit/Demolitions/LifeArmorToolTip"/>
-        <LifeArmorLevel value="2"/>
     </CUnit>
     <CUnit id="FieldNexus">
         <DeathRevealRadius value="3"/>
@@ -1715,7 +1713,6 @@
         <LifeRegenDelay value="0.5"/>
         <LifeRegenRate value="0.1718"/>
         <LifeArmorTip value="Unit/Medic/LifeArmorToolTip"/>
-        <LifeArmorLevel value="1"/>
         <EnergyStart value="200"/>
         <EnergyMax value="200"/>
         <EnergyRegenRate value="1.1992"/>
@@ -1913,7 +1910,6 @@
         <LifeMax value="200"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.1718"/>
-        <LifeArmorLevel value="1"/>
         <EnergyStart value="100"/>
         <EnergyMax value="100"/>
         <EnergyRegenRate value="1.3593"/>
@@ -2755,7 +2751,6 @@
             <Cooldown Link="TychusChaingun/Revive"/>
         </ReviveInfoBase>
         <LifeArmorTip value="Unit/Technician/LifeArmorToolTip"/>
-        <LifeArmorLevel value="5"/>
     </CUnit>
     <CUnit id="DrGunjan">
         <DeathRevealRadius value="3"/>
@@ -3083,7 +3078,6 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <SelectAlias value="Assault"/>
         <LifeArmorTip value="Unit/Assault/LifeArmorToolTip"/>
-        <LifeArmorLevel value="2"/>
     </CUnit>
     <CUnit id="Assault" parent="BaseHero">
         <DeathRevealFilters value="Visible;Player,Ally,Neutral,Missile,Dead,Hidden"/>
@@ -6477,7 +6471,6 @@
         </Fidget>
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeArmorTip value="Unit/Flamethrower/LifeArmorTooltip"/>
-        <LifeArmorLevel value="3"/>
     </CUnit>
     <CUnit id="Predator2" parent="PetTemplate">
         <Name value="Unit/Name/Predator2"/>
@@ -8402,7 +8395,6 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/PsiOps/LifeArmorToolTip"/>
-        <LifeArmorLevel value="1"/>
     </CUnit>
     <CUnit id="Parasite" parent="Larva">
         <Name value="Unit/Name/Parasite"/>
@@ -10821,7 +10813,6 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/Engineer/LifeArmorToolTip"/>
-        <LifeArmorLevel value="1"/>
     </CUnit>
     <CUnit id="NydusCanal">
         <LifeStart value="1500"/>

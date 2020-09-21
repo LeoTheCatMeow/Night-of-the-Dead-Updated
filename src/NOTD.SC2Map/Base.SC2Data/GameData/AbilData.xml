@@ -3824,6 +3824,7 @@
         <BehaviorArray value="ImYourFatherLevel3"/>
         <LevelButtonOnTooltip value="Level 2 I&apos;m Your Father"/>
         <LevelButtonOnTooltip value="Level 3 I&apos;m Your Father"/>
+        <AutoCastValidatorArray value="IsNotRealism"/>
     </CAbilBehavior>
     <CAbilBehavior id="MasterMarksman">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4676,6 +4677,7 @@
         <Flags index="Transient" value="1"/>
         <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
         <CmdButtonArray index="Off" DefaultButtonFace="Cancel2222"/>
+        <AutoCastValidatorArray value="IsNotRealism"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="ConcentratedFire">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4887,6 +4889,7 @@
         <BehaviorArray value="TauntLevel3"/>
         <LevelButtonOnTooltip value="Level 2 Taunt"/>
         <LevelButtonOnTooltip value="Level 3 Taunt"/>
+        <AutoCastValidatorArray value="IsNotRealism"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="TeamLocation">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>

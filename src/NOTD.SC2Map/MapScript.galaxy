@@ -7014,10 +7014,6 @@ void gf_CalculateReduction (unit lp_unit) {
         UnitBehaviorRemove(lp_unit, "DamageReduction", c_unitBehaviorCountAll);
         UnitBehaviorRemove(lp_unit, "DamageReduction2", c_unitBehaviorCountAll);
     }
-    if (UnitGroupHasUnit(gv_marines, lp_unit)) {
-        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(lp_unit), "LifeArmorLevel", UnitGetOwner(lp_unit), IntToString(UnitBehaviorCount(lp_unit, "DamageReduction")));
-        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(lp_unit), "ShieldArmorLevel", UnitGetOwner(lp_unit), FixedToString((UnitGetPropertyFixed(lp_unit, c_unitPropShieldArmor, c_unitPropCurrent) - UnitGetPropertyFixed(lp_unit, c_unitPropShieldArmor, c_unitPropNormal)), 0));
-    }
 }
 
 trigger auto_gf_ZombieAIWorldEvents_Trigger = null;
@@ -11389,16 +11385,16 @@ bool auto_gf_STC1AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
         if ((RandomInt(0, 5) == 1)) {
             gf_SmartSpawnNOTD("ZombieLevel22", 50.0);
         }
-        else if ((RandomInt(0, 9) == 1)) {
+        else if ((RandomInt(0, 8) == 1)) {
             gf_SmartSpawnNOTD("RoachBurrowed", 50.0);
         }
-        else if ((RandomInt(0, 11) == 1)) {
+        else if ((RandomInt(0, 10) == 1)) {
             gf_SmartSpawnNOTD("HulkBurrowed", 50.0);
         }
-        else if ((RandomInt(0, 11) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 10) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("InfestorTerran2", 50.0);
         }
-        else if ((RandomInt(0, 11) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 10) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("Mutalisk", 70.0);
         }
     }
@@ -16226,7 +16222,6 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "NavyCrossImageFrame");
     gv_storylineModSelectionFrame[6] = DialogControlLastCreated();
     if ((gv_noNewbie == false)) {
-        DialogControlSetEnabled(gv_storylineModSelection[2], PlayerGroupAll(), false);
         DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), false);
         DialogControlSetEnabled(gv_storylineModSelection[4], PlayerGroupAll(), false);
         DialogControlSetEnabled(gv_storylineModSelection[5], PlayerGroupAll(), false);
@@ -17550,15 +17545,10 @@ void gt_EliteMutationCommand_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_RealismCommand_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    playergroup auto6106808A_g;
+    int auto6106808A_var;
     playergroup auto45037B76_g;
     int auto45037B76_var;
-
-    // Conditions
-    if (testConds) {
-        if (!((gv_noNewbie == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -17569,12 +17559,18 @@ bool gt_RealismCommand_Func (bool testConds, bool runActions) {
     gv_realismActivated = true;
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/A8DB2FB8"));
     gf_EnableDisablePingPanel(false, gv_marineSquad);
+    auto6106808A_g = PlayerGroupAll();
+    auto6106808A_var = -1;
+    while (true) {
+        auto6106808A_var = PlayerGroupNextPlayer(auto6106808A_g, auto6106808A_var);
+        if (auto6106808A_var < 0) { break; }
+        TechTreeUpgradeAddLevel(auto6106808A_var, "Realism", 1);
+    }
     auto45037B76_g = gv_marineSquad;
     auto45037B76_var = -1;
     while (true) {
         auto45037B76_var = PlayerGroupNextPlayer(auto45037B76_g, auto45037B76_var);
         if (auto45037B76_var < 0) { break; }
-        TechTreeUpgradeAddLevel(auto45037B76_var, "Realism", 1);
         if ((gv_behaviorTrackerDialog[auto45037B76_var] != c_invalidDialogId)) {
             DialogDestroy(gv_behaviorTrackerDialog[auto45037B76_var]);
             gv_behaviorTrackerDialog[auto45037B76_var] = c_invalidDialogId;
@@ -20597,19 +20593,19 @@ bool gt_EliteMutationChanceRotation_Func (bool testConds, bool runActions) {
     }
 
     if ((RandomInt(0, 1) == 1)) {
-        gv_mutationTrend[1] = 42;
+        gv_mutationTrend[1] = 44;
         gv_mutationTrend[2] = 45;
     }
     else {
-        gv_mutationTrend[1] = 3;
+        gv_mutationTrend[1] = 1;
         gv_mutationTrend[2] = 45;
     }
     if ((RandomInt(0, 1) == 1)) {
-        gv_mutationTrend[3] = 82;
+        gv_mutationTrend[3] = 75;
         gv_mutationTrend[4] = 85;
     }
     else {
-        gv_mutationTrend[3] = 48;
+        gv_mutationTrend[3] = 55;
         gv_mutationTrend[4] = 85;
     }
     gv_mutationTrend[5] = 100;
@@ -20631,6 +20627,9 @@ bool gt_DamageReductionSystemInitialize_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     const int auto53E2E754_ae = 100;
     int auto53E2E754_var;
+    unitgroup auto5FD03FD3_g;
+    int auto5FD03FD3_u;
+    unit auto5FD03FD3_var;
 
     // Actions
     if (!runActions) {
@@ -20641,6 +20640,13 @@ bool gt_DamageReductionSystemInitialize_Func (bool testConds, bool runActions) {
     for ( ; auto53E2E754_var <= auto53E2E754_ae; auto53E2E754_var += 1 ) {
         gv_positiveArmorCache[auto53E2E754_var] = RoundI(((auto53E2E754_var / (auto53E2E754_var + 100.0)) * 100.0));
         gv_negativeArmorCache[auto53E2E754_var] = RoundI(((Pow(1.01, IntToFixed(auto53E2E754_var)) - 1.0) * 100.0));
+    }
+    auto5FD03FD3_g = UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto5FD03FD3_u = UnitGroupCount(auto5FD03FD3_g, c_unitCountAll);
+    for (;; auto5FD03FD3_u -= 1) {
+        auto5FD03FD3_var = UnitGroupUnitFromEnd(auto5FD03FD3_g, auto5FD03FD3_u);
+        if (auto5FD03FD3_var == null) { break; }
+        gf_CalculateReduction(auto5FD03FD3_var);
     }
     return true;
 }
@@ -20672,7 +20678,7 @@ bool gt_ApplyReductionOnPlayerUnitCreation_Func (bool testConds, bool runActions
         return true;
     }
 
-    if ((UnitGetPropertyInt(EventUnitCreatedUnit(), c_unitPropLifeArmor, c_unitPropCurrent) != 0)) {
+    if ((gv_realismActivated == false) && (UnitGetPropertyInt(EventUnitCreatedUnit(), c_unitPropLifeArmor, c_unitPropCurrent) != 0)) {
         gf_CalculateReduction(EventUnitCreatedUnit());
     }
     return true;
@@ -20701,7 +20707,12 @@ bool gt_ApplyReductionOnUnitArmorChange_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gf_CalculateReduction(EventUnit());
+    if (UnitGroupHasUnit(gv_marines, EventUnit())) {
+        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(EventUnit()), "ShieldArmorLevel", UnitGetOwner(EventUnit()), FixedToString(MaxI((UnitGetPropertyInt(EventUnit(), c_unitPropShieldArmor, c_unitPropCurrent) - UnitGetPropertyInt(EventUnit(), c_unitPropShieldArmor, c_unitPropNormal)), 0), 0));
+    }
+    if ((gv_realismActivated == false)) {
+        gf_CalculateReduction(EventUnit());
+    }
     return true;
 }
 

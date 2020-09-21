@@ -126,7 +126,7 @@
     </CActorSplat>
     <CActorModel id="AOEMarker" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
-        <On index="1" Terms="Effect.Initial.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On index="1" Terms="Effect.Initial.Start" Send="Create"/>
         <On index="2" Terms="ActorOrphan" Send="Destroy"/>
         <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
         <On Terms="Effect.Initial.Stop" Send="AnimBracketStop BSD"/>
@@ -290,9 +290,9 @@
         <AcceptedHostedPropTransfers index="TintColor" value="0"/>
         <AcceptedHostedPropTransfers index="WarpGroup" value="0"/>
         <FogVisibility value="Visible"/>
-        <On Terms="Effect.ShockwaveBarrageLevel1CreatePersistent.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.ShockwaveBarrageLevel1CreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.ShockwaveBarrageLevel1CreatePersistent.Stop" Send="Destroy"/>
-        <On Terms="Effect.ShockwaveBarrageLevel2CreatePersistent.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.ShockwaveBarrageLevel2CreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.ShockwaveBarrageLevel2CreatePersistent.Stop" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadow"/>
         <Model value="FireMissionIndicatorModel2"/>
@@ -301,7 +301,7 @@
     <CActorModel id="FireMissionIndicator22" parent="ModelAnimationStyleOneShot">
         <Filter index="Enemy" value="1"/>
         <FogVisibility value="Visible"/>
-        <On Terms="Effect.ShockwaveBarrageLevel1CreatePersistent2.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.ShockwaveBarrageLevel1CreatePersistent2.Start" Send="Create"/>
         <On Terms="Effect.ShockwaveBarrageLevel1CreatePersistent2.Stop" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadow"/>
         <Model value="FireMissionIndicatorModel22"/>
@@ -499,7 +499,7 @@
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
     <CActorSplat id="ArmageddonCursor" parent="TerranCursorSplat" abil="Armageddon">
-        <On Terms="Behavior.Armageddon.On; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Behavior.Armageddon.On" Send="Create"/>
         <On Terms="UnitDeath.ArmageddonBomb" Send="Destroy"/>
         <On Terms="Behavior.Armageddon.On" Send="SetScale 6.000000"/>
     </CActorSplat>
@@ -1148,7 +1148,7 @@
     <CActorModel id="ScorchedEarthIndicator" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 1.500000 AsDuration"/>
-        <On Terms="Effect.ScorchedEarthPersistent.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.ScorchedEarthPersistent.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
         <Model value="ScorchedEarthIndicatorModel"/>
         <Scale value="1.450000"/>
@@ -2045,7 +2045,7 @@
     </CActorSound>
     <CActorSplat id="TauntSplat" parent="GenericUnitSplat">
         <EditorCategories value=""/>
-        <On Terms="Behavior.TauntLevel1.On; ValidatePlayer IsRealism" Send="Create"/>
+        <On Terms="Behavior.TauntLevel1.On; ValidatePlayer IsNotRealism" Send="Create"/>
         <On Terms="Behavior.TauntLevel1.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>
         <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
@@ -9698,7 +9698,7 @@
     </CActorUnit>
     <CActorSplat id="PlasmaDetonatorIndicator" parent="TerranCursorSplat" abil="CounterMeasures">
         <On index="0" Terms="ActorOrphan" Send="Destroy"/>
-        <On index="1" Terms="UnitBirth.PlasmaDetonator; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On index="1" Terms="UnitBirth.PlasmaDetonator" Send="Create"/>
         <On Terms="UnitDeath.PlasmaDetonator" Send="Destroy"/>
         <Scale value="4.000000"/>
     </CActorSplat>
@@ -10184,7 +10184,7 @@
     </CActorSound>
     <CActorRange id="InfernoSplashDamageRange">
         <EditorCategories value=""/>
-        <On Terms="Behavior.Inferno.On; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Behavior.Inferno.On" Send="Create"/>
         <On Terms="Behavior.Inferno.Off" Send="Destroy"/>
         <Range value="3.000000"/>
     </CActorRange>
@@ -11061,11 +11061,11 @@
     <CActorModel id="FireMissionIndicator" parent="ModelAnimationStyleOneShot">
         <Filter index="Enemy" value="1"/>
         <FogVisibility value="Visible"/>
-        <On Terms="Effect.FireMissionLevel1CreatePersistent.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.FireMissionLevel1CreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.FireMissionLevel1CreatePersistent.Stop" Send="Destroy"/>
-        <On Terms="Effect.FireMissionLevel2CreatePersistent.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.FireMissionLevel2CreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.FireMissionLevel2CreatePersistent.Stop" Send="Destroy"/>
-        <On Terms="Effect.FireMissionLevel3CreatePersistent.Start; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On Terms="Effect.FireMissionLevel3CreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.FireMissionLevel3CreatePersistent.Stop" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadow"/>
         <Model value="FireMissionIndicatorModel"/>
@@ -13134,8 +13134,8 @@
         <AutoScaleFactor value="2.000000"/>
     </CActorModel>
     <CActorSplat id="SatchelCursorRange" parent="TerranCursorSplat" abil="CounterMeasures">
-        <On index="0" Terms="Behavior.SatchelLevel1.On; ValidatePlayer IsNotRealism" Send="Create"/>
-        <On Terms="Behavior.SatchelLevel2.On; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On index="0" Terms="Behavior.SatchelLevel1.On" Send="Create"/>
+        <On Terms="Behavior.SatchelLevel2.On" Send="Create"/>
         <Scale value="4.000000"/>
     </CActorSplat>
     <CActorSplat id="MoreDoTsCursor" parent="TerranCursorSplat" abil="NanoSear">
@@ -15918,7 +15918,6 @@
         <Model value="nukeCursorSplat"/>
         <Scale value="9.500000"/>
         <On index="0" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 7.000000 AsDuration"/>
-        <On index="3" Terms="Effect.NukePersistent.Start; ValidatePlayer IsNotRealism"/>
         <On index="4" removed="1"/>
     </CActorModel>
 </Catalog>

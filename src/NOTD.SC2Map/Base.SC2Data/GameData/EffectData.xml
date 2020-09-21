@@ -108,7 +108,7 @@
     </CEffectDamage>
     <CEffectEnumArea id="AtrociousDebuffSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="Biological;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="3" Effect="AtrociousApplyDebuff"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
@@ -312,12 +312,12 @@
     <CEffectDamage id="ScorchingDamage">
         <EditorCategories value=""/>
         <Type value="Fire"/>
-        <Amount value="8"/>
+        <Amount value="10"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="ScorchingSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,RawResource,HarvestableResource,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="3" Effect="ScorchingDamage"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -11757,7 +11757,6 @@
     <CEffectDamage id="GrenadeLevel2Damage">
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/SnipeDamage"/>
-        <Kind value="Splash"/>
         <Amount value="150"/>
         <Death value="Blast"/>
         <AreaArray Radius="2" Fraction="1"/>
@@ -11767,7 +11766,6 @@
         <SearchFilters value="-;Player,Ally,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AttributeFactor index="Light" value="1.3332"/>
         <Total value="Combine"/>
-        <KindSplash value="Splash"/>
     </CEffectDamage>
     <CEffectDamage id="InfestedAbomination2" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -11968,12 +11966,10 @@
         <AreaArray Radius="2" Fraction="1"/>
         <AreaArray Radius="2.5" Fraction="0.8"/>
         <AreaArray Radius="3" Fraction="0.55"/>
-        <Kind value="Splash"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AttributeFactor index="Light" value="1.3332"/>
         <Total value="Combine"/>
-        <KindSplash value="Splash"/>
     </CEffectDamage>
     <CEffectDamage id="GuassRifle">
         <Amount value="16"/>
