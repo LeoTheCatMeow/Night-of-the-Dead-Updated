@@ -1683,7 +1683,7 @@ void gf_SetPlayerLives ();
 void gf_PlayerCountAdjustments ();
 void gf_SQDifficultyAdjustments ();
 void gf_MapNightMemoryLoad (int lp_player);
-void gf_ExecuteMods ();
+void gf_ExecuteStorylineMods ();
 fixed gf_GD_Gap (int lp_hV);
 fixed gf_GD_GridToReal2 (fixed lp_grid, int lp_hV, int lp_sizeOrPos);
 int gf_GD_GridToInteger (fixed lp_grid, int lp_hV, int lp_sizeOrPos);
@@ -3127,7 +3127,7 @@ void gf_MemoryLoad (int lp_player) {
     PlayerScoreValueSetFromInt(lp_player, "Karma", gv_playerKarma[lp_player]);
     gv_playerRating[lp_player] = libNtve_gf_ArithmeticIntClamp(gv_playerRating[lp_player], 1000, 2500);
     PlayerScoreValueSetFromInt(lp_player, "Rating", gv_playerRating[lp_player]);
-    while ((lv_search < 17) && (gv_playerXP[lp_player] >= UserDataGetInt("Ranks", UserDataInstance("Ranks", (lv_search + 1)), "XP Required", 1))) {
+    while ((lv_search < 18) && (gv_playerXP[lp_player] >= UserDataGetInt("Ranks", UserDataInstance("Ranks", (lv_search + 1)), "XP Required", 1))) {
         lv_search += 1;
     }
     gv_playerRank[lp_player] = lv_search;
@@ -3506,7 +3506,7 @@ void gf_MapNightMemoryLoad (int lp_player) {
     gf_SetCombatKnifeDamage(lp_player);
 }
 
-void gf_ExecuteMods () {
+void gf_ExecuteStorylineMods () {
     // Automatic Variable Declarations
     // Implementation
     if ((gv_storylineModOn[1] == true)) {
@@ -7927,7 +7927,7 @@ bool auto_gf_AwardPlayerXPNOTD_TriggerFunc (bool testConds, bool runActions) {
         }
         gf_UIUpdateXP(lv_index);
         PlayerScoreValueSetFromInt(lv_index, "PlayerXP", gv_playerXP[lv_index]);
-        if ((gv_playerXP[lv_index] >= UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)) && (gv_playerHasRankedUp[lv_index] == false)) {
+        if ((gv_playerRank[lv_index] < 18) && (gv_playerXP[lv_index] >= UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)) && (gv_playerHasRankedUp[lv_index] == false)) {
             gv_playerHasRankedUp[lv_index] = true;
             gv_playerRank[lv_index] = (gv_playerRank[lv_index] + 1);
             gf_RankUp(lv_index);
@@ -16295,7 +16295,7 @@ bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
         if (auto3497B89E_var < 0) { break; }
         PlayerModifyPropertyInt(auto3497B89E_var, c_playerPropVespene, c_playerPropOperSetTo, gv_storyline);
     }
-    gf_ExecuteMods();
+    gf_ExecuteStorylineMods();
     if ((gv_noRandoms == 3) && (gv_noNewbie == true)) {
         gf_AllRandomSelectionUI();
     }
@@ -16496,7 +16496,7 @@ bool gt_FinaliseStorylineandMode_Func (bool testConds, bool runActions) {
     gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
     GameSetLighting(gv_defaultLighting, 3.9);
     TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
-    gf_ExecuteMods();
+    gf_ExecuteStorylineMods();
     if ((gv_noRandoms == 3) && (gv_noNewbie == true)) {
         gf_AllRandomSelectionUI();
     }
