@@ -852,8 +852,8 @@ Behavior/Tooltip/ChemicalPlatingTemplate=Attacks on unit stacks an oxalic poison
 Behavior/Tooltip/Chewed=Unit is chewed by Cerberus.
 Behavior/Tooltip/CockpitClosed=Technician is immune to ailments.
 Behavior/Tooltip/CockpitOpened=Susceptible to ailments. +1.1 energy regeneration per second.
-Behavior/Tooltip/CohesionLevel1=Unit gains +1 armor.
-Behavior/Tooltip/CohesionLevel2=Unit gains +2 armor.
+Behavior/Tooltip/CohesionLevel1=Unit gains +1 armor and +0.6 health regeneration.
+Behavior/Tooltip/CohesionLevel2=Unit gains +2 armor and +0.6 health regeneration.
 Behavior/Tooltip/CombatHardenedLevel2=Passive: +40% HP & energy regen rate. 
 Behavior/Tooltip/CombatKnife=Unit slowed by 70% for 2 secs
 Behavior/Tooltip/CombatMobilityAugment=Increases movespeed by 10%
@@ -1507,7 +1507,7 @@ Button/Tooltip/Backpack=Your backpack carries supplies.<n/><n/>You need to equip
 Button/Tooltip/BadKarma=Reduces target player's Karma by 1.
 Button/Tooltip/Bandage=<c val="FFFF00">Fibrin Bandage</c><n/>Instantly heals 50 HP. Also removes 1 stack of Open Wounds.<n/><n/>Credits: <c val="FFFFFF">15</c>
 Button/Tooltip/Baneling=Suicide unit. Blinds target units in area.<n/><n/><c val="ffff8a">Can attack ground units.</c>
-Button/Tooltip/BarrettM112=<c val="972FFF">Barrett M112</c><n/>Heavy Sniper Rifle that is capable of inflicting massive damage.<n/>Each shot <c val="F2D737">slows</c> the user by 40% for 2 seconds. (Marksman excluded)<n/>Consumes 3 rounds per shot.<n/>Can't target allies.<n/><n/>Base Range: <c val="FFFFFF">25</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">6 secs</c><n/>Weight: <c val="FFFFFF">25</c><n/>Adaptive: <c val="FFFFFF">0/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"This goes through armor, and the victim, and the wall, the tree outside....."
+Button/Tooltip/BarrettM112=<c val="972FFF">Barrett M112</c><n/>Heavy Sniper Rifle that is capable of inflicting massive damage.<n/>Each shot <c val="F2D737">slows</c> the user by 40% for 2 seconds. (Marksman excluded)<n/>Consumes 3 rounds per shot.<n/>Can't target allies.<n/><n/>Base Range: <c val="FFFFFF">25</c><n/>Splash: <c val="FFFFFF">Pierce (up to 3 units including target)</c><n/>Reload: <c val="FFFFFF">6 secs</c><n/>Weight: <c val="FFFFFF">25</c><n/>Adaptive: <c val="FFFFFF">0/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"This goes through armor, and the victim, and the wall, the tree outside....."
 Button/Tooltip/BattlefieldIntelligence=Increases target unit's sight range by 3 for 60 seconds. Minimum sight range cannot be reduced below 5.
 Button/Tooltip/Beastling=Suicide unit. Does damage over a small area on death. <n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/Beastling2=Suicide unit. Does damage over a small area on death. <n/><n/><c val="ffff8a">Can attack ground units.</c>
@@ -1794,7 +1794,7 @@ Button/Tooltip/OpenCockpit=Technician opens cockpit. Due to life support systems
 Button/Tooltip/Orange=Changes Marine color to <c val="FF8000">Orange</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/OrbitalLaser=
 Button/Tooltip/Overdrive=X-1 Guardian activates its devastating twin plasma turrets. Lasts 20 seconds.
-Button/Tooltip/P45GaussPistol=<c val="FFFF00">P-45 Gauss Pistol</c><n/>A low-recoil close combat pistol suitable for most security encounters.<n/><n/>Base Range: <c val="FFFFFF">6</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">1 second</c><n/>Equip: <c val="FFFFFF">0.3 seconds</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">1.5/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical</c><n/><n/>"Step away from my sidearm, Private!" - Capt. Lockwood
+Button/Tooltip/P45GaussPistol=<c val="FFFF00">P-45 Gauss Pistol</c><n/>A low-recoil close combat pistol suitable for most security encounters.<n/><n/>Base Range: <c val="FFFFFF">6</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">1 second</c><n/>Equip: <c val="FFFFFF">0.3 seconds</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">1.5/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical</c><n/><n/>"Step away from my sidearm, Private!" - Capt. Lockwood
 Button/Tooltip/Parasite=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
 Button/Tooltip/Parasite2=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
 Button/Tooltip/Pathfinder=Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.
@@ -2429,7 +2429,15 @@ DocInfo/PatchNote432=  disabled as well. % reduction armor mechanics is disabled
 DocInfo/PatchNote433=  changed to "Just like the old times." Realism now available in all modes.
 DocInfo/PatchNote434=- Added to the tooltip of road flares specifying the real time duration (Dropship timer uses real time).
 DocInfo/PatchNote435=- Master of the Universe rank may now be saved and loaded correctly.
-DocInfo/PatchNote436=  
+DocInfo/PatchNote436=- Fixed Medals UI not working after player deaths.
+DocInfo/PatchNote437=- Barrett M112 now pierces an additional 2 targets behind the initial target, dealing 80% damage, unaffected by splash mod.
+DocInfo/PatchNote438=- Weapon splash mod now correctly applies to L3 Grenade Launcher.
+DocInfo/PatchNote439=- Assault - Defensive Plating armor value reverted to +2/3/4 and no longer offers extra life regen.
+DocInfo/PatchNote440=- Assault - Taunt energy cost reduced from 10 to 8.
+DocInfo/PatchNote441=- Assault - Charge energy cost reduced from 20 to 15, now ignores Eos shriek while active.
+DocInfo/PatchNote442=- Assault - Cohersion Aura now grants +0.6 health regen to affected units.
+DocInfo/PatchNote443=- Assault base health regen increased from 0.5 to 0.6.
+DocInfo/PatchNote444=  
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -6707,9 +6715,9 @@ UserData/TalentTrees/Assault_Talent Tootips_002=<s val="AchievementFrameName">Am
 UserData/TalentTrees/Assault_Talent Tootips_003=<s val="AchievementFrameName">Blood Frenzy</s><n/>Assault gains attack damage. Critical Strike slows target's movespeed and attack speed by 30% for 1 second. Lasts for 10 seconds.<n/>Level 1 - +20% damage<n/>Level 2 - +40% damage<n/><n/>"Sit. Stay. Die!"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_004=<s val="AchievementFrameName">Harvester of Sorrow</s><n/>The Assault sings a song of war, attacking with hateful zeal and bringing doom to his foes. <n/><n/>The Assault gains 20% bonus Critical Strike, while losing 10% movespeed for 20 seconds. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.<n/><n/>"Let the beatings begin!"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">Taunt</s> <n/>Forces enemies in 8 radius to attack Assault for a short duration. Taunted units deal less damage.<n/>Level 1 - 5 seconds duration. -10% damge.<n/>Level 2 - 6 seconds duration. -20% damage.<n/>Level 3 - 7 seconds duration. -30% damage.<n/><n/>"First day out of jail, I picked a fight in a bar. Turns out my opponent was a Marine. Join the Marines he said. Could use someone like you. So here I am" - Private Bruce
-UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor and regeneration.<n/>Level 1 - +2 armor<n/>Level 2 - +<d ref="Behavior,DefensivePlatingLevel2,Modification.LifeArmorBonus"/> armor, +10% HP regen.<n/>Level 3 - +<d ref="Behavior,DefensivePlatingLevel3,Modification.LifeArmorBonus"/> armor, +20% HP regen.
+UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor.<n/>Level 1 - +2 armor<n/>Level 2 - +<d ref="Behavior,DefensivePlatingLevel2,Modification.LifeArmorBonus"/> armor.<n/>Level 3 - +<d ref="Behavior,DefensivePlatingLevel3,Modification.LifeArmorBonus"/> armor.
 UserData/TalentTrees/Assault_Talent Tootips_007=<s val="AchievementFrameName">Charge</s><n/>Charges forward up to 15 distance to target point, knocking back any enemies in path. Deals damage and stuns all affected enemies. Deals +50% damage to Massive.<n/>Level 1 - Enemies in path receive 50 damage and are stunned for 2 seconds<n/>Level 2 - Enemies in path receive 100 damage and are stunned for 4 seconds<n/><n/>"He charged forth, borne upon red wings of rage."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">Cohesion<n/>(Passive)</s> <n/>Allies in 7 radius gain armor bonus (This includes Assault).<n/>Level 1 - +1 armor<n/>Level 2 - +2 armor<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">Cohesion<n/>(Passive)</s> <n/>Allies in 8 radius gain armor bonus and +0.6 health regeneration (This includes Assault).<n/>Level 1 - +1 armor<n/>Level 2 - +2 armor<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">Safeguard<n/>(Passive)</s><n/>Assault gains +1 armor for each hit taken. Each point gained lasts for 6 second. Maximum +6 armor.<n/><n/>"Even a Nuke won't stop you!" - Ogilvy Defense Industries<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Headers=<s val="HelpPanelListBoxItemTitle">Desolator</s>
 UserData/TalentTrees/Chemical Expert_Headers_001=<s val="HelpPanelListBoxItemTitle">Ground Support</s>

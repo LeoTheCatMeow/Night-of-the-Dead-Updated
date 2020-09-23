@@ -149,6 +149,16 @@
         <Behavior value="FrenzyBuffLevel2"/>
         <Count value="10"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="GuassRifle">
+        <KindSplash value="Splash"/>
+        <Total value="Combine"/>
+        <Amount value="16"/>
+        <AreaArray Radius="0.5" Fraction="1"/>
+        <AreaArray Radius="1" Fraction="0.8"/>
+        <AreaArray Radius="1.5" Fraction="0.6"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
+    </CEffectDamage>
     <CEffectDamage id="InfernoDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -4724,11 +4734,12 @@
         <AreaArray Radius="2.75" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,Hover,RawResource,HarvestableResource,Item,Dead,Invulnerable"/>
         <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
     </CEffectDamage>
     <CEffectDamage id="L3GrenadeExplosionAlly">
         <EditorCategories value=""/>
         <Amount value="70"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.75" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,Item,Dead,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Kind value="Ranged"/>
@@ -6923,16 +6934,20 @@
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="BarrettM112" parent="DU_WEAP">
+        <ValidatorArray value="TargetIsNotAlly"/>
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Armored" value="40"/>
-        <Kind value="Ranged"/>
-        <Amount value="140"/>
-        <SearchFilters value="-;Player,Ally,Item,Dead,Hidden,Invulnerable"/>
-        <Death value="Eviscerate"/>
         <ArmorReduction value="0"/>
-        <ValidatorArray value="TargetIsNotAlly"/>
+        <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
+        <Amount value="140"/>
+        <Death value="Eviscerate"/>
+        <AreaArray RectangleWidth="0.5" RectangleHeight="3.5" Fraction="0.8"/>
+        <AreaRelativeOffset value="0,-1.75"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Self,Player,Ally,Item,Dead,Hidden,Invulnerable"/>
+        <MaxCount value="2"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="CounterMeasuresLaunchMissileLevel2">
         <ValidatorArray index="0" value="UltrasonicPulseTargetFilters"/>
@@ -9846,14 +9861,14 @@
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Massive" value="10"/>
         <ArmorReduction value="0"/>
+        <KindSplash value="Splash"/>
+        <Total value="Combine"/>
         <Amount value="27"/>
         <AreaArray Radius="0.75" Fraction="1"/>
         <AreaArray Radius="1.5" Fraction="0.8"/>
-        <AreaArray Radius="2" Fraction="0.65"/>
+        <AreaArray Radius="2.25" Fraction="0.65"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
-        <KindSplash value="Splash"/>
-        <Total value="Combine"/>
     </CEffectDamage>
     <CEffectDamage id="Claws">
         <Amount value="22"/>
@@ -11711,7 +11726,7 @@
         <LaunchLocation Value="CasterUnit"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Missile,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="7" Effect="CohesionLevel2"/>
+        <AreaArray Radius="8" Effect="CohesionLevel2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="CohesionLevel2">
@@ -11724,7 +11739,7 @@
         <LaunchLocation Value="CasterUnit"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Missile,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="7" Effect="CohesionLevel1Apply"/>
+        <AreaArray Radius="8" Effect="CohesionLevel1Apply"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectDamage id="CriticalStrike">
@@ -11969,16 +11984,6 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AttributeFactor index="Light" value="1.3332"/>
-        <Total value="Combine"/>
-    </CEffectDamage>
-    <CEffectDamage id="GuassRifle">
-        <Amount value="16"/>
-        <AreaArray Radius="0.5" Fraction="1"/>
-        <AreaArray Radius="1" Fraction="0.8"/>
-        <AreaArray Radius="1.5" Fraction="0.6"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
-        <KindSplash value="Splash"/>
         <Total value="Combine"/>
     </CEffectDamage>
     <CEffectDamage id="InfernalFlameThrower">

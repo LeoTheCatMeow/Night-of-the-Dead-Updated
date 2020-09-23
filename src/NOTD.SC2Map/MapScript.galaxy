@@ -12703,6 +12703,11 @@ bool auto_gf_StatsModSplashRadius_TriggerFunc (bool testConds, bool runActions) 
     lv_splashRadius *= (1.0 + ((IntToFixed(lp_modLevel) - 5.0) * lv_splashPercentagePerLevel));
     CatalogFieldValueSet(c_gameCatalogEffect, "StingerMK3Damage", "AreaArray[" + IntToString(0) + "].Radius", lv_player, FixedToString(lv_splashRadius, c_fixedPrecisionAny));
     CatalogFieldValueSet(c_gameCatalogEffect, "StingerMK3DamageAllies", "AreaArray[" + IntToString(0) + "].Radius", lv_player, FixedToString(lv_splashRadius, c_fixedPrecisionAny));
+    lv_splashRadius = StringToFixed(CatalogFieldValueGet(c_gameCatalogEffect, "L3GrenadeExplosion", "AreaArray[" + IntToString(0) + "].Radius", 10));
+    lv_splashRadius *= (1.0 + ((IntToFixed(lp_modLevel) - 5.0) * lv_splashPercentagePerLevel));
+    CatalogFieldValueSet(c_gameCatalogEffect, "L3GrenadeExplosion", "AreaArray[" + IntToString(0) + "].Radius", lv_player, FixedToString(lv_splashRadius, c_fixedPrecisionAny));
+    CatalogFieldValueSet(c_gameCatalogEffect, "L3GrenadeExplosionDummy", "AreaArray[" + IntToString(0) + "].Radius", lv_player, FixedToString(lv_splashRadius, c_fixedPrecisionAny));
+    CatalogFieldValueSet(c_gameCatalogEffect, "L3GrenadeExplosionAlly", "AreaArray[" + IntToString(0) + "].Radius", lv_player, FixedToString(lv_splashRadius, c_fixedPrecisionAny));
     return true;
 }
 
@@ -29633,7 +29638,7 @@ bool gt_QueenShriek67HP_Func (bool testConds, bool runActions) {
     for (;; autoA5B468E7_u -= 1) {
         autoA5B468E7_var = UnitGroupUnitFromEnd(autoA5B468E7_g, autoA5B468E7_u);
         if (autoA5B468E7_var == null) { break; }
-        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(autoA5B468E7_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(autoA5B468E7_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(autoA5B468E7_var, "TimetoDie") == true) || (UnitHasBehavior(autoA5B468E7_var, "Protect") == true) || (DistanceBetweenPoints(UnitGetPosition(autoA5B468E7_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
+        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(autoA5B468E7_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(autoA5B468E7_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(autoA5B468E7_var, "TimetoDie") == true) || (UnitHasBehavior(autoA5B468E7_var, "Protect") == true) || (UnitHasBehavior(autoA5B468E7_var, "ChargeLevel1") == true) || (UnitHasBehavior(autoA5B468E7_var, "ChargeLevel2") == true) || (DistanceBetweenPoints(UnitGetPosition(autoA5B468E7_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
         }
         else {
             UnitBehaviorAdd(autoA5B468E7_var, "Shriek", gv_finalBoss, 1);
@@ -29715,7 +29720,7 @@ bool gt_QueenShriek33HP_Func (bool testConds, bool runActions) {
     for (;; autoE77655B1_u -= 1) {
         autoE77655B1_var = UnitGroupUnitFromEnd(autoE77655B1_g, autoE77655B1_u);
         if (autoE77655B1_var == null) { break; }
-        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(autoE77655B1_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(autoE77655B1_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(autoE77655B1_var, "TimetoDie") == true) || (UnitHasBehavior(autoE77655B1_var, "Protect") == true) || (DistanceBetweenPoints(UnitGetPosition(autoE77655B1_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
+        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(autoE77655B1_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(autoE77655B1_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(autoE77655B1_var, "TimetoDie") == true) || (UnitHasBehavior(autoE77655B1_var, "Protect") == true) || (UnitHasBehavior(autoE77655B1_var, "ChargeLevel1") == true) || (UnitHasBehavior(autoE77655B1_var, "ChargeLevel2") == true) || (DistanceBetweenPoints(UnitGetPosition(autoE77655B1_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
         }
         else {
             UnitBehaviorAdd(autoE77655B1_var, "Shriek", gv_finalBoss, 1);

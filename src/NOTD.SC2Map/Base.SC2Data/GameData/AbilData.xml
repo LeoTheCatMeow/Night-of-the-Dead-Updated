@@ -1078,7 +1078,7 @@
         <Cost>
             <Vital index="Energy" value="10"/>
         </Cost>
-        <TargetFilters value="Visible;Self,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <TargetFilters value="Visible;Self,Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <Range value="9"/>
         <CancelableArray index="Channel" value="1"/>
         <ValidatedArray index="Finish" value="1"/>
@@ -2284,11 +2284,11 @@
         <Effect index="0" value="ChargeSetLevel1"/>
         <Effect value="ChargeSetLevel2"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="8"/>
         </Cost>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="6"/>
         </Cost>
         <Range value="15"/>
@@ -4881,7 +4881,7 @@
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="10"/>
+            <Vital index="Energy" value="8"/>
             <Cooldown TimeUse="8"/>
         </Cost>
         <BehaviorArray value="TauntLevel1"/>

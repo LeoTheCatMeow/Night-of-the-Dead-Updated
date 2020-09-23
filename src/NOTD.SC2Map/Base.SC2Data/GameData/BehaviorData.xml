@@ -6168,6 +6168,7 @@
     <CBehaviorBuff id="FrozenGaze">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
         <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="6"/>
@@ -6729,6 +6730,7 @@
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
         </Modification>
+        <BehaviorCategories index="Stun" value="1"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NeuralParasite">
@@ -6936,6 +6938,7 @@
         <Duration value="1"/>
         <Modification>
             <LifeArmorBonus value="2"/>
+            <VitalRegenArray index="Life" value="0.6015"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
         <BehaviorCategories index="User12" value="1"/>
@@ -7176,6 +7179,7 @@
         <Duration value="1"/>
         <Modification>
             <LifeArmorBonus value="1"/>
+            <VitalRegenArray index="Life" value="0.6015"/>
         </Modification>
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetzonegenerator-speed.dds"/>
         <BehaviorCategories index="User1" value="1"/>
@@ -7301,8 +7305,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="DefensivePlatingLevel2"/>
         <Modification>
-            <LifeArmorBonus value="2"/>
-            <VitalRegenMultiplier index="Life" value="0.1"/>
+            <LifeArmorBonus value="3"/>
             <BehaviorLinkDisableArray value="DefensivePlatingLevel1"/>
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
@@ -7313,8 +7316,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="DefensivePlatingLevel3"/>
         <Modification>
-            <LifeArmorBonus value="3"/>
-            <VitalRegenMultiplier index="Life" value="0.2"/>
+            <LifeArmorBonus value="4"/>
             <BehaviorLinkDisableArray value="DefensivePlatingLevel1"/>
             <BehaviorLinkDisableArray value="DefensivePlatingLevel2"/>
         </Modification>
