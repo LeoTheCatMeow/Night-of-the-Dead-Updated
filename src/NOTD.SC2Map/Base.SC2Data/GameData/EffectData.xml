@@ -102,6 +102,39 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="NukeRevealDummy"/>
     </CEffectCreateUnit>
+    <CEffectSet id="DefensivePlatingRemoveAilmentSetLevel2">
+        <EditorCategories value="Race:Terran"/>
+        <EffectArray value="DefensivePlatingRemoveVenomLevel2"/>
+        <EffectArray value="DefensivePlatingRemoveOWLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="DefensivePlatingRemoveAilmentSetLevel3">
+        <EditorCategories value="Race:Terran"/>
+        <EffectArray value="DefensivePlatingRemoveVenomLevel3"/>
+        <EffectArray value="DefensivePlatingRemoveOWLevel3"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="DefensivePlatingRemoveOWLevel2">
+        <ValidatorArray index="0" value="OpenWoundStackMoreThan3"/>
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="OpenWound"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="DefensivePlatingRemoveOWLevel3">
+        <ValidatorArray index="0" value="OpenWoundStackMoreThan2"/>
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="OpenWound"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="DefensivePlatingRemoveVenomLevel1">
+        <ValidatorArray index="0" value="VenomStackMoreThan12"/>
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="Venom"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="DefensivePlatingRemoveAilmentSetLevel1">
+        <EditorCategories value="Race:Terran"/>
+        <EffectArray value="DefensivePlatingRemoveVenomLevel1"/>
+        <EffectArray value="DefensivePlatingRemoveOWLevel1"/>
+    </CEffectSet>
     <CEffectDamage id="ArmorMeltDamage">
         <EditorCategories value=""/>
         <Death value="Fire"/>
@@ -135,6 +168,24 @@
         <EditorCategories value=""/>
         <AreaArray Radius="5"/>
     </CEffectEnumArea>
+    <CEffectRemoveBehavior id="DefensivePlatingRemoveOWLevel1">
+        <ValidatorArray index="0" value="OpenWoundStackMoreThan4"/>
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="OpenWound"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="DefensivePlatingRemoveVenomLevel2">
+        <ValidatorArray index="0" value="VenomStackMoreThan9"/>
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="Venom"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="DefensivePlatingRemoveVenomLevel3">
+        <ValidatorArray index="0" value="VenomStackMoreThan6"/>
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="Venom"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="FrenzyApplyBuffLevel12">
         <ValidatorArray index="0" value="FrenzyLevel12"/>
         <EditorCategories value=""/>
@@ -4877,7 +4928,7 @@
     <CEffectApplyForce id="ChargePush">
         <EditorCategories value=""/>
         <WhichLocation Value="CasterUnit"/>
-        <Amount value="1"/>
+        <Amount value="0.5"/>
     </CEffectApplyForce>
     <CEffectApplyBehavior id="ChargeApplyHeightLevel1">
         <ValidatorArray index="0" value="HasChargeHeight"/>

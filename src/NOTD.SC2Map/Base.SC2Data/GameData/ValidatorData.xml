@@ -318,6 +318,16 @@
         <Compare value="Eq"/>
         <LaunchLocation Value="CasterUnit"/>
     </CValidatorLocationEnumArea>
+    <CValidatorUnitCompareBehaviorCount id="OpenWoundStackMoreThan3">
+        <Compare value="GT"/>
+        <Value value="3"/>
+        <Behavior value="OpenWound"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="OpenWoundStackMoreThan2">
+        <Compare value="GT"/>
+        <Value value="2"/>
+        <Behavior value="OpenWound"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="PetAboveLevel1">
         <Compare value="GE"/>
         <Value value="2"/>
@@ -1500,6 +1510,26 @@
     <CValidatorUnitCompareBehaviorCount id="VenomStack8">
         <Compare value="GE"/>
         <Value value="8"/>
+        <Behavior value="Venom"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan12">
+        <Compare value="GT"/>
+        <Value value="12"/>
+        <Behavior value="Venom"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="OpenWoundStackMoreThan4">
+        <Compare value="GT"/>
+        <Value value="4"/>
+        <Behavior value="OpenWound"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan9">
+        <Compare value="GT"/>
+        <Value value="9"/>
+        <Behavior value="Venom"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan6">
+        <Compare value="GT"/>
+        <Value value="6"/>
         <Behavior value="Venom"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorLocationCompareRange id="Within10Distance">

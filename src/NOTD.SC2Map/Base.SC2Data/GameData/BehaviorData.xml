@@ -341,8 +341,9 @@
         <InfoIcon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Modification>
-            <VitalMaxArray index="Life" value="22"/>
+            <VitalMaxArray index="Life" value="11.5"/>
         </Modification>
+        <MaxStackCount value="2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NeuralTimedLife">
         <Duration value="0.1"/>
@@ -2521,7 +2522,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Restoration">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-prismaticbeam.dds"/>
+        <InfoIcon value="Assets\Textures\btn-ability-tychus-medic-restorativeburst.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="7"/>
     </CBehaviorBuff>
@@ -6938,7 +6939,7 @@
         <Duration value="1"/>
         <Modification>
             <LifeArmorBonus value="2"/>
-            <VitalRegenArray index="Life" value="0.6015"/>
+            <VitalRegenArray index="Life" value="0.3984"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
         <BehaviorCategories index="User12" value="1"/>
@@ -7179,7 +7180,7 @@
         <Duration value="1"/>
         <Modification>
             <LifeArmorBonus value="1"/>
-            <VitalRegenArray index="Life" value="0.6015"/>
+            <VitalRegenArray index="Life" value="0.3984"/>
         </Modification>
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetzonegenerator-speed.dds"/>
         <BehaviorCategories index="User1" value="1"/>
@@ -7252,6 +7253,8 @@
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
         <BehaviorCategories index="User12" value="1"/>
+        <Period value="0.1"/>
+        <PeriodicEffect value="DefensivePlatingRemoveAilmentSetLevel1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Bloodlust">
         <Alignment value="Positive"/>
@@ -7310,6 +7313,8 @@
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
         <BehaviorCategories index="User12" value="1"/>
+        <Period value="0.1"/>
+        <PeriodicEffect value="DefensivePlatingRemoveAilmentSetLevel2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DefensivePlatingLevel3">
         <InfoFlags index="Hidden" value="1"/>
@@ -7322,6 +7327,8 @@
         </Modification>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
         <BehaviorCategories index="User12" value="1"/>
+        <Period value="0.1"/>
+        <PeriodicEffect value="DefensivePlatingRemoveAilmentSetLevel3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Detector5" parent="Detector">
         <Alignment value="Positive"/>

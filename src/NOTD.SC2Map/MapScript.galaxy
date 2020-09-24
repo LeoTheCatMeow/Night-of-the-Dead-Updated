@@ -15568,7 +15568,8 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UnitBehaviorAddPlayer(UnitFromId(1957271923), "ScorchingBoss", 1, 1);
+    UnitBehaviorAddPlayer(gv_marineHero[1], "Venom", 1, 15);
+    UnitBehaviorAddPlayer(gv_marineHero[1], "OpenWound", 1, 5);
     return true;
 }
 

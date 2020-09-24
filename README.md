@@ -195,7 +195,8 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Fixed Medals UI not working after player deaths.
 - Barrett M112 now pierces an additional 2 targets behind the initial target, dealing 75% damage, unaffected by splash mod.
 - Weapon splash mod now correctly applies to L3 Grenade Launcher.
-- Assault - Defensive Plating armor value reverted to +2/3/4 and no longer offers extra life regen.
-- Assault - Taunt energy cost reduced from 10 to 8.
-- Assault - Charge energy cost reduced from 20 to 15, now ignores Eos shriek while active.
-- Assault - Cohersion Aura now grants +0.6 health regen to affected units.
+- Assault - Defensive Plating armor value reverted to +2/3/4 and now offers -20%/-40%/-60% max ailment stacks instead of regen.
+- Assault - Charge now ignores Eos shriek while active.
+- Assault - Cohersion Aura now grants +0.4 health regen to affected units.
+- Slightly improved Assault's base life and energy regen.
+- Nano-Health Augment health bonus is now divided into 2 stacks (need 2nha to reach the same health bonus).
