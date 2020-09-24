@@ -3182,6 +3182,8 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     int autoB90D3843_val;
     playergroup autoD552839B_g;
     int autoD552839B_var;
+    playergroup auto3A9C1B3F_g;
+    int auto3A9C1B3F_var;
     playergroup autoD5AA9D07_g;
     int autoD5AA9D07_var;
 
@@ -3204,6 +3206,13 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
         if ((gv_noNewbie == true)) {
             gv_difficulty = UserDataGetText("Mode", "Veteran", "Mode Name", 1);
             libNtve_gf_SetDialogItemImage(lv_missionTimePanel, "Assets\\Textures\\ui_commandcard_protossframe_normal.dds", PlayerGroupAll());
+            auto3A9C1B3F_g = PlayerGroupAll();
+            auto3A9C1B3F_var = -1;
+            while (true) {
+                auto3A9C1B3F_var = PlayerGroupNextPlayer(auto3A9C1B3F_g, auto3A9C1B3F_var);
+                if (auto3A9C1B3F_var < 0) { break; }
+                PlayerSetDifficulty(auto3A9C1B3F_var, 2);
+            }
         }
         else {
             gv_difficulty = UserDataGetText("Mode", "Recruit", "Mode Name", 1);
