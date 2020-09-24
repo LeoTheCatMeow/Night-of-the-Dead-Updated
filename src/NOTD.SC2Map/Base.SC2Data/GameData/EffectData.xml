@@ -6943,7 +6943,12 @@
         <Total value="Combine"/>
         <Amount value="140"/>
         <Death value="Eviscerate"/>
-        <AreaArray RectangleWidth="0.5" RectangleHeight="3.5" Fraction="0.8"/>
+        <AreaArray>
+            <RectangleWidth value="0.5"/>
+            <RectangleHeight value="3.5"/>
+            <Fraction value="0.75"/>
+            <Validator value="IsNotRealism"/>
+        </AreaArray>
         <AreaRelativeOffset value="0,-1.75"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Self,Player,Ally,Item,Dead,Hidden,Invulnerable"/>

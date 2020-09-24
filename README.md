@@ -180,4 +180,22 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Reduced the spin speed of Forward Observer's gunship to avoid motion sickness, the camera angle of the gunship has also been raised.
 - Added additional UI at the mission select panel for special mods such as Elite Mutation, Realism, Outbreak... etc.
 - Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
-- Additional balancing tweaks on elite mutation mode and further lowered muta spawns during Sec.
+- Fixed ping panel not working properly.
+- Reduced the recently added early ambient spawn in Sec to prevent over leveling and disabled most of that during the final boss.
+- Demolitions - Spiked Armor reverted to +4 shield armor at lv3, Time to Die energy cost reverted to 25 from 22.
+- Fixed a game-breaking bug incorrectly stating Devastators as "Thors".
+- More balancing tweaks with elite mutation mode and fixed some bugs that potentially caused lag.
+
+9.21.2020
+- Reworked Realism mode, skill indicators now display as usual. Instead, taunt and cloak auto-casts are disabled. Taunt circles remain
+  disabled as well. % reduction armor mechanics is disabled and most tank class talents reverted to original. Realism mode description 
+  changed to "Just like the old times." Realism now available in all modes.
+- Added to the tooltip of road flares specifying the real time duration (Dropship timer uses real time).
+- Master of the Universe rank may now be saved and loaded correctly.
+- Fixed Medals UI not working after player deaths.
+- Barrett M112 now pierces an additional 2 targets behind the initial target, dealing 75% damage, unaffected by splash mod.
+- Weapon splash mod now correctly applies to L3 Grenade Launcher.
+- Assault - Defensive Plating armor value reverted to +2/3/4 and no longer offers extra life regen.
+- Assault - Taunt energy cost reduced from 10 to 8.
+- Assault - Charge energy cost reduced from 20 to 15, now ignores Eos shriek while active.
+- Assault - Cohersion Aura now grants +0.6 health regen to affected units.
