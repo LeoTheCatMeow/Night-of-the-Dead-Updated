@@ -6997,7 +6997,7 @@
         <AreaArray>
             <RectangleWidth value="0.5"/>
             <RectangleHeight value="3.5"/>
-            <Fraction value="0.75"/>
+            <Fraction value="1"/>
             <Validator value="IsNotRealism"/>
         </AreaArray>
         <AreaRelativeOffset value="0,-1.75"/>
@@ -9954,21 +9954,21 @@
     <CEffectDamage id="FireMissionLevel1DamageVar1">
         <EditorCategories value=""/>
         <Amount value="50"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar2">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="50"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar3">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="50"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel2CreatePersistent">
@@ -9986,7 +9986,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
@@ -9995,7 +9995,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
@@ -10004,7 +10004,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
@@ -10024,7 +10024,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="75"/>
@@ -10033,7 +10033,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="75"/>
@@ -10042,7 +10042,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
         <Amount value="75"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="75"/>
@@ -10113,7 +10113,7 @@
     <CEffectEnumArea id="NapalmBarrageSearch">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="NapalmBarrageApply"/>
+        <AreaArray Radius="2.5" Effect="NapalmBarrageApply"/>
     </CEffectEnumArea>
     <CEffectDamage id="NeedleSpinesDamage">
         <Amount value="15"/>
@@ -10538,28 +10538,28 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel1"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ShockwaveBarrageSearchLevel1Var2">
         <EditorCategories value=""/>
         <Marker Link="Effect/ShockwaveBarrageSearchLevel1"/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel1"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ShockwaveBarrageSearchLevel2Var1">
         <EditorCategories value=""/>
         <Marker Link="Effect/ShockwaveBarrageSearchLevel1"/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel2"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel2"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ShockwaveBarrageSearchLevel2Var12">
         <EditorCategories value=""/>
         <Marker Link="Effect/ShockwaveBarrageSearchLevel1"/>
         <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="2" Effect="ShockwaveBarrageSetLevel2"/>
+        <AreaArray Radius="2.5" Effect="ShockwaveBarrageSetLevel2"/>
     </CEffectEnumArea>
     <CEffectDamage id="DevourerClawsDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>

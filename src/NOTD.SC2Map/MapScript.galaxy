@@ -15572,13 +15572,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitBehaviorAddPlayer(gv_marineHero[1], "Venom", 1, 15);
-    UnitBehaviorAddPlayer(gv_marineHero[1], "OpenWound", 1, 5);
     return true;
 }
 
@@ -42633,7 +42626,7 @@ bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
     }
 
     if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 1)) {
-        gv_shellDispersionRadius[EventPlayer()] = 3.0;
+        gv_shellDispersionRadius[EventPlayer()] = 2.5;
         CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(5.0, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.2, c_fixedPrecisionAny));
@@ -42641,7 +42634,7 @@ bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
         UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/B4B4084C"));
     }
     else if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 2)) {
-        gv_shellDispersionRadius[EventPlayer()] = 4.0;
+        gv_shellDispersionRadius[EventPlayer()] = 3.5;
         CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(6.0, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.44, c_fixedPrecisionAny));
@@ -42649,7 +42642,7 @@ bool gt_ModifyDispersion_Func (bool testConds, bool runActions) {
         UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/6CDABA30"));
     }
     else if ((StringToInt(StringWord(EventChatMessage(false), 2)) == 3)) {
-        gv_shellDispersionRadius[EventPlayer()] = 5.0;
+        gv_shellDispersionRadius[EventPlayer()] = 4.5;
         CatalogFieldValueSet(c_gameCatalogEffect, "ArtillerySearchAreaDummy", "AreaArray[" + IntToString(0) + "].Radius", EventPlayer(), FixedToString(7.0, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogActor, "FireMissionIndicator2", "Scale", EventPlayer(), FixedToString(1.68, c_fixedPrecisionAny));

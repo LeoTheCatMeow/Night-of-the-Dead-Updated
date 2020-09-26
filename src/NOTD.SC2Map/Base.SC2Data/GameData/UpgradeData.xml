@@ -198,6 +198,8 @@
         <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Ranged]" Value="-0.05"/>
         <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Spell]" Value="-0.05"/>
         <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Splash]" Value="-0.05"/>
+        <EffectArray Reference="Behavior,TimetoDie,Modification.ShieldArmorMultiplier" Value="1"/>
+        <EffectArray Reference="Behavior,TimetoDie,Modification.LifeArmorMultiplier" Value="1"/>
     </CUpgrade>
     <CUpgrade id="RiflemanGrenades">
         <Alert value=""/>

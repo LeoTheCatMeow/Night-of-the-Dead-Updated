@@ -2354,13 +2354,6 @@
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
         </Modification>
-        <DamageResponse>
-            <ClampMaximum value="0"/>
-            <Maximum value="0"/>
-            <ModifyFraction value="0"/>
-            <ModifyMinimumDamage value="1"/>
-            <Chance value="1"/>
-        </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
         <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
@@ -5970,7 +5963,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-hallucination-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
-        <DamageResponse ModifyFraction="0.85">
+        <DamageResponse ModifyFraction="0.8">
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>
@@ -6034,7 +6027,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-hallucination-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
-        <DamageResponse ModifyFraction="0.55">
+        <DamageResponse ModifyFraction="0.6">
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>

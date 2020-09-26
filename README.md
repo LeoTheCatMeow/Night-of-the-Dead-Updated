@@ -156,7 +156,6 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Credit rewards re-adjusted so that the total credits from all missions match the original NOTD. Slight shifts in payout are made as below:
   EC: 50 credits more than original EC  |  AC: 100 credits more than original AC  |  Sec: 150 credits less than original Sec;
 - MP9A2 Sub-machine gun damage lower from 14(+14 vs light) to 12(+12 vs light).
-- Forward Observer individual shell impact radius reverted to original (2 radius instead of 2.5). 
 - Forward Observer Shockwave & Napalm Barrage cooldown increased by 1.
 - Forward Observer Lunar Technologies lv2 no longer reduces Airstrike cooldown, still reduces energy cost and allows 2 charges.
 - Recon Laser Designator model reverted to the old model (laser drill lock-on).
@@ -193,7 +192,7 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Added to the tooltip of road flares specifying the real time duration (Dropship timer uses real time).
 - Master of the Universe rank may now be saved and loaded correctly.
 - Fixed Medals UI not working after player deaths.
-- Barrett M112 now pierces an additional 2 targets behind the initial target, dealing 75% damage, unaffected by splash mod.
+- Barrett M112 now pierces an additional 2 targets behind the initial target, unaffected by splash mod.
 - Weapon splash mod now correctly applies to L3 Grenade Launcher.
 - Assault - Defensive Plating armor value reverted to +2/3/4 and now offers -20%/-40%/-60% max ailment stacks instead of regen.
 - Assault - Charge now ignores Eos shriek while active.
