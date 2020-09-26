@@ -776,6 +776,8 @@ int gv_maxRandom;
 bool gv_outbreakActivated;
 bool gv_eliteMutationActivated;
 bool gv_realismActivated;
+bool gv_trainingActivated;
+int[10] gv_trainingShopPurchases;
 int[9] gv_marineMags;
 int gv_magazineAdjustment;
 int[9] gv_marineRounds;
@@ -1284,6 +1286,9 @@ void InitGlobals () {
         gv_spectatedLabel[init_i] = c_invalidDialogControlId;
     }
     gv_maxRandom = 8;
+    for (init_i = 0; init_i <= 9; init_i += 1) {
+        gv_trainingShopPurchases[init_i] = 3;
+    }
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_marineRounds[init_i] = 30;
     }
@@ -2006,6 +2011,7 @@ trigger gt_NightmareMode;
 trigger gt_OutbreakCommand;
 trigger gt_EliteMutationCommand;
 trigger gt_RealismCommand;
+trigger gt_TrainingCommand;
 trigger gt_SpectatorModeType;
 trigger gt_SpectatorModeClick;
 trigger gt_SpectatorModeOff;
@@ -2709,32 +2715,34 @@ bool auto_gf_Save_TriggerFunc (bool testConds, bool runActions) {
     }
 
     // Implementation
-    gf_SaveInitBoundaryCheck(lp_playerNo);
-    BankLoad("notdbank5", lp_playerNo);
-    lv_activeBank = BankLastCreated();
-    lv_iLocal = 1;
-    for ( ; ( (auto59F2B628_ai >= 0 && lv_iLocal <= auto59F2B628_ae) || (auto59F2B628_ai < 0 && lv_iLocal >= auto59F2B628_ae) ) ; lv_iLocal += auto59F2B628_ai ) {
-        lib1_gf_StarcodeStartCode();
-        auto11F381F4_ae = (20 * lv_iLocal);
-        auto11F381F4_var = (((lv_iLocal - 1) * 20) + 1);
-        for ( ; auto11F381F4_var <= auto11F381F4_ae; auto11F381F4_var += 1 ) {
-            lib1_gf_StarcodeStoreIntegerValue(gv_playerBankData[auto11F381F4_var][lp_playerNo], 1000000);
+    if ((gv_trainingActivated == false)) {
+        gf_SaveInitBoundaryCheck(lp_playerNo);
+        BankLoad("notdbank5", lp_playerNo);
+        lv_activeBank = BankLastCreated();
+        lv_iLocal = 1;
+        for ( ; ( (auto59F2B628_ai >= 0 && lv_iLocal <= auto59F2B628_ae) || (auto59F2B628_ai < 0 && lv_iLocal >= auto59F2B628_ae) ) ; lv_iLocal += auto59F2B628_ai ) {
+            lib1_gf_StarcodeStartCode();
+            auto11F381F4_ae = (20 * lv_iLocal);
+            auto11F381F4_var = (((lv_iLocal - 1) * 20) + 1);
+            for ( ; auto11F381F4_var <= auto11F381F4_ae; auto11F381F4_var += 1 ) {
+                lib1_gf_StarcodeStoreIntegerValue(gv_playerBankData[auto11F381F4_var][lp_playerNo], 1000000);
+            }
+            lv_tempString[lv_iLocal] = lib1_gf_StarcodeCompressString(lib1_gf_StarcodeGetCode());
+            lv_tempString[lv_iLocal] = lib1_gf_StarcodeEncryptString(lv_tempString[lv_iLocal], "XaviAbilityEarendil");
+            lv_tempString[lv_iLocal] = lib1_gf_StarcodeHashString(lv_tempString[lv_iLocal], 3);
+            BankValueSetFromString(BankLastCreated(), IntToString(lv_iLocal), IntToString(lv_iLocal), lv_tempString[lv_iLocal]);
+            Wait(0.05, c_timeGame);
         }
-        lv_tempString[lv_iLocal] = lib1_gf_StarcodeCompressString(lib1_gf_StarcodeGetCode());
-        lv_tempString[lv_iLocal] = lib1_gf_StarcodeEncryptString(lv_tempString[lv_iLocal], "XaviAbilityEarendil");
-        lv_tempString[lv_iLocal] = lib1_gf_StarcodeHashString(lv_tempString[lv_iLocal], 3);
-        BankValueSetFromString(BankLastCreated(), IntToString(lv_iLocal), IntToString(lv_iLocal), lv_tempString[lv_iLocal]);
-        Wait(0.05, c_timeGame);
+        BankSave(lv_activeBank);
+        Wait(1.0, c_timeGame);
+        BankLoad("NOTDBackup", lp_playerNo);
+        lv_activeBank = BankLastCreated();
+        auto1118FEEF_var = 1;
+        for ( ; auto1118FEEF_var <= auto1118FEEF_ae; auto1118FEEF_var += 1 ) {
+            BankValueSetFromString(BankLastCreated(), IntToString(auto1118FEEF_var), IntToString(auto1118FEEF_var), lv_tempString[auto1118FEEF_var]);
+        }
+        BankSave(lv_activeBank);
     }
-    BankSave(lv_activeBank);
-    Wait(1.0, c_timeGame);
-    BankLoad("NOTDBackup", lp_playerNo);
-    lv_activeBank = BankLastCreated();
-    auto1118FEEF_var = 1;
-    for ( ; auto1118FEEF_var <= auto1118FEEF_ae; auto1118FEEF_var += 1 ) {
-        BankValueSetFromString(BankLastCreated(), IntToString(auto1118FEEF_var), IntToString(auto1118FEEF_var), lv_tempString[auto1118FEEF_var]);
-    }
-    BankSave(lv_activeBank);
     return true;
 }
 
@@ -3269,6 +3277,7 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     TriggerEnable(gt_OutbreakCommand, false);
     TriggerEnable(gt_EliteMutationCommand, false);
     TriggerEnable(gt_RealismCommand, false);
+    TriggerEnable(gt_TrainingCommand, false);
     return true;
 }
 
@@ -6505,6 +6514,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     int lv_itemCost;
     string lv_item;
     unit lv_boughtItem;
+    bool lv_trainingPurchase;
 
     // Automatic Variable Declarations
     // Variable Initialization
@@ -6512,7 +6522,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     lv_itemID = lp_itemID;
 
     // Implementation
-    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noNewbie == true) && (gv_noShopMode == false)) || (lv_itemID > 58))) {
+    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noNewbie == true) && (gv_noShopMode == false)) || (lv_itemID > 58) || (gv_trainingActivated == true))) {
         lv_itemCost = UserDataGetInt("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopCost", 1);
         if ((lv_itemCost == -1)) {
             if ((gv_playerXP[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "XPRequirement", 1)) && (gv_playerKarma[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "KarmaRequirement", 1))) {
@@ -6529,15 +6539,32 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
             return ;
         }
         lv_item = UserDataGetGameLink("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopUnit", 1);
-        if ((gv_playerCredits[lv_buyingPlayer] >= lv_itemCost) && ((gv_navyCrossMode == false) || ((lv_item != "Medpack") && (lv_item != "Bandage")))) {
-            gf_UpdateCredits(lv_buyingPlayer, -lv_itemCost);
+        if ((gv_trainingActivated == true) && (gv_trainingShopPurchases[lp_player] > 0)) {
+            gv_trainingShopPurchases[lp_player] -= 1;
             lv_itemBought = true;
+            lv_trainingPurchase = true;
+        }
+        else {
+            if ((gv_playerCredits[lv_buyingPlayer] >= lv_itemCost) && ((gv_navyCrossMode == false) || ((lv_item != "Medpack") && (lv_item != "Bandage")))) {
+                gf_UpdateCredits(lv_buyingPlayer, -lv_itemCost);
+                lv_itemBought = true;
+            }
         }
     }
     if ((lv_itemBought == true)) {
         lv_boughtItem = gf_GiveMarineItem(lv_buyingPlayer, lv_item);
         UnitGroupAdd(gv_boughtItems[lv_buyingPlayer], lv_boughtItem);
-        gf_ShowCreditsLeft(lv_buyingPlayer);
+        if ((lv_trainingPurchase == true)) {
+            TextTagCreate((IntToText(gv_trainingShopPurchases[lp_player]) + StringExternal("Param/Value/3F1C4D5C")), 20, UnitGetPosition(gv_marineHero[lv_buyingPlayer]), 1.5, true, true, PlayerGroupActive());
+            TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(79.22, 58.43, 100.00));
+            TextTagAttachToUnit(TextTagLastCreated(), gv_marineHero[lv_buyingPlayer], 2.0);
+            TextTagSetVelocity(TextTagLastCreated(), 0.25, 90.0);
+            Wait(5.0, c_timeGame);
+            TextTagDestroy(TextTagLastCreated());
+        }
+        else {
+            gf_ShowCreditsLeft(lv_buyingPlayer);
+        }
     }
     else {
         TextTagCreate(StringExternal("Param/Value/DA82A504"), 20, UnitGetPosition(gv_marineHero[lv_buyingPlayer]), 1.5, true, true, PlayerGroupActive());
@@ -15694,6 +15721,10 @@ bool gt_ManualSave_Func (bool testConds, bool runActions) {
         if (!((gv_wave >= 1))) {
             return false;
         }
+
+        if (!((gv_trainingActivated == false))) {
+            return false;
+        }
     }
 
     // Actions
@@ -15725,6 +15756,13 @@ bool gt_AutoSave_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     playergroup auto2F1B28A9_g;
     int auto2F1B28A9_var;
+
+    // Conditions
+    if (testConds) {
+        if (!((gv_trainingActivated == false))) {
+            return false;
+        }
+    }
 
     // Actions
     if (!runActions) {
@@ -15880,6 +15918,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     TriggerEnable(gt_OutbreakCommand, true);
     TriggerEnable(gt_EliteMutationCommand, true);
     TriggerEnable(gt_RealismCommand, true);
+    TriggerEnable(gt_TrainingCommand, true);
     DialogCreate(66, 66, c_anchorBottom, -450, 230, true);
     gv_equipment = DialogLastCreated();
     DialogSetImageVisible(DialogLastCreated(), false);
@@ -17650,6 +17689,41 @@ void gt_RealismCommand_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Training Command
+//--------------------------------------------------------------------------------------------------
+bool gt_TrainingCommand_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((gv_totalPlayers <= 4)) {
+        gv_trainingActivated = true;
+        DialogControlSetVisible(gv_saveButton, PlayerGroupAll(), false);
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/7DCDCFAF") + IntToText(gv_trainingShopPurchases[1])));
+        SoundPlayForPlayer(SoundLink("UI_TechConsole_Purchase", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+        GameCheatAllow(c_gameCheatAny, true);
+        gv_noShopMode = false;
+    }
+    else {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/363FDC76"));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_TrainingCommand_Init () {
+    gt_TrainingCommand = TriggerCreate("gt_TrainingCommand_Func");
+    TriggerEnable(gt_TrainingCommand, false);
+    TriggerAddEventChatMessage(gt_TrainingCommand, 1, "-training", true);
+    TriggerAddEventChatMessage(gt_TrainingCommand, 1, "-train", true);
+    TriggerAddEventChatMessage(gt_TrainingCommand, 2, "-training", true);
+    TriggerAddEventChatMessage(gt_TrainingCommand, 2, "-train", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Spectator Mode - Type
 //--------------------------------------------------------------------------------------------------
 bool gt_SpectatorModeType_Func (bool testConds, bool runActions) {
@@ -18920,7 +18994,9 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     gf_Save(lv_pNumber, gv_bankSize);
     gf_HideAllDialogsForPlayer(lv_pNumber);
     gf_DeathDialogDestruction(lv_pNumber);
-    UIDisplayMessage(PlayerGroupSingle(lv_pNumber), c_messageAreaDebug, (StringExternal("Param/Value/C21BD67D") + (PlayerName(lv_pNumber) + StringExternal("Param/Value/DFDC255E"))));
+    if ((gv_trainingActivated == false)) {
+        UIDisplayMessage(PlayerGroupSingle(lv_pNumber), c_messageAreaDebug, (StringExternal("Param/Value/C21BD67D") + (PlayerName(lv_pNumber) + StringExternal("Param/Value/DFDC255E"))));
+    }
     if ((gv_playerXP[lv_pNumber] < 500)) {
         UIDisplayMessage(PlayerGroupSingle(UnitGetOwner(EventUnit())), c_messageAreaSubtitle, UserDataGetText("NewbieDeathTips", "Standard Death Tips", "Tips", RandomInt(1, 5)));
     }
@@ -44050,6 +44126,7 @@ void InitTriggers () {
     gt_OutbreakCommand_Init();
     gt_EliteMutationCommand_Init();
     gt_RealismCommand_Init();
+    gt_TrainingCommand_Init();
     gt_SpectatorModeType_Init();
     gt_SpectatorModeClick_Init();
     gt_SpectatorModeOff_Init();
