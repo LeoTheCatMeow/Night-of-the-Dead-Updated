@@ -12184,7 +12184,7 @@ int gf_GetPreviousNextLivingPlayer (int lp_currentPlayer, bool lp_isNext) {
     // Implementation
     if ((lp_isNext == true)) {
         lv_validPlayer += 1;
-        while ((lv_validPlayer != lp_currentPlayer) && ((PlayerStatus(lv_validPlayer) != c_playerStatusActive) || (gv_marineHero[lv_validPlayer] == null))) {
+        while ((gv_marineHero[lv_validPlayer] == null)) {
             if (lv_validPlayer >= gv_numberofPlayers) {
                 lv_validPlayer = 1;
             }
@@ -12195,7 +12195,7 @@ int gf_GetPreviousNextLivingPlayer (int lp_currentPlayer, bool lp_isNext) {
     }
     else {
         lv_validPlayer -= 1;
-        while ((lv_validPlayer != lp_currentPlayer) && ((PlayerStatus(lv_validPlayer) != c_playerStatusActive) || (gv_marineHero[lv_validPlayer] == null))) {
+        while ((gv_marineHero[lv_validPlayer] == null)) {
             if (lv_validPlayer <= 1) {
                 lv_validPlayer = gv_numberofPlayers;
             }
