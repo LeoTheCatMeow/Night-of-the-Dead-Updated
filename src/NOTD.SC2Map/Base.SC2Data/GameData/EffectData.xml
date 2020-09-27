@@ -301,7 +301,7 @@
         <SpawnUnit value="MissleRevealDummy"/>
     </CEffectCreateUnit>
     <CEffectApplyBehavior id="M5PulseRifleApplySlow">
-        <ValidatorArray index="0" value="TargetIsNotAlly"/>
+        <ValidatorArray index="0" removed="1"/>
         <EditorCategories value=""/>
         <Behavior value="M5PulseShock"/>
     </CEffectApplyBehavior>
