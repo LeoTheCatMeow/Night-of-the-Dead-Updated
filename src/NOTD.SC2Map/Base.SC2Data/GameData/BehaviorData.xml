@@ -284,6 +284,13 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="M5PulseShock">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\abilityicon_pulse_square.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.85" AttackSpeedMultiplier="0.85"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Scorching">
         <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units"/>

@@ -835,16 +835,20 @@
     </CWeaponLegacy>
     <CWeaponLegacy id="M5PulseRifle">
         <EditorCategories value="Race:Terran"/>
+        <Tip value="Button/Tooltip/M5PulseRifle"/>
         <Icon value="NOTD Generic Art\NOTD Pulse Rifle.dds"/>
         <TargetFilters value="Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="13"/>
         <Cost>
             <Cooldown Link="Weapon/C10CanisterRifle"/>
         </Cost>
-        <Period value="0.35"/>
+        <Period value="0"/>
         <DamagePoint value="0.083"/>
         <Backswing value="0.25"/>
-        <Tip value="Button/Tooltip/M5PulseRifle"/>
+        <Effect value="M5PulseRifleDamageSetNOTD"/>
+        <PostEffectBehavior Count="1"/>
+        <RandomDelayMin value="0.7875"/>
+        <RandomDelayMax value="0.975"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="UA420AssaultRifle">
         <EditorCategories value="Race:Terran"/>
