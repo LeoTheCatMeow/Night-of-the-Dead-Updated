@@ -271,6 +271,16 @@
         <AreaArray Radius="3" Effect="InfernoApplyChainTarget"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
     </CEffectEnumArea>
+    <CEffectSet id="M5PulseRifleDamageSetNOTD">
+        <EditorCategories value=""/>
+        <EffectArray value="M5PulseRifle"/>
+        <EffectArray value="M5PulseRifleSearchSlowNOTD"/>
+    </CEffectSet>
+    <CEffectEnumArea id="M5PulseRifleSearchSlowNOTD">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Massive,Heroic,Destructible,Item,Dead,Invulnerable"/>
+        <AreaArray Radius="4" Effect="M5PulseRifleApplySlow"/>
+    </CEffectEnumArea>
     <CEffectCreatePersistent id="NapalmFireHideBeforeDeath">
         <EditorCategories value=""/>
         <FinalEffect value="Suicide"/>
@@ -290,6 +300,11 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="MissleRevealDummy"/>
     </CEffectCreateUnit>
+    <CEffectApplyBehavior id="M5PulseRifleApplySlow">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Behavior value="M5PulseShock"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="Predator2">
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Armored" value="11"/>
@@ -7660,19 +7675,23 @@
     </CEffectDamage>
     <CEffectDamage id="M5PulseRifle" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
-        <AttributeBonus index="Light" value="7"/>
-        <AttributeBonus index="Psionic" value="7"/>
-        <AttributeBonus index="Heroic" value="7"/>
+        <AttributeBonus index="Light" value="18"/>
+        <AttributeBonus index="Psionic" value="18"/>
+        <AttributeBonus index="Heroic" value="18"/>
         <Kind value="Ranged"/>
-        <Amount value="13"/>
+        <Amount value="30"/>
         <AreaArray Radius="0.5" Fraction="1"/>
-        <AreaArray Radius="1" Fraction="0.5"/>
+        <AreaArray Radius="1.5" Fraction="0.5"/>
+        <AreaArray Radius="2.5" Fraction="0.25"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Invulnerable"/>
         <Death value="Blast"/>
         <ArmorReduction value="0.3"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="LeviathanAirAttackDamage">
         <Amount value="25"/>
