@@ -948,7 +948,7 @@ Behavior/Tooltip/LaserDesignatorLevel1=Unit's armor is reduced by 1.
 Behavior/Tooltip/LaserDesignatorLevel2=Unit's armor is reduced by 3.
 Behavior/Tooltip/LaserDesignatorLevel3=Unit's armor is reduced by 5.
 Behavior/Tooltip/LookTarget=Unit is stared upon and may be attacked by enemies.
-Behavior/Tooltip/M5PulseShock=Unit loses 30% attack and move speed for 2 seconds.
+Behavior/Tooltip/M5PulseShock=Unit loses 20% attack and move speed for 3 seconds.
 Behavior/Tooltip/MadSparkTaunted=Unit is distracted by Mad Spark.
 Behavior/Tooltip/Madness=You are badly affected by combat stress. +5% movespeed, +70% attack speed, -30% attack damage.<n/><n/>Nothing can cure you...or maybe a sudden shock will?
 Behavior/Tooltip/Magazine=Magazines provide rounds for your weapons.
@@ -1741,7 +1741,7 @@ Button/Tooltip/Look=Forces all enemies in 5 radius to stare at target. After 1 s
 Button/Tooltip/LtSheng=One of the surviving leaders of Apollo Security. He has seen too many good men die and is determined to keep his crew alive.<n/><n/>"Maybe, I'm dancing in the moonlight" - Lt. Sheng
 Button/Tooltip/M45AMarksmanRifle=<c val="FFFF00">M45A Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against Light units. The M45A is a modified variant for the Mobile Infantry.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">12</c><n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
 Button/Tooltip/M45MarksmanRifleMini=<c val="FFFF00">M45 Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against light units.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">50</c> (Requires <c val="FFFF00">500 XP</c> to purchase)<n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
-Button/Tooltip/M5PulseRifle=<c val="F2D737">M5 Pulse Rifle</c><n/>A mysterious weapon hidden deep within the lab of Apollo. Its real origin...?<n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Base Speed: <c val="FFFFFF">0.85</c><n/>Splash: <c val="FFFFFF">2.5</c><n/>Reload: <c val="FFFFFF">2.5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">8</c><n/>Adaptive: <c val="FFFFFF">0.3/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Splash</c><n/>Credits: <c val="FFFFFF">200</c><n/><c val="FF0000">Damage and speed modifiers suppressed.</c><n/><n/>"O shar'as shi'el... "
+Button/Tooltip/M5PulseRifle=<c val="F2D737">M5 Pulse Rifle</c><n/>A mysterious weapon hidden deep within the lab of Apollo. Its real origin...?<n/>Each shot <c val="FFFF00">slows</c> the attack and move speed of non-heroic targets by 20% for 3 seconds.<n/><c val="FFFF00">Has fixed damage and fire rate.<n/></c><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2</c><n/>Reload: <c val="FFFFFF">3.5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">8</c><n/>Adaptive: <c val="FFFFFF">0.3/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Splash</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"O shar'as shi'el... "
 Button/Tooltip/MP9A2SubMachineGun=<c val="F2D737">MP9A2 Sub-Machine Gun</c><n/>Excellent close quarter combat weapon when mobility is needed. Makes quick work of lightly armored units. Depletes ammo rapidly.<n/><n/>Base Range: <c val="FFFFFF">9</c><n/>Splash: <c val="FFFFFF">1.8</c><n/>Reload: <c val="FFFFFF">1.5 secs</c><n/>Equip: <c val="FFFFFF">0.7 secs</c><n/>Weight: <c val="FFFFFF">5<n/>Adaptive: <c val="FFFFFF">1.2/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/></c>Credits: <c val="FFFFFF">100</c><n/><n/>"My ancestor used one on Guadalcanal, I can see why."
 Button/Tooltip/MadSpark=Launches a high frequency decoy beacon at target area, distracting and enraging enemies in 5 radius. Lasts 3.5 seconds.
 Button/Tooltip/MadSparkGrenade=Ranged attacker.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
@@ -2442,7 +2442,7 @@ DocInfo/PatchNote443=- Nano-Health Augment health bonus is now divided into 2 st
 DocInfo/PatchNote444=- Minor modifications to Realism mode.
 DocInfo/PatchNote445=- Added a training mode that can be activated via typing "-train" or "-training", 4 or fewer players only.
 DocInfo/PatchNote446=  Can be used for solor practice & testing etc.
-DocInfo/PatchNote447=- Reworked M5 Pulse Rifle
+DocInfo/PatchNote447=- Reworked M5 Pulse Rifle, making it more suitable for support classes.
 DocInfo/PatchNote448= - Decreased attack speed from 0.35 seconds to 0.85 seconds, modification suppressed.
 DocInfo/PatchNote449= - Increased damage from 13 (+7 vs. light, psionic, heroic) to 30 (+18 vs light, psionic, heroic), modification suppressed.
 DocInfo/PatchNote450= - Increased splash radius from 1 to 2.5.

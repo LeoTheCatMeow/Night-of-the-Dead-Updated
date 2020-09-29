@@ -278,8 +278,8 @@
     </CEffectSet>
     <CEffectEnumArea id="M5PulseRifleSearchSlowNOTD">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Massive,Heroic,Destructible,Item,Dead,Invulnerable"/>
-        <AreaArray Radius="4" Effect="M5PulseRifleApplySlow"/>
+        <SearchFilters value="-;Player,Ally,Heroic,Destructible,Item,Dead,Invulnerable"/>
+        <AreaArray Radius="2" Effect="M5PulseRifleApplySlow"/>
     </CEffectEnumArea>
     <CEffectCreatePersistent id="NapalmFireHideBeforeDeath">
         <EditorCategories value=""/>
@@ -7675,14 +7675,13 @@
     </CEffectDamage>
     <CEffectDamage id="M5PulseRifle" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
-        <AttributeBonus index="Light" value="18"/>
-        <AttributeBonus index="Psionic" value="18"/>
-        <AttributeBonus index="Heroic" value="18"/>
+        <AttributeBonus index="Psionic" value="55"/>
+        <AttributeBonus index="Heroic" value="55"/>
         <Kind value="Ranged"/>
-        <Amount value="30"/>
-        <AreaArray Radius="0.5" Fraction="1"/>
-        <AreaArray Radius="1.5" Fraction="0.5"/>
-        <AreaArray Radius="2.5" Fraction="0.25"/>
+        <Amount value="55"/>
+        <AreaArray Radius="0.4" Fraction="1"/>
+        <AreaArray Radius="1.2" Fraction="0.5"/>
+        <AreaArray Radius="2" Fraction="0.25"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Invulnerable"/>
         <Death value="Blast"/>

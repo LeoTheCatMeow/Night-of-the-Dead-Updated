@@ -1139,12 +1139,14 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.300000"/>
     </CModel>
     <CModel id="M5PulseRifleAttackLaunch" parent="LaunchFX">
-        <Model value="Assets\Effects\Protoss\ScoutWeaponLaunch\ScoutWeaponLaunch.m3"/>
+        <Model value="Assets\Effects\Protoss\ShadowCannonLaunch\ShadowCannonLaunch.m3"/>
         <EditorCategories value="Race:Terran"/>
     </CModel>
     <CModel id="M5PulseRifleAttackImpact" parent="ImpactFX">
-        <Model value="Assets\Effects\Protoss\ScoutWeaponImpact\ScoutWeaponImpact.m3"/>
+        <Model value="Assets\Effects\Protoss\ShadowCannonImpact\ShadowCannonImpact.m3"/>
         <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
     </CModel>
     <CModel id="SpacePlatformCurtain">
         <AnimSpeed value="0.200000"/>

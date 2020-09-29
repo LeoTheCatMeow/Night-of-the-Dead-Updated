@@ -288,8 +288,10 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\abilityicon_pulse_square.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="2"/>
-        <Modification MoveSpeedMultiplier="0.85" AttackSpeedMultiplier="0.85"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.8" AttackSpeedMultiplier="0.8">
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="Scorching">
         <Alignment value="Positive"/>
