@@ -967,6 +967,12 @@
         <On Terms="Abil.HealMini.SourceCancel" Send="Destroy"/>
         <On Terms="Abil.heal.TargetChannelStop" Send="Destroy"/>
         <On Terms="Abil.HealMini.TargetChannelStop" Send="Destroy"/>
+        <On Terms="Abil.heal.TargetOff" Send="Destroy"/>
+        <On Terms="Abil.HealMini.TargetOff" Send="Destroy"/>
+        <On Terms="Abil.heal.TargetBailStop" Send="Destroy"/>
+        <On Terms="Abil.HealMini.TargetBailStop" Send="Destroy"/>
+        <On Terms="Abil.heal.TargetFinishStop" Send="Destroy"/>
+        <On Terms="Abil.HealMini.TargetFinishStop" Send="Destroy"/>
     </CActorSound>
     <CActorSound id="MenoetesCreation" parent="SoundOneShot">
         <EditorCategories value=""/>
@@ -9699,6 +9705,7 @@
     <CActorSplat id="PlasmaDetonatorIndicator" parent="TerranCursorSplat" abil="CounterMeasures">
         <On index="0" Terms="ActorOrphan" Send="Destroy"/>
         <On index="1" Terms="UnitBirth.PlasmaDetonator" Send="Create"/>
+        <On Terms="Effect.PlasmaDischargeExpireSuicidePersistent.Start" Send="Destroy"/>
         <On Terms="UnitDeath.PlasmaDetonator" Send="Destroy"/>
         <Scale value="4.000000"/>
     </CActorSplat>

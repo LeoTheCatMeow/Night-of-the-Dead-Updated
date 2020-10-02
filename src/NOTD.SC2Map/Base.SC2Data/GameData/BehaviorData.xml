@@ -96,12 +96,18 @@
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification>
             <DamageTakenFraction index="Spell" value="0.15"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.2"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" RegenModification="0.0117"/>
-        <Duration value="1000"/>
+        <VitalRegenVitalsRemain index="Life" RegenModification="0.004"/>
         <Period value="1"/>
+        <InitialEffect value="AtrociousApplyBonusRegen"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AtrociousBossBonusRegen">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterUnitnotStunned"/>
+        <VitalRegenVitalsRemain index="Life" RegenModification="0.0078"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousDebuff">
         <InfoFlags index="Hidden" value="1"/>
@@ -112,7 +118,11 @@
     <CBehaviorBuff id="HardenedBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="1.1">
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
+            <DamageDealtFraction index="Spell" value="0.1"/>
+            <DamageDealtFraction index="Melee" value="0.1"/>
+            <DamageDealtFraction index="Ranged" value="0.1"/>
+            <DamageDealtFraction index="Splash" value="0.1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.15"/>
         </Modification>
         <DamageResponse ModifyFraction="0.75">
             <RequireEffectArray value="GuassRifle"/>
@@ -278,7 +288,7 @@
             <DamageDealtFraction index="Ranged" value="0.3"/>
             <DamageDealtFraction index="Splash" value="0.3"/>
             <DamageTakenFraction index="Spell" value="0.15"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.3"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.35"/>
         </Modification>
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
@@ -375,7 +385,7 @@
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" RegenModification="0.0312"/>
+        <VitalRegenVitalsRemain index="Life" RegenModification="0.0351"/>
         <Period value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ScorchingBoss">
@@ -384,7 +394,7 @@
         <Period value="3"/>
         <PeriodicEffect value="ScorchingSearch"/>
         <Modification MoveSpeedMultiplier="1.1">
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.15"/>
         </Modification>
         <DamageResponse ModifyFraction="0.75">
             <RequireEffectArray value="ArmageddonDamage"/>
@@ -439,9 +449,7 @@
             <StateFlags index="Cloak" value="1"/>
             <StateFlags index="Benign" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
-            <DamageTakenFraction index="Spell" value="-0.1"/>
-            <DamageTakenFraction index="Splash" value="-0.1"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="-0.25"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="-0.15"/>
             <BehaviorLinkDisableArray value="TauntedLevel1"/>
             <BehaviorLinkDisableArray value="TauntedLevel2"/>
             <BehaviorLinkDisableArray value="TauntedLevel3"/>
@@ -5972,7 +5980,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-hallucination-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
-        <DamageResponse ModifyFraction="0.8">
+        <DamageResponse ModifyFraction="0.85">
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>
@@ -6036,7 +6044,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-hallucination-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
-        <DamageResponse ModifyFraction="0.6">
+        <DamageResponse ModifyFraction="0.55">
             <ExcludeEffectArray value="MindLinkDamage"/>
             <Chance value="1"/>
         </DamageResponse>

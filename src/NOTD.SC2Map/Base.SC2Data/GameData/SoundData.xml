@@ -2170,6 +2170,8 @@
         <AssetArray File="Assets\Sounds\Zerg\Roach\Roach_AttackImpactMelee3.wav" Volume="-10.290000,-10.290000" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Zerg\Roach\Roach_AttackImpactMelee4.wav" Volume="-10.290000,-10.290000" FacialGroup=""/>
         <Mode value="3DWorld"/>
+        <VolumeRolloffPoints Distance="10.000000"/>
+        <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
     </CSound>
     <CSound id="Emitter_HyperionBridgeRadioBanter02"/>
     <CSound id="FullMoonAcknowledgment">

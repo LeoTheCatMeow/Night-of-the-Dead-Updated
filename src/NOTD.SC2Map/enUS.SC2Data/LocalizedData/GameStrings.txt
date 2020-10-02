@@ -816,8 +816,8 @@ Behavior/Tooltip/AnticipationLevel2=Unit deals +30% extra damage when target is 
 Behavior/Tooltip/ArmageddonAfterShock=Unit is being damaged by the after shock of the Armageddon Charge.
 Behavior/Tooltip/ArmageddonSlow=Unit is slowed by 15% for 5 seconds. Stacks up to 3 times.
 Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
-Behavior/Tooltip/Atrocious=
-Behavior/Tooltip/AtrociousBoss=
+Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and 180% health. <n/>+15 flat and 3.5% missing health regeneration per second. <n/>+150% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by 30%. <n/><n/> 
+Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+20% health. <n/>+15 flat and 1.2% missing health regeneration per second. <n/>+15% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by 30%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/Backstab=Deals +50% damage when attacking targets from side or back<n/><n/>"Et Tu Brute" - Lujius Saecar
@@ -919,6 +919,8 @@ Behavior/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/><n/>Damage Mo
 Behavior/Tooltip/HEFRounds=The Black Dog is using HE-F (High Explosive - Fragmentation) Rounds. Deals damage in a 3 radius and causes the Open Wound effect on enemies. <n/><n/><c val="FF0000">WARNING: Can cause Open Wound on any direct target (including friendlies).
 Behavior/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/><n/>Damage Modifier: +12% damage.
 Behavior/Tooltip/HandgunExpertiseLevel2=The Pathfinder proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 2 - Increases range by 4, Damage by 6, and increases armor penetration by 0.35
+Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% damage and attack speed. <n/><c val="FFFF00">Unit becomes heroic. </c>
+Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+25% damage reduction against physical sources. <n/>+10% damage and attack speed. 
 Behavior/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
 Behavior/Tooltip/HeightenedSensesDebuff=Unit takes +25% damage for 15 seconds.
@@ -969,6 +971,8 @@ Behavior/Tooltip/MindMeld2=Unit is Mind Melded (controlled). +25 armor bonus and
 Behavior/Tooltip/MonofilamentCartridgeLevel1Stun=Stunned for 1 sec
 Behavior/Tooltip/MonofilamentCartridgeLevel2Stun=Stunned for 2 secs
 Behavior/Tooltip/MonofilamentCartridgeLevel3Stun=Stunned for 3 secs
+Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and 220% health. <n/>+100% damage but -50% attack speed. <n/>+150% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
+Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+35% health. <n/>+30% damage but -30% attack speed. <n/>+15% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
 Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Stacks up to 5 times.
 Behavior/Tooltip/MotionSensorArmorDebuff=Unit armor is reduced by 1.
 Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician and +1 HP regeneration to non-biological allies nearby Technician
@@ -1028,11 +1032,13 @@ Behavior/Tooltip/RighteousnessLevel2=+1 armor for each unit damaged by Smite. La
 Behavior/Tooltip/Safeguard=+1 Armor per stack
 Behavior/Tooltip/SapStun=Unit is stunned for 7 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SapStun2=Unit is stunned for 3 seconds. Stun breaks if unit is attacked.
-Behavior/Tooltip/Scorching=
-Behavior/Tooltip/ScorchingBoss=
+Behavior/Tooltip/Scorching=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for 10 damage every 3 seconds. <n/><c val="FFFF00">Unit becomes heroic.</c>
+Behavior/Tooltip/ScorchingBoss=Unit gains the following features:<n/>+15% health. <n/>+25% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for 10 damage every 3 seconds.
 Behavior/Tooltip/SelfDestructStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SensoryConfusionCloak=Unit is cloaked for 10 seconds.
 Behavior/Tooltip/ShadowPulse=+75% movespeed for 3 secs
+Behavior/Tooltip/Shadowed=Unit gains the following features:<n/>+25 flat and 25% health. <n/>Takes 50% less damage from splash. <n/>Permanently cloaked.<n/>No collision.<n/>Ignore taunt effects. <n/><c val="FFFF00">Requires manual aim to be targeted</c>.
+Behavior/Tooltip/ShadowedBoss=Unit gains the following features:<n/>-15% health. <n/>Permanently cloaked.<n/>No collision.<n/>Ignore taunt effects. <n/><c val="FFFF00">Requires manual aim to be targeted</c>.
 Behavior/Tooltip/ShadowstepLevel1=Marksman moves at +150% speed.
 Behavior/Tooltip/ShadowstepLevel2=Marksman moves at +300% speed.
 Behavior/Tooltip/ShellMode=Unit channels all energy into vital support systems. Gains +10 Armor, +2 HP regeneration and +0.5 energy regeneration. Attack speed reduced to 20%. 
@@ -2443,10 +2449,12 @@ DocInfo/PatchNote444=- Minor modifications to Realism mode.
 DocInfo/PatchNote445=- Added a training mode that can be activated via typing "-train" or "-training", 4 or fewer players only.
 DocInfo/PatchNote446=  Can be used for solor practice & testing etc.
 DocInfo/PatchNote447=- Reworked M5 Pulse Rifle, making it more suitable for support classes.
-DocInfo/PatchNote448= - Decreased attack speed from 0.35 seconds to 0.85 seconds, modification suppressed.
-DocInfo/PatchNote449= - Increased damage from 13 (+7 vs. light, psionic, heroic) to 30 (+18 vs light, psionic, heroic), modification suppressed.
-DocInfo/PatchNote450= - Increased splash radius from 1 to 2.5.
-DocInfo/PatchNote451= - Added apply slow attack and move speed by 15% to non-massive non-heroic targets in splash radius 4.
+DocInfo/PatchNote448=- Attempted to fix the following issues (may not be 100% fixed):
+DocInfo/PatchNote449=  Heal sound persisting after channeling stops.
+DocInfo/PatchNote450=  Crowbar sound having a global range.
+DocInfo/PatchNote451=  Engineer's Plasma Discharge AOE indicator persists after destruction.
+DocInfo/PatchNote452=- Atrocious elite mutation (fast regen) boss version can now be weakened with stuns. Limited duration removed.
+DocInfo/PatchNote453=- Added tooltips to all elite mutation behaviors.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2557,6 +2565,7 @@ Effect/Name/AssaultJumpImpactSetLevel3=Assault Jump Impact Set Level 3
 Effect/Name/AssaultJumpLaunchLevel1=Assault Jump Launch Level 1
 Effect/Name/AssaultJumpLaunchLevel2=Assault Jump Launch Level 2
 Effect/Name/AssaultJumpLaunchLevel3=Assault Jump Launch Level 3
+Effect/Name/AtrociousApplyBonusRegen=Atrocious Apply Bonus Regen
 Effect/Name/AtrociousApplyDebuff=Atrocious Apply Debuff
 Effect/Name/AtrociousDebuffSearch=Atrocious Debuff Search Area
 Effect/Name/BURNApplyLevel1=BURN! (Apply) Level 1

@@ -102,6 +102,10 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="NukeRevealDummy"/>
     </CEffectCreateUnit>
+    <CEffectApplyBehavior id="AtrociousApplyBonusRegen">
+        <EditorCategories value=""/>
+        <Behavior value="AtrociousBossBonusRegen"/>
+    </CEffectApplyBehavior>
     <CEffectSet id="DefensivePlatingRemoveAilmentSetLevel2">
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="DefensivePlatingRemoveVenomLevel2"/>
