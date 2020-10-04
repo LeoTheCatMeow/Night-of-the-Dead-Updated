@@ -2118,6 +2118,7 @@ trigger gt_ECOptionalCamMissionStart;
 trigger gt_OptionalSecurityCamerasCollection;
 trigger gt_OptionalSecurityCamerasMobs;
 trigger gt_ECW4AirlockRoadAmbush;
+trigger gt_ECEastSurprise;
 trigger gt_Boss1SpawnCinematic;
 trigger gt_Boss1AI;
 trigger gt_Boss1CarapaceHardens33;
@@ -24010,6 +24011,7 @@ bool gt_ECOptionalCamMissionStart_Func (bool testConds, bool runActions) {
         VisExploreArea(auto354E12D1_var, RegionFromId(31), true, false);
         VisExploreArea(auto354E12D1_var, RegionFromId(32), true, false);
     }
+    TriggerEnable(gt_ECEastSurprise, true);
     return true;
 }
 
@@ -24077,6 +24079,7 @@ bool gt_OptionalSecurityCamerasCollection_Func (bool testConds, bool runActions)
     else if ((gv_securityCam == 5)) {
         TriggerEnable(TriggerGetCurrent(), false);
         TriggerEnable(gt_OptionalSecurityCamerasMobs, false);
+        TriggerEnable(gt_ECEastSurprise, false);
         gf_RadioNOTD(PlayerName(UnitGetOwner(lv_localUnit)), StringExternal("Param/Value/4F6DA03D"));
         gf_UnifiedAwards(1, 0.0, 0, 0, 1);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/2B56DCCE"));
@@ -24257,6 +24260,95 @@ void gt_ECW4AirlockRoadAmbush_Init () {
     gt_ECW4AirlockRoadAmbush = TriggerCreate("gt_ECW4AirlockRoadAmbush_Func");
     TriggerEnable(gt_ECW4AirlockRoadAmbush, false);
     TriggerAddEventUnitRegion(gt_ECW4AirlockRoadAmbush, null, RegionFromId(13), true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: EC East Surprise
+//--------------------------------------------------------------------------------------------------
+bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_localUnitA;
+    unit lv_localUnitB;
+    unitgroup lv_localUnits;
+    point lv_localZergRushPoint;
+
+    // Automatic Variable Declarations
+    int auto1C3DE7AA_n;
+    int auto1C3DE7AA_i;
+    const int autoFCA09EC9_n = 10;
+    int autoFCA09EC9_i;
+
+    // Variable Initialization
+    lv_localUnitA = EventUnit();
+    lv_localUnits = UnitGroupEmpty();
+    lv_localZergRushPoint = RegionGetCenter(RegionFromId(44));
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGroupHasUnit(gv_marines, EventUnit()) == true))) {
+            return false;
+        }
+
+        if (!((RandomInt(0, 2) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    Wait(3.0, c_timeGame);
+    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(237), 0), c_unitCountAlive) == 0)) {
+        TriggerEnable(TriggerGetCurrent(), true);
+        return true;
+    }
+    RegionAttachToUnit(RegionFromId(44), lv_localUnitA, Point(0.0, 0.0));
+    libNtve_gf_UnitCreateFacingPoint(gv_spawnFactor, "UltraliskBurrowed", 0, 14, RegionRandomPoint(RegionFromId(150)), RegionRandomPoint(RegionFromId(150)));
+    UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+    UnitGroupAddUnitGroup(lv_localUnits, UnitLastCreatedGroup());
+    Wait(1.25, c_timeGame);
+    UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(RegionFromId(44))), c_orderQueueReplace);
+    if ((gv_noNewbie == true) && (UnitGroupCount(UnitGroup("Hugger", 14, RegionFromId(150), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+        libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(RegionFromId(44)), RegionRandomPoint(RegionFromId(44)));
+        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
+        lv_localUnitB = UnitLastCreated();
+        libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionGetCenter(RegionFromId(44)), RegionRandomPoint(RegionFromId(44)));
+        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+        UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+    }
+    auto1C3DE7AA_n = gv_spawnFactor;
+    for (auto1C3DE7AA_i = 1; auto1C3DE7AA_i <= auto1C3DE7AA_n; auto1C3DE7AA_i += 1) {
+        UnitIssueOrder(lv_localUnitB, OrderTargetingPoint(AbilityCommand("move", 1), RegionGetCenter(RegionFromId(44))), c_orderQueueReplace);
+        libNtve_gf_UnitCreateFacingPoint((gv_spawnFactor * 3), "ZerglingBurrowed", 0, 14, RegionRandomPoint(RegionFromId(44)), RegionRandomPoint(RegionFromId(44)));
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
+        UnitGroupAddUnitGroup(lv_localUnits, UnitLastCreatedGroup());
+        Wait(0.5, c_timeGame);
+        UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(RegionFromId(44))), c_orderQueueReplace);
+        libNtve_gf_UnitCreateFacingPoint(2, "UltraliskBurrowed", 0, 14, RegionRandomPoint(RegionFromId(44)), RegionRandomPoint(RegionFromId(44)));
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+        UnitGroupAddUnitGroup(lv_localUnits, UnitLastCreatedGroup());
+        Wait(1.25, c_timeGame);
+        UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(RegionFromId(44))), c_orderQueueReplace);
+    }
+    for (autoFCA09EC9_i = 1; autoFCA09EC9_i <= autoFCA09EC9_n; autoFCA09EC9_i += 1) {
+        UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(RegionFromId(44))), c_orderQueueReplace);
+        Wait(3.0, c_timeGame);
+    }
+    libNtve_gf_AddUnitGroupToUnitGroup(lv_localUnits, gv_zombieWave);
+    UnitIssueOrder(lv_localUnitB, OrderTargetingPoint(AbilityCommand("move", 1), RegionRandomPoint(RegionFromId(150))), c_orderQueueReplace);
+    RegionSetCenter(RegionFromId(44), lv_localZergRushPoint);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ECEastSurprise_Init () {
+    gt_ECEastSurprise = TriggerCreate("gt_ECEastSurprise_Func");
+    TriggerEnable(gt_ECEastSurprise, false);
+    TriggerAddEventUnitRegion(gt_ECEastSurprise, null, RegionFromId(237), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44233,6 +44325,7 @@ void InitTriggers () {
     gt_OptionalSecurityCamerasCollection_Init();
     gt_OptionalSecurityCamerasMobs_Init();
     gt_ECW4AirlockRoadAmbush_Init();
+    gt_ECEastSurprise_Init();
     gt_Boss1SpawnCinematic_Init();
     gt_Boss1AI_Init();
     gt_Boss1CarapaceHardens33_Init();
