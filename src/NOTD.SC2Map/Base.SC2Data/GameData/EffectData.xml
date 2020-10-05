@@ -106,6 +106,9 @@
         <EditorCategories value=""/>
         <Behavior value="AtrociousBossBonusRegen"/>
     </CEffectApplyBehavior>
+    <CEffectModifyUnit id="KittenSkin3">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
     <CEffectSet id="DefensivePlatingRemoveAilmentSetLevel2">
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="DefensivePlatingRemoveVenomLevel2"/>
@@ -142,6 +145,7 @@
     <CEffectDamage id="ArmorMeltDamage">
         <EditorCategories value=""/>
         <Death value="Fire"/>
+        <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectEnumArea id="AtrociousDebuffSearch">
         <EditorCategories value=""/>
@@ -275,6 +279,9 @@
         <AreaArray Radius="3" Effect="InfernoApplyChainTarget"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
     </CEffectEnumArea>
+    <CEffectModifyUnit id="KittenDefaultSkin">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
     <CEffectSet id="M5PulseRifleDamageSetNOTD">
         <EditorCategories value=""/>
         <EffectArray value="M5PulseRifle"/>
@@ -285,6 +292,9 @@
         <SearchFilters value="-;Player,Ally,Heroic,Destructible,Item,Dead,Invulnerable"/>
         <AreaArray Radius="2" Effect="M5PulseRifleApplySlow"/>
     </CEffectEnumArea>
+    <CEffectModifyUnit id="KittenSkin2">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
     <CEffectCreatePersistent id="NapalmFireHideBeforeDeath">
         <EditorCategories value=""/>
         <FinalEffect value="Suicide"/>
@@ -377,6 +387,11 @@
         <EditorCategories value="Race:Terran"/>
         <Amount value="30"/>
     </CEffectDamage>
+    <CEffectDamage id="RetributionFieldLevel12">
+        <ValidatorArray value="HasVeterancyLevel12"/>
+        <EditorCategories value="Race:Terran"/>
+        <Amount value="30"/>
+    </CEffectDamage>
     <CEffectEnumArea id="RetributionFieldSearch2">
         <EditorCategories value="Race:Terran"/>
         <ImpactLocation Value="SourceUnit"/>
@@ -392,7 +407,7 @@
     <CEffectDamage id="ScorchingDamage">
         <EditorCategories value=""/>
         <Type value="Fire"/>
-        <Amount value="10"/>
+        <Amount value="12"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="ScorchingSearch">
@@ -449,6 +464,9 @@
         <WhichUnit Effect="SprintSpeedIncrease"/>
         <Behavior value="Sprint2"/>
     </CEffectApplyBehavior>
+    <CEffectModifyUnit id="KittenSkin1">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
     <CEffectDamage id="TimedLifeFate">
         <Chance value="0"/>
         <Flags index="Kill" value="0"/>
@@ -7639,6 +7657,7 @@
     <CEffectDamage id="LongboltMissileU">
         <Amount value="35"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <ArmorReduction value="0.7"/>
     </CEffectDamage>
     <CEffectDamage id="MP9A2SubMachineGun" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
@@ -8362,6 +8381,7 @@
     </CEffectCreateHealer>
     <CEffectEnumArea id="RetributionFieldSearch">
         <AreaArray index="0" Radius="1.5"/>
+        <AreaArray Radius="2.5" Effect="RetributionFieldLevel12"/>
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Structure,Missile,Item,Stasis,Dead,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectCreatePersistent id="BurstFirePersistentLevel2">

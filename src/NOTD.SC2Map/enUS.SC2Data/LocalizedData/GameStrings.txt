@@ -816,7 +816,7 @@ Behavior/Tooltip/AnticipationLevel2=Unit deals +30% extra damage when target is 
 Behavior/Tooltip/ArmageddonAfterShock=Unit is being damaged by the after shock of the Armageddon Charge.
 Behavior/Tooltip/ArmageddonSlow=Unit is slowed by 15% for 5 seconds. Stacks up to 3 times.
 Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
-Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and 180% health. <n/>+15 flat and 3.5% missing health regeneration per second. <n/>+150% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by 30%. <n/><n/> 
+Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and 180% health. <n/>+15 flat and 3.5% missing health regeneration per second. <n/>+150% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><n/> 
 Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+20% health. <n/>+15 flat and 1.2% missing health regeneration per second. <n/>+15% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by 30%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
@@ -920,7 +920,7 @@ Behavior/Tooltip/HEFRounds=The Black Dog is using HE-F (High Explosive - Fragmen
 Behavior/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/><n/>Damage Modifier: +12% damage.
 Behavior/Tooltip/HandgunExpertiseLevel2=The Pathfinder proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 2 - Increases range by 4, Damage by 6, and increases armor penetration by 0.35
 Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% damage and attack speed. <n/><c val="FFFF00">Unit becomes heroic. </c>
-Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+25% damage reduction against physical sources. <n/>+10% damage and attack speed. 
+Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,HardenedBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against physical sources. <n/>+10% damage and attack speed. 
 Behavior/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
 Behavior/Tooltip/HeightenedSensesDebuff=Unit takes +25% damage for 15 seconds.
@@ -930,9 +930,9 @@ Behavior/Tooltip/IVAXCloak=Cloaked for 5 seconds
 Behavior/Tooltip/ImYourFatherLevel1=Provokes all enemies in 7 radius to attack demo for 4 seconds. Taunted units deal 15% less damage.
 Behavior/Tooltip/ImYourFatherLevel2=Provokes all enemies in 7 radius to attack demo for 6 sec. Taunted units deal 30% less damage.
 Behavior/Tooltip/ImYourFatherLevel3=Provokes all enemies in 7 radius to attack demo for 8 sec. Taunted units deal 45% less damage.
-Behavior/Tooltip/ImYourFatherTauntedLevel1=Provoked to attack Demolitions. -20% damage dealt.
+Behavior/Tooltip/ImYourFatherTauntedLevel1=Provoked to attack Demolitions. <d ref="Behavior,ImYourFatherTauntedLevel1,Modification.DamageDealtFraction[0] * 100"/>% damage dealt.
 Behavior/Tooltip/ImYourFatherTauntedLevel2=Provoked to attack Demolitions. -30% damage dealt.
-Behavior/Tooltip/ImYourFatherTauntedLevel3=Provoked to attack Demolitions. -40% damage dealt.
+Behavior/Tooltip/ImYourFatherTauntedLevel3=Provoked to attack Demolitions. <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage dealt.
 Behavior/Tooltip/ImprovedEquipment=+<d ref="100 * Behavior,ImprovedEquipment,Modification[0].VitalMaxFractionArray[Life]"/>% HP. +<d ref="100 * Behavior,ImprovedEquipment,Modification[0].DamageDealtFraction[Ranged]"/>% movespeed and damage.
 Behavior/Tooltip/ImprovedSprintLevel1=Increases movespeed by 70% for 5 seconds.
 Behavior/Tooltip/ImprovedSprintLevel2=Increases movespeed by 105% for 5 seconds.
@@ -971,8 +971,8 @@ Behavior/Tooltip/MindMeld2=Unit is Mind Melded (controlled). +25 armor bonus and
 Behavior/Tooltip/MonofilamentCartridgeLevel1Stun=Stunned for 1 sec
 Behavior/Tooltip/MonofilamentCartridgeLevel2Stun=Stunned for 2 secs
 Behavior/Tooltip/MonofilamentCartridgeLevel3Stun=Stunned for 3 secs
-Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and 220% health. <n/>+100% damage but -50% attack speed. <n/>+150% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
-Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+35% health. <n/>+30% damage but -30% attack speed. <n/>+15% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
+Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Monstrous,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+100% damage but -50% attack speed. <n/>+150% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
+Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+<d ref="Behavior,MonstrousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+30% damage but -30% attack speed. <n/>+15% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
 Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Stacks up to 5 times.
 Behavior/Tooltip/MotionSensorArmorDebuff=Unit armor is reduced by 1.
 Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician and +1 HP regeneration to non-biological allies nearby Technician
@@ -1032,8 +1032,8 @@ Behavior/Tooltip/RighteousnessLevel2=+1 armor for each unit damaged by Smite. La
 Behavior/Tooltip/Safeguard=+1 Armor per stack
 Behavior/Tooltip/SapStun=Unit is stunned for 7 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SapStun2=Unit is stunned for 3 seconds. Stun breaks if unit is attacked.
-Behavior/Tooltip/Scorching=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for 10 damage every 3 seconds. <n/><c val="FFFF00">Unit becomes heroic.</c>
-Behavior/Tooltip/ScorchingBoss=Unit gains the following features:<n/>+15% health. <n/>+25% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for 10 damage every 3 seconds.
+Behavior/Tooltip/Scorching=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for <d ref="Effect,ScorchingDamage,Amount"/> damage every <d ref="Behavior,Scorching,Period"/> seconds. <n/><c val="FFFF00">Unit becomes heroic.</c>
+Behavior/Tooltip/ScorchingBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,ScorchingBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for <d ref="Effect,ScorchingDamage,Amount"/> damage every <d ref="Behavior,ScorchingBoss,Period"/> seconds.
 Behavior/Tooltip/SelfDestructStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SensoryConfusionCloak=Unit is cloaked for 10 seconds.
 Behavior/Tooltip/ShadowPulse=+75% movespeed for 3 secs
@@ -1325,6 +1325,7 @@ Button/Name/Magazine=Magazine
 Button/Name/MaintenanceDrone=Maintenance Drone
 Button/Name/MarchoftheMachine=March of the Machines
 Button/Name/MarineActions=Marine Actions
+Button/Name/MarkofPredator=Mark of Predator
 Button/Name/MarksmanGear=Marksman Gear
 Button/Name/MassDesignate=Mass Designate
 Button/Name/MasterMarksman=Master Marksman
@@ -1758,6 +1759,7 @@ Button/Tooltip/MaintenanceDroneMK2=Technician releases a retooled aerial repair 
 Button/Tooltip/MaintenanceDroneMK3=Technician releases a retooled aerial repair drone to scout for him. Lasts 20 seconds.
 Button/Tooltip/MarchoftheMachine=Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out... Technician gains +300% armor & health and +100% damage. -25% attack speed and movespeed. Will attack allies if not managed. No effect on Shiva damage.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c>
 Button/Tooltip/MarineActions=Displays a list of Marine actions.
+Button/Tooltip/MarkofPredator=You have chosen to rise beyond death. You are a warrior in the truest sense.<n/><n/>Additional upgrades are unlocked as you level up:<n/>Lv2 - Ocular Implant upgrade<n/>Lv3 - Detection upgrade<n/>Lv4 - C2 Armor upgrade<n/>Lv5 - Backstab ability<n/>Lv6 - C4 Armor upgrade<n/>Lv7 - Pirahna Missiles<n/>Lv8 - C6 Armor upgrade<n/>Lv9 - Radar passive<n/>Lv10 - Blink ability<n/>Lv11 - Cloak Field passive<n/>Lv12 - Increased size and increased Lighting Field radius <n/><n/>Life, Shield, Energy, and Damage receive minor improvements with each level.
 Button/Tooltip/Marksman=The Marksman is a specialist at bringing down high-priority targets and long-range combat.
 Button/Tooltip/MarksmanGear=Switches to Marksman gear. Takes 3 seconds.
 Button/Tooltip/MassDesignate=The Recon casts the current level of Laser Designate on all units within an area of 3.5. Does not designate items.
@@ -1773,6 +1775,7 @@ Button/Tooltip/MindLink=Single Target. Allows you to share vision with up to 1 M
 Button/Tooltip/MindRavage=Deals 20 damage in 3 radius to target area. +300% damage to stunned units.
 Button/Tooltip/Minion=
 Button/Tooltip/Minion2=
+Button/Tooltip/MobileInfantry=1 Marine lands at target location to support you. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%.<n/><n/>Maximum of 1 Marine.
 Button/Tooltip/MobileInfantryFlamethrower=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/MobileInfantryMarksman=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/MobileInfantryRifleman=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
@@ -2455,6 +2458,19 @@ DocInfo/PatchNote450=  Crowbar sound having a global range.
 DocInfo/PatchNote451=  Engineer's Plasma Discharge AOE indicator persists after destruction.
 DocInfo/PatchNote452=- Atrocious elite mutation (fast regen) boss version can now be weakened with stuns. Limited duration removed.
 DocInfo/PatchNote453=- Added tooltips to all elite mutation behaviors.
+DocInfo/PatchNote454=- Refined some terrain pathing (Thunderazor).
+DocInfo/PatchNote455=- Added an old easter egg (Thunderazor). 
+DocInfo/PatchNote456=- Minor tooltip fixes (Leo).
+DocInfo/PatchNote457=- EC Nydus Worm pings now get destroyed if the Nydus Worm dies - to make kill tracking easier (Leo).
+DocInfo/PatchNote458=- Added kitten skins (Leo).
+DocInfo/PatchNote459=- Rifleman - Weapon Efficiency now increases both the duration and the cooldown of Focus Fire by 1 second (Leo).
+DocInfo/PatchNote460=- Some buffs to make pets' life better (Leo):
+DocInfo/PatchNote461=- Pets now gain minor unscaled damage bonus when leveling up. 
+DocInfo/PatchNote462=- Players with lv3 or higher Bronze Star medal now have their pets start at lv2.
+DocInfo/PatchNote463=- In addition to growing to EPIC proportions at lv12, pets also have their lightning field radius increased to match the lv12 visual. 
+DocInfo/PatchNote464=- Pirahna Missiles now have the same adaptive value (0.7) as Robotic Claws for the sake of consistency. (It used to be 1.0)
+DocInfo/PatchNote465=- Improved the backswing of Pirahna Missiles to match that of Robotic Claws (for easier infestor chase).
+DocInfo/PatchNote466=- Added a command card button specifying level up bonuses for pets.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -3278,7 +3294,11 @@ Effect/Name/KineticCatapultLaunchLevel1=Kinetic Catapult Launch Level 1
 Effect/Name/KineticCatapultLaunchLevel2=Kinetic Catapult Launch Level 2
 Effect/Name/KineticCatapultLevel1Damage=Kinetic Catapult Level 1 Damage
 Effect/Name/KineticCatapultLevel2Damage=Kinetic Catapult Level 2 Damage
+Effect/Name/KittenDefaultSkin=Kitten Default Skin
 Effect/Name/KittenSearchMove=Kitten Search Move
+Effect/Name/KittenSkin1=Kitten Skin 1
+Effect/Name/KittenSkin2=Kitten Skin 2
+Effect/Name/KittenSkin3=Kitten Skin 3
 Effect/Name/L3GrenadeCollisionSearch=L3 Grenade Collision Search
 Effect/Name/L3GrenadeExplosion=L3 Grenade Explosion
 Effect/Name/L3GrenadeExplosionAlly=L3 Grenade Explosion Ally
@@ -3714,6 +3734,7 @@ Effect/Name/RestorationSet=Restoration (Set)
 Effect/Name/RestoreArmor=Restore Armor
 Effect/Name/RestoreArmorPersistent=Restore Armor Persistent
 Effect/Name/RetributionFieldDamage2=Retribution Field Copy
+Effect/Name/RetributionFieldLevel12=Retribution Field Level 12
 Effect/Name/RetributionFieldSearch2=Retribution Field Copy
 Effect/Name/RetrieveMineRemove=Retrieve Mine Remove
 Effect/Name/RighteousnessApply=Righteousness (Apply)
@@ -4821,6 +4842,7 @@ Param/Value/56AE5BF6=</c>)
 Param/Value/56E0E208=Kill all zombies from Bio-Dome A
 Param/Value/571BB748=+2 XP for Performance Bonus
 Param/Value/575E2C34=Secure Security Cams (
+Param/Value/5844E5AF=Must have bought kittens
 Param/Value/586C0FCE=Open fire!
 Param/Value/58CFB917=<s val="HeaderExtendedTemplate">Medal of Honor</s>
 Param/Value/58DA23DB=
@@ -5810,7 +5832,7 @@ Race/Name/Zerg=Zombie
 RequirementNode/Tooltip/AllowAbil180611996TechTreeCheat=
 RequirementNode/Tooltip/Eq4239871994CountAbilOverdriveCompleteOnly2=Overdrive Talent learned
 RequirementNode/Tooltip/GTE840649728CountBehaviorBandageCarriedCompleteOnly1=Bandage in inventory
-RequirementNode/Tooltip/LT3507390604SumCountUnitMobileInfantryFlamethrowerCompleteOnlyCountUnitMobileInfantryMarksmanCompleteOnlyCountUnitMobileInfantryRiflemanCompleteOnlyCountAbilMobileInfantryCompleteOnlyAtUnit=Control less then 3 Mobile Infantry
+RequirementNode/Tooltip/LT3507390604SumCountUnitMobileInfantryFlamethrowerCompleteOnlyCountUnitMobileInfantryMarksmanCompleteOnlyCountUnitMobileInfantryRiflemanCompleteOnlyCountAbilMobileInfantryCompleteOnlyAtUnit=Control less than 3 Mobile Infantry
 Righteousness Level 2=+1 armor for each unit damaged by Smite. Lasts 16 seconds.<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."
 Saline IV Level 2=Level 2 - Heals 40 HP instantly. Also removes 1 stack of Venom.
 Saline IV Level 3=Level 3 - Heals 60 HP instantly. Remove 1 stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.
@@ -6624,6 +6646,10 @@ UserData/ShopItems/ShopItem5_ShopTooltip=Changes Marine color to <c val="331ac8"
 UserData/ShopItems/ShopItem60_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">75000</c><n/>Karma Requirement: <c val="FFFFFF">1800</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Recon, Flamethrower, Technician, Marksman, Demolitions, Pathfinder, Psi Ops, Commando.</c>
 UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">150000</c><n/>Karma Requirement: <c val="FFFFFF">1900</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Demolitions.</c>
 UserData/ShopItems/ShopItem62_ShopTooltip=Change back to the default skin.
+UserData/ShopItems/ShopItem63_ShopTooltip=When NOTD meets Among Us.<n/>Red sus btw.<n/><n/>Requirement: must have bought kittens.
+UserData/ShopItems/ShopItem64_ShopTooltip=Rip DSM.<n/><n/>Requirement: must have bought kittens.
+UserData/ShopItems/ShopItem65_ShopTooltip=Help... I'm hugged at comms.<n/><n/>Requirement: must have bough kittens
+UserData/ShopItems/ShopItem66_ShopTooltip=Revert to default kittens.
 UserData/ShopItems/ShopItem6_ShopTooltip=Changes Marine color to <c val="ebe129">Yellow</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem70_ShopTooltip=Rank icon of Marine replaced with Black Ops Insignia.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
 UserData/ShopItems/ShopItem7_ShopTooltip=Changes Marine color to <c val="fe8a0e">Orange</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
@@ -6786,7 +6812,7 @@ UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 3 seconds to arm. During the 3 seconds to arming, the charge sends tremors through the ground which reduces movement speed of all ground units within 5 radius by 15% per tremor. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><c val="FF0000"><n/>Limit of 3 Armageddon Charges at any given time. Can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Armor<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +4 and +15 Shields<n/><n/>"I'll cut you" - Yuki
-UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - -20% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage for 8 seconds
+UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - <d ref="Behavior,ImYourFatherTauntedLevel1,Modification.DamageDealtFraction[0] * 100"/>% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage for 8 seconds
 UserData/TalentTrees/Demolitions_Talent Tootips_007=<s val="AchievementFrameName">Look!</s><n/>Forces enemies in 5 radius to stare at target. After a short duration, 50% chance for affected units to attack target. <n/>Level 1 - 1 second<n/>Level 2 - 2 seconds<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_008=<s val="AchievementFrameName">Sadist<n/>(Passive)</s><n/>Level 1 - Restores 2 HP and 1 Shield for each kill<n/>Level 2 - Restores 4 HP and 2 Shields for each kill<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_009=<s val="AchievementFrameName">Time to Die</s><n/>Demo is highly resistant to most damage for 10 seconds and gains an <d ref="Behavior,TimetoDie,Modification.ShieldArmorMultiplier"/>x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 sec interval.<n/><n/>"All those moments will be lost in time... like tears in rain... Time to die. "<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
@@ -6890,7 +6916,7 @@ UserData/TalentTrees/Rifleman_Headers=<s val="HelpPanelListBoxItemTitle">Combat<
 UserData/TalentTrees/Rifleman_Headers_001=<s val="HelpPanelListBoxItemTitle">Survival</s>
 UserData/TalentTrees/Rifleman_Talent Tootips=<s val="AchievementFrameName">Critical Strike <n/>(Passive)</s><n/>Level 1 - 10% chance to deal 2x damage<n/>Level 2 - 20% chance to deal 2x damage<n/>Level 3 - 30% chance to deal 2x damage<n/><n/>"My axe just goes Crit!" - Yohan, Ilterendi
 UserData/TalentTrees/Rifleman_Talent Tootips_001=<s val="AchievementFrameName">Fire Up (Passive)</s><n/>The Rifleman gets fired up, upgrading Focus Fire and applying bonuses to Grenades while under the effect of Focus Fire. Each level increases the energy cost of Focus Fire by 1.<n/>Level 1 - +<d ref="3 * 1" precision ="2"/>% damage and +<d ref="15 * 1" precision ="2"/>% attack speed. Increases radius of Grenade by <d ref="0.5 * 1" precision ="2"/><n/>Level 2 - +<d ref="3 * 2" precision ="2"/>% damage and +<d ref="15 * 2" precision ="2"/>% attack speed. Increases radius of Grenade by <d ref="0.5 * 2" precision ="2"/><n/>Level 3 - +<d ref="3 * 3" precision ="2"/>% damage and +<d ref="15 * 3" precision ="2"/>% attack speed. Increases radius of Grenade by <d ref="0.5 * 3" precision ="2"/><n/><n/>"Good aim is over-rated" - Private Brandon
-UserData/TalentTrees/Rifleman_Talent Tootips_002=<s val="AchievementFrameName">Weapons Proficiency<n/>(Passive)</s><n/>Reload time reduced<n/>Level 1 - 17.5% reduced reload time. Focus Fire duration increased by 1 second.<n/>Level 2 - 35% reduced reload time. Focus Fire duration increased by 2 seconds.<n/><n/>"It's how you use it that matters" - Dr. Ng<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Rifleman_Talent Tootips_002=<s val="AchievementFrameName">Weapons Proficiency<n/>(Passive)</s><n/>Reload time reduced<n/>Level 1 - 17.5% reduced reload time. Focus Fire duration and cooldown increased by 1 second.<n/>Level 2 - 35% reduced reload time. Focus Fire duration and cooldown increased by 2 seconds.<n/><n/>"It's how you use it that matters" - Dr. Ng<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_003=<s val="AchievementFrameName">XM-35 Grenade Launcher</s><n/>Deals damage in 3 radius. Deals +33% damage vs Light.  Gains larger AoE while Focus Fire is active.<n/>Level 1 - 75 damage.  Gains 3 damage per level of the Rifleman.<n/>Level 2 - 150 damage.  Gains 6 damage per level of the Rifleman.<n/><n/>"When the pin is pulled, Mr. Grenade is not our friend." - UGC Marine Corps<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_004=<s val="AchievementFrameName">Bloodlust</s><n/>The carnage the Rifleman unleashes triggers a martial trance, sending him into a state of heightened reflexes and combat fervor, granting him +50% attack speed and damage for 10 seconds. Reduces base armor to 0 during Bloodlust.<n/><n/>"Today is a good day for someone else to die." - Kogan the Butcher<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_005=<s val="AchievementFrameName">Saline IV</s><n/>Heals Rifleman instantly. Each level reduces cooldown and energy cost slightly.<n/>Level 1 - 20 HP<n/>Level 2 - 40 HP. Removes 1 Stack of Venom.<n/>Level 3 - 60 HP. Removes 1 Stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.<n/><n/>"I laugh in the face of danger" - Sgt. Zohar

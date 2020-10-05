@@ -485,7 +485,7 @@ const int gv_c_PINGMAXCOUNT = 3;
 const fixed gv_c_PINGRESETTIME = 2.0;
 const fixed gv_c_PINGSUPPRESSIONTIME = 0.25;
 const fixed gv_c_PINGLOCKOUTTIME = 5.0;
-const int gv_numberOfShopOptions = 62;
+const int gv_numberOfShopOptions = 66;
 const string gv_bossFightStart = "StartBossFight";
 const string gv_bossFightEnd = "EndBossFight";
 const string gv_bossUnit = "Boss";
@@ -862,6 +862,8 @@ bool gv_nydusFailed;
 unitgroup gv_nydusWormGroup;
 unitgroup gv_nydusWormAgronGroup;
 unitgroup gv_nydusWormSpineGroup;
+int[5] gv_nydusPings;
+bool gv_nydusFirstBlood;
 int gv_powerGenerators;
 unit[5] gv_bioDome;
 region[11] gv_cityRescue;
@@ -1333,6 +1335,9 @@ void InitGlobals () {
     gv_nydusWormGroup = UnitGroupEmpty();
     gv_nydusWormAgronGroup = UnitGroupEmpty();
     gv_nydusWormSpineGroup = UnitGroupEmpty();
+    for (init_i = 0; init_i <= 4; init_i += 1) {
+        gv_nydusPings[init_i] = c_invalidPingId;
+    }
     gv_apolloCivs = UnitGroupEmpty();
     gv_civRescueObjective = c_invalidObjectiveId;
     gv_civRescueBatchObjective = c_invalidObjectiveId;
@@ -2150,7 +2155,7 @@ trigger gt_Boss3AI;
 trigger gt_Boss3Killed;
 trigger gt_Wave7DropshipEVACRecruit;
 trigger gt_Wave7DropshipEVACVeteran;
-trigger gt_ECNydusFirstBlood;
+trigger gt_ECNydusKills;
 trigger gt_OptionalParrotKill;
 trigger gt_OptionalEnterLabChapter1DrBergmann;
 trigger gt_Chapter2Initialize;
@@ -5657,7 +5662,12 @@ void gf_CreatePredator (int lp_player, point lp_creationLocation) {
     UnitGroupSelect(UnitLastCreatedGroup(), lp_player, true);
     UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
     libNtve_gf_MakeUnitInvulnerable(gv_playerPet[lp_player], true);
-    UnitSetPropertyFixed(gv_playerPet[lp_player], c_unitPropLevel, 1.0);
+    if ((gv_bronzeStar[lp_player] >= 3)) {
+        UnitSetPropertyFixed(gv_playerPet[lp_player], c_unitPropLevel, 2.0);
+    }
+    else {
+        UnitSetPropertyFixed(gv_playerPet[lp_player], c_unitPropLevel, 1.0);
+    }
     UnitGroupAdd(gv_pets, gv_playerPet[lp_player]);
     libNtve_gf_SetDialogItemImage(gv_teamStatusPortraitButton[lp_player], UserDataGetImagePath("CustomPetImages", "Pet Images", "Pet Image", (ModI(gv_playerPetCode[lp_player], 100) + 1)), PlayerGroupAll());
     libNtve_gf_SetDialogItemBlendMode(gv_teamStatusPortraitButton[lp_player], c_triggerBlendModeNormal, PlayerGroupAll());
@@ -6518,6 +6528,10 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     bool lv_trainingPurchase;
 
     // Automatic Variable Declarations
+    unitgroup autoF88F1492_g;
+    int autoF88F1492_u;
+    unit autoF88F1492_var;
+
     // Variable Initialization
     lv_buyingPlayer = lp_player;
     lv_itemID = lp_itemID;
@@ -6531,6 +6545,26 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
             }
             else {
                 TextTagCreate(StringExternal("Param/Value/AD36FA0F"), 20, UnitGetPosition(gv_marineHero[lv_buyingPlayer]), 1.5, true, true, PlayerGroupActive());
+                TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(79.22, 58.43, 100.00));
+                TextTagAttachToUnit(TextTagLastCreated(), gv_marineHero[lv_buyingPlayer], 2.0);
+                TextTagSetVelocity(TextTagLastCreated(), 0.25, 90.0);
+                Wait(5.0, c_timeGame);
+                TextTagDestroy(TextTagLastCreated());
+            }
+            return ;
+        }
+        if ((lv_itemCost == -2)) {
+            if ((gv_kittens[lp_player] != UnitGroupEmpty())) {
+                autoF88F1492_g = gv_kittens[lp_player];
+                autoF88F1492_u = UnitGroupCount(autoF88F1492_g, c_unitCountAll);
+                for (;; autoF88F1492_u -= 1) {
+                    autoF88F1492_var = UnitGroupUnitFromEnd(autoF88F1492_g, autoF88F1492_u);
+                    if (autoF88F1492_var == null) { break; }
+                    PlayerCreateEffectUnit(lp_player, UserDataGetGameLink("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "Skin (Effect)", 1), autoF88F1492_var);
+                }
+            }
+            else {
+                TextTagCreate(StringExternal("Param/Value/5844E5AF"), 20, UnitGetPosition(gv_marineHero[lv_buyingPlayer]), 1.5, true, true, PlayerGroupActive());
                 TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(79.22, 58.43, 100.00));
                 TextTagAttachToUnit(TextTagLastCreated(), gv_marineHero[lv_buyingPlayer], 2.0);
                 TextTagSetVelocity(TextTagLastCreated(), 0.25, 90.0);
@@ -9720,6 +9754,7 @@ bool auto_gf_ECNydusSpawn_TriggerFunc (bool testConds, bool runActions) {
         UnitGroupAdd(gv_nydusWormAgronGroup, UnitLastCreated());
         AIAttackWaveAddEscortUnit(14, UnitLastCreated(), lv_lastcreatedworm, 3.0, 270.0);
         PingCreate(PlayerGroupActive(), "PingObjective", RegionGetCenter(gv_nydusNetwork[lv_nydusSpawnAreas[lv_localIntA]]), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 300.0);
+        gv_nydusPings[lv_localIntA] = PingLastCreated();
         Wait(0.1, c_timeGame);
         lv_localIntA += 1;
     }
@@ -9802,7 +9837,7 @@ bool auto_gf_ECNydusMobs_TriggerFunc (bool testConds, bool runActions) {
     }
     else {
         gf_AwardRatingNOTD(-2);
-        TriggerEnable(gt_ECNydusFirstBlood, false);
+        TriggerEnable(gt_ECNydusKills, false);
         auto6779876B_g = gv_nydusWormGroup;
         auto6779876B_u = UnitGroupCount(auto6779876B_g, c_unitCountAll);
         for (;; auto6779876B_u -= 1) {
@@ -26809,7 +26844,7 @@ bool gt_Boss2Killed_Func (bool testConds, bool runActions) {
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/60438EA0"));
     Wait(5.0, c_timeReal);
     UnitIssueOrder(gv_erebos2, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionPlayableMap())), c_orderQueueReplace);
-    TriggerEnable(gt_ECNydusFirstBlood, true);
+    TriggerEnable(gt_ECNydusKills, true);
     gv_wave = 7;
     if ((gv_noNewbie == true)) {
         gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/1DB5DCFB"));
@@ -27216,10 +27251,13 @@ void gt_Wave7DropshipEVACVeteran_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: EC Nydus First Blood
+// Trigger: EC Nydus Kills
 //--------------------------------------------------------------------------------------------------
-bool gt_ECNydusFirstBlood_Func (bool testConds, bool runActions) {
+bool gt_ECNydusKills_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    const int autoF5BA4C6E_ae = 4;
+    int autoF5BA4C6E_var;
+
     // Conditions
     if (testConds) {
         if (!((UnitGetType(EventUnit()) == "NydusCanal"))) {
@@ -27232,16 +27270,29 @@ bool gt_ECNydusFirstBlood_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    TriggerEnable(TriggerGetCurrent(), false);
-    SoundPlay(SoundLink("TTychus03Raynor00011", -1), PlayerGroupAll(), 300.0, 0.0);
+    autoF5BA4C6E_var = 1;
+    for ( ; autoF5BA4C6E_var <= autoF5BA4C6E_ae; autoF5BA4C6E_var += 1 ) {
+        if ((gv_nydusPings[autoF5BA4C6E_var] != c_invalidPingId) && (DistanceBetweenPoints(UnitGetPosition(EventUnit()), PingGetPosition(gv_nydusPings[autoF5BA4C6E_var])) < 1.0)) {
+            PingDestroy(gv_nydusPings[autoF5BA4C6E_var]);
+            gv_nydusPings[autoF5BA4C6E_var] = c_invalidPingId;
+            if ((gv_nydusFirstBlood == false)) {
+                gv_nydusFirstBlood = true;
+                SoundPlay(SoundLink("TTychus03Raynor00011", -1), PlayerGroupAll(), 300.0, 0.0);
+            }
+            break;
+        }
+    }
+    if ((gv_nydusFirstBlood == true) && (UnitGroupCount(gv_nydusWormGroup, c_unitCountAlive) == 0)) {
+        TriggerEnable(TriggerGetCurrent(), false);
+    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_ECNydusFirstBlood_Init () {
-    gt_ECNydusFirstBlood = TriggerCreate("gt_ECNydusFirstBlood_Func");
-    TriggerEnable(gt_ECNydusFirstBlood, false);
-    TriggerAddEventUnitDied(gt_ECNydusFirstBlood, null);
+void gt_ECNydusKills_Init () {
+    gt_ECNydusKills = TriggerCreate("gt_ECNydusKills_Func");
+    TriggerEnable(gt_ECNydusKills, false);
+    TriggerAddEventUnitDied(gt_ECNydusKills, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44357,7 +44408,7 @@ void InitTriggers () {
     gt_Boss3Killed_Init();
     gt_Wave7DropshipEVACRecruit_Init();
     gt_Wave7DropshipEVACVeteran_Init();
-    gt_ECNydusFirstBlood_Init();
+    gt_ECNydusKills_Init();
     gt_OptionalParrotKill_Init();
     gt_OptionalEnterLabChapter1DrBergmann_Init();
     gt_Chapter2Initialize_Init();

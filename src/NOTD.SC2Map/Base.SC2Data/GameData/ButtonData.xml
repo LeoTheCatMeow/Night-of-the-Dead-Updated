@@ -89,6 +89,9 @@
         <TintRacially value="1"/>
         <Universal value="1"/>
     </CButton>
+    <CButton id="MarkofPredator">
+        <Icon value="Assets\Textures\btn-ability-zeratul-topbar-selectability.dds"/>
+    </CButton>
     <CButton id="QuickUse">
         <Icon value="Assets\Textures\ui_btn_aicommand_commandcard_customability.dds"/>
     </CButton>
@@ -611,6 +614,10 @@
         <Icon value="Assets/Textures/btn-unit-terran-ares.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="ZeratulBlink">
+        <Icon value="Assets\Textures\btn-ability-protoss-shadowdash.dds"/>
+        <TintRacially value="0"/>
     </CButton>
     <CButton id="ZeratulBlink2">
         <Icon value="Assets\Textures\btn-ability-protoss-blink-zeratul.dds"/>
@@ -1275,7 +1282,7 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="Stealth2">
-        <Icon value="Assets\Textures\btn-research-zerg-predator.dds"/>
+        <Icon value="Assets\Textures\btn-ability-mengsk-medivac-permanentcloak.dds"/>
         <HidesForSimpleText value="0"/>
         <HotkeyAlias value=""/>
     </CButton>

@@ -43,6 +43,26 @@
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
+        <Instances Id="ShopItem63">
+            <GameLink GameLink="KittenSkin1">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="ShopItem64">
+            <GameLink GameLink="KittenSkin2">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="ShopItem65">
+            <GameLink GameLink="KittenSkin3">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="ShopItem66">
+            <GameLink GameLink="KittenDefaultSkin">
+                <Field Id="Skin (Effect)"/>
+            </GameLink>
+        </Instances>
     </CUser>
     <CUser id="CustomNames">
         <Fields Id="Class" Type="Unit" EditorColumn="5"/>
@@ -3462,6 +3482,74 @@
                 <Field Id="Type"/>
             </String>
             <Text Text="UserData/ShopItems/ShopItem62_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem63">
+            <Image Image="Assets\Textures\btn-unit-terran-marine-silver.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-2">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="&lt;c val=&quot;80FF80&quot;&gt;Mini-marine Kittens&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem63_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem64">
+            <Image Image="Assets\Textures\btn-unit-zerg-baneling.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-2">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="&lt;c val=&quot;80FF80&quot;&gt;Baneling Kittens&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem64_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem65">
+            <Image Image="Assets\Textures\btn-unit-zerg-infestor-mecha.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-2">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="&lt;c val=&quot;80FF80&quot;&gt;Mecha-hugger Kittens&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem65_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem66">
+            <Image Image="Assets\Textures\btn-unit-terran-predator.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="-2">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="Default Kittens">
+                <Field Id="Name"/>
+            </String>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem66_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>

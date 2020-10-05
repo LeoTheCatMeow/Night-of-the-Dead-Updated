@@ -199,3 +199,33 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Assault - Cohersion Aura now grants +0.4 health regen to affected units.
 - Slightly improved Assault's base life and energy regen.
 - Nano-Health Augment health bonus is now divided into 2 stacks (need 2nha to reach the same health bonus).
+
+9.26.2020
+- Minor UI fixes.
+- Minor modifications to Realism mode.
+- Added a training mode that can be activated via typing "-train" or "-training", 4 or fewer players only.
+  Can be used for solor practice & testing etc.
+- Reworked M5 Pulse Rifle, making it more suitable for support classes.
+
+10.1.2020
+- Attempted to fix the following issues (may not be 100% fixed):
+  Heal sound persisting after channeling stops.
+  Crowbar sound having a global range.
+  Engineer's Plasma Discharge AOE indicator persists after destruction.
+- Atrocious elite mutation (fast regen) boss version can now be weakened with stuns. Limited duration removed.
+- Added tooltips to all elite mutation behaviors.
+
+10.4.2020
+- Refined some terrain pathing (Thunderazor).
+- Added an old easter egg (Thunderazor). 
+- Minor tooltip fixes (Leo).
+- EC Nydus Worm pings now get destroyed if the Nydus Worm dies - to make kill tracking easier (Leo).
+- Added kitten skins (Leo).
+- Rifleman - Weapon Efficiency now increases both the duration and the cooldown of Focus Fire by 1 second (Leo).
+- Some buffs to make pets' life better (Leo):
+- Pets now gain minor unscaled damage bonus when leveling up. 
+- Players with lv3 or higher Bronze Star medal now have their pets start at lv2.
+- In addition to growing to EPIC proportions at lv12, pets also have their lightning field radius increased to match the lv12 visual. 
+- Pirahna Missiles now have the same adaptive value (0.7) as Robotic Claws for the sake of consistency. (It used to be 1.0)
+- Improved the backswing of Pirahna Missiles to match that of Robotic Claws (for easier infestor chase).
+- Added a command card button specifying level up bonuses for pets.

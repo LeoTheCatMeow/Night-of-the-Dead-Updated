@@ -169,6 +169,13 @@
         <Compare value="GT"/>
         <Behavior value="Madness"/>
     </CValidatorUnitCompareBehaviorCount>
+    <!--game considers lv12 as lv13, thus needs greater than-->
+    <CValidatorUnitCompareVeterancyLevel id="HasVeterancyLevel12">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Value value="12"/>
+        <Behavior value="PetVeterancy"/>
+    </CValidatorUnitCompareVeterancyLevel>
     <CValidatorPlayerRequirement id="IsNotRealism">
         <Value value="HasRealismUpgrade"/>
     </CValidatorPlayerRequirement>

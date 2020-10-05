@@ -8879,6 +8879,10 @@
     </CActorUnit>
     <CActorUnit id="Kitten" parent="GenericUnitCritter" unitName="Kitten">
         <On Terms="Effect.Suicide.Start" Send="Create CritterExplosion"/>
+        <On Terms="Effect.KittenSkin1.Start" Send="ModelSwap KittenSkin1"/>
+        <On Terms="Effect.KittenSkin2.Start" Send="ModelSwap KittenSkin2"/>
+        <On Terms="Effect.KittenSkin3.Start" Send="ModelSwap KittenSkin3"/>
+        <On Terms="Effect.KittenDefaultSkin.Start" Send="ModelSwap Predator"/>
         <Model value="Predator"/>
         <Scale value="0.350000"/>
         <BuildModel value="Predator"/>

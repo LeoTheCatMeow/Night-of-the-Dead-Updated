@@ -2,7 +2,6 @@
 <Catalog>
     <CRequirementConst id="0TechTreeCheat">
         <Flags index="TechTreeCheat" value="1"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
     </CRequirementConst>
     <CRequirementAllowAbil id="AllowAbil180611996TechTreeCheat">
         <Flags index="TechTreeCheat" value="1"/>
@@ -309,7 +308,6 @@
         <Count Link="FireUp" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeRealismCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="Realism" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementEq id="Eq4239871994CountAbilOverdriveCompleteOnly2">
@@ -808,7 +806,6 @@
     </CRequirementGTE>
     <CRequirementGT id="GTTechTreeCheatCountUpgradeRealismCompleteOnlyTechTreeCheat0TechTreeCheat">
         <Flags index="TechTreeCheat" value="1"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeRealismCompleteOnlyTechTreeCheat"/>
         <OperandArray index="1" value="0TechTreeCheat"/>
     </CRequirementGT>
