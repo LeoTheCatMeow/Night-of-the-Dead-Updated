@@ -155,6 +155,22 @@
         <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
     </CActorModel>
     <CActorMissile id="AcidMissile" parent="GenericAttackMissile" unitName="AcidMissile"/>
+    <CActorModel id="Acidic" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Acidic.On" Send="Create"/>
+        <On Terms="Behavior.Acidic.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor {238,255,221 2.000000}"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 0,202,0 0,206,0"/>
+        <On Terms="Behavior.AcidicBoss.On" Send="Create"/>
+        <On Terms="Behavior.AcidicBoss.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="1.300000"/>
+    </CActorModel>
+    <CActorUnit id="AcidicDeathPuddle" parent="GenericUnitStandard" unitName="AcidCloud">
+        <EditorCategories value=""/>
+        <Model value="AcidicDeathPuddle"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+    </CActorUnit>
     <CActorDoodad id="Antenna"/>
     <CActorSound id="AntiVenomSound" parent="SoundOneShot">
         <Flags index="SuppressSaveLoad" value="0"/>
@@ -169,6 +185,26 @@
         <On Terms="Effect.ApoptosisBloodWave.Start; PassChance 10.000000" Send="Create"/>
         <Sound value="Mutalisk_Attack"/>
     </CActorSound>
+    <CActorAction id="HardenedEnergySpark" parent="GenericAttack" effectAttack="HardenedEnergySparkModifyUnit">
+        <LaunchAttachQuery Methods="AMFilterCenter"/>
+        <LaunchAssets Sound="Probe_AttackLaunch"/>
+        <Beam value="HardenedSparkBeam"/>
+    </CActorAction>
+    <CActorBeamSimple id="HardenedSparkBeam" parent="GenericAttackBeam">
+        <On Terms="ActorCreation" Send="SetTintColor {0,255,64 3.000000}"/>
+        <Scale value="0.300000"/>
+    </CActorBeamSimple>
+    <CActorModel id="MonstrousPull" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth {} {} ContentPlayOnce"/>
+        <On index="2" Terms="ActorOrphan" Send="Destroy"/>
+        <On Terms="Effect.MonstrousPullCreatePersistent.Start" Send="Create"/>
+        <On Terms="Effect.MonstrousPullCreatePersistent.Stop" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,0,0"/>
+        <Host Subject="_Selectable" Scope="Caster"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <AutoScaleFactor value="0.800000"/>
+    </CActorModel>
     <CActorModel id="Shadowed" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
         <On Terms="Behavior.Shadowed.On" Send="Create"/>
@@ -973,6 +1009,8 @@
         <On Terms="Abil.HealMini.TargetBailStop" Send="Destroy"/>
         <On Terms="Abil.heal.TargetFinishStop" Send="Destroy"/>
         <On Terms="Abil.HealMini.TargetFinishStop" Send="Destroy"/>
+        <On Terms="Abil.heal.SourceFinishStop" Send="Destroy"/>
+        <On Terms="Abil.HealMini.SourceFinishStop" Send="Destroy"/>
     </CActorSound>
     <CActorSound id="MenoetesCreation" parent="SoundOneShot">
         <EditorCategories value=""/>
@@ -1183,6 +1221,15 @@
         <On Terms="Behavior.SethChargingLevel4.On" Send="Create"/>
         <Sound value="UI_TerranKlaxonAlert"/>
     </CActorSound>
+    <CActorModel id="ShadowedSilenceField" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="2" Terms="ActorOrphan" Send="Destroy"/>
+        <On Terms="Effect.ShadowedSilenceFieldSearch.Start" Send="Create"/>
+        <Host Subject="_Selectable" Scope="Caster"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <Model value="SilenceField"/>
+        <Scale value="2.000000,2.000000,1.000000"/>
+    </CActorModel>
     <CActorRange id="ShockRange" parent="RangeAbil" abil="Shock">
         <FogVisibility value="Visible"/>
     </CActorRange>
@@ -9710,6 +9757,7 @@
         <On index="0" Terms="ActorOrphan" Send="Destroy"/>
         <On index="1" Terms="UnitBirth.PlasmaDetonator" Send="Create"/>
         <On Terms="Effect.PlasmaDischargeExpireSuicidePersistent.Start" Send="Destroy"/>
+        <On Terms="Behavior.PlasmaDischargeExplosion.Off" Send="Destroy"/>
         <On Terms="UnitDeath.PlasmaDetonator" Send="Destroy"/>
         <Scale value="4.000000"/>
     </CActorSplat>
@@ -15121,6 +15169,7 @@
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap CommandoSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap CommandoSkin2"/>
+        <On Terms="Effect.Tier3Skin.Start" Send="ModelSwap CommandoSkin3"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap WarPig"/>
         <Model value="WarPig"/>
         <BuildModel value="WarPig"/>

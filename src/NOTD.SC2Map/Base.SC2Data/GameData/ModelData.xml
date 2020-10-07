@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CModel id="AcidicDeathPuddle">
+        <Model value="Assets\Effects\Zerg\MiasmaliskPoisonCloud\MiasmaliskPoisonCloud.m3"/>
+    </CModel>
     <CModel id="AiurOvermindIntestines">
         <Occlusion value="Hide"/>
     </CModel>
@@ -10,6 +13,24 @@
         <Model value="Assets\Units\Terran\MarineTychusChaingun_Ex3\MarineTychusChaingun_Ex3.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
+    </CModel>
+    <CModel id="Acidic">
+        <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3"/>
+        <Lighting value=""/>
+    </CModel>
+    <CModel id="CommandoSkin3" parent="Unit">
+        <Model value="Assets\Units\CovertOps_AssaultTrooper.m3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <EditorCategories value="Race:Terran"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="1.250000,1.250000,1.100000"/>
+        <ScaleMin value="1.250000,1.250000,1.100000"/>
+        <SelectionRadius value="0.340800"/>
+        <ShadowRadius value="0.340800"/>
+        <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <UnitGlossaryCamera value="Star2CameraMid03"/>
     </CModel>
     <CModel id="KittenSkin3" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Zerg\Infestor_Mecha\Infestor_Mecha.m3"/>
@@ -171,6 +192,13 @@
         <SquibTypeDefault value="Flesh"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid03"/>
+    </CModel>
+    <CModel id="HardenedSparkBeam" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\ProbeBeam\ProbeBeam.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="MonstrousPull">
+        <Model value="Assets\Effects\Neutral\Diffusion_Shockwave_Coop\Diffusion_Shockwave_Coop.m3"/>
     </CModel>
     <CModel id="SS_SwarmGuardian">
         <Radius value="1.500000"/>
@@ -586,6 +614,9 @@
     </CModel>
     <CModel id="SiegeBreaker">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="1.700000"/>
+    </CModel>
+    <CModel id="SilenceField">
+        <Model value="Assets\Effects\Protoss\Arbiter_StasisField_Shockwave\Arbiter_StasisField_Shockwave.m3"/>
     </CModel>
     <CModel id="SonicTrap">
         <Model value="Assets\Doodads\UmojanLabHoloProjector\UmojanLabHoloProjector.m3"/>
@@ -2080,7 +2111,7 @@
     <CModel id="Baneling2" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\Baneling\Baneling.m3"/>
         <Occlusion value="Show"/>
-        <Radius value="1.000000"/>
+        <Radius value="0.900000"/>
         <TechPurchaseCamera value="Star2CameraMid04"/>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>

@@ -91,6 +91,39 @@
     <CEffectEnumArea id="330mmBarrageCannonsSearch">
         <SearchFilters value="Ground;Self,Player,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
+    <CEffectCreatePersistent id="AcidicDeathCreatePersistent">
+        <EditorCategories value=""/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="AcidicDeathSearch"/>
+        <PeriodicPeriodArray value="0.4"/>
+        <InitialDelay value="2"/>
+    </CEffectCreatePersistent>
+    <CEffectCreateUnit id="AcidicDeathCreateCloud">
+        <EditorCategories value=""/>
+        <SpawnUnit value="AcidCloud"/>
+    </CEffectCreateUnit>
+    <CEffectEnumArea id="AcidicDeathSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnitOrPoint"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <AreaArray Radius="3" Effect="AcidicToxinApplyDeath"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AcidicDeathSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AcidicDeathCreateCloud"/>
+        <EffectArray value="AcidicDeathCreatePersistent"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AcidicToxinApplyDeath">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Behavior value="AcidicToxin"/>
+        <Count value="3"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AcidicToxinApplyBoss">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Behavior value="AcidicToxin"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AddPetDetection5">
         <EditorCategories value=""/>
         <Behavior value="Detector5"/>
@@ -104,8 +137,33 @@
     </CEffectCreateUnit>
     <CEffectApplyBehavior id="AtrociousApplyBonusRegen">
         <EditorCategories value=""/>
-        <Behavior value="AtrociousBossBonusRegen"/>
+        <Behavior value="AtrociousBonusRegen"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AcidicApplyBonusCloud">
+        <EditorCategories value=""/>
+        <Behavior value="AcidicBonusCloudOnHit"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="MonstrousPullCreatePersistent">
+        <ValidatorArray value="CasterisMassive"/>
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="CasterUnit"/>
+        <InitialEffect value="MonstrousPullSearch"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="MonstrousPullSearch"/>
+        <PeriodicPeriodArray value="0.02"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyForce id="MonstrousPullForce">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="CasterUnit"/>
+        <Amount value="-12"/>
+    </CEffectApplyForce>
+    <CEffectEnumArea id="MonstrousPullSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="7" Effect="MonstrousPullForce"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
     <CEffectModifyUnit id="KittenSkin3">
         <EditorCategories value=""/>
     </CEffectModifyUnit>
@@ -319,6 +377,25 @@
         <EditorCategories value=""/>
         <Behavior value="M5PulseShock"/>
     </CEffectApplyBehavior>
+    <CEffectEnumArea id="HardenedEnergySparkSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="HasEnergy,HasShields;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead"/>
+        <TargetSorts RequestPercentage="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="6" Effect="HardenedEnergySparkModifyUnit"/>
+        <MaxCount value="1"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectModifyUnit id="HardenedEnergySparkModifyUnit">
+        <EditorCategories value=""/>
+        <VitalArray index="Shields">
+            <Change value="-8"/>
+        </VitalArray>
+        <VitalArray index="Energy">
+            <Change value="-4"/>
+        </VitalArray>
+    </CEffectModifyUnit>
     <CEffectDamage id="Predator2">
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Armored" value="11"/>
@@ -416,6 +493,10 @@
         <AreaArray Radius="3" Effect="ScorchingDamage"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="ShadowedSilenceFieldApply">
+        <EditorCategories value=""/>
+        <Behavior value="ShadowedSilence"/>
+    </CEffectApplyBehavior>
     <CEffectModifyUnit id="SharedExperienceBonusTartarus">
         <EditorCategories value=""/>
         <XP value="80"/>
@@ -445,6 +526,13 @@
         <EditorCategories value=""/>
         <Behavior value="AtrociousDebuff"/>
     </CEffectApplyBehavior>
+    <CEffectEnumArea id="ShadowedSilenceFieldSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <AreaArray Radius="9" Effect="ShadowedSilenceFieldApply"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
     <CEffectModifyUnit id="Tier1Skin">
         <EditorCategories value=""/>
     </CEffectModifyUnit>
@@ -472,6 +560,12 @@
         <Flags index="Kill" value="0"/>
         <SearchFilters value="-;Heroic"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="AcidicToxinApply">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Behavior value="AcidicToxin"/>
+        <Count value="2"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="VolatileBurstU4" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>

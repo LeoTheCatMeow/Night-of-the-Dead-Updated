@@ -1848,6 +1848,24 @@
         <BehaviorArray Link="MonofilamentTrapIntialReveal"/>
         <EditorCategories value=""/>
     </CUnit>
+    <CUnit id="AcidCloud">
+        <Race value="Zerg"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Undetectable" value="1"/>
+        <FlagArray index="KillCredit" value="0"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <EditorFlags index="BlockStructures" value="0"/>
+        <Attributes index="Summoned" value="1"/>
+        <BehaviorArray Link="Suicide10seconds"/>
+        <EditorCategories value=""/>
+        <TacticalAI value=""/>
+    </CUnit>
     <CUnit id="Nexus">
         <AbilArray Link="TestBattery"/>
     </CUnit>

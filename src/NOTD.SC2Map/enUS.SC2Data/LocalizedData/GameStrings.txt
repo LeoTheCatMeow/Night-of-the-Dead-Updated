@@ -413,6 +413,9 @@ Attribute005/Value013/Name=OBSurv
 Barret/MMRifle Equipped=M45 Marksman Rifle or Barret M112 Equipped
 Behavior/Name/AMRounds=AM Rounds
 Behavior/Name/APAmmo=<c val="80FF80">AP Ammo</c>
+Behavior/Name/Acidic=Acidic
+Behavior/Name/AcidicBoss=Acidic (Boss)
+Behavior/Name/AcidicToxin=Acidic Toxin
 Behavior/Name/AdrenalineLevel1=Adrenaline (Level 1)
 Behavior/Name/AdrenalineLevel2=Adrenaline (Level 2)
 Behavior/Name/AdrenalineLevel3=Adrenaline (Level 3)
@@ -712,6 +715,7 @@ Behavior/Name/SensoryConfusionCloak=Sensory Confusion (Cloak)
 Behavior/Name/ShadowPulse=Shadow Pulse
 Behavior/Name/Shadowed=Shadowed
 Behavior/Name/ShadowedBoss=Shadowed (Boss)
+Behavior/Name/ShadowedSilence=Shadowed Silence
 Behavior/Name/ShadowstepLevel1=Shadowstep (Level 1)
 Behavior/Name/ShadowstepLevel2=Shadowstep (Level 2)
 Behavior/Name/ShellMode=Shell Mode
@@ -806,6 +810,9 @@ Behavior/Name/X1BotVeterancy=X-1 Bot Veterancy
 Behavior/Name/ZEffect=Z Effect
 Behavior/Tooltip/AMRounds=The Black Dog is using AM (Anti-Matter) Rounds. Deals significant damage to a single target. Stuns non-boss units for 1 second and slows bosses by 35% for 1 second.
 Behavior/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/><n/>Attack Modifier: -1 armor (Stacks 3x)<n/>Damage Modifier +7% (Stacks 3x)
+Behavior/Tooltip/Acidic=Unit gains the following features:<n/>+100 flat and 50% health. <n/>Applies 2 stacks of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Leaves a cloud of toxin upon death that continues to apply the debuff.</c>
+Behavior/Tooltip/AcidicBoss=Unit gains the following features:<n/>+5% health. <n/><d ref="Behavior,AcidicBoss,DamageResponse.Chance * 100"/>% chance to apply 1 stack of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Toxin clouds form periodically at attackers and upon death that continue to apply the debuff.</c>
+Behavior/Tooltip/AcidicToxin=Unit is suffering from acidic toxin, <d ref="Behavior,AcidicToxin,Modification.VitalRegenArray[0]" precision="2"/> health per second and have damage reduced by 0.5% for 6 seconds.
 Behavior/Tooltip/AdrenalineLevel1=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 sec.
 Behavior/Tooltip/AdrenalineLevel2=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 sec.
 Behavior/Tooltip/AdrenalineLevel3=Each attack grants +6% attack speed. Stacks up to 30 times. Last 20 sec.
@@ -816,8 +823,8 @@ Behavior/Tooltip/AnticipationLevel2=Unit deals +30% extra damage when target is 
 Behavior/Tooltip/ArmageddonAfterShock=Unit is being damaged by the after shock of the Armageddon Charge.
 Behavior/Tooltip/ArmageddonSlow=Unit is slowed by 15% for 5 seconds. Stacks up to 3 times.
 Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
-Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and 180% health. <n/>+15 flat and 3.5% missing health regeneration per second. <n/>+150% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><n/> 
-Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+20% health. <n/>+15 flat and 1.2% missing health regeneration per second. <n/>+15% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by 30%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
+Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 3% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
+Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+<d ref="Behavior,AtrociousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+5 flat and 1% missing health regeneration per second. <n/>+<d ref="Behavior,AtrociousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/Backstab=Deals +50% damage when attacking targets from side or back<n/><n/>"Et Tu Brute" - Lujius Saecar
@@ -919,8 +926,8 @@ Behavior/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/><n/>Damage Mo
 Behavior/Tooltip/HEFRounds=The Black Dog is using HE-F (High Explosive - Fragmentation) Rounds. Deals damage in a 3 radius and causes the Open Wound effect on enemies. <n/><n/><c val="FF0000">WARNING: Can cause Open Wound on any direct target (including friendlies).
 Behavior/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/><n/>Damage Modifier: +12% damage.
 Behavior/Tooltip/HandgunExpertiseLevel2=The Pathfinder proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 2 - Increases range by 4, Damage by 6, and increases armor penetration by 0.35
-Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% damage and attack speed. <n/><c val="FFFF00">Unit becomes heroic. </c>
-Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,HardenedBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against physical sources. <n/>+10% damage and attack speed. 
+Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% attack speed.<n/>Unit becomes heroic. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 3 seconds, draining 8 shield and 4 energy.</c>
+Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,HardenedBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against physical sources. <n/>+10% attack speed. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 1.5 seconds, draining 8 shield and 4 energy.</c>
 Behavior/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
 Behavior/Tooltip/HeightenedSensesDebuff=Unit takes +25% damage for 15 seconds.
@@ -971,8 +978,8 @@ Behavior/Tooltip/MindMeld2=Unit is Mind Melded (controlled). +25 armor bonus and
 Behavior/Tooltip/MonofilamentCartridgeLevel1Stun=Stunned for 1 sec
 Behavior/Tooltip/MonofilamentCartridgeLevel2Stun=Stunned for 2 secs
 Behavior/Tooltip/MonofilamentCartridgeLevel3Stun=Stunned for 3 secs
-Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Monstrous,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+100% damage but -50% attack speed. <n/>+150% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
-Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+<d ref="Behavior,MonstrousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+30% damage but -30% attack speed. <n/>+15% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.
+Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Monstrous,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+100% damage but -50% attack speed. <n/>+<d ref="Behavior,Monstrous,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.<n/><c val="FFFF00">Nearby enemies in a 7 radius are periodically pulled toward the unit (if unit is massive)</c>
+Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+<d ref="Behavior,MonstrousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+30% damage but -30% attack speed. <n/>+<d ref="Behavior,MonstrousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.<n/><c val="FFFF00">Nearby enemies in a 7 radius are periodically pulled toward the unit (if unit is massive)</c>
 Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Stacks up to 5 times.
 Behavior/Tooltip/MotionSensorArmorDebuff=Unit armor is reduced by 1.
 Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician and +1 HP regeneration to non-biological allies nearby Technician
@@ -1032,13 +1039,14 @@ Behavior/Tooltip/RighteousnessLevel2=+1 armor for each unit damaged by Smite. La
 Behavior/Tooltip/Safeguard=+1 Armor per stack
 Behavior/Tooltip/SapStun=Unit is stunned for 7 seconds. Stun breaks if unit is attacked.
 Behavior/Tooltip/SapStun2=Unit is stunned for 3 seconds. Stun breaks if unit is attacked.
-Behavior/Tooltip/Scorching=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for <d ref="Effect,ScorchingDamage,Amount"/> damage every <d ref="Behavior,Scorching,Period"/> seconds. <n/><c val="FFFF00">Unit becomes heroic.</c>
-Behavior/Tooltip/ScorchingBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,ScorchingBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against fire sources. <n/>+10% move speed.<n/>Burns nearby enemies in a 3 radius for <d ref="Effect,ScorchingDamage,Amount"/> damage every <d ref="Behavior,ScorchingBoss,Period"/> seconds.
+Behavior/Tooltip/Scorching=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against fire sources. <n/>+10% move speed.<n/>Unit becomes heroic.<n/><c val="FFFF00">Burns nearby enemies in a 3 radius for <d ref="Effect,ScorchingDamage,Amount"/> damage every <d ref="Behavior,Scorching,Period"/> seconds.</c>
+Behavior/Tooltip/ScorchingBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,ScorchingBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against fire sources. <n/>+10% move speed.<n/><c val="FFFF00">Burns nearby enemies in a 3 radius for <d ref="Effect,ScorchingDamage,Amount"/> damage every <d ref="Behavior,ScorchingBoss,Period"/> seconds.</c>
 Behavior/Tooltip/SelfDestructStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SensoryConfusionCloak=Unit is cloaked for 10 seconds.
 Behavior/Tooltip/ShadowPulse=+75% movespeed for 3 secs
-Behavior/Tooltip/Shadowed=Unit gains the following features:<n/>+25 flat and 25% health. <n/>Takes 50% less damage from splash. <n/>Permanently cloaked.<n/>No collision.<n/>Ignore taunt effects. <n/><c val="FFFF00">Requires manual aim to be targeted</c>.
-Behavior/Tooltip/ShadowedBoss=Unit gains the following features:<n/>-15% health. <n/>Permanently cloaked.<n/>No collision.<n/>Ignore taunt effects. <n/><c val="FFFF00">Requires manual aim to be targeted</c>.
+Behavior/Tooltip/Shadowed=Unit gains the following features:<n/>+25 flat and 25% health. <n/>Takes 50% less damage from spell and splash effects. <n/>Permanently cloaked.<n/>No collision.<n/>Ignore taunt effects. <n/><c val="FFFF00">Requires manual aim to be targeted</c>.
+Behavior/Tooltip/ShadowedBoss=Unit gains the following features:<n/>-15% health. <n/>Takes 50% less damage from spell and splash effects.<n/>Permanently cloaked.<n/>No collision.<n/>Ignore taunt effects. <n/><c val="FFFF00">A suppressing field is emitted from the unit every 8 seconds, silencing and disabling the attack of all effected units for 2 seconds</c>.
+Behavior/Tooltip/ShadowedSilence=Unit is suppressed for 2 seconds.
 Behavior/Tooltip/ShadowstepLevel1=Marksman moves at +150% speed.
 Behavior/Tooltip/ShadowstepLevel2=Marksman moves at +300% speed.
 Behavior/Tooltip/ShellMode=Unit channels all energy into vital support systems. Gains +10 Armor, +2 HP regeneration and +0.5 energy regeneration. Attack speed reduced to 20%. 
@@ -2471,6 +2479,12 @@ DocInfo/PatchNote463=- In addition to growing to EPIC proportions at lv12, pets 
 DocInfo/PatchNote464=- Pirahna Missiles now have the same adaptive value (0.7) as Robotic Claws for the sake of consistency. (It used to be 1.0)
 DocInfo/PatchNote465=- Improved the backswing of Pirahna Missiles to match that of Robotic Claws (for easier infestor chase).
 DocInfo/PatchNote466=- Added a command card button specifying level up bonuses for pets.
+DocInfo/PatchNote467=- Fixed Survival Perses ignoring stuns. 
+DocInfo/PatchNote468=- Taking yet another stab at the medic heal sound bug.
+DocInfo/PatchNote469=- Balanced the Elite Mutation mode again, nerfing atrocious and adding mechanics to other mutations to make them more interesting.
+DocInfo/PatchNote470=- Added a new mutation to Elite Mutation - Acidic, causing attackers to lose health over time and leaves a toxic cloud upon death.
+DocInfo/PatchNote471=- Restored the old Sec spawn for Realism mode (no early ambient spawn).
+DocInfo/PatchNote472=- Minor tooltip fixes.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2493,6 +2507,14 @@ Effect/Name/AcidMissileMissile=Acid Missile (Missile)
 Effect/Name/AcidMissilePersistent=Acid Missile (Persistent)
 Effect/Name/AcidSpines=AcidSpines
 Effect/Name/AcidSpit=Acid Spit
+Effect/Name/AcidicApplyBonusCloud=Acidic Apply Bonus Cloud
+Effect/Name/AcidicDeathCreateCloud=Acidic Death Create Cloud
+Effect/Name/AcidicDeathCreatePersistent=Acidic Death Create Persistent
+Effect/Name/AcidicDeathSearch=Acidic Death Search
+Effect/Name/AcidicDeathSet=Acidic Death Set
+Effect/Name/AcidicToxinApply=Acidic Toxin Apply
+Effect/Name/AcidicToxinApplyBoss=Acidic Toxin Apply (Boss)
+Effect/Name/AcidicToxinApplyDeath=Acidic Toxin Apply (Death)
 Effect/Name/ActivateRegeneration=Activate Regeneration
 Effect/Name/AddBackstab=Predator Backstab
 Effect/Name/AddConcentrationPointLevel1=Add Concentration Point Level 1
@@ -3137,6 +3159,8 @@ Effect/Name/HandgunExpertiseRemoveLevel1=Handgun Expertise Remove Level 1
 Effect/Name/HandgunExpertiseRemoveLevel2=Handgun Expertise Remove Level 2
 Effect/Name/HardenCaraspaceRecruitApplyBehavior=Harden Caraspace (Recruit) Apply Behavior
 Effect/Name/HardenCaraspaceSet=Harden Caraspace Set
+Effect/Name/HardenedEnergySparkModifyUnit=Hardened Energy Spark Modify Unit
+Effect/Name/HardenedEnergySparkSearch=Hardened Energy Spark Search
 Effect/Name/HarvesterofSorrowApply=Harvester of Sorrow Apply
 Effect/Name/HealLevel2=Heal Level 2
 Effect/Name/HealLevel3=Heal Level 3
@@ -3463,6 +3487,9 @@ Effect/Name/MonofilamentTrapSearchLevel1=Monofilament Trap Search Level 1
 Effect/Name/MonofilamentTrapSearchLevel2=Monofilament Trap Search Level 2
 Effect/Name/MonofilamentTrapSetLevel1=Monofilament Trap Set Level 1
 Effect/Name/MonofilamentTrapSetLevel2=Monofilament Trap Set Level 2
+Effect/Name/MonstrousPullCreatePersistent=Monstrous Pull Create Persistent
+Effect/Name/MonstrousPullForce=Monstrous Pull Force
+Effect/Name/MonstrousPullSearch=Monstrous Pull Search
 Effect/Name/MoreDoTsApply=Nano-Sear (Apply)
 Effect/Name/MoreDoTsDamage=Nano-Sear (Damage)
 Effect/Name/MoreDoTsSearch=Nano-Sear (Search)
@@ -3804,6 +3831,8 @@ Effect/Name/SethSearchDamageLevel1=Seth Search Damage Level 1
 Effect/Name/SethSearchDamageLevel2=Seth Search Damage Level 2
 Effect/Name/SethSearchDamageLevel3=Seth Search Damage Level 3
 Effect/Name/SethSearchDamageLevel4=Seth Search Damage Level 4
+Effect/Name/ShadowedSilenceFieldApply=Shadowed Silence Field Apply
+Effect/Name/ShadowedSilenceFieldSearch=Shadowed Silence Field Search
 Effect/Name/ShadowstepApplyTeamBuff=Shadowstep Apply Team Buff
 Effect/Name/ShadowstepCloak=Shadowstep Cloak
 Effect/Name/ShadowstepSearchArea=Shadowstep Search Area
@@ -5913,7 +5942,7 @@ Unit/Engineer/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Engine
 Unit/Flamethrower/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Flamethrower3,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Flamethrower3,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/ForwardObserver/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ForwardObserver,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ForwardObserver,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/LifeArmorName/CritterGroundArmor=Carapace
-Unit/LifeArmorName/None=UGC Infantry Armor
+Unit/LifeArmorName/None=
 Unit/LifeArmorName/ProtossArmor=Armor
 Unit/LifeArmorName/TerranInfantryArmor=UGC Infantry Armor
 Unit/LifeArmorName/ZergAirArmor=
@@ -5924,6 +5953,7 @@ Unit/Marksman/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Marksm
 Unit/Medic/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Medic2,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Medic2,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/Name/APAmmo=<c val="80FF80">AP Ammo</c>
 Unit/Name/APAmmoHighlightTooltip=<c val="80FF80">AP Ammo</c>
+Unit/Name/AcidCloud=Acid Cloud
 Unit/Name/AcidMissile=Acid Missile
 Unit/Name/AirStrikeBombers=Air Strike Bombers
 Unit/Name/AirStrikeMissile=Air Strike Missile
@@ -5955,7 +5985,7 @@ Unit/Name/BlaqkQueen=Blaqk Queen Pet Test
 Unit/Name/Blindling=Blindling
 Unit/Name/Bob=Bob
 Unit/Name/Bob2=Bob
-Unit/Name/Bogus=Medic
+Unit/Name/Bogus=
 Unit/Name/BrainBug=Brain Bug
 Unit/Name/BrainBug2=Brain Bug
 Unit/Name/BroodMother=Queen
@@ -6648,7 +6678,7 @@ UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have 
 UserData/ShopItems/ShopItem62_ShopTooltip=Change back to the default skin.
 UserData/ShopItems/ShopItem63_ShopTooltip=When NOTD meets Among Us.<n/>Red sus btw.<n/><n/>Requirement: must have bought kittens.
 UserData/ShopItems/ShopItem64_ShopTooltip=Rip DSM.<n/><n/>Requirement: must have bought kittens.
-UserData/ShopItems/ShopItem65_ShopTooltip=Help... I'm hugged at comms.<n/><n/>Requirement: must have bough kittens
+UserData/ShopItems/ShopItem65_ShopTooltip=Help... I'm hugged at comms.<n/><n/>Requirement: must have bought kittens
 UserData/ShopItems/ShopItem66_ShopTooltip=Revert to default kittens.
 UserData/ShopItems/ShopItem6_ShopTooltip=Changes Marine color to <c val="ebe129">Yellow</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem70_ShopTooltip=Rank icon of Marine replaced with Black Ops Insignia.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
@@ -6779,7 +6809,7 @@ UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">Ta
 UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor and provides protection against ailments.<n/>Level 1 - +2 armor, -20% max ailment stacks.<n/>Level 2 - +<d ref="Behavior,DefensivePlatingLevel2,Modification.LifeArmorBonus"/> armor, -40% max ailment stacks.<n/>Level 3 - +<d ref="Behavior,DefensivePlatingLevel3,Modification.LifeArmorBonus"/> armor, -60% max ailment stacks.
 UserData/TalentTrees/Assault_Talent Tootips_007=<s val="AchievementFrameName">Charge</s><n/>Charges forward up to 15 distance to target point, knocking back any enemies in path. Deals damage and stuns all affected enemies. Deals +50% damage to Massive.<n/>Level 1 - Enemies in path receive 50 damage and are stunned for 2 seconds<n/>Level 2 - Enemies in path receive 100 damage and are stunned for 4 seconds<n/><n/>"He charged forth, borne upon red wings of rage."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">Cohesion<n/>(Passive)</s> <n/>Allies in 8 radius gain armor bonus and +0.4 health regeneration (This includes Assault).<n/>Level 1 - +1 armor<n/>Level 2 - +2 armor<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">Safeguard<n/>(Passive)</s><n/>Assault gains +1 armor for each hit taken. Each point gained lasts for 5 second. Maximum +7 armor.<n/><n/>"Even a Nuke won't stop you!" - Ogilvy Defense Industries<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">Safeguard<n/>(Passive)</s><n/>Assault gains +1 armor for each hit taken. Each point gained lasts for <d ref="Behavior,Safeguard,Duration"/> second. Maximum +<d ref="Behavior,Safeguard,MaxStackCount"/> armor.<n/><n/>"Even a Nuke won't stop you!" - Ogilvy Defense Industries<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Headers=<s val="HelpPanelListBoxItemTitle">Desolator</s>
 UserData/TalentTrees/Chemical Expert_Headers_001=<s val="HelpPanelListBoxItemTitle">Ground Support</s>
 UserData/TalentTrees/Chemical Expert_Talent Tootips=<s val="AchievementFrameName">Desolation</s><n/>Releases a spray of chemical gas in a forward arc dealing damage and giving targets venom.<n/>Level 1 - 50 damage. Inflicts 1 stack of venom.<n/>Level 2 - 100 damage. Inflicts 2 stacks of venom.<n/>Level 3 - 150 damage. Inflicts 4 stacks of venom.<n/><n/><c val="FF0000">Warning: Deals 40% friendly fire damage</c><n/>

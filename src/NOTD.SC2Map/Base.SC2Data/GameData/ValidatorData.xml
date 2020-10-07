@@ -986,6 +986,10 @@
     <CValidatorUnitType id="TargetisEngineer">
         <Value value="Engineer"/>
     </CValidatorUnitType>
+    <CValidatorUnitFilters id="CasterisMassive">
+        <WhichUnit Value="Caster"/>
+        <Filters value="Massive;-"/>
+    </CValidatorUnitFilters>
     <CValidatorUnitType id="TargetisPsiOps">
         <Value value="PsiOps"/>
     </CValidatorUnitType>
