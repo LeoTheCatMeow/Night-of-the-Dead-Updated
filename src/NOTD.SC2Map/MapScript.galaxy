@@ -673,6 +673,8 @@ int[9] gv_playerLives;
 playergroup gv_marineSquad;
 playergroup gv_leavers;
 playergroup gv_activePlayers;
+playergroup gv_admin;
+bool[9] gv_isAdmin;
 int[9] gv_marineWeightPoints;
 unitgroup gv_marines;
 trigger[4] gv_domeSpawn;
@@ -1196,6 +1198,7 @@ void InitGlobals () {
     gv_marineSquad = PlayerGroupEmpty();
     gv_leavers = PlayerGroupEmpty();
     gv_activePlayers = PlayerGroupEmpty();
+    gv_admin = PlayerGroupEmpty();
     gv_marines = UnitGroupEmpty();
     gv_spawnFactor = 1;
     gv_noNewbie = true;
@@ -2007,7 +2010,6 @@ trigger gt_ClassPointsCheck;
 trigger gt_WinsCheck;
 trigger gt_AmmoCheck;
 trigger gt_MobsCheck;
-trigger gt_HandleCheck;
 trigger gt_NavyCross;
 trigger gt_NoRandoms;
 trigger gt_AllRandom;
@@ -12515,11 +12517,13 @@ void gf_UISetPlayerRankNameIconXP (int lp_triggeringPlayer) {
         libNtve_gf_SetDialogItemImage(gv_teamStatusPortraitButton[lp_triggeringPlayer], "Assets\\Textures\\btn-ability-terran-heal.dds", PlayerGroupAll());
         libNtve_gf_SetDialogItemImage(gv_teamStatusRankIcon[lp_triggeringPlayer], "Assets\\Textures\\btn-ability-terran-heal.dds", PlayerGroupAll());
         libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], StringExternal("Param/Value/35FA14D2"), PlayerGroupAll());
+        libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (StringExternal("Param/Value/8784B674") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
     }
     else {
         libNtve_gf_SetDialogItemImage(gv_teamStatusPortraitButton[lp_triggeringPlayer], UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Icon", 1), PlayerGroupAll());
         libNtve_gf_SetDialogItemImage(gv_teamStatusRankIcon[lp_triggeringPlayer], UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Icon", 1), PlayerGroupAll());
         libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1), PlayerGroupAll());
+        libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1) + StringExternal("Param/Value/F5F4A3AF") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
     }
     gf_UIUpdateXP(lp_triggeringPlayer);
     if ((gf_BOInsigniaBought(lp_triggeringPlayer) == true)) {
@@ -16045,6 +16049,10 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
         PlayerOptionOverride(auto0E90487C_var, "showalerts", "1");
         PlayerOptionOverride(auto0E90487C_var, "tickedunitstatus", "0");
         PlayerGroupAdd(gv_marineSquad, auto0E90487C_var);
+        if (((PlayerHandle(auto0E90487C_var) == "1-S2-1-417524") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-431521") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1143628") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-3388720") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-11533459") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1246603") || !(GameIsOnline()))) {
+            PlayerGroupAdd(gv_admin, auto0E90487C_var);
+            gv_isAdmin[auto0E90487C_var] = true;
+        }
         gv_totalPlayers += 1;
         CameraLockInput(auto0E90487C_var, true);
     }
@@ -17336,42 +17344,6 @@ bool gt_MobsCheck_Func (bool testConds, bool runActions) {
 void gt_MobsCheck_Init () {
     gt_MobsCheck = TriggerCreate("gt_MobsCheck_Func");
     TriggerAddEventChatMessage(gt_MobsCheck, c_playerAny, "-mobs", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Handle Check
-//--------------------------------------------------------------------------------------------------
-bool gt_HandleCheck_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_trigPlayer;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_trigPlayer = EventPlayer();
-
-    // Conditions
-    if (testConds) {
-        if (!(((PlayerHandle(lv_trigPlayer) == "1-S2-1-417524") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-431521") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-1143628") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-3388720") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-11533459") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-1246603") || !(GameIsOnline())))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    UIDisplayMessage(PlayerGroupSingle(lv_trigPlayer), c_messageAreaDebug, (StringExternal("Param/Value/9F4D788B") + StringToText(PlayerHandle(StringToInt(StringWord(EventChatMessage(false), 2)))) + StringExternal("Param/Value/0D05C8E4")));
-    Wait(7.0, c_timeReal);
-    TriggerEnable(TriggerGetCurrent(), true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_HandleCheck_Init () {
-    gt_HandleCheck = TriggerCreate("gt_HandleCheck_Func");
-    TriggerAddEventChatMessage(gt_HandleCheck, c_playerAny, "-handle ", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44439,7 +44411,6 @@ void InitTriggers () {
     gt_WinsCheck_Init();
     gt_AmmoCheck_Init();
     gt_MobsCheck_Init();
-    gt_HandleCheck_Init();
     gt_NavyCross_Init();
     gt_NoRandoms_Init();
     gt_AllRandom_Init();
