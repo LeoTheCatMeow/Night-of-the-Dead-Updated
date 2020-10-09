@@ -24142,7 +24142,6 @@ bool gt_ECOptionalCamMissionStart_Func (bool testConds, bool runActions) {
         VisExploreArea(auto354E12D1_var, RegionFromId(31), true, false);
         VisExploreArea(auto354E12D1_var, RegionFromId(32), true, false);
     }
-    TriggerEnable(gt_ECEastSurprise, true);
     return true;
 }
 
