@@ -2044,6 +2044,7 @@ trigger gt_LevelUp;
 trigger gt_PetLevelUp;
 trigger gt_PredatorDies;
 trigger gt_Helium3AcquiredCredits;
+trigger gt_SwearJar;
 trigger gt_OnMarineSelected;
 trigger gt_DeadMarine;
 trigger gt_PsiOpsDeath;
@@ -19008,6 +19009,126 @@ bool gt_Helium3AcquiredCredits_Func (bool testConds, bool runActions) {
 void gt_Helium3AcquiredCredits_Init () {
     gt_Helium3AcquiredCredits = TriggerCreate("gt_Helium3AcquiredCredits_Func");
     TriggerAddEventUnitAbility(gt_Helium3AcquiredCredits, null, AbilityCommand("Helium3PowerUp", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Swear Jar
+//--------------------------------------------------------------------------------------------------
+bool gt_SwearJar_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_trigPlayer;
+    string lv_handle;
+    string lv_message;
+    int lv_position;
+    int lv_random;
+    unit lv_harasser;
+    point lv_spawn;
+    point lv_face;
+
+    // Automatic Variable Declarations
+    int auto763819CE_val;
+    int auto5A800D9F_val;
+
+    // Variable Initialization
+    lv_trigPlayer = EventPlayer();
+    lv_handle = PlayerHandle(EventPlayer());
+    lv_message = EventChatMessage(false);
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitIsAlive(gv_marineHero[lv_trigPlayer]) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((StringContains(lv_message, "pussy", c_stringAnywhere, c_stringNoCase) == true) && (StringContains(lv_message, "fucking", c_stringAnywhere, c_stringNoCase) == false)) {
+        lv_position = StringFind(lv_message, "pussy", c_stringNoCase);
+        if ((StringSub(lv_message, (lv_position - 1), (lv_position - 1)) == " ") && ((StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != " ") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == ".") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == "!") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != ""))) {
+            return true;
+        }
+    }
+    if ((StringContains(lv_message, "retarded", c_stringAnywhere, c_stringNoCase) == true)) {
+        return true;
+    }
+    lv_random = RandomInt(1, 6);
+    lv_spawn = PointWithOffsetPolar(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 3.0, UnitGetFacing(gv_marineHero[lv_trigPlayer]));
+    lv_face = UnitGetPosition(gv_marineHero[lv_trigPlayer]);
+    if ((StringContains(lv_message, "hugged", c_stringAnywhere, c_stringNoCase) == true)) {
+        if ((RandomInt(0, 4) == 1) && (UnitTestState(gv_marineHero[lv_trigPlayer], c_unitStateTurnSuppressed) == false) && ((StringContains(lv_message, "i'm hugged", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_message, "im hugged", c_stringAnywhere, c_stringNoCase) == true))) {
+            lv_random = 6;
+            lv_spawn = PointWithOffsetPolar(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 0.75, UnitGetFacing(gv_marineHero[lv_trigPlayer]));
+            lv_face = UnitGetPosition(gv_marineHero[lv_trigPlayer]);
+        }
+        else {
+            return true;
+        }
+    }
+    if (((lv_handle == "1-S2-1-417524") || (lv_handle == "1-S2-1-431521") || (lv_handle == "1-S2-1-1143628") || (lv_handle == "1-S2-1-3388720") || (lv_handle == "1-S2-1-11533459") || (lv_handle == "1-S2-1-1246603") || (lv_handle == "1-S2-1-2517593"))) {
+        auto5A800D9F_val = lv_random;
+        if (auto5A800D9F_val == 3) {
+            libNtve_gf_UnitCreateFacingPoint(1, "BrainBug2", 0, 14, lv_spawn, lv_face);
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBrainBug", 0)), c_orderQueueReplace);
+            lv_harasser = UnitLastCreated();
+        }
+        else if (auto5A800D9F_val == 4) {
+            libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, lv_spawn, lv_face);
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+            lv_harasser = UnitLastCreated();
+        }
+        else if (auto5A800D9F_val == 5) {
+            libNtve_gf_UnitCreateFacingPoint(1, "Slasher2", 0, 14, lv_spawn, lv_face);
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSlasher", 0)), c_orderQueueReplace);
+            lv_harasser = UnitLastCreated();
+        }
+        else if (auto5A800D9F_val == 6) {
+            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, lv_spawn, lv_face);
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
+            lv_harasser = UnitLastCreated();
+        }
+        else {
+        }
+    }
+    else {
+        auto763819CE_val = lv_random;
+        if (auto763819CE_val == 1) {
+            libNtve_gf_UnitCreateFacingPoint(1, "RoachBurrowed", 0, 14, lv_spawn, lv_face);
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowRoachUp", 0)), c_orderQueueReplace);
+            lv_harasser = UnitLastCreated();
+        }
+        else if (auto763819CE_val == 2) {
+            libNtve_gf_UnitCreateFacingPoint(1, "SeekerBurrowed", 0, 14, lv_spawn, lv_face);
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSeeker", 0)), c_orderQueueReplace);
+            lv_harasser = UnitLastCreated();
+        }
+        else {
+        }
+    }
+    if ((UnitIsAlive(lv_harasser) == true)) {
+        Wait(0.5, c_timeGame);
+        UnitIssueOrder(lv_harasser, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_trigPlayer]), c_orderQueueReplace);
+    }
+    Wait(7.0, c_timeGame);
+    if ((lv_random == 6)) {
+        UnitKill(lv_harasser);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SwearJar_Init () {
+    gt_SwearJar = TriggerCreate("gt_SwearJar_Func");
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "cunt", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "pussy", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "fag", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "tard", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "nigger", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "crybaby", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "hugged", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44441,6 +44562,7 @@ void InitTriggers () {
     gt_PetLevelUp_Init();
     gt_PredatorDies_Init();
     gt_Helium3AcquiredCredits_Init();
+    gt_SwearJar_Init();
     gt_OnMarineSelected_Init();
     gt_DeadMarine_Init();
     gt_PsiOpsDeath_Init();
