@@ -74,7 +74,6 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
   
 8.20.2020
 - Demo - I'm Your Father enemy damage reduction rescaled from 15%/30%/45% to 20%/30%/40%.
-- Demo - Time to Die defense multiplier reduced from 8 to 7, energy cost reduced from 25 to 22.
 - Assault - Defensive Plating changed from +2/3/4 armor to +2/3/3 armor, 0/5/10 life, and 0/0/20% life regen amp.
 - Assault - Safeguard maximum stack reduced from 7 to 6, duration increased from 5 to 6.
 - Removed some uncessary behaviors from the detailed behavior bar, added some others.
@@ -181,7 +180,7 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
 - Fixed ping panel not working properly.
 - Reduced the recently added early ambient spawn in Sec to prevent over leveling and disabled most of that during the final boss.
-- Demolitions - Spiked Armor reverted to +4 shield armor at lv3, Time to Die energy cost reverted to 25 from 22.
+- Demolitions - Spiked Armor reverted to +4 shield armor at lv3.
 - Fixed a game-breaking bug incorrectly stating Devastators as "Thors".
 - More balancing tweaks with elite mutation mode and fixed some bugs that potentially caused lag.
 
@@ -229,3 +228,12 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Pirahna Missiles now have the same adaptive value (0.7) as Robotic Claws for the sake of consistency. (It used to be 1.0)
 - Improved the backswing of Pirahna Missiles to match that of Robotic Claws (for easier infestor chase).
 - Added a command card button specifying level up bonuses for pets.
+
+10.8.2020
+- Fixed Survival Perses ignoring stuns. 
+- Further balancing of Elite Mutation mode, nerfing atrocious and adding mechanics to other mutations to make them more interesting.
+- Added a new mutation to Elite Mutation - Acidic, causing attackers to lose health over time and leaves a toxic cloud upon death.
+- Refined the EC Easter Egg and made it harder to trigger.
+- Added a "-mobs" command to check mob count in case of lagging.
+- Shifted the added early Sec ambient spawn to after triggering Armory and removed the muta spawns.
+- Clarified the tooltip for FO mini's Slow Roast upgrade.

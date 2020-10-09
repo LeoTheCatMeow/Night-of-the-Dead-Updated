@@ -810,7 +810,7 @@ Behavior/Name/X1BotVeterancy=X-1 Bot Veterancy
 Behavior/Name/ZEffect=Z Effect
 Behavior/Tooltip/AMRounds=The Black Dog is using AM (Anti-Matter) Rounds. Deals significant damage to a single target. Stuns non-boss units for 1 second and slows bosses by 35% for 1 second.
 Behavior/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/><n/>Attack Modifier: -1 armor (Stacks 3x)<n/>Damage Modifier +7% (Stacks 3x)
-Behavior/Tooltip/Acidic=Unit gains the following features:<n/>+100 flat and 50% health. <n/>Applies 2 stacks of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Leaves a cloud of toxin upon death that continues to apply the debuff.</c>
+Behavior/Tooltip/Acidic=Unit gains the following features:<n/>+100 flat and 50% health. <n/>Applies a stack of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Leaves a cloud of toxin upon death that continues to apply the debuff.</c>
 Behavior/Tooltip/AcidicBoss=Unit gains the following features:<n/>+5% health. <n/><d ref="Behavior,AcidicBoss,DamageResponse.Chance * 100"/>% chance to apply 1 stack of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Toxin clouds form periodically at attackers and upon death that continue to apply the debuff.</c>
 Behavior/Tooltip/AcidicToxin=Unit is suffering from acidic toxin, <d ref="Behavior,AcidicToxin,Modification.VitalRegenArray[0]" precision="2"/> health per second and have damage reduced by 0.5% for 6 seconds.
 Behavior/Tooltip/AdrenalineLevel1=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 sec.
@@ -2350,13 +2350,13 @@ DocInfo/PatchNote334=  increased dmg taken at -100 armor. All % calculation is d
 DocInfo/PatchNote335=  Reference formula for positive armor: (armor * 0.01) / (1 + armor * 0.01) reduced
 DocInfo/PatchNote336=  Reference formula for negative armor: 1.01 ^ armor - 1 amplified
 DocInfo/PatchNote337=- Demo - I'm Your Father enemy damage reduction rescaled from 15%/30%/45% to 20%/30%/40%.
-DocInfo/PatchNote338=- Demo - Time to Die defense multiplier reduced from 8 to 7, energy cost reduced from 25 to 22.
-DocInfo/PatchNote339=- Assault - Defensive Plating changed from +2/3/4 armor to +2/3/3 armor, 0/5/10 life, and 0/0/20% life regen amp.
-DocInfo/PatchNote340=- Assault - Safeguard maximum stack reduced from 7 to 6, duration increased from 5 to 6.
-DocInfo/PatchNote341=- Removed some uncessary behaviors from the detailed behavior bar, added some others.
-DocInfo/PatchNote342=- Spells now ignore the % dmg reduction from armor. (But can still be amplified by negative armor).
-DocInfo/PatchNote343=- AP Ammo -armor debuff now stacks up to 3 times.
-DocInfo/PatchNote344=- Added dropdown menus for mission and role preferences in the lobby. Currently only acting as a visual indicator.
+DocInfo/PatchNote338=- Assault - Defensive Plating changed from +2/3/4 armor to +2/3/3 armor, 0/5/10 life, and 0/0/20% life regen amp.
+DocInfo/PatchNote339=- Assault - Safeguard maximum stack reduced from 7 to 6, duration increased from 5 to 6.
+DocInfo/PatchNote340=- Removed some uncessary behaviors from the detailed behavior bar, added some others.
+DocInfo/PatchNote341=- Spells now ignore the % dmg reduction from armor. (But can still be amplified by negative armor).
+DocInfo/PatchNote342=- AP Ammo -armor debuff now stacks up to 3 times.
+DocInfo/PatchNote343=- Added dropdown menus for mission and role preferences in the lobby. Currently only acting as a visual indicator.
+DocInfo/PatchNote344=- Shifted the added early Sec ambient spawn to after triggering Armory and removed the muta spawns.
 DocInfo/PatchNote345=- Minor tooltip updates & fixes.
 DocInfo/PatchNote346=- Fixed anticipation buff becoming permanent once learned.
 DocInfo/PatchNote347=- Added nm and ob options in mission preference. (only visual)
@@ -2440,7 +2440,7 @@ DocInfo/PatchNote424=- Added additional UI at the mission select panel for speci
 DocInfo/PatchNote425=- Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
 DocInfo/PatchNote426=- Fixed ping panel not working properly.
 DocInfo/PatchNote427=- Reduced the recently added early ambient spawn in Sec to prevent over leveling and disabled most of that during the final boss.
-DocInfo/PatchNote428=- Demolitions - Spiked Armor reverted to +4 shield armor at lv3, Time to Die energy cost reverted to 25 from 22.
+DocInfo/PatchNote428=- Demolitions - Spiked Armor reverted to +4 shield armor at lv3.
 DocInfo/PatchNote429=- Fixed a game-breaking bug incorrectly stating Devastators as "Thors".
 DocInfo/PatchNote430=- More balancing tweaks with elite mutation mode and fixed some bugs that potentially caused lag.
 DocInfo/PatchNote431=- Reworked Realism mode, skill indicators now display as usual. Instead, taunt and cloak auto-casts are disabled. Taunt circles remain
@@ -2482,10 +2482,9 @@ DocInfo/PatchNote466=- Added a command card button specifying level up bonuses f
 DocInfo/PatchNote467=- Fixed Survival Perses ignoring stuns. 
 DocInfo/PatchNote468=- Further balancing of Elite Mutation mode, nerfing atrocious and adding mechanics to other mutations to make them more interesting.
 DocInfo/PatchNote469=- Added a new mutation to Elite Mutation - Acidic, causing attackers to lose health over time and leaves a toxic cloud upon death.
-DocInfo/PatchNote470=- Restored the old Sec spawn for Realism mode (no early ambient spawn).
-DocInfo/PatchNote471=- Minor tooltip fixes.
-DocInfo/PatchNote472=- Refined the EC Easter Egg and made it harder to trigger.
-DocInfo/PatchNote473=- Added a "-mobs" command to check mob count in case of lagging.
+DocInfo/PatchNote470=- Refined the EC Easter Egg and made it harder to trigger.
+DocInfo/PatchNote471=- Added a "-mobs" command to check mob count in case of lagging.
+DocInfo/PatchNote472=- Clarified the tooltip for FO mini's Slow Roast upgrade.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -6892,7 +6891,7 @@ UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFram
 UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 3 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
-UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Firebat's MK-3 Flamethrower projectile width increased by .15, increases Firebat armor by 3, grants Slow Roast<n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +3 armor for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which gives +15% damage and +4 sight range on activation.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_009=<s val="AchievementFrameName">TX-179 Asgard</s><n/>Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. The Asgard has following weapon:<n/>- Gauss Cannon: Deals 80 damage across 1.5 radius. +200% damage vs. Armored. <n/>(Right-Click to Attack)<n/><n/>Type '-gbuddy X' to assign a living player as your Gunship buddy. You will follow this player when Gunship is active. When you use your own number, you will remain stationary when Gunship is active. Press M anytime to deactive the Gunship.<n/><n/><c val="FF0000">Warning: Can deal friendly fire to allies</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Marksman_Headers=<s val="HelpPanelListBoxItemTitle">Assassination</s>

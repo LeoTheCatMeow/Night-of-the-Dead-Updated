@@ -11466,7 +11466,7 @@ void gf_STC1AmbientSpawns () {
 bool auto_gf_STC1AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Implementation
-    while ((gv_gameOver == false) && (gv_realismActivated == false)) {
+    while ((gv_gameOver == false)) {
         Wait(5.0, c_timeReal);
         if ((RandomInt(0, 5) == 1)) {
             gf_SmartSpawnNOTD("ZombieLevel22", 50.0);
@@ -11479,9 +11479,6 @@ bool auto_gf_STC1AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
         }
         else if ((RandomInt(0, 10) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("InfestorTerran2", 50.0);
-        }
-        else if ((RandomInt(0, 10) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
-            gf_SmartSpawnNOTD("Mutalisk", 70.0);
         }
     }
     return true;
@@ -35461,6 +35458,7 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
     libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
     libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_infectedCivilians);
     TriggerExecute(gt_STInfectedCiviliansPeriodic, true, false);
+    gf_STC1AmbientSpawns();
     for (autoCECA3866_i = 1; autoCECA3866_i <= autoCECA3866_n; autoCECA3866_i += 1) {
         lv_infestedCivLoop += 1;
         if ((lv_infestedCivLoop == 4)) {
@@ -35827,7 +35825,6 @@ bool gt_STW1EnterEastWingGateRESCUE_Func (bool testConds, bool runActions) {
     gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/F3E4787B"));
     PingCreate(PlayerGroupActive(), "PingObjective", RegionGetCenter(RegionFromId(122)), ColorWithAlpha(0.00, 50.20, 100.00, 0.00), 30.0);
     TriggerEnable(gt_STW2EnterArmoryDeimos, true);
-    gf_STC1AmbientSpawns();
     ObjectiveDestroy(gv_primaryObjective);
     ObjectiveCreate(StringExternal("Param/Value/C226EB8D"), StringExternal("Param/Value/CD5B26BE"), c_objectiveStateActive, true);
     gv_primaryObjective = ObjectiveLastCreated();
