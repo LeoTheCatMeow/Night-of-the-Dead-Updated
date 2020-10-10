@@ -15640,12 +15640,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitBehaviorAddPlayer(UnitFromId(1364371638), "Acidic", 1, 1);
     return true;
 }
 
@@ -24588,7 +24582,7 @@ bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
     lv_localGuardian = UnitLastCreated();
     UnitBehaviorAdd(lv_localGuardian, "HardenedBoss", lv_localGuardian, 1);
     UnitBehaviorAdd(lv_localGuardian, "MonstrousBoss", lv_localGuardian, gv_eCEastSurpriseCount);
-    UnitBehaviorAdd(lv_localGuardian, "AcidicBonusCloudOnHit", lv_localGuardian, (gv_eCEastSurpriseCount - 1));
+    UnitBehaviorAdd(lv_localGuardian, "Acidic", lv_localGuardian, (gv_eCEastSurpriseCount - 1));
     UnitBehaviorAdd(lv_localGuardian, "Scorching", lv_localGuardian, (gv_eCEastSurpriseCount - 2));
     UnitBehaviorAdd(lv_localGuardian, "Shadowed", lv_localGuardian, (gv_eCEastSurpriseCount - 3));
     UnitBehaviorAdd(lv_localGuardian, "Undetectable", lv_localGuardian, (gv_eCEastSurpriseCount - 4));

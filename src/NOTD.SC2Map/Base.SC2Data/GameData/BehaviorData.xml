@@ -113,7 +113,7 @@
             <DamageDealtFraction index="Melee" value="-0.005"/>
             <DamageDealtFraction index="Ranged" value="-0.005"/>
             <DamageDealtFraction index="Splash" value="-0.005"/>
-            <VitalRegenArray index="Life" value="-0.1992"/>
+            <VitalRegenArray index="Life" value="-0.25"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AcidicBonusCloudOnHit">
@@ -134,7 +134,7 @@
         <Modification>
             <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
-            <VitalRegenArray index="Life" value="5"/>
+            <VitalRegenArray index="Life" value="15"/>
         </Modification>
         <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.0195"/>
     </CBehaviorBuff>
@@ -2057,6 +2057,7 @@
             <PlaneDelta index="Ground" value="-1"/>
             <PlaneDelta index="Air" value="1"/>
         </Modification>
+        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Overdrive">
         <Alignment value="Positive"/>
@@ -6173,7 +6174,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Inception">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-timebomb.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-nova-holographicdecoy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="15"/>
         <Modification TimeScale="0.9" Detect="5">

@@ -663,7 +663,6 @@ Behavior/Name/Napalm2=Napalm
 Behavior/Name/NapalmAnimationDummy=Napalm (Animation Dummy)
 Behavior/Name/NapalmAnimationDummyPersistent=Napalm (Animation Dummy Persistent)
 Behavior/Name/NegativePolarity=Negative Polarity
-Behavior/Name/NoQuarterAirborne=No Quarter Airborne
 Behavior/Name/NoQuarterInvulnerable=No Quarter - Invulnerable
 Behavior/Name/OpenWound=Open Wound
 Behavior/Name/Overdrive=Overdrive
@@ -824,8 +823,11 @@ Behavior/Tooltip/AnticipationLevel2=Unit deals +30% extra damage when target is 
 Behavior/Tooltip/ArmageddonAfterShock=Unit is being damaged by the after shock of the Armageddon Charge.
 Behavior/Tooltip/ArmageddonSlow=Unit is slowed by 15% for 5 seconds. Stacks up to 3 times.
 Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
+Behavior/Tooltip/AssaultJumpEvasionLevel1=Unit gains 80% evasion for 1 second.
+Behavior/Tooltip/AssaultJumpEvasionLevel2=Unit gains 85% evasion for 2 seconds.
+Behavior/Tooltip/AssaultJumpEvasionLevel3=Unit gains 90% evasion for 3 seconds.
 Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 3% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
-Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+<d ref="Behavior,AtrociousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+5 flat and 1% missing health regeneration per second. <n/>+<d ref="Behavior,AtrociousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
+Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+<d ref="Behavior,AtrociousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 1% missing health regeneration per second. <n/>+<d ref="Behavior,AtrociousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/Backstab=Deals +50% damage when attacking targets from side or back<n/><n/>"Et Tu Brute" - Lujius Saecar
@@ -1004,7 +1006,6 @@ Behavior/Tooltip/NanosteelNetSlowTemplate=Unit is slowed by 20%.
 Behavior/Tooltip/Napalm2=Burning in Napalm. Unit takes damage over time and moves 40% slower.
 Behavior/Tooltip/NegativePolarity=Deals 35 per sec to anyone with Positive Polarity. Damage amplification to 200% to allies with Negative Polarity in 3 radius. 
 Behavior/Tooltip/NeuralParasite=This unit is being immobilized by a Hugger.
-Behavior/Tooltip/NoQuarterAirborne=The Pathfinder is rising up for a massive drop
 Behavior/Tooltip/NoQuarterInvulnerable=Pathfinder is invulnerable for 4 seconds. 
 Behavior/Tooltip/OpenWound=Unit is bleeding and losing 1 hp per second. Can be cured with Bandage or Medic's Surgical Laser
 Behavior/Tooltip/Overheating=The turret's cannons are overheated. -80% attack speed for 5 seconds.
@@ -2487,6 +2488,8 @@ DocInfo/PatchNote469=- Added a new mutation to Elite Mutation - Acidic, causing 
 DocInfo/PatchNote470=- Refined the EC Easter Egg and made it harder to trigger.
 DocInfo/PatchNote471=- Added a "-mobs" command to check mob count in case of lagging.
 DocInfo/PatchNote472=- Clarified the tooltip for FO mini's Slow Roast upgrade.
+DocInfo/PatchNote473=- Fixed Cronus weapon displaying an incorrect amount of damage. 
+DocInfo/PatchNote474=- Added some tooltips to Pathfinder's assault jump behavior.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team

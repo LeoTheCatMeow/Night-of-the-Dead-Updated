@@ -237,3 +237,5 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Added a "-mobs" command to check mob count in case of lagging.
 - Shifted the added early Sec ambient spawn to after triggering Armory and removed the muta spawns.
 - Clarified the tooltip for FO mini's Slow Roast upgrade.
+- Fixed Cronus weapon displaying an incorrect amount of damage. 
+- Added some tooltips to Pathfinder's assault jump behavior.
