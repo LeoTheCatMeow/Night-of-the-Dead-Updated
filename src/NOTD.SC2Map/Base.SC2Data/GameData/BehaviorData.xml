@@ -492,6 +492,26 @@
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Undetectable">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Benign" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="SuppressRadar" value="1"/>
+            <StateFlags index="Undetectable" value="1"/>
+            <StateFlags index="Unradarable" value="1"/>
+            <StateFlags index="Unstoppable" value="1"/>
+            <VitalMaxArray index="Life" value="25"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.25"/>
+            <BehaviorLinkDisableArray value="TauntedLevel1"/>
+            <BehaviorLinkDisableArray value="TauntedLevel2"/>
+            <BehaviorLinkDisableArray value="TauntedLevel3"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel1"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
+            <BehaviorLinkDisableArray value="MadSparkTaunted"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="ShadowedBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification>
