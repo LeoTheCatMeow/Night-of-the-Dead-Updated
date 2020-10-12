@@ -1557,9 +1557,9 @@ Button/Tooltip/C2Armor=<c val="FFFF00">C2 Armor</c><n/>A durable polymer suit th
 Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking attachable plates that lock on to the combat suit to provide protection from blunt trauma to vital areas, while joints are bolstered by armored pads.<n/><n/>Adds 4 armor and 20% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"What do you mean it doesn't explode?" - NFG
 Button/Tooltip/C6Armor=<c val="00FFFF">C6 Armor</c><n/>A heavy armor that consists of a thick chestplate, gauntlets, boots, and attachable plates for the legs and upper arms. Extremely effective at dampening impact damage and blunt trauma, but does little to protect joints, leaving the wearer vulnerable to cuts and scrapes in the non-armored areas.<n/><n/>Adds 6 armor.<n/><n/>Weight: <c val="FFFFFF">22</c><n/><n/>"Does this make me look fat?"
 Button/Tooltip/Cancel2=Return to previous menu
-Button/Tooltip/Cancel22=Nearby enemies in a 7 radius are provoked to attack Demolitions.
-Button/Tooltip/Cancel222=Nearby enemies in a 8 radius are forced to attack Assault.
-Button/Tooltip/Cancel2222=Marksman is cloaked.
+Button/Tooltip/Cancel22=I'm Your Father is active.
+Button/Tooltip/Cancel222=Taunt is active.
+Button/Tooltip/Cancel2222=Stealth is active.
 Button/Tooltip/CancelMarchoftheMachine=Cancels overdrive mode and returns to regular state.
 Button/Tooltip/CancelMindLink=Cancel Mind-Link.
 Button/Tooltip/CellularStructure=
@@ -2490,9 +2490,11 @@ DocInfo/PatchNote471=- Added a "-mobs" command to check mob count in case of lag
 DocInfo/PatchNote472=- Clarified the tooltip for FO mini's Slow Roast upgrade.
 DocInfo/PatchNote473=- Fixed Cronus weapon displaying an incorrect amount of damage. 
 DocInfo/PatchNote474=- Added some tooltips to Pathfinder's assault jump behavior.
-DocInfo/PatchNote475=- Disabled the cancel button for taunt skillls and Marksman's Stealth, a placeholder button is put in instead to allow stop auto-cast.
+DocInfo/PatchNote475=- Disabled the cancel button for taunt skillls and Marksman's Stealth, a placeholder button is put in instead to allow stopping auto-cast.
 DocInfo/PatchNote476=- Cleared the banlist.
-DocInfo/PatchNote477=- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
+DocInfo/PatchNote477=- Experimental changes on mode availability:
+DocInfo/PatchNote478=- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
+DocInfo/PatchNote479=- XP requirement for nightmare mode has been increased from 500 to 3000 to acommodate the above change.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4341,6 +4343,7 @@ Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
 Param/Expression/20BD633D=Designate ~A~
+Param/Expression/2FC894D9=<s val="InfoPaneHeroRank">Median XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
@@ -5384,6 +5387,7 @@ Param/Value/AEC7D830=All options considered. Neutralization logical choice.
 Param/Value/AF9FAF8F=Everyone alright? Let's patch those wounds.
 Param/Value/AFF5BDD4=<s val="BriefingHanText">(Strange noises emanate from the Mine Shaft...)</s>
 Param/Value/B02BD24D=<s val="BriefingHanText">Apollo Power Level: 
+Param/Value/B07D8A00=[Realism]
 Param/Value/B0A61D95=) 
 Param/Value/B0B303DB=Easy day, Phantom 6.
 Param/Value/B0BFE06F=We're on it, sir.
@@ -6723,7 +6727,7 @@ UserData/StatData/Strength_Tooltip=<c val="FFFF00">Strength</c><n/>Adds +11.5 HP
 UserData/Storyline/Alpha Company_Story Name=Alpha Company
 UserData/Storyline/Alpha Company_Story Subtitle=Landing on the outer ring of the colony, Alpha -- oblivious to the danger -- must find their own way in...
 UserData/Storyline/Alpha Company_Story Tooltip=Hardened veterans only!
-UserData/Storyline/Alpha Company_Story_Unlock_Text=To Unlock: All Players > <n/>1000 XP required
+UserData/Storyline/Alpha Company_Story_Unlock_Text=To Unlock: Median XP > <n/>1000 required
 UserData/Storyline/Alpha_Company_Story_Name=Alpha Company
 UserData/Storyline/Alpha_Company_Story_Subtitle=Landing on the outer ring of the colony, Alpha -- oblivious to the danger -- must find their own way in...
 UserData/Storyline/Alpha_Company_Story_Tooltip=Hardened veterans only!
@@ -6731,7 +6735,7 @@ UserData/Storyline/Alpha_Company_Story_Unlock_Text=Unlock: All Players > <n/>100
 UserData/Storyline/Apollo Security Team_Story Name=Apollo Security
 UserData/Storyline/Apollo Security Team_Story Subtitle=Holed up with their backs against the wall, the Apollo security team prepare to meet their fate head on...
 UserData/Storyline/Apollo Security Team_Story Tooltip=Danger! Heavy casualties expected...
-UserData/Storyline/Apollo Security Team_Story_Unlock_Text=To Unlock: All Players > <n/>3000 XP required
+UserData/Storyline/Apollo Security Team_Story_Unlock_Text=To Unlock: Median XP > <n/>3000 required
 UserData/Storyline/Apollo_Security_Team_Story_Name=Apollo Security
 UserData/Storyline/Apollo_Security_Team_Story_Subtitle=Holed up with their backs against the wall, the Apollo security team prepare to meet their fate head on...
 UserData/Storyline/Apollo_Security_Team_Story_Tooltip=Danger! Heavy casualties expected...
@@ -6746,7 +6750,7 @@ UserData/Storyline/Survival_Story Name=Survival
 UserData/Storyline/Survival_Story Tooltip=All 14 Classes Unlocked. 40 Waves of Enemies.<n/><n/>Survive As Long As Possible.
 UserData/Storyline/Survival_Story_Name=Survival
 UserData/Storyline/Survival_Story_Tooltip=All 14 Classes Unlocked. 40 Waves of Enemies.<n/><n/>Survive As Long As Possible.
-UserData/Storyline/Survival_Story_Unlock_Text=To Unlock: All Players > <n/>1000 XP required
+UserData/Storyline/Survival_Story_Unlock_Text=To Unlock: Median XP > <n/>1000 required
 UserData/Storyline/[Default]_Story Name=Easy Company
 UserData/Storyline/[Default]_Story Subtitle=Assigned to investigate the distress call, Easy lands to find Apollo deserted and communications jammed. Something is terribly wrong...
 UserData/Storyline/[Default]_Story Tooltip=Ready for mission launch...

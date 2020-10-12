@@ -5086,6 +5086,9 @@ void gf_DisplaySquadInformation () {
     if ((gv_outbreakActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/3EC532D7")) + gv_endStyling));
     }
+    if ((gv_realismActivated == true)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/B07D8A00")) + gv_endStyling));
+    }
     if ((gv_eliteMutationActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/723F181B")) + gv_endStyling));
     }
@@ -15917,8 +15920,9 @@ void gt_ShowPathtoMilitaryBase_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    fixed lv_xppool;
-    int lv_xpmin;
+    fixed lv_xPPool;
+    int lv_xPMin;
+    int lv_newbieCount;
 
     // Automatic Variable Declarations
     playergroup autoED8D603D_g;
@@ -15927,7 +15931,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     int autoF42EC5FC_var;
 
     // Variable Initialization
-    lv_xpmin = 1000000;
+    lv_xPMin = 1000000;
 
     // Actions
     if (!runActions) {
@@ -15986,12 +15990,18 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     while (true) {
         autoED8D603D_var = PlayerGroupNextPlayer(autoED8D603D_g, autoED8D603D_var);
         if (autoED8D603D_var < 0) { break; }
-        lv_xppool += Log2(MaxF(gv_playerXP[autoED8D603D_var], 1.0));
-        lv_xpmin = MinI(gv_playerXP[autoED8D603D_var], lv_xpmin);
+        lv_xPPool += Log2(MaxF(gv_playerXP[autoED8D603D_var], 1.0));
+        lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
+        if ((gv_playerXP[autoED8D603D_var] < 500)) {
+            lv_newbieCount += 1;
+        }
     }
-    lv_xppool = Ceiling(Pow2((lv_xppool / gv_totalPlayers)));
-    gv_squadXPMedian = MaxI(FixedToInt(lv_xppool), lv_xpmin);
-    gv_noNewbie = (gv_squadXPMedian >= 500);
+    lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_totalPlayers)));
+    gv_squadXPMedian = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
+    gv_noNewbie = (gv_squadXPMedian >= 3000);
+    TextExpressionSetToken("Param/Expression/2FC894D9", "A", IntToText(gv_squadXPMedian));
+    TextExpressionSetToken("Param/Expression/2FC894D9", "C", IntToText(lv_newbieCount));
+    UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/2FC894D9"), 0.1, 3.0, SoundLink("AC_UI_MouseOver01", -1));
     autoF42EC5FC_g = gv_marineSquad;
     autoF42EC5FC_var = -1;
     while (true) {
@@ -16422,6 +16432,7 @@ bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
     DialogDestroy(gv_storylineDialog);
     DialogDestroy(gv_storylineModDialog);
     DialogDestroy(gv_storylineModDialog2);
+    UIHideCinematicText(PlayerGroupAll());
     gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
     GameSetLighting(gv_defaultLighting, 3.9);
     TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
@@ -16630,6 +16641,7 @@ bool gt_FinaliseStorylineandMode_Func (bool testConds, bool runActions) {
     DialogDestroy(gv_storylineDialog);
     DialogDestroy(gv_storylineModDialog);
     DialogDestroy(gv_storylineModDialog2);
+    UIHideCinematicText(PlayerGroupAll());
     gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
     GameSetLighting(gv_defaultLighting, 3.9);
     TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);

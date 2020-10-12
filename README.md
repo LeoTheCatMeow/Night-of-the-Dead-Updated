@@ -239,3 +239,10 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Clarified the tooltip for FO mini's Slow Roast upgrade.
 - Fixed Cronus weapon displaying an incorrect amount of damage. 
 - Added some tooltips to Pathfinder's assault jump behavior.
+
+10.12.2020
+- Disabled the cancel button for taunt skillls and Marksman's Stealth, a placeholder button is put in instead to allow stopping auto-cast.
+- Cleared the banlist.
+- Experimental changes on mode availability:
+- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
+- XP requirement for nightmare mode has been increased from 500 to 3000 to acommodate the above change.
