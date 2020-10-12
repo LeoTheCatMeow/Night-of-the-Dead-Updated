@@ -25245,7 +25245,7 @@ bool gt_Boss1TartarusKilled_Func (bool testConds, bool runActions) {
 
     gv_hitPar = 60;
     gf_EndBossFight();
-    gf_UnifiedAwards(2, libNtve_gf_DifficultyValueFixed(300.0, 200.0, 200.0, 200.0), libNtve_gf_DifficultyValueInt(15, 15, 30, 30), 0, 0);
+    gf_UnifiedAwards(2, libNtve_gf_DifficultyValueFixed(300.0, 200.0, 200.0, 200.0), libNtve_gf_DifficultyValueInt(15, 22, 30, 30), 0, 0);
     if ((gv_performanceTimer <= 9)) {
         gf_UnifiedAwards(1, 0.0, 0, 0, libNtve_gf_DifficultyValueInt(0, 1, 1, 0));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/ADEF0862"));
@@ -25589,7 +25589,7 @@ bool gt_Boss1EilethyiaKilled_Func (bool testConds, bool runActions) {
     ObjectiveDestroy(gv_tartarusCaptureObjective);
     gv_hitPar = 60;
     gf_EndBossFight();
-    gf_UnifiedAwards(3, libNtve_gf_DifficultyValueFixed(300.0, 200.0, 200.0, 200.0), libNtve_gf_DifficultyValueInt(15, 15, 30, 30), 0, 0);
+    gf_UnifiedAwards(3, libNtve_gf_DifficultyValueFixed(300.0, 200.0, 200.0, 200.0), libNtve_gf_DifficultyValueInt(15, 22, 30, 30), 0, 0);
     if ((gv_performanceTimer <= 20)) {
         gf_UnifiedAwards(3, 0, 0, 0, libNtve_gf_DifficultyValueInt(0, 1, 1, 0));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/A5E0FFE0"));
@@ -27125,7 +27125,7 @@ bool gt_Boss2Killed_Func (bool testConds, bool runActions) {
         UnitSetPropertyFixed(gv_erebos1, c_unitPropLife, 0.1);
     }
     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Large, libNtve_ge_ExplosionType_Zerg, UnitGetPosition(gv_erebos1));
-    gf_UnifiedAwards(3, libNtve_gf_DifficultyValueInt(375, 250, 250, 0), libNtve_gf_DifficultyValueInt(15, 15, 30, 0), 0, 0);
+    gf_UnifiedAwards(3, libNtve_gf_DifficultyValueInt(375, 250, 250, 0), libNtve_gf_DifficultyValueInt(15, 22, 30, 0), 0, 0);
     gf_EndBossFight();
     gf_MarineSpeechNOTD(gv_sgtStallans, StringExternal("Param/Value/D12FB155"));
     UnitSetState(gv_erebos1, c_unitStateInvulnerable, true);
@@ -27336,7 +27336,7 @@ bool gt_Boss3Killed_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_Boss3AI, false);
     PingDestroy(gv_prowlerPing);
-    gf_UnifiedAwards(2, 50.0, libNtve_gf_DifficultyValueInt(0, 0, 40, 0), 0, 0);
+    gf_UnifiedAwards(2, 50.0, libNtve_gf_DifficultyValueInt(20, 30, 40, 0), 0, 0);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/571BB748"));
     gf_MarineSpeechNOTD(gv_sgtStallans, StringExternal("Param/Value/EDB52871"));
     Wait(5.0, c_timeReal);
@@ -28104,7 +28104,7 @@ bool gt_Chapter2ErebosKilled_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_Chapter2ErebosHPLifesteal, false);
     gf_EndBossFight();
-    gf_UnifiedAwards(2, 350.0, libNtve_gf_DifficultyValueInt(25, 25, 50, 0), 0, 0);
+    gf_UnifiedAwards(2, 350.0, libNtve_gf_DifficultyValueInt(25, 37, 50, 0), 0, 0);
     SoundPlay(SoundLink("TZeratul02HybridProtoss00026", -1), PlayerGroupActive(), 100.0, 0.0);
     return true;
 }
@@ -30509,7 +30509,7 @@ bool gt_QueenKilled_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_spawnPoint);
         lv_localIntA += 1;
     }
-    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(5, 8, 8, 0), 1000.0, libNtve_gf_DifficultyValueInt(50, 75, 150, 0), 0, 0);
+    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(5, 8, 8, 0), 1000.0, libNtve_gf_DifficultyValueInt(50, 100, 150, 0), 0, 0);
     Wait(2.0, c_timeReal);
     gf_RadioNOTD(gv_characterCaptainLinh, StringExternal("Param/Value/9059199A"));
     Wait(3.0, c_timeReal);
@@ -31728,7 +31728,7 @@ bool gt_DemeterKilled_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     gv_wave = 4;
     gf_EndBossFight();
-    gf_UnifiedAwards(3, 275.0, libNtve_gf_DifficultyValueInt(0, 30, 50, 0), 0, 1);
+    gf_UnifiedAwards(3, 275.0, libNtve_gf_DifficultyValueInt(25, 37, 50, 0), 0, 1);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/8859CAF7"));
     Wait(2.0, c_timeReal);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_secTeamAMarines, c_unitCountAlive), StringExternal("Param/Value/789187AF"));
@@ -32379,7 +32379,7 @@ bool gt_ACCronusKilled_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     gf_EndBossFight();
-    gf_UnifiedAwards(7, 300.0, libNtve_gf_DifficultyValueInt(0, 50, 150, 0), 0, 1);
+    gf_UnifiedAwards(7, 300.0, libNtve_gf_DifficultyValueInt(50, 100, 150, 0), 0, 1);
     UnitIssueOrder(gv_drTanaka, Order(AbilityCommand("Sprint", 0)), c_orderQueueReplace);
     UnitIssueOrder(gv_drTanaka, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionFromId(168))), c_orderQueueReplace);
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
@@ -33302,7 +33302,7 @@ bool gt_ACBoss3Killed_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     gf_EndBossFight();
     gv_wave = 11;
-    gf_UnifiedAwards(8, 300.0, libNtve_gf_DifficultyValueInt(0, 50, 100, 0), 0, 2);
+    gf_UnifiedAwards(8, 300.0, libNtve_gf_DifficultyValueInt(50, 75, 100, 0), 0, 2);
     gv_aCSpawnRespite = false;
     GameSetLighting(gv_defaultLighting, 3.0);
     Wait(2.0, c_timeGame);
@@ -34488,7 +34488,7 @@ bool gt_ACIVAXKilled_Func (bool testConds, bool runActions) {
     else {
         gf_RadioNOTD(gv_characterIVAX, StringExternal("Param/Value/54E03E28"));
     }
-    gf_UnifiedAwards(25, 1000.0, libNtve_gf_DifficultyValueInt(0, 125, 315, 0), 0, 2);
+    gf_UnifiedAwards(25, 1000.0, libNtve_gf_DifficultyValueInt(105, 210, 315, 0), 0, 2);
     Wait(5.0, c_timeReal);
     UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMinimapPanel, true);
     gf_RadioNOTD(gv_characterHAL, StringExternal("Param/Value/2F9E53FC"));
@@ -34894,7 +34894,7 @@ bool gt_ACBoss4Killed_Func (bool testConds, bool runActions) {
     gf_EndBossFight();
     gv_gameVictoryTime = TimerGetElapsed(gv_gameTime);
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
-    gf_UnifiedAwards(18, 350.0, libNtve_gf_DifficultyValueInt(0, 100, 200, 0), 0, 1);
+    gf_UnifiedAwards(18, 350.0, libNtve_gf_DifficultyValueInt(50, 125, 200, 0), 0, 1);
     gf_ACClosingCinematic();
     return true;
 }
@@ -36241,7 +36241,7 @@ bool gt_STBoss1DeimosKilled_Func (bool testConds, bool runActions) {
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
     gv_shengAIShutdown = true;
     Wait(1.0, c_timeGame);
-    gf_UnifiedAwards(4, 275.0, libNtve_gf_DifficultyValueInt(0, 30, 50, 0), 0, 1);
+    gf_UnifiedAwards(4, 275.0, libNtve_gf_DifficultyValueInt(25, 37, 50, 0), 0, 1);
     Wait(1.0, c_timeGame);
     TriggerExecute(gt_AutoSave, true, false);
     Wait(3.0, c_timeReal);
@@ -36809,7 +36809,7 @@ bool gt_STBoss2Killed_Func (bool testConds, bool runActions) {
         if (autoF4D9147D_var == null) { break; }
         UnitKill(autoF4D9147D_var);
     }
-    gf_UnifiedAwards(7, 275.0, libNtve_gf_DifficultyValueInt(0, 50, 110, 0), 0, 2);
+    gf_UnifiedAwards(7, 275.0, libNtve_gf_DifficultyValueInt(55, 82, 110, 0), 0, 2);
     if ((gv_nightmare == true)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("Param/Value/2D9A3D5E"));
         SoundPlay(SoundLink("EMPBurstSound", -1), PlayerGroupAll(), 100.0, 0.0);
@@ -37840,7 +37840,7 @@ bool gt_STW10ApoptosisKilled_Func (bool testConds, bool runActions) {
         Wait(RandomFixed(0.3, 1.0), c_timeReal);
     }
     GameSetLighting("NOTDSecTeamLight", 0.1);
-    gf_UnifiedAwards(10, 265.0, libNtve_gf_DifficultyValueInt(0, 50, 160, 0), 0, 3);
+    gf_UnifiedAwards(10, 265.0, libNtve_gf_DifficultyValueInt(80, 120, 160, 0), 0, 3);
     Wait(3.0, c_timeReal);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/A95F9F3A"));
     Wait(3.0, c_timeReal);
@@ -38486,7 +38486,7 @@ bool gt_STW14BossKilled_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_STW14BossAI, false);
-    gf_UnifiedAwards(5, 250.0, libNtve_gf_DifficultyValueInt(60, 60, 130, 0), 0, 0);
+    gf_UnifiedAwards(5, 250.0, libNtve_gf_DifficultyValueInt(65, 97, 130, 0), 0, 0);
     SoundPlay(SoundLink("TZeratul04DarkVoice00015", -1), PlayerGroupAll(), 100.0, 0.0);
     return true;
 }
@@ -38894,7 +38894,7 @@ bool gt_STW17EVAC_Func (bool testConds, bool runActions) {
     gv_hitPar = 65;
     gv_gameVictoryTime = TimerGetElapsed(gv_gameTime);
     TriggerExecute(gt_NightmareBonus, true, false);
-    gf_UnifiedAwards(22, 0.0, libNtve_gf_DifficultyValueInt(80, 80, 120, 0), 0, 5);
+    gf_UnifiedAwards(22, 0.0, libNtve_gf_DifficultyValueInt(80, 100, 120, 0), 0, 5);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/55074174"));
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
     Wait(2.0, c_timeReal);
@@ -39317,7 +39317,7 @@ bool gt_STW14bBossKilled_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     gf_EndBossFight();
-    gf_UnifiedAwards(7, 350.0, libNtve_gf_DifficultyValueInt(0, 50, 100, 0), 0, 2);
+    gf_UnifiedAwards(7, 350.0, libNtve_gf_DifficultyValueInt(50, 75, 100, 0), 0, 2);
     TriggerExecute(gt_STW15bBioDomeThreat, true, false);
     return true;
 }
@@ -40083,7 +40083,7 @@ bool gt_STW16bBossExecuted_Func (bool testConds, bool runActions) {
     gf_EndBossFight();
     gv_gameVictoryTime = TimerGetElapsed(gv_gameTime);
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
-    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(0, 80, 135, 0), 500.0, libNtve_gf_DifficultyValueInt(0, 200, 500, 0), 0, 5);
+    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(25, 80, 135, 0), 500.0, libNtve_gf_DifficultyValueInt(125, 250, 500, 0), 0, 5);
     if ((RandomInt(0, 1) == 1)) {
         SoundPlay(SoundLink("TValerian02ARaynor00049", -1), PlayerGroupAll(), 100.0, 0.0);
     }
@@ -40283,7 +40283,7 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
     Wait(20.0, c_timeReal);
     gf_AwardPlayerXPNOTD(5);
     if ((gv_alivePlayers > 1)) {
-        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(0, 20, 40, 0), 0, 1);
+        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(10, 20, 40, 0), 0, 1);
     }
 
     TriggerExecute(gt_SurvivalW610, true, false);
@@ -40390,7 +40390,7 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
     Wait(30.0, c_timeReal);
     gf_AwardPlayerXPNOTD(5);
     if ((gv_alivePlayers > 1)) {
-        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(0, 40, 80, 0), 0, 2);
+        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(20, 40, 80, 0), 0, 2);
     }
 
     TriggerExecute(gt_AutoSave, true, false);
@@ -40513,7 +40513,7 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
     Wait(30.0, c_timeReal);
     gf_AwardPlayerXPNOTD(7);
     if ((gv_alivePlayers > 1)) {
-        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(0, 40, 80, 0), 0, 2);
+        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(20, 40, 80, 0), 0, 2);
     }
 
     TriggerExecute(gt_SurvivalW1620, true, false);
@@ -40623,7 +40623,7 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
     }
     gf_AwardPlayerXPNOTD(10);
     if ((gv_alivePlayers > 1)) {
-        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(0, 80, 120, 0), 0, 2);
+        gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(40, 80, 120, 0), 0, 2);
     }
 
     autoCDDDE615_var = gv_indexBaseValue;
@@ -40862,7 +40862,7 @@ bool gt_SurvivalW2630_Func (bool testConds, bool runActions) {
     while (!(((UnitIsAlive(gv_survivalCronusA) == false) && (UnitIsAlive(gv_survivalCronusB) == false)))) {
         Wait(3.0, c_timeGame);
     }
-    gf_UnifiedAwards(25, 0.0, libNtve_gf_DifficultyValueInt(0, 80, 160, 0), 0, 2);
+    gf_UnifiedAwards(25, 0.0, libNtve_gf_DifficultyValueInt(40, 80, 160, 0), 0, 2);
     TriggerStop(gt_SurvivalCronusAAI);
     TriggerStop(gt_SurvivalCronusBAI);
     TriggerExecute(gt_AutoSave, true, false);
@@ -41174,10 +41174,10 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     gf_EndBossFight();
     if ((gv_nightmare == true)) {
-        gf_UnifiedAwards(120, 0.0, libNtve_gf_DifficultyValueInt(0, 200, 400, 0), 1, 10);
+        gf_UnifiedAwards(120, 0.0, libNtve_gf_DifficultyValueInt(100, 200, 400, 0), 1, 10);
     }
     else {
-        gf_UnifiedAwards(60, 0.0, libNtve_gf_DifficultyValueInt(0, 200, 400, 0), 1, 5);
+        gf_UnifiedAwards(60, 0.0, libNtve_gf_DifficultyValueInt(100, 200, 400, 0), 1, 5);
     }
     ObjectiveSetState(gv_primaryObjective, c_objectiveStateCompleted);
     SoundPlay(SoundLink("UI_MissionComplete", -1), PlayerGroupAll(), 100.0, 0.0);
