@@ -681,6 +681,7 @@ trigger[4] gv_domeSpawn;
 int gv_spawnFactor;
 int gv_performanceTimer;
 int gv_squadXP;
+int gv_squadXPMedian;
 int gv_squadRating;
 bool gv_noNewbie;
 int gv_hitPar;
@@ -5080,6 +5081,7 @@ void gf_DisplaySquadInformation () {
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + (UserDataGetText("SquadInformation", "Difficulty HP Scaling", "Information", 1) + FixedToTextAdvanced((1.0 + gv_difficultyHPScaling), c_formatNumberStylePercent, true, 2, 0))) + gv_endStyling));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/7887C155"));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + (UserDataGetText("SquadInformation", "Squad XP", "Information", 1) + IntToText(gv_squadXP))) + gv_endStyling));
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + (StringExternal("Param/Value/DF2DC1DE") + IntToText(gv_squadXPMedian))) + gv_endStyling));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
     if ((gv_outbreakActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/3EC532D7")) + gv_endStyling));
@@ -15914,11 +15916,18 @@ void gt_ShowPathtoMilitaryBase_Init () {
 // Trigger: NOTD Initialize
 //--------------------------------------------------------------------------------------------------
 bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_xppool;
+    int lv_xpmin;
+
     // Automatic Variable Declarations
-    playergroup auto986D890A_g;
-    int auto986D890A_var;
+    playergroup autoED8D603D_g;
+    int autoED8D603D_var;
     playergroup autoF42EC5FC_g;
     int autoF42EC5FC_var;
+
+    // Variable Initialization
+    lv_xpmin = 1000000;
 
     // Actions
     if (!runActions) {
@@ -15972,17 +15981,17 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     if ((GameAttributeGameValue("4") == "0002")) {
         gv_noShopMode = true;
     }
-    auto986D890A_g = gv_marineSquad;
-    auto986D890A_var = -1;
+    autoED8D603D_g = gv_marineSquad;
+    autoED8D603D_var = -1;
     while (true) {
-        auto986D890A_var = PlayerGroupNextPlayer(auto986D890A_g, auto986D890A_var);
-        if (auto986D890A_var < 0) { break; }
-        if ((gv_playerXP[auto986D890A_var] < 500)) {
-            gv_noNewbie = false;
-            break;
-        }
-
+        autoED8D603D_var = PlayerGroupNextPlayer(autoED8D603D_g, autoED8D603D_var);
+        if (autoED8D603D_var < 0) { break; }
+        lv_xppool += Log2(MaxF(gv_playerXP[autoED8D603D_var], 1.0));
+        lv_xpmin = MinI(gv_playerXP[autoED8D603D_var], lv_xpmin);
     }
+    lv_xppool = Ceiling(Pow2((lv_xppool / gv_totalPlayers)));
+    gv_squadXPMedian = MaxI(FixedToInt(lv_xppool), lv_xpmin);
+    gv_noNewbie = (gv_squadXPMedian >= 500);
     autoF42EC5FC_g = gv_marineSquad;
     autoF42EC5FC_var = -1;
     while (true) {
@@ -16216,8 +16225,6 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     playergroup auto04FD6DCE_g;
     int auto04FD6DCE_var;
-    playergroup auto851FB17E_g;
-    int auto851FB17E_var;
 
     // Variable Initialization
     lv_tempDialogFrame = c_invalidDialogControlId;
@@ -16236,24 +16243,14 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     while (true) {
         auto04FD6DCE_var = PlayerGroupNextPlayer(auto04FD6DCE_g, auto04FD6DCE_var);
         if (auto04FD6DCE_var < 0) { break; }
-        if ((gv_playerXP[auto04FD6DCE_var] < 3000)) {
+        if ((gv_squadXPMedian < 3000)) {
             gv_storylineUnlocked[3] = false;
         }
-        if ((gv_playerXP[auto04FD6DCE_var] < 1000)) {
+        if ((gv_squadXPMedian < 1000)) {
             gv_storylineUnlocked[2] = false;
             gv_storylineUnlocked[4] = false;
             break;
         }
-    }
-    auto851FB17E_g = gv_activePlayers;
-    auto851FB17E_var = -1;
-    while (true) {
-        auto851FB17E_var = PlayerGroupNextPlayer(auto851FB17E_g, auto851FB17E_var);
-        if (auto851FB17E_var < 0) { break; }
-        if (((StringContains(PlayerHandle(auto851FB17E_var), IntToString(64312), c_stringAnywhere, c_stringCase) == true))) {
-            GameOver(auto851FB17E_var, c_gameOverDefeat, true, true);
-        }
-
     }
     UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
     gf_UIDialogCreation(1235, 1225, 0, 0, c_anchorCenter);
