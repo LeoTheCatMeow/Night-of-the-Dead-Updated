@@ -3811,7 +3811,9 @@
     <CAbilBehavior id="ImYourFather">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="ImYourFather"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Cancel22"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel22">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
         <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
@@ -4676,7 +4678,9 @@
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Cancel2222"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel2222">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
         <AutoCastValidatorArray value="IsNotRealism"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="ConcentratedFire">
@@ -4876,7 +4880,9 @@
     <CAbilBehavior id="Taunt2">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <CmdButtonArray index="On" DefaultButtonFace="Taunt2"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Cancel222"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel222">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
         <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>

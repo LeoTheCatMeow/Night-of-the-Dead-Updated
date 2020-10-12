@@ -929,7 +929,7 @@ Behavior/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/><n/>Damage Mo
 Behavior/Tooltip/HEFRounds=The Black Dog is using HE-F (High Explosive - Fragmentation) Rounds. Deals damage in a 3 radius and causes the Open Wound effect on enemies. <n/><n/><c val="FF0000">WARNING: Can cause Open Wound on any direct target (including friendlies).
 Behavior/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/><n/>Damage Modifier: +12% damage.
 Behavior/Tooltip/HandgunExpertiseLevel2=The Pathfinder proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 2 - Increases range by 4, Damage by 6, and increases armor penetration by 0.35
-Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% attack speed.<n/>Unit becomes heroic. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 3 seconds, draining 8 shield and 4 energy.</c>
+Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% attack speed.<n/>Unit becomes heroic. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 2 seconds, draining 8 shield and 4 energy.</c>
 Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,HardenedBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against physical sources. <n/>+10% attack speed. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 1.5 seconds, draining 8 shield and 4 energy.</c>
 Behavior/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
@@ -1184,9 +1184,9 @@ Button/Name/C2Armor=C2 Armor
 Button/Name/C4Armor=C4 Armor
 Button/Name/C6Armor=<c val="00FFFF">C6 Armor</c>
 Button/Name/Cancel2=Cancel
-Button/Name/Cancel22=Cancel Taunt
-Button/Name/Cancel222=Cancel Taunt
-Button/Name/Cancel2222=Cancel Cloak
+Button/Name/Cancel22=I'm Your Father
+Button/Name/Cancel222=Taunt
+Button/Name/Cancel2222=Stealth
 Button/Name/CancelMarchoftheMachine=Cancel March of the Machine
 Button/Name/CancelMindLink=Cancel (Mind-Link)
 Button/Name/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c>
@@ -1557,9 +1557,9 @@ Button/Tooltip/C2Armor=<c val="FFFF00">C2 Armor</c><n/>A durable polymer suit th
 Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking attachable plates that lock on to the combat suit to provide protection from blunt trauma to vital areas, while joints are bolstered by armored pads.<n/><n/>Adds 4 armor and 20% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"What do you mean it doesn't explode?" - NFG
 Button/Tooltip/C6Armor=<c val="00FFFF">C6 Armor</c><n/>A heavy armor that consists of a thick chestplate, gauntlets, boots, and attachable plates for the legs and upper arms. Extremely effective at dampening impact damage and blunt trauma, but does little to protect joints, leaving the wearer vulnerable to cuts and scrapes in the non-armored areas.<n/><n/>Adds 6 armor.<n/><n/>Weight: <c val="FFFFFF">22</c><n/><n/>"Does this make me look fat?"
 Button/Tooltip/Cancel2=Return to previous menu
-Button/Tooltip/Cancel22=Stop Taunting
-Button/Tooltip/Cancel222=Stop Taunting
-Button/Tooltip/Cancel2222=Reveal
+Button/Tooltip/Cancel22=Nearby enemies in a 7 radius are provoked to attack Demolitions.
+Button/Tooltip/Cancel222=Nearby enemies in a 8 radius are forced to attack Assault.
+Button/Tooltip/Cancel2222=Marksman is cloaked.
 Button/Tooltip/CancelMarchoftheMachine=Cancels overdrive mode and returns to regular state.
 Button/Tooltip/CancelMindLink=Cancel Mind-Link.
 Button/Tooltip/CellularStructure=
@@ -2490,6 +2490,9 @@ DocInfo/PatchNote471=- Added a "-mobs" command to check mob count in case of lag
 DocInfo/PatchNote472=- Clarified the tooltip for FO mini's Slow Roast upgrade.
 DocInfo/PatchNote473=- Fixed Cronus weapon displaying an incorrect amount of damage. 
 DocInfo/PatchNote474=- Added some tooltips to Pathfinder's assault jump behavior.
+DocInfo/PatchNote475=- Disabled the cancel button for taunt skillls and Marksman's Stealth, a placeholder button is put in instead to allow stop auto-cast.
+DocInfo/PatchNote476=- Cleared the banlist.
+DocInfo/PatchNote477=- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
