@@ -19016,17 +19016,29 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
     int lv_position;
     int lv_random;
     unit lv_harasser;
-    point lv_spawn;
-    point lv_face;
+    unitgroup lv_harassers;
+    region lv_spawn;
+    bool lv_isHugged;
 
     // Automatic Variable Declarations
+    unitgroup auto9796E00C_g;
+    int auto9796E00C_u;
+    unit auto9796E00C_var;
+    const int autoC3FEE9BA_n = 99;
+    int autoC3FEE9BA_i;
     int auto763819CE_val;
     int auto5A800D9F_val;
+    const int auto88956A85_n = 7;
+    int auto88956A85_i;
+    unitgroup auto205FD8CE_g;
+    int auto205FD8CE_u;
+    unit auto205FD8CE_var;
 
     // Variable Initialization
     lv_trigPlayer = EventPlayer();
     lv_handle = PlayerHandle(EventPlayer());
     lv_message = EventChatMessage(false);
+    lv_harassers = UnitGroupEmpty();
 
     // Conditions
     if (testConds) {
@@ -19040,6 +19052,7 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(TriggerGetCurrent(), false);
     if ((StringContains(lv_message, "pussy", c_stringAnywhere, c_stringNoCase) == true) && (StringContains(lv_message, "fucking", c_stringAnywhere, c_stringNoCase) == false)) {
         lv_position = StringFind(lv_message, "pussy", c_stringNoCase);
         if ((StringSub(lv_message, (lv_position - 1), (lv_position - 1)) == " ") && ((StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != " ") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == ".") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == "!") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != ""))) {
@@ -19050,39 +19063,59 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
         return true;
     }
     lv_random = RandomInt(1, 6);
-    lv_spawn = PointWithOffsetPolar(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 3.0, UnitGetFacing(gv_marineHero[lv_trigPlayer]));
-    lv_face = UnitGetPosition(gv_marineHero[lv_trigPlayer]);
-    if ((StringContains(lv_message, "hugged", c_stringAnywhere, c_stringNoCase) == true)) {
-        if ((RandomInt(0, 4) == 1) && (UnitTestState(gv_marineHero[lv_trigPlayer], c_unitStateTurnSuppressed) == false) && ((StringContains(lv_message, "i'm hugged", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_message, "im hugged", c_stringAnywhere, c_stringNoCase) == true))) {
+    lv_spawn = RegionCircle(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 2.5);
+    RegionAttachToUnit(lv_spawn, gv_marineHero[lv_trigPlayer], Point(0.0, 0.0));
+    if (((StringContains(lv_message, "hugged", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_message, "huged", c_stringAnywhere, c_stringNoCase) == true))) {
+        auto9796E00C_g = gv_marines;
+        auto9796E00C_u = UnitGroupCount(auto9796E00C_g, c_unitCountAll);
+        for (;; auto9796E00C_u -= 1) {
+            auto9796E00C_var = UnitGroupUnitFromEnd(auto9796E00C_g, auto9796E00C_u);
+            if (auto9796E00C_var == null) { break; }
+            if ((UnitTestState(auto9796E00C_var, c_unitStateTurnSuppressed) == false)) {
+                lv_isHugged = true;
+                break;
+            }
+        }
+        if ((lv_isHugged == true) && ((RandomInt(0, 4) == 1) || (lv_handle == "1-S2-1-1560369"))) {
             lv_random = 6;
-            lv_spawn = PointWithOffsetPolar(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 0.75, UnitGetFacing(gv_marineHero[lv_trigPlayer]));
-            lv_face = UnitGetPosition(gv_marineHero[lv_trigPlayer]);
+            lv_spawn = RegionCircle(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 0.75);
+            RegionAttachToUnit(lv_spawn, gv_marineHero[lv_trigPlayer], Point(0.0, 0.0));
         }
         else {
             return true;
         }
     }
-    if (((lv_handle == "1-S2-1-417524") || (lv_handle == "1-S2-1-431521") || (lv_handle == "1-S2-1-1143628") || (lv_handle == "1-S2-1-3388720") || (lv_handle == "1-S2-1-11533459") || (lv_handle == "1-S2-1-1246603") || (lv_handle == "1-S2-1-2517593"))) {
+    if ((StringContains(lv_message, "bukake", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_random = 6;
+        for (autoC3FEE9BA_i = 1; autoC3FEE9BA_i <= autoC3FEE9BA_n; autoC3FEE9BA_i += 1) {
+            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
+            Wait(0.5, c_timeGame);
+        }
+        Wait(5.0, c_timeGame);
+    }
+    if (((lv_handle == "1-S2-1-417524") || (lv_handle == "1-S2-1-431521") || (lv_handle == "1-S2-1-1143628") || (lv_handle == "1-S2-1-3388720") || (lv_handle == "1-S2-1-11533459") || (lv_handle == "1-S2-1-1246603") || (lv_handle == "1-S2-1-2517593") || (lv_handle == "1-S2-1-1560369"))) {
         auto5A800D9F_val = lv_random;
         if (auto5A800D9F_val == 3) {
-            libNtve_gf_UnitCreateFacingPoint(1, "BrainBug2", 0, 14, lv_spawn, lv_face);
+            libNtve_gf_UnitCreateFacingPoint(1, "BrainBug2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBrainBug", 0)), c_orderQueueReplace);
-            lv_harasser = UnitLastCreated();
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
         else if (auto5A800D9F_val == 4) {
-            libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, lv_spawn, lv_face);
+            libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
-            lv_harasser = UnitLastCreated();
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
         else if (auto5A800D9F_val == 5) {
-            libNtve_gf_UnitCreateFacingPoint(1, "Slasher2", 0, 14, lv_spawn, lv_face);
+            libNtve_gf_UnitCreateFacingPoint(1, "Slasher2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSlasher", 0)), c_orderQueueReplace);
-            lv_harasser = UnitLastCreated();
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
         else if (auto5A800D9F_val == 6) {
-            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, lv_spawn, lv_face);
+            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
-            lv_harasser = UnitLastCreated();
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
         else {
         }
@@ -19090,26 +19123,35 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
     else {
         auto763819CE_val = lv_random;
         if (auto763819CE_val == 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "RoachBurrowed", 0, 14, lv_spawn, lv_face);
+            libNtve_gf_UnitCreateFacingPoint(1, "RoachBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowRoachUp", 0)), c_orderQueueReplace);
-            lv_harasser = UnitLastCreated();
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
         else if (auto763819CE_val == 2) {
-            libNtve_gf_UnitCreateFacingPoint(1, "SeekerBurrowed", 0, 14, lv_spawn, lv_face);
+            libNtve_gf_UnitCreateFacingPoint(1, "SeekerBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSeeker", 0)), c_orderQueueReplace);
-            lv_harasser = UnitLastCreated();
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
         else {
         }
     }
-    if ((UnitIsAlive(lv_harasser) == true)) {
-        Wait(0.5, c_timeGame);
-        UnitIssueOrder(lv_harasser, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_trigPlayer]), c_orderQueueReplace);
+    for (auto88956A85_i = 1; auto88956A85_i <= auto88956A85_n; auto88956A85_i += 1) {
+        if ((UnitGroupCount(lv_harassers, c_unitCountAlive) >= 1)) {
+            Wait(0.5, c_timeGame);
+            UnitGroupIssueOrder(lv_harassers, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_trigPlayer]), c_orderQueueReplace);
+            Wait(0.5, c_timeGame);
+        }
     }
-    Wait(7.0, c_timeGame);
     if ((lv_random == 6)) {
-        UnitKill(lv_harasser);
+        auto205FD8CE_g = lv_harassers;
+        auto205FD8CE_u = UnitGroupCount(auto205FD8CE_g, c_unitCountAll);
+        for (;; auto205FD8CE_u -= 1) {
+            auto205FD8CE_var = UnitGroupUnitFromEnd(auto205FD8CE_g, auto205FD8CE_u);
+            if (auto205FD8CE_var == null) { break; }
+            UnitKill(auto205FD8CE_var);
+        }
     }
+    TriggerEnable(TriggerGetCurrent(), true);
     return true;
 }
 
@@ -19123,6 +19165,8 @@ void gt_SwearJar_Init () {
     TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "nigger", false);
     TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "crybaby", false);
     TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "hugged", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "huged", false);
+    TriggerAddEventChatMessage(gt_SwearJar, c_playerAny, "bukake", false);
 }
 
 //--------------------------------------------------------------------------------------------------
