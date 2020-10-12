@@ -1647,7 +1647,6 @@
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Stealth" Type="AbilCmd" AbilCmd="Stealth,On" Row="1" Column="2"/>
-            <LayoutButtons Face="Cancel2222" Type="AbilCmd" AbilCmd="Stealth,Off" Row="1" Column="2"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="Reload" Type="AbilCmd" AbilCmd="Reload,Execute" Row="0" Column="2"/>
@@ -1657,6 +1656,7 @@
             <LayoutButtons Face="OneShotOneKill" Type="AbilCmd" AbilCmd="Snipe,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="MarineActions" Type="Submenu" SubmenuCardId="2" Row="1" Column="4"/>
             <LayoutButtons Face="QuickAim" Type="AbilCmd" AbilCmd="QuickAim,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Cancel2222" Type="AbilCmd" AbilCmd="Stealth,Off" Row="2" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
