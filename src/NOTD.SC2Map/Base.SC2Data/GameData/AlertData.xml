@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CAlert id="AthenaWeakened">
         <Display index="Ally" value="1"/>
@@ -119,6 +119,7 @@
         <Display index="Self" value="0"/>
         <Display index="Enemy" value="1"/>
         <Life value="5.000000"/>
+        <Icon value="Assets\Textures\btn-unit-zerg-overlord.dds"/>
     </CAlert>
     <CAlert id="EileithyiaRegenerationBegins">
         <PrimaryActions index="Flash" value="0"/>
@@ -131,6 +132,7 @@
         <Display index="Enemy" value="1"/>
         <Life value="5.000000"/>
         <Peripheral value="MorphComplete"/>
+        <Icon value="Assets\Textures\btn-unit-zerg-overlord.dds"/>
     </CAlert>
     <CAlert id="ErebosRegeneration">
         <SecondaryActions index="Flash" value="0"/>

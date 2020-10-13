@@ -2494,7 +2494,12 @@ DocInfo/PatchNote475=- Disabled the cancel button for taunt skillls and Marksman
 DocInfo/PatchNote476=- Cleared the banlist.
 DocInfo/PatchNote477=- Experimental changes on mode availability:
 DocInfo/PatchNote478=- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
-DocInfo/PatchNote479=- XP requirement for nightmare mode has been increased from 500 to 3000 to acommodate the above change.
+DocInfo/PatchNote479=- XP requirement for Sec reduced from 3000 to 2500.
+DocInfo/PatchNote480=- XP requirement for Nightmare mode increased from 500 to 3500, and still requires "No Newbie" (Everyone > 500XP). 
+DocInfo/PatchNote481=- The same 3500XP requirement is now used to determine Recruit vs Vet mode in a non-nightmare game. (Instead of "No Newbie")
+DocInfo/PatchNote482=- Rewards have been added for Recruit AC, Surv, Sec as these now become possible.
+DocInfo/PatchNote483=- When calculating the log scale average, players with more than 100k XP is considered 100k XP.
+DocInfo/PatchNote484=- A message now displays at the beginning of the game showing the log scale average XP and the number of new players (<500XP).
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4343,7 +4348,7 @@ Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
 Param/Expression/20BD633D=Designate ~A~
-Param/Expression/2FC894D9=<s val="InfoPaneHeroRank">Median XP: ~A~<n/>New Players: ~C~</s>
+Param/Expression/2FC894D9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
@@ -5672,7 +5677,7 @@ Param/Value/DEC24BDA=<s val="GlueButton"><c val="F4D72B">I was put in this cryo-
 Param/Value/DEFC0404=Game Over. Thanks for playing NOTD. Discuss at www.notdstarcraft.com
 Param/Value/DEFE4055=Check the perimeter. There could be more.
 Param/Value/DF20B52C=Powering up gate controls.
-Param/Value/DF2DC1DE=Median XP: 
+Param/Value/DF2DC1DE=Scaled XP: 
 Param/Value/DF31D03F=Those tanks will prove helpful against the masses.
 Param/Value/DF413802=We got what we came for. The Airlock is up North. We need to warn people of this...infestation.
 Param/Value/DF48C3E4=<s val="ModCenterSize24">
@@ -6727,7 +6732,7 @@ UserData/StatData/Strength_Tooltip=<c val="FFFF00">Strength</c><n/>Adds +11.5 HP
 UserData/Storyline/Alpha Company_Story Name=Alpha Company
 UserData/Storyline/Alpha Company_Story Subtitle=Landing on the outer ring of the colony, Alpha -- oblivious to the danger -- must find their own way in...
 UserData/Storyline/Alpha Company_Story Tooltip=Hardened veterans only!
-UserData/Storyline/Alpha Company_Story_Unlock_Text=To Unlock: Median XP > <n/>1000 required
+UserData/Storyline/Alpha Company_Story_Unlock_Text=To Unlock: Scaled XP > <n/>1000 required
 UserData/Storyline/Alpha_Company_Story_Name=Alpha Company
 UserData/Storyline/Alpha_Company_Story_Subtitle=Landing on the outer ring of the colony, Alpha -- oblivious to the danger -- must find their own way in...
 UserData/Storyline/Alpha_Company_Story_Tooltip=Hardened veterans only!
@@ -6735,7 +6740,7 @@ UserData/Storyline/Alpha_Company_Story_Unlock_Text=Unlock: All Players > <n/>100
 UserData/Storyline/Apollo Security Team_Story Name=Apollo Security
 UserData/Storyline/Apollo Security Team_Story Subtitle=Holed up with their backs against the wall, the Apollo security team prepare to meet their fate head on...
 UserData/Storyline/Apollo Security Team_Story Tooltip=Danger! Heavy casualties expected...
-UserData/Storyline/Apollo Security Team_Story_Unlock_Text=To Unlock: Median XP > <n/>3000 required
+UserData/Storyline/Apollo Security Team_Story_Unlock_Text=To Unlock: Scaled XP > <n/>2500 required
 UserData/Storyline/Apollo_Security_Team_Story_Name=Apollo Security
 UserData/Storyline/Apollo_Security_Team_Story_Subtitle=Holed up with their backs against the wall, the Apollo security team prepare to meet their fate head on...
 UserData/Storyline/Apollo_Security_Team_Story_Tooltip=Danger! Heavy casualties expected...
@@ -6750,7 +6755,7 @@ UserData/Storyline/Survival_Story Name=Survival
 UserData/Storyline/Survival_Story Tooltip=All 14 Classes Unlocked. 40 Waves of Enemies.<n/><n/>Survive As Long As Possible.
 UserData/Storyline/Survival_Story_Name=Survival
 UserData/Storyline/Survival_Story_Tooltip=All 14 Classes Unlocked. 40 Waves of Enemies.<n/><n/>Survive As Long As Possible.
-UserData/Storyline/Survival_Story_Unlock_Text=To Unlock: Median XP > <n/>1000 required
+UserData/Storyline/Survival_Story_Unlock_Text=To Unlock: Scaled XP > <n/>1000 required
 UserData/Storyline/[Default]_Story Name=Easy Company
 UserData/Storyline/[Default]_Story Subtitle=Assigned to investigate the distress call, Easy lands to find Apollo deserted and communications jammed. Something is terribly wrong...
 UserData/Storyline/[Default]_Story Tooltip=Ready for mission launch...
