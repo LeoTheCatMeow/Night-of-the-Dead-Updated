@@ -245,4 +245,9 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Cleared the banlist.
 - Experimental changes on mode availability:
 - XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
-- XP requirement for nightmare mode has been increased from 500 to 3000 to acommodate the above change.
+- XP requirement for Sec reduced from 3000 to 2500.
+- XP requirement for Nightmare mode increased from 500 to 3500, and still requires "No Newbie" (Everyone > 500XP). 
+- The same 3500XP requirement is now used to determine Recruit vs Vet mode in a non-nightmare game. (Instead of "No Newbie")
+- Rewards have been added for Recruit AC, Surv, Sec as these now become possible.
+- When calculating the log scale average, players with more than 100k XP is considered 100k XP.
+- A message now displays at the beginning of the game showing the log scale average XP and the number of new players (<500XP).
