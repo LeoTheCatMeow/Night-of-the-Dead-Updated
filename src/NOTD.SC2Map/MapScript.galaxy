@@ -1692,6 +1692,7 @@ void gf_LoadAcknowledge (int lp_playerNo);
 void gf_LoadBoundaryCheck (int lp_playerNo, int lp_bankSize);
 void gf_LoadPlayerBankFile (int lp_playerNo, int lp_bankSize);
 void gf_LoadPlayerBackupBankFile (int lp_playerNo);
+void gf_NewbieSharedVision ();
 void gf_PlayerAlliances ();
 void gf_LocationIntialization ();
 void gf_MemoryLoad (int lp_player);
@@ -2932,6 +2933,32 @@ bool auto_gf_LoadPlayerBackupBankFile_TriggerFunc (bool testConds, bool runActio
     }
     BankSave(BankLastCreated());
     return true;
+}
+
+void gf_NewbieSharedVision () {
+    // Variable Declarations
+    playergroup lv_newbies;
+    int lv_playerindex;
+
+    // Automatic Variable Declarations
+    playergroup auto08AA218A_g;
+
+    // Variable Initialization
+    lv_newbies = PlayerGroupEmpty();
+
+    // Implementation
+    if ((gv_noNewbie == false) && ((gv_isVeteranSquad == true) || (gv_storyline != 1))) {
+        auto08AA218A_g = gv_marineSquad;
+        lv_playerindex = -1;
+        while (true) {
+            lv_playerindex = PlayerGroupNextPlayer(auto08AA218A_g, lv_playerindex);
+            if (lv_playerindex < 0) { break; }
+            if ((gv_playerXP[lv_playerindex] < 500)) {
+                PlayerGroupAdd(lv_newbies, lv_playerindex);
+            }
+        }
+        libNtve_gf_SetAllianceBetweenTwoPlayerGroups(gv_marineSquad, lv_newbies, libNtve_ge_AllianceSetting_AllyWithSharedVision);
+    }
 }
 
 trigger auto_gf_PlayerAlliances_Trigger = null;
@@ -16823,6 +16850,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     gf_ClassCreationMaster(lv_selectingPlayer, lv_selectingPlayer);
     gf_TalentTreeCreation(lv_selectingPlayer);
     gf_MissionLogCreation(lv_selectingPlayer);
+    gf_NewbieSharedVision();
     return true;
 }
 
@@ -42585,6 +42613,7 @@ bool gt_FieldNexusRevokeSharedVision_Func (bool testConds, bool runActions) {
 
     }
     gf_RestoreLeaverControl();
+    gf_NewbieSharedVision();
     return true;
 }
 
@@ -42655,6 +42684,7 @@ bool gt_FieldNexusShareVision_Func (bool testConds, bool runActions) {
         }
     }
     gf_RestoreLeaverControl();
+    gf_NewbieSharedVision();
     return true;
 }
 
@@ -42972,6 +43002,7 @@ bool gt_MindLinkShareVision_Func (bool testConds, bool runActions) {
     }
     libNtve_gf_SetPlayerGroupAlliance(lv_mindLinkedPlayers, libNtve_ge_AllianceSetting_AllyWithSharedVision);
     gf_RestoreLeaverControl();
+    gf_NewbieSharedVision();
     return true;
 }
 
@@ -43031,6 +43062,7 @@ bool gt_CancelMindLink_Func (bool testConds, bool runActions) {
     }
     UnitGroupClear(gv_mindLinkedGroup[lv_ownerofPsiOps]);
     gf_RestoreLeaverControl();
+    gf_NewbieSharedVision();
     return true;
 }
 
