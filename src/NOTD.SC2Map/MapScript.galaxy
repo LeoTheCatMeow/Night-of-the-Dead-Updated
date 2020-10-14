@@ -769,6 +769,7 @@ int gv_pingPanelMinimapButton;
 string[9] gv_localModelPing;
 bool[9] gv_statusBarOptions;
 gs_Votekick[gv_numberofPlayers + 1] gv_voteKick;
+int[9] gv_voteKickKarmaPenalty;
 bool[9] gv_spectatorModeOn;
 bool[9] gv_spectatedBefore;
 int[9] gv_spectatedDialog;
@@ -16962,11 +16963,13 @@ void gt_PingPanelAutoDisable_Init () {
 bool gt_VoteKick_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_votingPlayer;
+    string lv_chatString;
     int lv_voteKickTarget;
     unit lv_bob;
     int lv_unitTransfer;
 
     // Automatic Variable Declarations
+    string auto4D6DB19E_val;
     const int auto8E7D9B7C_ae = gv_numberofPlayers;
     int auto8E7D9B7C_var;
     unitgroup auto8435DB59_g;
@@ -16975,6 +16978,7 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_votingPlayer = EventPlayer();
+    lv_chatString = EventChatMessage(true);
     lv_unitTransfer = 1;
 
     // Conditions
@@ -16993,64 +16997,78 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((EventChatMessage(true) == "-votekick")) {
+    auto4D6DB19E_val = lv_chatString;
+    if (auto4D6DB19E_val == "-vk") {
+        lv_voteKickTarget = StringToInt(StringSub(EventChatMessage(false), 5, 5));
+    }
+    else if (auto4D6DB19E_val == "-kick") {
+        lv_voteKickTarget = StringToInt(StringSub(EventChatMessage(false), 7, 7));
+    }
+    else if (auto4D6DB19E_val == "-votekick") {
         lv_voteKickTarget = StringToInt(StringSub(EventChatMessage(false), 11, 11));
     }
     else {
-        lv_voteKickTarget = StringToInt(StringSub(EventChatMessage(false), 5, 5));
     }
-    if ((gv_playerXP[lv_votingPlayer] < 2000)) {
-        UIDisplayMessage(PlayerGroupSingle(lv_votingPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/94E85E61"));
-    }
-    else {
-        if ((((lv_voteKickTarget >= 1) && (lv_voteKickTarget <= 8)) == true) && (lv_votingPlayer != lv_voteKickTarget) && (gv_voteKick[lv_voteKickTarget].lv_kicked == false)) {
-            gv_voteKick[lv_votingPlayer].lv_nomination = true;
-            gv_voteKick[lv_voteKickTarget].lv_danger += 1;
-            if ((gv_voteKick[lv_voteKickTarget].lv_danger == 1)) {
-                UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((StringExternal("Param/Value/F2F0980F") + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/41199A23")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/3E1C1E17")));
-                SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
-            }
-            else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 2)) {
-                UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((StringExternal("Param/Value/E4DFE6B3") + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/9480FDAF")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/2399241B")));
-                SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
-            }
-            else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 3)) {
-                gv_voteKick[lv_voteKickTarget].lv_kicked = true;
-                gf_UpdateKarma(lv_voteKickTarget, -2);
-                auto8E7D9B7C_var = gv_indexBaseValue;
-                for ( ; auto8E7D9B7C_var <= auto8E7D9B7C_ae; auto8E7D9B7C_var += 1 ) {
-                    gv_voteKick[auto8E7D9B7C_var].lv_nomination = false;
-                }
-                SoundPlay(SoundLink("FullMoonAcknowledgment", -1), PlayerGroupAll(), 100.0, 0.0);
-                UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/A1DB0E9F") + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/23DC8EDE")));
-                TriggerExecute(gt_AutoSave, true, false);
-                libNtve_gf_UnitCreateFacingPoint(1, "Bob", 0, 10, RegionRandomPoint(RegionCircle(UnitGetPosition(gv_marineHero[lv_voteKickTarget]), 5.0)), UnitGetPosition(gv_marineHero[lv_voteKickTarget]));
-                lv_bob = UnitLastCreated();
-                UnitWeaponAdd(lv_bob, "InfestedTalons", null);
-                libNtve_gf_ChangeUnitDamage(lv_bob, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
-                libNtve_gf_ChangeUnitDamage(lv_bob, libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_No);
-                UnitBehaviorAdd(lv_bob, "Rampage", lv_bob, 2);
-                UnitIssueOrder(lv_bob, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_voteKickTarget]), c_orderQueueReplace);
-                while ((lv_voteKickTarget != lv_unitTransfer)) {
-                    lv_unitTransfer += 1;
-                }
-                auto8435DB59_g = UnitGroup(null, lv_voteKickTarget, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto8435DB59_u = UnitGroupCount(auto8435DB59_g, c_unitCountAll);
-                for (;; auto8435DB59_u -= 1) {
-                    auto8435DB59_var = UnitGroupUnitFromEnd(auto8435DB59_g, auto8435DB59_u);
-                    if (auto8435DB59_var == null) { break; }
-                    UnitSetOwner(auto8435DB59_var, lv_unitTransfer, false);
-                }
-                CameraLockInput(lv_voteKickTarget, true);
-                libNtve_gf_HideGameUI(false, PlayerGroupSingle(lv_voteKickTarget));
-                GameOver(lv_voteKickTarget, c_gameOverDefeat, false, true);
-                UnitKill(gv_marineHero[lv_voteKickTarget]);
-                Wait(2.0, c_timeReal);
-                UnitKill(lv_bob);
+    if ((((lv_voteKickTarget >= 1) && (lv_voteKickTarget <= 8)) == true) && (lv_votingPlayer != lv_voteKickTarget) && (gv_voteKick[lv_voteKickTarget].lv_kicked == false)) {
+        gv_voteKick[lv_votingPlayer].lv_nomination = true;
+        gv_voteKick[lv_voteKickTarget].lv_danger += 1;
+        if ((gv_voteKick[lv_voteKickTarget].lv_danger == 1)) {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/41199A23")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/3E1C1E17")));
+            SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
+            if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -20;
+                Wait(3.0, c_timeGame);
+                UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (gv_infoPanelHeroRank + StringExternal("Param/Value/35E6A69A") + gv_endStyling));
             }
         }
-
+        else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 2)) {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/9480FDAF")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/2399241B")));
+            SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
+            if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+            }
+        }
+        else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 3)) {
+            gv_voteKick[lv_voteKickTarget].lv_kicked = true;
+            gf_UpdateKarma(lv_voteKickTarget, -50);
+            if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+            }
+            auto8E7D9B7C_var = gv_indexBaseValue;
+            for ( ; auto8E7D9B7C_var <= auto8E7D9B7C_ae; auto8E7D9B7C_var += 1 ) {
+                gf_UpdateKarma(lv_votingPlayer, gv_voteKickKarmaPenalty[auto8E7D9B7C_var]);
+                gv_voteKickKarmaPenalty[auto8E7D9B7C_var] = 0;
+                gv_voteKick[auto8E7D9B7C_var].lv_nomination = false;
+            }
+            SoundPlay(SoundLink("FullMoonAcknowledgment", -1), PlayerGroupAll(), 100.0, 0.0);
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/23DC8EDE")));
+            TriggerExecute(gt_AutoSave, true, false);
+            libNtve_gf_UnitCreateFacingPoint(1, "Bob", 0, 10, RegionRandomPoint(RegionCircle(UnitGetPosition(gv_marineHero[lv_voteKickTarget]), 5.0)), UnitGetPosition(gv_marineHero[lv_voteKickTarget]));
+            lv_bob = UnitLastCreated();
+            UnitWeaponAdd(lv_bob, "InfestedTalons", null);
+            libNtve_gf_ChangeUnitDamage(lv_bob, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
+            libNtve_gf_ChangeUnitDamage(lv_bob, libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_No);
+            UnitBehaviorAdd(lv_bob, "Rampage", lv_bob, 2);
+            UnitIssueOrder(lv_bob, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_voteKickTarget]), c_orderQueueReplace);
+            while ((lv_voteKickTarget != lv_unitTransfer)) {
+                lv_unitTransfer += 1;
+            }
+            auto8435DB59_g = UnitGroup(null, lv_voteKickTarget, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto8435DB59_u = UnitGroupCount(auto8435DB59_g, c_unitCountAll);
+            for (;; auto8435DB59_u -= 1) {
+                auto8435DB59_var = UnitGroupUnitFromEnd(auto8435DB59_g, auto8435DB59_u);
+                if (auto8435DB59_var == null) { break; }
+                UnitSetOwner(auto8435DB59_var, lv_unitTransfer, false);
+            }
+            CameraLockInput(lv_voteKickTarget, true);
+            libNtve_gf_HideGameUI(false, PlayerGroupSingle(lv_voteKickTarget));
+            GameOver(lv_voteKickTarget, c_gameOverDefeat, false, true);
+            UnitKill(gv_marineHero[lv_voteKickTarget]);
+            Wait(2.0, c_timeReal);
+            UnitKill(lv_bob);
+        }
     }
+
     return true;
 }
 
@@ -17059,6 +17077,7 @@ void gt_VoteKick_Init () {
     gt_VoteKick = TriggerCreate("gt_VoteKick_Func");
     TriggerAddEventChatMessage(gt_VoteKick, c_playerAny, "-votekick", false);
     TriggerAddEventChatMessage(gt_VoteKick, c_playerAny, "-vk", false);
+    TriggerAddEventChatMessage(gt_VoteKick, c_playerAny, "-kick", false);
 }
 
 //--------------------------------------------------------------------------------------------------
