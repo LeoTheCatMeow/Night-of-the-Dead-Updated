@@ -2006,7 +2006,6 @@ trigger gt_PingUsedNOTD;
 trigger gt_PingResetTimerExprires;
 trigger gt_PingPanelAutoDisable;
 trigger gt_VoteKick;
-trigger gt_AmendVoteKick;
 trigger gt_Clear;
 trigger gt_SquadStatsCheck;
 trigger gt_CiviliansCheck;
@@ -16982,30 +16981,34 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
     }
     else {
     }
-    if ((((lv_voteKickTarget >= 1) && (lv_voteKickTarget <= 8)) == true) && (lv_votingPlayer != lv_voteKickTarget) && (PlayerStatus(lv_voteKickTarget) == c_playerStatusActive) && (gv_voteKick[lv_voteKickTarget].lv_kicked == false)) {
+    if ((((lv_voteKickTarget >= 1) && (lv_voteKickTarget <= 8)) == true) && (lv_votingPlayer != lv_voteKickTarget) && (gv_voteKick[lv_voteKickTarget].lv_kicked == false)) {
         gv_voteKick[lv_votingPlayer].lv_nomination = true;
         gv_voteKick[lv_voteKickTarget].lv_danger += 1;
         if ((gv_voteKick[lv_voteKickTarget].lv_danger == 1)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/41199A23")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/3E1C1E17")));
             SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
-            gv_voteKickKarmaPenalty[lv_votingPlayer] = 50;
-            Wait(3.0, c_timeGame);
-            gf_UpdateKarma(lv_votingPlayer, -50);
-            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (gv_infoPanelHeroRank + StringExternal("Param/Value/35E6A69A") + gv_endStyling));
+            if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -20;
+                Wait(3.0, c_timeGame);
+                UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (gv_infoPanelHeroRank + StringExternal("Param/Value/35E6A69A") + gv_endStyling));
+            }
         }
         else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 2)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/9480FDAF")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/2399241B")));
             SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
-            gv_voteKickKarmaPenalty[lv_votingPlayer] = 25;
-            Wait(3.0, c_timeGame);
-            gf_UpdateKarma(lv_votingPlayer, -25);
+            if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+            }
         }
         else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 3)) {
             gv_voteKick[lv_voteKickTarget].lv_kicked = true;
-            gf_UpdateKarma(lv_voteKickTarget, -100);
-            gf_UpdateKarma(lv_votingPlayer, -25);
+            gf_UpdateKarma(lv_voteKickTarget, -50);
+            if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+            }
             auto8E7D9B7C_var = gv_indexBaseValue;
             for ( ; auto8E7D9B7C_var <= auto8E7D9B7C_ae; auto8E7D9B7C_var += 1 ) {
+                gf_UpdateKarma(lv_votingPlayer, gv_voteKickKarmaPenalty[auto8E7D9B7C_var]);
                 gv_voteKickKarmaPenalty[auto8E7D9B7C_var] = 0;
                 gv_voteKick[auto8E7D9B7C_var].lv_nomination = false;
             }
@@ -17047,63 +17050,6 @@ void gt_VoteKick_Init () {
     TriggerAddEventChatMessage(gt_VoteKick, c_playerAny, "-votekick", false);
     TriggerAddEventChatMessage(gt_VoteKick, c_playerAny, "-vk", false);
     TriggerAddEventChatMessage(gt_VoteKick, c_playerAny, "-kick", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Amend Vote Kick
-//--------------------------------------------------------------------------------------------------
-bool gt_AmendVoteKick_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_votingPlayer;
-    string lv_chatString;
-    int lv_voteKickTarget;
-
-    // Automatic Variable Declarations
-    string autoC718E867_val;
-
-    // Variable Initialization
-    lv_votingPlayer = EventPlayer();
-    lv_chatString = EventChatMessage(true);
-
-    // Conditions
-    if (testConds) {
-        if (!((gv_voteKick[lv_votingPlayer].lv_nomination == true))) {
-            return false;
-        }
-
-        if (!((gv_playerBanned[lv_votingPlayer] == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoC718E867_val = lv_chatString;
-    if (autoC718E867_val == "-amend") {
-        lv_voteKickTarget = StringToInt(StringSub(EventChatMessage(false), 8, 8));
-    }
-    else {
-    }
-    if ((((lv_voteKickTarget >= 1) && (lv_voteKickTarget <= 8)) == true) && (lv_votingPlayer != lv_voteKickTarget) && (gv_voteKick[lv_voteKickTarget].lv_kicked == false) && (gv_voteKick[lv_voteKickTarget].lv_danger > 0)) {
-        gv_voteKick[lv_votingPlayer].lv_nomination = false;
-        if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
-            gv_voteKick[lv_voteKickTarget].lv_danger -= 1;
-            gf_UpdateKarma(lv_votingPlayer, gv_voteKickKarmaPenalty[lv_votingPlayer]);
-            SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
-            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/C5F9B01F")) + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/DEE242B5")));
-        }
-        gv_voteKickKarmaPenalty[lv_votingPlayer] = 0;
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_AmendVoteKick_Init () {
-    gt_AmendVoteKick = TriggerCreate("gt_AmendVoteKick_Func");
-    TriggerAddEventChatMessage(gt_AmendVoteKick, c_playerAny, "-amend", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44676,7 +44622,6 @@ void InitTriggers () {
     gt_PingResetTimerExprires_Init();
     gt_PingPanelAutoDisable_Init();
     gt_VoteKick_Init();
-    gt_AmendVoteKick_Init();
     gt_Clear_Init();
     gt_SquadStatsCheck_Init();
     gt_CiviliansCheck_Init();
