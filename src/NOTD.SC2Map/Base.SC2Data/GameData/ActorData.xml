@@ -386,6 +386,8 @@
         <On Terms="Behavior.Atrocious.Off" Send="Destroy"/>
         <On Terms="Behavior.AtrociousBoss.On" Send="Create"/>
         <On Terms="Behavior.AtrociousBoss.Off" Send="Destroy"/>
+        <On Terms="Behavior.AtrociousHeroic.On" Send="Create"/>
+        <On Terms="Behavior.AtrociousHeroic.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="0.800000"/>
     </CActorModel>

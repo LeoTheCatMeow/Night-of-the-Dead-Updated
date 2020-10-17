@@ -126,6 +126,18 @@
             </Cost>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AtrociousHeroic">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <InitialEffect value="AtrociousApplyBonusRegen"/>
+        <PeriodicEffect value="AtrociousDebuffSearch"/>
+        <Modification>
+            <DamageTakenFraction index="Spell" value="1"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
+            <VitalRegenArray index="Life" value="15"/>
+        </Modification>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.121"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Period value="1"/>
