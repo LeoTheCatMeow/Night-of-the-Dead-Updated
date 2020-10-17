@@ -3290,6 +3290,10 @@
         <Fields Id="Locked Text" Type="Text"/>
         <Fields Id="Inventory Slot Count" Type="Int"/>
         <Fields Id="Enhancement Slots" Type="Int"/>
+        <Fields Id="Traits Story 1" Type="Int" Count="7"/>
+        <Fields Id="Traits Story 2" Type="Int" Count="7"/>
+        <Fields Id="Traits Story 3" Type="Int" Count="7"/>
+        <Fields Id="Story Locked Text" Type="Text"/>
         <Instances Id="[Default]"/>
         <Instances Id="Rifleman">
             <Color Color="255,192,192,192">
@@ -3437,6 +3441,18 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="1"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="1"/>
+            </Int>
             <Sound Sound="Viking_Pissed2">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3448,6 +3464,9 @@
             </Text>
             <Text Text="UserData/Classes/Assault_Class CP Name">
                 <Field Id="Class CP Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Assault_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="TychusChaingun">
                 <Field Id="Class Unit"/>
@@ -3552,6 +3571,24 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="2">
+                <Field Id="Traits Story 1" Index="4"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Traits Story 1" Index="1"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Traits Story 2" Index="1"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Traits Story 2" Index="4"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Traits Story 3" Index="1"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Traits Story 3" Index="4"/>
+            </Int>
             <Sound Sound="Ghost_Pissed2">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3611,6 +3648,24 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="2"/>
+            </Int>
+            <Int Int="5">
+                <Field Id="Traits Story 1"/>
+            </Int>
+            <Int Int="10">
+                <Field Id="Traits Story 1" Index="2"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="2"/>
+            </Int>
             <Sound Sound="Marauder_Ready2">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3625,6 +3680,9 @@
             </Text>
             <Text Text="UserData/Classes/Demolitions_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Demolitions_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="DominionKillTeam">
                 <Field Id="Class Unit"/>
@@ -3670,6 +3728,24 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="10">
+                <Field Id="Traits Story 1" Index="2"/>
+            </Int>
+            <Int Int="15">
+                <Field Id="Traits Story 1" Index="3"/>
+            </Int>
+            <Int Int="10">
+                <Field Id="Traits Story 2" Index="2"/>
+            </Int>
+            <Int Int="15">
+                <Field Id="Traits Story 2" Index="3"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="2"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="3"/>
+            </Int>
             <Sound Sound="Swann_Ready">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3684,6 +3760,9 @@
             </Text>
             <Text Text="UserData/Classes/Engineer_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Engineer_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="Engineer">
                 <Field Id="Class Unit"/>
@@ -3729,6 +3808,24 @@
             <Int Int="2">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="15">
+                <Field Id="Traits Story 1" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="1"/>
+            </Int>
+            <Int Int="15">
+                <Field Id="Traits Story 2" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="1"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="1"/>
+            </Int>
             <Sound Sound="Tosh_Ready">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3743,6 +3840,9 @@
             </Text>
             <Text Text="UserData/Classes/Commando_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Commando_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="Commando">
                 <Field Id="Class Unit"/>
@@ -3788,6 +3888,18 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="6"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="6"/>
+            </Int>
             <Sound Sound="Firebat_Pissed2">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3799,6 +3911,9 @@
             </Text>
             <Text Text="UserData/Classes/Flamethrower_Class CP Name">
                 <Field Id="Class CP Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Flamethrower_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="Flamethrower3">
                 <Field Id="Class Unit"/>
@@ -3844,6 +3959,24 @@
             <Int Int="2">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="3"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="3"/>
+            </Int>
+            <Int Int="15">
+                <Field Id="Traits Story 3" Index="3"/>
+            </Int>
+            <Int Int="10">
+                <Field Id="Traits Story 3" Index="5"/>
+            </Int>
             <Sound Sound="Diamondback_Ready">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3858,6 +3991,9 @@
             </Text>
             <Text Text="UserData/Classes/Forward Observer_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Forward Observer_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="ForwardObserver">
                 <Field Id="Class Unit"/>
@@ -3903,6 +4039,12 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="2"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="2"/>
+            </Int>
             <Sound Sound="Thor_Pissed2">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3914,6 +4056,9 @@
             </Text>
             <Text Text="UserData/Classes/Technician_Class CP Name">
                 <Field Id="Class CP Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Technician_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="Technician">
                 <Field Id="Class Unit"/>
@@ -3959,6 +4104,24 @@
             <Int Int="3">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="6"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="6"/>
+            </Int>
+            <Int Int="5">
+                <Field Id="Traits Story 3" Index="5"/>
+            </Int>
+            <Int Int="10">
+                <Field Id="Traits Story 3" Index="6"/>
+            </Int>
             <Sound Sound="Marauder_What">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -3973,6 +4136,9 @@
             </Text>
             <Text Text="UserData/Classes/Chemical Expert_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Chemical Expert_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="ChemicalExpert">
                 <Field Id="Class Unit"/>
@@ -4018,6 +4184,24 @@
             <Int Int="2">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="3"/>
+            </Int>
+            <Int Int="10">
+                <Field Id="Traits Story 2" Index="3"/>
+            </Int>
+            <Int Int="5">
+                <Field Id="Traits Story 2" Index="5"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="3"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="5"/>
+            </Int>
             <Sound Sound="Reaper_Ready">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -4032,6 +4216,9 @@
             </Text>
             <Text Text="UserData/Classes/Pathfinder_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Pathfinder_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="Pathfinder">
                 <Field Id="Class Unit"/>
@@ -4077,6 +4264,18 @@
             <Int Int="2">
                 <Field Id="Enhancement Slots"/>
             </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 2" Index="4"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 1" Index="4"/>
+            </Int>
+            <Int Int="20">
+                <Field Id="Traits Story 3" Index="2"/>
+            </Int>
+            <Int Int="15">
+                <Field Id="Traits Story 3" Index="4"/>
+            </Int>
             <Sound Sound="Nova_Ready">
                 <Field Id="Class CP Sound"/>
             </Sound>
@@ -4091,6 +4290,9 @@
             </Text>
             <Text Text="UserData/Classes/Psi Ops_Locked Text">
                 <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Psi Ops_Story Locked Text">
+                <Field Id="Story Locked Text"/>
             </Text>
             <Unit Unit="PsiOps">
                 <Field Id="Class Unit"/>

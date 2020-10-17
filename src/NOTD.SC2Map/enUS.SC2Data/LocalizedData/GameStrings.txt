@@ -826,7 +826,7 @@ Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
 Behavior/Tooltip/AssaultJumpEvasionLevel1=Unit gains 80% evasion for 1 second.
 Behavior/Tooltip/AssaultJumpEvasionLevel2=Unit gains 85% evasion for 2 seconds.
 Behavior/Tooltip/AssaultJumpEvasionLevel3=Unit gains 90% evasion for 3 seconds.
-Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 3.3% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
+Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 3% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
 Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+<d ref="Behavior,AtrociousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 1% missing health regeneration per second. <n/>+<d ref="Behavior,AtrociousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
@@ -929,7 +929,7 @@ Behavior/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/><n/>Damage Mo
 Behavior/Tooltip/HEFRounds=The Black Dog is using HE-F (High Explosive - Fragmentation) Rounds. Deals damage in a 3 radius and causes the Open Wound effect on enemies. <n/><n/><c val="FF0000">WARNING: Can cause Open Wound on any direct target (including friendlies).
 Behavior/Tooltip/HPAmmo=<c val="80FF80">Hollow Point Ammo</c><n/><n/>Damage Modifier: +12% damage.
 Behavior/Tooltip/HandgunExpertiseLevel2=The Pathfinder proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 2 - Increases range by 4, Damage by 6, and increases armor penetration by 0.35
-Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% attack speed.<n/>Unit becomes heroic. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 3 seconds, draining 8 shield and 4 energy.</c>
+Behavior/Tooltip/Hardened=Unit gains the following features:<n/>+125 flat and 50% health. <n/>+75% damage reduction against physical sources. <n/>+10% attack speed.<n/>Unit becomes heroic. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 2 seconds, draining 8 shield and 4 energy.</c>
 Behavior/Tooltip/HardenedBoss=Unit gains the following features:<n/>+15% health. <n/>+<d ref="100 - (Behavior,HardenedBoss,DamageResponse.ModifyFraction * 100)"/>% damage reduction against physical sources. <n/>+10% attack speed. <n/><c val="FFFF00">Zaps the furthest unit in a 6 radius every 1.5 seconds, draining 8 shield and 4 energy.</c>
 Behavior/Tooltip/HarvesterofSorrow=The Assault gains 20% bonus Critical Strike, while losing 10% movespeed. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.
 Behavior/Tooltip/HarvesterofSorrowTarget=Unit's attack and movespeed is slowed by 30% for 0.5 seconds. 
@@ -2496,22 +2496,10 @@ DocInfo/PatchNote477=- Experimental changes on mode availability:
 DocInfo/PatchNote478=- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
 DocInfo/PatchNote479=- XP requirement for Sec reduced from 3000 to 2500.
 DocInfo/PatchNote480=- XP requirement for Nightmare mode increased from 500 to 3500, and still requires "No Newbie" (Everyone > 500XP). 
-DocInfo/PatchNote481=- The same 4000XP requirement is now used to determine Recruit vs Vet mode in a non-nightmare game. (Instead of "No Newbie")
+DocInfo/PatchNote481=- The same 3500XP requirement is now used to determine Recruit vs Vet mode in a non-nightmare game. (Instead of "No Newbie")
 DocInfo/PatchNote482=- Rewards have been added for Recruit AC, Surv, Sec as these now become possible.
 DocInfo/PatchNote483=- When calculating the log scale average, players with more than 100k XP is considered 100k XP.
 DocInfo/PatchNote484=- A message now displays at the beginning of the game showing the log scale average XP and the number of new players (<500XP).
-DocInfo/PatchNote485=- Added shared vision for new players under 500 XP (ThunderRazor).
-DocInfo/PatchNote486=- Removed vote kick requriement. If vote kick is successful, players who voted will lose some karma, but the player who is kicked will lose
-DocInfo/PatchNote487=  a much greater amount of karma. One cannot vote kick again if the previous vote kick has not been resolved (ThunderRazor).
-DocInfo/PatchNote488=- Fixed some classes not having the correct unlock tooltip, due to class swaping and new xp requirements etc, (Leo)
-DocInfo/PatchNote489=- Fixed chemical leak hexes not removed in recruit AC (Leo).
-DocInfo/PatchNote490=- Adjusted difficulty & rewards & item spawns for non-nightmare AC, Surv, Sec as follows: (Leo)
-DocInfo/PatchNote491=- xp rewards overall reduced for recruit modes (was previously the same as vet/nm)
-DocInfo/PatchNote492=- recruit survival can now go beyond wave 20, rewards for waves 20+ in recruit are however much less than that of vet/nm. 
-DocInfo/PatchNote493=- M5 spawns removed from AC recruit as the weapon has been reworked, weapon spawns for AC recruit adjusted slightly.
-DocInfo/PatchNote494=- Added a few rare weapons to Sec recruit (still no Stinger), 1 Stinger now spawns at chapter 2 in Sec vet (previously none in vet).
-DocInfo/PatchNote495=- The above added Sec weapon spawns are excluded from Surv mode (which uses Sec item spawns).
-DocInfo/PatchNote496=- Nazara in Sec recruit will no longer "Assume Direct Control" of random units. 
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4401,6 +4389,7 @@ Param/Value/02AB0A1A=<s val="InfoPaneHeroRank">(The Colonists in the Containment
 Param/Value/02B65806=Deimos' attacks deal greater damage to high armor units
 Param/Value/02F14065=<c val="F4D72B">Victory. Thanks for playing NOTD. Discuss at www.notdstarcraft.com</c>
 Param/Value/030213C9=Spread out!
+Param/Value/0303F354=<s val="GlueButtonSmall">Tank: 
 Param/Value/0353117D=Zeus and Leto must be killed almost simultaneously to prevent respawn.
 Param/Value/0358704F=Re-activate Devastators from Airlock (0/3)
 Param/Value/03A117C6=Why are we killing all these people.
@@ -4505,6 +4494,7 @@ Param/Value/14EFB092=I've run the simulations here. Moving to the next terminal.
 Param/Value/1503C7F6=<s val="BriefingHanText">(Weapons online...)</s>
 Param/Value/154EAE13=<s val="InfoPaneHeroRank">(Survive the airlock battle before saving the civilians...)</s>
 Param/Value/159F8057=<s val="GlueButtonSmall">Easy Company: 
+Param/Value/15AC8BA9=</s>
 Param/Value/15B7932E=Marine: <c val="F4D72B">It's loaded with eggs. Get your flamethrowers ready.</c></s>
 Param/Value/163EA7C6=I'm your dropship pilot. We've located a suitable LZ. You need to clear the area for me.
 Param/Value/1655273D=Chase him.
@@ -4538,6 +4528,7 @@ Param/Value/1BA21C68=<s val="BriefingHanText">(Seismic activity detected...)</s>
 Param/Value/1BE7E05D=God have mercy on our souls.
 Param/Value/1C18972C=
 Param/Value/1C394A88=<s val="GlueButton"><c val="F4D72B">Humans, I am Ekvolbollishazarijajombashef.</c></s>
+Param/Value/1C6F9E02=Next Promotion:
 Param/Value/1C72DC4A=Find a way into Apollo
 Param/Value/1C988643=Chapter 3
 Param/Value/1CA9E01E=Kill Apoptosis
@@ -4741,6 +4732,7 @@ Param/Value/3C629772=IVAX? That's the heavy haul we were going to ship to Mars n
 Param/Value/3C6EFD98=Great job. You've cleansed Apollo of the infestation.
 Param/Value/3CA19E89=<c val="0080FF">Saving Biometric ID for </c>
 Param/Value/3CCA7962=
+Param/Value/3CD0639F=<s val="GlueButtonSmall">DPS: 
 Param/Value/3CD09D38=When you've found them, bring them straight to Delta-1. Our pilots are dead, but it's safer here than anywhere else in the sector.
 Param/Value/3CFEA3BD=<n/><c val="FF0000">Not Available in this mode</c><n/><n/>
 Param/Value/3D54245E=That's it. Let's get to the others.
@@ -5038,7 +5030,6 @@ Param/Value/70E0C384=+5 XP for Performance Bonus
 Param/Value/70F0CE92=Ammo modifiers like AP Ammo improve your weapon's potency.
 Param/Value/711360DA=Boys, we're attracting a lot of attention!
 Param/Value/713DE317=It all started wi-
-Param/Value/7148543D=Shared vision is granted to players with less than 500XP.
 Param/Value/71DA941A=<n/></c>Hits Taken: <c val="F4D72B">
 Param/Value/72189A49=Kill all zombies from Bio-Dome B
 Param/Value/723F181B=[Elite Mutation]
@@ -5051,6 +5042,7 @@ Param/Value/73057007=Your unit performed admirably. You will be celebrated as he
 Param/Value/7314D1E2=Poison gas will disorient you temporarily
 Param/Value/736406F9=We have the package. Life signs stable.
 Param/Value/7391DB71=<s val="InfoPaneHeroRank">+
+Param/Value/73B68D3A=You cannot proceed beyond Wave 20 at Recruit difficulty!
 Param/Value/73EA90C2=You lost dozens capturing Athena. All in vain.
 Param/Value/73EE1705=<s val="GlueButtonSmall">Class Points - 
 Param/Value/747277A8=
@@ -5283,6 +5275,7 @@ Param/Value/99B5F70D=Those Cellular Structures are immune to small arms fire. Pu
 Param/Value/99C9601E=What we saw in the underground quarters will scar my men.
 Param/Value/99D46EAC=(Erebos loses his regenerative shell...)
 Param/Value/99F117F0=Destroy Hades
+Param/Value/99F27BAC=<s val="GlueButtonSmall">Crowd Control: 
 Param/Value/9A5C7980=)</s>
 Param/Value/9A721CA8=<s val="ChatBar">- Sealing chemical leak -</c></s>
 Param/Value/9A8AA95F=Dropship ETA
@@ -5433,6 +5426,7 @@ Param/Value/B4B4084C=Artillery Dispersion: <c val="FFFF00">Concentrated</c>
 Param/Value/B4CBD119=She must have found a way to transfer her essential functions to another platform.
 Param/Value/B4E088A7=Remember, we can also unlock the scrapyard gate. But it's probably safer to find another path. Too many confined spaces from that entrance.
 Param/Value/B4E20E81=
+Param/Value/B51FF0C9=<s val="GlueButtonSmall">Stealth: 
 Param/Value/B54DE278=Kill all Infestors (
 Param/Value/B562184C=We've got work to do, if we want to save this facility.
 Param/Value/B595B3C6=Maintain tight formation around the civies.
@@ -5465,6 +5459,7 @@ Param/Value/B9079527=Argh!
 Param/Value/B97AE44A=You have 30 seconds to position your team and find supplies before Waves begin.
 Param/Value/B9AE8010=Doctor, what's the status of your research? We can't hold on much longer.
 Param/Value/B9C7B047=We have a serious chemical leak in the scrapyard. Usually Apollo's regular maintenance crew would clean it up.
+Param/Value/BA81F5F8=<s val="GlueButtonSmall">Dangerous: 
 Param/Value/BABD3C69=I hear gunfire. Move quickly!
 Param/Value/BAF05AC5= XP for Devastator Survival Bonus.
 Param/Value/BB3AB6E9=
@@ -5553,6 +5548,7 @@ Param/Value/C9946C57=No, no...something's not right.
 Param/Value/C996F396=+25 XP for Victory Bonus
 Param/Value/C9A2388C=Basics
 Param/Value/C9B81C92=<s val="InfoPaneHeroRank">Supplies delivered into battlefield..</s>
+Param/Value/C9E01FA6=<n/><s val="GlueButtonSmall">Class Traits - 
 Param/Value/C9E08783=Apollo Lunar Facility
 Param/Value/C9EC1B92=It's safe to engage Erebos again.
 Param/Value/C9F4F7B1=Stick together. There's more coming.
@@ -5573,6 +5569,7 @@ Param/Value/CC834827=I'm Assistant Science Officer Tanaka.
 Param/Value/CC852C44=Dr. Omar
 Param/Value/CCAD1762=Stay away from the bodies.
 Param/Value/CD5B26BE=Retrieve Weapons & Ammo from Armory
+Param/Value/CD783517=Class Selection - Recruit
 Param/Value/CDB4532A=<s val="GlueButton"><c val="F4D72B">Motion sensors lit up like a Christmas tree, brace for a fast attack!</c></s>
 Param/Value/CDBBA6C1=You are in direct violation of UGC Article 11.
 Param/Value/CE13C562=Retreat
@@ -5591,6 +5588,7 @@ Param/Value/CFBDCD83=<s val="GlueButton">Infestor
 Param/Value/CFC5D923=<c val="FF0000">Low Ammo</c>
 Param/Value/CFFF7DAC=<s val="GlueButton"><c val="F4D72B">An infested Marine...who is that?</c></s>
 Param/Value/D028085E=All callsigns Phantom. We are go for entry.
+Param/Value/D0613D6E=<s val="GlueButtonSmall">Squishy: 
 Param/Value/D0639662=The inteference from the reactor has disabled our sensors.
 Param/Value/D0924C0A=
 Param/Value/D0B0D033=Scientist
@@ -5862,6 +5860,7 @@ Param/Value/F9898AF4=</s>
 Param/Value/F99A2CE8=Black Ops have many deadly ranged attacks. Stay sharp!
 Param/Value/F9A1B8C3=I'll keep an eye out, Lieutenant. Now I must get back to work.
 Param/Value/F9A7E5EA=<s val="InfoPaneHeroRank">Random class already selected</s>
+Param/Value/F9B133FC=<s val="GlueButtonSmall">Micro: 
 Param/Value/F9C1DDDB=Take it down fast. That queen has hundreds of eggs in it. Many are ready to hatch.
 Param/Value/FA56F8FC=+
 Param/Value/FA88ACEF=There's a backup mainframe in Mine Site Epsilon. We'll shut HAL down there.
@@ -6395,91 +6394,101 @@ UserData/BossData/Seth_Name=Seth
 UserData/BossData/Tartarus_Name=Tartarus
 UserData/Classes/Assault_Class CP Name=Assault/Flamer/Technician
 UserData/Classes/Assault_Class Name=Assault
-UserData/Classes/Assault_Class Role=<s val="AchievementFrameName">Assault</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Arms / Protection<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Assault is a heavy duty offensive and defensive unit.</c>
+UserData/Classes/Assault_Class Role=<s val="AchievementFrameName">Assault</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Arms / Protection<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Crowd Control<n/><n/><c val="F4D72B">The Assault is a heavy duty offensive and defensive unit.</c>
 UserData/Classes/Assault_Class_CP_Name=Assault/Flamer/Technician
 UserData/Classes/Assault_Class_Name=Assault
 UserData/Classes/Assault_Class_Role=<s val="AchievementFrameName">Assault</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Arms / Protection<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Assault is a heavy duty offensive and defensive unit.</c>
+UserData/Classes/Assault_Locked Text=Not available in this story.
+UserData/Classes/Assault_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Tank<n/>- 20 DPS
 UserData/Classes/Chemical Expert_Class CP Name=Demo/FO/Chem Expert
 UserData/Classes/Chemical Expert_Class Name=Chemical Expert
-UserData/Classes/Chemical Expert_Class Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
+UserData/Classes/Chemical Expert_Class Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Danger<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
 UserData/Classes/Chemical Expert_Class_CP_Name=Demo/FO/Chem Expert
 UserData/Classes/Chemical Expert_Class_Name=Chemical Expert
 UserData/Classes/Chemical Expert_Class_Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
-UserData/Classes/Chemical Expert_Locked Text=Available at Sgt. (2000 XP). Play more to unlock.
+UserData/Classes/Chemical Expert_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 5 Danger<n/>- 10 Crowd Control
+UserData/Classes/Chemical Expert_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Danger<n/>- 20 Crowd Control
 UserData/Classes/Commando_Class CP Name=Commando/Psi Ops
 UserData/Classes/Commando_Class Name=Commando
-UserData/Classes/Commando_Class Role=<s val="AchievementFrameName">Commando</s><n/>Role: Classified<n/>Talent Trees: Classified<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Commando is trained for surgical strikes and high-precision combat.</c>
+UserData/Classes/Commando_Class Role=<s val="AchievementFrameName">Commando</s><n/>Role: Classified<n/>Talent Trees: Classified<n/>Inventory Slots: 4<n/>Class Traits: 2 DPS, 1 Micro, 2 Danger, 1 Crowd Control<n/><n/><c val="F4D72B">The Commando is trained for surgical strikes and high-precision combat.</c>
 UserData/Classes/Commando_Class_CP_Name=Commando/Psi Ops
 UserData/Classes/Commando_Class_Name=Commando
 UserData/Classes/Commando_Class_Role=<s val="AchievementFrameName">Commando</s><n/>Role: Classified<n/>Talent Trees: Classified<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Commando is trained for surgical strikes and high-precision combat.</c>
-UserData/Classes/Commando_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
+UserData/Classes/Commando_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 DPS<n/>- 15 Danger
 UserData/Classes/Commando_Locked_Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
+UserData/Classes/Commando_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>-20 Damage<n/>- 20 Danger
 UserData/Classes/Demolitions_Class CP Name=Demo/FO/Chem Expert
 UserData/Classes/Demolitions_Class Name=Demolitions
-UserData/Classes/Demolitions_Class Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
+UserData/Classes/Demolitions_Class Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Micro, 1 Danger<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
 UserData/Classes/Demolitions_Class_CP_Name=Demo/FO/Chem Expert
 UserData/Classes/Demolitions_Class_Name=Demolitions
 UserData/Classes/Demolitions_Class_Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
-UserData/Classes/Demolitions_Locked Text=Available at Sgt. (2000 XP). Play more to unlock.
+UserData/Classes/Demolitions_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 5 Tank<n/>- 10 Micro
 UserData/Classes/Demolitions_Locked_Text=Available at Sgt. (2000 XP). Play more to unlock.
+UserData/Classes/Demolitions_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Tank<n/>- 20 Micro
 UserData/Classes/Engineer_Class CP Name=Engineer/Pathfinder
 UserData/Classes/Engineer_Class Name=Engineer
-UserData/Classes/Engineer_Class Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
+UserData/Classes/Engineer_Class Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Squishy, 1 Danger<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
 UserData/Classes/Engineer_Class_CP_Name=Engineer/Pathfinder
 UserData/Classes/Engineer_Class_Name=Engineer
 UserData/Classes/Engineer_Class_Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
-UserData/Classes/Engineer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating.
+UserData/Classes/Engineer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating, or with any of the class traits:<n/>- 10 Micro<n/>- 15 Squishy
 UserData/Classes/Engineer_Locked_Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating.
+UserData/Classes/Engineer_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Micro<n/>- 20 Squishy
 UserData/Classes/Flamethrower_Class CP Name=Assault/Flamer/Technician
 UserData/Classes/Flamethrower_Class Name=Flamethrower
-UserData/Classes/Flamethrower_Class Role=<s val="AchievementFrameName">Flamethrower</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Pyro / Order<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Flamethrower excels at close proximity combat.</c>
+UserData/Classes/Flamethrower_Class Role=<s val="AchievementFrameName">Flamethrower</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Pyro / Order<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Crowd Control<n/><n/><c val="F4D72B">The Flamethrower excels at close proximity combat.</c>
 UserData/Classes/Flamethrower_Class_CP_Name=Assault/Flamer/Technician
 UserData/Classes/Flamethrower_Class_Name=Flamethrower
 UserData/Classes/Flamethrower_Class_Role=<s val="AchievementFrameName">Flamethrower</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Pyro / Order<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Flamethrower excels at close proximity combat.</c>
+UserData/Classes/Flamethrower_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Tank<n/>- 20 Crowd Control
 UserData/Classes/Forward Observer_Class CP Name=Demo/FO/Chem Expert
 UserData/Classes/Forward Observer_Class Name=Forward Observer
-UserData/Classes/Forward Observer_Class Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
+UserData/Classes/Forward Observer_Class Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Squishy, 1 Danger<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
 UserData/Classes/Forward Observer_Class_CP_Name=Demo/FO/Chem Expert
 UserData/Classes/Forward Observer_Class_Name=Forward Observer
 UserData/Classes/Forward Observer_Class_Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
-UserData/Classes/Forward Observer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating.
+UserData/Classes/Forward Observer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating, or with any of the class traits:<n/>- 15 Squishy<n/>- 10 Danger
+UserData/Classes/Forward Observer_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Squishy<n/>- 20 Danger
 UserData/Classes/Marksman_Class CP Name=Marksman
 UserData/Classes/Marksman_Class Name=Marksman
-UserData/Classes/Marksman_Class Role=<s val="AchievementFrameName">Marksman</s><n/>Role: DPS<n/>Talent Trees: Assassination / Subtlety<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Marksman is a specialist at bringing down high-priority targets and long-range combat.</c>
+UserData/Classes/Marksman_Class Role=<s val="AchievementFrameName">Marksman</s><n/>Role: DPS<n/>Talent Trees: Assassination / Subtlety<n/>Inventory Slots: 4<n/>Class Traits: 2 DPS, 2 Stealth, 1 Danger<n/><n/><c val="F4D72B">The Marksman is a specialist at bringing down high-priority targets and long-range combat.</c>
 UserData/Classes/Marksman_Class_CP_Name=Marksman
 UserData/Classes/Marksman_Class_Name=Marksman
 UserData/Classes/Marksman_Class_Role=<s val="AchievementFrameName">Marksman</s><n/>Role: DPS<n/>Talent Trees: Assassination / Subtlety<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Marksman is a specialist at bringing down high-priority targets and long-range combat.</c>
-UserData/Classes/Marksman_Locked Text=Available at Cpl. (500 XP). Play more to unlock.
+UserData/Classes/Marksman_Locked Text=Available at Cpl. (500 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 3 DPS<n/>- 2 Stealth
 UserData/Classes/Marksman_Locked_Text=Available at Cpl. (500 XP). Play more to unlock.
 UserData/Classes/Medic_Class CP Name=Medic
 UserData/Classes/Medic_Class Name=Medic
-UserData/Classes/Medic_Class Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
+UserData/Classes/Medic_Class Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/>Class Traits: 1 Micro, 1 Squishy<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
 UserData/Classes/Medic_Class_CP_Name=Medic
 UserData/Classes/Medic_Class_Name=Medic
 UserData/Classes/Medic_Class_Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
 UserData/Classes/Pathfinder_Class CP Name=Engineer/Pathfinder
 UserData/Classes/Pathfinder_Class Name=Pathfinder
-UserData/Classes/Pathfinder_Class Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
+UserData/Classes/Pathfinder_Class Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Danger<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
 UserData/Classes/Pathfinder_Class_CP_Name=Engineer/Pathfinder
 UserData/Classes/Pathfinder_Class_Name=Pathfinder
 UserData/Classes/Pathfinder_Class_Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
-UserData/Classes/Pathfinder_Locked Text=Available at Sgt. (2000 XP). Play more to unlock.
+UserData/Classes/Pathfinder_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 10 Squishy<n/>- 10 Danger
 UserData/Classes/Pathfinder_Locked_Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating.
+UserData/Classes/Pathfinder_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Squishy<n/>- 20 Danger
 UserData/Classes/Psi Ops_Class CP Name=Commando/Psi Ops
 UserData/Classes/Psi Ops_Class Name=Psi Ops
-UserData/Classes/Psi Ops_Class Role=<s val="AchievementFrameName">Psi Ops</s><n/>Role: Classified<n/>Talent Trees: Mind Mastery/Telepathy<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Psi Ops is a trained agent of the UGC's Special Warfare Academy.</c>
+UserData/Classes/Psi Ops_Class Role=<s val="AchievementFrameName">Psi Ops</s><n/>Role: Classified<n/>Talent Trees: Mind Mastery/Telepathy<n/>Inventory Slots: 4<n/>Class Traits: 2 DPS, 1 Micro, 2 Danger, 1 Crowd Control<n/><n/><c val="F4D72B">The Psi Ops is a trained agent of the UGC's Special Warfare Academy.</c>
 UserData/Classes/Psi Ops_Class_CP_Name=Commando/Psi Ops
 UserData/Classes/Psi Ops_Class_Name=Psi Ops
 UserData/Classes/Psi Ops_Class_Role=<s val="AchievementFrameName">Psi Ops</s><n/>Role: Classified<n/>Talent Trees: Mind Mastery/Telepathy<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Psi Ops is a trained agent of the UGC's Special Warfare Academy.</c>
-UserData/Classes/Psi Ops_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
+UserData/Classes/Psi Ops_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 Micro<n/>- 15 Stealth
 UserData/Classes/Psi Ops_Locked_Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
+UserData/Classes/Psi Ops_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Stealth
 UserData/Classes/Random_Class Name=Random
 UserData/Classes/Random_Class Role=<s val="AchievementFrameName">Random</s><n/>Selects a random class. You will be awarded with 10 extra Magazines.
 UserData/Classes/Random_Class_Name=Random
 UserData/Classes/Random_Class_Role=<s val="AchievementFrameName">Random</s><n/>Selects a random class. You will be awarded with 10 extra Magazines.
 UserData/Classes/Recon_Class CP Name=Recon
 UserData/Classes/Recon_Class Name=Recon
-UserData/Classes/Recon_Class Role=<s val="AchievementFrameName">Recon</s><n/>Role: Utility<n/>Talent Trees: Surveillance / Mobility<n/>Inventory Slots: 7<n/><n/><c val="F4D72B">The Recon is the eye and ear of the team, providing utility support with his array of talents.</c>
+UserData/Classes/Recon_Class Role=<s val="AchievementFrameName">Recon</s><n/>Role: Utility<n/>Talent Trees: Surveillance / Mobility<n/>Inventory Slots: 7<n/>Class Traits: 1 Micro, 1 Stealth<n/><n/><c val="F4D72B">The Recon is the eye and ear of the team, providing utility support with his array of talents.</c>
 UserData/Classes/Recon_Class_CP_Name=Recon
 UserData/Classes/Recon_Class_Name=Recon
 UserData/Classes/Recon_Class_Role=<s val="AchievementFrameName">Recon</s><n/>Role: Utility<n/>Talent Trees: Surveillance / Mobility<n/>Inventory Slots: 7<n/><n/><c val="F4D72B">The Recon is the eye and ear of the team, providing utility support with his array of talents.</c>
@@ -6487,16 +6496,17 @@ UserData/Classes/Recon_Locked Text=Available at Pfc. (100 XP). Play more to unlo
 UserData/Classes/Recon_Locked_Text=Available at Pfc. (100 XP). Play more to unlock.
 UserData/Classes/Rifleman_Class CP Name=Rifleman
 UserData/Classes/Rifleman_Class Name=Rifleman
-UserData/Classes/Rifleman_Class Role=<s val="AchievementFrameName">Rifleman</s><n/>Role: DPS<n/>Talent Trees: Combat / Survival<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Rifleman is the backbone of every infantry squad. Versatile, self-sufficient and has a place in every team.</c>
+UserData/Classes/Rifleman_Class Role=<s val="AchievementFrameName">Rifleman</s><n/>Role: DPS<n/>Talent Trees: Combat / Survival<n/>Inventory Slots: 6<n/>Class Traits: 1 DPS, 1 Squishy<n/><n/><c val="F4D72B">The Rifleman is the backbone of every infantry squad. Versatile, self-sufficient and has a place in every team.</c>
 UserData/Classes/Rifleman_Class_CP_Name=Rifleman
 UserData/Classes/Rifleman_Class_Name=Rifleman
 UserData/Classes/Rifleman_Class_Role=<s val="AchievementFrameName">Rifleman</s><n/>Role: DPS<n/>Talent Trees: Combat / Survival<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Rifleman is the backbone of every infantry squad. Versatile, self-sufficient and has a place in every team.</c>
 UserData/Classes/Technician_Class CP Name=Assault/Flamer/Technician
 UserData/Classes/Technician_Class Name=Technician
-UserData/Classes/Technician_Class Role=<s val="AchievementFrameName">Technician</s><n/>Role: Support / Tank<n/>Talent Trees: Weapons / Modifications<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">Armed in an extremely powerful exosuit, the technician can pulverize anything in its way.</c>
+UserData/Classes/Technician_Class Role=<s val="AchievementFrameName">Technician</s><n/>Role: Support / Tank<n/>Talent Trees: Weapons / Modifications<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Crowd Control<n/><n/><c val="F4D72B">Armed in an extremely powerful exosuit, the technician can pulverize anything in its way.</c>
 UserData/Classes/Technician_Class_CP_Name=Assault/Flamer/Technician
 UserData/Classes/Technician_Class_Name=Technician
 UserData/Classes/Technician_Class_Role=<s val="AchievementFrameName">Technician</s><n/>Role: Support / Tank<n/>Talent Trees: Weapons / Modifications<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">Armed in an extremely powerful exosuit, the technician can pulverize anything in its way.</c>
+UserData/Classes/Technician_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Micro
 UserData/CommunicationTowerCompletionMessages/Completion_Message=The transmissions we found are field reports the Security Team was trying to relay back to Earth. We need to bring these back safely.
 UserData/CommunicationTowerCompletionMessages/Completion_Message_001=The transmissions were scrambled by a military satellite before it reached Earth. Somebody didn't want news to break out.
 UserData/CommunicationTowerCompletionMessages/Completion_Message_002=The transmissions suggest that UGC knew about this outbreak from its inception. They failed to contain its spread and decided to bring us boots here.
