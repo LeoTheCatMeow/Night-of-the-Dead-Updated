@@ -93,10 +93,10 @@
     </CEffectEnumArea>
     <CEffectCreatePersistent id="AcidicDeathCreatePersistent">
         <EditorCategories value=""/>
-        <PeriodCount value="20"/>
+        <PeriodCount value="14"/>
         <PeriodicEffectArray value="AcidicDeathSearch"/>
-        <PeriodicPeriodArray value="0.4"/>
-        <InitialDelay value="2"/>
+        <PeriodicPeriodArray value="0.6"/>
+        <InitialDelay value="1.6"/>
     </CEffectCreatePersistent>
     <CEffectCreateUnit id="AcidicDeathCreateCloud">
         <EditorCategories value=""/>
@@ -379,7 +379,7 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="HardenedEnergySparkSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="HasEnergy,HasShields;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead"/>
+        <SearchFilters value="HasEnergy,HasShields;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,Cloaked,UnderConstruction,Dead,Hidden"/>
         <TargetSorts RequestPercentage="1">
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>

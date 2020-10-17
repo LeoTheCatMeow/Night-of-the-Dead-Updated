@@ -205,6 +205,14 @@
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <AutoScaleFactor value="0.800000"/>
     </CActorModel>
+    <CActorSplat id="RaynorSnipeSplat">
+        <On Terms="Abil.RaynorSnipe.TargetOff" Send="Destroy"/>
+        <On Terms="Abil.RaynorSnipe.ButtonHoverOff" Send="Destroy"/>
+        <On Terms="Abil.RaynorSnipe.Cursor" Send="Create"/>
+        <Host Subject="::User" Actor="Find" FailOnNoHost="1"/>
+        <HostSiteOps Ops="SOpRaynorForwardLaunchGuide"/>
+        <Scale value="0.300000,1.000000,1.000000"/>
+    </CActorSplat>
     <CActorModel id="Shadowed" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
         <On Terms="Behavior.Shadowed.On" Send="Create"/>
@@ -490,12 +498,9 @@
     </CActorAction>
     <CActorModel id="RailgunCursorModel">
         <Flags index="SuppressSaveLoad" value="0"/>
+        <On index="6" Terms="ActorDestruction" Target="::User" Send="Signal DestroySplat"/>
+        <On index="7" removed="1"/>
     </CActorModel>
-    <CActorSplat id="RaynorSnipeSplat">
-        <On Terms="Abil.RaynorSnipe.TargetOff" Send="Destroy"/>
-        <On Terms="Abil.RaynorSnipe.ButtonHoverOff" Send="Destroy"/>
-        <Scale value="0.300000,1.000000,1.000000"/>
-    </CActorSplat>
     <CActorSound id="ReinforceSound">
         <EditorCategories value=""/>
         <On Terms="SoundDone" Send="Destroy"/>
@@ -770,7 +775,6 @@
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
-        <On Terms="ActorCreation" Send="RefSet ::global.RaynorCommando ::Self"/>
         <On Terms="Signal.*.DestroySplat" Target="RaynorSnipeSplat" Send="Destroy"/>
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap MarksmanSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap MarksmanSkin2"/>
