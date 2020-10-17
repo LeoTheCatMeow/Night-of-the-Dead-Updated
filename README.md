@@ -107,7 +107,7 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Surveillance flare duration increased to 120s, cooldown increased to 90s. Range matches artillery skills. Allowing a maximum of 2 charges.
 - Fire Mission lv2 damage changed from 75(+25 vs armored) to 75(+25 vs armored/massive).
 - Fire Mission lv3 damage changed from 75(+25/50 vs armored/massive) to 75(+25/75 vs armored/massive).
-- Napalm Barrage burn maximum stacks reduced from 6 to 3, slow reduced from 40% to 30%.
+- Napalm Barrage burn maximum stacks reduced from 6 to 4, slow reduced from 40% to 30%.
 - Disabled the camera shake for shell impact.
 - Icon update for Forward Observer.
 
@@ -164,10 +164,8 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Elite Mutation Mode added. Activate using "-elite mutation" or "-em" command, available in all difficulties.
 - Must be typed at the beginning of a game, similar to -nm and -ob commands.
 - Mutated enemies spawn after 180 game seconds, mutation frequency scales up as game goes on.
------------
 - Realism Mode added. Active using "-realism" or "-real" command, can be toggled.
 - Must be typed at the beginning of a game, hides most UI and visual aids.
-----------
 - Additional skins added.
 - Flamethrower - Burst Fire energy cost reduced from 18 to 15, Inferno energy cost reduced from 35 to 30.
 - Forward Observer - Shockwave Barrage lv2 stun duration reduced from 6 to 5 seconds.
@@ -246,8 +244,31 @@ Disclaimer: I take no credit for the base game. This is only a personal attempt 
 - Experimental changes on mode availability:
 - XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
 - XP requirement for Sec reduced from 3000 to 2500.
-- XP requirement for Nightmare mode increased from 500 to 3500, and still requires "No Newbie" (Everyone > 500XP). 
+- XP requirement for Nightmare mode increased from 500 to 4500, and still requires "No Newbie" (Everyone > 500XP). 
 - The same 3500XP requirement is now used to determine Recruit vs Vet mode in a non-nightmare game. (Instead of "No Newbie")
 - Rewards have been added for Recruit AC, Surv, Sec as these now become possible.
 - When calculating the log scale average, players with more than 100k XP is considered 100k XP.
 - A message now displays at the beginning of the game showing the log scale average XP and the number of new players (<500XP).
+
+10.15.2020
+- Added shared vision for new players under 500 XP (ThunderRazor).
+- Removed vote kick requriement. If vote kick is successful, players who voted will lose some karma, but the player who is kicked will lose
+  a much greater amount of karma. One cannot vote kick again if the previous vote kick has not been resolved (ThunderRazor).
+- Fixed some classes not having the correct unlock tooltip, due to class swaping and new xp requirements etc, (Leo)
+- Fixed chemical leak hexes not removed in recruit AC (Leo).
+
+10.17.2020
+[ThunderRazor]
+- Added a "Class Trait" system allowing classes to be unlocked earlier based on the CP of other classes (original XP-unlock unaffected).
+- All classes are made available in recruit mode, classes that previously don't belong are CP-locked (can still be randomed at 10k XP).
+
+[LeoTheCat]
+- Attempted to fix Marksman's mono visual bug. 
+- Removed additional M5 spawns from AC recruit (the lab one still remains), made minor adjustments to AC recruit weapon spawns.
+- Added a couple rare weapons to Sec recruit (still no Stinger), Sec vet now has 1 Stinger spawn at chapter 2 (previously none throughout).
+- Surv recruit can now proceed past wave 20, added adjusted rewards for wave 20+ in recruit (much less than that of vet/nm).
+- Adjusted the XP rewards for all recruit modes so they are reasonably less than that of vet/nm modes (EC recruit unchanged).
+- Nazara in Sec recruit will no longer "assume direct control" of random zombies.
+- Balanced the posion cloud in -em mode so that it stacks slower and checks cliff level.
+- Hardened zombies in -em mode will no longer zap cloaked marines (such as Recon) out of energy.
+- Zergling is offiicially the fastest pet on the face of the moon (Eshir you happy now?)

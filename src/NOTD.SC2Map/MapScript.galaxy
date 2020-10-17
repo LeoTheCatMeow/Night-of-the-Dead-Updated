@@ -16298,6 +16298,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     fixed lv_xPPool;
     int lv_xPMin;
     int lv_newbieCount;
+    string lv_difficultyHint;
 
     // Automatic Variable Declarations
     playergroup autoED8D603D_g;
@@ -16307,6 +16308,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_xPMin = 1000000;
+    lv_difficultyHint = "";
 
     // Actions
     if (!runActions) {
@@ -16374,8 +16376,15 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_totalPlayers)));
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_noNewbie = (lv_xPMin >= 500);
-    gv_isVeteranSquad = (gv_scaledXP >= 4000);
+    gv_isVeteranSquad = (gv_scaledXP >= 4500);
+    if ((gv_isVeteranSquad == true)) {
+        lv_difficultyHint = "Vet";
+    }
+    else {
+        lv_difficultyHint = "Recruit";
+    }
     TextExpressionSetToken("Param/Expression/2FC894D9", "A", IntToText(gv_scaledXP));
+    TextExpressionSetToken("Param/Expression/2FC894D9", "B", StringToText(lv_difficultyHint));
     TextExpressionSetToken("Param/Expression/2FC894D9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/2FC894D9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
     autoF42EC5FC_g = gv_marineSquad;
@@ -17198,7 +17207,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     gf_TalentTreeCreation(lv_selectingPlayer);
     gf_MissionLogCreation(lv_selectingPlayer);
     gf_NewbieSharedVision();
-    gf_TipLocalNOTD(500, lv_selectingPlayer, StringExternal("Param/Value/7148543D"));
+    gf_TipLocalNOTD(500, lv_selectingPlayer, StringToText(""));
     return true;
 }
 
@@ -40178,7 +40187,7 @@ bool gt_STW16bBossFightHades_Func (bool testConds, bool runActions) {
             }
         }
 
-        if ((ModI(lv_cycle, 3) == 0)) {
+        if ((ModI(lv_cycle, 3) == 0) && (gv_isVeteranSquad == true)) {
             UnitCreateEffectUnit(gv_finalBoss, "VenomousAlgaeLaunchMissile", UnitGroupRandomUnit(gv_marines, c_unitCountAlive));
         }
 
@@ -40463,7 +40472,7 @@ bool gt_STW16bBossPhase1Death_Func (bool testConds, bool runActions) {
                 }
             }
 
-            if ((ModI(lv_cycle, 3) == 0)) {
+            if ((ModI(lv_cycle, 3) == 0) && (gv_isVeteranSquad == true)) {
                 UnitCreateEffectUnit(gv_finalBoss, "VenomousAlgaeLaunchMissile", UnitGroupRandomUnit(gv_marines, c_unitCountAlive));
             }
 

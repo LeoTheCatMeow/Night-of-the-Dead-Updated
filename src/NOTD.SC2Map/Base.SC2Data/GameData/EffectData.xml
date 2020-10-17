@@ -107,6 +107,7 @@
         <ImpactLocation Value="SourceUnitOrPoint"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="3" Effect="AcidicToxinApplyDeath"/>
+        <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
     <CEffectSet id="AcidicDeathSet">
         <EditorCategories value=""/>

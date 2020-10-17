@@ -1003,7 +1003,7 @@ Behavior/Tooltip/NanosteelNetSlowLevel1=Unit is slowed by 20%.
 Behavior/Tooltip/NanosteelNetSlowLevel2=Unit is slowed by 25%.
 Behavior/Tooltip/NanosteelNetSlowLevel3=Unit is slowed by 30%.
 Behavior/Tooltip/NanosteelNetSlowTemplate=Unit is slowed by 20%.
-Behavior/Tooltip/Napalm2=Burning in Napalm. Unit takes damage over time and moves 40% slower.
+Behavior/Tooltip/Napalm2=Burning in Napalm. Unit takes damage over time and moves 30% slower.
 Behavior/Tooltip/NegativePolarity=Deals 35 per sec to anyone with Positive Polarity. Damage amplification to 200% to allies with Negative Polarity in 3 radius. 
 Behavior/Tooltip/NeuralParasite=This unit is being immobilized by a Hugger.
 Behavior/Tooltip/NoQuarterInvulnerable=Pathfinder is invulnerable for 4 seconds. 
@@ -1805,7 +1805,7 @@ Button/Tooltip/NanoShield=Regenerates shields temporarily. Increases max shields
 Button/Tooltip/NanoStrength=Increases target unit's attack damage and movespeed by 10% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Button/Tooltip/NanoWeave=Level 1 - Heals 5 HP/sec on target unit for 15 seconds.
 Button/Tooltip/NanosteelNet=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 20% by its thrashing attempts to escape. Lasts 3 seconds.
-Button/Tooltip/NapalmBarrage=Artillery strike that burns targets for 30 (+10/30 vs armored/massive) dmg/sec for 10 secs per shell in a 5 radius area, stacking up to 3 times. 5 sec barrage time. Slows affected units by 30%.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
+Button/Tooltip/NapalmBarrage=Artillery strike that burns targets for 30 (+10/30 vs armored/massive) dmg/sec for 10 secs per shell in a 5 radius area, stacking up to 4 times. 5 sec barrage time. Slows affected units by 30%.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
 Button/Tooltip/Nazara=
 Button/Tooltip/NoQuarter=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
 Button/Tooltip/NydusCanal=
@@ -2383,7 +2383,7 @@ DocInfo/PatchNote364=- Units killed by airstrike bombs now provide shared XP to 
 DocInfo/PatchNote365=- Surveillance flare duration increased to 120s, cooldown increased to 90s. Range matches artillery skills. Allowing a maximum of 2 charges.
 DocInfo/PatchNote366=- Fire Mission lv2 damage changed from 75(+25 vs armored) to 75(+25 vs armored/massive).
 DocInfo/PatchNote367=- Fire Mission lv3 damage changed from 75(+25/50 vs armored/massive) to 75(+25/75 vs armored/massive).
-DocInfo/PatchNote368=- Napalm Barrage burn maximum stacks reduced from 6 to 3, slow reduced from 40% to 30%.
+DocInfo/PatchNote368=- Napalm Barrage burn maximum stacks reduced from 6 to 4, slow reduced from 40% to 30%.
 DocInfo/PatchNote369=- Disabled the camera shake for shell impact.
 DocInfo/PatchNote370=- Icon update for Forward Observer.
 DocInfo/PatchNote371=- Fixed Rifleman Sonic Trap bug.
@@ -2429,15 +2429,13 @@ DocInfo/PatchNote410=- Minor UI fixes.
 DocInfo/PatchNote411=- Elite Mutation Mode added. Activate using "-elite mutation" or "-em" command, available in all difficulties.
 DocInfo/PatchNote412=- Must be typed at the beginning of a game, similar to -nm and -ob commands.
 DocInfo/PatchNote413=- Mutated enemies spawn after 180 game seconds, mutation frequency scales up as game goes on.
-DocInfo/PatchNote414=-----------
-DocInfo/PatchNote415=- Realism Mode added. Active using "-realism" or "-real" command, can be toggled.
-DocInfo/PatchNote416=- Must be typed at the beginning of a game, hides most UI and visual aids.
-DocInfo/PatchNote417=----------
-DocInfo/PatchNote418=- Additional skins added.
-DocInfo/PatchNote419=- Flamethrower - Burst Fire energy cost reduced from 18 to 15, Inferno energy cost reduced from 35 to 30.
-DocInfo/PatchNote420=- Forward Observer - Shockwave Barrage lv2 stun duration reduced from 6 to 5 seconds.
-DocInfo/PatchNote421=- Fibrin Bandage hotkey reverted to the old x + x, quick use item hotkey becomes x + w instead.
-DocInfo/PatchNote422=- Survival mode IVAX and Seth health now scales with difficulty.
+DocInfo/PatchNote414=- Realism Mode added. Active using "-realism" or "-real" command, can be toggled.
+DocInfo/PatchNote415=- Must be typed at the beginning of a game, hides most UI and visual aids.
+DocInfo/PatchNote416=- Additional skins added.
+DocInfo/PatchNote417=- Flamethrower - Burst Fire energy cost reduced from 18 to 15, Inferno energy cost reduced from 35 to 30.
+DocInfo/PatchNote418=- Forward Observer - Shockwave Barrage lv2 stun duration reduced from 6 to 5 seconds.
+DocInfo/PatchNote419=- Fibrin Bandage hotkey reverted to the old x + x, quick use item hotkey becomes x + w instead.
+DocInfo/PatchNote420=- Survival mode IVAX and Seth health now scales with difficulty.
 DocInfo/PatchNote423=- Reduced the spin speed of Forward Observer's gunship to avoid motion sickness, the camera angle of the gunship has also been raised.
 DocInfo/PatchNote424=- Added additional UI at the mission select panel for special mods such as Elite Mutation, Realism, Outbreak... etc.
 DocInfo/PatchNote425=- Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
@@ -2495,11 +2493,31 @@ DocInfo/PatchNote476=- Cleared the banlist.
 DocInfo/PatchNote477=- Experimental changes on mode availability:
 DocInfo/PatchNote478=- XP requirement is now calculated based on the average XP of the team on a log scale, instead of based on the minimum.
 DocInfo/PatchNote479=- XP requirement for Sec reduced from 3000 to 2500.
-DocInfo/PatchNote480=- XP requirement for Nightmare mode increased from 500 to 3500, and still requires "No Newbie" (Everyone > 500XP). 
+DocInfo/PatchNote480=- XP requirement for Nightmare mode increased from 500 to 4500, and still requires "No Newbie" (Everyone > 500XP). 
 DocInfo/PatchNote481=- The same 3500XP requirement is now used to determine Recruit vs Vet mode in a non-nightmare game. (Instead of "No Newbie")
 DocInfo/PatchNote482=- Rewards have been added for Recruit AC, Surv, Sec as these now become possible.
 DocInfo/PatchNote483=- When calculating the log scale average, players with more than 100k XP is considered 100k XP.
 DocInfo/PatchNote484=- A message now displays at the beginning of the game showing the log scale average XP and the number of new players (<500XP).
+DocInfo/PatchNote485=- Added shared vision for new players under 500 XP (ThunderRazor).
+DocInfo/PatchNote486=- Removed vote kick requriement. If vote kick is successful, players who voted will lose some karma, but the player who is kicked will lose
+DocInfo/PatchNote487=  a much greater amount of karma. One cannot vote kick again if the previous vote kick has not been resolved (ThunderRazor).
+DocInfo/PatchNote488=- Fixed some classes not having the correct unlock tooltip, due to class swaping and new xp requirements etc, (Leo)
+DocInfo/PatchNote489=- Fixed chemical leak hexes not removed in recruit AC (Leo).
+DocInfo/PatchNote490=[ThunderRazor]
+DocInfo/PatchNote491=- Added a "Class Trait" system allowing classes to be unlocked earlier based on the CP of other classes (original XP-unlock unaffected).
+DocInfo/PatchNote492=- All classes are made available in recruit mode, classes that previously don't belong are CP-locked (can still be randomed at 10k XP).
+DocInfo/PatchNote493=
+DocInfo/PatchNote494=[LeoTheCat]
+DocInfo/PatchNote495=- Attempted to fix Marksman's mono visual bug. 
+DocInfo/PatchNote496=- Removed additional M5 spawns from AC recruit (the lab one still remains), made minor adjustments to AC recruit weapon spawns.
+DocInfo/PatchNote497=- Added a couple rare weapons to Sec recruit (still no Stinger), Sec vet now has 1 Stinger spawn at chapter 2 (previously none throughout).
+DocInfo/PatchNote498=- Surv recruit can now proceed past wave 20, added adjusted rewards for wave 20+ in recruit (much less than that of vet/nm).
+DocInfo/PatchNote499=- Adjusted the XP rewards for all recruit modes so they are reasonably less than that of vet/nm modes (EC recruit unchanged).
+DocInfo/PatchNote500=- Nazara in Sec recruit will no longer "assume direct control" of random zombies.
+DocInfo/PatchNote501=- Balanced the posion cloud in -em mode so that it stacks slower and checks cliff level.
+DocInfo/PatchNote502=- Hardened zombies in -em mode will no longer zap cloaked marines (such as Recon) out of energy.
+DocInfo/PatchNote503=- Zergling is offiicially the fastest pet on the face of the moon (Eshir you happy now?)
+DocInfo/PatchNote504=
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4348,7 +4366,7 @@ Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
 Param/Expression/20BD633D=Designate ~A~
-Param/Expression/2FC894D9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
+Param/Expression/2FC894D9=<s val="InfoPaneHeroRank">Scaled XP: ~A~ (~B~)<n/>New Players: ~C~</s>
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
@@ -4732,7 +4750,7 @@ Param/Value/3C629772=IVAX? That's the heavy haul we were going to ship to Mars n
 Param/Value/3C6EFD98=Great job. You've cleansed Apollo of the infestation.
 Param/Value/3CA19E89=<c val="0080FF">Saving Biometric ID for </c>
 Param/Value/3CCA7962=
-Param/Value/3CD0639F=<s val="GlueButtonSmall">DPS: 
+Param/Value/3CD0639F=<s val="GlueButtonSmall">Damage: 
 Param/Value/3CD09D38=When you've found them, bring them straight to Delta-1. Our pilots are dead, but it's safer here than anywhere else in the sector.
 Param/Value/3CFEA3BD=<n/><c val="FF0000">Not Available in this mode</c><n/><n/>
 Param/Value/3D54245E=That's it. Let's get to the others.
@@ -5426,7 +5444,7 @@ Param/Value/B4B4084C=Artillery Dispersion: <c val="FFFF00">Concentrated</c>
 Param/Value/B4CBD119=She must have found a way to transfer her essential functions to another platform.
 Param/Value/B4E088A7=Remember, we can also unlock the scrapyard gate. But it's probably safer to find another path. Too many confined spaces from that entrance.
 Param/Value/B4E20E81=
-Param/Value/B51FF0C9=<s val="GlueButtonSmall">Stealth: 
+Param/Value/B51FF0C9=<s val="GlueButtonSmall">Scout: 
 Param/Value/B54DE278=Kill all Infestors (
 Param/Value/B562184C=We've got work to do, if we want to save this facility.
 Param/Value/B595B3C6=Maintain tight formation around the civies.
@@ -5459,7 +5477,7 @@ Param/Value/B9079527=Argh!
 Param/Value/B97AE44A=You have 30 seconds to position your team and find supplies before Waves begin.
 Param/Value/B9AE8010=Doctor, what's the status of your research? We can't hold on much longer.
 Param/Value/B9C7B047=We have a serious chemical leak in the scrapyard. Usually Apollo's regular maintenance crew would clean it up.
-Param/Value/BA81F5F8=<s val="GlueButtonSmall">Dangerous: 
+Param/Value/BA81F5F8=<s val="GlueButtonSmall">Accuracy: 
 Param/Value/BABD3C69=I hear gunfire. Move quickly!
 Param/Value/BAF05AC5= XP for Devastator Survival Bonus.
 Param/Value/BB3AB6E9=
@@ -5588,7 +5606,7 @@ Param/Value/CFBDCD83=<s val="GlueButton">Infestor
 Param/Value/CFC5D923=<c val="FF0000">Low Ammo</c>
 Param/Value/CFFF7DAC=<s val="GlueButton"><c val="F4D72B">An infested Marine...who is that?</c></s>
 Param/Value/D028085E=All callsigns Phantom. We are go for entry.
-Param/Value/D0613D6E=<s val="GlueButtonSmall">Squishy: 
+Param/Value/D0613D6E=<s val="GlueButtonSmall">Caution:
 Param/Value/D0639662=The inteference from the reactor has disabled our sensors.
 Param/Value/D0924C0A=
 Param/Value/D0B0D033=Scientist
@@ -6399,27 +6417,27 @@ UserData/Classes/Assault_Class_CP_Name=Assault/Flamer/Technician
 UserData/Classes/Assault_Class_Name=Assault
 UserData/Classes/Assault_Class_Role=<s val="AchievementFrameName">Assault</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Arms / Protection<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Assault is a heavy duty offensive and defensive unit.</c>
 UserData/Classes/Assault_Locked Text=Not available in this story.
-UserData/Classes/Assault_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Tank<n/>- 20 DPS
+UserData/Classes/Assault_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Tank<n/>- 20 Damage
 UserData/Classes/Chemical Expert_Class CP Name=Demo/FO/Chem Expert
 UserData/Classes/Chemical Expert_Class Name=Chemical Expert
-UserData/Classes/Chemical Expert_Class Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Danger<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
+UserData/Classes/Chemical Expert_Class Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Accuracy<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
 UserData/Classes/Chemical Expert_Class_CP_Name=Demo/FO/Chem Expert
 UserData/Classes/Chemical Expert_Class_Name=Chemical Expert
 UserData/Classes/Chemical Expert_Class_Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
-UserData/Classes/Chemical Expert_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 5 Danger<n/>- 10 Crowd Control
-UserData/Classes/Chemical Expert_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Danger<n/>- 20 Crowd Control
+UserData/Classes/Chemical Expert_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 5 Accuracy<n/>- 10 Crowd Control
+UserData/Classes/Chemical Expert_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Accuracy<n/>- 20 Crowd Control
 UserData/Classes/Commando_Class CP Name=Commando/Psi Ops
 UserData/Classes/Commando_Class Name=Commando
-UserData/Classes/Commando_Class Role=<s val="AchievementFrameName">Commando</s><n/>Role: Classified<n/>Talent Trees: Classified<n/>Inventory Slots: 4<n/>Class Traits: 2 DPS, 1 Micro, 2 Danger, 1 Crowd Control<n/><n/><c val="F4D72B">The Commando is trained for surgical strikes and high-precision combat.</c>
+UserData/Classes/Commando_Class Role=<s val="AchievementFrameName">Commando</s><n/>Role: Classified<n/>Talent Trees: Classified<n/>Inventory Slots: 4<n/>Class Traits: 2 Damage, 1 Micro, 2 Accuracy, 1 Crowd Control<n/><n/><c val="F4D72B">The Commando is trained for surgical strikes and high-precision combat.</c>
 UserData/Classes/Commando_Class_CP_Name=Commando/Psi Ops
 UserData/Classes/Commando_Class_Name=Commando
 UserData/Classes/Commando_Class_Role=<s val="AchievementFrameName">Commando</s><n/>Role: Classified<n/>Talent Trees: Classified<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Commando is trained for surgical strikes and high-precision combat.</c>
-UserData/Classes/Commando_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 DPS<n/>- 15 Danger
+UserData/Classes/Commando_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 Damage<n/>- 15 Accuracy
 UserData/Classes/Commando_Locked_Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
-UserData/Classes/Commando_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>-20 Damage<n/>- 20 Danger
+UserData/Classes/Commando_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Damage<n/>- 20 Accuracy
 UserData/Classes/Demolitions_Class CP Name=Demo/FO/Chem Expert
 UserData/Classes/Demolitions_Class Name=Demolitions
-UserData/Classes/Demolitions_Class Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Micro, 1 Danger<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
+UserData/Classes/Demolitions_Class Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Micro, 1 Accuracy<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
 UserData/Classes/Demolitions_Class_CP_Name=Demo/FO/Chem Expert
 UserData/Classes/Demolitions_Class_Name=Demolitions
 UserData/Classes/Demolitions_Class_Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
@@ -6428,13 +6446,13 @@ UserData/Classes/Demolitions_Locked_Text=Available at Sgt. (2000 XP). Play more 
 UserData/Classes/Demolitions_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Tank<n/>- 20 Micro
 UserData/Classes/Engineer_Class CP Name=Engineer/Pathfinder
 UserData/Classes/Engineer_Class Name=Engineer
-UserData/Classes/Engineer_Class Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Squishy, 1 Danger<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
+UserData/Classes/Engineer_Class Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Caution, 1 Accuracy<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
 UserData/Classes/Engineer_Class_CP_Name=Engineer/Pathfinder
 UserData/Classes/Engineer_Class_Name=Engineer
 UserData/Classes/Engineer_Class_Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
-UserData/Classes/Engineer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating, or with any of the class traits:<n/>- 10 Micro<n/>- 15 Squishy
+UserData/Classes/Engineer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating, or with any of the class traits:<n/>- 10 Micro<n/>- 15 Caution
 UserData/Classes/Engineer_Locked_Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating.
-UserData/Classes/Engineer_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Micro<n/>- 20 Squishy
+UserData/Classes/Engineer_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Micro<n/>- 20 Caution
 UserData/Classes/Flamethrower_Class CP Name=Assault/Flamer/Technician
 UserData/Classes/Flamethrower_Class Name=Flamethrower
 UserData/Classes/Flamethrower_Class Role=<s val="AchievementFrameName">Flamethrower</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Pyro / Order<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Crowd Control<n/><n/><c val="F4D72B">The Flamethrower excels at close proximity combat.</c>
@@ -6444,51 +6462,51 @@ UserData/Classes/Flamethrower_Class_Role=<s val="AchievementFrameName">Flamethro
 UserData/Classes/Flamethrower_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Tank<n/>- 20 Crowd Control
 UserData/Classes/Forward Observer_Class CP Name=Demo/FO/Chem Expert
 UserData/Classes/Forward Observer_Class Name=Forward Observer
-UserData/Classes/Forward Observer_Class Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Squishy, 1 Danger<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
+UserData/Classes/Forward Observer_Class Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Caution, 1 Accuracy<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
 UserData/Classes/Forward Observer_Class_CP_Name=Demo/FO/Chem Expert
 UserData/Classes/Forward Observer_Class_Name=Forward Observer
 UserData/Classes/Forward Observer_Class_Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
-UserData/Classes/Forward Observer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating, or with any of the class traits:<n/>- 15 Squishy<n/>- 10 Danger
-UserData/Classes/Forward Observer_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Squishy<n/>- 20 Danger
+UserData/Classes/Forward Observer_Locked Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating, or with any of the class traits:<n/>- 15 Caution<n/>- 10 Accuracy
+UserData/Classes/Forward Observer_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Caution<n/>- 20 Accuracy
 UserData/Classes/Marksman_Class CP Name=Marksman
 UserData/Classes/Marksman_Class Name=Marksman
-UserData/Classes/Marksman_Class Role=<s val="AchievementFrameName">Marksman</s><n/>Role: DPS<n/>Talent Trees: Assassination / Subtlety<n/>Inventory Slots: 4<n/>Class Traits: 2 DPS, 2 Stealth, 1 Danger<n/><n/><c val="F4D72B">The Marksman is a specialist at bringing down high-priority targets and long-range combat.</c>
+UserData/Classes/Marksman_Class Role=<s val="AchievementFrameName">Marksman</s><n/>Role: DPS<n/>Talent Trees: Assassination / Subtlety<n/>Inventory Slots: 4<n/>Class Traits: 2 Damage, 2 Scout, 1 Accuracy<n/><n/><c val="F4D72B">The Marksman is a specialist at bringing down high-priority targets and long-range combat.</c>
 UserData/Classes/Marksman_Class_CP_Name=Marksman
 UserData/Classes/Marksman_Class_Name=Marksman
 UserData/Classes/Marksman_Class_Role=<s val="AchievementFrameName">Marksman</s><n/>Role: DPS<n/>Talent Trees: Assassination / Subtlety<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Marksman is a specialist at bringing down high-priority targets and long-range combat.</c>
-UserData/Classes/Marksman_Locked Text=Available at Cpl. (500 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 3 DPS<n/>- 2 Stealth
+UserData/Classes/Marksman_Locked Text=Available at Cpl. (500 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 3 Damage<n/>- 2 Scout
 UserData/Classes/Marksman_Locked_Text=Available at Cpl. (500 XP). Play more to unlock.
 UserData/Classes/Medic_Class CP Name=Medic
 UserData/Classes/Medic_Class Name=Medic
-UserData/Classes/Medic_Class Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/>Class Traits: 1 Micro, 1 Squishy<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
+UserData/Classes/Medic_Class Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/>Class Traits: 1 Micro, 1 Caution<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
 UserData/Classes/Medic_Class_CP_Name=Medic
 UserData/Classes/Medic_Class_Name=Medic
 UserData/Classes/Medic_Class_Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
 UserData/Classes/Pathfinder_Class CP Name=Engineer/Pathfinder
 UserData/Classes/Pathfinder_Class Name=Pathfinder
-UserData/Classes/Pathfinder_Class Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Danger<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
+UserData/Classes/Pathfinder_Class Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Accuracy<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
 UserData/Classes/Pathfinder_Class_CP_Name=Engineer/Pathfinder
 UserData/Classes/Pathfinder_Class_Name=Pathfinder
 UserData/Classes/Pathfinder_Class_Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
-UserData/Classes/Pathfinder_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 10 Squishy<n/>- 10 Danger
+UserData/Classes/Pathfinder_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 10 Caution<n/>- 10 Accuracy
 UserData/Classes/Pathfinder_Locked_Text=Available at SSgt. (5,000 XP). <n/><n/>Can be unlocked earlier at Sgt. (2,500 XP) and 1700 Rating.
-UserData/Classes/Pathfinder_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Squishy<n/>- 20 Danger
+UserData/Classes/Pathfinder_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 20 Caution<n/>- 20 Accuracy
 UserData/Classes/Psi Ops_Class CP Name=Commando/Psi Ops
 UserData/Classes/Psi Ops_Class Name=Psi Ops
-UserData/Classes/Psi Ops_Class Role=<s val="AchievementFrameName">Psi Ops</s><n/>Role: Classified<n/>Talent Trees: Mind Mastery/Telepathy<n/>Inventory Slots: 4<n/>Class Traits: 2 DPS, 1 Micro, 2 Danger, 1 Crowd Control<n/><n/><c val="F4D72B">The Psi Ops is a trained agent of the UGC's Special Warfare Academy.</c>
+UserData/Classes/Psi Ops_Class Role=<s val="AchievementFrameName">Psi Ops</s><n/>Role: Classified<n/>Talent Trees: Mind Mastery/Telepathy<n/>Inventory Slots: 4<n/>Class Traits: 2 Damage, 1 Micro, 2 Accuracy, 1 Crowd Control<n/><n/><c val="F4D72B">The Psi Ops is a trained agent of the UGC's Special Warfare Academy.</c>
 UserData/Classes/Psi Ops_Class_CP_Name=Commando/Psi Ops
 UserData/Classes/Psi Ops_Class_Name=Psi Ops
 UserData/Classes/Psi Ops_Class_Role=<s val="AchievementFrameName">Psi Ops</s><n/>Role: Classified<n/>Talent Trees: Mind Mastery/Telepathy<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Psi Ops is a trained agent of the UGC's Special Warfare Academy.</c>
-UserData/Classes/Psi Ops_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 Micro<n/>- 15 Stealth
+UserData/Classes/Psi Ops_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 Micro<n/>- 15 Scout
 UserData/Classes/Psi Ops_Locked_Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
-UserData/Classes/Psi Ops_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Stealth
+UserData/Classes/Psi Ops_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 20 Scout
 UserData/Classes/Random_Class Name=Random
 UserData/Classes/Random_Class Role=<s val="AchievementFrameName">Random</s><n/>Selects a random class. You will be awarded with 10 extra Magazines.
 UserData/Classes/Random_Class_Name=Random
 UserData/Classes/Random_Class_Role=<s val="AchievementFrameName">Random</s><n/>Selects a random class. You will be awarded with 10 extra Magazines.
 UserData/Classes/Recon_Class CP Name=Recon
 UserData/Classes/Recon_Class Name=Recon
-UserData/Classes/Recon_Class Role=<s val="AchievementFrameName">Recon</s><n/>Role: Utility<n/>Talent Trees: Surveillance / Mobility<n/>Inventory Slots: 7<n/>Class Traits: 1 Micro, 1 Stealth<n/><n/><c val="F4D72B">The Recon is the eye and ear of the team, providing utility support with his array of talents.</c>
+UserData/Classes/Recon_Class Role=<s val="AchievementFrameName">Recon</s><n/>Role: Utility<n/>Talent Trees: Surveillance / Mobility<n/>Inventory Slots: 7<n/>Class Traits: 1 Micro, 1 Scout<n/><n/><c val="F4D72B">The Recon is the eye and ear of the team, providing utility support with his array of talents.</c>
 UserData/Classes/Recon_Class_CP_Name=Recon
 UserData/Classes/Recon_Class_Name=Recon
 UserData/Classes/Recon_Class_Role=<s val="AchievementFrameName">Recon</s><n/>Role: Utility<n/>Talent Trees: Surveillance / Mobility<n/>Inventory Slots: 7<n/><n/><c val="F4D72B">The Recon is the eye and ear of the team, providing utility support with his array of talents.</c>
@@ -6496,7 +6514,7 @@ UserData/Classes/Recon_Locked Text=Available at Pfc. (100 XP). Play more to unlo
 UserData/Classes/Recon_Locked_Text=Available at Pfc. (100 XP). Play more to unlock.
 UserData/Classes/Rifleman_Class CP Name=Rifleman
 UserData/Classes/Rifleman_Class Name=Rifleman
-UserData/Classes/Rifleman_Class Role=<s val="AchievementFrameName">Rifleman</s><n/>Role: DPS<n/>Talent Trees: Combat / Survival<n/>Inventory Slots: 6<n/>Class Traits: 1 DPS, 1 Squishy<n/><n/><c val="F4D72B">The Rifleman is the backbone of every infantry squad. Versatile, self-sufficient and has a place in every team.</c>
+UserData/Classes/Rifleman_Class Role=<s val="AchievementFrameName">Rifleman</s><n/>Role: DPS<n/>Talent Trees: Combat / Survival<n/>Inventory Slots: 6<n/>Class Traits: 1 Damage, 1 Caution<n/><n/><c val="F4D72B">The Rifleman is the backbone of every infantry squad. Versatile, self-sufficient and has a place in every team.</c>
 UserData/Classes/Rifleman_Class_CP_Name=Rifleman
 UserData/Classes/Rifleman_Class_Name=Rifleman
 UserData/Classes/Rifleman_Class_Role=<s val="AchievementFrameName">Rifleman</s><n/>Role: DPS<n/>Talent Trees: Combat / Survival<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Rifleman is the backbone of every infantry squad. Versatile, self-sufficient and has a place in every team.</c>
@@ -6685,7 +6703,7 @@ UserData/ShopItems/ShopItem19_ShopTooltip=Biological - can get hugged<n/>LifeMax
 UserData/ShopItems/ShopItem1_ShopTooltip=Changes Marine color to <c val="FFFFFF">White</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem20_ShopTooltip=Biological - can get hugged<n/>LifeMax:300 LifeRegen:7 RegenDelay: Yes<n/>Movement Speed:3 EnergyMax:60 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem21_ShopTooltip=Biological - can get hugged<n/>LifeMax:300 LifeRegen:7 RegenDelay: Yes<n/>Movement Speed:3 EnergyMax:70 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
-UserData/ShopItems/ShopItem22_ShopTooltip=Biological - can get hugged<n/>LifeMax:300 LifeRegen:7 RegenDelay: Yes<n/>Movement Speed:3 EnergyMax:50 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
+UserData/ShopItems/ShopItem22_ShopTooltip=Biological - can get hugged<n/>LifeMax:300 LifeRegen:7 RegenDelay: Yes<n/>Movement Speed:3.3 EnergyMax:50 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem23_ShopTooltip=Biological - can get hugged<n/>LifeMax:275 LifeRegen:7 RegenDelay: Yes<n/>Movement Speed:3 EnergyMax:50 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem24_ShopTooltip=Mechanical<n/>LifeMax:300  LifeRegen:7  RegenDelay: No<n/>Movement Speed:2.9 EnergyMax:70 Shields:10<n/><n/>Credits: <c val="71B8FF">Free</c>
 UserData/ShopItems/ShopItem25_ShopTooltip=Biological - can get hugged<n/>LifeMax:300  LifeRegen:7 RegenDelay: Yes<n/>Movement Speed:3 EnergyMax:75 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
@@ -6930,7 +6948,7 @@ UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameNam
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 5 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 3 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 4 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +3 armor for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
