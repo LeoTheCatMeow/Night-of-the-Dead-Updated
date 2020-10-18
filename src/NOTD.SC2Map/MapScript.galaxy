@@ -525,13 +525,6 @@ struct gs_PlayerTraits {
     int lv_cloak;
     int lv_danger;
     int lv_crowdControl;
-    string lv_sTank;
-    string lv_sDamage;
-    string lv_sMicro;
-    string lv_sSquishy;
-    string lv_sCloak;
-    string lv_sDanger;
-    string lv_sCrowdControl;
 };
 
 struct gs_PingInfo {
@@ -1305,15 +1298,6 @@ void InitGlobals () {
     gv_traitsAwardPerClassPoint.lv_engineerFO = "0 0 2 1 0 1 0";
     gv_traitsAwardPerClassPoint.lv_commandoPO = "0 2 1 0 0 2 1";
     for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
-        gv_playerTraits[init_i].lv_sTank = "";
-        gv_playerTraits[init_i].lv_sDamage = "";
-        gv_playerTraits[init_i].lv_sMicro = "";
-        gv_playerTraits[init_i].lv_sSquishy = "";
-        gv_playerTraits[init_i].lv_sCloak = "";
-        gv_playerTraits[init_i].lv_sDanger = "";
-        gv_playerTraits[init_i].lv_sCrowdControl = "";
-    }
-    for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
         gv_playerTraitsString[init_i] = "0 0 0 0 0 0 0";
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
@@ -1758,8 +1742,8 @@ void gf_MapNightMemoryLoad (int lp_player);
 void gf_ExecuteStorylineMods ();
 string gf_NumToStringFinite (int lp_length, int lp_number);
 int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex);
-void gf_SetPlayerTraits (int lp_player);
 bool gf_ClassisUnlockedbyTraits (int lp_player, int lp_storyline, string lp_class);
+void gf_SetPlayerTraits (int lp_player);
 fixed gf_GD_Gap (int lp_hV);
 fixed gf_GD_GridToReal2 (fixed lp_grid, int lp_hV, int lp_sizeOrPos);
 int gf_GD_GridToInteger (fixed lp_grid, int lp_hV, int lp_sizeOrPos);
@@ -3314,7 +3298,7 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     autoB90D3843_val = gv_currentGameMode;
     if (autoB90D3843_val == ge_GameModes_Normal) {
         if ((gv_isVeteranSquad == true)) {
-            gv_difficulty = UserDataGetText("Mode", "Veteran", "Mode Name", 1);
+            gv_difficulty = UserDataGetText("Mode", "Normal", "Mode Name", 1);
             libNtve_gf_SetDialogItemImage(lv_missionTimePanel, "Assets\\Textures\\ui_commandcard_protossframe_normal.dds", PlayerGroupAll());
             auto3A9C1B3F_g = PlayerGroupAll();
             auto3A9C1B3F_var = -1;
@@ -3690,33 +3674,6 @@ int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex) {
     return lv_subtotal;
 }
 
-void gf_SetPlayerTraits (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    gv_playerTraits[lp_player].lv_tank = gf_GetPlayerTraitfromCP(lp_player, 1);
-    gv_playerTraits[lp_player].lv_damageDPS = gf_GetPlayerTraitfromCP(lp_player, 2);
-    gv_playerTraits[lp_player].lv_micro = gf_GetPlayerTraitfromCP(lp_player, 3);
-    gv_playerTraits[lp_player].lv_squishy = gf_GetPlayerTraitfromCP(lp_player, 4);
-    gv_playerTraits[lp_player].lv_cloak = gf_GetPlayerTraitfromCP(lp_player, 5);
-    gv_playerTraits[lp_player].lv_danger = gf_GetPlayerTraitfromCP(lp_player, 6);
-    gv_playerTraits[lp_player].lv_crowdControl = gf_GetPlayerTraitfromCP(lp_player, 7);
-    gv_playerTraitsString[lp_player] = IntToString(gv_playerTraits[lp_player].lv_tank);
-    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_damageDPS));
-    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_micro));
-    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_squishy));
-    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_cloak));
-    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_danger));
-    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_crowdControl));
-    gv_playerTraits[lp_player].lv_sTank = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_tank);
-    gv_playerTraits[lp_player].lv_sDamage = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_damageDPS);
-    gv_playerTraits[lp_player].lv_sMicro = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_micro);
-    gv_playerTraits[lp_player].lv_sSquishy = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_squishy);
-    gv_playerTraits[lp_player].lv_sCloak = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_cloak);
-    gv_playerTraits[lp_player].lv_sDanger = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_danger);
-    gv_playerTraits[lp_player].lv_sCrowdControl = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_crowdControl);
-    gv_playerTraitsText[lp_player] = StringToText(("<n/><s val=\"GlueButtonSmall\">Class Traits<n/>Tank   Damage   Micro   Squishy   Stealth   Dangerous   Crowd Control<n/>" + gv_playerTraits[lp_player].lv_sTank + "    " + gv_playerTraits[lp_player].lv_sDamage + "    " + gv_playerTraits[lp_player].lv_sMicro + "     " + gv_playerTraits[lp_player].lv_sSquishy + "       " + gv_playerTraits[lp_player].lv_sCloak + "          " + gv_playerTraits[lp_player].lv_sDanger + "                " + gv_playerTraits[lp_player].lv_sCrowdControl + "</s>"));
-}
-
 bool gf_ClassisUnlockedbyTraits (int lp_player, int lp_storyline, string lp_class) {
     // Variable Declarations
     string lv_field;
@@ -3756,6 +3713,33 @@ bool gf_ClassisUnlockedbyTraits (int lp_player, int lp_storyline, string lp_clas
         }
     }
     return lv_unlocked;
+}
+
+void gf_SetPlayerTraits (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    gv_playerTraits[lp_player].lv_tank = gf_GetPlayerTraitfromCP(lp_player, 1);
+    gv_playerTraits[lp_player].lv_damageDPS = gf_GetPlayerTraitfromCP(lp_player, 2);
+    gv_playerTraits[lp_player].lv_micro = gf_GetPlayerTraitfromCP(lp_player, 3);
+    gv_playerTraits[lp_player].lv_squishy = gf_GetPlayerTraitfromCP(lp_player, 4);
+    gv_playerTraits[lp_player].lv_cloak = gf_GetPlayerTraitfromCP(lp_player, 5);
+    gv_playerTraits[lp_player].lv_danger = gf_GetPlayerTraitfromCP(lp_player, 6);
+    gv_playerTraits[lp_player].lv_crowdControl = gf_GetPlayerTraitfromCP(lp_player, 7);
+    gv_playerTraitsString[lp_player] = IntToString(gv_playerTraits[lp_player].lv_tank);
+    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_damageDPS));
+    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_micro));
+    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_squishy));
+    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_cloak));
+    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_danger));
+    gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_crowdControl));
+    TextExpressionSetToken("Param/Expression/01B171F0", "A", IntToText(gv_playerTraits[lp_player].lv_tank));
+    TextExpressionSetToken("Param/Expression/01B171F0", "B", IntToText(gv_playerTraits[lp_player].lv_damageDPS));
+    TextExpressionSetToken("Param/Expression/01B171F0", "C", IntToText(gv_playerTraits[lp_player].lv_micro));
+    TextExpressionSetToken("Param/Expression/01B171F0", "D", IntToText(gv_playerTraits[lp_player].lv_squishy));
+    TextExpressionSetToken("Param/Expression/01B171F0", "E", IntToText(gv_playerTraits[lp_player].lv_cloak));
+    TextExpressionSetToken("Param/Expression/01B171F0", "F", IntToText(gv_playerTraits[lp_player].lv_danger));
+    TextExpressionSetToken("Param/Expression/01B171F0", "G", IntToText(gv_playerTraits[lp_player].lv_crowdControl));
+    gv_playerTraitsText[lp_player] = TextExpressionAssemble("Param/Expression/01B171F0");
 }
 
 fixed gf_GD_Gap (int lp_hV) {
@@ -16346,7 +16330,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     fixed lv_xPPool;
     int lv_xPMin;
     int lv_newbieCount;
-    string lv_difficultyHint;
     int lv_newbies;
 
     // Automatic Variable Declarations
@@ -16357,7 +16340,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_xPMin = 1000000;
-    lv_difficultyHint = "";
 
     // Actions
     if (!runActions) {
@@ -16426,14 +16408,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_noNewbie = (lv_xPMin >= 500);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
-    if ((gv_isVeteranSquad == true)) {
-        lv_difficultyHint = "Vet";
-    }
-    else {
-        lv_difficultyHint = "Recruit";
-    }
     TextExpressionSetToken("Param/Expression/67750AE9", "A", IntToText(gv_scaledXP));
-    TextExpressionSetToken("Param/Expression/67750AE9", "B", StringToText(lv_difficultyHint));
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/67750AE9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
     autoF42EC5FC_g = gv_marineSquad;

@@ -3,7 +3,12 @@
 2020-10-17
 [ThunderRazor]
 - Added a "Class Trait" system allowing classes to be unlocked earlier based on the CP of other classes (original XP-unlock unaffected).
-- All classes are made available in recruit mode, classes that previously don't belong are CP-locked (can still be randomed at 10k XP).
+- All classes are made available in recruit mode (still requires XP or CP to unlock).
+- In recruit, classes that previously didn't belong are CP-locked only (can't be unlocked with XP but can still be randomed at 10k XP).
+- Veteran mode has been renamed to normal mode for the sake of clarity in the mission select screen. 
+- Normal mode can now be toggled by clicking on the "Normal" button again to activate or de-activate it. 
+- When normal mode is toggled off, the game will be in recruit mode.
+- If the team does not meet the scaled XP requirement for normal mode, the "Normal" button will appear disabled.
 
 [LeoTheCat]
 - Attempted to fix Marksman's mono visual bug.

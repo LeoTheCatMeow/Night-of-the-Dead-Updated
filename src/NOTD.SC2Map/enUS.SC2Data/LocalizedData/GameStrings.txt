@@ -2438,6 +2438,8 @@ DocInfo/PatchNote417=- Flamethrower - Burst Fire energy cost reduced from 18 to 
 DocInfo/PatchNote418=- Forward Observer - Shockwave Barrage lv2 stun duration reduced from 6 to 5 seconds.
 DocInfo/PatchNote419=- Fibrin Bandage hotkey reverted to the old x + x, quick use item hotkey becomes x + w instead.
 DocInfo/PatchNote420=- Survival mode IVAX and Seth health now scales with difficulty.
+DocInfo/PatchNote421=- Nazara in Sec recruit will no longer "assume direct control" of random zombies.
+DocInfo/PatchNote422=- Balanced the posion cloud in -em mode so that it stacks slower and checks cliff level.
 DocInfo/PatchNote423=- Reduced the spin speed of Forward Observer's gunship to avoid motion sickness, the camera angle of the gunship has also been raised.
 DocInfo/PatchNote424=- Added additional UI at the mission select panel for special mods such as Elite Mutation, Realism, Outbreak... etc.
 DocInfo/PatchNote425=- Airlocks gates now automatically open after erebos 1 to avoid pathing bugs & lag when holding at Dome B.
@@ -2499,6 +2501,7 @@ DocInfo/PatchNote480=- The same 3500XP requirement is now used to determine Recr
 DocInfo/PatchNote481=- Rewards have been added for Recruit AC, Surv, Sec as these now become possible.
 DocInfo/PatchNote482=- When calculating the log scale average, players with more than 100k XP is considered 100k XP.
 DocInfo/PatchNote483=- A message now displays at the beginning of the game showing the log scale average XP and the number of new players (<500XP).
+DocInfo/PatchNote484=- Hardened zombies in -em mode will no longer zap cloaked marines (such as Recon) out of energy.
 DocInfo/PatchNote485=- Added shared vision for new players under 500 XP (ThunderRazor).
 DocInfo/PatchNote486=- Removed vote kick requriement. If vote kick is successful, players who voted will lose some karma, but the player who is kicked will lose
 DocInfo/PatchNote487=  a much greater amount of karma. One cannot vote kick again if the previous vote kick has not been resolved (ThunderRazor).
@@ -2506,19 +2509,21 @@ DocInfo/PatchNote488=- Fixed some classes not having the correct unlock tooltip,
 DocInfo/PatchNote489=- Fixed chemical leak hexes not removed in recruit AC (Leo).
 DocInfo/PatchNote490=[ThunderRazor]
 DocInfo/PatchNote491=- Added a "Class Trait" system allowing classes to be unlocked earlier based on the CP of other classes (original XP-unlock unaffected).
-DocInfo/PatchNote492=- All classes are made available in recruit mode, classes that previously don't belong are CP-locked (can still be randomed at 10k XP).
-DocInfo/PatchNote493=
-DocInfo/PatchNote494=[LeoTheCat]
-DocInfo/PatchNote495=- Attempted to fix Marksman's mono visual bug. 
-DocInfo/PatchNote496=- Removed additional M5 spawns from AC recruit (the lab one still remains), made minor adjustments to AC recruit weapon spawns.
-DocInfo/PatchNote497=- Added a couple rare weapons to Sec recruit (still no Stinger), Sec vet now has 1 Stinger spawn at chapter 2 (previously none throughout).
-DocInfo/PatchNote498=- Surv recruit can now proceed past wave 20, added adjusted rewards for wave 20+ in recruit (much less than that of vet/nm).
-DocInfo/PatchNote499=- Adjusted the XP rewards for all recruit modes so they are reasonably less than that of vet/nm modes (EC recruit unchanged).
-DocInfo/PatchNote500=- Nazara in Sec recruit will no longer "assume direct control" of random zombies.
-DocInfo/PatchNote501=- Balanced the posion cloud in -em mode so that it stacks slower and checks cliff level.
-DocInfo/PatchNote502=- Hardened zombies in -em mode will no longer zap cloaked marines (such as Recon) out of energy.
-DocInfo/PatchNote503=- Zergling is offiicially the fastest pet on the face of the moon (Eshir you happy now?)
-DocInfo/PatchNote504=
+DocInfo/PatchNote492=- All classes are made available in recruit mode (still requires XP or CP to unlock).
+DocInfo/PatchNote493=- In recruit, classes that previously didn't belong are CP-locked only (can't be unlocked with XP but can still be randomed at 10k XP).
+DocInfo/PatchNote494=- Veteran mode has been renamed to normal mode for the sake of clarity in the mission select screen. 
+DocInfo/PatchNote495=- Normal mode can now be toggled by clicking on the "Normal" button again to activate or de-activate it. 
+DocInfo/PatchNote496=- When normal mode is toggled off, the game will be in recruit mode.
+DocInfo/PatchNote497=- If the team does not meet the scaled XP requirement for normal mode, the "Normal" button will appear disabled.
+DocInfo/PatchNote498=
+DocInfo/PatchNote499=[LeoTheCat]
+DocInfo/PatchNote500=- Attempted to fix Marksman's mono visual bug. 
+DocInfo/PatchNote501=- Removed additional M5 spawns from AC recruit (the lab one still remains), made minor adjustments to AC recruit weapon spawns.
+DocInfo/PatchNote502=- Added a couple rare weapons to Sec recruit (still no Stinger), Sec vet now has 1 Stinger spawn at chapter 2 (previously none throughout).
+DocInfo/PatchNote503=- Surv recruit can now proceed past wave 20, added adjusted rewards for wave 20+ in recruit (much less than that of vet/nm).
+DocInfo/PatchNote504=- Adjusted the XP rewards for all recruit modes so they are reasonably less than that of vet/nm modes (EC recruit unchanged).
+DocInfo/PatchNote505=- Zergling is offiicially the fastest pet on the face of the moon (Eshir you happy now?)
+DocInfo/PatchNote506=
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4363,6 +4368,7 @@ NOTDLoadingHint2=Press T to manually reload below 15 rounds
 One Shot, One Kill Level 2=Deals 400 damage to target unit. <n/><n/>+30% damage with Barrett equipped, Procs Concentration.
 One Shot, One Kill Level 3=Kills non-Heroics instantly. Deals 800 +1.2% of current HP damage to Bosses.<n/><n/>+30% base damage and additional +0.3% current HP damage with Barrett equipped. Percentage damage requires Concentration stack.
 Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> designates <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~  |<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
 Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
@@ -4377,7 +4383,7 @@ Param/Expression/4D6170D4=<s val="InfoPaneHeroRank"><c val="FBC442">(~A~ awarded
 Param/Expression/4FB8FD67=~A~<n/>
 Param/Expression/50E65A76=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to move!
 Param/Expression/559B8D7C=~A~: ~B~
-Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~ (~B~)<n/>New Players: ~C~</s>
+Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/749F018B=Survive (Wave ~A~/40)
@@ -4408,7 +4414,6 @@ Param/Value/02AB0A1A=<s val="InfoPaneHeroRank">(The Colonists in the Containment
 Param/Value/02B65806=Deimos' attacks deal greater damage to high armor units
 Param/Value/02F14065=<c val="F4D72B">Victory. Thanks for playing NOTD. Discuss at www.notdstarcraft.com</c>
 Param/Value/030213C9=Spread out!
-Param/Value/0303F354=<s val="GlueButtonSmall">Tank: 
 Param/Value/0353117D=Zeus and Leto must be killed almost simultaneously to prevent respawn.
 Param/Value/0358704F=Re-activate Devastators from Airlock (0/3)
 Param/Value/03A117C6=Why are we killing all these people.
@@ -4513,7 +4518,6 @@ Param/Value/14EFB092=I've run the simulations here. Moving to the next terminal.
 Param/Value/1503C7F6=<s val="BriefingHanText">(Weapons online...)</s>
 Param/Value/154EAE13=<s val="InfoPaneHeroRank">(Survive the airlock battle before saving the civilians...)</s>
 Param/Value/159F8057=<s val="GlueButtonSmall">Easy Company: 
-Param/Value/15AC8BA9=</s>
 Param/Value/15B7932E=Marine: <c val="F4D72B">It's loaded with eggs. Get your flamethrowers ready.</c></s>
 Param/Value/163EA7C6=I'm your dropship pilot. We've located a suitable LZ. You need to clear the area for me.
 Param/Value/1655273D=Chase him.
@@ -4672,7 +4676,6 @@ Param/Value/2FAEA4BE=Find military personnel at Apollo Starport
 Param/Value/2FBBC3C6=There's a log here by Dr. Yen: "Situation dire..unlocking AI inhibitors...last chance..outbreak now reported in 70% of Apollo. No sign of UGC help or response from distress calls."
 Param/Value/2FED1591=Rescue Civilians in Apollo. Bring them to the Containment Facility <c val="C0C000">(
 Param/Value/2FF21ADA=<c val="F4D72B">Class Points: 
-Param/Value/2FFB56C6=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank   Damage   Micro   Squishy   Stealth   Dangerous   Crowd Control<n/>0000    0000    0000     0000       0000          0000                0000</s>
 Param/Value/3014E2CA=Attack from the lasers' angle for more damage.
 Param/Value/30437D71=We're not going to leave innocents to their death.
 Param/Value/3058CD37=What plan?
@@ -4752,7 +4755,6 @@ Param/Value/3C629772=IVAX? That's the heavy haul we were going to ship to Mars n
 Param/Value/3C6EFD98=Great job. You've cleansed Apollo of the infestation.
 Param/Value/3CA19E89=<c val="0080FF">Saving Biometric ID for </c>
 Param/Value/3CCA7962=
-Param/Value/3CD0639F=<s val="GlueButtonSmall">Damage: 
 Param/Value/3CD09D38=When you've found them, bring them straight to Delta-1. Our pilots are dead, but it's safer here than anywhere else in the sector.
 Param/Value/3CFEA3BD=<n/><c val="FF0000">Not Available in this mode</c><n/><n/>
 Param/Value/3D54245E=That's it. Let's get to the others.
@@ -5237,7 +5239,7 @@ Param/Value/90DC517F=What is this!?
 Param/Value/90E09824=Time to die.
 Param/Value/9106C1B5=Zombie worms have spawned around your sector. More zombies are coming out from these creatures.
 Param/Value/9128F33D=Did you hear that? Someone's still alive in Apollo. We're going back.
-Param/Value/9180D572=<s val="InfoPaneHeroRank">Veteran Mode</s>
+Param/Value/9180D572=<s val="InfoPaneHeroRank">Normal Mode</s>
 Param/Value/918A8106=It's in a dormant state now.
 Param/Value/9190998C=Protect Dr. Tanaka until his research is complete
 Param/Value/91A0BD6A=(Cronus prepares for <c val="FF0000">destruction</c>...)
@@ -5298,7 +5300,6 @@ Param/Value/99B5F70D=Those Cellular Structures are immune to small arms fire. Pu
 Param/Value/99C9601E=What we saw in the underground quarters will scar my men.
 Param/Value/99D46EAC=(Erebos loses his regenerative shell...)
 Param/Value/99F117F0=Destroy Hades
-Param/Value/99F27BAC=<s val="GlueButtonSmall">Crowd Control: 
 Param/Value/9A5C7980=)</s>
 Param/Value/9A721CA8=<s val="ChatBar">- Sealing chemical leak -</c></s>
 Param/Value/9A8AA95F=Dropship ETA
@@ -5449,7 +5450,6 @@ Param/Value/B4B4084C=Artillery Dispersion: <c val="FFFF00">Concentrated</c>
 Param/Value/B4CBD119=She must have found a way to transfer her essential functions to another platform.
 Param/Value/B4E088A7=Remember, we can also unlock the scrapyard gate. But it's probably safer to find another path. Too many confined spaces from that entrance.
 Param/Value/B4E20E81=
-Param/Value/B51FF0C9=<s val="GlueButtonSmall">Stealth: 
 Param/Value/B54DE278=Kill all Infestors (
 Param/Value/B562184C=We've got work to do, if we want to save this facility.
 Param/Value/B595B3C6=Maintain tight formation around the civies.
@@ -5482,7 +5482,6 @@ Param/Value/B9079527=Argh!
 Param/Value/B97AE44A=You have 30 seconds to position your team and find supplies before Waves begin.
 Param/Value/B9AE8010=Doctor, what's the status of your research? We can't hold on much longer.
 Param/Value/B9C7B047=We have a serious chemical leak in the scrapyard. Usually Apollo's regular maintenance crew would clean it up.
-Param/Value/BA81F5F8=<s val="GlueButtonSmall">Dangerous: 
 Param/Value/BABD3C69=I hear gunfire. Move quickly!
 Param/Value/BAF05AC5= XP for Devastator Survival Bonus.
 Param/Value/BB3AB6E9=
@@ -5571,7 +5570,6 @@ Param/Value/C9946C57=No, no...something's not right.
 Param/Value/C996F396=+25 XP for Victory Bonus
 Param/Value/C9A2388C=Basics
 Param/Value/C9B81C92=<s val="InfoPaneHeroRank">Supplies delivered into battlefield..</s>
-Param/Value/C9E01FA6=<n/><s val="GlueButtonSmall">Class Traits - 
 Param/Value/C9E08783=Apollo Lunar Facility
 Param/Value/C9EC1B92=It's safe to engage Erebos again.
 Param/Value/C9F4F7B1=Stick together. There's more coming.
@@ -5612,7 +5610,6 @@ Param/Value/CFBDCD83=<s val="GlueButton">Infestor
 Param/Value/CFC5D923=<c val="FF0000">Low Ammo</c>
 Param/Value/CFFF7DAC=<s val="GlueButton"><c val="F4D72B">An infested Marine...who is that?</c></s>
 Param/Value/D028085E=All callsigns Phantom. We are go for entry.
-Param/Value/D0613D6E=<s val="GlueButtonSmall">Squishy: 
 Param/Value/D0639662=The inteference from the reactor has disabled our sensors.
 Param/Value/D0924C0A=
 Param/Value/D0B0D033=Scientist
@@ -5884,7 +5881,6 @@ Param/Value/F9898AF4=</s>
 Param/Value/F99A2CE8=Black Ops have many deadly ranged attacks. Stay sharp!
 Param/Value/F9A1B8C3=I'll keep an eye out, Lieutenant. Now I must get back to work.
 Param/Value/F9A7E5EA=<s val="InfoPaneHeroRank">Random class already selected</s>
-Param/Value/F9B133FC=<s val="GlueButtonSmall">Micro: 
 Param/Value/F9C1DDDB=Take it down fast. That queen has hundreds of eggs in it. Many are ready to hatch.
 Param/Value/FA56F8FC=+
 Param/Value/FA88ACEF=There's a backup mainframe in Mine Site Epsilon. We'll shut HAL down there.
