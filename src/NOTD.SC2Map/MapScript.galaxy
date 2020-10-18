@@ -16397,11 +16397,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
         gf_ShopCreation(autoF42EC5FC_var);
     }
     TriggerExecute(gt_StorylineDialogCreation, true, false);
-    if ((gv_isVeteranSquad == true) && (RandomInt(0, 2) == 1)) {
-        TriggerEnable(gt_OM2aOgilvyFound, false);
-        TriggerEnable(gt_OM2bIvanFound, true);
-    }
-
     if ((GameAttributeGameValue("3") == "0002")) {
         TriggerExecute(gt_NoRandoms, true, false);
     }
@@ -16745,16 +16740,15 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "NavyCrossImageFrame");
     gv_storylineModSelectionFrame[6] = DialogControlLastCreated();
     if (((gv_noNewbie == false) || (gv_isVeteranSquad == false))) {
+        gv_isVeteranSquad = false;
+        gv_currentGameMode = ge_GameModes_Recruit;
         DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), false);
-    }
-    if ((gv_noNewbie == false) && (gv_isVeteranSquad == false)) {
         DialogControlSetEnabled(gv_storylineModSelection[4], PlayerGroupAll(), false);
         DialogControlSetEnabled(gv_storylineModSelection[5], PlayerGroupAll(), false);
         DialogControlSetEnabled(gv_storylineModSelection[6], PlayerGroupAll(), false);
         libNtve_gf_SetDialogItemImage(gv_modeSelection[1], "Difficulty Buttons\\NOTDNormal2.dds", PlayerGroupAll());
         DialogControlSetEnabled(gv_modeSelection[1], PlayerGroupAll(), false);
     }
-
     DialogSetVisible(gv_storylineModDialog, PlayerGroupAll(), true);
     DialogSetVisible(gv_storylineModDialog2, PlayerGroupAll(), true);
     return true;
@@ -16795,10 +16789,16 @@ bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(gt_FinaliseStorylineandMode, false);
     TriggerEnable(TriggerGetCurrent(), false);
     if ((gv_currentGameMode == ge_GameModes_Recruit)) {
         gv_currentGameMode = ge_GameModes_Normal;
     }
+    if ((gv_isVeteranSquad == true) && (RandomInt(0, 2) == 1)) {
+        TriggerEnable(gt_OM2aOgilvyFound, false);
+        TriggerEnable(gt_OM2bIvanFound, true);
+    }
+
     while ((lv_usedDialogControl != gv_storylineSelection[lv_index])) {
         lv_index += 1;
     }
@@ -16809,7 +16809,6 @@ bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
         }
 
     }
-    TriggerEnable(gt_FinaliseStorylineandMode, false);
     gv_storyline = lv_index;
     Wait(1.0, c_timeGame);
     DialogDestroy(gv_storylineDialog);
@@ -17058,9 +17057,14 @@ bool gt_FinaliseStorylineandMode_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(gt_StorylineSelection, false);
-    libNtve_gf_SetDialogItemImage(gv_modeSelection[1], "Difficulty Buttons\\NOTDNormal3.dds", PlayerGroupAll());
-    libNtve_gf_SetDialogItemImage(gv_modeSelection[2], "Difficulty Buttons\\NOTDNightmare2.dds", PlayerGroupAll());
-    libNtve_gf_SetDialogItemImage(gv_modeSelection[3], "Difficulty Buttons\\NOTDHell2.dds", PlayerGroupAll());
+    if ((gv_currentGameMode == ge_GameModes_Recruit)) {
+        gv_currentGameMode = ge_GameModes_Normal;
+    }
+    if ((gv_isVeteranSquad == true) && (RandomInt(0, 2) == 1)) {
+        TriggerEnable(gt_OM2aOgilvyFound, false);
+        TriggerEnable(gt_OM2bIvanFound, true);
+    }
+
     auto8FD6CC03_var = 2;
     for ( ; auto8FD6CC03_var <= auto8FD6CC03_ae; auto8FD6CC03_var += 1 ) {
         DialogControlFadeTransparency(gv_storylineSelection[auto8FD6CC03_var], PlayerGroupAll(), 0.5, 80.0);
