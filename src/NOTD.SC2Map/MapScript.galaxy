@@ -18115,6 +18115,7 @@ bool gt_NightmareMode_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(gt_ModeSelection, false);
     TriggerEnable(TriggerGetCurrent(), false);
     gv_currentGameMode = ge_GameModes_Nightmare;
     gv_nightmare = true;
@@ -18133,7 +18134,15 @@ bool gt_NightmareMode_Func (bool testConds, bool runActions) {
         gv_spawnFactor += 1;
     }
 
-    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
+    if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
+        libNtve_gf_SetDialogItemImage(gv_modeSelection[1], "Difficulty Buttons\\NOTDNormal2.dds", PlayerGroupAll());
+        libNtve_gf_SetDialogItemImage(gv_modeSelection[2], "Difficulty Buttons\\NOTDNightmare3.dds", PlayerGroupAll());
+        libNtve_gf_SetDialogItemImage(gv_modeSelection[3], "Difficulty Buttons\\NOTDHell2.dds", PlayerGroupAll());
+        UIShowCinematicText(PlayerGroupAll(), ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
+    }
+    else {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
+    }
     return true;
 }
 
