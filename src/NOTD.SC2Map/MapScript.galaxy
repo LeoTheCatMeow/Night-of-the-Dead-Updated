@@ -525,6 +525,13 @@ struct gs_PlayerTraits {
     int lv_cloak;
     int lv_danger;
     int lv_crowdControl;
+    string lv_sTank;
+    string lv_sDamage;
+    string lv_sMicro;
+    string lv_sSquishy;
+    string lv_sCloak;
+    string lv_sDanger;
+    string lv_sCrowdControl;
 };
 
 struct gs_PingInfo {
@@ -775,6 +782,7 @@ int[4] gv_modeSelection;
 gs_TraitsAwardPerClassPoint gv_traitsAwardPerClassPoint;
 gs_PlayerTraits[gv_numberofPlayers + 1] gv_playerTraits;
 string[gv_numberofPlayers + 1] gv_playerTraitsString;
+text[gv_numberofPlayers + 1] gv_playerTraitsText;
 int[9] gv_classSelectionDialog;
 int[9][19] gv_classSelectionDialogItem;
 fixed gv_classLimitMultiplier;
@@ -1296,6 +1304,15 @@ void InitGlobals () {
     gv_traitsAwardPerClassPoint.lv_engineerFO = "0 0 2 1 0 1 0";
     gv_traitsAwardPerClassPoint.lv_commandoPO = "0 2 1 0 0 2 1";
     for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
+        gv_playerTraits[init_i].lv_sTank = "";
+        gv_playerTraits[init_i].lv_sDamage = "";
+        gv_playerTraits[init_i].lv_sMicro = "";
+        gv_playerTraits[init_i].lv_sSquishy = "";
+        gv_playerTraits[init_i].lv_sCloak = "";
+        gv_playerTraits[init_i].lv_sDanger = "";
+        gv_playerTraits[init_i].lv_sCrowdControl = "";
+    }
+    for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
         gv_playerTraitsString[init_i] = "0 0 0 0 0 0 0";
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
@@ -1738,6 +1755,7 @@ void gf_PlayerCountAdjustments ();
 void gf_SQDifficultyAdjustments ();
 void gf_MapNightMemoryLoad (int lp_player);
 void gf_ExecuteStorylineMods ();
+string gf_NumToStringFinite (int lp_length, int lp_number);
 int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex);
 void gf_SetPlayerTraits (int lp_player);
 bool gf_ClassisUnlockedbyTraits (int lp_player, int lp_storyline, string lp_class);
@@ -3631,6 +3649,27 @@ void gf_ExecuteStorylineMods () {
     }
 }
 
+string gf_NumToStringFinite (int lp_length, int lp_number) {
+    // Variable Declarations
+    string lv_number;
+    int lv_index;
+
+    // Automatic Variable Declarations
+    int auto65023E85_ae;
+    const int auto65023E85_ai = 1;
+
+    // Variable Initialization
+    lv_number = IntToString(lp_number);
+
+    // Implementation
+    auto65023E85_ae = (lp_length - StringLength(lv_number));
+    lv_index = 1;
+    for ( ; ( (auto65023E85_ai >= 0 && lv_index <= auto65023E85_ae) || (auto65023E85_ai < 0 && lv_index >= auto65023E85_ae) ) ; lv_index += auto65023E85_ai ) {
+        lv_number = ("  " + lv_number + "  ");
+    }
+    return lv_number;
+}
+
 int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex) {
     // Variable Declarations
     int lv_subtotal;
@@ -3667,6 +3706,14 @@ void gf_SetPlayerTraits (int lp_player) {
     gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_cloak));
     gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_danger));
     gv_playerTraitsString[lp_player] = (gv_playerTraitsString[lp_player] + " " + IntToString(gv_playerTraits[lp_player].lv_crowdControl));
+    gv_playerTraits[lp_player].lv_sTank = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_tank);
+    gv_playerTraits[lp_player].lv_sDamage = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_damageDPS);
+    gv_playerTraits[lp_player].lv_sMicro = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_micro);
+    gv_playerTraits[lp_player].lv_sSquishy = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_squishy);
+    gv_playerTraits[lp_player].lv_sCloak = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_cloak);
+    gv_playerTraits[lp_player].lv_sDanger = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_danger);
+    gv_playerTraits[lp_player].lv_sCrowdControl = gf_NumToStringFinite(4, gv_playerTraits[lp_player].lv_crowdControl);
+    gv_playerTraitsText[lp_player] = StringToText(("<n/><s val=\"GlueButtonSmall\">Class Traits<n/>Tank   Damage   Micro   Squishy   Stealth   Dangerous   Crowd Control<n/>" + gv_playerTraits[lp_player].lv_sTank + "    " + gv_playerTraits[lp_player].lv_sDamage + "    " + gv_playerTraits[lp_player].lv_sMicro + "     " + gv_playerTraits[lp_player].lv_sSquishy + "       " + gv_playerTraits[lp_player].lv_sCloak + "          " + gv_playerTraits[lp_player].lv_sDanger + "                " + gv_playerTraits[lp_player].lv_sCrowdControl + "</s>"));
 }
 
 bool gf_ClassisUnlockedbyTraits (int lp_player, int lp_storyline, string lp_class) {
@@ -3935,7 +3982,7 @@ bool auto_gf_ClassSelectionUI_TriggerFunc (bool testConds, bool runActions) {
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
         gf_SetupClassSelection(lv_index, 5, DialogControlLastCreated());
         gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][5], gv_playerCP[lv_index].lv_marksman);
-        if ((gv_playerXP[lv_index] >= 500) && (gv_playerKarma[lv_index] >= 1300)) {
+        if (((gv_playerXP[lv_index] >= 500) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
             DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), true);
         }
         else {
@@ -3946,7 +3993,7 @@ bool auto_gf_ClassSelectionUI_TriggerFunc (bool testConds, bool runActions) {
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
         gf_SetupClassSelection(lv_index, 6, DialogControlLastCreated());
         gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][6], gv_playerCP[lv_index].lv_demoPFChem);
-        if ((gv_playerXP[lv_index] >= 2000) && (gv_playerKarma[lv_index] >= 1300)) {
+        if (((gv_playerXP[lv_index] >= 2000) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
             DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), true);
         }
         else {
@@ -3957,7 +4004,7 @@ bool auto_gf_ClassSelectionUI_TriggerFunc (bool testConds, bool runActions) {
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
         gf_SetupClassSelection(lv_index, 7, DialogControlLastCreated());
         gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][7], gv_playerCP[lv_index].lv_engineerFO);
-        if (((gv_playerXP[lv_index] >= 5000) || ((gv_playerXP[lv_index] >= 2500) && (gv_playerRating[lv_index] >= 1700))) && (gv_playerKarma[lv_index] >= 1300)) {
+        if (((gv_playerXP[lv_index] >= 5000) || ((gv_playerXP[lv_index] >= 2500) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
             DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), true);
         }
         else {
@@ -3968,7 +4015,7 @@ bool auto_gf_ClassSelectionUI_TriggerFunc (bool testConds, bool runActions) {
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
         gf_SetupClassSelection(lv_index, 8, DialogControlLastCreated());
         gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][8], gv_playerCP[lv_index].lv_commandoPO);
-        if (((gv_playerXP[lv_index] >= 10000) || ((gv_playerXP[lv_index] >= 5000) && (gv_playerRating[lv_index] >= 1700))) && (gv_playerKarma[lv_index] >= 1300)) {
+        if (((gv_playerXP[lv_index] >= 10000) || ((gv_playerXP[lv_index] >= 5000) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
             DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), true);
         }
         else {
@@ -17599,14 +17646,7 @@ bool gt_ClassPointsCheck_Func (bool testConds, bool runActions) {
     UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/C0F5E603") + IntToText(gv_playerCP[lv_cPPlayer].lv_demoPFChem)));
     UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/38912845") + IntToText(gv_playerCP[lv_cPPlayer].lv_engineerFO)));
     UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/F11D8AEC") + IntToText(gv_playerCP[lv_cPPlayer].lv_commandoPO)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/C9E01FA6") + (PlayerName(lv_cPPlayer) + StringExternal("Param/Value/15AC8BA9"))));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/0303F354") + IntToText(gv_playerTraits[lv_cPPlayer].lv_tank)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/3CD0639F") + IntToText(gv_playerTraits[lv_cPPlayer].lv_damageDPS)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/F9B133FC") + IntToText(gv_playerTraits[lv_cPPlayer].lv_micro)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/D0613D6E") + IntToText(gv_playerTraits[lv_cPPlayer].lv_squishy)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/B51FF0C9") + IntToText(gv_playerTraits[lv_cPPlayer].lv_cloak)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/BA81F5F8") + IntToText(gv_playerTraits[lv_cPPlayer].lv_danger)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/99F27BAC") + IntToText(gv_playerTraits[lv_cPPlayer].lv_crowdControl)));
+    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, gv_playerTraitsText[lv_player]);
     return true;
 }
 
