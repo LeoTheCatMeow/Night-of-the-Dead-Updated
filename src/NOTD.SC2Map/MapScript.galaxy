@@ -21390,7 +21390,7 @@ bool gt_EliteMutationBoss_Func (bool testConds, bool runActions) {
     if ((UnitGetType(EventUnit()) == "Eileithyia")) {
         return true;
     }
-    if ((gv_survivalMode == true) && (UnitGetType(EventUnit()) == "Erebos") && (RandomInt(0, 4) != 1)) {
+    if ((gv_survivalMode == true) && (UnitGetType(EventUnit()) == "InfestedAbominationBurrowed") && (RandomInt(0, 3) != 1)) {
         return true;
     }
     if ((gv_storyline == 3) && (UnitGetType(EventUnit()) == "Tartarus") && (RandomInt(0, 2) != 1)) {
@@ -21436,27 +21436,27 @@ bool gt_EliteMutationChanceRotation_Func (bool testConds, bool runActions) {
     }
 
     if ((RandomInt(0, 1) == 1)) {
-        gv_mutationTrend[1] = 38;
-        gv_mutationTrend[2] = 40;
+        gv_mutationTrend[1] = 45;
+        gv_mutationTrend[2] = 45;
     }
     else {
-        gv_mutationTrend[1] = 2;
-        gv_mutationTrend[2] = 40;
+        gv_mutationTrend[1] = 0;
+        gv_mutationTrend[2] = 45;
     }
     if ((RandomInt(0, 1) == 1)) {
-        gv_mutationTrend[3] = 73;
-        gv_mutationTrend[4] = 75;
+        gv_mutationTrend[3] = 75;
+        gv_mutationTrend[4] = 80;
     }
     else {
-        gv_mutationTrend[3] = 42;
-        gv_mutationTrend[4] = 75;
+        gv_mutationTrend[3] = 50;
+        gv_mutationTrend[4] = 80;
     }
     if ((RandomInt(0, 1) == 1)) {
         gv_mutationTrend[5] = 95;
         gv_mutationTrend[6] = 100;
     }
     else {
-        gv_mutationTrend[5] = 80;
+        gv_mutationTrend[5] = 85;
         gv_mutationTrend[6] = 100;
     }
     gv_mutationChance = ((SquareRoot(TimerGetElapsed(gv_gameTime)) / 7.0) + 6.0);
