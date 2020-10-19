@@ -765,6 +765,7 @@ int gv_storyline;
 int gv_currentGameMode;
 trigger[gv_stories + 1] gv_storyIntializationTriggers;
 bool[gv_stories + 1] gv_storylineUnlocked;
+bool gv_storylineSelectionFinalized;
 int gv_storylineDialog;
 int gv_storylineModDialog;
 int gv_storylineModDialog2;
@@ -1740,7 +1741,7 @@ void gf_PlayerCountAdjustments ();
 void gf_SQDifficultyAdjustments ();
 void gf_MapNightMemoryLoad (int lp_player);
 void gf_ExecuteStorylineMods ();
-string gf_NumToStringFinite (int lp_length, int lp_number);
+void gf_FinalizeStorylineSelection ();
 int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex);
 bool gf_ClassisUnlockedbyTraits (int lp_player, int lp_storyline, string lp_class);
 void gf_SetPlayerTraits (int lp_player);
@@ -2040,10 +2041,10 @@ trigger gt_NOTDInitialize;
 trigger gt_PlayerIntialize;
 trigger gt_Environment;
 trigger gt_StorylineDialogCreation;
-trigger gt_StorylineSelection;
 trigger gt_storylineModSelection;
+trigger gt_StorylineSelection;
 trigger gt_ModeSelection;
-trigger gt_FinaliseStorylineandMode;
+trigger gt_AutoStorylineSelection;
 trigger gt_ClassCreation;
 trigger gt_PingUsedNOTD;
 trigger gt_PingResetTimerExprires;
@@ -3634,25 +3635,53 @@ void gf_ExecuteStorylineMods () {
     }
 }
 
-string gf_NumToStringFinite (int lp_length, int lp_number) {
-    // Variable Declarations
-    string lv_number;
-    int lv_index;
-
+void gf_FinalizeStorylineSelection () {
     // Automatic Variable Declarations
-    int auto65023E85_ae;
-    const int auto65023E85_ai = 1;
-
-    // Variable Initialization
-    lv_number = IntToString(lp_number);
+    playergroup auto280742A1_g;
+    int auto280742A1_var;
+    playergroup auto39703627_g;
+    int auto39703627_var;
 
     // Implementation
-    auto65023E85_ae = (lp_length - StringLength(lv_number));
-    lv_index = 1;
-    for ( ; ( (auto65023E85_ai >= 0 && lv_index <= auto65023E85_ae) || (auto65023E85_ai < 0 && lv_index >= auto65023E85_ae) ) ; lv_index += auto65023E85_ai ) {
-        lv_number = ("  " + lv_number + "  ");
+    DialogDestroy(gv_storylineDialog);
+    DialogDestroy(gv_storylineModDialog);
+    DialogDestroy(gv_storylineModDialog2);
+    UIHideCinematicText(PlayerGroupAll());
+    gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
+    GameSetLighting(gv_defaultLighting, 3.9);
+    TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
+    auto280742A1_g = PlayerGroupAll();
+    auto280742A1_var = -1;
+    while (true) {
+        auto280742A1_var = PlayerGroupNextPlayer(auto280742A1_g, auto280742A1_var);
+        if (auto280742A1_var < 0) { break; }
+        PlayerModifyPropertyInt(auto280742A1_var, c_playerPropVespene, c_playerPropOperSetTo, gv_storyline);
     }
-    return lv_number;
+    if ((gv_noRandoms == 3) && (gv_isVeteranSquad == true)) {
+        gf_AllRandomSelectionUI();
+    }
+    else if ((gv_storyline == 4)) {
+        gf_SurvivalClassSelectionUI();
+    }
+    else if ((gv_isVeteranSquad == true)) {
+        gf_ClassSelectionUI();
+    }
+    else if (true) {
+        gf_RecruitClassSelectionUI();
+    }
+    gf_SetDifficulty();
+    gf_ExecuteStorylineMods();
+    if ((GameAttributeGameValue("4") == "0002")) {
+        gv_noShopMode = true;
+    }
+    auto39703627_g = gv_marineSquad;
+    auto39703627_var = -1;
+    while (true) {
+        auto39703627_var = PlayerGroupNextPlayer(auto39703627_g, auto39703627_var);
+        if (auto39703627_var < 0) { break; }
+        gf_ShopCreation(auto39703627_var);
+    }
+    gv_storylineSelectionFinalized = true;
 }
 
 int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex) {
@@ -16335,8 +16364,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     playergroup autoED8D603D_g;
     int autoED8D603D_var;
-    playergroup autoF42EC5FC_g;
-    int autoF42EC5FC_var;
 
     // Variable Initialization
     lv_xPMin = 1000000;
@@ -16390,9 +16417,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
         SoundPlay(SoundLink("MarSaraIdlesAdjutantAdjutant00004", -1), PlayerGroupAll(), 100.0, 0.0);
     }
 
-    if ((GameAttributeGameValue("4") == "0002")) {
-        gv_noShopMode = true;
-    }
     autoED8D603D_g = gv_marineSquad;
     autoED8D603D_var = -1;
     while (true) {
@@ -16411,13 +16435,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     TextExpressionSetToken("Param/Expression/67750AE9", "A", IntToText(gv_scaledXP));
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/67750AE9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
-    autoF42EC5FC_g = gv_marineSquad;
-    autoF42EC5FC_var = -1;
-    while (true) {
-        autoF42EC5FC_var = PlayerGroupNextPlayer(autoF42EC5FC_g, autoF42EC5FC_var);
-        if (autoF42EC5FC_var < 0) { break; }
-        gf_ShopCreation(autoF42EC5FC_var);
-    }
     TriggerExecute(gt_StorylineDialogCreation, true, false);
     if ((GameAttributeGameValue("3") == "0002")) {
         TriggerExecute(gt_NoRandoms, true, false);
@@ -16577,15 +16594,6 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
         if (auto72D1B3E2_var == null) { break; }
         UnitRemove(auto72D1B3E2_var);
     }
-    if (((lv_ogilvysHideoutRoll == 1) || ((gv_storyline == 1) && (gv_isVeteranSquad == false)))) {
-        gv_ogilvysHideout = RegionFromId(179);
-    }
-    else if ((lv_ogilvysHideoutRoll == 2)) {
-        gv_ogilvysHideout = RegionFromId(180);
-    }
-    else if ((lv_ogilvysHideoutRoll == 3)) {
-        gv_ogilvysHideout = RegionFromId(181);
-    }
     gv_drBergmann = UnitFromId(136);
     libNtve_gf_MakeUnitInvulnerable(gv_drBergmann, true);
     gv_drTanaka = UnitFromId(2625);
@@ -16601,7 +16609,23 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
         if (auto72EDAB35_var == null) { break; }
         UnitSetState(auto72EDAB35_var, c_unitStateInvulnerable, true);
     }
-    Wait(10.0, c_timeReal);
+    while (!((gv_storylineSelectionFinalized == true))) {
+        Wait(1.0, c_timeGame);
+    }
+    if (((lv_ogilvysHideoutRoll == 1) || ((gv_storyline == 1) && (gv_isVeteranSquad == false)))) {
+        gv_ogilvysHideout = RegionFromId(179);
+    }
+    else if ((lv_ogilvysHideoutRoll == 2)) {
+        gv_ogilvysHideout = RegionFromId(180);
+    }
+    else if ((lv_ogilvysHideoutRoll == 3)) {
+        gv_ogilvysHideout = RegionFromId(181);
+    }
+    if ((gv_isVeteranSquad == true) && (RandomInt(0, 2) == 1)) {
+        TriggerEnable(gt_OM2aOgilvyFound, false);
+        TriggerEnable(gt_OM2bIvanFound, true);
+    }
+
     Wait(80.0, c_timeReal);
     auto83606DB6_var = gv_indexBaseValue;
     for ( ; auto83606DB6_var <= auto83606DB6_ae; auto83606DB6_var += 1 ) {
@@ -16618,7 +16642,7 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
         TriggerEnable(gt_InfestorAI, true);
     }
 
-    Wait(240.0, c_timeReal);
+    Wait(220.0, c_timeReal);
     TriggerEnable(gt_ClassCreation, false);
     return true;
 }
@@ -16761,8 +16785,9 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     gv_storylineModSelection[6] = DialogControlLastCreated();
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "NavyCrossImageFrame");
     gv_storylineModSelectionFrame[6] = DialogControlLastCreated();
-    if (((gv_noNewbie == false) || (gv_isVeteranSquad == false))) {
-        gv_isVeteranSquad = false;
+    DialogSetVisible(gv_storylineModDialog, PlayerGroupAll(), true);
+    DialogSetVisible(gv_storylineModDialog2, PlayerGroupAll(), true);
+    if ((gv_isVeteranSquad == false)) {
         gv_currentGameMode = ge_GameModes_Recruit;
         DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), false);
         DialogControlSetEnabled(gv_storylineModSelection[4], PlayerGroupAll(), false);
@@ -16771,8 +16796,12 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
         libNtve_gf_SetDialogItemImage(gv_modeSelection[1], "Difficulty Buttons\\NOTDNormal2.dds", PlayerGroupAll());
         DialogControlSetEnabled(gv_modeSelection[1], PlayerGroupAll(), false);
     }
-    DialogSetVisible(gv_storylineModDialog, PlayerGroupAll(), true);
-    DialogSetVisible(gv_storylineModDialog2, PlayerGroupAll(), true);
+    else if ((gv_isVeteranSquad == true) && (gv_noNewbie == false)) {
+        gv_isVeteranSquad = false;
+        gv_currentGameMode = ge_GameModes_Recruit;
+        DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), false);
+        libNtve_gf_SetDialogItemImage(gv_modeSelection[1], "Difficulty Buttons\\NOTDNormal2.dds", PlayerGroupAll());
+    }
     return true;
 }
 
@@ -16780,95 +16809,6 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
 void gt_StorylineDialogCreation_Init () {
     gt_StorylineDialogCreation = TriggerCreate("gt_StorylineDialogCreation_Func");
     TriggerEnable(gt_StorylineDialogCreation, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Storyline Selection
-//--------------------------------------------------------------------------------------------------
-bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_usedDialogControl;
-    int lv_index;
-
-    // Automatic Variable Declarations
-    const int auto1B59C1A8_ae = 3;
-    int auto1B59C1A8_var;
-    playergroup auto3497B89E_g;
-    int auto3497B89E_var;
-
-    // Variable Initialization
-    lv_usedDialogControl = EventDialogControl();
-
-    // Conditions
-    if (testConds) {
-        if (!(((lv_usedDialogControl == gv_storylineSelection[1]) || (lv_usedDialogControl == gv_storylineSelection[2]) || (lv_usedDialogControl == gv_storylineSelection[3]) || (lv_usedDialogControl == gv_storylineSelection[4])))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(gt_FinaliseStorylineandMode, false);
-    TriggerEnable(TriggerGetCurrent(), false);
-    if ((gv_currentGameMode == ge_GameModes_Recruit)) {
-        gv_currentGameMode = ge_GameModes_Normal;
-    }
-    if ((gv_isVeteranSquad == true) && (RandomInt(0, 2) == 1)) {
-        TriggerEnable(gt_OM2aOgilvyFound, false);
-        TriggerEnable(gt_OM2bIvanFound, true);
-    }
-
-    while ((lv_usedDialogControl != gv_storylineSelection[lv_index])) {
-        lv_index += 1;
-    }
-    auto1B59C1A8_var = 1;
-    for ( ; auto1B59C1A8_var <= auto1B59C1A8_ae; auto1B59C1A8_var += 1 ) {
-        if ((lv_usedDialogControl != gv_storylineSelection[auto1B59C1A8_var])) {
-            DialogControlFadeTransparency(gv_storylineSelection[auto1B59C1A8_var], PlayerGroupAll(), 0.5, 80.0);
-        }
-
-    }
-    gv_storyline = lv_index;
-    Wait(1.0, c_timeGame);
-    DialogDestroy(gv_storylineDialog);
-    DialogDestroy(gv_storylineModDialog);
-    DialogDestroy(gv_storylineModDialog2);
-    UIHideCinematicText(PlayerGroupAll());
-    gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
-    GameSetLighting(gv_defaultLighting, 3.9);
-    TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
-    auto3497B89E_g = PlayerGroupAll();
-    auto3497B89E_var = -1;
-    while (true) {
-        auto3497B89E_var = PlayerGroupNextPlayer(auto3497B89E_g, auto3497B89E_var);
-        if (auto3497B89E_var < 0) { break; }
-        PlayerModifyPropertyInt(auto3497B89E_var, c_playerPropVespene, c_playerPropOperSetTo, gv_storyline);
-    }
-    gf_ExecuteStorylineMods();
-    if ((gv_noRandoms == 3) && (gv_isVeteranSquad == true)) {
-        gf_AllRandomSelectionUI();
-    }
-    else if ((gv_storyline == 4)) {
-        gf_SurvivalClassSelectionUI();
-    }
-    else if ((gv_isVeteranSquad == true)) {
-        gf_ClassSelectionUI();
-    }
-    else if (true) {
-        gf_RecruitClassSelectionUI();
-    }
-    gf_SetDifficulty();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_StorylineSelection_Init () {
-    gt_StorylineSelection = TriggerCreate("gt_StorylineSelection_Func");
-    TriggerAddEventDialogControl(gt_StorylineSelection, 1, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-    TriggerAddEventDialogControl(gt_StorylineSelection, 2, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16970,6 +16910,61 @@ void gt_storylineModSelection_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Storyline Selection
+//--------------------------------------------------------------------------------------------------
+bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_usedDialogControl;
+    int lv_index;
+
+    // Automatic Variable Declarations
+    const int auto1B59C1A8_ae = 3;
+    int auto1B59C1A8_var;
+
+    // Variable Initialization
+    lv_usedDialogControl = EventDialogControl();
+
+    // Conditions
+    if (testConds) {
+        if (!(((lv_usedDialogControl == gv_storylineSelection[1]) || (lv_usedDialogControl == gv_storylineSelection[2]) || (lv_usedDialogControl == gv_storylineSelection[3]) || (lv_usedDialogControl == gv_storylineSelection[4])))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(gt_AutoStorylineSelection, false);
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((gv_currentGameMode == ge_GameModes_Recruit)) {
+        gv_currentGameMode = ge_GameModes_Normal;
+    }
+    while ((lv_usedDialogControl != gv_storylineSelection[lv_index])) {
+        lv_index += 1;
+    }
+    auto1B59C1A8_var = 1;
+    for ( ; auto1B59C1A8_var <= auto1B59C1A8_ae; auto1B59C1A8_var += 1 ) {
+        if ((lv_usedDialogControl != gv_storylineSelection[auto1B59C1A8_var])) {
+            DialogControlFadeTransparency(gv_storylineSelection[auto1B59C1A8_var], PlayerGroupAll(), 0.5, 80.0);
+        }
+
+    }
+    gv_storyline = lv_index;
+    Wait(1.0, c_timeGame);
+    gf_FinalizeStorylineSelection();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_StorylineSelection_Init () {
+    gt_StorylineSelection = TriggerCreate("gt_StorylineSelection_Func");
+    TriggerAddEventDialogControl(gt_StorylineSelection, 1, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+    TriggerAddEventDialogControl(gt_StorylineSelection, 2, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Mode Selection
 //--------------------------------------------------------------------------------------------------
 bool gt_ModeSelection_Func (bool testConds, bool runActions) {
@@ -17066,9 +17061,9 @@ void gt_ModeSelection_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Finalise Storyline and Mode
+// Trigger: Auto Storyline Selection
 //--------------------------------------------------------------------------------------------------
-bool gt_FinaliseStorylineandMode_Func (bool testConds, bool runActions) {
+bool gt_AutoStorylineSelection_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     const int auto8FD6CC03_ae = 3;
     int auto8FD6CC03_var;
@@ -17082,38 +17077,19 @@ bool gt_FinaliseStorylineandMode_Func (bool testConds, bool runActions) {
     if ((gv_currentGameMode == ge_GameModes_Recruit)) {
         gv_currentGameMode = ge_GameModes_Normal;
     }
-    if ((gv_isVeteranSquad == true) && (RandomInt(0, 2) == 1)) {
-        TriggerEnable(gt_OM2aOgilvyFound, false);
-        TriggerEnable(gt_OM2bIvanFound, true);
-    }
-
     auto8FD6CC03_var = 2;
     for ( ; auto8FD6CC03_var <= auto8FD6CC03_ae; auto8FD6CC03_var += 1 ) {
         DialogControlFadeTransparency(gv_storylineSelection[auto8FD6CC03_var], PlayerGroupAll(), 0.5, 80.0);
     }
     Wait(1.0, c_timeGame);
-    DialogDestroy(gv_storylineDialog);
-    DialogDestroy(gv_storylineModDialog);
-    DialogDestroy(gv_storylineModDialog2);
-    UIHideCinematicText(PlayerGroupAll());
-    gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
-    GameSetLighting(gv_defaultLighting, 3.9);
-    TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
-    gf_ExecuteStorylineMods();
-    if ((gv_noRandoms == 3) && (gv_isVeteranSquad == true)) {
-        gf_AllRandomSelectionUI();
-    }
-    else {
-        gf_ClassSelectionUI();
-    }
-    gf_SetDifficulty();
+    gf_FinalizeStorylineSelection();
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_FinaliseStorylineandMode_Init () {
-    gt_FinaliseStorylineandMode = TriggerCreate("gt_FinaliseStorylineandMode_Func");
-    TriggerAddEventTimeElapsed(gt_FinaliseStorylineandMode, 45.0, c_timeReal);
+void gt_AutoStorylineSelection_Init () {
+    gt_AutoStorylineSelection = TriggerCreate("gt_AutoStorylineSelection_Func");
+    TriggerAddEventTimeElapsed(gt_AutoStorylineSelection, 60.0, c_timeReal);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -17676,7 +17652,7 @@ bool gt_ClassPointsCheck_Func (bool testConds, bool runActions) {
     UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/C0F5E603") + IntToText(gv_playerCP[lv_cPPlayer].lv_demoPFChem)));
     UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/38912845") + IntToText(gv_playerCP[lv_cPPlayer].lv_engineerFO)));
     UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, (StringExternal("Param/Value/F11D8AEC") + IntToText(gv_playerCP[lv_cPPlayer].lv_commandoPO)));
-    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, gv_playerTraitsText[lv_player]);
+    UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, gv_playerTraitsText[lv_cPPlayer]);
     return true;
 }
 
@@ -19525,7 +19501,7 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
     unitgroup auto9796E00C_g;
     int auto9796E00C_u;
     unit auto9796E00C_var;
-    const int autoC3FEE9BA_n = 99;
+    const int autoC3FEE9BA_n = 10;
     int autoC3FEE9BA_i;
     int auto763819CE_val;
     int auto5A800D9F_val;
@@ -19538,7 +19514,7 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_trigPlayer = EventPlayer();
     lv_handle = PlayerHandle(EventPlayer());
-    lv_message = EventChatMessage(false);
+    lv_message = EventChatMessage(true);
     lv_harassers = UnitGroupEmpty();
 
     // Conditions
@@ -19557,13 +19533,15 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
     if ((StringContains(lv_message, "pussy", c_stringAnywhere, c_stringNoCase) == true) && (StringContains(lv_message, "fucking", c_stringAnywhere, c_stringNoCase) == false)) {
         lv_position = StringFind(lv_message, "pussy", c_stringNoCase);
         if ((StringSub(lv_message, (lv_position - 1), (lv_position - 1)) == " ") && ((StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != " ") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == ".") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == "!") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != ""))) {
+            TriggerEnable(TriggerGetCurrent(), true);
             return true;
         }
     }
     if ((StringContains(lv_message, "retarded", c_stringAnywhere, c_stringNoCase) == true)) {
+        TriggerEnable(TriggerGetCurrent(), true);
         return true;
     }
-    lv_random = RandomInt(1, 6);
+    lv_random = RandomInt(1, 3);
     lv_spawn = RegionCircle(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 2.5);
     RegionAttachToUnit(lv_spawn, gv_marineHero[lv_trigPlayer], Point(0.0, 0.0));
     if (((StringContains(lv_message, "hugged", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_message, "huged", c_stringAnywhere, c_stringNoCase) == true))) {
@@ -19572,22 +19550,22 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
         for (;; auto9796E00C_u -= 1) {
             auto9796E00C_var = UnitGroupUnitFromEnd(auto9796E00C_g, auto9796E00C_u);
             if (auto9796E00C_var == null) { break; }
-            if ((UnitTestState(auto9796E00C_var, c_unitStateTurnSuppressed) == false)) {
+            if ((UnitTestState(auto9796E00C_var, c_unitStateTurnSuppressed) == true)) {
                 lv_isHugged = true;
                 break;
             }
         }
-        if ((lv_isHugged == true) && ((RandomInt(0, 4) == 1) || (lv_handle == "1-S2-1-1560369"))) {
-            lv_random = 6;
+        if ((lv_isHugged == false) && ((RandomInt(0, 3) == 1) || (lv_handle == "1-S2-1-1560369"))) {
+            lv_random = 3;
             lv_spawn = RegionCircle(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 0.75);
             RegionAttachToUnit(lv_spawn, gv_marineHero[lv_trigPlayer], Point(0.0, 0.0));
         }
         else {
+            TriggerEnable(TriggerGetCurrent(), true);
             return true;
         }
     }
     if ((StringContains(lv_message, "bukake", c_stringAnywhere, c_stringNoCase) == true)) {
-        lv_random = 6;
         for (autoC3FEE9BA_i = 1; autoC3FEE9BA_i <= autoC3FEE9BA_n; autoC3FEE9BA_i += 1) {
             libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
@@ -19598,22 +19576,17 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
     }
     if (((lv_handle == "1-S2-1-417524") || (lv_handle == "1-S2-1-431521") || (lv_handle == "1-S2-1-1143628") || (lv_handle == "1-S2-1-3388720") || (lv_handle == "1-S2-1-11533459") || (lv_handle == "1-S2-1-1246603") || (lv_handle == "1-S2-1-2517593") || (lv_handle == "1-S2-1-1560369"))) {
         auto5A800D9F_val = lv_random;
-        if (auto5A800D9F_val == 3) {
+        if (auto5A800D9F_val == 1) {
             libNtve_gf_UnitCreateFacingPoint(1, "BrainBug2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBrainBug", 0)), c_orderQueueReplace);
             UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
-        else if (auto5A800D9F_val == 4) {
+        else if (auto5A800D9F_val == 2) {
             libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
             UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
-        else if (auto5A800D9F_val == 5) {
-            libNtve_gf_UnitCreateFacingPoint(1, "Slasher2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSlasher", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else if (auto5A800D9F_val == 6) {
+        else if (auto5A800D9F_val == 3) {
             libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
             UnitGroupAdd(lv_harassers, UnitLastCreated());
@@ -19633,17 +19606,22 @@ bool gt_SwearJar_Func (bool testConds, bool runActions) {
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSeeker", 0)), c_orderQueueReplace);
             UnitGroupAdd(lv_harassers, UnitLastCreated());
         }
+        else if (auto763819CE_val == 3) {
+            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
+            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
+            UnitGroupAdd(lv_harassers, UnitLastCreated());
+        }
         else {
         }
     }
     for (auto88956A85_i = 1; auto88956A85_i <= auto88956A85_n; auto88956A85_i += 1) {
         if ((UnitGroupCount(lv_harassers, c_unitCountAlive) >= 1)) {
-            Wait(0.5, c_timeGame);
+            Wait(1.0, c_timeGame);
             UnitGroupIssueOrder(lv_harassers, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_trigPlayer]), c_orderQueueReplace);
-            Wait(0.5, c_timeGame);
+            Wait(1.0, c_timeGame);
         }
     }
-    if ((lv_random == 6)) {
+    if ((lv_random == 3)) {
         auto205FD8CE_g = lv_harassers;
         auto205FD8CE_u = UnitGroupCount(auto205FD8CE_g, c_unitCountAll);
         for (;; auto205FD8CE_u -= 1) {
@@ -21392,6 +21370,10 @@ bool gt_EliteMutation_Func (bool testConds, bool runActions) {
         if (!((UnitGetType(EventUnit()) != "Broodling"))) {
             return false;
         }
+
+        if (!((UnitGetType(EventUnit()) != "Minion"))) {
+            return false;
+        }
     }
 
     // Actions
@@ -21523,11 +21505,11 @@ bool gt_EliteMutationChanceRotation_Func (bool testConds, bool runActions) {
         gv_mutationTrend[2] = 45;
     }
     if ((RandomInt(0, 1) == 1)) {
-        gv_mutationTrend[3] = 75;
+        gv_mutationTrend[3] = 80;
         gv_mutationTrend[4] = 80;
     }
     else {
-        gv_mutationTrend[3] = 50;
+        gv_mutationTrend[3] = 45;
         gv_mutationTrend[4] = 80;
     }
     if ((RandomInt(0, 1) == 1)) {
@@ -45100,10 +45082,10 @@ void InitTriggers () {
     gt_PlayerIntialize_Init();
     gt_Environment_Init();
     gt_StorylineDialogCreation_Init();
-    gt_StorylineSelection_Init();
     gt_storylineModSelection_Init();
+    gt_StorylineSelection_Init();
     gt_ModeSelection_Init();
-    gt_FinaliseStorylineandMode_Init();
+    gt_AutoStorylineSelection_Init();
     gt_ClassCreation_Init();
     gt_PingUsedNOTD_Init();
     gt_PingResetTimerExprires_Init();

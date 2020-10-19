@@ -4368,7 +4368,7 @@ NOTDLoadingHint2=Press T to manually reload below 15 rounds
 One Shot, One Kill Level 2=Deals 400 damage to target unit. <n/><n/>+30% damage with Barrett equipped, Procs Concentration.
 One Shot, One Kill Level 3=Kills non-Heroics instantly. Deals 800 +1.2% of current HP damage to Bosses.<n/><n/>+30% base damage and additional +0.3% current HP damage with Barrett equipped. Percentage damage requires Concentration stack.
 Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> designates <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
-Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~  |<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
+Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
 Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
