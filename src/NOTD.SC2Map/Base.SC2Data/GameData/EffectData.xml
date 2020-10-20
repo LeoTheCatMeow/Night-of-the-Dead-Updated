@@ -1348,11 +1348,12 @@
         <EditorCategories value=""/>
         <EffectArray value="Suicide"/>
         <EffectArray value="MiningCampInfectionSpawn"/>
+        <ValidatorArray value="isNotPlayerUnit"/>
     </CEffectSet>
     <CEffectCreateUnit id="MiningCampInfectionSpawn">
         <EditorCategories value=""/>
-        <WhichLocation Value="CasterPoint"/>
-        <Origin Value="CasterPoint"/>
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Origin Value="CasterUnitOrPoint"/>
         <SpawnEffect value="ZombieGlobalAttackOrderSearch"/>
         <SpawnUnit value="Seeker"/>
     </CEffectCreateUnit>
