@@ -17558,7 +17558,7 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
             }
             auto8E7D9B7C_var = gv_indexBaseValue;
             for ( ; auto8E7D9B7C_var <= auto8E7D9B7C_ae; auto8E7D9B7C_var += 1 ) {
-                gf_UpdateKarma(lv_votingPlayer, gv_voteKickKarmaPenalty[auto8E7D9B7C_var]);
+                gf_UpdateKarma(auto8E7D9B7C_var, gv_voteKickKarmaPenalty[auto8E7D9B7C_var]);
                 gv_voteKickKarmaPenalty[auto8E7D9B7C_var] = 0;
                 gv_voteKick[auto8E7D9B7C_var].lv_nomination = false;
             }
