@@ -2526,6 +2526,10 @@ DocInfo/PatchNote505=- Zergling is offiicially the fastest pet on the face of th
 DocInfo/PatchNote506=
 DocInfo/PatchNote507=- Fixed a bug where seekers are spawned incorrectly at Epsilon and causes FO minis to be instantly killed.
 DocInfo/PatchNote508=- Fixed a bug where vote kick karma penalty is applied incorrectly. 
+DocInfo/PatchNote509=- Fixed a bug where ammo box may fail to pick up any ammo. 
+DocInfo/PatchNote510=- Ammo box will no longer destroy itself when stacked under certain conditions.
+DocInfo/PatchNote511=- Highlight tooltip of magazines and ammo boxes will now display the amount of ammo.
+DocInfo/PatchNote512=- Disabled the anti-swear feature due to abuse.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4374,6 +4378,7 @@ Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~ 
 Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
+Param/Expression/1E570E34=Ammo Box (~A~)
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
@@ -4385,6 +4390,7 @@ Param/Expression/4D6170D4=<s val="InfoPaneHeroRank"><c val="FBC442">(~A~ awarded
 Param/Expression/4FB8FD67=~A~<n/>
 Param/Expression/50E65A76=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to move!
 Param/Expression/559B8D7C=~A~: ~B~
+Param/Expression/606DB275=Magazine (~A~)
 Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
@@ -4522,6 +4528,7 @@ Param/Value/1503C7F6=<s val="BriefingHanText">(Weapons online...)</s>
 Param/Value/154EAE13=<s val="InfoPaneHeroRank">(Survive the airlock battle before saving the civilians...)</s>
 Param/Value/159F8057=<s val="GlueButtonSmall">Easy Company: 
 Param/Value/15B7932E=Marine: <c val="F4D72B">It's loaded with eggs. Get your flamethrowers ready.</c></s>
+Param/Value/15CA627E=
 Param/Value/163EA7C6=I'm your dropship pilot. We've located a suitable LZ. You need to clear the area for me.
 Param/Value/1655273D=Chase him.
 Param/Value/1657D975=We should burn these things down.
@@ -4870,6 +4877,7 @@ Param/Value/4F9763A6=<s val="BriefingHanText">(<c val="8A8AFF">Helium-3 Canister
 Param/Value/4FAC17AA=A boss is appearing soon. Keep your distance from it.
 Param/Value/4FDD6E8D=<s val="AllianceHeader">Combo: 50% reload time!</s>
 Param/Value/4FEFEA27=We've received a distress beacon inside Central Square Tower. My men, with me!
+Param/Value/4FF55ACA=
 Param/Value/5002828A=Marines, we're survivors from Apollo onboard the Delta 1 transport ship docked in the Airlock.
 Param/Value/50147A2B=<c val="FF0000">-2 Rating</c> for mission delay
 Param/Value/5026006B=</c>) (<c val="49ABF3">
@@ -6025,7 +6033,7 @@ Unit/Name/AcidMissile=Acid Missile
 Unit/Name/AirStrikeBombers=Air Strike Bombers
 Unit/Name/AirStrikeMissile=Air Strike Missile
 Unit/Name/AmmoBox=Ammo Box
-Unit/Name/AmmoBoxHighlightTooltip=Ammo Box
+Unit/Name/AmmoBoxHighlightTooltip=Ammo Box (3)
 Unit/Name/AntiVenom=Anti-Venom
 Unit/Name/AntiVenomHighlightTooltip=Anti-Venom
 Unit/Name/ApolloBioDome=Apollo Bio-Dome
@@ -6196,7 +6204,7 @@ Unit/Name/Maar=Cerberus
 Unit/Name/MadSparkGrenade=Mad Spark Grenade
 Unit/Name/MadSparkGrenadeProjectile=Mad Spark Grenade Projectile
 Unit/Name/Magazine=Magazine
-Unit/Name/MagazineHighlightTooltip=Magazine
+Unit/Name/MagazineHighlightTooltip=Magazine (3)
 Unit/Name/MaintenanceDroneMK1=Maintenance Drone MK1
 Unit/Name/MaintenanceDroneMK2=Maintenance Drone MK2
 Unit/Name/MaintenanceDroneMK3=Maintenance Drone MK3

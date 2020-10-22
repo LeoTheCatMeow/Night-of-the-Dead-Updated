@@ -1,5 +1,13 @@
 # Current Changes & Bugfixes Tracklist
 
+2020-10-22
+- Fixed a bug where seekers are spawned incorrectly at Epsilon and causes FO minis to be instantly killed.
+- Fixed a bug where vote kick karma penalty is applied incorrectly. 
+- Fixed a bug where ammo box may fail to pick up any ammo. 
+- Ammo box will no longer destroy itself when stacked under certain conditions.
+- Highlight tooltip of magazines and ammo boxes will now display the amount of ammo.
+- Disabled the anti-swear feature due to abuse.
+
 2020-10-17
 [ThunderRazor]
 - Added a "Class Trait" system allowing classes to be unlocked earlier based on the CP of other classes (original XP-unlock unaffected).
