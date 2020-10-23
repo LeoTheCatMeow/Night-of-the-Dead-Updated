@@ -643,6 +643,8 @@ unit[9] gv_marineHero;
 unit[9] gv_playerPet;
 unit gv_drBergmann;
 unit gv_sgtStallans;
+unit gv_cplIrvin;
+unit gv_pfcBrooks;
 unit gv_priyanka;
 unitgroup gv_blackOps;
 unitgroup gv_zombieWave;
@@ -2185,6 +2187,7 @@ trigger gt_OptionalSecurityCamerasCollection;
 trigger gt_OptionalSecurityCamerasMobs;
 trigger gt_ECW4AirlockRoadAmbush;
 trigger gt_ECEastSurprise;
+trigger gt_KillCharlie;
 trigger gt_Boss1SpawnCinematic;
 trigger gt_Boss1AI;
 trigger gt_Boss1CarapaceHardens33;
@@ -9885,6 +9888,10 @@ bool auto_gf_TissueSampleComplete_TriggerFunc (bool testConds, bool runActions) 
                 gf_UpdateRating(autoD6F97ABD_var, 1);
             }
 
+        }
+        if ((gv_eCEastSurpriseCount == -2)) {
+            gv_eCEastSurpriseCount = 0;
+            TriggerEnable(gt_ECEastSurprise, true);
         }
     }
     else {
@@ -24121,10 +24128,12 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
     libNtve_gf_UnitCreateFacingPoint(1, "PfcBrooks", 0, 9, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
     UnitGroupAdd(gv_episilonMinis, UnitLastCreated());
+    gv_pfcBrooks = UnitLastCreated();
     Wait(0.1, c_timeGame);
     libNtve_gf_UnitCreateFacingPoint(1, "CplIrvin", 0, 9, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
     UnitGroupAdd(gv_episilonMinis, UnitLastCreated());
+    gv_cplIrvin = UnitLastCreated();
     Wait(0.1, c_timeGame);
     libNtve_gf_UnitCreateFacingPoint(1, "SgtStallans", 0, 9, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
@@ -24135,6 +24144,9 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
     PingCreate(PlayerGroupActive(), "PingWarning", RegionGetCenter(RegionFromId(1)), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 10.0);
     gf_FlareAreaRecruit(RegionGetCenter(RegionFromId(1)), 12.0);
     SoundPlay(SoundLink("THorner04CivilianFemale400053", -1), PlayerGroupActive(), 100.0, 0.0);
+    if ((UnitIsAlive(lv_warningCiv) == true)) {
+        gv_eCEastSurpriseCount = -1;
+    }
     if ((gv_squadRating >= 1750) && (gv_isVeteranSquad == true)) {
         TriggerEnable(gt_STW3NorthWestCocoonSurprise, true);
     }
@@ -24413,6 +24425,9 @@ bool gt_W1DataTransferComplete_Func (bool testConds, bool runActions) {
             }
 
         }
+        if ((gv_eCEastSurpriseCount == -1)) {
+            gv_eCEastSurpriseCount = -2;
+        }
     }
 
     Wait(5.0, c_timeReal);
@@ -24616,6 +24631,7 @@ bool gt_W2EnterMilitaryBase_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(gt_W2EnterMilitaryBase, false);
+    TriggerEnable(gt_KillCharlie, true);
     TriggerStop(gt_ShowPathtoMilitaryBase);
     Wait(3.0, c_timeReal);
     gv_hitPar = 20;
@@ -25038,7 +25054,6 @@ bool gt_OptionalSecurityCamerasCollection_Func (bool testConds, bool runActions)
     }
     else if ((gv_securityCam == 4)) {
         gf_RadioNOTD(PlayerName(UnitGetOwner(lv_localUnit)), StringExternal("Param/Value/974EB017"));
-        TriggerEnable(gt_ECEastSurprise, true);
     }
     else if ((gv_securityCam == 5)) {
         TriggerEnable(TriggerGetCurrent(), false);
@@ -25237,18 +25252,14 @@ bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
     unitgroup lv_localUnits;
     region lv_localRegion;
     region lv_noHelpRegion;
+    int lv_mobindex;
+    string lv_mobtype;
+    abilcmd lv_mobcommand;
 
     // Automatic Variable Declarations
-    int auto1C3DE7AA_n;
-    int auto1C3DE7AA_i;
-    const int autoFCA09EC9_n = 3;
-    int autoFCA09EC9_i;
-    int auto214179A7_val;
-    const int auto6774C54E_n = 10;
-    int auto6774C54E_i;
-    int auto5FE1303A_val;
-    const int auto88924A3B_n = 3;
-    int auto88924A3B_i;
+    const int auto39758962_n = 2;
+    int auto39758962_i;
+    int autoAFFDDA94_val;
 
     // Variable Initialization
     lv_trigPlayer = EventPlayer();
@@ -25267,15 +25278,11 @@ bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((RandomInt(0, 2) == 1))) {
-            return false;
-        }
-
         if (!((UnitGroupCount(UnitGroupFilterRegion(gv_marines, lv_noHelpRegion, 0), c_unitCountAlive) == 1))) {
             return false;
         }
 
-        if (!(((UnitGroupCount(UnitGroupAlliance(lv_trigPlayer, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) / gv_spawnFactor) < 85))) {
+        if (!((UnitGroupCount(gv_zombieWave, c_unitCountAlive) < 500))) {
             return false;
         }
     }
@@ -25286,112 +25293,97 @@ bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    Wait((5 - gv_eCEastSurpriseCount), c_timeGame);
-    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(237), 0), c_unitCountAlive) == 0)) {
+    while (!(((UnitIsAlive(lv_trigUnit) == false) || (UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(150), 0), c_unitCountAlive) == 1)))) {
+        Wait(10.0, c_timeGame);
+    }
+    if (((UnitIsAlive(lv_trigUnit) == false) || (UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(150), 0), c_unitCountAlive) == 0))) {
         TriggerEnable(TriggerGetCurrent(), true);
         return true;
     }
     RegionAttachToUnit(lv_localRegion, lv_trigUnit, Point(0.0, 0.0));
-    if ((gv_isVeteranSquad == true)) {
-        libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_localRegion), RegionRandomPoint(lv_localRegion));
+    Wait(2.0, c_timeGame);
+    if (((gv_playerXP[lv_trigPlayer] >= 500) || (gv_playerXP[UnitGetOwner(lv_trigUnit)] >= 500))) {
+        libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_localRegion), UnitGetPosition(lv_trigUnit));
         UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
     }
     else {
-        libNtve_gf_UnitCreateFacingPoint(1, "SeekerBurrowed", 0, 14, RegionRandomPoint(lv_localRegion), RegionRandomPoint(lv_localRegion));
+        libNtve_gf_UnitCreateFacingPoint(1, "SeekerBurrowed", 0, 14, RegionRandomPoint(lv_localRegion), UnitGetPosition(lv_trigUnit));
         UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSeeker", 0)), c_orderQueueReplace);
     }
     lv_localGuardian = UnitLastCreated();
-    UnitBehaviorAdd(lv_localGuardian, "HardenedBoss", lv_localGuardian, 1);
-    UnitBehaviorAdd(lv_localGuardian, "MonstrousBoss", lv_localGuardian, gv_eCEastSurpriseCount);
-    UnitBehaviorAdd(lv_localGuardian, "Acidic", lv_localGuardian, (gv_eCEastSurpriseCount - 1));
-    UnitBehaviorAdd(lv_localGuardian, "Scorching", lv_localGuardian, (gv_eCEastSurpriseCount - 2));
-    UnitBehaviorAdd(lv_localGuardian, "Shadowed", lv_localGuardian, (gv_eCEastSurpriseCount - 3));
-    UnitBehaviorAdd(lv_localGuardian, "Undetectable", lv_localGuardian, (gv_eCEastSurpriseCount - 4));
-    UnitBehaviorAdd(lv_localGuardian, "SpeedBuff", lv_localGuardian, (gv_eCEastSurpriseCount - 5));
-    UnitBehaviorAdd(lv_localGuardian, "Atrocious", lv_localGuardian, (gv_eCEastSurpriseCount - 6));
-    UnitBehaviorAdd(lv_localGuardian, "Hardened", lv_localGuardian, (gv_eCEastSurpriseCount - 7));
-    UnitBehaviorAdd(lv_localGuardian, "Monstrous", lv_localGuardian, (gv_eCEastSurpriseCount - 8));
-    Wait(1.25, c_timeGame);
+    UnitSetPropertyFixed(lv_localGuardian, c_unitPropLifeMax, (UnitGetPropertyFixed(lv_localGuardian, c_unitPropLifeMax, c_unitPropNormal) + IntToFixed((1000 * gv_eCEastSurpriseCount))));
+    UnitSetPropertyFixed(lv_localGuardian, c_unitPropLifePercent, 100.0);
+    UnitBehaviorAdd(lv_localGuardian, "SpeedBuff", lv_localGuardian, gv_eCEastSurpriseCount);
+    UnitBehaviorAdd(lv_localGuardian, "Shadowed", lv_localGuardian, (gv_eCEastSurpriseCount - 2));
+    UnitBehaviorAdd(lv_localGuardian, "Undetectable", lv_localGuardian, (gv_eCEastSurpriseCount - 3));
+    Wait(0.5, c_timeGame);
     if ((lv_localGuardian != null) && (UnitIsAlive(lv_localGuardian) == true)) {
-        UnitIssueOrder(lv_localGuardian, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(lv_localRegion)), c_orderQueueReplace);
+        UnitIssueOrder(lv_localGuardian, OrderTargetingUnit(AbilityCommand("attack", 0), lv_trigUnit), c_orderQueueReplace);
     }
     if (((gv_playerXP[lv_trigPlayer] >= 500) || (gv_playerXP[UnitGetOwner(lv_trigUnit)] >= 500))) {
-        auto1C3DE7AA_n = (FixedToInt((gv_spawnFactor * 0.75)) + gv_eCEastSurpriseCount);
-        for (auto1C3DE7AA_i = 1; auto1C3DE7AA_i <= auto1C3DE7AA_n; auto1C3DE7AA_i += 1) {
-            libNtve_gf_UnitCreateFacingPoint(6, "ZerglingBurrowed", 0, 14, RegionRandomPoint(lv_localRegion), RegionRandomPoint(lv_localRegion));
-            UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
-            UnitGroupAddUnitGroup(lv_localUnits, UnitLastCreatedGroup());
-            Wait(0.5, c_timeGame);
-            UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(lv_localRegion)), c_orderQueueReplace);
-            libNtve_gf_UnitCreateFacingPoint(3, "UltraliskBurrowed", 0, 14, RegionRandomPoint(lv_localRegion), RegionRandomPoint(lv_localRegion));
-            UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
-            UnitGroupAddUnitGroup(lv_localUnits, UnitLastCreatedGroup());
-            Wait(1.25, c_timeGame);
-            UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(lv_localRegion)), c_orderQueueReplace);
+        for (auto39758962_i = 1; auto39758962_i <= auto39758962_n; auto39758962_i += 1) {
+            lv_mobindex = RandomInt(1, 7);
+            autoAFFDDA94_val = lv_mobindex;
+            if (autoAFFDDA94_val == 1) {
+                lv_mobtype = "Devourer2";
+                lv_mobcommand = AbilityCommand("UnburrowDevourer", 0);
+            }
+            else if (autoAFFDDA94_val == 2) {
+                lv_mobtype = "Beastling2";
+                lv_mobcommand = AbilityCommand("UnburrowBeastling", 0);
+            }
+            else if (autoAFFDDA94_val == 3) {
+                lv_mobtype = "BrainBug2";
+                lv_mobcommand = AbilityCommand("UnburrowBrainBug", 0);
+            }
+            else if (autoAFFDDA94_val == 4) {
+                lv_mobtype = "ZombieBroodMother2";
+                lv_mobcommand = AbilityCommand("UnburrowBroodmother", 0);
+            }
+            else {
+                lv_mobtype = "UltraliskBurrowed";
+                lv_mobcommand = AbilityCommand("BurrowUltraliskUp", 0);
+            }
         }
+        libNtve_gf_UnitCreateFacingPoint(gv_spawnFactor, lv_mobtype, 0, 14, RegionRandomPoint(lv_localRegion), UnitGetPosition(lv_trigUnit));
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(lv_mobcommand), c_orderQueueReplace);
+        UnitGroupAddUnitGroup(lv_localUnits, UnitLastCreatedGroup());
+        Wait(0.5, c_timeGame);
+        UnitGroupIssueOrder(lv_localUnits, OrderTargetingUnit(AbilityCommand("attack", 0), lv_trigUnit), c_orderQueueReplace);
+        Wait(2.5, c_timeGame);
     }
-    for (autoFCA09EC9_i = 1; autoFCA09EC9_i <= autoFCA09EC9_n; autoFCA09EC9_i += 1) {
-        UnitGroupIssueOrder(lv_localUnits, OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(lv_localRegion)), c_orderQueueReplace);
-        Wait(5.0, c_timeGame);
-    }
-    if ((lv_localGuardian != null) && (UnitIsAlive(lv_localGuardian) == true)) {
+    Wait(12.5, c_timeGame);
+    if ((UnitIsAlive(lv_localGuardian) == true)) {
         UnitKill(lv_localGuardian);
     }
     else {
-        if ((gv_isVeteranSquad == true)) {
-            auto5FE1303A_val = gv_eCEastSurpriseCount;
-            if (auto5FE1303A_val == 0) {
-                gf_CreateItemLocalNOTD("Shotgun", 1, RegionFromId(237));
-            }
-            else if (auto5FE1303A_val == 1) {
-                gf_CreateItemLocalNOTD("Chaingun", 1, RegionFromId(237));
-            }
-            else if (auto5FE1303A_val == 4) {
-                gf_CreateItemLocalNOTD("StingerMK3", 1, RegionFromId(237));
-            }
-            else if (auto5FE1303A_val == 6) {
-                for (auto88924A3B_i = 1; auto88924A3B_i <= auto88924A3B_n; auto88924A3B_i += 1) {
-                    libNtve_gf_UnitCreateFacingPoint(1, "Corpsman", 0, lv_trigPlayer, RegionRandomPoint(RegionFromId(237)), RegionRandomPoint(RegionFromId(237)));
-                    Wait(0.1, c_timeGame);
-                }
-                SoundPlay(SoundLink("Medic_ExitBunkerVO", -1), PlayerGroupActive(), 75.0, 0.0);
-            }
-            else {
-                gf_CreateItemLocalNOTD("Helium3Canister", 1, RegionFromId(237));
-            }
+        if ((UnitIsAlive(gv_pfcBrooks) == true) && (RandomInt(0, 4) == 1)) {
+            gv_pfcBrooks = null;
+            gf_CreateItemLocalNOTD("LaserRifle", 1, RegionFromId(237));
         }
-        else {
-            auto214179A7_val = gv_eCEastSurpriseCount;
-            if (auto214179A7_val == 1) {
-                gf_CreateItemLocalNOTD("Shotgun", 1, RegionFromId(237));
-            }
-            else if (auto214179A7_val == 3) {
-                gf_CreateItemLocalNOTD("Helium3Canister", 2, RegionFromId(237));
-            }
-            else if (auto214179A7_val == 4) {
-                gf_CreateItemLocalNOTD("LaserRifle", 1, RegionFromId(237));
-            }
-            else if (auto214179A7_val == 6) {
-                for (auto6774C54E_i = 1; auto6774C54E_i <= auto6774C54E_n; auto6774C54E_i += 1) {
-                    libNtve_gf_UnitCreateFacingPoint(1, gv_civPool[RandomInt(0, 1)], 0, lv_trigPlayer, RegionRandomPoint(RegionFromId(237)), RegionRandomPoint(RegionFromId(237)));
-                    UnitBehaviorAdd(UnitLastCreated(), "Run", UnitLastCreated(), 1);
-                    libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_apolloCivs);
-                    UnitBehaviorAdd(UnitLastCreated(), "SpeedBuff", UnitLastCreated(), 1);
-                    Wait(0.1, c_timeGame);
-                }
-                if ((RandomInt(0, 1) == 1)) {
-                    SoundPlay(SoundLink("THanson03ACivilianFemale1Brunette00035", -1), PlayerGroupActive(), 100.0, 0.0);
-                }
-                else {
-                    SoundPlay(SoundLink("THanson03BCivilian200015", -1), PlayerGroupActive(), 100.0, 0.0);
-                }
-            }
-            else {
-                gf_CreateItemLocalNOTD("Magazine", 1, RegionFromId(237));
-            }
+        else if ((UnitIsAlive(gv_cplIrvin) == true) && (RandomInt(0, 3) == 1)) {
+            gv_cplIrvin = null;
+            gf_CreateItemLocalNOTD("StingerMK3", 1, RegionFromId(237));
+        }
+        else if ((UnitIsAlive(gv_sgtStallans) == true) && (RandomInt(0, 2) == 1)) {
+            gf_CreateItemLocalNOTD("Helium3Canister", 1, RegionFromId(237));
+        }
+        else if ((UnitIsAlive(gv_ivan) == true) && (RandomInt(0, 1) == 1)) {
+            gf_CreateItemLocalNOTD("Chaingun", 1, RegionFromId(237));
+        }
+        else if ((UnitIsAlive(gv_ogilvy) == true)) {
+            gf_CreateItemLocalNOTD("Shotgun", 1, RegionFromId(237));
+        }
+        else if (true) {
+            gf_CreateItemLocalNOTD("Magazine", 1, RegionFromId(237));
         }
     }
-    libNtve_gf_AddUnitGroupToUnitGroup(lv_localUnits, gv_zombieWave);
+    if ((gv_isVeteranSquad == true)) {
+        libNtve_gf_AddUnitGroupToUnitGroup(lv_localUnits, gv_zombieWave);
+    }
+    while (!(((UnitGroupCount(lv_localUnits, c_unitCountAlive) == 0)))) {
+        Wait(10.0, c_timeGame);
+    }
     gv_eCEastSurpriseCount += 1;
     TriggerEnable(TriggerGetCurrent(), true);
     return true;
@@ -25402,6 +25394,58 @@ void gt_ECEastSurprise_Init () {
     gt_ECEastSurprise = TriggerCreate("gt_ECEastSurprise_Func");
     TriggerEnable(gt_ECEastSurprise, false);
     TriggerAddEventUnitRegion(gt_ECEastSurprise, null, RegionFromId(237), true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Kill Charlie
+//--------------------------------------------------------------------------------------------------
+bool gt_KillCharlie_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_attacker;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_attacker = libNtve_gf_KillingUnit();
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGroupHasUnit(gv_marines, lv_attacker) == true))) {
+            return false;
+        }
+
+        if (!((RandomInt(0, 9) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((gv_isVeteranSquad == true)) {
+        libNtve_gf_UnitCreateFacingPoint(1, "Beastling2", 0, 14, Point(46.5, 25.5), RegionRandomPoint(RegionFromId(204)));
+        UnitBehaviorAdd(UnitLastCreated(), "SpeedBuff", UnitLastCreated(), 2);
+        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBeastling", 0)), c_orderQueueReplace);
+        Wait(0.5, c_timeGame);
+        UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), lv_attacker), c_orderQueueReplace);
+    }
+    else {
+        libNtve_gf_UnitCreateFacingPoint(1, "Devourer2", 0, 14, Point(46.5, 25.5), RegionRandomPoint(RegionFromId(204)));
+        UnitBehaviorAdd(UnitLastCreated(), "SpeedBuff", UnitLastCreated(), 1);
+        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowDevourer", 0)), c_orderQueueReplace);
+        Wait(0.5, c_timeGame);
+        UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), lv_attacker), c_orderQueueReplace);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_KillCharlie_Init () {
+    gt_KillCharlie = TriggerCreate("gt_KillCharlie_Func");
+    TriggerEnable(gt_KillCharlie, false);
+    TriggerAddEventUnitDied(gt_KillCharlie, UnitRefFromUnit(UnitFromId(2211)));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -45407,6 +45451,7 @@ void InitTriggers () {
     gt_OptionalSecurityCamerasMobs_Init();
     gt_ECW4AirlockRoadAmbush_Init();
     gt_ECEastSurprise_Init();
+    gt_KillCharlie_Init();
     gt_Boss1SpawnCinematic_Init();
     gt_Boss1AI_Init();
     gt_Boss1CarapaceHardens33_Init();
