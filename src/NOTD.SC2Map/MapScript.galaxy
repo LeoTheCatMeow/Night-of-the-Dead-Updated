@@ -2204,6 +2204,7 @@ trigger gt_Wave4EnterAirlockGate3P;
 trigger gt_Wave4EnterAirlockBackupGate;
 trigger gt_Wave4EnterAirlockNorthGate;
 trigger gt_ECDelta1Transport;
+trigger gt_KillPriyanka;
 trigger gt_ECEnterTruck;
 trigger gt_ECCivReward;
 trigger gt_ECZombieTime;
@@ -26774,6 +26775,7 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
 
         }
         ObjectiveDestroy(gv_secondaryObjective);
+        TriggerEnable(gt_KillPriyanka, false);
     }
 
     return true;
@@ -26787,6 +26789,37 @@ void gt_ECDelta1Transport_Init () {
     TriggerAddEventUnitRegion(gt_ECDelta1Transport, null, RegionFromId(39), false);
     TriggerAddEventUnitRegion(gt_ECDelta1Transport, null, RegionFromId(167), true);
     TriggerAddEventUnitRegion(gt_ECDelta1Transport, null, RegionFromId(167), false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Kill Priyanka
+//--------------------------------------------------------------------------------------------------
+bool gt_KillPriyanka_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGroupHasUnit(gv_marines, libNtve_gf_KillingUnit()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    Wait(10.0, c_timeGame);
+    UnitCreate(1, "BanelingBurrowed", 0, 14, UnitGroupCenterOfGroup(gv_colonists), libNtve_gf_RandomAngle());
+    UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowBanelingUp", 0)), c_orderQueueReplace);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_KillPriyanka_Init () {
+    gt_KillPriyanka = TriggerCreate("gt_KillPriyanka_Func");
+    TriggerEnable(gt_KillPriyanka, false);
+    TriggerAddEventUnitDied(gt_KillPriyanka, UnitRefFromVariable("gv_priyanka"));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -45467,6 +45500,7 @@ void InitTriggers () {
     gt_Wave4EnterAirlockBackupGate_Init();
     gt_Wave4EnterAirlockNorthGate_Init();
     gt_ECDelta1Transport_Init();
+    gt_KillPriyanka_Init();
     gt_ECEnterTruck_Init();
     gt_ECCivReward_Init();
     gt_ECZombieTime_Init();
