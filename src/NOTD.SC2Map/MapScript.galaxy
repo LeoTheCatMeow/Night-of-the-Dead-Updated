@@ -2117,6 +2117,7 @@ trigger gt_DropMagazine;
 trigger gt_MagazineUse;
 trigger gt_StackMagsIntoBox;
 trigger gt_AmmoBoxPickedUp;
+trigger gt_AmmoBoxLost;
 trigger gt_InventoryDebugChat;
 trigger gt_UseBandagewithAbility;
 trigger gt_ShopDisplay;
@@ -20723,6 +20724,41 @@ bool gt_AmmoBoxPickedUp_Func (bool testConds, bool runActions) {
 void gt_AmmoBoxPickedUp_Init () {
     gt_AmmoBoxPickedUp = TriggerCreate("gt_AmmoBoxPickedUp_Func");
     TriggerAddEventUnitAbility(gt_AmmoBoxPickedUp, null, AbilityCommand("InventoryAssault", 2), c_unitAbilStageComplete, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ammo Box Lost
+//--------------------------------------------------------------------------------------------------
+bool gt_AmmoBoxLost_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnitInventoryItem()) == "AmmoBox"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (UnitIsAlive(EventUnitInventoryItem())) {
+        gf_ShowAmmoinBox(EventUnitInventoryItem());
+    }
+    else {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AmmoBox", 0, 10, EventUnitInventoryItemTargetPoint());
+        UnitAddChargeUsed(UnitLastCreated(), "Ammo/Magazine", CatalogFieldValueGetAsInt(c_gameCatalogItem, "AmmoBox", "EffectCost.Charge.CountMax", c_playerAny));
+        gf_ShowAmmoinBox(UnitLastCreated());
+        UnitIssueOrder(EventUnitInventoryItemTargetUnit(), OrderTargetingUnit(null, UnitLastCreated()), c_orderQueueAddToFront);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_AmmoBoxLost_Init () {
+    gt_AmmoBoxLost = TriggerCreate("gt_AmmoBoxLost_Func");
+    TriggerAddEventUnitInventoryChange(gt_AmmoBoxLost, null, c_unitInventoryChangeLoses, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -45419,6 +45455,7 @@ void InitTriggers () {
     gt_MagazineUse_Init();
     gt_StackMagsIntoBox_Init();
     gt_AmmoBoxPickedUp_Init();
+    gt_AmmoBoxLost_Init();
     gt_InventoryDebugChat_Init();
     gt_UseBandagewithAbility_Init();
     gt_ShopDisplay_Init();

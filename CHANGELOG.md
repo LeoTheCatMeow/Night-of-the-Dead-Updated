@@ -1,9 +1,13 @@
 # Current Changes & Bugfixes Tracklist
 
 2020-10-22
+[ThunderRazor]
 - Fixed a bug where seekers are spawned incorrectly at Epsilon and causes FO minis to be instantly killed.
-- Fixed a bug where vote kick karma penalty is applied incorrectly. 
 - Fixed a bug where ammo box may fail to pick up any ammo. 
+- Fixed a bug where the game mode could mismatch with the difficulty if the mode is toggled quickly.
+
+[LeoTheCat]
+- Fixed a bug where vote kick karma penalty is applied incorrectly. 
 - Ammo box will no longer destroy itself when stacked under certain conditions.
 - Highlight tooltip of magazines and ammo boxes will now display the amount of ammo.
 - Disabled the anti-swear feature due to abuse.
