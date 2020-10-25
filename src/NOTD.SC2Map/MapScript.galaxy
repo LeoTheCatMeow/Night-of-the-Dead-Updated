@@ -6046,6 +6046,7 @@ bool auto_gf_RankUp_TriggerFunc (bool testConds, bool runActions) {
     lv_rankUpTextTag = TextTagLastCreated();
     TextTagAttachToUnit(lv_rankUpTextTag, gv_marineHero[lp_player], 3.25);
     TextTagSetBackgroundImage(lv_rankUpTextTag, UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_player]), "Icon", 1), false);
+    TextTagSetBackgroundBorderSize(lv_rankUpTextTag, 3.2, 3.2);
     TextTagShowBackground(lv_rankUpTextTag, true);
     Wait(15.0, c_timeReal);
     UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
