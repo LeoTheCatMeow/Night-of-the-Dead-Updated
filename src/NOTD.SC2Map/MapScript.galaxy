@@ -17110,11 +17110,14 @@ bool gt_StorylineSelection_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(gt_ModeSelection, false);
+    TriggerEnable(gt_storylineModSelection, false);
     TriggerEnable(gt_AutoStorylineSelection, false);
     TriggerEnable(TriggerGetCurrent(), false);
     if ((gv_currentGameMode == ge_GameModes_Recruit)) {
         gv_currentGameMode = ge_GameModes_Normal;
         gv_isVeteranSquad = false;
+        gv_noNewbie = false;
     }
     while ((lv_usedDialogControl != gv_storylineSelection[lv_index])) {
         lv_index += 1;
@@ -17202,10 +17205,13 @@ bool gt_AutoStorylineSelection_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(gt_storylineModSelection, false);
+    TriggerEnable(gt_ModeSelection, false);
     TriggerEnable(gt_StorylineSelection, false);
     if ((gv_currentGameMode == ge_GameModes_Recruit)) {
         gv_currentGameMode = ge_GameModes_Normal;
         gv_isVeteranSquad = false;
+        gv_noNewbie = false;
     }
     auto8FD6CC03_var = 2;
     for ( ; auto8FD6CC03_var <= auto8FD6CC03_ae; auto8FD6CC03_var += 1 ) {
