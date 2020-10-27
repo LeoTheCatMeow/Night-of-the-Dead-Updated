@@ -31058,7 +31058,7 @@ bool gt_QueenShriek67HP_Func (bool testConds, bool runActions) {
     for (;; auto6DB7F64D_u -= 1) {
         auto6DB7F64D_var = UnitGroupUnitFromEnd(auto6DB7F64D_g, auto6DB7F64D_u);
         if (auto6DB7F64D_var == null) { break; }
-        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(auto6DB7F64D_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(auto6DB7F64D_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(auto6DB7F64D_var, "Protect") == true) || (DistanceBetweenPoints(UnitGetPosition(auto6DB7F64D_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
+        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(auto6DB7F64D_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(auto6DB7F64D_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(auto6DB7F64D_var, "Protect") == true) || (UnitGetType(auto6DB7F64D_var) == "SiegeBreaker") || (UnitGetType(auto6DB7F64D_var) == "SiegeBreakerSieged") || (DistanceBetweenPoints(UnitGetPosition(auto6DB7F64D_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
         }
         else {
             UnitBehaviorAdd(auto6DB7F64D_var, "Shriek", gv_finalBoss, 1);
@@ -31139,7 +31139,7 @@ bool gt_QueenShriek33HP_Func (bool testConds, bool runActions) {
     for (;; auto5C10BE6E_u -= 1) {
         auto5C10BE6E_var = UnitGroupUnitFromEnd(auto5C10BE6E_g, auto5C10BE6E_u);
         if (auto5C10BE6E_var == null) { break; }
-        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(auto5C10BE6E_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(auto5C10BE6E_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(auto5C10BE6E_var, "Protect") == true) || (DistanceBetweenPoints(UnitGetPosition(auto5C10BE6E_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
+        if (((UnitIsAlive(gv_finalBoss) != true) || (UnitHasBehavior(auto5C10BE6E_var, "NanoShieldLevel1") == true) || (UnitHasBehavior(auto5C10BE6E_var, "NanoShieldLevel2") == true) || (UnitHasBehavior(auto5C10BE6E_var, "Protect") == true) || (UnitGetType(auto5C10BE6E_var) == "SiegeBreaker") || (UnitGetType(auto5C10BE6E_var) == "SiegeBreakerSieged") || (DistanceBetweenPoints(UnitGetPosition(auto5C10BE6E_var), UnitGetPosition(gv_finalBoss)) >= 20.0))) {
         }
         else {
             UnitBehaviorAdd(auto5C10BE6E_var, "Shriek", gv_finalBoss, 1);
