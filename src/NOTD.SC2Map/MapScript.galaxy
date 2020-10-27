@@ -2140,6 +2140,7 @@ trigger gt_Barrels;
 trigger gt_BarrelKills;
 trigger gt_GateEnterAirlockMainGateOuter;
 trigger gt_GateEnterAirlockMainGateInner;
+trigger gt_DebrisAmbush;
 trigger gt_NavyCrossCheck;
 trigger gt_NightmareBonus;
 trigger gt_ChapterEndMedicRatingBonus;
@@ -22027,6 +22028,103 @@ void gt_GateEnterAirlockMainGateInner_Init () {
     gt_GateEnterAirlockMainGateInner = TriggerCreate("gt_GateEnterAirlockMainGateInner_Func");
     TriggerEnable(gt_GateEnterAirlockMainGateInner, false);
     TriggerAddEventUnitRegion(gt_GateEnterAirlockMainGateInner, null, RegionFromId(2), true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Debris Ambush
+//--------------------------------------------------------------------------------------------------
+bool gt_DebrisAmbush_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_localCenter;
+    unit lv_localAttacker;
+    unitgroup lv_localAmbush;
+    unit lv_localZombie;
+
+    // Automatic Variable Declarations
+    unitgroup auto32422849_g;
+    int auto32422849_u;
+
+    // Variable Initialization
+    lv_localCenter = UnitGetPosition(EventUnit());
+    lv_localAttacker = EventUnitTarget();
+    lv_localAmbush = UnitGroupFilterRegion(gv_zombieWave, RegionCircle(lv_localCenter, 20.0), 0);
+
+    // Conditions
+    if (testConds) {
+        if (!((RandomInt(15, 25) <= (gv_squadRating / 100)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto32422849_g = lv_localAmbush;
+    auto32422849_u = UnitGroupCount(auto32422849_g, c_unitCountAll);
+    for (;; auto32422849_u -= 1) {
+        lv_localZombie = UnitGroupUnitFromEnd(auto32422849_g, auto32422849_u);
+        if (lv_localZombie == null) { break; }
+        if ((AIIsNotUsableInWaves(lv_localZombie) == true)) {
+            UnitGroupRemove(lv_localAmbush, lv_localZombie);
+        }
+        else {
+            UnitGroupRemove(gv_zombieWave, lv_localZombie);
+        }
+    }
+    UnitGroupIssueOrder(lv_localAmbush, OrderTargetingPoint(AbilityCommand("attack", 0), lv_localCenter), c_orderQueueReplace);
+    Wait(5.0, c_timeGame);
+    if ((UnitIsAlive(lv_localAttacker) == true) && (libNtve_gf_UnitInRegion(lv_localAttacker, RegionCircle(lv_localCenter, 20.0)) == true)) {
+        UnitGroupIssueOrder(lv_localAmbush, OrderTargetingUnit(AbilityCommand("attack", 0), lv_localAttacker), c_orderQueueReplace);
+    }
+    Wait(15.0, c_timeGame);
+    UnitGroupAddUnitGroup(gv_zombieWave, lv_localAmbush);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DebrisAmbush_Init () {
+    gt_DebrisAmbush = TriggerCreate("gt_DebrisAmbush_Func");
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(300)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2798)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2030)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3022)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3023)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3024)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2800)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1012)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2799)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1052)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1245)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1462)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1592)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1053)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2247)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1918)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2352)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2351)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2348)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2354)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(299)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(169)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2408)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2126)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3145)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2355)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2835)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2696)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2695)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2831)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2716)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2226)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3071)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3073)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(213)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3074)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(2777)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(3082)), null);
+    TriggerAddEventUnitAttacked2(gt_DebrisAmbush, UnitRefFromUnit(UnitFromId(1592)), null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -45479,6 +45577,7 @@ void InitTriggers () {
     gt_BarrelKills_Init();
     gt_GateEnterAirlockMainGateOuter_Init();
     gt_GateEnterAirlockMainGateInner_Init();
+    gt_DebrisAmbush_Init();
     gt_NavyCrossCheck_Init();
     gt_NightmareBonus_Init();
     gt_ChapterEndMedicRatingBonus_Init();
