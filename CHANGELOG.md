@@ -5,6 +5,7 @@
 - Fixed a bug where seekers are spawned incorrectly at Epsilon and causes FO minis to be instantly killed.
 - Fixed a bug where ammo box may fail to pick up any ammo. 
 - Fixed a bug where the game mode could mismatch with the difficulty if the mode is toggled quickly.
+- Fixed a bug where the promotion visual effect isn't displayed correctly.
 
 [LeoTheCat]
 - Fixed a bug where vote kick karma penalty is applied incorrectly. 
