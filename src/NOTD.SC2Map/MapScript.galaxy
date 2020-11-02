@@ -17160,7 +17160,6 @@ void gt_StorylineSelection_Init () {
 bool gt_ModeSelection_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_usedDialogControl;
-    int lv_index;
 
     // Automatic Variable Declarations
     // Variable Initialization
@@ -17178,6 +17177,7 @@ bool gt_ModeSelection_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(TriggerGetCurrent(), false);
     if ((lv_usedDialogControl == gv_modeSelection[1]) && (gv_currentGameMode != ge_GameModes_Normal)) {
         gf_UpdateModeSelectionUIs(ge_GameModes_Normal);
         UIShowCinematicText(PlayerGroupAll(), StringExternal("Param/Value/9180D572"), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
@@ -17194,6 +17194,7 @@ bool gt_ModeSelection_Func (bool testConds, bool runActions) {
         gf_UpdateModeSelectionUIs(ge_GameModes_Recruit);
         UIShowCinematicText(PlayerGroupAll(), StringExternal("Param/Value/3DD0390C"), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
     }
+    TriggerEnable(TriggerGetCurrent(), true);
     return true;
 }
 
