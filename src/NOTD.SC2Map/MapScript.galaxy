@@ -645,6 +645,8 @@ unit gv_drBergmann;
 unit gv_sgtStallans;
 unit gv_cplIrvin;
 unit gv_pfcBrooks;
+unitgroup gv_rewardGroup;
+unitgroup gv_rewardedGroup;
 unit gv_priyanka;
 unitgroup gv_blackOps;
 unitgroup gv_zombieWave;
@@ -1153,6 +1155,8 @@ void InitGlobals () {
     gv_scrapyardObjective = c_invalidObjectiveId;
     gv_commTowerObjective = c_invalidObjectiveId;
     gv_drBergmann = UnitFromId(136);
+    gv_rewardGroup = UnitGroupEmpty();
+    gv_rewardedGroup = UnitGroupEmpty();
     gv_blackOps = UnitGroupEmpty();
     gv_zombieWave = UnitGroupEmpty();
     gv_brainBugs = UnitGroupEmpty();
@@ -24272,16 +24276,19 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
     UnitGroupAdd(gv_episilonMinis, UnitLastCreated());
     gv_pfcBrooks = UnitLastCreated();
+    UnitGroupAdd(gv_rewardGroup, UnitLastCreated());
     Wait(0.1, c_timeGame);
     libNtve_gf_UnitCreateFacingPoint(1, "CplIrvin", 0, 9, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
     UnitGroupAdd(gv_episilonMinis, UnitLastCreated());
     gv_cplIrvin = UnitLastCreated();
+    UnitGroupAdd(gv_rewardGroup, UnitLastCreated());
     Wait(0.1, c_timeGame);
     libNtve_gf_UnitCreateFacingPoint(1, "SgtStallans", 0, 9, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
     UnitGroupAdd(gv_episilonMinis, UnitLastCreated());
     gv_sgtStallans = UnitLastCreated();
+    UnitGroupAdd(gv_rewardGroup, UnitLastCreated());
     Wait(3.0, c_timeReal);
     UISetButtonHighlighted(PlayerGroupActive(), AbilityCommand("Sprint", 0), false);
     PingCreate(PlayerGroupActive(), "PingWarning", RegionGetCenter(RegionFromId(1)), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 10.0);
@@ -25396,11 +25403,13 @@ bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
     int lv_mobindex;
     string lv_mobtype;
     abilcmd lv_mobcommand;
+    unit lv_localReward;
 
     // Automatic Variable Declarations
     const int auto39758962_n = 2;
     int auto39758962_i;
     int autoAFFDDA94_val;
+    unit auto04177E77_val;
 
     // Variable Initialization
     lv_trigPlayer = EventPlayer();
@@ -25498,22 +25507,30 @@ bool gt_ECEastSurprise_Func (bool testConds, bool runActions) {
         UnitKill(lv_localGuardian);
     }
     else {
-        if ((UnitIsAlive(gv_pfcBrooks) == true) && (RandomInt(0, 4) == 1)) {
-            gv_pfcBrooks = null;
-            gf_CreateItemLocalNOTD("LaserRifle", 1, RegionFromId(237));
+        if ((UnitGroupCount(gv_rewardGroup, c_unitCountAlive) != 0)) {
+            lv_localReward = UnitGroupRandomUnit(gv_rewardGroup, c_unitCountAlive);
+            auto04177E77_val = lv_localReward;
+            if (auto04177E77_val == gv_sgtStallans) {
+                UnitGroupRemove(gv_rewardGroup, gv_sgtStallans);
+                UnitGroupAdd(gv_rewardedGroup, gv_sgtStallans);
+                gf_CreateItemLocalNOTD("LaserRifle", 1, RegionFromId(237));
+            }
+            else if (auto04177E77_val == gv_cplIrvin) {
+                UnitGroupRemove(gv_rewardGroup, gv_cplIrvin);
+                UnitGroupAdd(gv_rewardedGroup, gv_cplIrvin);
+                gf_CreateItemLocalNOTD("StingerMK3", 1, RegionFromId(237));
+            }
+            else if (auto04177E77_val == gv_pfcBrooks) {
+                UnitGroupRemove(gv_rewardGroup, gv_pfcBrooks);
+                UnitGroupAdd(gv_rewardedGroup, gv_pfcBrooks);
+                gf_CreateItemLocalNOTD("Chaingun", 1, RegionFromId(237));
+            }
+            else {
+                gf_CreateItemLocalNOTD("Helium3Canister", 1, RegionFromId(237));
+            }
         }
-        else if ((UnitIsAlive(gv_cplIrvin) == true) && (RandomInt(0, 3) == 1)) {
-            gv_cplIrvin = null;
-            gf_CreateItemLocalNOTD("StingerMK3", 1, RegionFromId(237));
-        }
-        else if ((UnitIsAlive(gv_sgtStallans) == true) && (RandomInt(0, 2) == 1)) {
+        else if ((UnitGroupCount(gv_rewardedGroup, c_unitCountAlive) != 0)) {
             gf_CreateItemLocalNOTD("Helium3Canister", 1, RegionFromId(237));
-        }
-        else if ((UnitIsAlive(gv_ivan) == true) && (RandomInt(0, 1) == 1)) {
-            gf_CreateItemLocalNOTD("Chaingun", 1, RegionFromId(237));
-        }
-        else if ((UnitIsAlive(gv_ogilvy) == true)) {
-            gf_CreateItemLocalNOTD("Shotgun", 1, RegionFromId(237));
         }
         else if (true) {
             gf_CreateItemLocalNOTD("Magazine", 1, RegionFromId(237));
