@@ -1,4 +1,17 @@
 # Current Changes & Bugfixes Tracklist
+2020-11-4
+[ThunderRazor]
+- Likely fixed issues that could occasionally cause nightmare mode to turn into recruit mode during selection.
+- A1Abrams (Charlie Company Tanks) is now immune to Eos shriek.
+- Minor AI improvements for zombies.
+
+[LeoTheCat]
+- Removed the early ambient spawn in Sec (which provided continuous extra mobs throughout the game).
+- Slightly reworked the armory & comms waves in Sec, making them more challenging while keeping the overall XP income roughly the same.
+- Infestor ambient spawns (when there are infestors alive) for Sec will now very occasionally spawn an infested marine instead of a zombie.
+- Kill XP for infested marines lowered from 11 to 9, minor XP adjustments for other units as well (mainly to control XP income in Sec).
+- Shared XP multiplier (for XP leeching) slightly lowered for PsiOps and Technician, minor adjustments for other classes as well based on
+  their roles in the current meta.
 
 2020-10-22
 [ThunderRazor]

@@ -1921,7 +1921,6 @@ void gf_GasCameraCycle ();
 void gf_ACRescueSharedEventsAction (unit lp_radioUnit);
 void gf_ACClosingCinematic ();
 void gf_STEnvironmentalChanges ();
-void gf_STC1AmbientSpawns ();
 void gf_DeimosMinionAI ();
 void gf_STC2AmbientSpawns ();
 void gf_BergmannAI (unit lp_rescueMarine);
@@ -2103,7 +2102,6 @@ trigger gt_LevelUp;
 trigger gt_PetLevelUp;
 trigger gt_PredatorDies;
 trigger gt_Helium3AcquiredCredits;
-trigger gt_SwearJar;
 trigger gt_OnMarineSelected;
 trigger gt_DeadMarine;
 trigger gt_PsiOpsDeath;
@@ -12087,37 +12085,6 @@ bool auto_gf_STEnvironmentalChanges_TriggerFunc (bool testConds, bool runActions
     return true;
 }
 
-trigger auto_gf_STC1AmbientSpawns_Trigger = null;
-
-void gf_STC1AmbientSpawns () {
-    if (auto_gf_STC1AmbientSpawns_Trigger == null) {
-        auto_gf_STC1AmbientSpawns_Trigger = TriggerCreate("auto_gf_STC1AmbientSpawns_TriggerFunc");
-    }
-
-    TriggerExecute(auto_gf_STC1AmbientSpawns_Trigger, false, false);
-}
-
-bool auto_gf_STC1AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Implementation
-    while ((gv_gameOver == false)) {
-        Wait(5.0, c_timeReal);
-        if ((RandomInt(0, 5) == 1)) {
-            gf_SmartSpawnNOTD("ZombieLevel22", 50.0);
-        }
-        else if ((RandomInt(0, 8) == 1)) {
-            gf_SmartSpawnNOTD("RoachBurrowed", 50.0);
-        }
-        else if ((RandomInt(0, 10) == 1)) {
-            gf_SmartSpawnNOTD("HulkBurrowed", 50.0);
-        }
-        else if ((RandomInt(0, 10) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
-            gf_SmartSpawnNOTD("InfestorTerran2", 50.0);
-        }
-    }
-    return true;
-}
-
 trigger auto_gf_DeimosMinionAI_Trigger = null;
 
 void gf_DeimosMinionAI () {
@@ -12227,11 +12194,11 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
         else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("UltraliskBurrowed", 50.0);
         }
-        else if ((RandomInt(0, 1) == 1)) {
-            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
-        }
         else if ((RandomInt(0, 4) == 1)) {
             gf_SmartSpawnNOTD("Wraith2", 70.0);
+        }
+        else if ((RandomInt(0, 8) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+            gf_SmartSpawnNOTD("Slasher2", 50.0);
         }
         else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             auto5BDB808E_n = gv_spawnFactor;
@@ -12240,11 +12207,11 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
                 Wait(0.2, c_timeReal);
             }
         }
-        else if ((RandomInt(0, 9) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
-            gf_SmartSpawnNOTD("Slasher2", 50.0);
-        }
-        else if ((RandomInt(0, 19) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 16) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("BrainBug2", 50.0);
+        }
+        else if (true) {
+            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
         }
     }
     return true;
@@ -19432,7 +19399,7 @@ bool gt_KarmaBite_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    gf_UpdateKarma(gv_griefingPlayer, -25);
+    gf_UpdateKarma(gv_griefingPlayer, -50);
     gv_playerXP[gv_griefingPlayer] -= 100;
     PlayerScoreValueSetFromInt(gv_griefingPlayer, "PlayerXP", gv_playerXP[gv_griefingPlayer]);
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (PlayerName(gv_griefingPlayer) + StringExternal("Param/Value/548D875C")));
@@ -19635,164 +19602,6 @@ bool gt_Helium3AcquiredCredits_Func (bool testConds, bool runActions) {
 void gt_Helium3AcquiredCredits_Init () {
     gt_Helium3AcquiredCredits = TriggerCreate("gt_Helium3AcquiredCredits_Func");
     TriggerAddEventUnitAbility(gt_Helium3AcquiredCredits, null, AbilityCommand("Helium3PowerUp", 0), c_unitAbilStageExecute, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Swear Jar
-//--------------------------------------------------------------------------------------------------
-bool gt_SwearJar_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_trigPlayer;
-    string lv_handle;
-    string lv_message;
-    int lv_position;
-    int lv_random;
-    unit lv_harasser;
-    unitgroup lv_harassers;
-    region lv_spawn;
-    bool lv_isHugged;
-
-    // Automatic Variable Declarations
-    unitgroup auto9796E00C_g;
-    int auto9796E00C_u;
-    unit auto9796E00C_var;
-    const int autoC3FEE9BA_n = 10;
-    int autoC3FEE9BA_i;
-    int auto763819CE_val;
-    int auto5A800D9F_val;
-    const int auto88956A85_n = 7;
-    int auto88956A85_i;
-    unitgroup auto205FD8CE_g;
-    int auto205FD8CE_u;
-    unit auto205FD8CE_var;
-
-    // Variable Initialization
-    lv_trigPlayer = EventPlayer();
-    lv_handle = PlayerHandle(EventPlayer());
-    lv_message = EventChatMessage(true);
-    lv_harassers = UnitGroupEmpty();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitIsAlive(gv_marineHero[lv_trigPlayer]) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    if ((StringContains(lv_message, "pussy", c_stringAnywhere, c_stringNoCase) == true) && (StringContains(lv_message, "fucking", c_stringAnywhere, c_stringNoCase) == false)) {
-        lv_position = StringFind(lv_message, "pussy", c_stringNoCase);
-        if ((StringSub(lv_message, (lv_position - 1), (lv_position - 1)) == " ") && ((StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != " ") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == ".") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) == "!") || (StringSub(lv_message, (lv_position + 5), (lv_position + 5)) != ""))) {
-            TriggerEnable(TriggerGetCurrent(), true);
-            return true;
-        }
-    }
-    if ((StringContains(lv_message, "retarded", c_stringAnywhere, c_stringNoCase) == true)) {
-        TriggerEnable(TriggerGetCurrent(), true);
-        return true;
-    }
-    lv_random = RandomInt(1, 3);
-    lv_spawn = RegionCircle(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 2.5);
-    RegionAttachToUnit(lv_spawn, gv_marineHero[lv_trigPlayer], Point(0.0, 0.0));
-    if (((StringContains(lv_message, "hugged", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_message, "huged", c_stringAnywhere, c_stringNoCase) == true))) {
-        auto9796E00C_g = gv_marines;
-        auto9796E00C_u = UnitGroupCount(auto9796E00C_g, c_unitCountAll);
-        for (;; auto9796E00C_u -= 1) {
-            auto9796E00C_var = UnitGroupUnitFromEnd(auto9796E00C_g, auto9796E00C_u);
-            if (auto9796E00C_var == null) { break; }
-            if ((UnitTestState(auto9796E00C_var, c_unitStateTurnSuppressed) == true)) {
-                lv_isHugged = true;
-                break;
-            }
-        }
-        if ((lv_isHugged == false) && ((RandomInt(0, 3) == 1) || (lv_handle == "1-S2-1-1560369"))) {
-            lv_random = 3;
-            lv_spawn = RegionCircle(UnitGetPosition(gv_marineHero[lv_trigPlayer]), 0.75);
-            RegionAttachToUnit(lv_spawn, gv_marineHero[lv_trigPlayer], Point(0.0, 0.0));
-        }
-        else {
-            TriggerEnable(TriggerGetCurrent(), true);
-            return true;
-        }
-    }
-    if ((StringContains(lv_message, "bukake", c_stringAnywhere, c_stringNoCase) == true)) {
-        for (autoC3FEE9BA_i = 1; autoC3FEE9BA_i <= autoC3FEE9BA_n; autoC3FEE9BA_i += 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-            Wait(0.5, c_timeGame);
-        }
-        Wait(5.0, c_timeGame);
-    }
-    if (((lv_handle == "1-S2-1-417524") || (lv_handle == "1-S2-1-431521") || (lv_handle == "1-S2-1-1143628") || (lv_handle == "1-S2-1-3388720") || (lv_handle == "1-S2-1-11533459") || (lv_handle == "1-S2-1-1246603") || (lv_handle == "1-S2-1-2517593") || (lv_handle == "1-S2-1-1560369"))) {
-        auto5A800D9F_val = lv_random;
-        if (auto5A800D9F_val == 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "BrainBug2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBrainBug", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else if (auto5A800D9F_val == 2) {
-            libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else if (auto5A800D9F_val == 3) {
-            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else {
-        }
-    }
-    else {
-        auto763819CE_val = lv_random;
-        if (auto763819CE_val == 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "RoachBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowRoachUp", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else if (auto763819CE_val == 2) {
-            libNtve_gf_UnitCreateFacingPoint(1, "SeekerBurrowed", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowSeeker", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else if (auto763819CE_val == 3) {
-            libNtve_gf_UnitCreateFacingPoint(1, "Hugger2", 0, 14, RegionRandomPoint(lv_spawn), UnitGetPosition(gv_marineHero[lv_trigPlayer]));
-            UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHugger", 0)), c_orderQueueReplace);
-            UnitGroupAdd(lv_harassers, UnitLastCreated());
-        }
-        else {
-        }
-    }
-    for (auto88956A85_i = 1; auto88956A85_i <= auto88956A85_n; auto88956A85_i += 1) {
-        if ((UnitGroupCount(lv_harassers, c_unitCountAlive) >= 1)) {
-            Wait(1.0, c_timeGame);
-            UnitGroupIssueOrder(lv_harassers, OrderTargetingUnit(AbilityCommand("attack", 0), gv_marineHero[lv_trigPlayer]), c_orderQueueReplace);
-            Wait(1.0, c_timeGame);
-        }
-    }
-    if ((lv_random == 3)) {
-        auto205FD8CE_g = lv_harassers;
-        auto205FD8CE_u = UnitGroupCount(auto205FD8CE_g, c_unitCountAll);
-        for (;; auto205FD8CE_u -= 1) {
-            auto205FD8CE_var = UnitGroupUnitFromEnd(auto205FD8CE_g, auto205FD8CE_u);
-            if (auto205FD8CE_var == null) { break; }
-            UnitKill(auto205FD8CE_var);
-        }
-    }
-    TriggerEnable(TriggerGetCurrent(), true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_SwearJar_Init () {
-    gt_SwearJar = TriggerCreate("gt_SwearJar_Func");
-    TriggerEnable(gt_SwearJar, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -21329,7 +21138,12 @@ bool gt_InfestorAmbientSpawns_Func (bool testConds, bool runActions) {
         if (auto497F828B_var == null) { break; }
         if ((gv_cinematicMode == false) && (UnitGetOwner(auto497F828B_var) == 14)) {
             for (auto6EEE0464_i = 1; auto6EEE0464_i <= auto6EEE0464_n; auto6EEE0464_i += 1) {
-                gf_SmartSpawnNOTD(libNtve_gf_DifficultyValueUnitType("ZombieLevel12", "ZombieLevel22", "ZombieLevel22", "ZombieLevel22"), 80.0);
+                if ((gv_storyline == 3) && (RandomInt(0, 14) == 1)) {
+                    gf_SmartSpawnNOTD("InfestorTerran2", 80.0);
+                }
+                else {
+                    gf_SmartSpawnNOTD(libNtve_gf_DifficultyValueUnitType("ZombieLevel12", "ZombieLevel22", "ZombieLevel22", "ZombieLevel22"), 80.0);
+                }
             }
             UnitIssueOrder(auto497F828B_var, OrderTargetingPoint(AbilityCommand("move", 1), RegionRandomPoint(RegionPlayableMap())), c_orderQueueReplace);
         }
@@ -36565,7 +36379,6 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
     libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
     libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_infectedCivilians);
     TriggerExecute(gt_STInfectedCiviliansPeriodic, true, false);
-    gf_STC1AmbientSpawns();
     for (autoCECA3866_i = 1; autoCECA3866_i <= autoCECA3866_n; autoCECA3866_i += 1) {
         lv_infestedCivLoop += 1;
         if ((lv_infestedCivLoop == 4)) {
@@ -36575,10 +36388,10 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
         }
         auto1FED7992_n = gv_spawnFactor;
         for (auto1FED7992_i = 1; auto1FED7992_i <= auto1FED7992_n; auto1FED7992_i += 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
-            libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
             if ((RandomInt(0, 1) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
+                libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
+                libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
             }
             else {
                 libNtve_gf_UnitCreateFacingPoint(1, "ColonistFemale2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
@@ -36600,13 +36413,13 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
         Wait(RandomFixed(0.01, 1.2), c_timeGame);
         autoC1CA840A_n = gv_spawnFactor;
         for (autoC1CA840A_i = 1; autoC1CA840A_i <= autoC1CA840A_n; autoC1CA840A_i += 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
-            libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
             if ((RandomInt(0, 1) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
             }
             else {
                 libNtve_gf_UnitCreateFacingPoint(1, "ColonistFemale2", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
+                libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
+                libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
             }
             if ((RandomInt(0, 2) == 1)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Wounded", UnitLastCreated(), 1);
@@ -36665,6 +36478,7 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
             if ((RandomInt(0, 6) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Beastling", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                gf_SmartSpawnNOTD("SeekerBurrowed", 10.0);
             }
 
             Wait(0.1, c_timeGame);
@@ -36694,6 +36508,7 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
             if ((RandomInt(0, 6) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Beastling", 0, 14, RegionRandomPoint(RegionFromId(125)), RegionRandomPoint(RegionFromId(115)));
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                gf_SmartSpawnNOTD("SeekerBurrowed", 10.0);
             }
 
             Wait(0.1, c_timeGame);
@@ -37016,8 +36831,13 @@ bool gt_STInfectedCiviliansPeriodic_Func (bool testConds, bool runActions) {
                 lv_poorCivPosition = UnitGetPosition(lv_poorCiv);
                 UnitKill(lv_poorCiv);
                 libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_poorCivPosition);
-                if ((RandomInt(0, 5) == 1)) {
-                    UnitCreate(1, "Immortal2", 0, 14, lv_poorCivPosition, libNtve_gf_RandomAngle());
+                if ((RandomInt(0, 1) == 1)) {
+                    if ((RandomInt(0, 1) == 1)) {
+                        UnitCreate(1, "Hulk", 0, 14, lv_poorCivPosition, libNtve_gf_RandomAngle());
+                    }
+                    else {
+                        UnitCreate(1, "Immortal2", 0, 14, lv_poorCivPosition, libNtve_gf_RandomAngle());
+                    }
                 }
                 else {
                     UnitCreate(1, "ZombieLevel2", 0, 14, lv_poorCivPosition, libNtve_gf_RandomAngle());
@@ -37294,7 +37114,7 @@ bool gt_STW4TotheScienceLab_Func (bool testConds, bool runActions) {
     int auto894F633D_i;
     int auto7DCC9CCA_n;
     int auto7DCC9CCA_i;
-    int auto89128F57_n;
+    const int auto89128F57_n = 7;
     int auto89128F57_i;
     int auto60E95C6F_n;
     int auto60E95C6F_i;
@@ -37346,13 +37166,23 @@ bool gt_STW4TotheScienceLab_Func (bool testConds, bool runActions) {
             Wait(0.1, c_timeGame);
         }
         Wait(RandomFixed(0.2, 2.0), c_timeGame);
-        auto89128F57_n = gv_spawnFactor;
         for (auto89128F57_i = 1; auto89128F57_i <= auto89128F57_n; auto89128F57_i += 1) {
             auto60E95C6F_n = gv_spawnFactor;
             for (auto60E95C6F_i = 1; auto60E95C6F_i <= auto60E95C6F_n; auto60E95C6F_i += 1) {
                 if ((RandomInt(0, 9) == 1)) {
                     libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
                     UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+                    if ((RandomInt(0, 1) == 1)) {
+                        if ((lv_waveMobType == "InfestorTerran2")) {
+                            gf_SmartSpawnNOTD("SeekerBurrowed", 30.0);
+                        }
+                        else {
+                            gf_SmartSpawnNOTD("InfestorTerran2", 30.0);
+                        }
+                    }
+                    else {
+                        gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
+                    }
                 }
                 else {
                     if ((gv_squadRating >= 1850) && (RandomInt(0, 7) == 1)) {
@@ -45554,7 +45384,6 @@ void InitTriggers () {
     gt_PetLevelUp_Init();
     gt_PredatorDies_Init();
     gt_Helium3AcquiredCredits_Init();
-    gt_SwearJar_Init();
     gt_OnMarineSelected_Init();
     gt_DeadMarine_Init();
     gt_PsiOpsDeath_Init();
