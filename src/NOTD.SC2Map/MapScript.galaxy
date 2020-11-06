@@ -12187,17 +12187,20 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
 
     // Implementation
     while ((gv_gameOver == false)) {
-        Wait(5.0, c_timeReal);
+        Wait(5.5, c_timeReal);
         if ((RandomInt(0, 7) == 1) && (gv_alivePlayers > 3)) {
             gf_SmartSpawnNOTD("Strangler", 80.0);
         }
         else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("UltraliskBurrowed", 50.0);
         }
+        else if ((RandomInt(0, 1) == 1)) {
+            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
+        }
         else if ((RandomInt(0, 4) == 1)) {
             gf_SmartSpawnNOTD("Wraith2", 70.0);
         }
-        else if ((RandomInt(0, 8) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 7) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("Slasher2", 50.0);
         }
         else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
@@ -12207,11 +12210,8 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
                 Wait(0.2, c_timeReal);
             }
         }
-        else if ((RandomInt(0, 16) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 15) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("BrainBug2", 50.0);
-        }
-        else if (true) {
-            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
         }
     }
     return true;
@@ -17161,7 +17161,7 @@ bool gt_ModeSelection_Func (bool testConds, bool runActions) {
         gf_UpdateModeSelectionUIs(ge_GameModes_Hell);
         UIShowCinematicText(PlayerGroupAll(), StringExternal("Param/Value/934DF626"), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
     }
-    else if (true) {
+    else if ((lv_usedDialogControl == gv_modeSelection[1]) && (gv_currentGameMode == ge_GameModes_Normal)) {
         gf_UpdateModeSelectionUIs(ge_GameModes_Recruit);
         UIShowCinematicText(PlayerGroupAll(), StringExternal("Param/Value/3DD0390C"), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
     }
@@ -36491,6 +36491,7 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
             if ((RandomInt(0, 6) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Beastling", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                gf_SmartSpawnNOTD("SeekerBurrowed", 10.0);
             }
 
             Wait(0.1, c_timeGame);
@@ -36831,7 +36832,7 @@ bool gt_STInfectedCiviliansPeriodic_Func (bool testConds, bool runActions) {
                 lv_poorCivPosition = UnitGetPosition(lv_poorCiv);
                 UnitKill(lv_poorCiv);
                 libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_poorCivPosition);
-                if ((RandomInt(0, 1) == 1)) {
+                if ((RandomInt(0, 2) == 1)) {
                     if ((RandomInt(0, 1) == 1)) {
                         UnitCreate(1, "Hulk", 0, 14, lv_poorCivPosition, libNtve_gf_RandomAngle());
                     }
@@ -37152,6 +37153,17 @@ bool gt_STW4TotheScienceLab_Func (bool testConds, bool runActions) {
             if ((RandomInt(0, 9) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
                 UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+                if ((RandomInt(0, 1) == 1)) {
+                    if ((lv_waveMobType == "InfestorTerran2")) {
+                        gf_SmartSpawnNOTD("SeekerBurrowed", 30.0);
+                    }
+                    else {
+                        gf_SmartSpawnNOTD("InfestorTerran2", 30.0);
+                    }
+                }
+                else {
+                    gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
+                }
             }
             else {
                 if ((gv_squadRating >= 1850) && (RandomInt(0, 7) == 1)) {
@@ -37205,6 +37217,17 @@ bool gt_STW4TotheScienceLab_Func (bool testConds, bool runActions) {
             if ((RandomInt(0, 9) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(RegionFromId(125)), RegionRandomPoint(RegionFromId(115)));
                 UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
+                if ((RandomInt(0, 1) == 1)) {
+                    if ((lv_waveMobType == "InfestorTerran2")) {
+                        gf_SmartSpawnNOTD("SeekerBurrowed", 30.0);
+                    }
+                    else {
+                        gf_SmartSpawnNOTD("InfestorTerran2", 30.0);
+                    }
+                }
+                else {
+                    gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
+                }
             }
             else {
                 if ((gv_squadRating >= 1850) && (RandomInt(0, 7) == 1)) {
@@ -39288,6 +39311,9 @@ bool gt_STC3aReactorCoreTerminalsReached_Func (bool testConds, bool runActions) 
         gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/90136EEF"));
         while ((gv_wave < 16)) {
             Wait(5.0, c_timeReal);
+            if ((PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) > 400)) {
+                continue;
+            }
             auto14B8C848_n = (gv_spawnFactor * 2);
             for (auto14B8C848_i = 1; auto14B8C848_i <= auto14B8C848_n; auto14B8C848_i += 1) {
                 libNtve_gf_UnitCreateFacingPoint(2, "ZombieLevel1", 0, 14, RegionRandomPoint(gv_undergroundQuarters[RandomInt(1, 4)]), RegionRandomPoint(RegionFromId(29)));
@@ -39754,7 +39780,7 @@ bool gt_STW13GetToTheThors_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     int auto1550DB9C_n;
     int auto1550DB9C_i;
-    int auto60F52578_n;
+    const int auto60F52578_n = 7;
     int auto60F52578_i;
 
     // Actions
@@ -39778,7 +39804,6 @@ bool gt_STW13GetToTheThors_Func (bool testConds, bool runActions) {
 
     auto1550DB9C_n = gv_spawnFactor;
     for (auto1550DB9C_i = 1; auto1550DB9C_i <= auto1550DB9C_n; auto1550DB9C_i += 1) {
-        auto60F52578_n = gv_spawnFactor;
         for (auto60F52578_i = 1; auto60F52578_i <= auto60F52578_n; auto60F52578_i += 1) {
             gf_SmartSpawnNOTD("HulkBurrowed", 60.0);
             Wait(0.2, c_timeGame);

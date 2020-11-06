@@ -12,6 +12,9 @@
 - Kill XP for infested marines lowered from 11 to 9, minor XP adjustments for other units as well (mainly to control XP income in Sec).
 - Shared XP multiplier (for XP leeching) slightly lowered for PsiOps and Technician, minor adjustments for other classes as well based on
   their roles in the current meta.
+- Nightmare mode button can no longer be toggled off to enter recruit mode, instead, normal button needs to be used for the toggle.
+- Mobs spawned during Sec path A reactor download cycles now have a cap to avoid too much spawn causing the game to lag out.
+- Shifted the complaince nexus near the bottom gen slightly so that it is not out of map bounds and can thus be attacked directly.
 
 2020-10-22
 [ThunderRazor]
