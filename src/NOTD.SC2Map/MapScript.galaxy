@@ -12187,21 +12187,15 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
 
     // Implementation
     while ((gv_gameOver == false)) {
-        Wait(5.5, c_timeReal);
+        Wait(6.0, c_timeReal);
         if ((RandomInt(0, 7) == 1) && (gv_alivePlayers > 3)) {
             gf_SmartSpawnNOTD("Strangler", 80.0);
         }
         else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("UltraliskBurrowed", 50.0);
         }
-        else if ((RandomInt(0, 1) == 1)) {
-            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
-        }
         else if ((RandomInt(0, 4) == 1)) {
             gf_SmartSpawnNOTD("Wraith2", 70.0);
-        }
-        else if ((RandomInt(0, 7) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
-            gf_SmartSpawnNOTD("Slasher2", 50.0);
         }
         else if ((RandomInt(0, 3) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             auto5BDB808E_n = gv_spawnFactor;
@@ -12210,7 +12204,13 @@ bool auto_gf_STC2AmbientSpawns_TriggerFunc (bool testConds, bool runActions) {
                 Wait(0.2, c_timeReal);
             }
         }
-        else if ((RandomInt(0, 15) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+        else if ((RandomInt(0, 1) == 1)) {
+            gf_SmartSpawnNOTD("RoachBurrowed", 30.0);
+        }
+        else if ((RandomInt(0, 5) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
+            gf_SmartSpawnNOTD("Slasher2", 50.0);
+        }
+        else if ((RandomInt(0, 11) == 1) && (UnitIsAlive(gv_finalBoss) == false)) {
             gf_SmartSpawnNOTD("BrainBug2", 50.0);
         }
     }
@@ -36389,9 +36389,11 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
         auto1FED7992_n = gv_spawnFactor;
         for (auto1FED7992_i = 1; auto1FED7992_i <= auto1FED7992_n; auto1FED7992_i += 1) {
             if ((RandomInt(0, 1) == 1)) {
-                libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
                 libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
                 libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
+            }
+            if ((RandomInt(0, 1) == 1)) {
+                libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
             }
             else {
                 libNtve_gf_UnitCreateFacingPoint(1, "ColonistFemale2", 0, 14, RegionRandomPoint(RegionFromId(124)), RegionRandomPoint(RegionFromId(115)));
@@ -36414,12 +36416,14 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
         autoC1CA840A_n = gv_spawnFactor;
         for (autoC1CA840A_i = 1; autoC1CA840A_i <= autoC1CA840A_n; autoC1CA840A_i += 1) {
             if ((RandomInt(0, 1) == 1)) {
+                libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
+                libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
+            }
+            if ((RandomInt(0, 1) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
             }
             else {
                 libNtve_gf_UnitCreateFacingPoint(1, "ColonistFemale2", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
-                libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
-                libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
             }
             if ((RandomInt(0, 2) == 1)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Wounded", UnitLastCreated(), 1);
@@ -36438,8 +36442,10 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
         Wait(RandomFixed(0.01, 1.2), c_timeGame);
         autoAE624B38_n = gv_spawnFactor;
         for (autoAE624B38_i = 1; autoAE624B38_i <= autoAE624B38_n; autoAE624B38_i += 1) {
-            libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(125)), RegionRandomPoint(RegionFromId(115)));
-            libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
+            if ((RandomInt(0, 1) == 1)) {
+                libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(123)), RegionRandomPoint(RegionFromId(115)));
+                libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
+            }
             if ((RandomInt(0, 1) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Colonist2", 0, 14, RegionRandomPoint(RegionFromId(125)), RegionRandomPoint(RegionFromId(115)));
             }
@@ -36832,7 +36838,7 @@ bool gt_STInfectedCiviliansPeriodic_Func (bool testConds, bool runActions) {
                 lv_poorCivPosition = UnitGetPosition(lv_poorCiv);
                 UnitKill(lv_poorCiv);
                 libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_poorCivPosition);
-                if ((RandomInt(0, 2) == 1)) {
+                if ((RandomInt(0, 1) == 1)) {
                     if ((RandomInt(0, 1) == 1)) {
                         UnitCreate(1, "Hulk", 0, 14, lv_poorCivPosition, libNtve_gf_RandomAngle());
                     }
@@ -38349,7 +38355,7 @@ bool gt_STW8DrBergmannSearchAmbientSpawns_Func (bool testConds, bool runActions)
             }
         }
         else if ((RandomInt(0, 2) == 1)) {
-            autoA94021A1_n = (gv_spawnFactor * 2);
+            autoA94021A1_n = (gv_spawnFactor * 1);
             for (autoA94021A1_i = 1; autoA94021A1_i <= autoA94021A1_n; autoA94021A1_i += 1) {
                 gf_SmartSpawnNOTD("ZombieLevel22", 60.0);
                 Wait(RandomFixed(0.1, 1.2), c_timeGame);
