@@ -3517,18 +3517,18 @@
     <CModel id="RadarBlip">
         <Flags index="FOW" value="0"/>
     </CModel>
-    <CModel id="RaynorCommando2" parent="Unit" Race="Terran">
-        <Model value="Assets\Units\Terran\MarineRaynorHEV\MarineRaynorHEV.m3"/>
+    <CModel id="ForwardObserverSkin1" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\MarineRaynorEx1\MarineRaynorEx1.m3"/>
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
-        <SquibTypeDefault value="Flesh"/>
-        <TechPurchaseCamera value="Star2CameraMid04"/>
-        <UnitGlossaryCamera value="Star2CameraMid04"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
         <ScaleMax value="1.300000,1.300000,1.300000"/>
         <ScaleMin value="1.300000,1.300000,1.300000"/>
         <SelectionRadius value="0.416500"/>
         <ShadowRadius value="0.416500"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
     </CModel>
     <CModel id="RaynorSnipeBigBloodImpact">
         <AnimSpeed value="2.000000"/>

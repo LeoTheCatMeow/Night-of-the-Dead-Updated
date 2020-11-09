@@ -2569,6 +2569,15 @@ DocInfo/PatchNote529=  their roles in the current meta.
 DocInfo/PatchNote530=- Nightmare mode button can no longer be toggled off to enter recruit mode, instead, normal button needs to be used for the toggle.
 DocInfo/PatchNote531=- Mobs spawned during Sec path A reactor download cycles now have a cap to avoid too much spawn causing the game to lag out.
 DocInfo/PatchNote532=- Shifted the complaince nexus near the bottom gen slightly so that it is not out of map bounds and can thus be attacked directly.
+DocInfo/PatchNote533=[ThunderRazor]
+DocInfo/PatchNote534=-Team Kill penalty rework:
+DocInfo/PatchNote535=- Direct killing of an ally will apply heavy penalties on the killer immediately (instead of having to type -karmabite).
+DocInfo/PatchNote536=- Friendly fire abilities that threaten an ally and subsequently causing their death will apply a lighter penalty.
+DocInfo/PatchNote537=- Allies walking into friendly fire abilities and dying as a result will count as an accident with no penalty. 
+DocInfo/PatchNote538=- Victims can type "-pardon" to pardon the killer if needed.
+DocInfo/PatchNote539=
+DocInfo/PatchNote540=[LeoTheCat]
+DocInfo/PatchNote541=- Added a skin for Forward Observer.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -5061,7 +5070,7 @@ Param/Value/6869707B=Focus your fire on the dome's structural support.
 Param/Value/68AC1FF6=<s val="GlueButton">
 Param/Value/68C9EDBA=Cover my back.
 Param/Value/68CD3E1E=Find a safe spot to defend against the Black Ops attack.
-Param/Value/68CFCA6D=<s val="ChatBar"><c val="FF8080">Heavy penalties have incurred for intentional TK!</s></c>
+Param/Value/68CFCA6D=<s val="ChatBar"><c val="FF8080">Heavy penalties have incurred for intentional team kill!</s></c>
 Param/Value/68E80C9E=<c val="FF0000">Out of Ammo</c>
 Param/Value/68EC50FB=
 Param/Value/694F4581=Turn the Power Generators around Apollo back on.
@@ -5412,7 +5421,7 @@ Param/Value/A1E10F66=<s val="InfoPaneHeroRank">(3 XP awarded for objective compl
 Param/Value/A21263F3=Proceed to Starport
 Param/Value/A2953986=<s val="GlueButton">Sec Team A: <c val="F4D72B">We need to head south, through the Airlocks, and get to the East Wing.</c></s>
 Param/Value/A2C6FC3F=HAL - stop this!
-Param/Value/A2F1CD75=Type '-pardon' to excuse the TKer. You have 15 secs to do this.
+Param/Value/A2F1CD75=Type '-pardon' to excuse the killer. You have 30 secs to do this.
 Param/Value/A32067A4=<s val="GlueButton"><c val="F4D72B">Let me light your path.</c></s>
 Param/Value/A37105E0=Find Dr. Tanaka
 Param/Value/A388A277=28 hours after outbreak
@@ -6812,7 +6821,7 @@ UserData/ShopItems/ShopItem55_ShopTooltip=Instantly heals 50 HP. Also heals Open
 UserData/ShopItems/ShopItem56_ShopTooltip=Cures venom and restores 10 HP.<n/><n/>Credits: <c val="71B8FF">10</c>
 UserData/ShopItems/ShopItem57_ShopTooltip=Consume to add 3 magazines to your ammuniton pool.<n/><n/>Credits: <c val="71B8FF">10</c><n/><n/><s val="Swarm_RegularXSmall">"Third round from the bottom is a tracer. See that light and switch out recruit!" - Drill Instructor Sergeant Jordan</s>
 UserData/ShopItems/ShopItem58_ShopTooltip=Stores magazines that provide rounds for your weapons. Higher magazine capacity frees up your inventory.<n/><n/>Credits: <c val="71B8FF">35</c>
-UserData/ShopItems/ShopItem59_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">15000</c><n/>Karma Requirement: <c val="FFFFFF">1700</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Assault, Flamethrower, Technician, Recon, Marksman, Demolitions, Pathfinder, Chemical Expert, Engineer, Commando, Psi Ops.</c>
+UserData/ShopItems/ShopItem59_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">15000</c><n/>Karma Requirement: <c val="FFFFFF">1700</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Assault, Flamethrower, Technician, Recon, Marksman, Demolitions, Pathfinder, Chemical Expert, Engineer, Forward Observer, Commando, Psi Ops.</c>
 UserData/ShopItems/ShopItem5_ShopTooltip=Changes Marine color to <c val="331ac8">Purple</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem60_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">75000</c><n/>Karma Requirement: <c val="FFFFFF">1800</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Recon, Flamethrower, Technician, Marksman, Demolitions, Pathfinder, Psi Ops, Commando.</c>
 UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">150000</c><n/>Karma Requirement: <c val="FFFFFF">1900</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Demolitions.</c>

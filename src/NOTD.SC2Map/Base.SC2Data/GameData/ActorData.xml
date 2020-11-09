@@ -11722,6 +11722,8 @@
         <On Terms="ActorCreation" Send="TimerSet"/>
         <On Terms="TimerExpired" Send="TextureSelectById Marine_Diffuse"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
+        <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap ForwardObserverSkin1"/>
+        <On Terms="Effect.Default.Start" Send="ModelSwap RaynorCommando"/>
         <BarOffset value="70"/>
         <BarWidth value="48"/>
         <Scale value="0.950000"/>
