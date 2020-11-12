@@ -19730,8 +19730,6 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_TeamKillNEW_Init () {
     gt_TeamKillNEW = TriggerCreate("gt_TeamKillNEW_Func");
-    TriggerAddEventUnitDied(gt_TeamKillNEW, UnitRefFromVariable("gv_marineHero[2]"));
-    TriggerAddEventUnitDied(gt_TeamKillNEW, UnitRefFromVariable("gv_marineHero[3]"));
 }
 
 //--------------------------------------------------------------------------------------------------
