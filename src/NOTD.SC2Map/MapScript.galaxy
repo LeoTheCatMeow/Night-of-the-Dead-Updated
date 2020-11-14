@@ -6,6 +6,7 @@
 // 
 //==================================================================================================
 include "TriggerLibs/NativeLib"
+include "TriggerLibs/SwarmLib"
 include "Lib09BE6BA8"
 
 //--------------------------------------------------------------------------------------------------
@@ -462,6 +463,7 @@ void lib1_InitLib () {
 //--------------------------------------------------------------------------------------------------
 void InitLibs () {
     libNtve_InitLib();
+    libHots_InitLib();
     lib09BE6BA8_InitLib();
     lib1_InitLib();
 }
@@ -707,6 +709,7 @@ bool[9] gv_playerIsNewbie;
 int[9] gv_marineWeightPoints;
 unitgroup gv_marines;
 int[9] gv_marineLastController;
+int[9] gv_marineLastControllerAggr;
 trigger[4] gv_domeSpawn;
 int gv_spawnFactor;
 int gv_performanceTimer;
@@ -829,6 +832,7 @@ string[9][11] gv_marineBehaviorsOverflow;
 int[9] gv_overflowCount;
 bool[9] gv_victimOfTK;
 bool[9] gv_victimTKisIndirect;
+playergroup[9] gv_victimAttackers;
 playergroup[9] gv_victimTKers;
 bool[9] gv_playerHasRankedUp;
 int gv_tKedPlayer;
@@ -1242,9 +1246,6 @@ void InitGlobals () {
     gv_activePlayers = PlayerGroupEmpty();
     gv_admin = PlayerGroupEmpty();
     gv_marines = UnitGroupEmpty();
-    for (init_i = 0; init_i <= 8; init_i += 1) {
-        gv_marineLastController[init_i] = 1;
-    }
     gv_spawnFactor = 1;
     gv_isVeteranSquad = true;
     gv_noNewbie = true;
@@ -1354,6 +1355,9 @@ void InitGlobals () {
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_marineRounds[init_i] = 30;
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_victimAttackers[init_i] = PlayerGroupEmpty();
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_victimTKers[init_i] = PlayerGroupEmpty();
@@ -1815,6 +1819,7 @@ void gf_DisplayBehavior (unit lp_unit, int lp_player, int lp_slot, string lp_beh
 void gf_ToggleBehaviorTracker (int lp_dialogOwner, int lp_player, bool lp_show);
 bool gf_AilmentResistanceCheck (unit lp_localUnitA);
 void gf_TextTagNewThread (unit lp_unit, text lp_message, int lp_font);
+void gf_ControllerLabel (unit lp_unit, int lp_controller);
 void gf_RankUp (int lp_player);
 void gf_UpdateHitCount (int lp_player);
 void gf_UpdateDamageTaken (int lp_player, fixed lp_damageTaken);
@@ -6068,6 +6073,19 @@ bool auto_gf_TextTagNewThread_TriggerFunc (bool testConds, bool runActions) {
     return true;
 }
 
+void gf_ControllerLabel (unit lp_unit, int lp_controller) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_controller != gv_marineLastController[UnitGetOwner(lp_unit)])) {
+        TextTagDestroy(libHots_gf_TextTagForUnit(lp_unit, 1));
+        if ((lp_controller != UnitGetOwner(lp_unit))) {
+            TextTagCreate((StringExternal("Param/Value/362A024D") + PlayerName(lp_controller) + StringExternal("Param/Value/FDE6189C")), 16, UnitGetPosition(lp_unit), 0.0, true, true, PlayerGroupActive());
+            TextTagAttachToUnit(TextTagLastCreated(), lp_unit, -0.5);
+            libHots_gf_StoreTextTagForUnit(lp_unit, 1, TextTagLastCreated());
+        }
+    }
+}
+
 trigger auto_gf_RankUp_Trigger = null;
 int auto_gf_RankUp_lp_player;
 
@@ -6282,7 +6300,7 @@ bool auto_gf_DeathDisplay_TriggerFunc (bool testConds, bool runActions) {
             }
         }
     }
-    else if (((UnitGetOwner(lp_killer) == lp_playerNumber) || (gv_marineLastController[UnitGetOwner(lp_killer)] == lp_playerNumber))) {
+    else if (((UnitGetOwner(lp_killer) == lp_playerNumber) || (gv_marineLastControllerAggr[UnitGetOwner(lp_killer)] == lp_playerNumber))) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + StringExternal("Param/Value/0EC88977")));
     }
     else if (((lp_damageEffect == "StingerMK3DamageAllies") || (lp_damageEffect == "StingerMK3Damage") || (lp_damageEffect == "HellfireMissleDamageEnemies") || (lp_damageEffect == "SatchelLevel1Damage") || (lp_damageEffect == "SatchelLevel2Damage") || (lp_damageEffect == "VultureSpiderMinesDamage") || (lp_damageEffect == "ArmageddonDamageFriendly") || (lp_damageEffect == "PlasmaDischargeDamageAllies") || (lp_damageEffect == "NukeDamage") || (lp_damageEffect == "Damage") || (lp_damageEffect == "GunshipSupportGaussCannonDamageAlly") || (lp_damageEffect == "InboundSicknessDamageFriendlyLevel1") || (lp_damageEffect == "InboundSicknessDamageFriendlyLevel2") || (lp_damageEffect == "ScorchedEarthDamage") || (lp_damageEffect == "InfernoDamage3"))) {
@@ -16711,7 +16729,7 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
     autoEED7B062_var = 1;
     for ( ; autoEED7B062_var <= autoEED7B062_ae; autoEED7B062_var += 1 ) {
         gv_friendlyFireBehavior[autoEED7B062_var] = (("FriendlyFire" + IntToString(autoEED7B062_var)));
-        gv_marineLastController[autoEED7B062_var] = autoEED7B062_var;
+        gv_marineLastControllerAggr[autoEED7B062_var] = autoEED7B062_var;
     }
     Wait(1.0, c_timeReal);
     gv_activePlayers = PlayerGroupCopy(gv_marineSquad);
@@ -17392,7 +17410,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     }
     UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), RegionRandomPoint(lv_spawnArea), 90.0);
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
-    gv_marineLastController[lv_selectingPlayer] = lv_selectingPlayer;
+    gv_marineLastControllerAggr[lv_selectingPlayer] = lv_selectingPlayer;
     UnitGroupAdd(gv_marines, gv_marineHero[lv_selectingPlayer]);
     gf_RegisterMarineWithEvents(gv_marineHero[lv_selectingPlayer]);
     gf_UpdateMagazineCount(38, ge_AmmoChange_Increase, lv_selectingPlayer);
@@ -19274,8 +19292,8 @@ bool gt_ReceivesDamage_Func (bool testConds, bool runActions) {
 
     }
 
-    if ((UnitIsAlive(lv_marine) == true) && (PlayerGroupHasPlayer(gv_marineSquad, UnitGetOwner(lv_attacker)) == true) && (UnitGetOwner(lv_attacker) != gv_marineLastController[UnitGetOwner(lv_attacker)]) && (libNtve_gf_UnitIsVisibleToPlayer(lv_marine, gv_marineLastController[UnitGetOwner(lv_attacker)]) == true) && ((EventUnitDamageEffect() == "StingerMK3DamageAllies") || (EventUnitDamageEffect() == "L3GrenadeExplosionAlly") || (EventUnitDamageEffect() == "BlackDogDamageHEFRounds") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel1") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel2") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel3") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel1") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel2") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel3"))) {
-        PlayerGroupAdd(gv_victimTKers[lv_player], gv_marineLastController[UnitGetOwner(lv_attacker)]);
+    if ((UnitIsAlive(lv_marine) == true) && (PlayerGroupHasPlayer(gv_marineSquad, UnitGetOwner(lv_attacker)) == true) && (UnitGetOwner(lv_attacker) != gv_marineLastControllerAggr[UnitGetOwner(lv_attacker)]) && (libNtve_gf_UnitIsVisibleToPlayer(lv_marine, gv_marineLastControllerAggr[UnitGetOwner(lv_attacker)]) == true) && ((EventUnitDamageEffect() == "StingerMK3DamageAllies") || (EventUnitDamageEffect() == "L3GrenadeExplosionAlly") || (EventUnitDamageEffect() == "BlackDogDamageHEFRounds") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel1") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel2") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel3") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel1") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel2") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel3"))) {
+        PlayerGroupAdd(gv_victimAttackers[lv_player], gv_marineLastControllerAggr[UnitGetOwner(lv_attacker)]);
         UnitBehaviorAddPlayer(lv_marine, gv_friendlyFireBehavior[UnitGetOwner(lv_attacker)], lv_player, 1);
         gf_TextTagNewThread(lv_marine, StringExternal("Param/Value/2D31245B"), 20);
     }
@@ -19406,12 +19424,14 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     // Variable Declarations
     order lv_trigOrder;
     abilcmd lv_abilCommand;
+    string lv_abil;
     unitgroup lv_victimsFriendlyFire;
     unit lv_attacker;
     int lv_attPlayer;
     string lv_weapon;
     unit lv_targUnit;
     point lv_targPoint;
+    bool lv_isAggr;
     int lv_aOEtype;
 
     // Automatic Variable Declarations
@@ -19422,10 +19442,12 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_trigOrder = EventUnitOrder();
-    lv_abilCommand = OrderGetAbilityCommand(EventUnitOrder());
+    lv_abilCommand = OrderGetAbilityCommand(lv_trigOrder);
+    lv_abil = AbilityCommandGetAbility(lv_abilCommand);
     lv_victimsFriendlyFire = UnitGroupEmpty();
     lv_attacker = EventUnit();
     lv_attPlayer = OrderGetPlayer(EventUnitOrder());
+    lv_isAggr = true;
 
     // Conditions
     if (testConds) {
@@ -19433,11 +19455,7 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((AbilityCommandGetAbility(lv_abilCommand) != "move"))) {
-            return false;
-        }
-
-        if (!((AbilityCommandGetAbility(lv_abilCommand) != "CombatKnife"))) {
+        if (!((lv_abil != "Talents"))) {
             return false;
         }
 
@@ -19451,7 +19469,6 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gv_marineLastController[UnitGetOwner(lv_attacker)] = lv_attPlayer;
     if ((OrderGetTargetType(lv_trigOrder) == c_orderTargetUnit)) {
         lv_targUnit = OrderGetTargetUnit(lv_trigOrder);
         lv_targPoint = UnitGetPosition(lv_targUnit);
@@ -19522,20 +19539,30 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
         }
     }
     else {
+        lv_isAggr = false;
+        if (((lv_abil != "move") || ((lv_abil == "move") && (DistanceBetweenPoints(UnitGetPosition(lv_attacker), lv_targPoint) > 3.5)))) {
+            gf_ControllerLabel(lv_attacker, lv_attPlayer);
+            gv_marineLastController[UnitGetOwner(lv_attacker)] = lv_attPlayer;
+        }
     }
-    if ((UnitGroupCount(lv_victimsFriendlyFire, c_unitCountAlive) != 0)) {
-        auto8BAE652B_g = lv_victimsFriendlyFire;
-        auto8BAE652B_u = UnitGroupCount(auto8BAE652B_g, c_unitCountAll);
-        for (;; auto8BAE652B_u -= 1) {
-            auto8BAE652B_var = UnitGroupUnitFromEnd(auto8BAE652B_g, auto8BAE652B_u);
-            if (auto8BAE652B_var == null) { break; }
-            if ((lv_attPlayer != UnitGetOwner(auto8BAE652B_var)) && (libNtve_gf_UnitIsVisibleToPlayer(auto8BAE652B_var, lv_attPlayer) == true) && (!((lv_aOEtype == 3) || ((UnitGetType(auto8BAE652B_var) == "ChemicalExpert") || (UnitGetType(auto8BAE652B_var) == "Technician"))))) {
-                PlayerGroupAdd(gv_victimTKers[UnitGetOwner(auto8BAE652B_var)], lv_attPlayer);
-                UnitBehaviorAddPlayer(auto8BAE652B_var, gv_friendlyFireBehavior[lv_attPlayer], lv_attPlayer, 1);
-                gf_TextTagNewThread(auto8BAE652B_var, StringExternal("Param/Value/CA97E062"), 20);
+    if ((lv_isAggr == true)) {
+        gf_ControllerLabel(lv_attacker, lv_attPlayer);
+        gv_marineLastControllerAggr[UnitGetOwner(lv_attacker)] = lv_attPlayer;
+        gv_marineLastController[UnitGetOwner(lv_attacker)] = lv_attPlayer;
+        if ((UnitGroupCount(lv_victimsFriendlyFire, c_unitCountAlive) != 0)) {
+            gf_TextTagNewThread(lv_attacker, StringExternal("Param/Value/CE01A2D6"), 20);
+            auto8BAE652B_g = lv_victimsFriendlyFire;
+            auto8BAE652B_u = UnitGroupCount(auto8BAE652B_g, c_unitCountAll);
+            for (;; auto8BAE652B_u -= 1) {
+                auto8BAE652B_var = UnitGroupUnitFromEnd(auto8BAE652B_g, auto8BAE652B_u);
+                if (auto8BAE652B_var == null) { break; }
+                if ((lv_attPlayer != UnitGetOwner(auto8BAE652B_var)) && (libNtve_gf_UnitIsVisibleToPlayer(auto8BAE652B_var, lv_attPlayer) == true) && (!((lv_aOEtype == 3) || ((UnitGetType(auto8BAE652B_var) == "ChemicalExpert") || (UnitGetType(auto8BAE652B_var) == "Technician"))))) {
+                    PlayerGroupAdd(gv_victimAttackers[UnitGetOwner(auto8BAE652B_var)], lv_attPlayer);
+                    UnitBehaviorAddPlayer(auto8BAE652B_var, gv_friendlyFireBehavior[lv_attPlayer], lv_attPlayer, 1);
+                    gf_TextTagNewThread(auto8BAE652B_var, StringExternal("Param/Value/CA97E062"), 20);
+                }
             }
         }
-        gf_TextTagNewThread(lv_attacker, StringExternal("Param/Value/CE01A2D6"), 20);
     }
     return true;
 }
@@ -19582,10 +19609,9 @@ bool gt_FriendlyFireAttack_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_attPlayer = gv_marineLastController[UnitGetOwner(EventUnitTarget())];
+    lv_attPlayer = gv_marineLastControllerAggr[lv_attPlayer];
     if ((lv_defPlayer != lv_attPlayer) && (libNtve_gf_UnitIsVisibleToPlayer(lv_defender, lv_attPlayer) == true)) {
-        PlayerGroupAdd(gv_victimTKers[lv_defPlayer], lv_attPlayer);
-        UnitBehaviorAddPlayer(lv_attacker, "FriendlyFireA", lv_defPlayer, 1);
+        PlayerGroupAdd(gv_victimAttackers[lv_defPlayer], lv_attPlayer);
         UnitBehaviorAddPlayer(lv_defender, gv_friendlyFireBehavior[lv_attPlayer], lv_attPlayer, 1);
         gf_TextTagNewThread(lv_defender, StringExternal("Param/Value/B180E4C5"), 20);
         lv_rand = RandomInt(0, 2);
@@ -19626,7 +19652,7 @@ bool gt_FriendlyFireRemove_Func (bool testConds, bool runActions) {
 
     Wait(0.125, c_timeGame);
     if ((UnitIsAlive(EventUnit()) == true) && (UnitBehaviorCount(EventUnit(), lv_trigBeh) == 0)) {
-        PlayerGroupRemove(gv_victimTKers[UnitGetOwner(EventUnit())], StringToInt(StringSub((EventUnitBehavior()), 13, 13)));
+        PlayerGroupRemove(gv_victimAttackers[UnitGetOwner(EventUnit())], StringToInt(StringSub((EventUnitBehavior()), 13, 13)));
     }
     return true;
 }
@@ -19668,11 +19694,7 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((PlayerGroupCount(gv_victimTKers[lv_victimPlayer]) != 0))) {
-            return false;
-        }
-
-        if (!(((PlayerGroupHasPlayer(gv_marineSquad, libNtve_gf_KillingPlayer()) == false) || ((PlayerGroupHasPlayer(gv_marineSquad, libNtve_gf_KillingPlayer()) == true) && (lv_victimPlayer != gv_marineLastController[libNtve_gf_KillingPlayer()]))))) {
+        if (!((PlayerGroupCount(gv_victimAttackers[lv_victimPlayer]) != 0))) {
             return false;
         }
     }
@@ -19683,12 +19705,13 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
     }
 
     gv_victimTKisIndirect[lv_victimPlayer] = !(PlayerGroupHasPlayer(gv_marineSquad, libNtve_gf_KillingPlayer()));
+    libNtve_gf_AddPlayerGroupToPlayerGroup(gv_victimAttackers[lv_victimPlayer], gv_victimTKers[lv_victimPlayer]);
     auto4347789C_g = gv_victimTKers[lv_victimPlayer];
     auto4347789C_var = -1;
     while (true) {
         auto4347789C_var = PlayerGroupNextPlayer(auto4347789C_g, auto4347789C_var);
         if (auto4347789C_var < 0) { break; }
-        if ((gv_nightmare == false) && (lv_status == c_playerStatusActive) && (lv_victimPlayer != auto4347789C_var)) {
+        if ((lv_status == c_playerStatusActive) && (lv_victimPlayer != auto4347789C_var)) {
             gv_victimOfTK[lv_victimPlayer] = true;
             if ((gv_playerIsNewbie[auto4347789C_var] == true)) {
                 gf_UpdateRating(auto4347789C_var, -10);
@@ -19710,13 +19733,14 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
         gv_playerIsBad[auto4347789C_var] = true;
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/C432DD06") + (PlayerName(lv_victimPlayer) + UserDataGetText("TeamKillTexts", "Death Texts", "Death Text", RandomInt(1, 5)))) + (PlayerName(auto4347789C_var) + StringExternal("Param/Value/BB54D75D"))));
     }
+    gv_victimAttackers[lv_victimPlayer] = PlayerGroupEmpty();
     if ((lv_isDirect == true)) {
-        UIDisplayMessage(gv_victimTKers[lv_victimPlayer], c_messageAreaDebug, StringExternal("Param/Value/68CFCA6D"));
+        UIDisplayMessage(gv_victimAttackers[lv_victimPlayer], c_messageAreaDebug, StringExternal("Param/Value/68CFCA6D"));
     }
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 100.0, 0.0);
     libNtve_gf_AttachModelToUnit(libNtve_gf_KillingUnit(), "BriefingUnitSelectRedSmall", "Ref_Center");
     lv_localActorA = libNtve_gf_ActorLastCreated();
-    if ((gv_nightmare == false) && (gv_victimOfTK[lv_victimPlayer] == true)) {
+    if ((gv_victimOfTK[lv_victimPlayer] == true)) {
         UIDisplayMessage(PlayerGroupSingle(lv_victimPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/A2F1CD75"));
         TriggerEnable(gt_KarmaBitePardon, true);
     }
@@ -19752,6 +19776,10 @@ bool gt_KarmaBitePardon_Func (bool testConds, bool runActions) {
         if (!((gv_victimOfTK[EventPlayer()] == true))) {
             return false;
         }
+
+        if (!((PlayerGroupCount(gv_victimTKers[EventPlayer()]) != 0))) {
+            return false;
+        }
     }
 
     // Actions
@@ -19767,7 +19795,6 @@ bool gt_KarmaBitePardon_Func (bool testConds, bool runActions) {
         while (true) {
             auto52245E4A_var = PlayerGroupNextPlayer(auto52245E4A_g, auto52245E4A_var);
             if (auto52245E4A_var < 0) { break; }
-            PlayerGroupRemove(gv_victimTKers[lv_victim], auto52245E4A_var);
             if ((lv_victim != auto52245E4A_var)) {
                 if ((gv_playerIsNewbie[auto52245E4A_var] == true)) {
                     gf_UpdateRating(auto52245E4A_var, 10);
@@ -19787,6 +19814,7 @@ bool gt_KarmaBitePardon_Func (bool testConds, bool runActions) {
                 UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (PlayerName(auto52245E4A_var) + StringExternal("Param/Value/2B663F5F") + PlayerName(EventPlayer()) + StringExternal("Param/Value/143D9426")));
             }
         }
+        gv_victimTKers[lv_victim] = PlayerGroupEmpty();
     }
     TriggerExecute(gt_AutoSave, true, false);
     return true;
