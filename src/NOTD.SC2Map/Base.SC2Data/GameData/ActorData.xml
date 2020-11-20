@@ -12283,9 +12283,8 @@
         <StatusBarFlags index="Cargo" value="0"/>
     </CActorUnit>
     <CActorAction id="ShotgunAttack" parent="GenericAttack" effectAttack="Shotgun">
-        <LaunchAssets Model="ToshAttackLaunch" Sound="Tosh_AttackLaunch"/>
-        <ContainerAssets Sound="Tosh_AttackLaunch"/>
-        <ImpactMap index="None" Model="ToshAttackImpact" Sound="Shotgun_AttackLaunch"/>
+        <LaunchAssets Model="ToshAttackLaunch" Sound="Shotgun_AttackLaunch"/>
+        <ImpactMap index="None" Model="ToshAttackImpact" Sound=""/>
         <On Terms="ActorCreation; ValidateUnit HasBallisticsLevel1" Send="SetScale 1.250000"/>
         <On Terms="ActorCreation; ValidateUnit HasBallisticsLevel2" Send="SetScale 1.500000"/>
     </CActorAction>

@@ -22405,7 +22405,7 @@ bool gt_DebrisAmbush_Func (bool testConds, bool runActions) {
     for (;; auto32422849_u -= 1) {
         lv_localZombie = UnitGroupUnitFromEnd(auto32422849_g, auto32422849_u);
         if (lv_localZombie == null) { break; }
-        if ((AIIsNotUsableInWaves(lv_localZombie) == true)) {
+        if (((UnitGetOwner(lv_localZombie) != 14) || (AIIsNotUsableInWaves(lv_localZombie) == true))) {
             UnitGroupRemove(lv_localAmbush, lv_localZombie);
         }
         else {
