@@ -1,4 +1,18 @@
 # Current Changes & Bugfixes Tracklist
+
+2020-11-21
+[ThunderRazor]
+-Team Kill penalty rework:
+- Direct killing of an ally will apply heavy penalties on the killer immediately (instead of having to type -karmabite).
+- Friendly fire abilities that threaten an ally and subsequently causing their death will apply a lighter penalty.
+- Allies walking into friendly fire abilities and dying as a result will count as an accident with no penalty. 
+- Victims can type "-pardon" to pardon the killer if needed.
+
+[LeoTheCat]
+- Added a skin for Forward Observer.
+- Removed the weird sniper rifle sound from shotgun attacks.
+- Looked into an issue ocassionally causing mind controlled units to hurt ally marines - and probably fixed it.
+
 2020-11-4
 [ThunderRazor]
 - Likely fixed issues that could occasionally cause nightmare mode to turn into recruit mode during selection.
