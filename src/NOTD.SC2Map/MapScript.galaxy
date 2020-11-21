@@ -707,7 +707,6 @@ bool[9] gv_playerIsHardVet;
 bool[9] gv_playerIsNewbie;
 int[9] gv_marineWeightPoints;
 unitgroup gv_marines;
-int[9] gv_marineLastController;
 string[9] gv_friendlyFireBuff;
 trigger[4] gv_domeSpawn;
 int gv_spawnFactor;
@@ -6078,7 +6077,7 @@ void gf_ControllerLabel (unit lp_unit, int lp_controller) {
     if ((lp_controller != FixedToInt(UnitGetCustomValue(lp_unit, 1)))) {
         UnitSetCustomValue(lp_unit, 1, IntToFixed(lp_controller));
         TextTagDestroy(libHots_gf_TextTagForUnit(lp_unit, 1));
-        if ((lp_controller != UnitGetOwner(lp_unit))) {
+        if ((lp_controller != UnitGetOwner(lp_unit)) && (UnitGroupHasUnit(UnitGroupSelected(lp_controller), lp_unit) == true) && (PlayerGetAlliance(UnitGetOwner(lp_unit), c_allianceIdControl, lp_controller) == true)) {
             TextTagCreate((StringExternal("Param/Value/362A024D") + PlayerName(lp_controller) + StringExternal("Param/Value/FDE6189C")), 16, UnitGetPosition(lp_unit), 0.0, true, true, PlayerGroupActive());
             TextTagAttachToUnit(TextTagLastCreated(), lp_unit, -0.5);
             libHots_gf_StoreTextTagForUnit(lp_unit, 1, TextTagLastCreated());
@@ -16729,7 +16728,6 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
     autoEED7B062_var = 1;
     for ( ; autoEED7B062_var <= autoEED7B062_ae; autoEED7B062_var += 1 ) {
         gv_friendlyFireBuff[autoEED7B062_var] = (("FriendlyFire" + IntToString(autoEED7B062_var)));
-        gv_marineLastController[autoEED7B062_var] = autoEED7B062_var;
     }
     Wait(1.0, c_timeReal);
     gv_activePlayers = PlayerGroupCopy(gv_marineSquad);
@@ -17410,7 +17408,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     }
     UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), RegionRandomPoint(lv_spawnArea), 90.0);
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
-    gv_marineLastController[lv_selectingPlayer] = lv_selectingPlayer;
+    UnitSetCustomValue(gv_marineHero[lv_selectingPlayer], 1, IntToFixed(lv_selectingPlayer));
     UnitGroupAdd(gv_marines, gv_marineHero[lv_selectingPlayer]);
     gf_RegisterMarineWithEvents(gv_marineHero[lv_selectingPlayer]);
     gf_UpdateMagazineCount(38, ge_AmmoChange_Increase, lv_selectingPlayer);
@@ -19207,16 +19205,18 @@ void gt_BehaviorTrackerDisplayButtonCallback_Init () {
 bool gt_ReceivesDamage_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_marine;
-    unit lv_attacker;
     int lv_player;
+    unit lv_attacker;
+    int lv_attackingPlayer;
     int lv_playerIndex;
     fixed lv_damageReceived;
 
     // Automatic Variable Declarations
     // Variable Initialization
     lv_marine = EventUnit();
-    lv_attacker = EventUnitDamageSourceUnit();
     lv_player = EventPlayer();
+    lv_attacker = EventUnitDamageSourceUnit();
+    lv_attackingPlayer = FixedToInt(UnitGetCustomValue(EventUnitDamageSourceUnit(), 1));
     lv_playerIndex = lv_player;
     lv_damageReceived = EventUnitDamageAmount();
 
@@ -19286,8 +19286,8 @@ bool gt_ReceivesDamage_Func (bool testConds, bool runActions) {
 
     }
 
-    if ((PlayerGroupHasPlayer(gv_marineSquad, UnitGetOwner(lv_attacker)) == true) && (lv_player != gv_marineLastController[UnitGetOwner(lv_attacker)]) && (libNtve_gf_UnitIsVisibleToPlayer(lv_marine, gv_marineLastController[UnitGetOwner(lv_attacker)]) == true) && ((EventUnitDamageEffect() == "L3GrenadeExplosionAlly") || (EventUnitDamageEffect() == "BlackDogDamageHEFRounds") || (EventUnitDamageEffect() == "GunshipSupportGaussCannonDamageAlly") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel1") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel2") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel3") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel1") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel2") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel3"))) {
-        PlayerGroupAdd(gv_victimAttackers[lv_player], gv_marineLastController[UnitGetOwner(lv_attacker)]);
+    if ((PlayerGroupHasPlayer(gv_marineSquad, lv_attackingPlayer) == true) && (lv_player != lv_attackingPlayer) && (libNtve_gf_UnitIsVisibleToPlayer(lv_marine, lv_attackingPlayer) == true) && ((EventUnitDamageEffect() == "L3GrenadeExplosionAlly") || (EventUnitDamageEffect() == "BlackDogDamageHEFRounds") || (EventUnitDamageEffect() == "GunshipSupportGaussCannonDamageAlly") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel1") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel2") || (EventUnitDamageEffect() == "DesolationDamageFriendlyLevel3") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel1") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel2") || (EventUnitDamageEffect() == "MonofilamentCartridgeFriendlyDamageLevel3"))) {
+        PlayerGroupAdd(gv_victimAttackers[lv_player], lv_attackingPlayer);
         UnitBehaviorAddPlayer(lv_marine, gv_friendlyFireBuff[UnitGetOwner(lv_attacker)], lv_player, 1);
         gf_TextTagNewThread(lv_marine, StringExternal("Param/Value/2D31245B"), 20);
     }
@@ -19445,7 +19445,7 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((PlayerGroupHasPlayer(gv_marineSquad, lv_controller) == true))) {
+        if (!((PlayerGroupHasPlayer(gv_marineSquad, UnitGetOwner(lv_attacker)) == true))) {
             return false;
         }
 
@@ -19528,12 +19528,13 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     }
     else if (auto668601B0_val == AbilityCommand("attack", 0)) {
         lv_weapon = UnitWeaponGet(lv_attacker, 1);
-        if ((UnitGroupHasUnit(gv_marines, lv_targUnit) == true) && (UnitGetOwner(lv_targUnit) != lv_controller)) {
+        if ((UnitGroupHasUnit(gv_marines, lv_targUnit) == true) && (UnitGetOwner(lv_targUnit) != lv_controller) && (lv_weapon != "Crowbar") && (lv_weapon != "BarrettM112")) {
             UnitGroupAdd(lv_victimsFriendlyFire, lv_targUnit);
         }
         if ((lv_weapon == "StingerMK3")) {
             lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "StingerMK3DamageAllies", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
         }
+        gf_ControllerLabel(lv_attacker, lv_controller);
     }
     else {
         lv_isAggr = false;
@@ -19543,7 +19544,6 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     }
     if ((lv_isAggr == true)) {
         gf_ControllerLabel(lv_attacker, lv_controller);
-        gv_marineLastController[UnitGetOwner(lv_attacker)] = lv_controller;
         if ((UnitGroupCount(lv_victimsFriendlyFire, c_unitCountAlive) != 0)) {
             gf_TextTagNewThread(lv_attacker, StringExternal("Param/Value/CE01A2D6"), 20);
             auto8BAE652B_g = lv_victimsFriendlyFire;
@@ -19604,8 +19604,8 @@ bool gt_FriendlyFireAttacked_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_attPlayer = gv_marineLastController[lv_attPlayer];
-    if ((lv_defPlayer != lv_attPlayer) && (libNtve_gf_UnitIsVisibleToPlayer(lv_defender, lv_attPlayer) == true)) {
+    lv_attPlayer = FixedToInt(UnitGetCustomValue(lv_attacker, 1));
+    if ((lv_defPlayer != lv_attPlayer) && (libNtve_gf_UnitIsVisibleToPlayer(lv_defender, lv_attPlayer) == true) && (EventUnitGetWeapon() != "Crowbar") && (EventUnitGetWeapon() != "BarrettM112")) {
         PlayerGroupAdd(gv_victimAttackers[lv_defPlayer], lv_attPlayer);
         UnitBehaviorAddPlayer(lv_defender, gv_friendlyFireBuff[lv_attPlayer], lv_attPlayer, 1);
         gf_TextTagNewThread(lv_defender, StringExternal("Param/Value/B180E4C5"), 20);
