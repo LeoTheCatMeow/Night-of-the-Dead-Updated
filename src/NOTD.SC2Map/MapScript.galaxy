@@ -710,6 +710,7 @@ unitgroup gv_marines;
 string[9] gv_friendlyFireBuff;
 trigger[4] gv_domeSpawn;
 int gv_spawnFactor;
+string gv_sFOption;
 int gv_performanceTimer;
 int gv_squadXP;
 int gv_scaledXP;
@@ -814,7 +815,6 @@ bool[9] gv_spectated;
 bool gv_navyCrossMode;
 int gv_noRandoms;
 int gv_maxRandom;
-bool gv_highSpawn;
 bool gv_outbreakActivated;
 bool gv_eliteMutationActivated;
 bool gv_realismActivated;
@@ -1246,6 +1246,7 @@ void InitGlobals () {
     gv_admin = PlayerGroupEmpty();
     gv_marines = UnitGroupEmpty();
     gv_spawnFactor = 1;
+    gv_sFOption = "0001";
     gv_isVeteranSquad = true;
     gv_noNewbie = true;
     gv_hitPar = 20;
@@ -1818,7 +1819,7 @@ void gf_DisplayBehavior (unit lp_unit, int lp_player, int lp_slot, string lp_beh
 void gf_ToggleBehaviorTracker (int lp_dialogOwner, int lp_player, bool lp_show);
 bool gf_AilmentResistanceCheck (unit lp_localUnitA);
 void gf_TextTagNewThread (unit lp_unit, text lp_message, int lp_font);
-void gf_ControllerLabel (unit lp_unit, int lp_controller);
+void gf_ControllerLabel (unit lp_unit, int lp_controller, bool lp_show);
 void gf_RankUp (int lp_player);
 void gf_UpdateHitCount (int lp_player);
 void gf_UpdateDamageTaken (int lp_player, fixed lp_damageTaken);
@@ -3334,6 +3335,9 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     gf_SQDifficultyAdjustments();
     DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/MissionTimePanel/BackgroundImage");
     lv_missionTimePanel = DialogControlLastCreated();
+    if ((gv_sFOption == "0002")) {
+        gv_spawnFactor += 1;
+    }
     autoB90D3843_val = gv_currentGameMode;
     if (autoB90D3843_val == ge_GameModes_Normal) {
         if ((gv_isVeteranSquad == true)) {
@@ -3371,10 +3375,12 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
             PlayerSetDifficulty(autoD5AA9D07_var, 3);
         }
         SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 75.0, 0.0);
-        if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
+        if ((gv_sFOption == "0003")) {
+            gv_spawnFactor = 9;
+        }
+        else if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
             gv_spawnFactor += 1;
         }
-
         if ((gv_totalPlayers >= 5)) {
             gv_difficultyHPScaling += 0.3;
         }
@@ -3387,6 +3393,7 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     }
     else {
     }
+    gv_spawnFactor = MinI(gv_spawnFactor, 9);
     DialogControlHookupStandard(c_triggerControlTypeLabel, "UIContainer/ConsoleUIContainer/MissionTimePanel/TimeLabel");
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (UserDataGetText("Storyline", UserDataInstance("Storyline", gv_storyline), "Story Name", 1) + (gv_space + gv_difficulty)), PlayerGroupAll());
     CatalogFieldValueSet(c_gameCatalogBehavior, "DifficultyScalingHP", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", 13, FixedToString(gv_difficultyHPScaling, c_fixedPrecisionAny));
@@ -3497,12 +3504,7 @@ void gf_PlayerCountAdjustments () {
 void gf_SQDifficultyAdjustments () {
     // Automatic Variable Declarations
     // Implementation
-    if (gv_highSpawn && (gv_squadRating >= 2490)) {
-        gv_magazineAdjustment += 7;
-        gv_spawnFactor += 5;
-        gv_difficultyHPScaling += 0.95;
-    }
-    else if ((gv_squadRating >= 2400)) {
+    if ((gv_squadRating >= 2400)) {
         gv_magazineAdjustment += 6;
         gv_spawnFactor += 4;
         gv_difficultyHPScaling += 0.95;
@@ -6077,17 +6079,24 @@ bool auto_gf_TextTagNewThread_TriggerFunc (bool testConds, bool runActions) {
     return true;
 }
 
-void gf_ControllerLabel (unit lp_unit, int lp_controller) {
+void gf_ControllerLabel (unit lp_unit, int lp_controller, bool lp_show) {
+    // Variable Declarations
+    int lv_lastcontroller;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_lastcontroller = FixedToInt(UnitGetCustomValue(lp_unit, 1));
+
     // Implementation
-    if ((lp_controller != FixedToInt(UnitGetCustomValue(lp_unit, 1)))) {
+    if ((lp_controller >= 0) && (lp_controller != lv_lastcontroller)) {
         UnitSetCustomValue(lp_unit, 1, IntToFixed(lp_controller));
-        TextTagDestroy(libHots_gf_TextTagForUnit(lp_unit, 1));
-        if ((lp_controller != UnitGetOwner(lp_unit)) && (UnitGroupHasUnit(UnitGroupSelected(lp_controller), lp_unit) == true) && (PlayerGetAlliance(UnitGetOwner(lp_unit), c_allianceIdControl, lp_controller) == true)) {
-            TextTagCreate((StringExternal("Param/Value/362A024D") + PlayerName(lp_controller) + StringExternal("Param/Value/FDE6189C")), 16, UnitGetPosition(lp_unit), 0.0, true, true, PlayerGroupActive());
-            TextTagAttachToUnit(TextTagLastCreated(), lp_unit, -0.5);
-            libHots_gf_StoreTextTagForUnit(lp_unit, 1, TextTagLastCreated());
-        }
+        lv_lastcontroller = lp_controller;
+    }
+    TextTagDestroy(libHots_gf_TextTagForUnit(lp_unit, 1));
+    if (lp_show && (UnitGetOwner(lp_unit) != lv_lastcontroller) && UnitGroupHasUnit(UnitGroupSelected(lp_controller), lp_unit) && PlayerGetAlliance(UnitGetOwner(lp_unit), c_allianceIdControl, lv_lastcontroller)) {
+        TextTagCreate((StringExternal("Param/Value/362A024D") + PlayerName(lp_controller) + StringExternal("Param/Value/FDE6189C")), 16, UnitGetPosition(lp_unit), 0.0, true, true, PlayerGroupActive());
+        TextTagAttachToUnit(TextTagLastCreated(), lp_unit, -0.5);
+        libHots_gf_StoreTextTagForUnit(lp_unit, 1, TextTagLastCreated());
     }
 }
 
@@ -16674,7 +16683,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_noNewbie = (lv_xPMin >= 500);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
-    gv_highSpawn = (GameAttributeGameValue("6") == "0001");
+    gv_sFOption = GameAttributeGameValue("6");
     TextExpressionSetToken("Param/Expression/67750AE9", "A", IntToText(gv_scaledXP));
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/67750AE9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
@@ -17814,6 +17823,7 @@ bool gt_TeamLocation_Func (bool testConds, bool runActions) {
             TextTagCreate((StringExternal("Param/Value/75B4E619") + ((UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[auto245C0282_var]), "Title Brief", 1) + PlayerName(auto245C0282_var)) + StringExternal("Param/Value/472EBABF"))), 24, UnitGetPosition(gv_marineHero[auto245C0282_var]), 2.3, true, true, PlayerGroupActive());
             lv_playerOverheadText[auto245C0282_var] = TextTagLastCreated();
             TextTagAttachToUnit(lv_playerOverheadText[auto245C0282_var], gv_marineHero[auto245C0282_var], 2.3);
+            gf_ControllerLabel(gv_marineHero[auto245C0282_var], -1, true);
         }
 
     }
@@ -17822,6 +17832,7 @@ bool gt_TeamLocation_Func (bool testConds, bool runActions) {
         auto501D2911_var = gv_indexBaseValue;
         for ( ; auto501D2911_var <= auto501D2911_ae; auto501D2911_var += 1 ) {
             TextTagDestroy(lv_playerOverheadText[auto501D2911_var]);
+            TextTagDestroy(libHots_gf_TextTagForUnit(gv_marineHero[auto501D2911_var], 1));
         }
     }
 
@@ -18337,10 +18348,13 @@ bool gt_NightmareMode_Func (bool testConds, bool runActions) {
         PlayerSetDifficulty(autoD7B36D88_var, 3);
     }
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 75.0, 0.0);
-    if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
+    if ((gv_sFOption == "0003")) {
+        gv_spawnFactor = 9;
+    }
+    else if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
         gv_spawnFactor += 1;
     }
-
+    gv_spawnFactor = MinI(gv_spawnFactor, 9);
     if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
         gf_UpdateModeSelectionUIs(ge_GameModes_Nightmare);
         UIShowCinematicText(PlayerGroupAll(), ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
@@ -19490,7 +19504,7 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
         lv_targPoint = UnitGetPosition(lv_attacker);
     }
     if (((lv_abil != "move") || (DistanceBetweenPoints(UnitGetPosition(lv_attacker), lv_targPoint) > 3.5))) {
-        gf_ControllerLabel(lv_attacker, lv_controller);
+        gf_ControllerLabel(lv_attacker, lv_controller, false);
     }
     auto668601B0_val = lv_abilCommand;
     if (auto668601B0_val == AbilityCommand("TacNukeStrike", 0)) {
@@ -19581,6 +19595,7 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
                 gf_TextTagNewThread(auto8BAE652B_var, StringExternal("Param/Value/CA97E062"), 20);
             }
         }
+        gf_ControllerLabel(lv_attacker, -1, true);
     }
     return true;
 }
@@ -20289,10 +20304,10 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     if ((gv_alivePlayers == 2)) {
         SoundPlay(SoundLink("TValerian02ADominionMarine600039", -1), PlayerGroupActive(), 100.0, 0.0);
     }
-    if ((gv_totalPlayers > 6) && ((gv_totalPlayers - gv_alivePlayers) == 5) && (gv_spawnFactor > 1)) {
+    if ((gv_sFOption != "0003") && (gv_totalPlayers > 6) && ((gv_totalPlayers - gv_alivePlayers) == 5) && (gv_spawnFactor > 1)) {
         gv_spawnFactor -= 1;
     }
-    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - gv_alivePlayers) == 3) && (gv_spawnFactor > 1)) {
+    else if ((gv_sFOption != "0003") && (gv_totalPlayers > 6) && ((gv_totalPlayers - gv_alivePlayers) == 3) && (gv_spawnFactor > 1)) {
         gv_spawnFactor -= 1;
     }
     return true;
