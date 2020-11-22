@@ -814,6 +814,7 @@ bool[9] gv_spectated;
 bool gv_navyCrossMode;
 int gv_noRandoms;
 int gv_maxRandom;
+bool gv_highSpawn;
 bool gv_outbreakActivated;
 bool gv_eliteMutationActivated;
 bool gv_realismActivated;
@@ -3496,7 +3497,12 @@ void gf_PlayerCountAdjustments () {
 void gf_SQDifficultyAdjustments () {
     // Automatic Variable Declarations
     // Implementation
-    if ((gv_squadRating >= 2400)) {
+    if (gv_highSpawn && (gv_squadRating >= 2490)) {
+        gv_magazineAdjustment += 7;
+        gv_spawnFactor += 5;
+        gv_difficultyHPScaling += 0.95;
+    }
+    else if ((gv_squadRating >= 2400)) {
         gv_magazineAdjustment += 6;
         gv_spawnFactor += 4;
         gv_difficultyHPScaling += 0.95;
@@ -6299,7 +6305,7 @@ bool auto_gf_DeathDisplay_TriggerFunc (bool testConds, bool runActions) {
             }
         }
     }
-    else if ((PlayerGroupCount(gv_victimAttackers[lp_playerNumber]) == 0) && (PlayerGroupCount(gv_victimTKers[lp_playerNumber]) == 0)) {
+    else if ((lp_killer != null) && (PlayerGroupCount(gv_victimAttackers[lp_playerNumber]) == 0) && (PlayerGroupCount(gv_victimTKers[lp_playerNumber]) == 0)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + StringExternal("Param/Value/0EC88977")));
     }
     else if (((lp_damageEffect == "StingerMK3DamageAllies") || (lp_damageEffect == "StingerMK3Damage") || (lp_damageEffect == "HellfireMissleDamageEnemies") || (lp_damageEffect == "SatchelLevel1Damage") || (lp_damageEffect == "SatchelLevel2Damage") || (lp_damageEffect == "VultureSpiderMinesDamage") || (lp_damageEffect == "ArmageddonDamageFriendly") || (lp_damageEffect == "PlasmaDischargeDamageAllies") || (lp_damageEffect == "NukeDamage") || (lp_damageEffect == "Damage") || (lp_damageEffect == "GunshipSupportGaussCannonDamageAlly") || (lp_damageEffect == "InboundSicknessDamageFriendlyLevel1") || (lp_damageEffect == "InboundSicknessDamageFriendlyLevel2") || (lp_damageEffect == "ScorchedEarthDamage") || (lp_damageEffect == "InfernoDamage3"))) {
@@ -11937,14 +11943,14 @@ void gf_ACClosingCinematic () {
 bool auto_gf_ACClosingCinematic_TriggerFunc (bool testConds, bool runActions) {
     // Variable Declarations
     unitgroup lv_blackOpsTeam;
+    unitgroup lv_squadUnits;
 
     // Automatic Variable Declarations
+    playergroup auto4FB7FC06_g;
+    int auto4FB7FC06_var;
     unitgroup auto480CE8FF_g;
     int auto480CE8FF_u;
     unit auto480CE8FF_var;
-    unitgroup autoA9C50E9B_g;
-    int autoA9C50E9B_u;
-    unit autoA9C50E9B_var;
     const int autoA97E391D_n = 8;
     int autoA97E391D_i;
     unitgroup autoA3D9F271_g;
@@ -11956,26 +11962,26 @@ bool auto_gf_ACClosingCinematic_TriggerFunc (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_blackOpsTeam = UnitGroupEmpty();
+    lv_squadUnits = UnitGroupEmpty();
 
     // Implementation
     TriggerExecute(gt_NightmareBonus, true, false);
     gf_UnifiedAwards(5, 0.0, 0, 0, 3);
     SoundtrackStop(PlayerGroupAll(), c_soundtrackCategoryMusic, true);
-    auto480CE8FF_g = gv_marines;
+    auto4FB7FC06_g = gv_marineSquad;
+    auto4FB7FC06_var = -1;
+    while (true) {
+        auto4FB7FC06_var = PlayerGroupNextPlayer(auto4FB7FC06_g, auto4FB7FC06_var);
+        if (auto4FB7FC06_var < 0) { break; }
+        UnitGroupAddUnitGroup(lv_squadUnits, UnitGroup(null, auto4FB7FC06_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+    auto480CE8FF_g = lv_squadUnits;
     auto480CE8FF_u = UnitGroupCount(auto480CE8FF_g, c_unitCountAll);
     for (;; auto480CE8FF_u -= 1) {
         auto480CE8FF_var = UnitGroupUnitFromEnd(auto480CE8FF_g, auto480CE8FF_u);
         if (auto480CE8FF_var == null) { break; }
         UnitSetPropertyFixed(auto480CE8FF_var, c_unitPropLifeRegen, 100.0);
         libNtve_gf_ChangeUnitDamage(auto480CE8FF_var, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
-    }
-    autoA9C50E9B_g = gv_pets;
-    autoA9C50E9B_u = UnitGroupCount(autoA9C50E9B_g, c_unitCountAll);
-    for (;; autoA9C50E9B_u -= 1) {
-        autoA9C50E9B_var = UnitGroupUnitFromEnd(autoA9C50E9B_g, autoA9C50E9B_u);
-        if (autoA9C50E9B_var == null) { break; }
-        UnitSetPropertyFixed(autoA9C50E9B_var, c_unitPropLifeRegen, 100.0);
-        libNtve_gf_ChangeUnitDamage(autoA9C50E9B_var, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
     }
     Wait(5.0, c_timeReal);
     gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/50673B96"));
@@ -15870,14 +15876,18 @@ bool auto_gf_GameOverInit_TriggerFunc (bool testConds, bool runActions) {
     }
     CinematicFade(false, 3.5, c_fadeStyleNormal, Color(0.00, 0.00, 0.00), 0.0, false);
     Wait(3.5, c_timeReal);
-    UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaCinematic);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDebug);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaObjective);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaSubtitle);
     gf_EndGameUINOTD();
     TriggerEnable(gt_ReturntoEarth, true);
     if ((gv_victory == true) && (gv_storyline == 1)) {
         libNtve_gf_HideGameUI(false, PlayerGroupAll());
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/3D74E3DA"));
         Wait(7.0, c_timeReal);
-        UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
+        UIClearMessages(PlayerGroupAll(), c_messageAreaDebug);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2CE8F35C"));
         Wait(10.0, c_timeReal);
     }
@@ -16664,6 +16674,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_noNewbie = (lv_xPMin >= 500);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
+    gv_highSpawn = (GameAttributeGameValue("6") == "0001");
     TextExpressionSetToken("Param/Expression/67750AE9", "A", IntToText(gv_scaledXP));
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/67750AE9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
@@ -19426,6 +19437,7 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     unit lv_targUnit;
     point lv_targPoint;
     bool lv_isAggr;
+    bool lv_isBlast;
     int lv_aOEtype;
 
     // Automatic Variable Declarations
@@ -19453,6 +19465,10 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
             return false;
         }
 
+        if (!((lv_abil != "CombatKnife"))) {
+            return false;
+        }
+
         if (!(((OrderGetTargetType(lv_trigOrder) == c_orderTargetPoint) || (OrderGetTargetType(lv_trigOrder) == c_orderTargetUnit) || (lv_abil == "Detonate")))) {
             return false;
         }
@@ -19473,9 +19489,13 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     else if (true) {
         lv_targPoint = UnitGetPosition(lv_attacker);
     }
+    if (((lv_abil != "move") || (DistanceBetweenPoints(UnitGetPosition(lv_attacker), lv_targPoint) > 3.5))) {
+        gf_ControllerLabel(lv_attacker, lv_controller);
+    }
     auto668601B0_val = lv_abilCommand;
     if (auto668601B0_val == AbilityCommand("TacNukeStrike", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "NukeDamage", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
+        lv_isBlast = true;
     }
     else if (auto668601B0_val == AbilityCommand("MonofilamentTrap", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "MonofilamentTrapSearchLevel1", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
@@ -19506,9 +19526,11 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     }
     else if (auto668601B0_val == AbilityCommand("PlasmaDischarge", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "PlasmaDischargeSearch", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
+        lv_isBlast = true;
     }
     else if (auto668601B0_val == AbilityCommand("Satchel", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "SatchelLevel1Damage", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
+        lv_isBlast = true;
     }
     else if (auto668601B0_val == AbilityCommand("Detonate", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "ArmageddonSearchDamageFriendly", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
@@ -19519,43 +19541,44 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     }
     else if (auto668601B0_val == AbilityCommand("InboundSickness", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "InboundSicknessSearchApplyLevel1", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
+        lv_isBlast = true;
     }
     else if (auto668601B0_val == AbilityCommand("ScorchedEarth", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(PointWithOffsetPolar(UnitGetPosition(lv_attacker), MaxF(DistanceBetweenPoints(UnitGetPosition(lv_attacker), lv_targPoint), (libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "ScorchedEarthEstimatedSearch", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny) - 0.5)), AngleBetweenPoints(UnitGetPosition(lv_attacker), lv_targPoint)), (libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "ScorchedEarthEstimatedSearch", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny) - -0.5)), 0);
+        lv_isBlast = true;
     }
     else if (auto668601B0_val == AbilityCommand("HellfireMissiles", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "HellfireMissleDamageEnemies", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
-    }
-    else if (auto668601B0_val == AbilityCommand("attack", 0)) {
-        lv_weapon = UnitWeaponGet(lv_attacker, 1);
-        if ((UnitGroupHasUnit(gv_marines, lv_targUnit) == true) && (UnitGetOwner(lv_targUnit) != lv_controller) && (lv_weapon != "Crowbar") && (lv_weapon != "BarrettM112")) {
-            UnitGroupAdd(lv_victimsFriendlyFire, lv_targUnit);
-        }
-        if ((lv_weapon == "StingerMK3")) {
-            lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "StingerMK3DamageAllies", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
-        }
-        gf_ControllerLabel(lv_attacker, lv_controller);
+        lv_isBlast = true;
     }
     else {
-        lv_isAggr = false;
-        if (((lv_abil != "move") || ((lv_abil == "move") && (DistanceBetweenPoints(UnitGetPosition(lv_attacker), lv_targPoint) > 3.5)))) {
-            gf_ControllerLabel(lv_attacker, lv_controller);
+        if ((lv_abilCommand == AbilityCommand("attack", 0)) && (lv_targUnit != null)) {
+            lv_weapon = UnitWeaponGet(lv_attacker, 1);
+            if ((UnitGroupHasUnit(gv_marines, lv_targUnit) == true) && (UnitGetOwner(lv_targUnit) != lv_controller) && (lv_weapon != "Crowbar") && (lv_weapon != "BarrettM112")) {
+                UnitGroupAdd(lv_victimsFriendlyFire, lv_targUnit);
+            }
+            if ((lv_weapon == "StingerMK3")) {
+                lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "StingerMK3DamageAllies", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
+                lv_isBlast = true;
+            }
+        }
+        else {
+            lv_isAggr = false;
         }
     }
-    if ((lv_isAggr == true)) {
-        gf_ControllerLabel(lv_attacker, lv_controller);
-        if ((UnitGroupCount(lv_victimsFriendlyFire, c_unitCountAlive) != 0)) {
+    if ((lv_isAggr == true) && (UnitGroupCount(lv_victimsFriendlyFire, c_unitCountAlive) != 0)) {
+        if ((lv_isBlast == true)) {
             gf_TextTagNewThread(lv_attacker, StringExternal("Param/Value/CE01A2D6"), 20);
-            auto8BAE652B_g = lv_victimsFriendlyFire;
-            auto8BAE652B_u = UnitGroupCount(auto8BAE652B_g, c_unitCountAll);
-            for (;; auto8BAE652B_u -= 1) {
-                auto8BAE652B_var = UnitGroupUnitFromEnd(auto8BAE652B_g, auto8BAE652B_u);
-                if (auto8BAE652B_var == null) { break; }
-                if ((lv_controller != UnitGetOwner(auto8BAE652B_var)) && (libNtve_gf_UnitIsVisibleToPlayer(auto8BAE652B_var, lv_controller) == true) && ((lv_aOEtype != 3) || ((UnitGetType(auto8BAE652B_var) != "ChemicalExpert") && (UnitGetType(auto8BAE652B_var) != "Technician")))) {
-                    PlayerGroupAdd(gv_victimAttackers[UnitGetOwner(auto8BAE652B_var)], lv_controller);
-                    UnitBehaviorAddPlayer(auto8BAE652B_var, gv_friendlyFireBuff[lv_controller], lv_controller, 1);
-                    gf_TextTagNewThread(auto8BAE652B_var, StringExternal("Param/Value/CA97E062"), 20);
-                }
+        }
+        auto8BAE652B_g = lv_victimsFriendlyFire;
+        auto8BAE652B_u = UnitGroupCount(auto8BAE652B_g, c_unitCountAll);
+        for (;; auto8BAE652B_u -= 1) {
+            auto8BAE652B_var = UnitGroupUnitFromEnd(auto8BAE652B_g, auto8BAE652B_u);
+            if (auto8BAE652B_var == null) { break; }
+            if ((lv_controller != UnitGetOwner(auto8BAE652B_var)) && (libNtve_gf_UnitIsVisibleToPlayer(auto8BAE652B_var, lv_controller) == true) && ((lv_aOEtype != 3) || ((UnitGetType(auto8BAE652B_var) != "ChemicalExpert") && (UnitGetType(auto8BAE652B_var) != "Technician")))) {
+                PlayerGroupAdd(gv_victimAttackers[UnitGetOwner(auto8BAE652B_var)], lv_controller);
+                UnitBehaviorAddPlayer(auto8BAE652B_var, gv_friendlyFireBuff[lv_controller], lv_controller, 1);
+                gf_TextTagNewThread(auto8BAE652B_var, StringExternal("Param/Value/CA97E062"), 20);
             }
         }
     }
@@ -19672,10 +19695,12 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_deadUnit;
     unit lv_murderer;
+    int lv_killingPlayer;
     actor lv_localActorA;
     int lv_victimPlayer;
     int lv_status;
     bool lv_isDirect;
+    bool lv_isPenalty;
 
     // Automatic Variable Declarations
     playergroup auto4347789C_g;
@@ -19684,12 +19709,13 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_deadUnit = EventUnit();
     lv_murderer = libNtve_gf_KillingUnit();
+    lv_killingPlayer = FixedToInt(UnitGetCustomValue(libNtve_gf_KillingUnit(), 1));
     lv_victimPlayer = EventPlayer();
     lv_status = PlayerStatus(EventPlayer());
 
     // Conditions
     if (testConds) {
-        if (!((PlayerGroupCount(gv_victimAttackers[lv_victimPlayer]) != 0))) {
+        if (!(((PlayerGroupCount(gv_victimAttackers[lv_victimPlayer]) != 0) || (PlayerGroupHasPlayer(gv_marineSquad, libNtve_gf_KillingPlayer()) == true)))) {
             return false;
         }
     }
@@ -19700,33 +19726,42 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
     }
 
     gv_victimTKisIndirect[lv_victimPlayer] = !(PlayerGroupHasPlayer(gv_marineSquad, libNtve_gf_KillingPlayer()));
-    libNtve_gf_AddPlayerGroupToPlayerGroup(gv_victimAttackers[lv_victimPlayer], gv_victimTKers[lv_victimPlayer]);
-    auto4347789C_g = gv_victimTKers[lv_victimPlayer];
-    auto4347789C_var = -1;
-    while (true) {
-        auto4347789C_var = PlayerGroupNextPlayer(auto4347789C_g, auto4347789C_var);
-        if (auto4347789C_var < 0) { break; }
-        if ((lv_status == c_playerStatusActive) && (lv_victimPlayer != auto4347789C_var)) {
+    if ((PlayerGroupCount(gv_victimAttackers[lv_victimPlayer]) == 0)) {
+        if ((PlayerGroupHasPlayer(gv_marineSquad, lv_killingPlayer) == true) && (lv_victimPlayer != lv_killingPlayer)) {
             gv_victimOfTK[lv_victimPlayer] = true;
-            if ((gv_playerIsNewbie[auto4347789C_var] == true)) {
-                gf_UpdateRating(auto4347789C_var, -10);
-                gf_UpdateKarma(auto4347789C_var, -5);
-            }
-            else if (((gv_victimTKisIndirect[lv_victimPlayer] == true) || (gv_playerIsHardVet[auto4347789C_var] == false))) {
-                gf_UpdateRating(auto4347789C_var, -20);
-                gf_UpdateKarma(auto4347789C_var, -5);
-                gv_playerXP[auto4347789C_var] -= 100;
-            }
-            else if (true) {
-                lv_isDirect = true;
-                gf_UpdateRating(auto4347789C_var, -100);
-                gf_UpdateKarma(auto4347789C_var, -30);
-                gv_playerXP[auto4347789C_var] -= 500;
-            }
-            PlayerScoreValueSetFromInt(auto4347789C_var, "PlayerXP", gv_playerXP[auto4347789C_var]);
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/840B3441") + (PlayerName(lv_victimPlayer) + UserDataGetText("TeamKillTexts", "Death Texts", "Death Text", RandomInt(1, 5)))) + (PlayerName(lv_killingPlayer) + StringExternal("Param/Value/BFA0538A"))));
         }
-        gv_playerIsBad[auto4347789C_var] = true;
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/C432DD06") + (PlayerName(lv_victimPlayer) + UserDataGetText("TeamKillTexts", "Death Texts", "Death Text", RandomInt(1, 5)))) + (PlayerName(auto4347789C_var) + StringExternal("Param/Value/BB54D75D"))));
+    }
+    else {
+        libNtve_gf_AddPlayerGroupToPlayerGroup(gv_victimAttackers[lv_victimPlayer], gv_victimTKers[lv_victimPlayer]);
+        auto4347789C_g = gv_victimTKers[lv_victimPlayer];
+        auto4347789C_var = -1;
+        while (true) {
+            auto4347789C_var = PlayerGroupNextPlayer(auto4347789C_g, auto4347789C_var);
+            if (auto4347789C_var < 0) { break; }
+            if ((lv_status == c_playerStatusActive) && (lv_victimPlayer != auto4347789C_var)) {
+                gv_victimOfTK[lv_victimPlayer] = true;
+                lv_isPenalty = true;
+                if ((gv_playerIsNewbie[auto4347789C_var] == true)) {
+                    gf_UpdateRating(auto4347789C_var, -10);
+                    gf_UpdateKarma(auto4347789C_var, -5);
+                }
+                else if (((gv_victimTKisIndirect[lv_victimPlayer] == true) || (gv_playerIsHardVet[auto4347789C_var] == false))) {
+                    gf_UpdateRating(auto4347789C_var, -20);
+                    gf_UpdateKarma(auto4347789C_var, -5);
+                    gv_playerXP[auto4347789C_var] -= 100;
+                }
+                else if (true) {
+                    lv_isDirect = true;
+                    gf_UpdateRating(auto4347789C_var, -100);
+                    gf_UpdateKarma(auto4347789C_var, -30);
+                    gv_playerXP[auto4347789C_var] -= 500;
+                }
+                PlayerScoreValueSetFromInt(auto4347789C_var, "PlayerXP", gv_playerXP[auto4347789C_var]);
+            }
+            gv_playerIsBad[auto4347789C_var] = true;
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/C432DD06") + (PlayerName(lv_victimPlayer) + UserDataGetText("TeamKillTexts", "Death Texts", "Death Text", RandomInt(1, 5)))) + (PlayerName(auto4347789C_var) + StringExternal("Param/Value/BB54D75D"))));
+        }
     }
     gv_victimAttackers[lv_victimPlayer] = PlayerGroupEmpty();
     if ((lv_isDirect == true)) {
@@ -19735,7 +19770,7 @@ bool gt_TeamKillNEW_Func (bool testConds, bool runActions) {
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 100.0, 0.0);
     libNtve_gf_AttachModelToUnit(libNtve_gf_KillingUnit(), "BriefingUnitSelectRedSmall", "Ref_Center");
     lv_localActorA = libNtve_gf_ActorLastCreated();
-    if ((gv_victimOfTK[lv_victimPlayer] == true)) {
+    if ((lv_isPenalty == true)) {
         UIDisplayMessage(PlayerGroupSingle(lv_victimPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/A2F1CD75"));
         TriggerEnable(gt_KarmaBitePardon, true);
     }
@@ -45595,6 +45630,7 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
     // Variable Declarations
     string lv_playerClass;
     int lv_cPAwarded;
+    string lv_cPDecayed;
 
     // Automatic Variable Declarations
     const int auto4111D9D3_ae = gv_numberofPlayers;
@@ -45602,6 +45638,7 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_cPAwarded = 1;
+    lv_cPDecayed = "";
 
     // Actions
     if (!runActions) {
@@ -45628,48 +45665,59 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_rifleman > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_rifleman -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Rifleman");
             }
             if ((lv_playerClass == "Medic2")) {
                 gv_playerCP[auto4111D9D3_var].lv_medic += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_medic > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_medic -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Medic");
             }
             if (((lv_playerClass == "TychusChaingun") || (lv_playerClass == "Flamethrower3") || (lv_playerClass == "Technician"))) {
                 gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Assault/Flamer/Tech");
             }
             if ((lv_playerClass == "Spectre")) {
                 gv_playerCP[auto4111D9D3_var].lv_recon += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_recon > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_recon -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Recon");
             }
             if ((lv_playerClass == "Marksman")) {
                 gv_playerCP[auto4111D9D3_var].lv_marksman += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_marksman > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_marksman -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Marksman");
             }
             if (((lv_playerClass == "DominionKillTeam") || (lv_playerClass == "Pathfinder") || (lv_playerClass == "ChemicalExpert"))) {
                 gv_playerCP[auto4111D9D3_var].lv_demoPFChem += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_demoPFChem > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_demoPFChem -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Demo/Pathfinder/Chem");
             }
             if (((lv_playerClass == "Engineer") || (lv_playerClass == "ForwardObserver"))) {
                 gv_playerCP[auto4111D9D3_var].lv_engineerFO += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_engineerFO > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_engineerFO -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Engineer/Forward Observer");
             }
             if (((lv_playerClass == "Commando") || (lv_playerClass == "PsiOps"))) {
                 gv_playerCP[auto4111D9D3_var].lv_commandoPO += lv_cPAwarded;
             }
             else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_commandoPO > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_commandoPO -= 1;
+                lv_cPDecayed = (lv_cPDecayed + ", Commando/Psi Ops");
+            }
+            if ((lv_cPDecayed != "")) {
+                UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, (StringExternal("Param/Value/C1B60470") + StringToText(StringReplaceWord(lv_cPDecayed, ",", "", 1, c_stringCase)) + StringExternal("Param/Value/7ACC1F0D")));
             }
         }
 
@@ -45797,7 +45845,7 @@ bool gt_NOTDCreditsRoll_Func (bool testConds, bool runActions) {
     SoundtrackStop(PlayerGroupActive(), c_soundtrackCategoryMusic, true);
     SoundtrackPlay(PlayerGroupActive(), c_soundtrackCategoryMusic, "NOTDCredits", c_soundtrackCueAny, c_soundtrackIndexAny, true);
     Wait(3.0, c_timeReal);
-    UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDebug);
     UIShowTextCrawl(PlayerGroupAll(), StringExternal("Param/Value/1F9EE955"), StringExternal("Param/Value/EC412052"), 10.0, SoundLink("UI_BnetDropdownClose", -1), gv_dummySound);
     Wait(5.0, c_timeReal);
     UIHideTextCrawl(PlayerGroupAll());

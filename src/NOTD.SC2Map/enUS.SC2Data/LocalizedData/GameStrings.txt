@@ -410,6 +410,11 @@ Attribute005/Value012/Desc=Veterans Only
 Attribute005/Value012/Name=OBSec
 Attribute005/Value013/Desc=Veterans Only
 Attribute005/Value013/Name=OBSurv
+Attribute006/Name=Spawn Factor
+Attribute006/Value001/Desc=+1 spawn factor when squad rating at least 2490
+Attribute006/Value001/Name=High Spawn
+Attribute006/Value002/Desc=Standard spawn factor
+Attribute006/Value002/Name=Standard
 Barret/MMRifle Equipped=M45 Marksman Rifle or Barret M112 Equipped
 Behavior/Name/AMRounds=AM Rounds
 Behavior/Name/APAmmo=<c val="80FF80">AP Ammo</c>
@@ -5159,6 +5164,7 @@ Param/Value/79F7232F=This thing...is where the infestation began.
 Param/Value/7A2BF702=Military EVAC is underway. Find a safe and defensible spot to await your rescue.
 Param/Value/7A5F0DCB=
 Param/Value/7AC57705=<s val="GlueButton"><c val="F4D72B">But you can call me Charlie.</c></s>
+Param/Value/7ACC1F0D=</s>
 Param/Value/7B4DC8CD=<s val="GlueButton"><c val="F4D72B">More incoming! Huddle close to IVAX.</c>
 Param/Value/7B8C4D80=Prepare for exfil.
 Param/Value/7B981C01=If you have wounded, our Corpsmen are here to help.
@@ -5211,6 +5217,7 @@ Param/Value/83366C0C=I have the gate open. Let's go.
 Param/Value/835B7760=<n/>XP: 
 Param/Value/838A6F01=There's an incomplete IVAX unit in the military base.
 Param/Value/83EBF2B8=Survive the outbreak with Apollo Security Team
+Param/Value/840B3441=<s val="ChatBar"><c val="0080FF">  
 Param/Value/8423EF3A=Survive the attack on Apollo Starport
 Param/Value/843B3A52=Destroy Bio-Dome D
 Param/Value/845C5CB0=<s val="GlueButton">Farica Augustin
@@ -5564,6 +5571,7 @@ Param/Value/BEFDC6B7= </c><c val="F4D72B">has been accidentally slaughtered by <
 Param/Value/BF4FE9A7=<s val="BriefingHanText">Directive: Outbreak evacuation ship</s>
 Param/Value/BF895E18=
 Param/Value/BF8BBBF4=Capture Tartarus by disabling it.
+Param/Value/BFA0538A=.</s></c>
 Param/Value/BFA9E16C=Reload and heal up. Things won't stay quiet for long.
 Param/Value/C006A89F=What good is staying...if we all die...
 Param/Value/C0110C87=Probability of mission hindrance: zero percent!
@@ -5577,6 +5585,7 @@ Param/Value/C0F5E603=<s val="GlueButtonSmall">Demo/PF/Chem:
 Param/Value/C15230BC=Their numbers are dwindling. We've got through this.
 Param/Value/C16ADD41=Don't get hit! Tartarus will tear you a new one.
 Param/Value/C17E81A3=</c>) (<c val="F1D845">
+Param/Value/C1B60470=<s val="InfoPaneHeroRank">-1
 Param/Value/C21BD67D=<c val="0080FF">Saving Biometric ID for </c>
 Param/Value/C226EB8D=Retrieve Weapons & Ammo from Armory
 Param/Value/C22C6D9F=Bring the civilians to the Containment Facility east of here.
@@ -6482,7 +6491,7 @@ UserData/Classes/Assault_Class_Name=Assault
 UserData/Classes/Assault_Class_Role=<s val="AchievementFrameName">Assault</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Arms / Protection<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Assault is a heavy duty offensive and defensive unit.</c>
 UserData/Classes/Assault_Locked Text=Not available in this story.
 UserData/Classes/Assault_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 50 Tank<n/>- 50 Damage
-UserData/Classes/Chemical Expert_Class CP Name=Demo/FO/Chem Expert
+UserData/Classes/Chemical Expert_Class CP Name=Demo/Pathfinder/Chem Expert
 UserData/Classes/Chemical Expert_Class Name=Chemical Expert
 UserData/Classes/Chemical Expert_Class Role=<s val="AchievementFrameName">Chemical Expert</s><n/>Role: Combat-Application Chemical Infantry<n/>Talent Trees: Desolator/Ground Support<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Dangerous<n/><n/><c val="F4D72B">Chemical Soldiers are expert in the field of chemical weapons and technologies. Their knowledge helps the squad in both heavy fire support and chemical augments.</c>
 UserData/Classes/Chemical Expert_Class_CP_Name=Demo/FO/Chem Expert
@@ -6499,7 +6508,7 @@ UserData/Classes/Commando_Class_Role=<s val="AchievementFrameName">Commando</s><
 UserData/Classes/Commando_Locked Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating, or with any of the class traits:<n/>- 20 Damage<n/>- 15 Dangerous
 UserData/Classes/Commando_Locked_Text=Available at SgtMaj. (10,000 XP). <n/><n/>Can be unlocked earlier at SSgt. (5,000 XP) and 1700 Rating.
 UserData/Classes/Commando_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with the class traits:<n/>- 50 Damage<n/>- 50 Dangerous
-UserData/Classes/Demolitions_Class CP Name=Demo/FO/Chem Expert
+UserData/Classes/Demolitions_Class CP Name=Demo/Pathfinder/Chem Expert
 UserData/Classes/Demolitions_Class Name=Demolitions
 UserData/Classes/Demolitions_Class Role=<s val="AchievementFrameName">Demolitions</s><n/>Role: DPS / Tank<n/>Talent Trees: Explosives / Fortitude<n/>Inventory Slots: 6<n/>Class Traits: 1 Tank, 1 Micro, 1 Accuracy<n/><n/><c val="F4D72B">The Demolitions serves and takes heavy punishment with his active combat skills.</c>
 UserData/Classes/Demolitions_Class_CP_Name=Demo/FO/Chem Expert
@@ -6508,7 +6517,7 @@ UserData/Classes/Demolitions_Class_Role=<s val="AchievementFrameName">Demolition
 UserData/Classes/Demolitions_Locked Text=Available at Sgt. (2000 XP).<n/><n/>Can be unlocked earlier with any of the class traits:<n/>- 5 Tank<n/>- 10 Micro
 UserData/Classes/Demolitions_Locked_Text=Available at Sgt. (2000 XP). Play more to unlock.
 UserData/Classes/Demolitions_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 50 Tank<n/>- 50 Micro
-UserData/Classes/Engineer_Class CP Name=Engineer/Pathfinder
+UserData/Classes/Engineer_Class CP Name=Engineer/Forward Observer
 UserData/Classes/Engineer_Class Name=Engineer
 UserData/Classes/Engineer_Class Role=<s val="AchievementFrameName">Engineer</s><n/>Role: DPS / Utility<n/>Talent Trees: Field Support / Combat<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Squishy, 1 Dangerous<n/><n/><c val="F4D72B">The Engineer is a master of mechanics and combat machinery.</c>
 UserData/Classes/Engineer_Class_CP_Name=Engineer/Pathfinder
@@ -6524,7 +6533,7 @@ UserData/Classes/Flamethrower_Class_CP_Name=Assault/Flamer/Technician
 UserData/Classes/Flamethrower_Class_Name=Flamethrower
 UserData/Classes/Flamethrower_Class_Role=<s val="AchievementFrameName">Flamethrower</s><n/>Role: Heavy DPS / Tank<n/>Talent Trees: Pyro / Order<n/>Inventory Slots: 6<n/><n/><c val="F4D72B">The Flamethrower excels at close proximity combat.</c>
 UserData/Classes/Flamethrower_Story Locked Text=Not available in this story.<n/><n/>Can be unlocked with any of the class traits:<n/>- 50 Tank<n/>- 50 Crowd Control
-UserData/Classes/Forward Observer_Class CP Name=Demo/FO/Chem Expert
+UserData/Classes/Forward Observer_Class CP Name=Engineer/Forward Observer
 UserData/Classes/Forward Observer_Class Name=Forward Observer
 UserData/Classes/Forward Observer_Class Role=<s val="AchievementFrameName">Forward Observer</s><n/>Role: Support DPS<n/>Talent Trees: Fire Support / Mobile Infantry<n/>Inventory Slots: 4<n/>Class Traits: 2 Micro, 1 Squishy, 1 Dangerous<n/><n/><c val="F4D72B">The Forward Observer rallies the massive firepower at the UGC's disposal to neutralize enemies.</c>
 UserData/Classes/Forward Observer_Class_CP_Name=Demo/FO/Chem Expert
@@ -6546,7 +6555,7 @@ UserData/Classes/Medic_Class Role=<s val="AchievementFrameName">Medic</s><n/>Rol
 UserData/Classes/Medic_Class_CP_Name=Medic
 UserData/Classes/Medic_Class_Name=Medic
 UserData/Classes/Medic_Class_Role=<s val="AchievementFrameName">Medic</s><n/>Role: Healer / Support<n/>Talent Trees: Field Aid / Nanotech<n/>Inventory Slots: 4<n/><n/><c val="F4D72B">The Medic provides vital protection in combat. Every team should have one.</c>
-UserData/Classes/Pathfinder_Class CP Name=Engineer/Pathfinder
+UserData/Classes/Pathfinder_Class CP Name=Demo/Pathfinder/Chem Expert
 UserData/Classes/Pathfinder_Class Name=Pathfinder
 UserData/Classes/Pathfinder_Class Role=<s val="AchievementFrameName">Pathfinder</s><n/>Role: Rapid-Response Infantry<n/>Talent Trees: Gunslinger/Rocketeer<n/>Inventory Slots: 5<n/>Class Traits: 1 Tank, 1 Micro, 1 Dangerous<n/><n/><c val="F4D72B">Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.</c>
 UserData/Classes/Pathfinder_Class_CP_Name=Engineer/Pathfinder
