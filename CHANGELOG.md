@@ -3,10 +3,16 @@
 2020-11-21
 [ThunderRazor]
 -Team Kill penalty rework:
-- Direct killing of an ally will apply heavy penalties on the killer immediately (instead of having to type -karmabite).
-- Friendly fire abilities that threaten an ally and subsequently causing their death will apply a lighter penalty.
-- Allies walking into friendly fire abilities and dying as a result will count as an accident with no penalty. 
-- Victims can type "-pardon" to pardon the killer if needed.
+   - Direct killing of an ally will apply heavy penalties on the killer immediately (instead of having to type -karmabite).
+   - Friendly fire abilities that threaten an ally and subsequently causing their death will apply a lighter penalty.
+   - Allies walking into friendly fire abilities and dying as a result will count as an accident with no penalty. 
+   - Victims can type "-pardon" to pardon the killer if needed.
+- End of game no longer clears chat.
+- Class Point Loss is now visible at end.
+- All units owned by Marine Squad are now invulnerable after killing Perses in Alpha Company.
+- Fixed "Suicide" text in no-killer cases such as death to venom.
+- "Fire in the hole" text is only displayed for some damage dealing/blast skills and the stinger.
+- Added a lobby option to enable +1 spawn factor if the squad rating is at least 2490.
 
 [LeoTheCat]
 - Added a skin for Forward Observer.
