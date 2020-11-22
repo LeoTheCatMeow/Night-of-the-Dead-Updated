@@ -12,7 +12,8 @@
 - All units owned by Marine Squad are now invulnerable after killing Perses in Alpha Company.
 - Fixed "Suicide" text in no-killer cases such as death to venom.
 - "Fire in the hole" text is only displayed for some damage dealing/blast skills and the stinger.
-- Added a lobby option to enable +1 spawn factor if the squad rating is at least 2490.
+- Added lobby options for elevated spawn (+1sf) & high spawn (force sf 9 in NM mode, +1sf in others).
+- Team location ability ( x -> q ) will now also display the controller of units that have shared control.
 
 [LeoTheCat]
 - Added a skin for Forward Observer.
