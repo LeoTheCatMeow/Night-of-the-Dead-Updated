@@ -6088,13 +6088,13 @@ void gf_ControllerLabel (unit lp_unit, int lp_controller, bool lp_show) {
     lv_lastcontroller = FixedToInt(UnitGetCustomValue(lp_unit, 1));
 
     // Implementation
-    if ((lp_controller >= 0) && (lp_controller != lv_lastcontroller)) {
+    if ((lp_controller > 0) && (lp_controller != lv_lastcontroller) && PlayerGetAlliance(UnitGetOwner(lp_unit), c_allianceIdControl, lp_controller) && UnitGroupHasUnit(UnitGroupSelected(lp_controller), lp_unit)) {
         UnitSetCustomValue(lp_unit, 1, IntToFixed(lp_controller));
         lv_lastcontroller = lp_controller;
     }
-    TextTagDestroy(libHots_gf_TextTagForUnit(lp_unit, 1));
-    if (lp_show && (UnitGetOwner(lp_unit) != lv_lastcontroller) && UnitGroupHasUnit(UnitGroupSelected(lp_controller), lp_unit) && PlayerGetAlliance(UnitGetOwner(lp_unit), c_allianceIdControl, lv_lastcontroller)) {
-        TextTagCreate((StringExternal("Param/Value/362A024D") + PlayerName(lp_controller) + StringExternal("Param/Value/FDE6189C")), 16, UnitGetPosition(lp_unit), 0.0, true, true, PlayerGroupActive());
+    if (lp_show && UnitIsAlive(lp_unit) && (lv_lastcontroller > 0) && (UnitGetOwner(lp_unit) != lv_lastcontroller)) {
+        TextTagDestroy(libHots_gf_TextTagForUnit(lp_unit, 1));
+        TextTagCreate((StringExternal("Param/Value/362A024D") + PlayerName(lv_lastcontroller) + StringExternal("Param/Value/FDE6189C")), 16, UnitGetPosition(lp_unit), 0.0, true, true, PlayerGroupActive());
         TextTagAttachToUnit(TextTagLastCreated(), lp_unit, -0.5);
         libHots_gf_StoreTextTagForUnit(lp_unit, 1, TextTagLastCreated());
     }
@@ -17824,6 +17824,7 @@ bool gt_TeamLocation_Func (bool testConds, bool runActions) {
             lv_playerOverheadText[auto245C0282_var] = TextTagLastCreated();
             TextTagAttachToUnit(lv_playerOverheadText[auto245C0282_var], gv_marineHero[auto245C0282_var], 2.3);
             gf_ControllerLabel(gv_marineHero[auto245C0282_var], -1, true);
+            gf_ControllerLabel(gv_playerPet[auto245C0282_var], -1, true);
         }
 
     }
@@ -17833,6 +17834,7 @@ bool gt_TeamLocation_Func (bool testConds, bool runActions) {
         for ( ; auto501D2911_var <= auto501D2911_ae; auto501D2911_var += 1 ) {
             TextTagDestroy(lv_playerOverheadText[auto501D2911_var]);
             TextTagDestroy(libHots_gf_TextTagForUnit(gv_marineHero[auto501D2911_var], 1));
+            TextTagDestroy(libHots_gf_TextTagForUnit(gv_playerPet[auto501D2911_var], 1));
         }
     }
 
