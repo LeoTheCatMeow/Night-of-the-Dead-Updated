@@ -45655,7 +45655,6 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_cPAwarded = 1;
-    lv_cPDecayed = "";
 
     // Actions
     if (!runActions) {
@@ -45677,6 +45676,7 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
             lv_playerClass = UnitGetType(gv_marineHero[auto4111D9D3_var]);
             TextExpressionSetToken("Param/Expression/444E0DF8", "A", UserDataGetText("Classes", gv_playerClass[auto4111D9D3_var], "Class CP Name", 1));
             UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, (StringExternal("Param/Value/7391DB71") + (IntToText(lv_cPAwarded) + TextExpressionAssemble("Param/Expression/444E0DF8"))));
+            lv_cPDecayed = "";
             if ((lv_playerClass == "Rifleman")) {
                 gv_playerCP[auto4111D9D3_var].lv_rifleman += lv_cPAwarded;
             }
