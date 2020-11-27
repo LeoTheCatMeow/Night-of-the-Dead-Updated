@@ -764,6 +764,12 @@ text gv_characterHAL;
 text gv_characterIVAX;
 text gv_forwardSlash;
 text gv_infoPanelHeroRank;
+text gv_colorNametag;
+text gv_colorSpeech;
+text gv_colorLightRed;
+text gv_colorNMGold;
+text gv_colorTrueGold;
+text gv_endColor;
 text gv_endStyling;
 text gv_space;
 fixed gv_difficultyHPScaling;
@@ -1279,6 +1285,12 @@ void InitGlobals () {
     gv_characterIVAX = StringExternal("Param/Value/03DBB218");
     gv_forwardSlash = StringToText("/");
     gv_infoPanelHeroRank = StringToText("<s val=\"InfoPaneHeroRank\">");
+    gv_colorNametag = StringToText("<c val=\"0080FF\">");
+    gv_colorSpeech = StringToText("<c val=\"F5D62B\">");
+    gv_colorLightRed = StringToText("<c val=\"FF8080\">");
+    gv_colorNMGold = StringToText("<c val=\"FFCC00\">");
+    gv_colorTrueGold = StringToText("<c val=\"FFD700\">");
+    gv_endColor = StringToText("</c>");
     gv_endStyling = StringToText("</s>");
     gv_space = StringToText(" ");
     gv_gameTime = TimerCreate();
@@ -3197,12 +3209,7 @@ void gf_MemoryLoad (int lp_player) {
     gv_playerRating[lp_player] = gv_playerBankData[2][lp_player];
     PlayerScoreValueSetFromInt(lp_player, "Rating", gv_playerRating[lp_player]);
     gv_playerGamesPlayed[lp_player] = gv_playerBankData[3][lp_player];
-    if (((gv_totalPlayers > 1) || (!(GameIsOnline())))) {
-        gf_UpdateGamesPlayed(lp_player, 1);
-    }
-    else {
-        gf_UpdateGamesPlayed(lp_player, 0);
-    }
+    gf_UpdateGamesPlayed(lp_player, 1);
     gv_playerMedicPlayed[lp_player] = gv_playerBankData[4][lp_player];
     gv_playerKarma[lp_player] = gv_playerBankData[5][lp_player];
     PlayerScoreValueSetFromInt(lp_player, "Karma", gv_playerKarma[lp_player]);
@@ -3337,6 +3344,9 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     lv_missionTimePanel = DialogControlLastCreated();
     if ((gv_sFOption == "0002")) {
         gv_spawnFactor += 1;
+    }
+    else if ((gv_sFOption == "0003")) {
+        gv_spawnFactor += 2;
     }
     autoB90D3843_val = gv_currentGameMode;
     if (autoB90D3843_val == ge_GameModes_Normal) {
@@ -15169,7 +15179,7 @@ void gf_LevelUpTalentChemExpert (int lp_itemNo, unit lp_triggUnit, int lp_triggP
 bool gf_MarineLearnPossible (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
-    if (((UnitAbilityCheck(lp_unit, "LearnAssault", false) == true) || (UnitAbilityCheck(lp_unit, "LearnChemExpert", false) == true) || (UnitAbilityCheck(lp_unit, "LearnCommando", false) == true) || (UnitAbilityCheck(lp_unit, "LearnDemolitions", false) == true) || (UnitAbilityCheck(lp_unit, "LearnEngineer", false) == true) || (UnitAbilityCheck(lp_unit, "LearnFlamethrower", false) == true) || (UnitAbilityCheck(lp_unit, "LearnForwardObserver", false) == true) || (UnitAbilityCheck(lp_unit, "LearnMarksman", false) == true) || (UnitAbilityCheck(lp_unit, "LearnMedic", false) == true) || (UnitAbilityCheck(lp_unit, "LearnPathfinder", false) == true) || (UnitAbilityCheck(lp_unit, "LearnPsiOps", false) == true) || (UnitAbilityCheck(lp_unit, "LearnRecon", false) == true) || (UnitAbilityCheck(lp_unit, "LearnRifleman", false) == true) || (UnitAbilityCheck(lp_unit, "LearnTechnician", false) == true))) {
+    if ((UnitAbilityCheck(lp_unit, "LearnAssault", false) || UnitAbilityCheck(lp_unit, "LearnChemExpert", false) || UnitAbilityCheck(lp_unit, "LearnCommando", false) || UnitAbilityCheck(lp_unit, "LearnDemolitions", false) || UnitAbilityCheck(lp_unit, "LearnEngineer", false) || UnitAbilityCheck(lp_unit, "LearnFlamethrower", false) || UnitAbilityCheck(lp_unit, "LearnForwardObserver", false) || UnitAbilityCheck(lp_unit, "LearnMarksman", false) || UnitAbilityCheck(lp_unit, "LearnMedic", false) || UnitAbilityCheck(lp_unit, "LearnPathfinder", false) || UnitAbilityCheck(lp_unit, "LearnPsiOps", false) || UnitAbilityCheck(lp_unit, "LearnRecon", false) || UnitAbilityCheck(lp_unit, "LearnRifleman", false) || UnitAbilityCheck(lp_unit, "LearnTechnician", false))) {
         return true;
     }
     else {
@@ -15271,7 +15281,7 @@ void gf_UpdateTalentImage (int lp_itemNo, int lp_triggPlayer) {
         DialogControlSetVisible(lv_dialogBorderFinal, PlayerGroupAll(), true);
     }
     else {
-        if (((lv_talentsAvailable == true) && (gf_TalentSelectionOption(lp_itemNo, lp_triggPlayer) == true))) {
+        if ((lv_talentsAvailable && gf_TalentSelectionOption(lp_itemNo, lp_triggPlayer))) {
             libNtve_gf_SetDialogItemColor(lv_dialogItem, Color(67.45, 67.45, 67.45), gv_marineSquad);
         }
         else {
@@ -15310,7 +15320,7 @@ void gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer) {
     lv_triggUnit = gv_marineHero[lp_triggPlayer];
 
     // Implementation
-    while (((libNtve_gf_UnitIsPaused(lv_triggUnit) == true) || gf_MarineLearnPossible(lv_triggUnit))) {
+    while ((libNtve_gf_UnitIsPaused(lv_triggUnit) || gf_MarineLearnPossible(lv_triggUnit))) {
         Wait(0.1, c_timeGame);
     }
     UnitIssueOrder(lv_triggUnit, Order(AbilityCommand("GenericMarineLearn", (lp_itemNo - 1))), c_orderQueueAddToFront);
@@ -15379,12 +15389,12 @@ void gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer) {
 void gf_UpdateTalentSystem (int lp_itemNo, int lp_triggPlayer) {
     // Automatic Variable Declarations
     // Implementation
-    if ((gf_TalentSelectionOption(lp_itemNo, lp_triggPlayer) == true)) {
+    if (gf_TalentSelectionOption(lp_itemNo, lp_triggPlayer)) {
         gv_talentsAvailable[lp_triggPlayer] -= 1;
         gv_talentLevel[lp_itemNo][lp_triggPlayer] += 1;
         gf_UpdateTalentAbility(lp_itemNo, lp_triggPlayer);
         gf_UpdateTalentText(lp_itemNo, lp_triggPlayer, gv_talentLevel[lp_itemNo][lp_triggPlayer]);
-        if (((lp_itemNo == 5) || (lp_itemNo == 10)) && (gv_playerBanned[lp_triggPlayer] == false)) {
+        if (((lp_itemNo == 5) || (lp_itemNo == 10)) && (!(gv_playerBanned[lp_triggPlayer]))) {
             gf_TeamStatusInitializePlayerPortrait(lp_triggPlayer);
         }
 
@@ -15449,7 +15459,7 @@ bool auto_gf_TalentTreeCreation_TriggerFunc (bool testConds, bool runActions) {
     gf_UpdateTalentImage(2, lp_player);
     gf_UpdateTalentImage(6, lp_player);
     gf_UpdateTalentImage(7, lp_player);
-    if ((TriggerIsEnabled(gt_TalentSelection) == false)) {
+    if ((!(TriggerIsEnabled(gt_TalentSelection)))) {
         TriggerEnable(gt_TalentSelection, true);
     }
 
@@ -15505,8 +15515,8 @@ bool gf_ExpedCheck () {
 void gf_WinUpdate (int lp_player, bool lp_nMSpeed, bool lp_speed) {
     // Automatic Variable Declarations
     // Implementation
-    if ((gv_survivalMode == true)) {
-        if ((gv_nightmare == true)) {
+    if (gv_survivalMode) {
+        if (gv_nightmare) {
             gv_survivalWinNM[lp_player] += 1;
         }
         else {
@@ -15514,44 +15524,44 @@ void gf_WinUpdate (int lp_player, bool lp_nMSpeed, bool lp_speed) {
         }
     }
     else if ((gv_storyline == 1)) {
-        if ((lp_nMSpeed == true)) {
+        if (lp_nMSpeed) {
             gv_eCNMSpeed[lp_player] += 1;
         }
-        else if ((lp_speed == true)) {
+        else if (lp_speed) {
             gv_eCSpeed[lp_player] += 1;
         }
-        else if ((gv_nightmare == true)) {
+        else if (gv_nightmare) {
             gv_eCWinNM[lp_player] += 1;
         }
-        else if ((lp_speed == false)) {
+        else if ((!(lp_speed))) {
             gv_eCWinNormal[lp_player] += 1;
         }
     }
     else if ((gv_storyline == 2)) {
-        if ((lp_nMSpeed == true)) {
+        if (lp_nMSpeed) {
             gv_aCNMSpeed[lp_player] += 1;
         }
-        else if ((lp_speed == true)) {
+        else if (lp_speed) {
             gv_aCSpeed[lp_player] += 1;
         }
-        else if ((gv_nightmare == true)) {
+        else if (gv_nightmare) {
             gv_aCWinNM[lp_player] += 1;
         }
-        else if ((lp_speed == false)) {
+        else if ((!(lp_speed))) {
             gv_aCWinNormal[lp_player] += 1;
         }
     }
     else if ((gv_storyline == 3)) {
-        if ((lp_nMSpeed == true)) {
+        if (lp_nMSpeed) {
             gv_sTNMSpeed[lp_player] += 1;
         }
-        else if ((lp_speed == true)) {
+        else if (lp_speed) {
             gv_sTSpeed[lp_player] += 1;
         }
-        else if ((gv_nightmare == true)) {
+        else if (gv_nightmare) {
             gv_sTWinNM[lp_player] += 1;
         }
-        else if ((lp_speed == false)) {
+        else if ((!(lp_speed))) {
             gv_sTWinNormal[lp_player] += 1;
         }
     }
@@ -15566,12 +15576,12 @@ void gf_VictoryBonusXP () {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/CFA17E6B"));
     }
 
-    if ((gv_isVeteranSquad == false)) {
+    if ((!(gv_isVeteranSquad))) {
         gf_AwardPlayerXPNOTD(10);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/DCD19264"));
         gf_AwardCreditsNOTD(20);
     }
-    else if ((gv_nightmare == true)) {
+    else if (gv_nightmare) {
         gf_AwardPlayerXPNOTD(30);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/D48BFD10"));
         gf_AwardCreditsNOTD(80);
@@ -15599,7 +15609,7 @@ void gf_MedalofHonorAward (int lp_medalNumber) {
     int auto7EE366EF_var;
 
     // Implementation
-    if ((gv_nightmare == true) && ((gv_totalPlayers == gv_alivePlayers) || (gv_mOHAwardException == true)) && (gv_totalPlayers >= 3)) {
+    if (gv_nightmare && ((gv_totalPlayers == gv_alivePlayers) || gv_mOHAwardException) && (gv_totalPlayers >= 3)) {
         TextExpressionSetToken("Param/Expression/4D6170D4", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/4D6170D4"));
         gf_UnifiedAwards(25, 0.0, 300, 1, 2);
@@ -15625,8 +15635,8 @@ void gf_CombatActionAward (int lp_medalNumber) {
     // Implementation
     auto0E4C99AF_var = gv_indexBaseValue;
     for ( ; auto0E4C99AF_var <= auto0E4C99AF_ae; auto0E4C99AF_var += 1 ) {
-        if ((PlayerStatus(auto0E4C99AF_var) == c_playerStatusActive) && ((UnitIsAlive(gv_marineHero[auto0E4C99AF_var]) == true) || (gv_cPAwardException[auto0E4C99AF_var] == true))) {
-            if (((gv_storyline == 3) || ((gv_storyline <= 2) && ((gv_playerRating[auto0E4C99AF_var] < 1800) || ((gv_isVeteranSquad == true) && (gv_playerRating[auto0E4C99AF_var] < 1990)))))) {
+        if ((PlayerStatus(auto0E4C99AF_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[auto0E4C99AF_var]) || gv_cPAwardException[auto0E4C99AF_var])) {
+            if (((gv_storyline == 3) || ((gv_storyline <= 2) && ((gv_playerRating[auto0E4C99AF_var] < 1800) || (gv_isVeteranSquad && (gv_playerRating[auto0E4C99AF_var] < 1990)))))) {
                 gf_UpdateRating(auto0E4C99AF_var, 1);
             }
 
@@ -15653,7 +15663,7 @@ void gf_LifeSavingAward (int lp_medalNumber) {
     // Implementation
     autoD589CE20_var = gv_indexBaseValue;
     for ( ; autoD589CE20_var <= autoD589CE20_ae; autoD589CE20_var += 1 ) {
-        if ((PlayerStatus(autoD589CE20_var) == c_playerStatusActive) && ((UnitIsAlive(gv_marineHero[autoD589CE20_var]) == true) || (gv_cPAwardException[autoD589CE20_var] == true)) && (UnitGetType(gv_marineHero[autoD589CE20_var]) == "Medic2") && ((gv_lifeSavingMedal[autoD589CE20_var] < 20) || ((gv_lifeSavingMedal[autoD589CE20_var] >= 20) && (gv_nightmare == true)))) {
+        if ((PlayerStatus(autoD589CE20_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[autoD589CE20_var]) || gv_cPAwardException[autoD589CE20_var]) && (UnitGetType(gv_marineHero[autoD589CE20_var]) == "Medic2") && ((gv_lifeSavingMedal[autoD589CE20_var] < 20) || ((gv_lifeSavingMedal[autoD589CE20_var] >= 20) && gv_nightmare))) {
             gv_lifeSavingMedal[autoD589CE20_var] += 1;
             TextExpressionSetToken("Param/Expression/D3BA9547", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoD589CE20_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/D3BA9547"));
@@ -15681,7 +15691,7 @@ void gf_BronzeStarAward (int lp_medalNumber) {
         lv_pet = UnitGroupUnitFromEnd(auto5607B0F3_g, auto5607B0F3_u);
         if (lv_pet == null) { break; }
         lv_player = UnitGetOwner(lv_pet);
-        if ((PlayerStatus(lv_player) == c_playerStatusActive) && (libNtve_gf_UnitGetPropertyKills(lv_pet, c_unitPropCurrent) >= 50) && ((gv_bronzeStar[lv_player] < 20) || ((gv_bronzeStar[lv_player] >= 20) && (gv_nightmare == true)))) {
+        if ((PlayerStatus(lv_player) == c_playerStatusActive) && (libNtve_gf_UnitGetPropertyKills(lv_pet, c_unitPropCurrent) >= 50) && ((gv_bronzeStar[lv_player] < 20) || ((gv_bronzeStar[lv_player] >= 20) && gv_nightmare))) {
             gv_bronzeStar[lv_player] += 1;
             TextExpressionSetToken("Param/Expression/710E94FC", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/710E94FC"));
@@ -15699,7 +15709,7 @@ void gf_DSMAward (int lp_medalNumber) {
     // Implementation
     autoC1B50F84_var = gv_indexBaseValue;
     for ( ; autoC1B50F84_var <= autoC1B50F84_ae; autoC1B50F84_var += 1 ) {
-        if ((PlayerStatus(autoC1B50F84_var) == c_playerStatusActive) && ((gv_distinguishedServiceMedal[autoC1B50F84_var] < 20) || ((gv_distinguishedServiceMedal[autoC1B50F84_var] >= 20) && (gv_nightmare == true)))) {
+        if ((PlayerStatus(autoC1B50F84_var) == c_playerStatusActive) && ((gv_distinguishedServiceMedal[autoC1B50F84_var] < 20) || ((gv_distinguishedServiceMedal[autoC1B50F84_var] >= 20) && gv_nightmare))) {
             gv_distinguishedServiceMedal[autoC1B50F84_var] += 1;
             TextExpressionSetToken("Param/Expression/D7FE6A11", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoC1B50F84_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/D7FE6A11"));
@@ -15717,7 +15727,7 @@ void gf_LegionOfMeritAward (int lp_medalNumber) {
     // Implementation
     autoE693EBB1_var = gv_indexBaseValue;
     for ( ; autoE693EBB1_var <= autoE693EBB1_ae; autoE693EBB1_var += 1 ) {
-        if ((PlayerStatus(autoE693EBB1_var) == c_playerStatusActive) && ((gv_legionOfMerit[autoE693EBB1_var] < 20) || ((gv_legionOfMerit[autoE693EBB1_var] >= 20) && (gv_nightmare == true)))) {
+        if ((PlayerStatus(autoE693EBB1_var) == c_playerStatusActive) && ((gv_legionOfMerit[autoE693EBB1_var] < 20) || ((gv_legionOfMerit[autoE693EBB1_var] >= 20) && gv_nightmare))) {
             gv_legionOfMerit[autoE693EBB1_var] += 1;
             TextExpressionSetToken("Param/Expression/2FE78331", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoE693EBB1_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/2FE78331"));
@@ -15735,7 +15745,7 @@ void gf_ExpeditionaryAward (int lp_medalNumber) {
     // Implementation
     autoDC3D2109_var = gv_indexBaseValue;
     for ( ; autoDC3D2109_var <= autoDC3D2109_ae; autoDC3D2109_var += 1 ) {
-        if (((gv_expeditionaryMedal[autoDC3D2109_var] < 20) || ((gv_expeditionaryMedal[autoDC3D2109_var] >= 20) && (gv_nightmare == true))) && (PlayerStatus(autoDC3D2109_var) == c_playerStatusActive)) {
+        if (((gv_expeditionaryMedal[autoDC3D2109_var] < 20) || ((gv_expeditionaryMedal[autoDC3D2109_var] >= 20) && gv_nightmare)) && (PlayerStatus(autoDC3D2109_var) == c_playerStatusActive)) {
             gv_expeditionaryMedal[autoDC3D2109_var] += 1;
             TextExpressionSetToken("Param/Expression/72793672", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoDC3D2109_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/72793672"));
@@ -15753,7 +15763,7 @@ void gf_SilverStarAward (int lp_medalNumber) {
     // Implementation
     autoC9D3A8A8_var = gv_indexBaseValue;
     for ( ; autoC9D3A8A8_var <= autoC9D3A8A8_ae; autoC9D3A8A8_var += 1 ) {
-        if ((UnitGetType(gv_marineHero[autoC9D3A8A8_var]) == "Rifleman") && (PlayerStatus(autoC9D3A8A8_var) == c_playerStatusActive) && (gv_hitsTaken[autoC9D3A8A8_var] <= 10) && ((gv_silverStar[autoC9D3A8A8_var] < 20) || ((gv_silverStar[autoC9D3A8A8_var] >= 20) && (gv_nightmare == true)))) {
+        if ((UnitGetType(gv_marineHero[autoC9D3A8A8_var]) == "Rifleman") && (PlayerStatus(autoC9D3A8A8_var) == c_playerStatusActive) && (gv_hitsTaken[autoC9D3A8A8_var] <= 10) && ((gv_silverStar[autoC9D3A8A8_var] < 20) || ((gv_silverStar[autoC9D3A8A8_var] >= 20) && gv_nightmare))) {
             gv_silverStar[autoC9D3A8A8_var] += 1;
             TextExpressionSetToken("Param/Expression/8074E518", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoC9D3A8A8_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/8074E518"));
@@ -15771,7 +15781,7 @@ void gf_NavyCrossAward (int lp_medalNumber) {
     // Implementation
     autoA6BCDAE0_var = gv_indexBaseValue;
     for ( ; autoA6BCDAE0_var <= autoA6BCDAE0_ae; autoA6BCDAE0_var += 1 ) {
-        if ((PlayerStatus(autoA6BCDAE0_var) == c_playerStatusActive) && ((gv_navyCross[autoA6BCDAE0_var] < 20) || ((gv_navyCross[autoA6BCDAE0_var] >= 20) && (gv_nightmare == true)))) {
+        if ((PlayerStatus(autoA6BCDAE0_var) == c_playerStatusActive) && ((gv_navyCross[autoA6BCDAE0_var] < 20) || ((gv_navyCross[autoA6BCDAE0_var] >= 20) && gv_nightmare))) {
             gv_navyCross[autoA6BCDAE0_var] += 1;
             TextExpressionSetToken("Param/Expression/9A873C53", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoA6BCDAE0_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/9A873C53"));
@@ -15789,10 +15799,10 @@ void gf_SpeedBonusXP () {
     // Variable Initialization
 
     // Implementation
-    if ((gv_isVeteranSquad == false)) {
+    if ((!(gv_isVeteranSquad))) {
         lv_speedXP = 10;
     }
-    else if ((gv_nightmare == true)) {
+    else if (gv_nightmare) {
         lv_speedXP = 40;
     }
     else if (true) {
@@ -15824,7 +15834,7 @@ bool auto_gf_GameOverInit_TriggerFunc (bool testConds, bool runActions) {
     unit auto4CC7AA1B_var;
 
     // Implementation
-    if ((gv_victory == true)) {
+    if (gv_victory) {
         gv_gameResultMusic = "VictoryMusic";
         gv_exitButtonSound = SoundLink("UI_ScoreScreenMissionTime", -1);
         gv_gameResult = c_gameOverVictory;
@@ -15836,7 +15846,7 @@ bool auto_gf_GameOverInit_TriggerFunc (bool testConds, bool runActions) {
     }
     auto99D74A07_var = gv_indexBaseValue;
     for ( ; auto99D74A07_var <= auto99D74A07_ae; auto99D74A07_var += 1 ) {
-        if ((gv_playerRandom[auto99D74A07_var] == true)) {
+        if (gv_playerRandom[auto99D74A07_var]) {
             gf_UpdateKarma(auto99D74A07_var, 5);
         }
         else {
@@ -15845,7 +15855,7 @@ bool auto_gf_GameOverInit_TriggerFunc (bool testConds, bool runActions) {
     }
     SoundtrackStop(PlayerGroupActive(), c_soundtrackCategoryMusic, true);
     SoundtrackPlay(PlayerGroupActive(), c_soundtrackCategoryMusic, gv_gameResultMusic, c_soundtrackCueAny, c_soundtrackIndexAny, false);
-    if ((gv_victory == true)) {
+    if (gv_victory) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/02F14065"));
         TriggerExecute(gt_VictoryBonus, true, true);
     }
@@ -15892,7 +15902,7 @@ bool auto_gf_GameOverInit_TriggerFunc (bool testConds, bool runActions) {
     UIClearMessages(PlayerGroupAll(), c_messageAreaSubtitle);
     gf_EndGameUINOTD();
     TriggerEnable(gt_ReturntoEarth, true);
-    if ((gv_victory == true) && (gv_storyline == 1)) {
+    if (gv_victory && (gv_storyline == 1)) {
         libNtve_gf_HideGameUI(false, PlayerGroupAll());
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/3D74E3DA"));
         Wait(7.0, c_timeReal);
@@ -16030,7 +16040,7 @@ bool auto_gf_EndGameUINOTD_TriggerFunc (bool testConds, bool runActions) {
     lv_victoryButtonPositionX = ((lv_dialogX / 2) - (lv_victoryButtonX / 2));
     lv_finalTextXPosition = (lv_victoryButtonPositionX + 70);
     lv_victoryTextPositionX = (lv_victoryButtonPositionX + 27);
-    if ((gv_victory == true)) {
+    if (gv_victory) {
         lv_redTint = Color(100,100,100);
         lv_victoryButtonImage = "Assets\\Textures\\ui_research_frame_tooltip_protoss.dds";
     }
@@ -16058,7 +16068,7 @@ bool auto_gf_EndGameUINOTD_TriggerFunc (bool testConds, bool runActions) {
     auto738DBD74_var = gv_indexBaseValue;
     for ( ; auto738DBD74_var <= auto738DBD74_ae; auto738DBD74_var += 1 ) {
         if ((PlayerStatus(auto738DBD74_var) != c_playerStatusUnused)) {
-            if ((gv_playerDoctor[auto738DBD74_var] == true)) {
+            if (gv_playerDoctor[auto738DBD74_var]) {
                 lv_rankTitle = StringExternal("Param/Value/FEF9177A");
                 lv_rankImage = "Assets\\Textures\\btn-ability-terran-heal.dds";
             }
@@ -16150,7 +16160,7 @@ bool auto_gf_EndGameUINOTD_TriggerFunc (bool testConds, bool runActions) {
         gv_finalTextLabel[autoD293E7A2_var][1] = DialogControlLastCreated();
     }
     gv_victoryButton1 = DialogControlLastCreated();
-    if ((gv_victory == true)) {
+    if (gv_victory) {
         DialogControlCreateFromTemplate(gv_endGameDialog1, c_triggerControlTypeButton, "EndGameUI/VictoryButton");
         DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, lv_victoryButtonPositionX, lv_victoryButtonPositionY);
         gv_victoryButton1 = DialogControlLastCreated();
@@ -43333,11 +43343,11 @@ bool gt_Backstab_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((UnitHasBehavior(lv_attackingUnit, "Backstab") == true))) {
+        if (!(UnitHasBehavior(lv_attackingUnit, "Backstab"))) {
             return false;
         }
 
-        if (!((UnitIsAlive(lv_attackedUnit) == true))) {
+        if (!(UnitIsAlive(lv_attackedUnit))) {
             return false;
         }
     }
@@ -43411,11 +43421,11 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((UnitHasBehavior(EventUnit(), "CriticalStrikeDefender") == true))) {
+        if (!(UnitHasBehavior(EventUnit(), "CriticalStrikeDefender"))) {
             return false;
         }
 
-        if (!((UnitHasBehavior(lv_attackingUnit, "CriticalStrikeDealer") == true))) {
+        if (!(UnitHasBehavior(lv_attackingUnit, "CriticalStrikeDealer"))) {
             return false;
         }
     }
@@ -43493,7 +43503,7 @@ bool gt_Anticipation_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((UnitIsAlive(lv_attackedUnit) == true))) {
+        if (!(UnitIsAlive(lv_attackedUnit))) {
             return false;
         }
 
@@ -43501,7 +43511,7 @@ bool gt_Anticipation_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!(((UnitHasBehavior(lv_attackingUnit, "AnticipationLevel1") == true) || (UnitHasBehavior(lv_attackingUnit, "AnticipationLevel2") == true)))) {
+        if (!((UnitHasBehavior(lv_attackingUnit, "AnticipationLevel1") || UnitHasBehavior(lv_attackingUnit, "AnticipationLevel2")))) {
             return false;
         }
     }
@@ -43511,10 +43521,10 @@ bool gt_Anticipation_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((UnitHasBehavior(lv_attackingUnit, "AnticipationLevel1") == true)) {
+    if (UnitHasBehavior(lv_attackingUnit, "AnticipationLevel1")) {
         lv_damage = (lv_damage * 0.15);
     }
-    else if ((UnitHasBehavior(lv_attackingUnit, "AnticipationLevel2") == true)) {
+    else if (UnitHasBehavior(lv_attackingUnit, "AnticipationLevel2")) {
         lv_damage = (lv_damage * 0.3);
     }
     CatalogFieldValueSet(c_gameCatalogEffect, "AnticipationDamage", "Amount", lv_ownerofAttackingUnit, FixedToString(lv_damage, c_fixedPrecisionAny));
@@ -43584,7 +43594,7 @@ bool gt_Concentration_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((UnitIsAlive(lv_attackedUnit) == true))) {
+        if (!(UnitIsAlive(lv_attackedUnit))) {
             return false;
         }
 
@@ -43602,7 +43612,7 @@ bool gt_Concentration_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if (((UnitHasBehavior(lv_attackingUnit, "ConcentrationLevel1") == true) || (UnitHasBehavior(lv_attackingUnit, "ConcentrationLevel2") == true) || (UnitHasBehavior(lv_attackingUnit, "ConcentrationLevel3") == true))) {
+    if ((UnitHasBehavior(lv_attackingUnit, "ConcentrationLevel1") || UnitHasBehavior(lv_attackingUnit, "ConcentrationLevel2") || UnitHasBehavior(lv_attackingUnit, "ConcentrationLevel3"))) {
         lv_concentrationDamage = ((IntToFixed(gv_talentLevel[1][lv_ownerofAttackingUnit]) * 0.2) * lv_damage);
         CatalogFieldValueSet(c_gameCatalogEffect, "Concentration", "Amount", lv_ownerofAttackingUnit, FixedToString(lv_concentrationDamage, c_fixedPrecisionAny));
         UnitCreateEffectUnit(lv_attackingUnit, "Concentration", lv_attackedUnit);
@@ -43677,7 +43687,7 @@ bool gt_SupplyStation_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((UnitGroupHasUnit(gv_marines, lv_effectTarget) == true))) {
+        if (!(UnitGroupHasUnit(gv_marines, lv_effectTarget))) {
             return false;
         }
     }
@@ -43687,7 +43697,7 @@ bool gt_SupplyStation_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((UnitHasBehavior(lv_effectTarget, "HighCapacityClip") == true)) {
+    if (UnitHasBehavior(lv_effectTarget, "HighCapacityClip")) {
         lv_localMarineMags += 1;
     }
 
@@ -43698,7 +43708,7 @@ bool gt_SupplyStation_Func (bool testConds, bool runActions) {
     lv_totalRounds = (gv_playerRoundLimit[lv_ownerofMarine] * lv_localMarineMags);
     gv_marineRounds[lv_ownerofMarine] = MinI((gv_marineRounds[lv_ownerofMarine] + lv_supplyStationLevel), lv_totalRounds);
     gf_UpdateAmmoDialog(lv_ownerofMarine);
-    if ((UnitHasBehavior(lv_effectTarget, "Reload") == false) && (UnitHasBehavior(lv_effectTarget, "InsufficientAmmo") == true)) {
+    if ((!(UnitHasBehavior(lv_effectTarget, "Reload"))) && UnitHasBehavior(lv_effectTarget, "InsufficientAmmo")) {
         if ((UnitWeaponGet(lv_effectTarget, 1) == "StingerMK3") && (gv_marineRounds[lv_ownerofMarine] >= 10)) {
             UnitBehaviorRemovePlayer(lv_effectTarget, "InsufficientAmmo", lv_ownerofMarine, 1);
         }
@@ -43789,7 +43799,7 @@ bool gt_HammeroftheGodsCamShake_Func (bool testConds, bool runActions) {
 
     autoF6EB5B1C_var = gv_indexBaseValue;
     for ( ; autoF6EB5B1C_var <= autoF6EB5B1C_ae; autoF6EB5B1C_var += 1 ) {
-        if (((UnitIsAlive(gv_marineHero[autoF6EB5B1C_var]) == true) || (UnitIsAlive(gv_playerPet[autoF6EB5B1C_var]) == true))) {
+        if ((UnitIsAlive(gv_marineHero[autoF6EB5B1C_var]) || UnitIsAlive(gv_playerPet[autoF6EB5B1C_var]))) {
             if (((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_playerPet[autoF6EB5B1C_var])) <= 3.0) || (DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_marineHero[autoF6EB5B1C_var])) <= 3.0))) {
                 CameraShakeStart(autoF6EB5B1C_var, c_cameraPositionBoth, c_cameraDirectionXZ, 0.02, 1.0, 100.0, 0.1);
             }
@@ -43863,20 +43873,20 @@ bool gt_FieldNexusRevokeSharedVision_Func (bool testConds, bool runActions) {
         }
 
     }
-    if ((lv_fieldNexusAliveTemp == true)) {
+    if (lv_fieldNexusAliveTemp) {
         gv_fieldNexusAlive = true;
     }
     else {
         gv_fieldNexusAlive = false;
     }
-    if ((gv_fieldNexusAlive == false)) {
+    if ((!(gv_fieldNexusAlive))) {
         auto3238C2B6_var = gv_indexBaseValue;
         for ( ; auto3238C2B6_var <= auto3238C2B6_ae; auto3238C2B6_var += 1 ) {
-            if ((PlayerStatus(auto3238C2B6_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[auto3238C2B6_var]) == true)) {
+            if ((PlayerStatus(auto3238C2B6_var) == c_playerStatusActive) && UnitIsAlive(gv_marineHero[auto3238C2B6_var])) {
                 lv_localInt = gv_indexBaseValue;
                 for ( ; ( (autoA7473437_ai >= 0 && lv_localInt <= autoA7473437_ae) || (autoA7473437_ai < 0 && lv_localInt >= autoA7473437_ae) ) ; lv_localInt += autoA7473437_ai ) {
                     if ((PlayerStatus(lv_localInt) == c_playerStatusActive) && (lv_localInt != auto3238C2B6_var)) {
-                        if ((PlayerGetAlliance(lv_localInt, c_allianceIdControl, auto3238C2B6_var) == true)) {
+                        if (PlayerGetAlliance(lv_localInt, c_allianceIdControl, auto3238C2B6_var)) {
                             libNtve_gf_SetAllianceOneWay(lv_localInt, auto3238C2B6_var, libNtve_ge_AllianceSetting_Ally);
                             PlayerSetAlliance(lv_localInt, c_allianceIdControl, auto3238C2B6_var, true);
                         }
@@ -43886,11 +43896,11 @@ bool gt_FieldNexusRevokeSharedVision_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-            else if ((PlayerStatus(auto3238C2B6_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[auto3238C2B6_var]) == false)) {
+            else if ((PlayerStatus(auto3238C2B6_var) == c_playerStatusActive) && (!(UnitIsAlive(gv_marineHero[auto3238C2B6_var])))) {
                 lv_localInt = gv_indexBaseValue;
                 for ( ; ( (auto78B9422F_ai >= 0 && lv_localInt <= auto78B9422F_ae) || (auto78B9422F_ai < 0 && lv_localInt >= auto78B9422F_ae) ) ; lv_localInt += auto78B9422F_ai ) {
                     if ((PlayerStatus(lv_localInt) == c_playerStatusActive) && (lv_localInt != auto3238C2B6_var)) {
-                        if ((PlayerGetAlliance(lv_localInt, c_allianceIdControl, auto3238C2B6_var) == true)) {
+                        if (PlayerGetAlliance(lv_localInt, c_allianceIdControl, auto3238C2B6_var)) {
                             libNtve_gf_SetAllianceOneWay(lv_localInt, auto3238C2B6_var, libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
                         }
                         else {
@@ -43907,7 +43917,7 @@ bool gt_FieldNexusRevokeSharedVision_Func (bool testConds, bool runActions) {
     for (;; autoB06AF8D1_u -= 1) {
         autoB06AF8D1_var = UnitGroupUnitFromEnd(autoB06AF8D1_g, autoB06AF8D1_u);
         if (autoB06AF8D1_var == null) { break; }
-        if ((UnitGetType(autoB06AF8D1_var) == "PsiOps") && ((UnitHasBehavior(autoB06AF8D1_var, "MindLinkLevel1") == true) || (UnitHasBehavior(autoB06AF8D1_var, "MindLinkLevel2") == true) || (UnitHasBehavior(autoB06AF8D1_var, "MindLinkLevel3") == true))) {
+        if ((UnitGetType(autoB06AF8D1_var) == "PsiOps") && (UnitHasBehavior(autoB06AF8D1_var, "MindLinkLevel1") || UnitHasBehavior(autoB06AF8D1_var, "MindLinkLevel2") || UnitHasBehavior(autoB06AF8D1_var, "MindLinkLevel3"))) {
             auto35764788_g = gv_mindLinkedGroup[UnitGetOwner(auto35764788_var)];
             auto35764788_u = UnitGroupCount(auto35764788_g, c_unitCountAll);
             for (;; auto35764788_u -= 1) {
@@ -43970,7 +43980,7 @@ bool gt_FieldNexusShareVision_Func (bool testConds, bool runActions) {
     }
 
     gv_fieldNexusAlive = true;
-    if ((UnitIsValid(gv_fieldNexus[lv_engineerOwner]) == true) && (UnitIsAlive(gv_fieldNexus[lv_engineerOwner]) == true)) {
+    if (UnitIsValid(gv_fieldNexus[lv_engineerOwner]) && UnitIsAlive(gv_fieldNexus[lv_engineerOwner])) {
         UnitKill(gv_fieldNexus[lv_engineerOwner]);
     }
 
@@ -43980,13 +43990,13 @@ bool gt_FieldNexusShareVision_Func (bool testConds, bool runActions) {
         lv_innerLoop = (lv_outerLoop + 1);
         for ( ; ( (auto0A16C072_ai >= 0 && lv_innerLoop <= auto0A16C072_ae) || (auto0A16C072_ai < 0 && lv_innerLoop >= auto0A16C072_ae) ) ; lv_innerLoop += auto0A16C072_ai ) {
             if ((PlayerStatus(lv_outerLoop) == c_playerStatusActive) && (PlayerStatus(lv_innerLoop) == c_playerStatusActive)) {
-                if ((PlayerGetAlliance(lv_outerLoop, c_allianceIdControl, lv_innerLoop) == true)) {
+                if (PlayerGetAlliance(lv_outerLoop, c_allianceIdControl, lv_innerLoop)) {
                     libNtve_gf_SetAllianceOneWay(lv_outerLoop, lv_innerLoop, libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
                 }
                 else {
                     libNtve_gf_SetAllianceOneWay(lv_outerLoop, lv_innerLoop, libNtve_ge_AllianceSetting_AllyWithSharedVision);
                 }
-                if ((PlayerGetAlliance(lv_innerLoop, c_allianceIdControl, lv_outerLoop) == true)) {
+                if (PlayerGetAlliance(lv_innerLoop, c_allianceIdControl, lv_outerLoop)) {
                     libNtve_gf_SetAllianceOneWay(lv_innerLoop, lv_outerLoop, libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
                 }
                 else {
@@ -44040,7 +44050,7 @@ bool gt_Synergy_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((UnitIsAlive(lv_localTargetUnit) == true))) {
+        if (!(UnitIsAlive(lv_localTargetUnit))) {
             return false;
         }
 
@@ -44138,7 +44148,7 @@ bool gt_Inception_Func (bool testConds, bool runActions) {
     gv_inceptionOn = true;
     gv_hexCycle = 0.8;
     Wait(15.0, c_timeGame);
-    if ((UnitIsAlive(gv_boss) == true) && (UnitGetType(gv_boss) == "Apoptosis")) {
+    if (UnitIsAlive(gv_boss) && (UnitGetType(gv_boss) == "Apoptosis")) {
         GameSetLighting("NOTDApoptosisLighting", 1.0);
     }
     else if (true) {
@@ -44190,7 +44200,7 @@ bool gt_MindLinkShareDamage_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!(((UnitHasBehavior(lv_attackedMarine, "MindLinkLevel1") == true) || (UnitHasBehavior(lv_attackedMarine, "MindLinkLevel2") == true) || (UnitHasBehavior(lv_attackedMarine, "MindLinkLevel3") == true)))) {
+        if (!((UnitHasBehavior(lv_attackedMarine, "MindLinkLevel1") || UnitHasBehavior(lv_attackedMarine, "MindLinkLevel2") || UnitHasBehavior(lv_attackedMarine, "MindLinkLevel3")))) {
             return false;
         }
     }
@@ -44202,7 +44212,7 @@ bool gt_MindLinkShareDamage_Func (bool testConds, bool runActions) {
 
     auto27D59491_var = gv_indexBaseValue;
     for ( ; auto27D59491_var <= auto27D59491_ae; auto27D59491_var += 1 ) {
-        if ((UnitGroupHasUnit(gv_mindLinkedGroup[auto27D59491_var], lv_attackedMarine) == true)) {
+        if (UnitGroupHasUnit(gv_mindLinkedGroup[auto27D59491_var], lv_attackedMarine)) {
             lv_mindLinkedGroupPsiOpsOwner = auto27D59491_var;
             break;
         }
@@ -44391,10 +44401,12 @@ void gt_CancelMindLink_Init () {
 bool gt_MiniTKPenalty_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
+    int lv_controller;
 
     // Automatic Variable Declarations
     // Variable Initialization
     lv_index = libNtve_gf_KillingPlayer();
+    lv_controller = FixedToInt(UnitGetCustomValue(libNtve_gf_KillingUnit(), 1));
 
     // Conditions
     if (testConds) {
@@ -44420,6 +44432,9 @@ bool gt_MiniTKPenalty_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if (((lv_controller >= gv_indexBaseValue) && (lv_controller <= gv_numberofPlayers)) && (UnitGetOwner(EventUnit()) != lv_controller)) {
+        lv_index = lv_controller;
+    }
     gv_miniDeathsFriendly += 1;
     if ((gv_miniDeathsFriendly < 4)) {
         gf_UpdateCredits(lv_index, -10);
@@ -44502,12 +44517,12 @@ bool gt_ModifyShellLimit_Func (bool testConds, bool runActions) {
     }
 
     lv_player = lv_forwardObserverOwner;
-    if (((lv_player == lv_clickingPlayer) || ((lv_player != lv_clickingPlayer) && (PlayerGetAlliance(lv_player, c_allianceIdControl, lv_clickingPlayer) == true)))) {
+    if (((lv_player == lv_clickingPlayer) || ((lv_player != lv_clickingPlayer) && PlayerGetAlliance(lv_player, c_allianceIdControl, lv_clickingPlayer)))) {
         lv_currentAbilityCost = CatalogFieldValueGetAsInt(c_gameCatalogAbil, UserDataGetGameLink("ForwardObserverShellDialogData", UserDataInstance("ForwardObserverShellDialogData", lv_shellType), "Ability", 1), "Cost[" + IntToString(0) + "].Charge.CountUse", lv_player);
-        if (((lv_incre == true) && (lv_currentAbilityCost < 20))) {
+        if ((lv_incre && (lv_currentAbilityCost < 20))) {
             CatalogFieldValueSet(c_gameCatalogAbil, UserDataGetGameLink("ForwardObserverShellDialogData", UserDataInstance("ForwardObserverShellDialogData", lv_shellType), "Ability", 1), "Cost[" + IntToString(0) + "].Charge.CountUse", lv_player, IntToString((lv_currentAbilityCost + 1)));
         }
-        else if (((lv_decre == true) && (lv_currentAbilityCost > 1))) {
+        else if ((lv_decre && (lv_currentAbilityCost > 1))) {
             CatalogFieldValueSet(c_gameCatalogAbil, UserDataGetGameLink("ForwardObserverShellDialogData", UserDataInstance("ForwardObserverShellDialogData", lv_shellType), "Ability", 1), "Cost[" + IntToString(0) + "].Charge.CountUse", lv_player, IntToString((lv_currentAbilityCost - 1)));
         }
         libNtve_gf_SetDialogItemText(gv_shellCounter[lv_shellType][lv_forwardObserverOwner], IntToText(CatalogFieldValueGetAsInt(c_gameCatalogAbil, UserDataGetGameLink("ForwardObserverShellDialogData", UserDataInstance("ForwardObserverShellDialogData", lv_shellType), "Ability", 1), "Cost[" + IntToString(0) + "].Charge.CountUse", lv_player)), gv_shellDialogObservers[lv_player]);
@@ -44809,7 +44824,7 @@ bool gt_SurveillanceFlares_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((UnitHasBehavior(EventUnit(), "BattlefieldIntelligence") == true)) {
+    if (UnitHasBehavior(EventUnit(), "BattlefieldIntelligence")) {
         lv_targetPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), 4.0));
     }
 
@@ -44856,7 +44871,7 @@ bool gt_GunshipBuddy_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((UnitIsAlive(gv_marineHero[EventPlayer()]) == true) && (UnitIsAlive(gv_marineHero[lv_gunshipBuddy]) == true) && (UnitGetType(gv_marineHero[EventPlayer()]) == "ForwardObserver")) {
+    if (UnitIsAlive(gv_marineHero[EventPlayer()]) && UnitIsAlive(gv_marineHero[lv_gunshipBuddy]) && (UnitGetType(gv_marineHero[EventPlayer()]) == "ForwardObserver")) {
         gv_gunshipBuddy[EventPlayer()] = lv_gunshipBuddy;
         UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaDebug, (StringExternal("Param/Value/ECB0A6AF") + (PlayerName(UnitGetOwner(gv_marineHero[lv_gunshipBuddy])) + StringExternal("Param/Value/53C88C67"))));
     }
@@ -44881,7 +44896,7 @@ bool gt_GunshipSelection_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((gv_gunshipActive[EventPlayer()] == true))) {
+        if (!(gv_gunshipActive[EventPlayer()])) {
             return false;
         }
     }
@@ -45099,17 +45114,17 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
                 lv_gunshipRotation = (-360.0 + lv_gunshipRotation);
             }
 
-            if ((lv_angleChange == false) && false) {
+            if (false && (!(lv_angleChange))) {
                 lv_gunshipAngleofAttack += RandomFixed(-10.0, 10.0);
                 lv_angleChange = true;
                 lv_gunshipAngleofAttack = libNtve_gf_ArithmeticRealClamp(lv_gunshipAngleofAttack, 30.0, 60.0);
             }
 
-            if ((lv_angleChange == true) && false) {
+            if (false && (!(lv_angleChange))) {
                 lv_angleChangeCycle += 1;
             }
 
-            if ((lv_angleChangeCycle == 6) && false) {
+            if (false && (lv_angleChangeCycle == 6)) {
                 lv_angleChangeCycle -= 6;
                 lv_angleChange = false;
             }
@@ -45117,7 +45132,7 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
             lv_gunshipUnitPoint = PointWithOffsetPolar(lv_forwardObserverPosition, gv_gunshipDistance[lv_forwardObserverOwner], lv_gunshipRotation);
             UnitSetPosition(gv_gunshipUnit[lv_forwardObserverOwner], lv_gunshipUnitPoint, false);
             lv_heightDifference = (26.0 * Sin(lv_gunshipAngleofAttack));
-            if ((gv_gunshipCameraSwitch[lv_forwardObserverOwner] == false)) {
+            if ((!(gv_gunshipCameraSwitch[lv_forwardObserverOwner]))) {
                 lv_gunshipAngleHorizontal = AngleBetweenPoints(UnitGetPosition(gv_gunshipUnit[lv_forwardObserverOwner]), UnitGetPosition(gv_gunshipFollowedUnit[lv_forwardObserverOwner]));
                 lv_displacementDifference = DistanceBetweenPoints(UnitGetPosition(gv_gunshipUnit[lv_forwardObserverOwner]), UnitGetPosition(gv_gunshipFollowedUnit[lv_forwardObserverOwner]));
             }
@@ -45134,7 +45149,7 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
                 CameraSetValue(lv_forwardObserverOwner, c_cameraValuePitch, lv_gunshipAngleVertical, 2.5, -1, 0);
             }
 
-            if ((gv_gunshipZoom[lv_forwardObserverOwner] == true)) {
+            if (gv_gunshipZoom[lv_forwardObserverOwner]) {
                 lv_distanceDifference /= 2.0;
             }
 
@@ -45143,7 +45158,7 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
             CameraPan(lv_forwardObserverOwner, lv_forwardObserverPosition, 2.5, -1, 0, false);
         }
 
-        if ((UnitIsAlive(gv_gunshipUnit[lv_forwardObserverOwner]) == false)) {
+        if ((!(UnitIsAlive(gv_gunshipUnit[lv_forwardObserverOwner])))) {
             auto64003874_g = gv_marines;
             auto64003874_u = UnitGroupCount(auto64003874_g, c_unitCountAll);
             for (;; auto64003874_u -= 1) {
@@ -45158,13 +45173,13 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
 
         lv_gunshipCycle += 1;
         Wait(0.5, c_timeGame);
-        if ((gv_cinematicMode == true) && (gv_inceptionOn == false)) {
+        if (gv_cinematicMode && (!(gv_inceptionOn))) {
             if ((gv_gunshipTeamUI[lv_forwardObserverOwner] == 1)) {
                 DialogControlSetVisible(gv_teamUI, PlayerGroupSingle(lv_forwardObserverOwner), false);
             }
 
             libNtve_gf_MakeUnitUncommandable(gv_gunshipUnit[lv_forwardObserverOwner], true);
-            while ((gv_cinematicMode == true) && (gv_inceptionOn == false)) {
+            while (gv_cinematicMode && (!(gv_inceptionOn))) {
                 Wait(0.5, c_timeGame);
             }
             libNtve_gf_MakeUnitUncommandable(gv_gunshipUnit[lv_forwardObserverOwner], false);
@@ -45190,13 +45205,13 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
     Wait(3.0, c_timeGame);
     auto5EB37BE9_var = gv_indexBaseValue;
     for ( ; auto5EB37BE9_var <= auto5EB37BE9_ae; auto5EB37BE9_var += 1 ) {
-        if ((gv_gunshipActive[auto5EB37BE9_var] == true)) {
+        if (gv_gunshipActive[auto5EB37BE9_var]) {
             lv_gunshipModeOff = false;
             break;
         }
 
     }
-    if ((lv_gunshipModeOff == true)) {
+    if (lv_gunshipModeOff) {
         TriggerEnable(gt_GunshipImpactQuake, false);
         TriggerEnable(gt_GunshipOtherKeys, false);
         TriggerEnable(gt_GunshipSelection, false);
@@ -45218,22 +45233,22 @@ bool gt_GunshipSupport_Func (bool testConds, bool runActions) {
     }
     DialogDestroy(lv_transperancyDialog);
     DialogDestroy(lv_instructions);
-    if ((gv_poisonGas == false)) {
-        CameraApplyInfo(lv_forwardObserverOwner, CameraInfoDefault(), 0.0, -1, 10, true);
-        CameraSetValue(lv_forwardObserverOwner, c_cameraValueDistance, 32.0, 0.0, -1, 10);
-        CameraPan(lv_forwardObserverOwner, lv_forwardObserverPosition, 0.0, -1, 10, false);
-        CameraLockInput(lv_forwardObserverOwner, false);
-    }
-    else {
-        if ((UnitIsAlive(gv_marineHero[lv_forwardObserverOwner]) == true)) {
+    if (gv_poisonGas) {
+        if (UnitIsAlive(gv_marineHero[lv_forwardObserverOwner])) {
             lv_unittoFollowPoisonGas = gv_marineHero[lv_forwardObserverOwner];
         }
-        else if ((UnitIsAlive(gv_playerPet[lv_forwardObserverOwner]) == true)) {
+        else if (UnitIsAlive(gv_playerPet[lv_forwardObserverOwner])) {
             lv_unittoFollowPoisonGas = gv_playerPet[lv_forwardObserverOwner];
         }
         gf_GasCameraPrep1(lv_forwardObserverOwner, lv_unittoFollowPoisonGas);
         Wait(1.0, c_timeGame);
         gf_GasCameraPrep2(lv_forwardObserverOwner);
+    }
+    else {
+        CameraApplyInfo(lv_forwardObserverOwner, CameraInfoDefault(), 0.0, -1, 10, true);
+        CameraSetValue(lv_forwardObserverOwner, c_cameraValueDistance, 32.0, 0.0, -1, 10);
+        CameraPan(lv_forwardObserverOwner, lv_forwardObserverPosition, 0.0, -1, 10, false);
+        CameraLockInput(lv_forwardObserverOwner, false);
     }
     libNtve_gf_RestoreUnitSelection(lv_forwardObserverOwner);
     if ((lv_forwardObserverHero != null)) {
@@ -45272,7 +45287,7 @@ bool gt_GunshipOtherKeys_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_gunshipActive[lv_index] == true))) {
+        if (!(gv_gunshipActive[lv_index])) {
             return false;
         }
     }
@@ -45283,24 +45298,14 @@ bool gt_GunshipOtherKeys_Func (bool testConds, bool runActions) {
     }
 
     if ((EventKeyPressed() == c_keyC)) {
-        if ((gv_gunshipCameraSwitch[lv_index] == false)) {
-            gv_gunshipCameraSwitch[lv_index] = true;
-        }
-        else {
-            gv_gunshipCameraSwitch[lv_index] = false;
-        }
+        gv_gunshipCameraSwitch[lv_index] = !(gv_gunshipCameraSwitch[lv_index]);
     }
     else if ((EventKeyPressed() == c_keyM)) {
         gv_gunshipActive[lv_index] = false;
         UnitBehaviorRemove(gv_marineHero[lv_index], "GunshipMode", 1);
     }
     else if ((EventKeyPressed() == c_keyZ)) {
-        if ((gv_gunshipZoom[lv_index] == false)) {
-            gv_gunshipZoom[lv_index] = true;
-        }
-        else {
-            gv_gunshipZoom[lv_index] = false;
-        }
+        gv_gunshipZoom[lv_index] = !(gv_gunshipZoom[lv_index]);
     }
     else if ((EventKeyPressed() == c_keyX)) {
         if ((gv_gunshipTeamUI[lv_index] == 1)) {
@@ -45320,7 +45325,7 @@ bool gt_GunshipOtherKeys_Func (bool testConds, bool runActions) {
         gv_gunshipChangeSpeed[lv_index] = true;
         gv_gunshipSpeed[lv_index] = libNtve_gf_ArithmeticRealClamp((gv_gunshipSpeed[lv_index] - 4.0), 4.0, 40.0);
     }
-    if ((gv_gunshipChangeSpeed[lv_index] == true)) {
+    if (gv_gunshipChangeSpeed[lv_index]) {
         gv_gunshipRotation[lv_index] = Pow((gv_gunshipSpeed[lv_index] * 3.42), 0.75);
         gv_gunshipDistance[lv_index] = SquareRoot((gv_gunshipSpeed[lv_index] * 10.0));
         UIClearMessages(PlayerGroupSingle(lv_index), c_messageAreaDebug);
@@ -45358,11 +45363,11 @@ bool gt_GunshipSpeedCtrl_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_gunshipActive[lv_index] == true))) {
+        if (!(gv_gunshipActive[lv_index])) {
             return false;
         }
 
-        if (!((gv_gunshipChangeSpeed[lv_index] == false))) {
+        if (!((!(gv_gunshipChangeSpeed[lv_index])))) {
             return false;
         }
     }
@@ -45423,16 +45428,16 @@ bool gt_GunshipImpactQuake_Func (bool testConds, bool runActions) {
         auto95E0FE93_var = UnitGroupUnitFromEnd(auto95E0FE93_g, auto95E0FE93_u);
         if (auto95E0FE93_var == null) { break; }
         if ((DistanceBetweenPoints(UnitGetPosition(auto95E0FE93_var), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) <= 3.0)) {
-            if ((gv_gunshipActive[UnitGetOwner(auto95E0FE93_var)] == false)) {
+            if ((!(gv_gunshipActive[UnitGetOwner(auto95E0FE93_var)]))) {
                 CameraShakeStart(UnitGetOwner(auto95E0FE93_var), c_cameraPositionTarget, c_cameraDirectionZ, 0.35, 2.0, 100.0, lv_duration[0]);
             }
 
             lv_forwardObserverOwner = EventPlayer();
         }
-        else if ((DistanceBetweenPoints(UnitGetPosition(auto95E0FE93_var), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) <= 5.0) && (gv_gunshipActive[UnitGetOwner(auto95E0FE93_var)] == false)) {
+        else if ((DistanceBetweenPoints(UnitGetPosition(auto95E0FE93_var), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) <= 5.0) && (!(gv_gunshipActive[UnitGetOwner(auto95E0FE93_var)]))) {
             CameraShakeStart(UnitGetOwner(auto95E0FE93_var), c_cameraPositionTarget, c_cameraDirectionZ, 0.2, 2.0, 100.0, lv_duration[1]);
         }
-        else if ((DistanceBetweenPoints(UnitGetPosition(auto95E0FE93_var), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) <= 7.0) && (gv_gunshipActive[UnitGetOwner(auto95E0FE93_var)] == false)) {
+        else if ((DistanceBetweenPoints(UnitGetPosition(auto95E0FE93_var), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) <= 7.0) && (!(gv_gunshipActive[UnitGetOwner(auto95E0FE93_var)]))) {
             CameraShakeStart(UnitGetOwner(auto95E0FE93_var), c_cameraPositionTarget, c_cameraDirectionZ, 0.1, 2.0, 100.0, lv_duration[2]);
         }
     }
@@ -45440,7 +45445,7 @@ bool gt_GunshipImpactQuake_Func (bool testConds, bool runActions) {
         gv_gunshipTeamUI[lv_forwardObserverOwner] = 2;
         DialogControlSetVisible(gv_teamUI, PlayerGroupSingle(lv_forwardObserverOwner), true);
         Wait(5.0, c_timeGame);
-        if ((gv_gunshipCinematicActive[lv_forwardObserverOwner] == true)) {
+        if (gv_gunshipCinematicActive[lv_forwardObserverOwner]) {
             DialogControlSetVisible(gv_teamUI, PlayerGroupSingle(lv_forwardObserverOwner), false);
         }
 
@@ -45531,7 +45536,7 @@ bool gt_TalentTreeToggle_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((DialogIsVisible(gv_talentTree[lv_ownerofHero], lv_selectingPlayer) == false)) {
+    if ((!(DialogIsVisible(gv_talentTree[lv_ownerofHero], lv_selectingPlayer)))) {
         gf_HideAllDialogsForPlayer(lv_selectingPlayer);
         DialogSetVisible(gv_talentTree[lv_ownerofHero], PlayerGroupSingle(lv_selectingPlayer), true);
     }
@@ -45574,8 +45579,8 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
     }
 
     UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
-    if ((((gv_isVeteranSquad == true) && (gv_gameVictoryTime <= 3600.0)) || ((gv_isVeteranSquad == false) && (gv_gameVictoryTime <= 3240.0)))) {
-        if ((gv_nightmare == true)) {
+    if (((gv_isVeteranSquad && (gv_gameVictoryTime <= 3600.0)) || ((!(gv_isVeteranSquad)) && (gv_gameVictoryTime <= 3240.0)))) {
+        if (gv_nightmare) {
             lv_nMSpeed = true;
         }
         else {
@@ -45585,7 +45590,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
 
     auto41EF3FE7_var = gv_indexBaseValue;
     for ( ; auto41EF3FE7_var <= auto41EF3FE7_ae; auto41EF3FE7_var += 1 ) {
-        if ((PlayerStatus(auto41EF3FE7_var) == c_playerStatusActive) && ((UnitIsAlive(gv_marineHero[auto41EF3FE7_var]) == true) || (gv_cPAwardException[auto41EF3FE7_var] == true))) {
+        if ((PlayerStatus(auto41EF3FE7_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[auto41EF3FE7_var]) || gv_cPAwardException[auto41EF3FE7_var])) {
             gv_playerXP[auto41EF3FE7_var] += (gv_playerXP[auto41EF3FE7_var] / 10000);
             if ((gv_playerRating[auto41EF3FE7_var] > 1500)) {
                 gf_UpdateRating(auto41EF3FE7_var, ((gv_playerRating[auto41EF3FE7_var] - 1500) / 100));
@@ -45597,7 +45602,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
     }
     SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
     gf_VictoryBonusXP();
-    if (((UnitIsAlive(gv_ogilvy) == true) || (UnitIsAlive(gv_ivan) == true))) {
+    if ((UnitIsAlive(gv_ogilvy) || UnitIsAlive(gv_ivan))) {
         gf_AwardPlayerXPNOTD(3);
     }
 
@@ -45611,11 +45616,11 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
         gf_LegionOfMeritAward(5);
     }
 
-    if ((gv_distinguishedServiceMedalFailed == false)) {
+    if ((!(gv_distinguishedServiceMedalFailed))) {
         gf_DSMAward(6);
     }
 
-    if ((gv_navyCrossFailed == false) && (gv_totalPlayers >= 3)) {
+    if ((!(gv_navyCrossFailed)) && (gv_totalPlayers >= 3)) {
         gf_NavyCrossAward(7);
     }
 
@@ -45623,11 +45628,11 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
         gf_ExpeditionaryAward(8);
     }
 
-    if ((gv_survivalMode == false)) {
+    if ((!(gv_survivalMode))) {
         TriggerExecute(gt_ClassPointsUpdateVictoryOnly, true, false);
     }
 
-    if (((lv_nMSpeed == true) || (lv_speed == true))) {
+    if ((lv_nMSpeed || lv_speed)) {
         gf_SpeedBonusXP();
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
     }
@@ -45663,18 +45668,18 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((gv_nightmare == true) && (gv_gameVictoryTime <= 3600.0)) {
+    if (gv_nightmare && (gv_gameVictoryTime <= 3600.0)) {
         lv_cPAwarded = 2;
     }
 
     auto4111D9D3_var = gv_indexBaseValue;
     for ( ; auto4111D9D3_var <= auto4111D9D3_ae; auto4111D9D3_var += 1 ) {
-        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && (gv_playerRandom[auto4111D9D3_var] == true) && (gv_isVeteranSquad == false)) {
+        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && gv_playerRandom[auto4111D9D3_var] && (!(gv_isVeteranSquad))) {
             UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, StringExternal("Param/Value/FF26767E"));
             gf_UpdateKarma(auto4111D9D3_var, 1);
             continue;
         }
-        if (((UnitIsAlive(gv_marineHero[auto4111D9D3_var]) == true) || (gv_cPAwardException[auto4111D9D3_var] == true))) {
+        if ((UnitIsAlive(gv_marineHero[auto4111D9D3_var]) || gv_cPAwardException[auto4111D9D3_var])) {
             lv_playerClass = UnitGetType(gv_marineHero[auto4111D9D3_var]);
             TextExpressionSetToken("Param/Expression/444E0DF8", "A", UserDataGetText("Classes", gv_playerClass[auto4111D9D3_var], "Class CP Name", 1));
             UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, (StringExternal("Param/Value/7391DB71") + (IntToText(lv_cPAwarded) + TextExpressionAssemble("Param/Expression/444E0DF8"))));
@@ -45682,61 +45687,61 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
             if ((lv_playerClass == "Rifleman")) {
                 gv_playerCP[auto4111D9D3_var].lv_rifleman += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_rifleman > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_rifleman > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_rifleman -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Rifleman");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Rifleman");
             }
             if ((lv_playerClass == "Medic2")) {
                 gv_playerCP[auto4111D9D3_var].lv_medic += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_medic > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_medic > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_medic -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Medic");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Medic");
             }
             if (((lv_playerClass == "TychusChaingun") || (lv_playerClass == "Flamethrower3") || (lv_playerClass == "Technician"))) {
                 gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_assaultFlamerTech -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Assault/Flamer/Tech");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Assault/Flamer/Tech");
             }
             if ((lv_playerClass == "Spectre")) {
                 gv_playerCP[auto4111D9D3_var].lv_recon += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_recon > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_recon > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_recon -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Recon");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Recon");
             }
             if ((lv_playerClass == "Marksman")) {
                 gv_playerCP[auto4111D9D3_var].lv_marksman += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_marksman > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_marksman > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_marksman -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Marksman");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Marksman");
             }
             if (((lv_playerClass == "DominionKillTeam") || (lv_playerClass == "Pathfinder") || (lv_playerClass == "ChemicalExpert"))) {
                 gv_playerCP[auto4111D9D3_var].lv_demoPFChem += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_demoPFChem > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_demoPFChem > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_demoPFChem -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Demo/Pathfinder/Chem");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Demo/Pathfinder/Chem");
             }
             if (((lv_playerClass == "Engineer") || (lv_playerClass == "ForwardObserver"))) {
                 gv_playerCP[auto4111D9D3_var].lv_engineerFO += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_engineerFO > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_engineerFO > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_engineerFO -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Engineer/Forward Observer");
+                lv_cPDecayed = (lv_cPDecayed + "<n/> -1 Engineer/Forward Observer");
             }
             if (((lv_playerClass == "Commando") || (lv_playerClass == "PsiOps"))) {
                 gv_playerCP[auto4111D9D3_var].lv_commandoPO += lv_cPAwarded;
             }
-            else if ((gf_CPDecayFactor() == true) && (gv_playerCP[auto4111D9D3_var].lv_commandoPO > 0)) {
+            else if (gf_CPDecayFactor() && (gv_playerCP[auto4111D9D3_var].lv_commandoPO > 0)) {
                 gv_playerCP[auto4111D9D3_var].lv_commandoPO -= 1;
-                lv_cPDecayed = (lv_cPDecayed + ", Commando/Psi Ops");
+                lv_cPDecayed = (lv_cPDecayed + "<n/>  -1 Commando/Psi Ops");
             }
             if ((lv_cPDecayed != "")) {
-                UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, (StringExternal("Param/Value/C1B60470") + StringToText(StringReplaceWord(lv_cPDecayed, ",", "", 1, c_stringCase)) + StringExternal("Param/Value/7ACC1F0D")));
+                UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, StringToText(("<s val=\"InfoPaneHeroRank\"><c val=\"FF8080\">" + StringReplaceWord(lv_cPDecayed, "<n/>", "", 1, c_stringCase) + "</c></s>")));
             }
         }
 
@@ -45902,7 +45907,7 @@ bool gt_NOTDCreditsRoll_Func (bool testConds, bool runActions) {
     UIClearMessages(PlayerGroupAll(), c_messageAreaCinematic);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaCinematic, StringExternal("Param/Value/5395DC74"));
     Wait(30.0, c_timeReal);
-    if ((gv_victory == true)) {
+    if (gv_victory) {
         autoE67F764E_g = gv_marineSquad;
         autoE67F764E_var = -1;
         while (true) {
