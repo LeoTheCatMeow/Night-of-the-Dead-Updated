@@ -9,6 +9,7 @@
     </region>
     <region id="2">
         <name value="Airlock Main Inner Gate"/>
+        <invisible/>
         <shape type="rect">
             <quad value="37.8242,96.495,44.2114,102.6916"/>
         </shape>
@@ -64,6 +65,7 @@
     </region>
     <region id="11">
         <name value="Airlock Colony Gate"/>
+        <invisible/>
         <shape type="rect">
             <quad value="84.5397,130.1528,95.6181,138.005"/>
         </shape>
@@ -89,6 +91,7 @@
     </region>
     <region id="15">
         <name value="Airlock End"/>
+        <invisible/>
         <shape type="rect">
             <quad value="78.1716,105.1381,95.7026,131.1008"/>
         </shape>
@@ -140,6 +143,7 @@
     </region>
     <region id="23">
         <name value="Airlock East Gate"/>
+        <invisible/>
         <shape type="rect">
             <quad value="65.475,93.8186,72.2106,101.2333"/>
         </shape>
@@ -240,6 +244,7 @@
     </region>
     <region id="38">
         <name value="Airlock North Gate"/>
+        <invisible/>
         <shape type="rect">
             <quad value="41.776,134.8322,46.4233,143.572"/>
         </shape>
@@ -294,6 +299,7 @@
     </region>
     <region id="47">
         <name value="Airlock Main Outer Gate"/>
+        <invisible/>
         <shape type="rect">
             <quad value="37.6872,86.991,44.4868,91.72"/>
         </shape>
@@ -301,6 +307,7 @@
     <region id="48">
         <name value="Airlock Holding Area"/>
         <color value="255,255,255,0"/>
+        <invisible/>
         <shape type="rect">
             <quad value="35.9982,90.7583,45.9616,97.1567"/>
         </shape>
@@ -528,6 +535,7 @@
     </region>
     <region id="82">
         <name value="Airlock Hole"/>
+        <invisible/>
         <shape type="circle">
             <center value="23.0505,107.0725"/>
             <radius value="2.927"/>
@@ -570,24 +578,28 @@
     </region>
     <region id="88">
         <name value="Apollo Gate East"/>
+        <invisible/>
         <shape type="rect">
             <quad value="200.0197,167.2011,204.8112,174.574"/>
         </shape>
     </region>
     <region id="89">
         <name value="Apollo Gate North East"/>
+        <invisible/>
         <shape type="rect">
             <quad value="159.5717,173.17,169.799,180.7307"/>
         </shape>
     </region>
     <region id="90">
         <name value="Apollo Reactor Gate"/>
+        <invisible/>
         <shape type="rect">
             <quad value="75.1335,173.076,81.8845,179.7006"/>
         </shape>
     </region>
     <region id="91">
         <name value="Apollo Gate South"/>
+        <invisible/>
         <shape type="rect">
             <quad value="140.0292,133.506,150.2565,141.067"/>
         </shape>
@@ -623,6 +635,7 @@
     <region id="96">
         <name value="Airlock Terminal 1"/>
         <color value="255,255,128,0"/>
+        <invisible/>
         <shape type="circle">
             <center value="37.6533,94.1765"/>
             <radius value="0.9433"/>
@@ -631,6 +644,7 @@
     <region id="97">
         <name value="Airlock Terminal 2"/>
         <color value="255,255,128,0"/>
+        <invisible/>
         <shape type="circle">
             <center value="44.3847,94.1857"/>
             <radius value="0.9433"/>
@@ -807,6 +821,7 @@
     </region>
     <region id="122">
         <name value="Armory"/>
+        <invisible/>
         <shape type="circle">
             <center value="236.1906,230.9755"/>
             <radius value="12.5"/>
@@ -814,6 +829,7 @@
     </region>
     <region id="123">
         <name value="Armory Offense B"/>
+        <invisible/>
         <shape type="circle">
             <center value="129.9807,184.653"/>
             <radius value="8.3952"/>
@@ -821,6 +837,7 @@
     </region>
     <region id="124">
         <name value="Armory Offense A"/>
+        <invisible/>
         <shape type="circle">
             <center value="147.869,243.5532"/>
             <radius value="5.4992"/>
@@ -828,6 +845,7 @@
     </region>
     <region id="125">
         <name value="Armory Offense C"/>
+        <invisible/>
         <shape type="circle">
             <center value="222.658,156.7321"/>
             <radius value="8.3952"/>
@@ -994,6 +1012,7 @@
     </region>
     <region id="152">
         <name value="Alpha Company Spawn"/>
+        <invisible/>
         <shape type="circle">
             <center value="17.3115,32.6711"/>
             <radius value="1.9062"/>
@@ -1001,6 +1020,7 @@
     </region>
     <region id="153">
         <name value="Alpha Company Start Cam"/>
+        <invisible/>
         <shape type="circle">
             <center value="17.9118,37.628"/>
             <radius value="10.015"/>
@@ -1065,6 +1085,7 @@
     </region>
     <region id="162">
         <name value="Agron Chat"/>
+        <invisible/>
         <shape type="circle">
             <center value="82.1081,164.0708"/>
             <radius value="7.1904"/>
@@ -1085,12 +1106,14 @@
     </region>
     <region id="165">
         <name value="Baneling Line"/>
+        <invisible/>
         <shape type="rect">
             <quad value="83.8327,146.2277,95.8576,146.941"/>
         </shape>
     </region>
     <region id="166">
         <name value="Tartarus Cam Zone"/>
+        <invisible/>
         <shape type="circle">
             <center value="38.2355,66.539"/>
             <radius value="37.0354"/>
@@ -1212,6 +1235,7 @@
     </region>
     <region id="186">
         <name value="Armory Terminal A"/>
+        <invisible/>
         <shape type="circle">
             <center value="227.8972,240.4572"/>
             <radius value="0.7333"/>
@@ -1219,6 +1243,7 @@
     </region>
     <region id="187">
         <name value="Armory Terminal B"/>
+        <invisible/>
         <shape type="circle">
             <center value="245.8017,235.9726"/>
             <radius value="0.7333"/>
@@ -1253,6 +1278,7 @@
     </region>
     <region id="192">
         <name value="Airlock Mainframe"/>
+        <invisible/>
         <shape type="circle">
             <center value="67.5678,151.363"/>
             <radius value="7.9631"/>
@@ -1260,6 +1286,7 @@
     </region>
     <region id="193">
         <name value="Airlock Mainframe Terminal A"/>
+        <invisible/>
         <shape type="circle">
             <center value="69.058,145.121"/>
             <radius value="0.9672"/>
@@ -1267,6 +1294,7 @@
     </region>
     <region id="194">
         <name value="Airlock Mainframe Terminal B"/>
+        <invisible/>
         <shape type="circle">
             <center value="73.6611,149.9887"/>
             <radius value="0.9672"/>
@@ -1274,6 +1302,7 @@
     </region>
     <region id="195">
         <name value="Airlock Mainframe Terminal C"/>
+        <invisible/>
         <shape type="circle">
             <center value="72.033,155.8352"/>
             <radius value="0.9672"/>
@@ -1281,6 +1310,7 @@
     </region>
     <region id="196">
         <name value="Hades Final Fight"/>
+        <invisible/>
         <shape type="rect">
             <quad value="0.1696,136.9323,67.5971,215.3801"/>
         </shape>
@@ -1367,6 +1397,7 @@
     </region>
     <region id="208">
         <name value="ArmoryPodA"/>
+        <invisible/>
         <shape type="circle">
             <center value="231.011,239.5693"/>
             <radius value="3.2824"/>
@@ -1374,6 +1405,7 @@
     </region>
     <region id="209">
         <name value="ArmoryPodB"/>
+        <invisible/>
         <shape type="circle">
             <center value="243.3981,233.425"/>
             <radius value="3.2824"/>
@@ -1430,6 +1462,7 @@
     </region>
     <region id="219">
         <name value="Athena Terminal"/>
+        <invisible/>
         <shape type="circle">
             <center value="48.7333,175.047"/>
             <radius value="0.7116"/>
@@ -1472,6 +1505,7 @@
     </region>
     <region id="225">
         <name value="Athena Spawn"/>
+        <invisible/>
         <shape type="circle">
             <center value="47.8364,179.8591"/>
             <radius value="2.1552"/>
@@ -1536,6 +1570,7 @@
     </region>
     <region id="234">
         <name value="Agron Town"/>
+        <invisible/>
         <shape type="circle">
             <center value="89.4055,148.5808"/>
             <radius value="7.1066"/>
@@ -1635,7 +1670,6 @@
     <region id="46">
         <name value="Ventilation Area"/>
         <color value="255,255,255,128"/>
-        <invisible/>
         <shape type="circle">
             <center value="205.0732,117.5156"/>
             <radius value="18.347"/>
