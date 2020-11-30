@@ -909,6 +909,7 @@ region gv_truckSelected;
 int gv_truckRoute;
 bool gv_colonyShipRescue;
 bool gv_colonyShipRescueSuccessful;
+fixed gv_civHulks;
 bool gv_nydusDanger;
 bool gv_nydusFailed;
 unitgroup gv_nydusWormGroup;
@@ -2246,7 +2247,11 @@ trigger gt_Wave4EnterAirlockNorthGate;
 trigger gt_ECDelta1Transport;
 trigger gt_KillPriyanka;
 trigger gt_ECEnterTruck;
+trigger gt_ECColonistAI;
+trigger gt_ECNearContainment;
+trigger gt_ECEnterContainment;
 trigger gt_ECCivReward;
+trigger gt_ECHulkCounter;
 trigger gt_ECZombieTime;
 trigger gt_Wave5AirlockBattle;
 trigger gt_Wave6Cocoons;
@@ -7894,7 +7899,7 @@ bool auto_gf_ZombieAIWorldEvents_TriggerFunc (bool testConds, bool runActions) {
             TriggerEnable(gt_OM6CommTowerTransmission, false);
             TriggerEnable(gt_OM1EnterCommTower, true);
         }
-        else if ((gv_isVeteranSquad == true) && (gv_survivalMode == false) && ((RandomInt(1, 300) == 1) || (gv_wave >= 5)) && (gv_oMScrapyard == false) && (gv_alivePlayers > 1) && (gv_wave > 1) && (gv_storyline != 3)) {
+        else if ((gv_isVeteranSquad == true) && (gv_survivalMode == false) && ((RandomInt(1, 300) == 1) || (gv_wave >= 5)) && (gv_oMScrapyard == false) && (gv_wave > 1) && (gv_storyline != 3)) {
             gv_oMScrapyard = true;
             TriggerExecute(gt_OM4ScrapyardSalvageInit, true, false);
         }
@@ -12388,9 +12393,20 @@ void gf_DomeFlash (unit lp_firstMarine, unit lp_secondMarine, region lp_region) 
 }
 
 void gf_DomeTrigger (region lp_region1, region lp_region2, trigger lp_domeCompleted, unit lp_triggeringUnit, region lp_domeHexagonContainer) {
+    // Variable Declarations
+    int lv_marinesPresent;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+
     // Implementation
-    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, lp_region1, 0), c_unitCountAlive) >= 1) && (UnitGroupCount(UnitGroupFilterRegion(gv_marines, lp_region2, 0), c_unitCountAlive) >= 1)) {
+    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, lp_region1, 0), c_unitCountAlive) >= 1)) {
+        lv_marinesPresent += 1;
+    }
+    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, lp_region2, 0), c_unitCountAlive) >= 1)) {
+        lv_marinesPresent += 1;
+    }
+    if (((lv_marinesPresent > 1) || ((lv_marinesPresent == 1) && (UnitGroupCount(gv_marines, c_unitCountAlive) == 1)))) {
         TriggerEnable(lp_domeCompleted, false);
         gf_DomeFlash(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, lp_region1, 0), c_unitCountAlive), UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, lp_region2, 0), c_unitCountAlive), lp_domeHexagonContainer);
         TriggerExecute(gt_DomesSealedandHadesLocated, true, false);
@@ -22810,8 +22826,7 @@ void gt_PlayerQuitsGame_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_MineShaft_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    bool lv_terminal1Present;
-    bool lv_terminal2Present;
+    int lv_marinesPresent;
     int lv_mineShaftBossRoll;
 
     // Automatic Variable Declarations
@@ -22827,15 +22842,15 @@ bool gt_MineShaft_Func (bool testConds, bool runActions) {
 
     if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(156), 0), c_unitCountAlive) >= 1)) {
         UnitFlashSelection(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(156), 0), c_unitCountAlive), 1.0);
-        lv_terminal1Present = true;
+        lv_marinesPresent += 1;
     }
 
     if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(157), 0), c_unitCountAlive) >= 1)) {
         UnitFlashSelection(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(157), 0), c_unitCountAlive), 1.0);
-        lv_terminal2Present = true;
+        lv_marinesPresent += 1;
     }
 
-    if (((GameIsTestMap(false) == true) || ((lv_terminal1Present == true) && (lv_terminal2Present == true)))) {
+    if (((lv_marinesPresent > 1) || ((lv_marinesPresent == 1) && (UnitGroupCount(gv_marines, c_unitCountAlive) == 1)))) {
         TriggerEnable(TriggerGetCurrent(), false);
         gf_StoryMessageNOTD(StringExternal("Param/Value/776F872C"));
         gf_MarineSpeechNOTD(gv_sgtStallans, StringExternal("Param/Value/B6564F15"));
@@ -23552,7 +23567,7 @@ bool gt_OM3ArmoryTurrets_Func (bool testConds, bool runActions) {
         lv_engyPresent += 1;
     }
 
-    if ((lv_engyPresent >= 2)) {
+    if (((lv_engyPresent > 1) || ((gv_totalPlayers == 1) && (lv_engyPresent == 1)))) {
         TriggerEnable(TriggerGetCurrent(), false);
         SoundPlay(SoundLink("THorner03DominionMarine100029", -1), PlayerGroupAll(), 100.0, 0.0);
         Wait(3.0, c_timeGame);
@@ -23609,7 +23624,7 @@ bool gt_OM4ScrapyardSalvageInit_Func (bool testConds, bool runActions) {
     gv_oMChemicalLeak = libNtve_gf_ActorLastCreated();
     libNtve_gf_CreateModelAtPoint("PoisonGas", RegionGetCenter(RegionFromId(190)));
     gv_oMChemicalLeak = libNtve_gf_ActorLastCreated();
-    if ((gv_isVeteranSquad == false)) {
+    if ((!(gv_isVeteranSquad))) {
         libNtve_gf_CreateModelAtPoint("BriefingUnitSelect", RegionGetCenter(RegionFromId(188)));
         gv_oMChemicalLeakIndicators[1] = libNtve_gf_ActorLastCreated();
         libNtve_gf_CreateModelAtPoint("BriefingUnitSelect", RegionGetCenter(RegionFromId(189)));
@@ -23661,7 +23676,7 @@ bool gt_OM4ScrapyardSalvageStart_Func (bool testConds, bool runActions) {
     if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(190), 0), c_unitCountAlive) >= 1)) {
         lv_hexesHeld += 1;
     }
-    if ((lv_hexesHeld >= 2) && (DistanceBetweenPoints(libNtve_gf_CenterOfUnitGroup(gv_marines), RegionGetCenter(RegionFromId(29))) < 25.0) && (gv_alivePlayers > 1) && (gv_gameOver == false)) {
+    if ((!(gv_gameOver)) && (((gv_totalPlayers > 1) && (lv_hexesHeld > 1) && (DistanceBetweenPoints(libNtve_gf_CenterOfUnitGroup(gv_marines), RegionGetCenter(RegionFromId(29))) < 25.0)) || ((gv_totalPlayers == 1) && (lv_hexesHeld != 0)))) {
         TriggerEnable(TriggerGetCurrent(), false);
         gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/67A06AF8"));
         gv_oMCount2 = 0;
@@ -23680,21 +23695,21 @@ bool gt_OM4ScrapyardSalvageStart_Func (bool testConds, bool runActions) {
         gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/357DDAB1"));
         for (autoA9BB86BB_i = 1; autoA9BB86BB_i <= autoA9BB86BB_n; autoA9BB86BB_i += 1) {
             Wait(RandomFixed(1.0, 17.0), c_timeReal);
-            if ((gv_oMScrapyardComplete == false) && (gv_gameOver == false)) {
+            if ((!(gv_oMScrapyardComplete || gv_gameOver))) {
                 if ((RandomInt(0, 3) == 1)) {
                     autoC537C152_n = gv_spawnFactor;
                     for (autoC537C152_i = 1; autoC537C152_i <= autoC537C152_n; autoC537C152_i += 1) {
                         UnitCreate(1, "UltraliskBurrowed", 0, 14, RegionRandomPoint(gv_scrapyardSpawn[RandomInt(1, 7)]), libNtve_gf_RandomAngle());
                         UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
                         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-                        if ((gv_isVeteranSquad == true)) {
+                        if (gv_isVeteranSquad) {
                             UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
                         }
 
                         Wait(0.1, c_timeGame);
                     }
                 }
-                else if ((RandomInt(0, 3) == 1) && (gv_nightmare == true)) {
+                else if (gv_nightmare && (RandomInt(0, 3) == 1)) {
                     autoB96A22D2_n = gv_spawnFactor;
                     for (autoB96A22D2_i = 1; autoB96A22D2_i <= autoB96A22D2_n; autoB96A22D2_i += 1) {
                         UnitCreate(1, "Devourer2", 0, 14, RegionRandomPoint(gv_scrapyardSpawn[RandomInt(1, 7)]), libNtve_gf_RandomAngle());
@@ -23773,7 +23788,10 @@ bool gt_OM4ScrapyardSalvageCycle_Func (bool testConds, bool runActions) {
     else {
         lv_dataPoints -= 1;
     }
-    if ((lv_uploadCheck == true)) {
+    if (lv_uploadCheck) {
+        if ((gv_totalPlayers == 1)) {
+            lv_dataPoints += 2;
+        }
         if ((gv_oMCount2 == 430)) {
             gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/2536E700"));
         }
@@ -23850,7 +23868,7 @@ bool gt_OM4ChemicalSealComplete_Func (bool testConds, bool runActions) {
     libNtve_gf_CreateUnitsAtPoint2(1, "Helium3Canister", 0, 10, RegionGetCenter(RegionFromId(29)));
     gf_CreateItemLocalNOTD("Magazine", 8, RegionFromId(77));
     SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupAll(), 100.0, 0.0);
-    if ((gv_nightmare == true)) {
+    if (gv_nightmare) {
         gf_AwardCreditsNOTD(90);
         gf_AwardPlayerXPNOTD(12);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/D4608DF2"));
@@ -24109,8 +24127,7 @@ void gt_OM8BBQDead_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_OM11Delta2_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    bool lv_terminal1Present;
-    bool lv_terminal2Present;
+    int lv_marinesPresent;
     unit lv_localUnitA;
     unit lv_localUnitB;
     int lv_localPlayerA;
@@ -24141,17 +24158,17 @@ bool gt_OM11Delta2_Func (bool testConds, bool runActions) {
         lv_localUnitA = UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(229), 0), c_unitCountAlive);
         lv_localPlayerA = UnitGetOwner(lv_localUnitA);
         UnitFlashSelection(lv_localUnitA, 1.0);
-        lv_terminal1Present = true;
+        lv_marinesPresent += 1;
     }
 
     if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(230), 0), c_unitCountAlive) >= 1)) {
         lv_localUnitB = UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(230), 0), c_unitCountAlive);
         lv_localPlayerB = UnitGetOwner(lv_localUnitB);
         UnitFlashSelection(lv_localUnitB, 1.0);
-        lv_terminal2Present = true;
+        lv_marinesPresent += 1;
     }
 
-    if ((lv_terminal1Present == true) && (lv_terminal2Present == true)) {
+    if (((lv_marinesPresent > 1) || ((lv_marinesPresent == 1) && (UnitGroupCount(gv_marines, c_unitCountAlive) == 1)))) {
         TriggerEnable(TriggerGetCurrent(), false);
         libNtve_gf_RemoveDoodadsinRegion(RegionFromId(231), "DecalProtoss");
         gf_StoryMessageNOTD(StringExternal("Param/Value/9362870B"));
@@ -24669,7 +24686,7 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
             UnitBehaviorAdd(UnitLastCreated(), "Scared", UnitLastCreated(), 1);
         }
     }
-    gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/BABD3C69"));
+    gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/DB0896F1"));
     Wait(0.1, c_timeGame);
     libNtve_gf_UnitCreateFacingPoint(1, "PfcBrooks", 0, 9, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
     UnitSetTeamColorIndex(UnitLastCreated(), 0);
@@ -27094,9 +27111,7 @@ void gt_Wave4EnterAirlockNorthGate_Init () {
 bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_localUnitA;
-    int lv_infestedCivCount;
-    bool lv_terminal1Present;
-    bool lv_terminal2Present;
+    int lv_marinesPresent;
     point lv_civScatterPoint;
 
     // Automatic Variable Declarations
@@ -27127,11 +27142,10 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_localUnitA = EventUnit();
-    lv_infestedCivCount = (gv_spawnFactor * (UnitGroupCount(gv_infestors, c_unitCountAlive) + 1));
 
     // Conditions
     if (testConds) {
-        if (!((UnitGroupHasUnit(gv_marines, EventUnit()) == true))) {
+        if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
             return false;
         }
     }
@@ -27143,18 +27157,18 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
 
     if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(39), 0), c_unitCountAlive) >= 1)) {
         UnitFlashSelection(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(39), 0), c_unitCountAlive), 1.0);
-        lv_terminal1Present = true;
+        lv_marinesPresent += 1;
     }
 
     if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(167), 0), c_unitCountAlive) >= 1)) {
         UnitFlashSelection(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(167), 0), c_unitCountAlive), 1.0);
-        lv_terminal2Present = true;
+        lv_marinesPresent += 1;
     }
 
-    if ((gv_delta1Enabled == false)) {
+    if ((!(gv_delta1Enabled))) {
         gf_DisplayWarningWithTimeout(StringExternal("Param/Value/154EAE13"));
     }
-    if ((lv_terminal1Present == true) && (lv_terminal2Present == true) && (gv_delta1Enabled == true)) {
+    if (gv_delta1Enabled && ((lv_marinesPresent > 1) || ((lv_marinesPresent == 1) && (UnitGroupCount(gv_marines, c_unitCountAlive) == 1)))) {
         TriggerEnable(TriggerGetCurrent(), false);
         ObjectiveSetState(gv_delta1CheckBonusObjective, c_objectiveStateCompleted);
         gf_DestroyObjectiveDelayed(gv_delta1CheckBonusObjective);
@@ -27174,6 +27188,7 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
         Wait(3.5, c_timeReal);
         libNtve_gf_UnitCreateFacingPoint(1, "Priyanka", 0, 9, RegionRandomPoint(RegionFromId(39)), UnitGetPosition(lv_localUnitA));
         gv_priyanka = UnitLastCreated();
+        TriggerEnable(gt_KillPriyanka, true);
         UnitGroupAdd(gv_colonists, UnitLastCreated());
         gf_SendTransmissionNOTD(gv_priyanka, gv_characterPriyanka, StringExternal("Param/Value/1CE1C2BB"), 5.5);
         ObjectiveCreate(StringExternal("Param/Value/790B2B1C"), StringExternal("Param/Value/45B6D98E"), c_objectiveStateActive, false);
@@ -27192,7 +27207,7 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
             libNtve_gf_UnitCreateFacingPoint(1, gv_civPool[RandomInt(0, 1)], 0, 9, RegionRandomPoint(RegionFromId(114)), UnitGetPosition(lv_localUnitA));
             UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(gv_truckSelected)), c_orderQueueReplace);
             UnitGroupAdd(gv_colonists, UnitLastCreated());
-            if ((gv_isVeteranSquad == false)) {
+            if ((!(gv_isVeteranSquad))) {
                 UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, 45.0);
                 UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLife, 45.0);
             }
@@ -27231,14 +27246,14 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
             libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, UnitGetPosition(lv_localUnitA));
             UnitCreate(1, "Hulk", 0, 14, UnitGetPosition(lv_localUnitA), libNtve_gf_RandomAngle());
             Wait(0.5, c_timeGame);
-            auto8E62E4E2_n = (gv_spawnFactor * 1);
+            auto8E62E4E2_n = CeilingI((gv_civHulks * 0.166));
             for (auto8E62E4E2_i = 1; auto8E62E4E2_i <= auto8E62E4E2_n; auto8E62E4E2_i += 1) {
                 if ((RandomInt(0, 2) == 1)) {
                     lv_localUnitA = UnitGroupRandomUnit(gv_colonists, c_unitCountAlive);
                     UnitKill(lv_localUnitA);
                     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, UnitGetPosition(lv_localUnitA));
                     UnitCreate(1, "Hulk", 0, 14, UnitGetPosition(lv_localUnitA), libNtve_gf_RandomAngle());
-                    if ((gv_isVeteranSquad == false)) {
+                    if ((!(gv_isVeteranSquad))) {
                         libNtve_gf_AttachActorToUnit(UnitLastCreated(), "NewbieWarning", "Ref_Center");
                     }
 
@@ -27266,14 +27281,14 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
                 }
                 Wait(RandomFixed(0.0, 0.5), c_timeGame);
             }
-            auto7178BFAE_n = (gv_spawnFactor * 2);
+            auto7178BFAE_n = CeilingI((gv_civHulks * 0.333));
             for (auto7178BFAE_i = 1; auto7178BFAE_i <= auto7178BFAE_n; auto7178BFAE_i += 1) {
                 if ((RandomInt(0, 2) == 1)) {
                     lv_localUnitA = UnitGroupRandomUnit(gv_colonists, c_unitCountAlive);
                     UnitKill(lv_localUnitA);
                     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, UnitGetPosition(lv_localUnitA));
                     UnitCreate(1, "Hulk", 0, 14, UnitGetPosition(lv_localUnitA), libNtve_gf_RandomAngle());
-                    if ((gv_isVeteranSquad == false)) {
+                    if ((!(gv_isVeteranSquad))) {
                         libNtve_gf_AttachActorToUnit(UnitLastCreated(), "NewbieWarning", "Ref_Center");
                     }
 
@@ -27285,14 +27300,14 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
             SoundPlay(SoundLink("THanson01Marine200041", -1), PlayerGroupActive(), 100.0, 0.0);
             gf_TipNOTD(3000, StringExternal("Param/Value/52EDF8C1"));
             SoundPlay(SoundLink("Emitter_CrowdPanic", -1), PlayerGroupActive(), 58.0, 0.0);
-            auto86B0F7FA_n = (gv_spawnFactor * 3);
+            auto86B0F7FA_n = CeilingI((gv_civHulks * 0.5));
             for (auto86B0F7FA_i = 1; auto86B0F7FA_i <= auto86B0F7FA_n; auto86B0F7FA_i += 1) {
                 if ((RandomInt(0, 2) == 1)) {
                     lv_localUnitA = UnitGroupRandomUnit(gv_colonists, c_unitCountAlive);
                     UnitKill(lv_localUnitA);
                     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, UnitGetPosition(lv_localUnitA));
                     UnitCreate(1, "Hulk", 0, 14, UnitGetPosition(lv_localUnitA), 270.0);
-                    if ((gv_isVeteranSquad == false)) {
+                    if ((!(gv_isVeteranSquad))) {
                         libNtve_gf_AttachActorToUnit(UnitLastCreated(), "NewbieWarning", "Ref_Center");
                     }
 
@@ -27316,12 +27331,20 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
             gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/93844B5C"));
             for (auto43709453_i = 1; auto43709453_i <= auto43709453_n; auto43709453_i += 1) {
                 Wait(5.0, c_timeReal);
-                auto1ED172AA_g = gv_colonists;
-                auto1ED172AA_u = UnitGroupCount(auto1ED172AA_g, c_unitCountAll);
-                for (;; auto1ED172AA_u -= 1) {
-                    auto1ED172AA_var = UnitGroupUnitFromEnd(auto1ED172AA_g, auto1ED172AA_u);
-                    if (auto1ED172AA_var == null) { break; }
-                    UnitIssueOrder(auto1ED172AA_var, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(gv_truckSelected)), c_orderQueueReplace);
+                if (TriggerIsEnabled(gt_ECColonistAI)) {
+                    AISetGroupScriptControlled(gv_colonists, false);
+                    AIAttackWaveUseGroup(9, gv_colonists);
+                    AIAttackWaveSend(9, 0, false);
+                    break;
+                }
+                else {
+                    auto1ED172AA_g = gv_colonists;
+                    auto1ED172AA_u = UnitGroupCount(auto1ED172AA_g, c_unitCountAll);
+                    for (;; auto1ED172AA_u -= 1) {
+                        auto1ED172AA_var = UnitGroupUnitFromEnd(auto1ED172AA_g, auto1ED172AA_u);
+                        if (auto1ED172AA_var == null) { break; }
+                        UnitIssueOrder(auto1ED172AA_var, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(gv_truckSelected)), c_orderQueueReplace);
+                    }
                 }
             }
             if ((ObjectiveGetState(gv_secondaryObjective) != c_objectiveStateFailed) && (gv_colonistsRescued < 20)) {
@@ -27355,7 +27378,11 @@ bool gt_KillPriyanka_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((UnitGroupHasUnit(gv_marines, libNtve_gf_KillingUnit()) == true))) {
+        if (!((EventUnit() == gv_priyanka))) {
+            return false;
+        }
+
+        if (!(UnitGroupHasUnit(gv_marines, libNtve_gf_KillingUnit()))) {
             return false;
         }
     }
@@ -27366,8 +27393,9 @@ bool gt_KillPriyanka_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    Wait(10.0, c_timeGame);
-    UnitCreate(1, "BanelingBurrowed", 0, 14, UnitGroupCenterOfGroup(gv_colonists), libNtve_gf_RandomAngle());
+    Wait(9.75, c_timeGame);
+    UnitCreate(1, "BanelingBurrowed", 0, 14, UnitGetPosition(UnitGroupRandomUnit(gv_colonists, c_unitCountAlive)), libNtve_gf_RandomAngle());
+    Wait(0.25, c_timeGame);
     UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowBanelingUp", 0)), c_orderQueueReplace);
     return true;
 }
@@ -27392,7 +27420,11 @@ bool gt_ECEnterTruck_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(((UnitGetType(EventUnit()) == "ColonistFemale2") || (UnitGetType(EventUnit()) == "Colonist2") || (UnitGetType(EventUnit()) == "Priyanka")))) {
+        if (!(AIIsScriptControlled(lv_localUnitA))) {
+            return false;
+        }
+
+        if (!(((UnitGetType(lv_localUnitA) == "ColonistFemale2") || (UnitGetType(lv_localUnitA) == "Colonist2") || (UnitGetType(lv_localUnitA) == "Priyanka")))) {
             return false;
         }
     }
@@ -27402,19 +27434,44 @@ bool gt_ECEnterTruck_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    Wait(0.7, c_timeReal);
-    SoundPlayAtPoint(SoundLink("TransportTruckTransportLoadSound", -1), PlayerGroupAll(), UnitGetPosition(lv_localUnitA), 15.0, 85.0, 0.0);
-    Wait(0.1, c_timeReal);
-    UnitGroupRemove(gv_colonists, lv_localUnitA);
-    UnitRemove(lv_localUnitA);
-    gv_colonistsRescued += 1;
-    gv_legionOfMeritCivsRescued += 1;
-    if ((gv_colonistsRescued == 20)) {
-        gv_colonyShipRescueSuccessful = true;
-        ObjectiveSetState(gv_secondaryObjective, c_objectiveStateCompleted);
-        gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/12198CAD"));
-        Wait(10.0, c_timeReal);
-        TriggerExecute(gt_ECCivReward, true, false);
+    if (UnitIsAlive(gv_madMaxTruck)) {
+        Wait(0.7, c_timeReal);
+        SoundPlayAtPoint(SoundLink("TransportTruckTransportLoadSound", -1), PlayerGroupAll(), UnitGetPosition(lv_localUnitA), 15.0, 85.0, 0.0);
+        Wait(0.1, c_timeReal);
+        UnitGroupRemove(gv_colonists, lv_localUnitA);
+        UnitRemove(lv_localUnitA);
+        gv_colonistsRescued += 1;
+        gv_legionOfMeritCivsRescued += 1;
+        if ((gv_colonistsRescued == 20)) {
+            gv_colonyShipRescueSuccessful = true;
+            ObjectiveSetState(gv_secondaryObjective, c_objectiveStateCompleted);
+            gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/12198CAD"));
+            Wait(10.0, c_timeReal);
+            TriggerExecute(gt_ECCivReward, true, false);
+        }
+    }
+    else {
+        if ((RandomInt(0, 1) == 1)) {
+            UnitBehaviorAdd(lv_localUnitA, "Scared", lv_localUnitA, 1);
+        }
+        else {
+            UnitBehaviorAdd(lv_localUnitA, "Run", lv_localUnitA, 1);
+        }
+        AISetUnitScriptControlled(lv_localUnitA, false);
+        AIAttackWaveUseUnit(9, lv_localUnitA);
+        AIAttackWaveSend(9, 0, false);
+        Wait(0.5, c_timeGame);
+        if ((!(TriggerIsEnabled(gt_ECColonistAI)))) {
+            TriggerEnable(gt_ECNearContainment, true);
+            TriggerEnable(gt_ECEnterContainment, true);
+            TriggerEnable(gt_ECColonistAI, true);
+            Wait(3.0, c_timeReal);
+            gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(lv_localUnitA)))), StringExternal("Param/Value/5DCE3C68"));
+            Wait(5.0, c_timeReal);
+            gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/92547BE7"));
+            Wait(5.0, c_timeReal);
+            gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/B7F4B025"));
+        }
     }
     if (((gv_colonistsRescued + UnitGroupCount(gv_colonists, c_unitCountAlive)) < 20)) {
         ObjectiveSetState(gv_secondaryObjective, c_objectiveStateFailed);
@@ -27429,6 +27486,136 @@ void gt_ECEnterTruck_Init () {
     TriggerEnable(gt_ECEnterTruck, false);
     TriggerAddEventUnitRegion(gt_ECEnterTruck, null, RegionFromId(42), true);
     TriggerAddEventUnitRegion(gt_ECEnterTruck, null, RegionFromId(42), false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: EC - Colonist AI
+//--------------------------------------------------------------------------------------------------
+bool gt_ECColonistAI_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGroupCount(gv_colonists, c_unitCountAlive) == 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerEnable(gt_ECNearContainment, false);
+    TriggerEnable(gt_ECEnterContainment, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ECColonistAI_Init () {
+    gt_ECColonistAI = TriggerCreate("gt_ECColonistAI_Func");
+    TriggerEnable(gt_ECColonistAI, false);
+    TriggerAddEventTimePeriodic(gt_ECColonistAI, 60.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: EC - Near Containment
+//--------------------------------------------------------------------------------------------------
+bool gt_ECNearContainment_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_localUnitA;
+
+    // Automatic Variable Declarations
+    unitgroup auto8EABE80B_g;
+    int auto8EABE80B_u;
+    unit auto8EABE80B_var;
+
+    // Variable Initialization
+    lv_localUnitA = EventUnit();
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitGroupHasUnit(gv_colonists, lv_localUnitA))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(lv_localUnitA)))), StringExternal("Param/Value/20E4D11B"));
+    Wait(3.0, c_timeGame);
+    gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/5D1592E9"));
+    AISetGroupScriptControlled(gv_colonists, true);
+    while ((UnitGroupCount(gv_colonists, c_unitCountAlive) != 0)) {
+        auto8EABE80B_g = gv_colonists;
+        auto8EABE80B_u = UnitGroupCount(auto8EABE80B_g, c_unitCountAll);
+        for (;; auto8EABE80B_u -= 1) {
+            auto8EABE80B_var = UnitGroupUnitFromEnd(auto8EABE80B_g, auto8EABE80B_u);
+            if (auto8EABE80B_var == null) { break; }
+            Wait(0.25, c_timeGame);
+            UnitIssueOrder(auto8EABE80B_var, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionFromId(103))), c_orderQueueReplace);
+        }
+        Wait(3.0, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ECNearContainment_Init () {
+    gt_ECNearContainment = TriggerCreate("gt_ECNearContainment_Func");
+    TriggerEnable(gt_ECNearContainment, false);
+    TriggerAddEventUnitRegion(gt_ECNearContainment, null, RegionFromId(138), true);
+    TriggerAddEventUnitRegion(gt_ECNearContainment, null, RegionFromId(138), false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: EC - Enter Containment
+//--------------------------------------------------------------------------------------------------
+bool gt_ECEnterContainment_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_localUnitA;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_localUnitA = EventUnit();
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitGroupHasUnit(gv_colonists, lv_localUnitA))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    SoundPlay(SoundLink("UI_TerranRescueUnit", -1), PlayerGroupActive(), 100.0, 0.0);
+    UnitGroupRemove(gv_colonists, lv_localUnitA);
+    UnitRemove(lv_localUnitA);
+    gv_colonistsRescued += 1;
+    gv_legionOfMeritCivsRescued += 1;
+    if ((!(gv_colonyShipRescueSuccessful)) && (gv_colonistsRescued == 20)) {
+        Wait(0.5, c_timeGame);
+        gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/A6F55BB2"));
+        Wait(10.0, c_timeGame);
+        gf_AwardKarmaNOTD(1);
+        gf_StoryMessageNOTD(((StringExternal("Param/Value/5F2917CC") + IntToText(gv_legionOfMeritCivsRescued)) + StringExternal("Param/Value/926F0D30")));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ECEnterContainment_Init () {
+    gt_ECEnterContainment = TriggerCreate("gt_ECEnterContainment_Func");
+    TriggerEnable(gt_ECEnterContainment, false);
+    TriggerAddEventUnitRegion(gt_ECEnterContainment, null, RegionFromId(103), true);
+    TriggerAddEventUnitRegion(gt_ECEnterContainment, null, RegionFromId(103), false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -27496,6 +27683,36 @@ bool gt_ECCivReward_Func (bool testConds, bool runActions) {
 void gt_ECCivReward_Init () {
     gt_ECCivReward = TriggerCreate("gt_ECCivReward_Func");
     TriggerEnable(gt_ECCivReward, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: EC - Hulk Counter
+//--------------------------------------------------------------------------------------------------
+bool gt_ECHulkCounter_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int autoD77F1086_n = 15;
+    int autoD77F1086_i;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_civHulks += IntToFixed(gv_spawnFactor);
+    for (autoD77F1086_i = 1; autoD77F1086_i <= autoD77F1086_n; autoD77F1086_i += 1) {
+        Wait(1.0, c_timeGame);
+        if (gv_colonyShipRescue) {
+            return true;
+        }
+        gv_civHulks += (IntToFixed(gv_spawnFactor) * 0.33);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ECHulkCounter_Init () {
+    gt_ECHulkCounter = TriggerCreate("gt_ECHulkCounter_Func");
+    TriggerEnable(gt_ECHulkCounter, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -27608,7 +27825,7 @@ bool gt_Wave5AirlockBattle_Func (bool testConds, bool runActions) {
     gv_primaryObjective = ObjectiveLastCreated();
     gv_globalIntA = 0;
     for (auto7DFCD305_i = 1; auto7DFCD305_i <= auto7DFCD305_n; auto7DFCD305_i += 1) {
-        if (((RandomInt(1, 7) == 1) || ((RandomInt(1, 3) == 1) && (gv_isVeteranSquad == true)))) {
+        if (((RandomInt(1, 7) == 1) || (gv_isVeteranSquad && (RandomInt(1, 3) == 1)))) {
             libNtve_gf_UnitCreateFacingPoint(gv_spawnFactor, "RoachBurrowed", 0, 14, RegionRandomPoint(RegionFromId(114)), RegionGetCenter(RegionFromId(9)));
             UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingPoint(AbilityCommand("move", 0), libNtve_gf_CenterOfUnitGroup(gv_marines)), c_orderQueueReplace);
         }
@@ -27617,7 +27834,7 @@ bool gt_Wave5AirlockBattle_Func (bool testConds, bool runActions) {
         }
         libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
         Wait(0.1, c_timeGame);
-        if ((gv_isVeteranSquad == true)) {
+        if (gv_isVeteranSquad) {
             libNtve_gf_UnitCreateFacingPoint(gv_spawnFactor, "Hulk", 0, 14, RegionRandomPoint(RegionFromId(15)), RegionGetCenter(RegionFromId(9)));
             libNtve_gf_AddUnitGroupToUnitGroup(UnitLastCreatedGroup(), gv_zombieWave);
             Wait(0.1, c_timeGame);
@@ -27662,7 +27879,7 @@ bool gt_Wave5AirlockBattle_Func (bool testConds, bool runActions) {
         Wait(0.1, c_timeGame);
         auto92B25AEB_n = (gv_spawnFactor * 2);
         for (auto92B25AEB_i = 1; auto92B25AEB_i <= auto92B25AEB_n; auto92B25AEB_i += 1) {
-            if (((gv_nightmare == true) || ((gv_squadRating >= 1700) && (gv_isVeteranSquad == true)))) {
+            if ((gv_nightmare || (gv_isVeteranSquad && (gv_squadRating >= 1700)))) {
                 libNtve_gf_UnitCreateFacingPoint(2, "HulkBurrowed", 0, 14, RegionRandomPoint(RegionFromId(9)), RegionGetCenter(RegionFromId(9)));
                 UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("UnburrowHulk", 0)), c_orderQueueReplace);
             }
@@ -27680,8 +27897,10 @@ bool gt_Wave5AirlockBattle_Func (bool testConds, bool runActions) {
     ObjectiveCreate(StringExternal("Param/Value/1D3DA12D"), StringExternal("Param/Value/E6187E1A"), c_objectiveStateActive, false);
     gv_delta1CheckBonusObjective = ObjectiveLastCreated();
     gv_delta1Enabled = true;
+    gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/543B39F1"));
+    TriggerExecute(gt_ECHulkCounter, true, false);
     Wait(25.0, c_timeReal);
-    if ((gv_isVeteranSquad == true) && (gv_colonyShipRescue == false)) {
+    if (gv_isVeteranSquad && (!(gv_colonyShipRescue))) {
         ObjectiveSetState(gv_delta1CheckBonusObjective, c_objectiveStateFailed);
         gf_DestroyObjectiveDelayed(gv_delta1CheckBonusObjective);
         TriggerEnable(gt_ECDelta1Transport, false);
@@ -29820,7 +30039,7 @@ bool gt_Wave10OptionalCivilianEntersContainment_Func (bool testConds, bool runAc
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((UnitGroupHasUnit(gv_apolloCivs, EventUnit()) == true))) {
+        if (!(UnitGroupHasUnit(gv_apolloCivs, EventUnit()))) {
             return false;
         }
     }
@@ -46121,7 +46340,11 @@ void InitTriggers () {
     gt_ECDelta1Transport_Init();
     gt_KillPriyanka_Init();
     gt_ECEnterTruck_Init();
+    gt_ECColonistAI_Init();
+    gt_ECNearContainment_Init();
+    gt_ECEnterContainment_Init();
     gt_ECCivReward_Init();
+    gt_ECHulkCounter_Init();
     gt_ECZombieTime_Init();
     gt_Wave5AirlockBattle_Init();
     gt_Wave6Cocoons_Init();

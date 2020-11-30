@@ -2561,6 +2561,24 @@ DocInfo/PatchNote547=[LeoTheCat]
 DocInfo/PatchNote548=- Added a skin for Forward Observer.
 DocInfo/PatchNote549=- Removed the weird sniper rifle sound from shotgun attacks.
 DocInfo/PatchNote550=- Looked into an issue ocassionally causing mind controlled units to hurt ally marines - and probably fixed it.
+DocInfo/PatchNote551=[ThunderRazor]
+DocInfo/PatchNote552=- The following can be triggered playing solo:
+DocInfo/PatchNote553=  - Leaks (Scrap yard)
+DocInfo/PatchNote554=  - Armory turrets
+DocInfo/PatchNote555=- The following can be triggered by a lone surviving marine:
+DocInfo/PatchNote556=  - EC airlock civs (Delta-1)
+DocInfo/PatchNote557=  - AC transport civs (Delta-2)
+DocInfo/PatchNote558=  - AS dome seal (Sec opt B)
+DocInfo/PatchNote559=  - Mine shaft (Leto/Zeus/Seth)
+DocInfo/PatchNote560=- Rewarding less hulk spawns for triggering airlock civs early (15 second window).
+DocInfo/PatchNote561=  - Hulks capped to spawn factor at 0 seconds.
+DocInfo/PatchNote562=  - 6x Spawn factor cap at 15 seconds (default).
+DocInfo/PatchNote563=- If the truck is destroyed early, the bonus objective will fail.
+DocInfo/PatchNote564=  - Civs will follow marines until escorted to the containment facility.
+DocInfo/PatchNote565=- Armory turrets are invulnerable while underground.
+DocInfo/PatchNote566=- Sensor towers are invulnerable.
+DocInfo/PatchNote567=- Quick use ability is transient.
+DocInfo/PatchNote568=- Recon Reaper Drone is transient.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4626,6 +4644,7 @@ Param/Value/204C7319=<s val="BriefingHanText">Visual ID verified. Uploading Sat 
 Param/Value/209B52FF=Morrison
 Param/Value/20A80FD0=(The Queen lets out a horrific shriek..)
 Param/Value/20BD04E5=<c val="FF0000">WARNING</c>: Seth charges plasma detonator...
+Param/Value/20E4D11B=There's a containment facility here.
 Param/Value/20EF41FA=Laser Rifles are deadly against the Queen
 Param/Value/218306C4=<s val="GlueButton"><c val="F4D72B">More of my men are still in the city. I must find them.</c></s>
 Param/Value/224B0220=Close Team Menu
@@ -4946,6 +4965,7 @@ Param/Value/541BADD6=+3 XP for Mission Bonus. 40 civilians rescued.
 Param/Value/541F9CD8=</c>) (<c val="49ABF3">
 Param/Value/5421D241=<s val="InfoPaneHeroRank">Item cleared: <c val="FFFF00">
 Param/Value/543109A7=Secure Security Cams (2/5)
+Param/Value/543B39F1=Check Delta-1 for survivors before it's too late!
 Param/Value/544D04BA=<s val="InfoPaneHeroRank">No Randoms activated</s><n/>- Random class selection disabled.
 Param/Value/54524404=Doctor, I heard you mention Bergmann. You said you didn't know him.
 Param/Value/546EB49A=+1
@@ -4988,16 +5008,19 @@ Param/Value/5C0EEB17=It's too dangerous out here...
 Param/Value/5C44EE60=Spotted your flares. En route to your position.
 Param/Value/5C5D8CF6=<s val="GlueButton"><c val="F4D72B">Sergeant Lawrence is MIA. We've lost our security squad at the military base.</c></s>
 Param/Value/5D0A145A=You can enter Apollo via 2 routes:<n/>1. Opening the Scrapyard Gate<n/>2. Activating 5 Power Generators across Apollo. This will disarm all Gates throughout the facility.<n/><n/>Ambient enemy readings remain active. Move in groups to provide cover.
+Param/Value/5D1592E9=Let's get the colonists inside!
 Param/Value/5D2EDD6C=<c val="FF0000">Nightmare Mode</c><n/>- Enemies gain HP and new behavior.<n/>- Additional Player XP and Rating gain.
 Param/Value/5D3AC51A=<s val="GlueButton"><c val="F4D72B">Plenty of incoming. Stay close and kill 'em all.</c></s>
 Param/Value/5D490B11=You become badly injured when your HP is below 20%. Critical injuries can kill you instantly.
 Param/Value/5D6CA469=Maintain tight formation.
 Param/Value/5D91964B=<s val="InfoPaneHeroRank">(Reactor Core activation requires 2 authorized personnel..)</s>
+Param/Value/5DCE3C68=The truck is destroyed.
 Param/Value/5E300354=!
 Param/Value/5E6F0326=This, my friends, is not possible.
 Param/Value/5E7C397E=(Sensing her mortality, the Queen begins to withdraw..)
 Param/Value/5E9D241A=asasd
 Param/Value/5EDDC08C=We lost the starport too. Couldn't EVAC out of here.
+Param/Value/5F2917CC=<s val="InfoPaneHeroRank">Colonists Rescued:  
 Param/Value/5F4DD8DA=ETA 2 Mikes. I see enemy movement. They're moving in on you.
 Param/Value/5F562428=</c></s>
 Param/Value/5FA0B4DE=(The Queen begins to lay eggs..)
@@ -5297,7 +5320,9 @@ Param/Value/9190998C=Protect Dr. Tanaka until his research is complete
 Param/Value/91A0BD6A=(Cronus prepares for <c val="FF0000">destruction</c>...)
 Param/Value/91F0176F=Collect items scattered throughout the map. These help improve your chances of success in NOTD.<n/><n/>Item Classes:<n/>Weapons: Each weapon shines in different situations.<n/>Armor: Improves your armor<n/>Enhancements: Equip these to improve your stats<n/>Ammo: You require ammo to continue firing your weapons<n/>Supplies: These include medkits which keep you in top shape.<n/><n/>Sharing items with teammates will improve squad survivability.
 Param/Value/92459A55=<img path="Assets\Textures\tutorialmouserightbuttondown.dds"/><n/><s val="WaitingForUsersDialogTitle"><c val="FFDD1C">Right Click - Gauss Cannon</c><n/><c val="1CFFCC">Arrows/Mousewheel - Speed</c></s>
+Param/Value/92547BE7=We'll need to escort the colonists to another location.
 Param/Value/9263B5DE=+3 XP for Performance Bonus
+Param/Value/926F0D30=</s>
 Param/Value/9279BE21=We're wasting ammunition. Destroy that Dome.
 Param/Value/92A2458A=Survive the incoming attack
 Param/Value/92E41DAB=</c>) (<c val="F1D845">
@@ -5426,6 +5451,7 @@ Param/Value/A66A54DB=(Dr Bergmann equips his Laser Rifle...)
 Param/Value/A6D524C9=<s val="InfoPaneHeroRank">Colonists Rescued:  
 Param/Value/A6E77676=<s val="BriefingHanText">(Gunship leaving combat zone in 15 seconds...)</s>
 Param/Value/A6F1ECEA=I'm connected.
+Param/Value/A6F55BB2=The civies are safe. Looks pretty clear.
 Param/Value/A72367D5=+3 XP for Performance Bonus
 Param/Value/A779B0BC=This confirms our suspicions the past few days.
 Param/Value/A7AD8FD6=<c val="FFC914">Perfect!</c>
@@ -5525,6 +5551,7 @@ Param/Value/B74F32C6=!
 Param/Value/B7E5D8DF=Re-active 5 power generators
 Param/Value/B7EB263B=Survive as many waves as you can
 Param/Value/B7ED1099=<s val="BriefingHanText">(Unlocking Security Gate..)</s>
+Param/Value/B7F4B025=Let's search East of Apollo!
 Param/Value/B85CDB8C=%
 Param/Value/B864C5C3=Use your Predator to aid the team. It gains new abilities as it levels.
 Param/Value/B88C671E=Keep firing!
@@ -5538,7 +5565,6 @@ Param/Value/B97AE44A=You have 30 seconds to position your team and find supplies
 Param/Value/B9AE8010=Doctor, what's the status of your research? We can't hold on much longer.
 Param/Value/B9C7B047=We have a serious chemical leak in the scrapyard. Usually Apollo's regular maintenance crew would clean it up.
 Param/Value/B9E90EBB=<s val="ChatBar"><c val="0080FF">  
-Param/Value/BABD3C69=I hear gunfire. Move quickly!
 Param/Value/BAF05AC5= XP for Devastator Survival Bonus.
 Param/Value/BB3AB6E9=
 Param/Value/BB3F797E=
@@ -5735,6 +5761,7 @@ Param/Value/DAB8AD38=We're not coming. Return to base.
 Param/Value/DAD3C239=We're Oscar Mike to target location.
 Param/Value/DAEA2E45=Class: 
 Param/Value/DAECF587=<c val="FF0000">Inventory Hidden</c> <c val="FFFFFF">(Numpad 1)</c>
+Param/Value/DB0896F1=I hear gunfire. Move quickly!
 Param/Value/DB2B3493=You're safe. Follow us.
 Param/Value/DB2E4586=<s val="BriefingHanText">(Airlock gates unlocked..)</s>
 Param/Value/DB4A1AB6=Field Marshal Kim

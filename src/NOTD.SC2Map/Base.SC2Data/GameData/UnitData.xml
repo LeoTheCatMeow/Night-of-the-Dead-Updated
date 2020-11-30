@@ -5253,6 +5253,7 @@
         <FlagArray index="Unradarable" value="1"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
+        <BehaviorArray Link="Invulnerable"/>
     </CUnit>
     <CUnit id="Seth" parent="Marauder">
         <Name value="Unit/Name/Seth"/>
@@ -11050,7 +11051,7 @@
         <LifeRegenRate value="1"/>
         <BehaviorArray index="0" Link="UnderConstruction"/>
         <BehaviorArray index="1" Link="FireSuppressionSystem"/>
-        <BehaviorArray index="2" removed="1"/>
+        <BehaviorArray index="2" Link="Invulnerable"/>
         <BehaviorArray index="3" removed="1"/>
     </CUnit>
     <CUnit id="TRaynor01SignsDestructible1">

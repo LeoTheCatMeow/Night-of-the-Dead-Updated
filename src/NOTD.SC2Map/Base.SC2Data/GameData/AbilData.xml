@@ -110,6 +110,7 @@
     <CAbilEffectInstant id="QuickUseItem">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="QuickUse"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Reinforce">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3735,6 +3736,7 @@
         </Cost>
         <AINotifyEffect value=""/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ReaperMK13"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="Escape">
         <EditorCategories value="AbilityorEffectType:Units"/>
