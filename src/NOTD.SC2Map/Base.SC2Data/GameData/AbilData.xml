@@ -4521,6 +4521,7 @@
             <Cooldown TimeUse="12"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="Repulse"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="RogueGhostCloak2">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
