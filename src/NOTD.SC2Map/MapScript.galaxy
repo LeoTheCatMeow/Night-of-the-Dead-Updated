@@ -2006,6 +2006,7 @@ int gf_GetCurrentAllocatedStats (int lp_player);
 void gf_StatsUpdateAllStatsText (int lp_playerNo);
 void gf_StatsStorePlayerStats (int lp_triggeringPlayer);
 void gf_StatsLoadPlayerStats (int lp_player);
+void gf_StatsBalancePlayerStats (int lp_player);
 void gf_StatsUpdateHeroImage (int lp_triggeringPlayer);
 void gf_StatsSetBehaviors (int lp_triggeringPlayer);
 bool gf_StatsStatsChecking (int lp_playerNo);
@@ -2612,6 +2613,9 @@ bool gf_PlayerBanCheck (string lp_playerHandle) {
 bool gf_PlayerAutomaticBanCheck (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
+    if ((((gv_playerRank[lp_player] * 2) + gf_GetMedalStats(lp_player)) < gf_GetCurrentAllocatedStats(lp_player))) {
+        gf_StatsBalancePlayerStats(lp_player);
+    }
     if ((gf_StatsGetMaxModPoints(lp_player) < 0)) {
         return true;
     }
@@ -14192,6 +14196,40 @@ void gf_StatsLoadPlayerStats (int lp_player) {
     gv_statsIntelligence5[lp_player] = (gv_playerStats[lp_player] / 1);
     gv_playerStats[lp_player] -= (gv_statsIntelligence5[lp_player] * 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "PerceptionCriticalStrike", gv_statsPerception4[lp_player]);
+}
+
+void gf_StatsBalancePlayerStats (int lp_player) {
+    // Variable Declarations
+    int lv_difference;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_difference = (gf_GetCurrentAllocatedStats(lp_player) - ((gv_playerRank[lp_player] * 2) + gf_GetMedalStats(lp_player)));
+
+    // Implementation
+    if ((lv_difference > 0)) {
+        while ((lv_difference > 0) && (gv_statsStrength1[lp_player] > 0)) {
+            lv_difference -= 1;
+            gv_statsStrength1[lp_player] -= 1;
+        }
+        while ((lv_difference > 0) && (gv_statsEndurance2[lp_player] > 0)) {
+            lv_difference -= 1;
+            gv_statsEndurance2[lp_player] -= 1;
+        }
+        while ((lv_difference > 0) && (gv_statsAgility3[lp_player] > 0)) {
+            lv_difference -= 1;
+            gv_statsAgility3[lp_player] -= 1;
+        }
+        while ((lv_difference > 0) && (gv_statsPerception4[lp_player] > 0)) {
+            lv_difference -= 1;
+            gv_statsPerception4[lp_player] -= 1;
+        }
+        while ((lv_difference > 0) && (gv_statsIntelligence5[lp_player] > 0)) {
+            lv_difference -= 1;
+            gv_statsIntelligence5[lp_player] -= 1;
+        }
+        gf_StatsStorePlayerStats(lp_player);
+    }
 }
 
 void gf_StatsUpdateHeroImage (int lp_triggeringPlayer) {
