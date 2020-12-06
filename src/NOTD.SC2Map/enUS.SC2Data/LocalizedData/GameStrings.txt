@@ -470,6 +470,7 @@ Behavior/Name/ChemicalPlatingLevel3=Chemical Plating (Level 3)
 Behavior/Name/ChemicalPlatingOxalicPoison=Chemical Plating (Oxalic Poison)
 Behavior/Name/ChemicalPlatingTemplate=Chemical Plating Template
 Behavior/Name/Chewed=Chewed
+Behavior/Name/ClassPointsBonus=Class Points Bonus
 Behavior/Name/Clickling=Clickling Explode
 Behavior/Name/CockpitClosed=Cockpit Closed
 Behavior/Name/CockpitOpened=Cockpit Opened
@@ -855,6 +856,7 @@ Behavior/Tooltip/ChemicalPlatingLevel3=Attacks on unit stacks an oxalic poison t
 Behavior/Tooltip/ChemicalPlatingOxalicPoison=Unit is poisoned - movement slowed by 4% and takes 5 damage per second. Stacks up to 20 times. 
 Behavior/Tooltip/ChemicalPlatingTemplate=Attacks on unit stacks an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 3% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 1 - 1 poison stack per attack
 Behavior/Tooltip/Chewed=Unit is chewed by Cerberus.
+Behavior/Tooltip/ClassPointsBonus=<c val="00FF40">Class Points Bonus</c><n/>Class points (CP) are gained each time you win with a class. However, there's also a small chance to lose CP on classes you did not play. CP reward special bonuses at specific milestones.<n/><n/>05CP - 10 shield and 1 melee damage.<n/>10CP - Start the game at level2.<n/>15CP - 1sec sprint duration and 1% evasion.<n/>20CP - 10 shield and 1 shield armor.<n/>30CP - 1 vision and detection radius.<n/>40CP - Last round of every clip crits.<n/>50CP - 5 shield, life, and energy.
 Behavior/Tooltip/CockpitClosed=Technician is immune to ailments.
 Behavior/Tooltip/CockpitOpened=Susceptible to ailments. +1.1 energy regeneration per second.
 Behavior/Tooltip/CohesionLevel1=Unit gains +1 armor and +0.4 health regeneration.
@@ -939,9 +941,9 @@ Behavior/Tooltip/ImYourFatherTauntedLevel1=Provoked to attack Demolitions. <d re
 Behavior/Tooltip/ImYourFatherTauntedLevel2=Provoked to attack Demolitions. -30% damage dealt.
 Behavior/Tooltip/ImYourFatherTauntedLevel3=Provoked to attack Demolitions. <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage dealt.
 Behavior/Tooltip/ImprovedEquipment=+<d ref="100 * Behavior,ImprovedEquipment,Modification[0].VitalMaxFractionArray[Life]"/>% HP. +<d ref="100 * Behavior,ImprovedEquipment,Modification[0].DamageDealtFraction[Ranged]"/>% movespeed and damage.
-Behavior/Tooltip/ImprovedSprintLevel1=Increases movespeed by 70% for 5 seconds.
-Behavior/Tooltip/ImprovedSprintLevel2=Increases movespeed by 105% for 5 seconds.
-Behavior/Tooltip/ImprovedSprintLevel3=Increases movespeed by 140% for 5 seconds.
+Behavior/Tooltip/ImprovedSprintLevel1=Increases movespeed by 70% for <d ref="Behavior,ImprovedSprintLevel1,Duration"/> seconds.
+Behavior/Tooltip/ImprovedSprintLevel2=Increases movespeed by 105% for <d ref="Behavior,ImprovedSprintLevel1,Duration"/> seconds.
+Behavior/Tooltip/ImprovedSprintLevel3=Increases movespeed by 140% for <d ref="Behavior,ImprovedSprintLevel1,Duration"/> seconds.
 Behavior/Tooltip/InboundSicknessSlowLevel1=Unit is slowed by 10%.
 Behavior/Tooltip/InboundSicknessSlowLevel2=Unit is slowed by 20%.
 Behavior/Tooltip/Inception=The universe around you pauses. You are free to act for 15 seconds. Combat damage increased by +150% (does not affect Shiva), faster regeneration, and can detect nearby cloaked units.
@@ -1079,8 +1081,8 @@ Behavior/Tooltip/SpeedofThoughtStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/SpikedArmorLevel1=Deals 5 damage to any unit that attacks Demo. +1 Shield Armor and +5 Shields.
 Behavior/Tooltip/SpikedArmorLevel2=Deals 10 damage to any unit that attacks Demo. +2 Shield Armor and +10 Shields.
 Behavior/Tooltip/SpikedArmorLevel3=Deals 20 damage to any unit that attacks Demo. +3 Shield Armor  and +15 Shields.
-Behavior/Tooltip/Sprint=Increases movespeed by 35% for 5 seconds.
-Behavior/Tooltip/SprintLevel1=Increases movespeed by 35% for 5 seconds.
+Behavior/Tooltip/Sprint=Increases movespeed by 35% for <d ref="Behavior,Sprint,Duration"/> seconds.
+Behavior/Tooltip/SprintLevel1=Increases movespeed by 35% for <d ref="Behavior,SprintLevel1,Duration"/> seconds.
 Behavior/Tooltip/StaticShield=Deals 25 damage to units that attack the Field Probe
 Behavior/Tooltip/StaticShieldAura=All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
 Behavior/Tooltip/StealthLevel1=Cloaked for 6 seconds.
@@ -1755,7 +1757,7 @@ Button/Tooltip/LtSheng=One of the surviving leaders of Apollo Security. He has s
 Button/Tooltip/M45AMarksmanRifle=<c val="FFFF00">M45A Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against Light units. The M45A is a modified variant for the Mobile Infantry.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">12</c><n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
 Button/Tooltip/M45MarksmanRifleMini=<c val="FFFF00">M45 Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against light units.<n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 secs</c><n/>Equip: <c val="FFFFFF">2.2 secs</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">50</c> (Requires <c val="FFFF00">500 XP</c> to purchase)<n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
 Button/Tooltip/M5PulseRifle=<c val="F2D737">M5 Pulse Rifle</c><n/>A mysterious weapon hidden deep within the lab of Apollo. Its real origin...?<n/>Each shot <c val="FFFF00">slows</c> the attack and move speed of non-heroic targets by 20% for 3 seconds.<n/><c val="FFFF00">Has fixed damage and fire rate.<n/></c><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2</c><n/>Reload: <c val="FFFFFF">3.5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">8</c><n/>Adaptive: <c val="FFFFFF">0.3/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Splash</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"O shar'as shi'el... "
-Button/Tooltip/MP9A2SubMachineGun=<c val="F2D737">MP9A2 Sub-Machine Gun</c><n/>Excellent close quarter combat weapon when mobility is needed. Makes quick work of lightly armored units. Depletes ammo rapidly.<n/><n/>Base Range: <c val="FFFFFF">9</c><n/>Splash: <c val="FFFFFF">1.8</c><n/>Reload: <c val="FFFFFF">1.5 secs</c><n/>Equip: <c val="FFFFFF">0.7 secs</c><n/>Weight: <c val="FFFFFF">5<n/>Adaptive: <c val="FFFFFF">1.2/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/></c>Credits: <c val="FFFFFF">100</c><n/><n/>"My ancestor used one on Guadalcanal, I can see why."
+Button/Tooltip/MP9A2SubMachineGun=<c val="F2D737">MP9A2 Sub-Machine Gun</c><n/>Excellent close quarter combat weapon when mobility is needed. Makes quick work of lightly armored units. Depletes ammo rapidly.<n/><n/>Base Range: <c val="FFFFFF">10</c><n/>Splash: <c val="FFFFFF">1.8</c><n/>Reload: <c val="FFFFFF">1.5 secs</c><n/>Equip: <c val="FFFFFF">0.7 secs</c><n/>Weight: <c val="FFFFFF">5<n/>Adaptive: <c val="FFFFFF">1.2/Armor</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/></c>Credits: <c val="FFFFFF">100</c><n/><n/>"My ancestor used one on Guadalcanal, I can see why."
 Button/Tooltip/MadSpark=Launches a high frequency decoy beacon at target area, distracting and enraging enemies in 5 radius. Lasts 3.5 seconds.
 Button/Tooltip/MadSparkGrenade=Ranged attacker.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/Magazine=<c val="FFFF00">Magazine</c><n/>Consume to add 3 magazines to your ammuniton pool.<n/><n/>Credits: <c val="FFFFFF">10</c><n/><n/>"Third round from the bottom is a tracer. See that light and switch out recruit!" - Drill Instructor Sergeant Jordan
@@ -1910,7 +1912,7 @@ Button/Tooltip/SpikedArmorLevel1=Deals 5 damage to any unit that attacks Demo. S
 Button/Tooltip/SpikedArmorLevel2=Deals 10 damage to any unit that attacks Demo. Shield armor +2.
 Button/Tooltip/SpikedArmorLevel3=Deals 20 damage to any unit that attacks Demo. Shield armor +3.
 Button/Tooltip/SpineCrawlerUprooted=Uprooted anti-ground defensive structure. Can move when uprooted, but cannot attack. 
-Button/Tooltip/Sprint=Increases movespeed by 35% for 5 seconds.
+Button/Tooltip/Sprint=Increases movespeed by 35% for <d ref="Behavior,Sprint,Duration"/> seconds.
 Button/Tooltip/Sprint2=Increases movespeed by 35% for 5 seconds.
 Button/Tooltip/Sprint3=Increases movespeed by 35% for 5 seconds.
 Button/Tooltip/Stalker2=A deadly mutated beast.
@@ -2580,6 +2582,20 @@ DocInfo/PatchNote566=- Sensor towers are invulnerable.
 DocInfo/PatchNote567=- Quick use ability is transient.
 DocInfo/PatchNote568=- Recon Reaper Drone is transient.
 DocInfo/PatchNote569=- Rifleman Repulse is transient.
+DocInfo/PatchNote570=- Fixed a bug causing a player to be marked as hacker after getting demoted in rare situations.
+DocInfo/PatchNote571=[LeoTheCat]
+DocInfo/PatchNote572=- MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved.
+DocInfo/PatchNote573=- Stinger MK-3 damage changed from 300(+100 vs Massive) to 330 vs all.
+DocInfo/PatchNote574=- Minor adjustments of the TK system, making texts fit in more & less flashy, tuning penalties to be more consistent & reasonable.
+DocInfo/PatchNote575=- Fixed Rifleman animation bug during repulse.
+DocInfo/PatchNote576=- Perception stat now correctly gives 1% crit chance per point (was 0.5%).
+DocInfo/PatchNote577=- One Shot One Kill base damage can now crit (previously One Shot One Kill cannot crit despite visual).
+DocInfo/PatchNote578=- Fixed an issue causing UIs to not completely hide during cinematics for players who have died.
+DocInfo/PatchNote579=- Fixed a bug where Stinger does not damage the impact target if it belongs to the attacking player.
+DocInfo/PatchNote580=- Elite mutation Monstrous (red aura) will no longer boost the unit's spell damage (such as Cronus laser).
+DocInfo/PatchNote581=- Added a behavior icon indicating the CP bonuses. Added some more milestones for CP bonuses. 
+DocInfo/PatchNote582=- Recruit and Normal (vet) now has the same CP decay rate as Nightmare (15%).
+DocInfo/PatchNote583=- Removed a 1sec shield regen delay on Chem Expert for consistency (all other classes have no delay).
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4428,6 +4444,7 @@ Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~ 
 Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
+Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="0080FF">~B~</c>.
 Param/Expression/1E570E34=Ammo Box (~A~)
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
@@ -4572,7 +4589,6 @@ Param/Value/136BAE3A=<c val="FFFF00">Strength</c><n/>Adds +11.5 HP and increased
 Param/Value/138747BD=Use Anti-Armor weapons for Dome C
 Param/Value/140AC869=The dead feed my life force!
 Param/Value/1425470D=
-Param/Value/143D9426=.
 Param/Value/14B74FC4=Apollo Lunar Facility
 Param/Value/14E935D9=Watch your ammo counters. Cover each other during reloads.
 Param/Value/14EFB092=I've run the simulations here. Moving to the next terminal.
@@ -4711,7 +4727,6 @@ Param/Value/2B103DA8=</c>
 Param/Value/2B3C2461=Shutdown HAL from the mainframe
 Param/Value/2B55F506=
 Param/Value/2B56DCCE=+1 XP for Mission Bonus
-Param/Value/2B663F5F= has been pardoned by 
 Param/Value/2B9437F2=<s val="BriefingHanText">(Contact with Dr. Bergmann lost...)</s>
 Param/Value/2BAB2E60=Magazines
 Param/Value/2BAC080B=We're in position. Secure the area.
@@ -4766,7 +4781,7 @@ Param/Value/3331F97F=has succumbed to serious injuries.
 Param/Value/333C00A9=<s val="BriefingHanText">   Balancing/Testers<n/>   HunterIZ, gruvious, Reaper, Yorick, FlintLckwood, Peerawatz, NiteShade, Ghost</s>
 Param/Value/335ED149=Nail all those Agrons down.
 Param/Value/338A4C58=We brought down that machine, but looks like we've got more ahead of us.
-Param/Value/3399C292=<c val="FF0000">Equipment Closed</c>
+Param/Value/3399C292=<c val="CCCCCC">Equipment Closed</c>
 Param/Value/339DA5E3=+20 XP for Victory Bonus
 Param/Value/33B6A5BE=Field Marshal, I don't think it's a good idea to ask them to destroy the facility. Earth will be in an energy crisis without Apollo.
 Param/Value/33E4DF99=</c>)
@@ -5017,6 +5032,7 @@ Param/Value/5D6CA469=Maintain tight formation.
 Param/Value/5D91964B=<s val="InfoPaneHeroRank">(Reactor Core activation requires 2 authorized personnel..)</s>
 Param/Value/5DCE3C68=The truck is destroyed.
 Param/Value/5E300354=!
+Param/Value/5E47C419=The UGC Martial Court has ruled the incident as an accident, no penalty incurred.
 Param/Value/5E6F0326=This, my friends, is not possible.
 Param/Value/5E7C397E=(Sensing her mortality, the Queen begins to withdraw..)
 Param/Value/5E9D241A=asasd
@@ -5078,7 +5094,7 @@ Param/Value/6869707B=Focus your fire on the dome's structural support.
 Param/Value/68AC1FF6=<s val="GlueButton">
 Param/Value/68C9EDBA=Cover my back.
 Param/Value/68CD3E1E=Find a safe spot to defend against the Black Ops attack.
-Param/Value/68CFCA6D=<s val="ChatBar"><c val="FF8080">Heavy penalties have incurred for intentional team kill!</s></c>
+Param/Value/68CFCA6D=<c val="FF0000">Heavy penalties have incurred for intentional team kill!</s>
 Param/Value/68E80C9E=<c val="FF0000">Out of Ammo</c>
 Param/Value/68EC50FB=
 Param/Value/694F4581=Turn the Power Generators around Apollo back on.
@@ -5338,7 +5354,7 @@ Param/Value/94308139=Good men died to bring her in alive. Make their sacrifices 
 Param/Value/944A02AA=Survive the Black Ops attack and bring them down. They are a direct threat to UGC Military operations and in violation of Article 49. Lethal force authorized.
 Param/Value/9480FDAF= vote kicked by 
 Param/Value/949319EE=Communication's dead. We're on our own.
-Param/Value/94C0F9D3=<s val="GlueButton"><c val="FF8080">?!!!</c></s>
+Param/Value/94C0F9D3=<c val="FF3030">?!!!</c>
 Param/Value/94F0E7E3=We'll need some Thermals or Flares!
 Param/Value/95077764=: <c val="F4D72B">
 Param/Value/956708A3=Keep gathering those samples.
@@ -5432,7 +5448,7 @@ Param/Value/A1E10F66=<s val="InfoPaneHeroRank">(3 XP awarded for objective compl
 Param/Value/A21263F3=Proceed to Starport
 Param/Value/A2953986=<s val="GlueButton">Sec Team A: <c val="F4D72B">We need to head south, through the Airlocks, and get to the East Wing.</c></s>
 Param/Value/A2C6FC3F=HAL - stop this!
-Param/Value/A2F1CD75=Type '-pardon' to excuse the killer. You have 30 secs to do this.
+Param/Value/A2F1CD75=Type '-pardon' to excuse the killer if you believe it was not intentional. You have 30 secs to do this.
 Param/Value/A32067A4=<s val="GlueButton"><c val="F4D72B">Let me light your path.</c></s>
 Param/Value/A37105E0=Find Dr. Tanaka
 Param/Value/A388A277=28 hours after outbreak
@@ -5516,7 +5532,7 @@ Param/Value/B1391452=Attack Tartarus from behind to hurt it.
 Param/Value/B14B8D33=Stay with the IVAX unit. We're bringing it to Apollo.
 Param/Value/B16D9C8C=Kill high armor enemies with abilities or weapons that penetrate armor, like the Flamethrower. 
 Param/Value/B174282F=They're coming out of the ground!
-Param/Value/B180E4C5=<s val="GlueButton"><c val="FF8080">Friendly Fire!</c></s>
+Param/Value/B180E4C5=<c val="FF3030">Friendly Fire!</c>
 Param/Value/B278011F=Are they coming for us? We won't last long without fresh supplies.
 Param/Value/B278CAA4=We....found this infestor. Can you run some tests on her?
 Param/Value/B2928F29=If we let that thing get away, it'll regenerate the entire populatino of Zs.
@@ -5661,7 +5677,6 @@ Param/Value/C9F4F7B1=Stick together. There's more coming.
 Param/Value/C9FB5942=Chapter 2
 Param/Value/CA015547=: <c val="F4D72B">
 Param/Value/CA7A62A2=You're being misled by your superiors. Think this through.
-Param/Value/CA97E062=<s val="GlueButton"><c val="F5D62B">!!!</c></s>
 Param/Value/CB4C0097=There's too many. You need to destroy the Dome itself.
 Param/Value/CB61B932=<s val="GlueButton">
 Param/Value/CB734693=My research is almost complete.
@@ -5679,7 +5694,7 @@ Param/Value/CD5B26BE=Retrieve Weapons & Ammo from Armory
 Param/Value/CD783517=Class Selection - Recruit
 Param/Value/CDB4532A=<s val="GlueButton"><c val="F4D72B">Motion sensors lit up like a Christmas tree, brace for a fast attack!</c></s>
 Param/Value/CDBBA6C1=You are in direct violation of UGC Article 11.
-Param/Value/CE01A2D6=<s val="GlueButton"><c val="F5D62B">Fire in the hole!</c></s>
+Param/Value/CE01A2D6=<c val="F5D62B">Fire in the hole!</c>
 Param/Value/CE13C562=Retreat
 Param/Value/CE164DAC=
 Param/Value/CE2186ED=Danger! Move away from the Queen.
@@ -5761,7 +5776,7 @@ Param/Value/DAA0ACEF=<s val="InfoPaneHeroRank">Outbreak activated</s><n/>- Large
 Param/Value/DAB8AD38=We're not coming. Return to base.
 Param/Value/DAD3C239=We're Oscar Mike to target location.
 Param/Value/DAEA2E45=Class: 
-Param/Value/DAECF587=<c val="FF0000">Inventory Hidden</c> <c val="FFFFFF">(Numpad 1)</c>
+Param/Value/DAECF587=<c val="CCCCCC">Inventory Hidden</c> <c val="FFFFFF">(Numpad 1)</c>
 Param/Value/DB0896F1=I hear gunfire. Move quickly!
 Param/Value/DB2B3493=You're safe. Follow us.
 Param/Value/DB2E4586=<s val="BriefingHanText">(Airlock gates unlocked..)</s>
@@ -5835,7 +5850,7 @@ Param/Value/E3E8800E=<s val="InfoPaneHeroRank">All Randoms mode activated</s><n/
 Param/Value/E405D451=Your progress will automatically load each game.
 Param/Value/E461E750=Situation under control. We've got this.
 Param/Value/E48A1D80=<s val="InfoPaneUnitInfo">Enemy Units
-Param/Value/E49CDDCB=<s val="GlueButton"><c val="FF8080">%#&!</c></s>
+Param/Value/E49CDDCB=<c val="FF3030">%#&!</c>
 Param/Value/E4DFE6B3=<s val="InfoPaneHeroRank">
 Param/Value/E51F85FC=Tanks have arrived. They will provide heavy support.
 Param/Value/E551D186=<s val="InfoPaneHeroRank">(Dr. Tanaka activates his console...)</s>
@@ -5881,7 +5896,7 @@ Param/Value/EA8C7D2D=Search for survivors in Apollo
 Param/Value/EACCCFD6=+3 XP for Performance Bonus
 Param/Value/EAE4AD6B=Use AOE abilities to conserve ammo
 Param/Value/EB366E98=<s val="InfoPaneHeroRank">Realism</s><n/>- Just like the old times.
-Param/Value/EBEE9058=<s val="GlueButton"><c val="FF8080">@_@</c></s>
+Param/Value/EBEE9058=<c val="FF3030">@_@</c>
 Param/Value/EC3FECA5=(You notice a Compliance Implant at Tanaka's neck...)
 Param/Value/EC412052=A Blueberry Production
 Param/Value/EC43E9CC=</s>
@@ -6096,7 +6111,7 @@ Unit/Engineer/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Engine
 Unit/Flamethrower/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Flamethrower3,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Flamethrower3,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/ForwardObserver/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,ForwardObserver,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,ForwardObserver,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/LifeArmorName/CritterGroundArmor=Carapace
-Unit/LifeArmorName/None=
+Unit/LifeArmorName/None=UGC Infantry Armor
 Unit/LifeArmorName/ProtossArmor=Armor
 Unit/LifeArmorName/TerranInfantryArmor=UGC Infantry Armor
 Unit/LifeArmorName/ZergAirArmor=
@@ -6476,6 +6491,7 @@ Upgrade/Name/SatchelDeployment=Satchel Deployment
 Upgrade/Name/ShatterLevel2=Shatter Level 2
 Upgrade/Name/ShellProductionUpgrade=Fire Support Efficiency Upgrade Level 1
 Upgrade/Name/ShellProductionUpgrade2=Fire Support Efficiency Upgrade Level 2
+Upgrade/Name/SprintUpgrade=Sprint Upgrade
 Upgrade/Name/StealthMatrix=Stealth Matrix
 Upgrade/Name/StealthMatrixLevel1=Stealth Matrix Upgrade
 Upgrade/Name/SurveillanceFlare=Surveillance Flare

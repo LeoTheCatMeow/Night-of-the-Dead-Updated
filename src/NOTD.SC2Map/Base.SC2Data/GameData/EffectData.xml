@@ -3182,7 +3182,7 @@
         <EditorCategories value="Race:Terran"/>
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
-        <Kind value="Ranged"/>
+        <Kind value="Spell"/>
         <Death value="Blast"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
@@ -3222,7 +3222,7 @@
         <Marker Link="Effect/SnipeDamage2"/>
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
-        <Kind value="Ranged"/>
+        <Kind value="Spell"/>
         <Death value="Blast"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
@@ -7760,7 +7760,7 @@
         <Kind value="Ranged"/>
         <Amount value="12"/>
         <AreaArray Radius="1.2" Fraction="1"/>
-        <AreaArray Radius="1.8" Fraction="0.5"/>
+        <AreaArray Radius="1.8" Fraction="0.8"/>
         <ExcludeArray Value="Target"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
@@ -9917,10 +9917,9 @@
     </CEffectEnumArea>
     <CEffectDamage id="StingerMK3Damage">
         <EditorCategories value=""/>
-        <Amount value="300"/>
+        <Amount value="330"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Self,Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AttributeBonus index="Massive" value="100"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
@@ -9935,7 +9934,7 @@
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <Kind value="Ranged"/>
         <Total value="Combine"/>
-        <ImpactUnitValidator value="TargetIsAlly"/>
+        <ImpactUnitValidator value="TargetIsAllyorPlayer"/>
         <KindSplash value="Splash"/>
         <AreaArray Radius="5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
