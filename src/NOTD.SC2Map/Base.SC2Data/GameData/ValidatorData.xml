@@ -461,7 +461,7 @@
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="CritCheckDealer">
         <Value value="1"/>
-        <Behavior value="CriticalStrikeDealer"/>
+        <Behavior value="CriticalStrikeAttacker"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="ErebosBlind">
         <CombineArray value="IsNightmare"/>
@@ -1130,7 +1130,7 @@
     <CValidatorUnitFilters id="TargetIsNotEnemy">
         <Filters value="-;Enemy"/>
     </CValidatorUnitFilters>
-    <CValidatorUnitFilters id="TargetIsNotAlly">
+    <CValidatorUnitFilters id="TargetIsNotAllyOrPlayer">
         <Filters value="-;Player,Ally"/>
     </CValidatorUnitFilters>
     <CValidatorUnitType id="TargetIsSurveillanceFlare">

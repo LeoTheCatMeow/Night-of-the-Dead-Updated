@@ -1,4 +1,48 @@
 # Current Changes & Bugfixes Tracklist
+2020-12-5
+[LeoTheCat]
+- MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved.
+- Stinger MK-3 damage changed from 300(+100 vs Massive) to 330 vs all.
+- 590A5 Combat Shotgun damage bonus vs massive reduced from 35 to 30 (total 70 -> 65).
+- Crowbar damage increased from 40 to 45.
+- Minor adjustments of the TK system, making texts fit in more & less flashy, tuning penalties to be more consistent & reasonable.
+- Fixed Rifleman animation bug during repulse.
+- Perception stat now correctly gives 1% crit chance per point (was 0.5%).
+- One Shot One Kill base damage can now crit (previously One Shot One Kill cannot crit despite visual).
+- Critical hits doing 0 damage will no longer have the red number pop-up.
+- Fixed a bug causing the actual crit chance to be about twice as much as the stated value.
+- Fixed a design flaw causing flamethrower to land more crits than other weapons.
+- Crit skills from Rifleman, Assault, and Marksman have been buffed to compensate for the above bugfix.
+- Fixed an issue causing UIs to not completely hide during cinematics for players who have died.
+- Fixed a bug where Stinger does not damage the impact target if it belongs to the attacking player.
+- Elite mutation Monstrous (red aura) will no longer boost the unit's spell damage (such as Cronus laser).
+- Added a behavior icon indicating the CP bonuses. Added some more milestones for CP bonuses. 
+- Recruit and Normal (vet) now has the same CP decay rate as Nightmare (15%).
+- Removed a 1sec shield regen delay on Chem Expert for consistency (all other classes have no delay).
+- Players can now use Num Pad 3~6 to play dance/cheer animations on their character. (Only apply to some models, may need Numlock to work)
+- Added a couple Psi Ops skins and re-organized the order.
+
+2020-11-29
+[ThunderRazor]
+- The following can be triggered playing solo:
+  - Leaks (Scrap yard)
+  - Armory turrets
+- The following can be triggered by a lone surviving marine:
+  - EC airlock civs (Delta-1)
+  - AC transport civs (Delta-2)
+  - AS dome seal (Sec opt B)
+  - Mine shaft (Leto/Zeus/Seth)
+- Rewarding less hulk spawns for triggering airlock civs early (15 second window).
+  - Hulks capped to spawn factor at 0 seconds.
+  - 6x Spawn factor cap at 15 seconds (default).
+- If the truck is destroyed early, the bonus objective will fail.
+  - Civs will follow marines until escorted to the containment facility.
+- Armory turrets are invulnerable while underground.
+- Sensor towers are invulnerable.
+- Quick use ability is transient.
+- Recon Reaper Drone is transient.
+- Rifleman Repulse is transient.
+- Fixed a bug causing a player to be marked as hacker after getting demoted in rare situations.
 
 2020-11-21
 [ThunderRazor]

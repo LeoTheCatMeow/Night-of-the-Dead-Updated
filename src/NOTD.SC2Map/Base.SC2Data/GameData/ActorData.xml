@@ -12542,6 +12542,7 @@
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap PsiOpsSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap PsiOpsSkin2"/>
+        <On Terms="Effect.Tier3Skin.Start" Send="ModelSwap PsiOpsSkin3"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap Nova"/>
         <Model value="Nova"/>
         <BuildModel value="Nova"/>

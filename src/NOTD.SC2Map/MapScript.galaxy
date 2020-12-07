@@ -2468,7 +2468,6 @@ trigger gt_ToggleStatsDialog;
 trigger gt_ModifyHeroStats;
 trigger gt_Backstab;
 trigger gt_CriticalStrike;
-trigger gt_CriticalStrikeCP;
 trigger gt_ArmorMelt;
 trigger gt_Anticipation;
 trigger gt_Concentration;
@@ -16403,6 +16402,12 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(gv_marineHero[1], "CritTest", 1, 1);
     return true;
 }
 
@@ -18316,15 +18321,17 @@ bool gt_DanceCheer_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((lv_key == c_key3)) {
-        if ((gv_marineHero[EventPlayer()] != null)) {
-            libNtve_gf_SendActorMessageToUnit(gv_marineHero[EventPlayer()], "AnimPlay Cover Stand,Victory");
-        }
+    if ((lv_key == c_keyNumPad3) && (gv_marineHero[EventPlayer()] != null)) {
+        libNtve_gf_SendActorMessageToUnit(gv_marineHero[EventPlayer()], "AnimPlay Cheer Stand,Victory");
     }
-    else {
-        if ((gv_marineHero[EventPlayer()] != null)) {
-            libNtve_gf_SendActorMessageToUnit(gv_marineHero[EventPlayer()], "AnimPlay Cover Stand,Dance");
-        }
+    else if ((lv_key == c_keyNumPad4) && (gv_marineHero[EventPlayer()] != null)) {
+        libNtve_gf_SendActorMessageToUnit(gv_marineHero[EventPlayer()], "AnimPlay Dance Stand,Dance");
+    }
+    else if ((lv_key == c_keyNumPad5) && (gv_marineHero[EventPlayer()] != null)) {
+        libNtve_gf_SendActorMessageToUnit(gv_marineHero[EventPlayer()], "AnimPlay Drop Unload,End");
+    }
+    else if ((lv_key == c_keyNumPad6) && (gv_marineHero[EventPlayer()] != null)) {
+        libNtve_gf_SendActorMessageToUnit(gv_marineHero[EventPlayer()], "AnimPlay Spell Spell");
     }
     return true;
 }
@@ -18332,8 +18339,10 @@ bool gt_DanceCheer_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_DanceCheer_Init () {
     gt_DanceCheer = TriggerCreate("gt_DanceCheer_Func");
-    TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_key3, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
-    TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_key4, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
+    TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad3, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
+    TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad4, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
+    TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad5, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
+    TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad6, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -43718,11 +43727,7 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(UnitHasBehavior(EventUnit(), "CriticalStrikeDefender"))) {
-            return false;
-        }
-
-        if (!(UnitHasBehavior(lv_attackingUnit, "CriticalStrikeDealer"))) {
+        if (!((lv_damage > 0.0))) {
             return false;
         }
     }
@@ -43732,6 +43737,19 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if (UnitHasBehavior(lv_attackingUnit, "CriticalStrikeAttacker") && UnitHasBehavior(EventUnit(), "CriticalStrikeDefender")) {
+        UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), (lv_damage * IntToFixed(UnitBehaviorCount(lv_attackingUnit, "CriticalStrikeAttacker"))));
+        UnitBehaviorRemove(lv_attackingUnit, "CriticalStrikeAttacker", c_unitBehaviorCountAll);
+        UnitBehaviorRemove(EventUnit(), "CriticalStrikeDefender", c_unitBehaviorCountAll);
+        lv_damage *= 2.0;
+    }
+    else if ((EventUnitDamageEffect() != "StingerMK3Damage") && (EventUnitDamageEffect() != "StingerMK3DamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && UnitHasBehavior2(lv_attackingUnit, "CritBonusDummy") && (gv_marineRounds[UnitGetOwner(lv_attackingUnit)] == 0)) {
+        UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), lv_damage);
+        lv_damage *= 2.0;
+    }
+    else if (true) {
+        return true;
+    }
     TextTagCreate((FixedToText(lv_damage, 0) + StringExternal("Param/Value/296CE093")), 20, UnitGetPosition(lv_attackingUnit), 1.5, true, true, PlayerGroupActive());
     lv_critTextTag = TextTagLastCreated();
     TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(100.00, 0.00, 0.00));
@@ -43748,36 +43766,6 @@ void gt_CriticalStrike_Init () {
     TriggerAddEventUnitDamaged(gt_CriticalStrike, null, c_unitDamageTypeMelee, c_unitDamageNonFatal, null);
     TriggerAddEventUnitDamaged(gt_CriticalStrike, null, c_unitDamageTypeRanged, c_unitDamageNonFatal, null);
     TriggerAddEventUnitDamaged(gt_CriticalStrike, null, c_unitDamageTypeSplash, c_unitDamageNonFatal, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Critical Strike (CP)
-//--------------------------------------------------------------------------------------------------
-bool gt_CriticalStrikeCP_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!(UnitHasBehavior2(EventUnitTarget(), "CritBonusDummy"))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((gv_marineRounds[UnitGetOwner(EventUnitTarget())] == 0)) {
-        UnitBehaviorAdd(EventUnitTarget(), "CriticalStrikeDealer", EventUnitTarget(), 1);
-        UnitBehaviorAdd(EventUnit(), "CriticalStrikeDefender", EventUnitTarget(), 1);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_CriticalStrikeCP_Init () {
-    gt_CriticalStrikeCP = TriggerCreate("gt_CriticalStrikeCP_Func");
-    TriggerAddEventUnitAttacked2(gt_CriticalStrikeCP, null, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -43887,12 +43875,12 @@ void gt_Anticipation_Init () {
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "MP9A2SubMachineGun");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "M5PulseRifle");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "L3GrenadeExplosion");
-    TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "ScoutGround");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "UA420AssaultRifle");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "GaussRifleMini");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "SniperRifleMini");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "M45AMarksmanRifle");
     TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "StingerMK3Damage");
+    TriggerAddEventUnitDamaged(gt_Anticipation, null, c_unitDamageTypeAny, c_unitDamageEither, "ScoutGround");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -43979,8 +43967,6 @@ void gt_Concentration_Init () {
     TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "C10CanisterRifle");
     TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "Shotgun");
     TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "InfernalFlameThrower");
-    TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "FlameThrowerLevel2");
-    TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "FlameThrowerLevel3");
     TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "LaserRifleDamage");
     TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "XM814HeavyMachineGun");
     TriggerAddEventUnitDamaged(gt_Concentration, null, c_unitDamageTypeAny, c_unitDamageEither, "Crowbar");
@@ -46668,7 +46654,6 @@ void InitTriggers () {
     gt_ModifyHeroStats_Init();
     gt_Backstab_Init();
     gt_CriticalStrike_Init();
-    gt_CriticalStrikeCP_Init();
     gt_ArmorMelt_Init();
     gt_Anticipation_Init();
     gt_Concentration_Init();

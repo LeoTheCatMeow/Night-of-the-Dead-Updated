@@ -174,6 +174,13 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeDealerKnife">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Handled="ApplyCriticalStrikeSet" Location="Attacker">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="EvasionBonus">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1329,63 +1336,28 @@
         <Flags index="HideCount" value="1"/>
         <Flags index="KillSpawnedOnDeath" value="1"/>
     </CBehaviorSpawn>
-    <CBehaviorBuff id="CriticalStrikeAttacker">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse Handled="ApplyCriticalStrikeSet" Location="Attacker">
-            <Chance value="1"/>
-        </DamageResponse>
+    <CBehaviorBuff id="CriticalStrikeDealer">
         <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification>
             <StateFlags index="SuppressXPSharing" value="1"/>
         </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="CriticalStrikeAttackerKnife">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
         <DamageResponse Handled="ApplyCriticalStrikeSet" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
-    <CBehaviorBuff id="CriticalStrikeDealer">
+    <CBehaviorBuff id="CriticalStrikeAttacker">
+        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="30"/>
         <Duration value="0.0627"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CriticalStrikeDefender">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.0627"/>
         <InitialEffect value="AssaultCritEffects"/>
-        <DamageResponse ModifyFraction="2">
-            <Kind index="Spell" value="0"/>
-            <Kind index="NoProc" value="0"/>
-            <RequireEffectArray value="StingerMK3Damage"/>
-            <RequireEffectArray value="GuassRifle"/>
-            <RequireEffectArray value="XM814HeavyMachineGun"/>
-            <RequireEffectArray value="C10CanisterRifle"/>
-            <RequireEffectArray value="P38ScytheGuassPistol"/>
-            <RequireEffectArray value="Shotgun"/>
-            <RequireEffectArray value="LaserRifleDamage"/>
-            <RequireEffectArray value="Crowbar"/>
-            <RequireEffectArray value="FlameThrowerLevel2"/>
-            <RequireEffectArray value="InfernalFlameThrower"/>
-            <RequireEffectArray value="FlameThrowerLevel3"/>
-            <RequireEffectArray value="BarrettM112"/>
-            <RequireEffectArray value="MP9A2SubMachineGun"/>
-            <RequireEffectArray value="M5PulseRifle"/>
-            <RequireEffectArray value="UA420AssaultRifle"/>
-            <RequireEffectArray value="L3GrenadeExplosion"/>
-            <RequireEffectArray value="PrecisionShotLevel1Damage"/>
-            <RequireEffectArray value="PrecisionShotLevel2Damage"/>
-            <RequireEffectArray value="CombatKnifeDamage"/>
-            <RequireEffectArray value="OSOKLevel1BaseDamage"/>
-            <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
-            <RequireEffectArray value="OSOKLevel2BaseDamage"/>
-            <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
-            <RequireEffectArray value="OSOKLevel3BaseDamage"/>
-            <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
-            <ValidatorArray value="CritCheckDealer"/>
-            <Chance value="1"/>
-        </DamageResponse>
         <InfoFlags index="Hidden" value="1"/>
+        <MaxStackCount value="30"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CronusBeams">
         <EditorCategories value="AbilityorEffectType:Units"/>

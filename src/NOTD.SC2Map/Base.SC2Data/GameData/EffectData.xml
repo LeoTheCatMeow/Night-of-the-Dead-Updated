@@ -144,6 +144,36 @@
         <EditorCategories value=""/>
         <Behavior value="AcidicBonusCloudOnHit"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="CriticalDamage">
+        <EditorCategories value=""/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoScaledTakenBonus" value="1"/>
+        <Flags index="NoFractionTakenBonus" value="1"/>
+        <Flags index="NoUnscaledTakenBonus" value="1"/>
+        <Flags index="NoBehaviorResponse" value="1"/>
+        <Kind value="NoProc"/>
+    </CEffectDamage>
+    <CEffectDamage id="FirebatUFull">
+        <AttributeBonus index="Light" value="8"/>
+        <AttributeBonus index="Biological" value="8"/>
+        <ArmorReduction value="0"/>
+        <Total value="Combine"/>
+        <Amount value="16"/>
+        <AreaArray Radius="1" Fraction="1"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Air,Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="InfernalFlameThrower">
+        <ValidatorArray index="0" removed="1"/>
+        <AttributeBonus index="Light" value="2"/>
+        <AttributeBonus index="Armored" value="-3"/>
+        <AttributeBonus index="Biological" value="5"/>
+        <AttributeBonus index="Massive" value="-3"/>
+        <ArmorReduction value="0"/>
+        <Total value="Combine"/>
+        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
     <CEffectCreatePersistent id="MonstrousPullCreatePersistent">
         <ValidatorArray value="CasterisMassive"/>
         <EditorCategories value="Race:Zerg"/>
@@ -730,15 +760,15 @@
     <CEffectSet id="ApplyCriticalStrikeSet">
         <EditorCategories value=""/>
         <Chance value="0"/>
-        <EffectArray value="ApplyCriticalStrikeDealer"/>
-        <EffectArray value="ApplyCriticalStrike"/>
+        <EffectArray value="ApplyCriticalStrikeAttacker"/>
+        <EffectArray value="ApplyCriticalStrikeDefender"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="ApplyCriticalStrikeDealer">
+    <CEffectApplyBehavior id="ApplyCriticalStrikeAttacker">
         <EditorCategories value=""/>
-        <Behavior value="CriticalStrikeDealer"/>
         <WhichUnit Value="Source"/>
+        <Behavior value="CriticalStrikeAttacker"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="ApplyCriticalStrike">
+    <CEffectApplyBehavior id="ApplyCriticalStrikeDefender">
         <EditorCategories value=""/>
         <Behavior value="CriticalStrikeDefender"/>
     </CEffectApplyBehavior>
@@ -1185,7 +1215,7 @@
         <EditorCategories value=""/>
         <Amount value="300"/>
         <Death value="Impact"/>
-        <AreaArray Radius="3.5" Fraction="1" Validator="TargetIsNotAlly"/>
+        <AreaArray Radius="3.5" Fraction="1" Validator="TargetIsNotAllyOrPlayer"/>
         <AreaArray Radius="3.5" Fraction="0.2" Validator="TargetIsNotEnemy"/>
         <SearchFilters value="-;Neutral,Item,Invulnerable"/>
     </CEffectDamage>
@@ -2751,16 +2781,16 @@
         <EditorCategories value="Race:Terran"/>
         <ImpactLocation Value="TargetUnit"/>
         <AttributeBonus index="Light" value="5"/>
-        <AttributeBonus index="Massive" value="35"/>
+        <AttributeBonus index="Massive" value="30"/>
         <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Total value="Combine"/>
         <Amount value="35"/>
         <Death value="Blast"/>
         <AreaArray Radius="2" Fraction="1"/>
         <AreaArray Radius="3" Fraction="0.8"/>
         <AreaArray Radius="4" Fraction="0.6"/>
         <SearchFilters value="-;Self,Player,Ally,Destructible,Item,Dead,Invulnerable"/>
-        <KindSplash value="Splash"/>
-        <Total value="Combine"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="SlowRoastApplyBehavior">
         <ValidatorArray index="0" value="HasSlowRoast"/>
@@ -7117,7 +7147,7 @@
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="BarrettM112" parent="DU_WEAP">
-        <ValidatorArray value="TargetIsNotAlly"/>
+        <ValidatorArray value="TargetIsNotAllyOrPlayer"/>
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Armored" value="40"/>
         <ArmorReduction value="0"/>
@@ -7775,7 +7805,7 @@
         <ResponseFlags index="Flee" value="1"/>
         <Kind value="Melee"/>
         <KindSplash value="Splash"/>
-        <Amount value="40"/>
+        <Amount value="45"/>
         <Death value="Eviscerate"/>
         <SearchFilters value="Ground;Player,Ally,Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -7794,12 +7824,12 @@
     <CEffectDamage id="M5PulseRifle" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
         <AttributeBonus index="Psionic" value="55"/>
-        <AttributeBonus index="Heroic" value="55"/>
+        <AttributeBonus index="Heroic" value="20"/>
         <Kind value="Ranged"/>
         <Amount value="55"/>
-        <AreaArray Radius="0.4" Fraction="1"/>
+        <AreaArray Radius="0.6" Fraction="1"/>
         <AreaArray Radius="1.2" Fraction="0.5"/>
-        <AreaArray Radius="2" Fraction="0.25"/>
+        <AreaArray Radius="1.8" Fraction="0.25"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Invulnerable"/>
         <Death value="Blast"/>
@@ -8974,35 +9004,6 @@
         <PeriodicEffectArray index="27" removed="1"/>
         <PeriodicEffectArray index="28" removed="1"/>
         <PeriodicEffectArray index="29" removed="1"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="InfernalFlameThrowerLevel22">
         <EditorCategories value="Race:Terran"/>
@@ -9923,7 +9924,7 @@
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
-        <ImpactUnitValidator value="TargetIsNotAlly"/>
+        <ImpactUnitValidator value="TargetIsNotAllyOrPlayer"/>
         <AreaArray Radius="5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
     </CEffectDamage>
@@ -10332,15 +10333,6 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
     </CEffectDamage>
-    <CEffectDamage id="FirebatUFull">
-        <ArmorReduction value="0"/>
-        <Amount value="16"/>
-        <AttributeBonus index="Light" value="8"/>
-        <AttributeBonus index="Biological" value="8"/>
-        <AreaArray Radius="1" Fraction="1"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Air,Item,Dead,Invulnerable"/>
-        <Total value="Combine"/>
-    </CEffectDamage>
     <CEffectEnumArea id="ForcePushSearch">
         <EditorCategories value=""/>
         <LaunchLocation Value="SourcePoint"/>
@@ -10392,12 +10384,12 @@
     <CEffectApplyBehavior id="HEAmmoApplyBurn">
         <EditorCategories value=""/>
         <Behavior value="BurnHEAmmo"/>
-        <ValidatorArray index="0" value="TargetIsNotAlly"/>
+        <ValidatorArray index="0" value="TargetIsNotAllyOrPlayer"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="HEAmmoApplyFireVulnerability">
         <EditorCategories value=""/>
         <Behavior value="FireVulnerabilityHEAmmo"/>
-        <ValidatorArray index="0" value="TargetIsNotAlly"/>
+        <ValidatorArray index="0" value="TargetIsNotAllyOrPlayer"/>
     </CEffectApplyBehavior>
     <CEffectSet id="HEAmmoSet">
         <EditorCategories value=""/>
@@ -12178,22 +12170,12 @@
         <AttributeFactor index="Light" value="1.3332"/>
         <Total value="Combine"/>
     </CEffectDamage>
-    <CEffectDamage id="InfernalFlameThrower">
-        <ValidatorArray index="0" removed="1"/>
-        <AttributeBonus index="Light" value="2"/>
-        <AttributeBonus index="Armored" value="-3"/>
-        <AttributeBonus index="Biological" value="5"/>
-        <AttributeBonus index="Massive" value="-3"/>
-        <ArmorReduction value="0"/>
-        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
-        <Total value="Combine"/>
-    </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel2" parent="InfernalFlameThrower">
-        <AttributeBonus index="Biological" value="0"/>
+        <AttributeBonus index="Light" value="0"/>
         <Amount value="0"/>
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel3" parent="InfernalFlameThrower">
-        <AttributeBonus index="Biological" value="0"/>
+        <AttributeBonus index="Light" value="0"/>
         <Amount value="0"/>
     </CEffectDamage>
     <CEffectDamage id="FlamethrowerMK2Damage" parent="InfernalFlameThrower">

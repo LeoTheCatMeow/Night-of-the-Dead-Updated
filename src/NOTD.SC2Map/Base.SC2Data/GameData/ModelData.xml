@@ -200,6 +200,22 @@
     <CModel id="MonstrousPull">
         <Model value="Assets\Effects\Neutral\Diffusion_Shockwave_Coop\Diffusion_Shockwave_Coop.m3"/>
     </CModel>
+    <CModel id="PsiOpsSkin2" parent="Unit">
+        <Model value="Assets\Units\Zerg\KerriganGhost\KerriganGhost_01.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\KerriganGhost_RequiredAnims\KerriganGhost_RequiredAnims.m3a"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <EditorCategories value="Race:Terran"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="1.030000,1.030000,1.030000"/>
+        <ScaleMin value="1.030000,1.030000,1.030000"/>
+        <SelectionRadius value="0.375000"/>
+        <ShadowRadius value="0.375000"/>
+        <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+    </CModel>
     <CModel id="SS_SwarmGuardian">
         <Radius value="1.500000"/>
     </CModel>
@@ -453,26 +469,27 @@
         <ScaleMax value="1.010000,1.010000,1.010000"/>
         <ScaleMin value="1.010000,1.010000,1.010000"/>
     </CModel>
-    <CModel id="PsiOpsSkin1" parent="Unit">
-        <Model value="Assets\Units\Terran\GhostEcho\GhostEcho.m3"/>
+    <CModel id="PsiOpsSkin3" parent="Unit">
+        <Model value="Assets\Units\Terran\NovaEx3\NovaEx3.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\NovaEx3_RequiredAnims\NovaEx3_RequiredAnims.m3a"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <EditorCategories value="Race:Terran"/>
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
         <Radius value="0.375000"/>
+        <ScaleMax value="0.950000,0.950000,0.950000"/>
+        <ScaleMin value="0.950000,0.950000,0.950000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
-        <ScaleMax value="1.010000,1.010000,1.010000"/>
-        <ScaleMin value="1.010000,1.010000,1.010000"/>
     </CModel>
     <CModel id="PathfinderSkin2" parent="ReaperBase">
         <Model value="Assets\Units\Terran\Reaper_BlackOps\Reaper_BlackOps.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
     </CModel>
-    <CModel id="PsiOpsSkin2" parent="Unit">
+    <CModel id="PsiOpsSkin1" parent="Unit">
         <Model value="Assets\Units\Terran\GhostFemaleDominion\GhostFemaleDominion.m3"/>
         <RequiredAnims value="Assets\Units\Terran\GhostFemale_RequiredAnims\GhostFemale_RequiredAnims.m3a"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
@@ -480,8 +497,8 @@
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
         <Radius value="0.375000"/>
-        <ScaleMax value="1.010000,1.010000,1.010000"/>
-        <ScaleMin value="1.010000,1.010000,1.010000"/>
+        <ScaleMax value="0.920000,0.920000,0.920000"/>
+        <ScaleMin value="0.920000,0.920000,0.920000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
@@ -1287,8 +1304,6 @@
     <CModel id="M5PulseRifleAttackImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\ShadowCannonImpact\ShadowCannonImpact.m3"/>
         <EditorCategories value="Race:Terran"/>
-        <ScaleMax value="1.100000,1.100000,1.100000"/>
-        <ScaleMin value="1.100000,1.100000,1.100000"/>
     </CModel>
     <CModel id="SpacePlatformCurtain">
         <AnimSpeed value="0.200000"/>
