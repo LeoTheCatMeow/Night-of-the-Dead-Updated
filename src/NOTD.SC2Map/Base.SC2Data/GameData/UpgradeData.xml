@@ -184,7 +184,7 @@
     </CUpgrade>
     <CUpgrade id="PerceptionCriticalStrike">
         <Alert value=""/>
-        <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.005"/>
+        <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.01"/>
         <MaxLevel value="9"/>
     </CUpgrade>
     <CUpgrade id="ProbeLimit">
@@ -335,6 +335,28 @@
     </CUpgrade>
     <CUpgrade id="TrickShotLevel4">
         <EffectArray Operation="Set" Reference="Effect,TrickShotThirdBounceLaunch,ImpactEffect[0]" Value="TrickShotFourthSet"/>
+    </CUpgrade>
+    <CUpgrade id="SprintUpgrade">
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,Sprint,Duration" Value="1.000000"/>
+        <EffectArray Reference="Behavior,SprintLevel1,Duration" Value="1.000000"/>
+        <EffectArray Reference="Behavior,ImprovedSprintLevel1,Duration" Value="1.000000"/>
+        <EffectArray Reference="Behavior,ImprovedSprintLevel2,Duration" Value="1.000000"/>
+        <EffectArray Reference="Behavior,ImprovedSprintLevel3,Duration" Value="1.000000"/>
+        <AffectedUnitArray value="TychusChaingun"/>
+        <AffectedUnitArray value="ChemicalExpert"/>
+        <AffectedUnitArray value="Commando"/>
+        <AffectedUnitArray value="DominionKillTeam"/>
+        <AffectedUnitArray value="Engineer"/>
+        <AffectedUnitArray value="Flamethrower3"/>
+        <AffectedUnitArray value="ForwardObserver"/>
+        <AffectedUnitArray value="Marksman"/>
+        <AffectedUnitArray value="Medic2"/>
+        <AffectedUnitArray value="Pathfinder"/>
+        <AffectedUnitArray value="PsiOps"/>
+        <AffectedUnitArray value="Spectre"/>
+        <AffectedUnitArray value="Rifleman"/>
+        <AffectedUnitArray value="Technician"/>
     </CUpgrade>
     <CUpgrade id="UnknownUpgrade2">
         <EffectArray Operation="Set" Reference="Weapon,Flamethrower,TargetFilters[0]" Value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>

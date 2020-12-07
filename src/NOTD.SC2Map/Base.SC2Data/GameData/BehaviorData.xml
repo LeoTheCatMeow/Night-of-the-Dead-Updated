@@ -174,6 +174,17 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="EvasionBonus">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse ModifyFraction="0">
+            <Chance value="0.01"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CritBonusDummy">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="FriendlyFire1">
         <Alignment value="Negative"/>
         <BehaviorFlags index="EnabledWhileDead" value="1"/>
@@ -309,7 +320,6 @@
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="0.5">
-            <DamageDealtFraction index="Spell" value="1"/>
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
@@ -428,7 +438,6 @@
     <CBehaviorBuff id="MonstrousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="0.7">
-            <DamageDealtFraction index="Spell" value="0.3"/>
             <DamageDealtFraction index="Melee" value="0.3"/>
             <DamageDealtFraction index="Ranged" value="0.3"/>
             <DamageDealtFraction index="Splash" value="0.3"/>
@@ -595,6 +604,17 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VitalBonus50CP">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Modification>
+            <VitalMaxArray index="Life" value="5"/>
+            <VitalMaxArray index="Shields" value="5"/>
+            <VitalMaxArray index="Energy" value="5"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="Undetectable">
@@ -901,6 +921,14 @@
         <Birth value="Footprint5x5CreepSourceStart"/>
         <Grown value="Footprint5x5CreepSourceGrown"/>
     </CBehaviorCreepSource>
+    <CBehaviorBuff id="ClassPointsBonus">
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-sentry-eclipseprotocol.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="Countdown" value="0"/>
+        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
+        <MaxStackCount value="50"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="WraithCorrosiveAcid">
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-corrosiveacid.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
@@ -1328,6 +1356,7 @@
         <InitialEffect value="AssaultCritEffects"/>
         <DamageResponse ModifyFraction="2">
             <Kind index="Spell" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <RequireEffectArray value="StingerMK3Damage"/>
             <RequireEffectArray value="GuassRifle"/>
             <RequireEffectArray value="XM814HeavyMachineGun"/>
@@ -1344,12 +1373,15 @@
             <RequireEffectArray value="M5PulseRifle"/>
             <RequireEffectArray value="UA420AssaultRifle"/>
             <RequireEffectArray value="L3GrenadeExplosion"/>
-            <RequireEffectArray value="GrenadeLevel1Damage"/>
-            <RequireEffectArray value="GrenadeLevel2Damage"/>
             <RequireEffectArray value="PrecisionShotLevel1Damage"/>
             <RequireEffectArray value="PrecisionShotLevel2Damage"/>
-            <RequireEffectArray value="RepulseDamage"/>
             <RequireEffectArray value="CombatKnifeDamage"/>
+            <RequireEffectArray value="OSOKLevel1BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel2BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
             <ValidatorArray value="CritCheckDealer"/>
             <Chance value="1"/>
         </DamageResponse>
