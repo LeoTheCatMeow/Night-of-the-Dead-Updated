@@ -177,11 +177,12 @@
     <CBehaviorBuff id="ChemicalToxin">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-minesplatter.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <MaxStackCount value="40"/>
+        <MaxStackCount value="50"/>
         <Duration value="2"/>
         <Modification>
-            <VitalRegenArray index="Life" value="-4"/>
+            <VitalRegenArray index="Life" value="-3.5"/>
         </Modification>
+        <MaxStackCountPerCaster value="25"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalVulnerability">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
@@ -7779,7 +7780,7 @@
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-tenstenspikes.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="1.15" WeaponRange="-1"/>
-        <MaxStackCount value="5"/>
+        <MaxStackCount value="3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="HPAmmo">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-u238rounds.dds"/>
@@ -7790,7 +7791,7 @@
             <DamageDealtFraction index="Ranged" value="0.12"/>
             <DamageDealtFraction index="Splash" value="0.12"/>
         </Modification>
-        <MaxStackCount value="5"/>
+        <MaxStackCount value="3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherTauntedLevel1">
         <Alignment value="Negative"/>

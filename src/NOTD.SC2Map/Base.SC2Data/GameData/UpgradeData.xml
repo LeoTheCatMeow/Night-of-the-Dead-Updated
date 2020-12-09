@@ -34,7 +34,7 @@
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="HarvesterofSorrowBonusCrit">
-        <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.2"/>
+        <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.25"/>
     </CUpgrade>
     <CUpgrade id="CripplingFire">
         <Flags index="UpgradeCheat" value="0"/>
@@ -261,21 +261,22 @@
         <EffectArray index="4" Reference="Actor,HellionTank,UnitIcon" Value="Assets\Textures\btn-unit-terran-helliontank-junker.dds"/>
         <EffectArray index="5" Reference="Actor,HellionTank,GroupIcon.Image[0]"/>
         <EffectArray index="6" Reference="Effect,InfernalFlameThrowerE,AreaArray[0].Effect" Value="Helium3IgniterSet"/>
-        <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,Amount" Value="11.7"/>
+        <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,Amount" Value="13"/>
         <EffectArray Operation="Set" Reference="Weapon,Flamethrower,Range" Value="7.65"/>
         <EffectArray Operation="Set" Reference="Effect,InfernalFlameThrowerLevel32,AreaArray[0].Effect" Value="Helium3IgniterSet"/>
         <EffectArray Operation="Set" Reference="Effect,InfernalFlameThrowerLevel22,AreaArray[0].Effect" Value="Helium3IgniterSet"/>
-        <EffectArray Operation="Set" Reference="Effect,InfernalFlameThrower,Amount" Value="11.7"/>
+        <EffectArray Operation="Set" Reference="Effect,InfernalFlameThrower,Amount" Value="13"/>
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,AttributeBonus[Armored]" Value="-2"/>
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,AttributeBonus[Biological]" Value="5"/>
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,AttributeBonus[Light]" Value="2"/>
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,AttributeBonus[Massive]" Value="-2"/>
+        <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel2,Amount" Value="13"/>
     </CUpgrade>
     <CUpgrade id="Helium3IgniterLevel2" parent="HighCapacityBarrels">
         <Name value="Upgrade/Name/Helium3IgniterLevel2"/>
         <EffectArray index="0" Operation="Set" Reference="Weapon,Flamethrower,Range" Value="6.65"/>
-        <EffectArray index="1" Operation="Set" Reference="Effect,FlameThrowerLevel2,Amount" Value="10.8"/>
-        <EffectArray index="2" Reference="Effect,InfernalFlameThrower,Amount" Value="10.8"/>
+        <EffectArray index="1" Operation="Set" Reference="Effect,FlameThrowerLevel2,Amount" Value="12"/>
+        <EffectArray index="2" Reference="Effect,InfernalFlameThrower,Amount" Value="12"/>
         <EffectArray index="3" Reference="Effect,FlameThrowerLevel2,AttributeBonus[Armored]" Value="-2"/>
         <EffectArray index="4" Reference="Effect,FlameThrowerLevel2,AttributeBonus[Biological]" Value="5"/>
         <EffectArray index="5" Reference="Effect,FlameThrowerLevel2,AttributeBonus[Light]" Value="2"/>
@@ -289,11 +290,12 @@
         <EffectArray index="13" removed="1"/>
         <EffectArray index="14" removed="1"/>
         <EffectArray index="15" removed="1"/>
+        <EffectArray index="16" removed="1"/>
     </CUpgrade>
     <CUpgrade id="Helium3IgniterLevel1" parent="HighCapacityBarrels">
         <Name value="Upgrade/Name/Helium3IgniterLevel1"/>
         <EffectArray index="0" Operation="Set" Reference="Weapon,Flamethrower,Range" Value="5.65"/>
-        <EffectArray index="1" Operation="Set" Reference="Effect,InfernalFlameThrower,Amount" Value="9.9"/>
+        <EffectArray index="1" Operation="Set" Reference="Effect,InfernalFlameThrower,Amount" Value="11"/>
         <EffectArray index="2" removed="1"/>
         <EffectArray index="3" removed="1"/>
         <EffectArray index="4" removed="1"/>
@@ -308,6 +310,7 @@
         <EffectArray index="13" removed="1"/>
         <EffectArray index="14" removed="1"/>
         <EffectArray index="15" removed="1"/>
+        <EffectArray index="16" removed="1"/>
     </CUpgrade>
     <CUpgrade id="LookLevel2">
         <EffectArray Operation="Set" Reference="Effect,LookPersistentOrder,PeriodicPeriodArray[2]" Value="1.000000"/>

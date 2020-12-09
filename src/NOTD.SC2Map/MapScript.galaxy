@@ -9806,6 +9806,7 @@ bool auto_gf_ECC1ItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     gf_CreateItemNOTD("RoadFlare", 9);
     gf_CreateItemNOTD("ThermalSight", 1);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("C2Armor", 2);
     gf_CreateItemNOTD("C4Armor", 2);
     gf_CreateItemNOTD("Flamethrower", 1);
@@ -10640,10 +10641,10 @@ bool auto_gf_ECChapter2ItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     gf_CreateItemNOTD("OccularImplants", 2);
     gf_CreateItemNOTD("HighCapacityClip", 2);
     gf_CreateItemNOTD("NanoHealthAugment", 2);
-    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("ThermalSight", 1);
     gf_CreateItemNOTD("PersonnelArcReactor", 2);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("C4Armor", 2);
     gf_CreateItemNOTD("C6Armor", 1);
     if ((gv_isVeteranSquad == true)) {

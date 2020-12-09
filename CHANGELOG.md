@@ -1,8 +1,8 @@
 # Current Changes & Bugfixes Tracklist
+
 2020-12-5
 [LeoTheCat]
-[LeoTheCat]
-- MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved.
+- MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved, adaptive value reverted to 1.
 - Stinger MK-3 damage changed from 300(+100 vs Massive) to 330 vs all.
 - 590A5 Combat Shotgun damage bonus vs massive reduced from 35 to 30 (total 70 -> 65).
 - Crowbar damage increased from 40 to 45.
@@ -14,7 +14,7 @@
 - Fixed a bug causing the actual crit chance to be about twice as much as the stated value.
 - Crit skills from Rifleman, Assault, and Marksman have been buffed to compensate for the above bugfix.
 - Fixed a design flaw causing Flamethrower to land more crits than other weapons.
-- Increased Flamethrower base damage by 1 and reduced vs Armored/Massive penalty from -3 to -2 to compensate the above bugfix.
+- Increased Flamethrower base damage by 2 and reduced vs Armored/Massive penalty from -3 to -2 to compensate the above bugfix.
 - Fixed an issue causing UIs to not completely hide during cinematics for players who have died.
 - Fixed a bug where Stinger does not damage the impact target if it belongs to the attacking player.
 - Elite mutation Monstrous (red aura) will no longer boost the unit's spell damage (such as Cronus laser).

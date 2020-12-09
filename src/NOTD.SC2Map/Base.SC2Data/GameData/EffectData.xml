@@ -157,6 +157,18 @@
         <EffectArray value="CIAmmoApplyDebuff"/>
         <EffectArray value="CIAmmoApplyDOT"/>
     </CEffectSet>
+    <CEffectDamage id="InfernalFlameThrower">
+        <ValidatorArray index="0" removed="1"/>
+        <AttributeBonus index="Light" value="2"/>
+        <AttributeBonus index="Armored" value="-2"/>
+        <AttributeBonus index="Biological" value="5"/>
+        <AttributeBonus index="Massive" value="-2"/>
+        <ArmorReduction value="0"/>
+        <Type value="Fire"/>
+        <Total value="Combine"/>
+        <Amount value="10"/>
+        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="SyncModuleApplyBuff">
         <Behavior value="SynchronizationModule"/>
     </CEffectApplyBehavior>
@@ -166,7 +178,7 @@
     <CEffectEnumArea id="SyncModuleBuffSearchArea">
         <EditorCategories value=""/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Heroic,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="8" Effect="SyncModuleApplyBuff2"/>
+        <AreaArray Radius="7" Effect="SyncModuleApplyBuff2"/>
     </CEffectEnumArea>
     <CEffectDamage id="CriticalDamage">
         <EditorCategories value=""/>
@@ -187,18 +199,6 @@
         <Amount value="16"/>
         <AreaArray Radius="1" Fraction="1"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral,Air,Item,Dead,Invulnerable"/>
-    </CEffectDamage>
-    <CEffectDamage id="InfernalFlameThrower">
-        <ValidatorArray index="0" removed="1"/>
-        <AttributeBonus index="Light" value="2"/>
-        <AttributeBonus index="Armored" value="-2"/>
-        <AttributeBonus index="Biological" value="5"/>
-        <AttributeBonus index="Massive" value="-2"/>
-        <ArmorReduction value="0"/>
-        <Total value="Combine"/>
-        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
-        <Type value="Fire"/>
-        <Amount value="9"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="MonstrousPullCreatePersistent">
         <ValidatorArray value="CasterisMassive"/>
@@ -7849,7 +7849,6 @@
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
-        <ArmorReduction value="1.2"/>
     </CEffectDamage>
     <CEffectDamage id="Crowbar">
         <EditorCategories value="Race:Terran"/>
@@ -12251,20 +12250,34 @@
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel2" parent="InfernalFlameThrower">
         <AttributeBonus index="Light" value="0"/>
-        <AttributeBonus index="Armored" value="0"/>
-        <AttributeBonus index="Biological" value="0"/>
-        <AttributeBonus index="Massive" value="0"/>
         <Amount value="0"/>
+        <ValidatorArray index="0" removed="1"/>
+        <ArmorReduction value="0"/>
+        <Type value="Fire"/>
+        <Total value="Combine"/>
+        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel3" parent="InfernalFlameThrower">
         <AttributeBonus index="Light" value="0"/>
-        <AttributeBonus index="Armored" value="0"/>
-        <AttributeBonus index="Biological" value="0"/>
-        <AttributeBonus index="Massive" value="0"/>
         <Amount value="0"/>
+        <ValidatorArray index="0" removed="1"/>
+        <ArmorReduction value="0"/>
+        <Type value="Fire"/>
+        <Total value="Combine"/>
+        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="FlamethrowerMK2Damage" parent="InfernalFlameThrower">
         <Marker Link="Effect/FlamethrowerMK2Damage"/>
+        <ValidatorArray index="0" removed="1"/>
+        <AttributeBonus index="Light" value="2"/>
+        <AttributeBonus index="Armored" value="-2"/>
+        <AttributeBonus index="Biological" value="5"/>
+        <AttributeBonus index="Massive" value="-2"/>
+        <ArmorReduction value="0"/>
+        <Type value="Fire"/>
+        <Total value="Combine"/>
+        <Amount value="9"/>
+        <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="KaiserBladesDamage">
         <Amount value="55"/>

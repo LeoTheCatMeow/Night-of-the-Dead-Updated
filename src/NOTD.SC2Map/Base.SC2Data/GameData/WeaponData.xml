@@ -805,9 +805,8 @@
         <TargetFilters value="Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <MinScanRange value="6"/>
         <Range value="4.5"/>
-        <Period value="1.55"/>
+        <Period value="1.6"/>
         <DamagePoint value="0.05"/>
-        <RandomDelayMin value="-0.063"/>
         <Effect value="ShotgunDamageSet"/>
         <Tip value="Button/Tooltip/Shotgun"/>
     </CWeaponLegacy>
@@ -872,7 +871,7 @@
         <Cost>
             <Cooldown Link="Weapon/C10CanisterRifle"/>
         </Cost>
-        <Period value="0.35"/>
+        <Period value="0.3"/>
         <DamagePoint value="0.04"/>
         <Backswing value="0.1"/>
         <Tip value="Button/Tooltip/MP9A2SubMachineGun"/>
