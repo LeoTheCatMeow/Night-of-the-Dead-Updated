@@ -174,6 +174,50 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ChemicalToxin">
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-minesplatter.dds"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <MaxStackCount value="40"/>
+        <Duration value="2"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="-4"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChemicalVulnerability">
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <DamageResponse ModifyFraction="1.35">
+            <RequireEffectArray value="ContaminateDamageLevel1"/>
+            <RequireEffectArray value="ContaminateDamageLevel2"/>
+            <RequireEffectArray value="ContaminateDamageLevel3"/>
+            <RequireEffectArray value="DesolationDamageLevel1"/>
+            <RequireEffectArray value="DesolationDamageLevel2"/>
+            <RequireEffectArray value="DesolationDamageLevel3"/>
+            <RequireEffectArray value="InboundSicknessDamageLevel1"/>
+            <RequireEffectArray value="InboundSicknessDamageLevel2"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage1"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage2"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage3"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage4"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage5"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage6"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage7"/>
+            <RequireEffectArray value="InboundSicknessVenomDamage8"/>
+            <RequireEffectArray value="ScorchedEarthDamage"/>
+            <RequireEffectArray value="VRL772Damage"/>
+            <RequireEffectArray value="VRL772VenomDamage1"/>
+            <RequireEffectArray value="VRL772VenomDamage2"/>
+            <RequireEffectArray value="VRL772VenomDamage3"/>
+            <RequireEffectArray value="VRL772VenomDamage4"/>
+            <RequireEffectArray value="VRL772VenomDamage5"/>
+            <RequireEffectArray value="ChemicalPlatingDamage"/>
+            <RequireEffectArray value="VolatileInjectionLevel1Damage"/>
+            <RequireEffectArray value="VolatileInjectionLevel2Damage"/>
+            <RequireEffectArray value="MoreDoTsDamage"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="CriticalStrikeDealerKnife">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -612,6 +656,43 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SynchronizationModule">
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="1"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.03"/>
+            <DamageDealtFraction index="Melee" value="0.03"/>
+            <DamageDealtFraction index="Ranged" value="0.03"/>
+            <DamageDealtFraction index="Splash" value="0.03"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SynchronizationModule2">
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="1"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.18"/>
+            <DamageDealtFraction index="Melee" value="0.18"/>
+            <DamageDealtFraction index="Ranged" value="0.18"/>
+            <DamageDealtFraction index="Splash" value="0.18"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SynchronizationModuleAura">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="SyncModuleSearchSet"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CIAmmo2">
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <DamageResponse Handled="CIAmmoApplySet" Location="Attacker">
+            <Chance value="1"/>
+            <DamageType index="Fire" value="0"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="VitalBonus50CP">
         <Alignment value="Positive"/>
@@ -1349,7 +1430,7 @@
     <CBehaviorBuff id="CriticalStrikeAttacker">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="30"/>
+        <MaxStackCount value="100"/>
         <Duration value="0.0627"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CriticalStrikeDefender">
@@ -1357,7 +1438,7 @@
         <Duration value="0.0627"/>
         <InitialEffect value="AssaultCritEffects"/>
         <InfoFlags index="Hidden" value="1"/>
-        <MaxStackCount value="30"/>
+        <MaxStackCount value="100"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CronusBeams">
         <EditorCategories value="AbilityorEffectType:Units"/>

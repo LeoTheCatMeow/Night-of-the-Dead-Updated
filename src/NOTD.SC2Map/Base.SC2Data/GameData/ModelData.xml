@@ -18,6 +18,9 @@
         <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3"/>
         <Lighting value=""/>
     </CModel>
+    <CModel id="ChemicalVulnerability">
+        <Model value="Assets\Effects\Zerg\MiasmaImpact\MiasmaImpact.m3"/>
+    </CModel>
     <CModel id="CommandoSkin3" parent="Unit">
         <Model value="Assets\Units\CovertOps_AssaultTrooper.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
@@ -197,8 +200,22 @@
         <Model value="Assets\Effects\Protoss\ProbeBeam\ProbeBeam.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
+    <CModel id="MarksmanSkin3" parent="GhostBase">
+        <Model value="Assets\COOP\Mengsk\Units\Ghost_Mengsk_COOP\Ghost_Mengsk_COOP.m3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.300000"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+        <TextureDeclares Prefix="Hpoly_Ghost_">
+            <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
+            <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
+        </TextureDeclares>
+    </CModel>
     <CModel id="MonstrousPull">
         <Model value="Assets\Effects\Neutral\Diffusion_Shockwave_Coop\Diffusion_Shockwave_Coop.m3"/>
+    </CModel>
+    <CModel id="PathfinderSkin3" parent="ReaperBase">
+        <Model value="Assets\Units\Terran\Reaper_Silver\Reaper_Silver.m3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
     </CModel>
     <CModel id="PsiOpsSkin2" parent="Unit">
         <Model value="Assets\Units\Zerg\KerriganGhost\KerriganGhost_01.m3"/>
@@ -282,7 +299,7 @@
         <ScaleMin value="0.800000,0.800000,0.800000"/>
     </CModel>
     <CModel id="DemolitionsSkin2" parent="MarauderBase">
-        <Model value="Assets\Units\C_Marauder.m3"/>
+        <Model value="Assets\COOP\Mengsk\Units\Marauder_Mengsk_COOP\Marauder_Mengsk_COOP.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
     </CModel>
     <CModel id="DemolitionsSkin3" parent="MarauderBase">
@@ -771,6 +788,48 @@
         <Radius value="0.650000"/>
         <ScaleMax value="0.740000,0.740000,0.860000"/>
         <ScaleMin value="0.740000,0.740000,0.860000"/>
+        <SelectionRadius value="0.760000"/>
+        <ShadowRadius value="0.760000"/>
+        <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <UnitGlossaryCamera value="Star2CameraMid07"/>
+    </CModel>
+    <CModel id="TechnicianSkin3" parent="Unit" Race="Terran">
+        <Model value="Assets\COOP\Mengsk\Units\Viking_Mengsk_COOP_Assault\Viking_Mengsk_COOP_Assault.m3"/>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 01">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 02">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 03">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 04">
+            <Keys index="SetA" value="2"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 05">
+            <Keys index="SetA" value="2"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 06">
+            <Keys index="SetA" value="2"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 07">
+            <Keys index="SetA" value="2"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.550000"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.650000"/>
+        <ScaleMax value="0.900000,0.900000,0.900000"/>
+        <ScaleMin value="0.900000,0.900000,0.900000"/>
         <SelectionRadius value="0.760000"/>
         <ShadowRadius value="0.760000"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>

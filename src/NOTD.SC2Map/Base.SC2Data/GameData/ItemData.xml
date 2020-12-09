@@ -73,6 +73,16 @@
         <EquipBehaviorArray value="C6Armor"/>
         <EffectFlags index="Transient" value="1"/>
     </CItemEffectInstant>
+    <CItemEffectInstant id="CIAmmo">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="Enhancements"/>
+        <EquipBehaviorArray value="CIAmmo2"/>
+        <EffectCost>
+            <Charge Link=""/>
+            <Cooldown Link=""/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
     <CItemEffectInstant id="Chaingun">
         <Flags index="DropOnDeath" value="1"/>
         <Class value="Weapons"/>
@@ -362,6 +372,16 @@
         <Class value="Weapons"/>
         <Container value=""/>
         <EquipWeaponArray Link="StingerMK3"/>
+        <EffectCost>
+            <Charge Link=""/>
+            <Cooldown Link=""/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="SynchronizationModule">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="Enhancements"/>
+        <EquipBehaviorArray value="SynchronizationModuleAura"/>
         <EffectCost>
             <Charge Link=""/>
             <Cooldown Link=""/>

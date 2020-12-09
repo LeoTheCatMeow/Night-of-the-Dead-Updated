@@ -461,6 +461,7 @@ Behavior/Name/BringThemDownLevel2Slow=Bring Them Down (Level 2 - Slow)
 Behavior/Name/BringThemDownLevel3Slow=Bring Them Down (Level 3 - Slow)
 Behavior/Name/BurnHEAmmo=Burn (HE Ammo)
 Behavior/Name/BurnSigma=Burn (Sigma)
+Behavior/Name/CIAmmo2=<c val="80FF80">CI Ammo</c>
 Behavior/Name/ChargeStunLevel1=Charge (Stun) Level 1
 Behavior/Name/ChargeStunLevel2=Charge (Stun) Level 2
 Behavior/Name/ChemicalPlatingAuraTemplate=Chemical Plating Aura Template
@@ -469,6 +470,8 @@ Behavior/Name/ChemicalPlatingLevel2=Chemical Plating (Level 2)
 Behavior/Name/ChemicalPlatingLevel3=Chemical Plating (Level 3)
 Behavior/Name/ChemicalPlatingOxalicPoison=Chemical Plating (Oxalic Poison)
 Behavior/Name/ChemicalPlatingTemplate=Chemical Plating Template
+Behavior/Name/ChemicalToxin=Chemical Toxin
+Behavior/Name/ChemicalVulnerability=Chemical Vulnerability
 Behavior/Name/Chewed=Chewed
 Behavior/Name/ClassPointsBonus=Class Points Bonus
 Behavior/Name/Clickling=Clickling Explode
@@ -762,6 +765,8 @@ Behavior/Name/SurgicalStrikeLevel1=Surgical Strike (Level 1)
 Behavior/Name/SurgicalStrikeLevel2=Surgical Strike (Level 2)
 Behavior/Name/SurgicalStrikeLevel3=Surgical Strike (Level 3)
 Behavior/Name/SurgicalStrikeRecovery=Surgical Strike (Recovery)
+Behavior/Name/SynchronizationModule=<c val="80FF80">Synchronization Module</c>
+Behavior/Name/SynchronizationModule2=<c val="80FF80">Synchronization Module</c>
 Behavior/Name/TacticalEvaluation=Tactical Evaluation
 Behavior/Name/TargetingArrayBuffLevel1=Targeting Array (Buff - Level 1)
 Behavior/Name/TargetingArrayBuffLevel2=Targeting Array (Buff - Level 2)
@@ -847,6 +852,7 @@ Behavior/Tooltip/BringThemDownLevel1Slow=Unit is slowed by 15% for 3 seconds.
 Behavior/Tooltip/BringThemDownLevel2Slow=Unit is slowed by 25% for 3.5 seconds. 
 Behavior/Tooltip/BringThemDownLevel3Slow=Unit is slowed by 35% for 4 seconds. 
 Behavior/Tooltip/BurnHEAmmo=Unit is under effect of HE ammo.
+Behavior/Tooltip/CIAmmo2=Targets lose 10hp over 2 seconds (stacks) and take 35% bonus damage from chemical for 5 seconds, applied by non-fire sources only.
 Behavior/Tooltip/ChargeStunLevel1=Unit is stunned for 2 seconds.
 Behavior/Tooltip/ChargeStunLevel2=Unit is stunned for 4 seconds.
 Behavior/Tooltip/ChemicalPlatingAuraTemplate=Attacks on the Chem Expert and allies in 3 radius stack an oxalic poison that lasts for 30 seconds onto enemies. This poison slows movement by 3% and deals 5 damage per second. Maximum stack of 20.<n/>Level 1 - 1 poison stack per attack
@@ -855,6 +861,8 @@ Behavior/Tooltip/ChemicalPlatingLevel2=Attacks on unit stacks an oxalic poison t
 Behavior/Tooltip/ChemicalPlatingLevel3=Attacks on unit stacks an oxalic poison that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 3 - 3 poison stacks per attack
 Behavior/Tooltip/ChemicalPlatingOxalicPoison=Unit is poisoned - movement slowed by 4% and takes 5 damage per second. Stacks up to 20 times. 
 Behavior/Tooltip/ChemicalPlatingTemplate=Attacks on unit stacks an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 3% and deals 5 damage per second. Maximum stack of 20.<n/><n/>Level 1 - 1 poison stack per attack
+Behavior/Tooltip/ChemicalToxin=Unit loses 8 hp over 2 seconds.
+Behavior/Tooltip/ChemicalVulnerability=Unit takes 35% bonus damage from chemical.
 Behavior/Tooltip/Chewed=Unit is chewed by Cerberus.
 Behavior/Tooltip/ClassPointsBonus=<c val="00FF40">Class Points Bonus</c><n/>Class points (CP) are gained each time you win with a class. However, there's also a small chance to lose CP on classes you did not play. CP reward special bonuses at specific milestones.<n/><n/>05CP - 10 shield and 1 melee damage.<n/>10CP - Start the game at level2.<n/>15CP - 1sec sprint duration and 1% evasion.<n/>20CP - 10 shield and 1 shield armor.<n/>30CP - 1 vision and detection radius.<n/>40CP - Last round of every clip crits.<n/>50CP - 5 shield, life, and energy.
 Behavior/Tooltip/CockpitClosed=Technician is immune to ailments.
@@ -1098,6 +1106,8 @@ Behavior/Tooltip/SurgicalStrikeLevel1=Increase attack damage by 50% for 15 sec.
 Behavior/Tooltip/SurgicalStrikeLevel2=Increase attack damage by 100% for 15 sec.
 Behavior/Tooltip/SurgicalStrikeLevel3=Increase attack damage by 150% for 15 sec.
 Behavior/Tooltip/SurgicalStrikeRecovery=Decreased attack damage by 30% for 15 sec.
+Behavior/Tooltip/SynchronizationModule=Unit gains 3% damage bonus from synchronization module.
+Behavior/Tooltip/SynchronizationModule2=Unit gains 18% damage bonus from synchronization module.
 Behavior/Tooltip/TacticalEvaluation=Evaluating tactical advance vector...
 Behavior/Tooltip/TargetingArrayBuffLevel1=20% damage increase.
 Behavior/Tooltip/TargetingArrayBuffLevel2=40% damage increase.
@@ -1180,6 +1190,7 @@ Button/Name/BurstFire=Burst Fire
 Button/Name/C2Armor=C2 Armor
 Button/Name/C4Armor=C4 Armor
 Button/Name/C6Armor=<c val="00FFFF">C6 Armor</c>
+Button/Name/CIAmmo=<c val="80FF80">CI Ammo</c>
 Button/Name/Cancel2=Cancel
 Button/Name/Cancel22=I'm Your Father
 Button/Name/Cancel222=Taunt
@@ -1456,6 +1467,7 @@ Button/Name/SurgicalStrike=Surgical Strike
 Button/Name/SurveillanceFlare=Surveillance Flare
 Button/Name/SwitchtoAMRounds=Switch to AM Rounds
 Button/Name/SwitchtoHEFRounds=Switch to HE-F Rounds
+Button/Name/SynchronizationModule=<c val="80FF80">Synchronization Module</c>
 Button/Name/SynergyLevel1=Synergy (Level 1)
 Button/Name/SynergyLevel2=Synergy (Level 2)
 Button/Name/TX179Asgard=TX-179 Asgard
@@ -1553,6 +1565,7 @@ Button/Tooltip/BurstFire=Deals 50 damage to units in a forward arc (6 range). De
 Button/Tooltip/C2Armor=<c val="FFFF00">C2 Armor</c><n/>A durable polymer suit that has plate inserts to protect vital areas. While it doesn’t offer the impact dampening that heavier armors do, the durable and flexible material that slides over the Marine’s combat suit is extremely resistant to tearing and puncturing.<n/><n/>Adds 2 armor and 40% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">15</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>"Manufactured in the Democratic Republic of East China" - Manufacturer's Label
 Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking attachable plates that lock on to the combat suit to provide protection from blunt trauma to vital areas, while joints are bolstered by armored pads.<n/><n/>Adds 4 armor and 20% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"What do you mean it doesn't explode?" - NFG
 Button/Tooltip/C6Armor=<c val="00FFFF">C6 Armor</c><n/>A heavy armor that consists of a thick chestplate, gauntlets, boots, and attachable plates for the legs and upper arms. Extremely effective at dampening impact damage and blunt trauma, but does little to protect joints, leaving the wearer vulnerable to cuts and scrapes in the non-armored areas.<n/><n/>Adds 6 armor.<n/><n/>Weight: <c val="FFFFFF">22</c><n/><n/>"Does this make me look fat?"
+Button/Tooltip/CIAmmo=<c val="80FF80">CI Ammo</c><n/>Produced by Rancor Corporations, this specially made chemical infused ammunition often leaves its victims in horrifying conditions. <n/><n/>Attack Modifier: <c val="FFFFFF">Targets lose 8hp over 2 seconds (stacks) and take 35% bonus damage from Chemical for 5 seconds</c><n/><c val="FFFF00">Applied by non-fire effects only</c><n/>Maximum Stack: <c val="FFFFFF">1</c></n>Weight: <c val="FFFFFF">3</c><n/><n/>"Careful, this can melt your face off."
 Button/Tooltip/Cancel2=Return to previous menu
 Button/Tooltip/Cancel22=I'm Your Father is active.
 Button/Tooltip/Cancel222=Taunt is active.
@@ -1933,6 +1946,7 @@ Button/Tooltip/SurgicalStrike=Increase attack damage by 50% for 15 sec. 15 sec r
 Button/Tooltip/SurveillanceFlare=Fires a flare from an orbitting military satellite towards target area that lasts for 120 seconds. Up to 2 flares may be on standby. Deployment accuracy in low gravity environments still leaves much to be desired.<n/><n/>Flare is 2x more accurate when Forward Observer has Battlefield Intelligence.
 Button/Tooltip/SwitchtoAMRounds=Anti-Matter Rounds deal significant concentrated damage to a single target.<n/>Base Range: 20<n/>Base Damage: 240 (+100 vs. Armored)<n/>Base Attack Speed: 2.2<n/>Targets: Ground only
 Button/Tooltip/SwitchtoHEFRounds=High-Explosive Fragmentation (HE-F) Rounds deal damage in a 3 radius and cause targets to bleed.<n/>Base Range: 18<n/>Base Damage: 160 (3 radius splash)<n/>Base Attack Speed: 2.5<n/>Targets: Air and Ground
+Button/Tooltip/SynchronizationModule=<c val="80FF80">Synchronization Module</c><n/>Advanced tech module capable of simulating a certain degree of telepathy among combat units, resulting in greater combat efficiency and tactical coordination.<n/><n/>Non-heroic allies damage bonus: <c val="FFFFFF">18%</c><n/>Heroic allies damage bonus: <c val="FFFFFF">3%</c><n/>Aura radius: 8<n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">8</c>
 Button/Tooltip/SynergyLevel1=When Guardian and Engineer attack the same target, deals 20% more damage. 
 Button/Tooltip/SynergyLevel2=When Guardian and Engineer attack the same target, deals 40% more damage. 
 Button/Tooltip/T65Sentinel=Remote UGC sensor drone used for deep infiltration missions.
@@ -2594,16 +2608,20 @@ DocInfo/PatchNote578=- Perception stat now correctly gives 1% crit chance per po
 DocInfo/PatchNote579=- One Shot One Kill base damage can now crit (previously One Shot One Kill cannot crit despite visual).
 DocInfo/PatchNote580=- Critical hits doing 0 damage will no longer have the red number pop-up.
 DocInfo/PatchNote581=- Fixed a bug causing the actual crit chance to be about twice as much as the stated value.
-DocInfo/PatchNote582=- Fixed a design flaw causing flamethrower to land more crits than other weapons.
-DocInfo/PatchNote583=- Crit skills from Rifleman, Assault, and Marksman have been buffed to compensate for the above bugfix.
-DocInfo/PatchNote584=- Fixed an issue causing UIs to not completely hide during cinematics for players who have died.
-DocInfo/PatchNote585=- Fixed a bug where Stinger does not damage the impact target if it belongs to the attacking player.
-DocInfo/PatchNote586=- Elite mutation Monstrous (red aura) will no longer boost the unit's spell damage (such as Cronus laser).
-DocInfo/PatchNote587=- Added a behavior icon indicating the CP bonuses. Added some more milestones for CP bonuses. 
-DocInfo/PatchNote588=- Recruit and Normal (vet) now has the same CP decay rate as Nightmare (15%).
-DocInfo/PatchNote589=- Removed a 1sec shield regen delay on Chem Expert for consistency (all other classes have no delay).
-DocInfo/PatchNote590=- Players can now use Num Pad 3~6 to play dance/cheer animations on their character. (Only apply to some models, may need Numlock to work)
-DocInfo/PatchNote591=- Added a couple Psi Ops skins and re-organized the order.
+DocInfo/PatchNote582=- Crit skills from Rifleman, Assault, and Marksman have been buffed to compensate for the above bugfix.
+DocInfo/PatchNote583=- Fixed a design flaw causing Flamethrower to land more crits than other weapons.
+DocInfo/PatchNote584=- Increased Flamethrower base damage by 1 and reduced vs Armored/Massive penalty from -3 to -2 to compensate the above bugfix.
+DocInfo/PatchNote585=- Fixed an issue causing UIs to not completely hide during cinematics for players who have died.
+DocInfo/PatchNote586=- Fixed a bug where Stinger does not damage the impact target if it belongs to the attacking player.
+DocInfo/PatchNote587=- Elite mutation Monstrous (red aura) will no longer boost the unit's spell damage (such as Cronus laser).
+DocInfo/PatchNote588=- Added a behavior icon indicating the CP bonuses. Added some more milestones for CP bonuses. 
+DocInfo/PatchNote589=- Recruit and Normal (vet) now has the same CP decay rate as Nightmare (15%).
+DocInfo/PatchNote590=- Removed a 1sec shield regen delay on Chem Expert for consistency (all other classes have no delay).
+DocInfo/PatchNote591=- Players can now use Num Pad 3~6 to play dance/cheer animations on their character. (Only apply to some models, may need Numlock to work)
+DocInfo/PatchNote592=- Added more skins.
+DocInfo/PatchNote593=- Added 2 new enchancement items.
+DocInfo/PatchNote594=- Technician's nanite aura is now allowed to heal structures.
+DocInfo/PatchNote595=- Creep tumors are now light instead of armored/massive.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2815,6 +2833,9 @@ Effect/Name/BurstFireSearchLevel1=Burst Fire (Search) Level 1
 Effect/Name/BurstFireSearchLevel2=Burst Fire (Search) Level 2
 Effect/Name/BurstFireSearchLevel3=Burst Fire (Search) Level 3
 Effect/Name/C10CanisterRifle=M45 Marksman Rifle
+Effect/Name/CIAmmoApplyDOT=CI Ammo Apply DOT
+Effect/Name/CIAmmoApplyDebuff=CI Ammo Apply Debuff
+Effect/Name/CIAmmoApplySet=CI Ammo Apply (Set)
 Effect/Name/CannonSwapDelay=Cannon Swap Delay
 Effect/Name/CastMissile=Cast Missile
 Effect/Name/CastMissile1=Cast Missile -1
@@ -4165,6 +4186,11 @@ Effect/Name/SurveillanceFlaresDummyLevel1=Surveillance Flares (Dummy) Level 1
 Effect/Name/SurveillanceFlaresLift1st=Surveillance Flares (Lift 1st)
 Effect/Name/SurveillanceFlaresLift2nd=Surveillance Flares (Lift 2nd)
 Effect/Name/SwitchtoCannons=Switch to Cannons
+Effect/Name/SyncModuleApplyBuff=Sync Module Apply Buff (Heroic)
+Effect/Name/SyncModuleApplyBuff2=Sync Module Apply Buff
+Effect/Name/SyncModuleBuffSearchArea=Sync Module Buff Search Area
+Effect/Name/SyncModuleBuffSearchAreaHeroic=Sync Module Buff Search Area (Heroic)
+Effect/Name/SyncModuleSearchSet=Sync Module Search (Set)
 Effect/Name/SynergyDamage=Synergy (Damage)
 Effect/Name/SynergyLevel1RemoveBehavior=Synergy Level 1 (Remove Behavior)
 Effect/Name/TargetingArrayCreateUnitLevel1=Targeting Array Create Unit Level 1
@@ -5106,7 +5132,7 @@ Param/Value/6869707B=Focus your fire on the dome's structural support.
 Param/Value/68AC1FF6=<s val="GlueButton">
 Param/Value/68C9EDBA=Cover my back.
 Param/Value/68CD3E1E=Find a safe spot to defend against the Black Ops attack.
-Param/Value/68CFCA6D=<c val="FF0000">Heavy penalties have incurred for intentional team kill!</s>
+Param/Value/68CFCA6D=<s val="ChatBar"><c val="FF0000">Heavy penalties have incurred for intentional team kill!</c></s>
 Param/Value/68E80C9E=<c val="FF0000">Out of Ammo</c>
 Param/Value/68EC50FB=
 Param/Value/694F4581=Turn the Power Generators around Apollo back on.
@@ -6128,8 +6154,6 @@ Unit/LifeArmorName/ProtossArmor=Armor
 Unit/LifeArmorName/TerranInfantryArmor=UGC Infantry Armor
 Unit/LifeArmorName/ZergAirArmor=
 Unit/LifeArmorName/ZergAthenaArmor=Carapace
-Unit/LifeArmorName/ZergBuildingArmor=
-Unit/LifeArmorName/ZergGroundArmor=Carapace
 Unit/Marksman/LifeArmorTooltip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Marksman,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Marksman,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/Medic/LifeArmorToolTip=Shield Armor: <c val="FFFFFF"><d ref="Unit,Medic2,ShieldArmor"/></c> (<c val="00FF00">+<d ref="Unit,Medic2,ShieldArmorLevel"/></c>)<n/>Dmg Reduction: <d ref="$BehaviorStackCount:DamageReduction$"/>%<n/><c val="FFFF00">Each point of armor or shield armor blocks a flat amount of dmg based on the adaptive value of the attack, and then applies a % dmg reduction.</c> <n/>Spells ignore both the flat and % reduction. <n/>Units take amplified dmg from all sources when reaching negative armor.
 Unit/Name/APAmmo=<c val="80FF80">AP Ammo</c>
@@ -6177,6 +6201,8 @@ Unit/Name/C4Armor=C4 Armor
 Unit/Name/C4ArmorHighlightTooltip=C4 Armor
 Unit/Name/C6Armor=<c val="00FFFF">C6 Armor</c>
 Unit/Name/C6ArmorHighlightTooltip=<c val="00FFFF">C6 Armor</c>
+Unit/Name/CIAmmo=<c val="80FF80">CI Ammo</c>
+Unit/Name/CIAmmoHighlightTooltip=<c val="80FF80">CI Ammo</c>
 Unit/Name/CellularStructure=Cellular Structure
 Unit/Name/Cerberus=Cerberus
 Unit/Name/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c>
@@ -6401,6 +6427,8 @@ Unit/Name/Strangler=Strangler
 Unit/Name/SupplyStationLevel1=Supply Station (Level 1)
 Unit/Name/SupplyStationLevel2=Supply Station (Level 2)
 Unit/Name/SurveillanceFlare=Surveillance Flare
+Unit/Name/SynchronizationModule=<c val="80FF80">Synchronization Module</c>
+Unit/Name/SynchronizationModuleHighlightTooltip=<c val="80FF80">Synchronization Module</c>
 Unit/Name/T65Sentinel=T65 Sentinel
 Unit/Name/TargetingArray=Targeting Array
 Unit/Name/Tartarus=Tartarus
@@ -6870,7 +6898,7 @@ UserData/ShopItems/ShopItem58_ShopTooltip=Stores magazines that provide rounds f
 UserData/ShopItems/ShopItem59_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">15000</c><n/>Karma Requirement: <c val="FFFFFF">1700</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Assault, Flamethrower, Technician, Recon, Marksman, Demolitions, Pathfinder, Chemical Expert, Engineer, Forward Observer, Commando, Psi Ops.</c>
 UserData/ShopItems/ShopItem5_ShopTooltip=Changes Marine color to <c val="331ac8">Purple</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem60_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">75000</c><n/>Karma Requirement: <c val="FFFFFF">1800</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Recon, Flamethrower, Technician, Marksman, Demolitions, Pathfinder, Psi Ops, Commando.</c>
-UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">150000</c><n/>Karma Requirement: <c val="FFFFFF">1900</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Demolitions, Commando, Psi Ops.</c>
+UserData/ShopItems/ShopItem61_ShopTooltip=Skins are for cosmetics only and have no impact on actual gameplay.<n/><n/>XP Requirement: <c val="FFFFFF">150000</c><n/>Karma Requirement: <c val="FFFFFF">1900</c><n/>Credit: <c val="FFFFFF">0</c><n/><n/>Currently available for: <c val="FFFFFF">Rifleman, Medic, Demolitions, Technician, Marksman, Pathfinder, Commando, Psi Ops.</c>
 UserData/ShopItems/ShopItem62_ShopTooltip=Change back to the default skin.
 UserData/ShopItems/ShopItem63_ShopTooltip=When NOTD meets Among Us.<n/>Red sus btw.<n/><n/>Requirement: must have bought kittens.
 UserData/ShopItems/ShopItem64_ShopTooltip=Rip DSM.<n/><n/>Requirement: must have bought kittens.

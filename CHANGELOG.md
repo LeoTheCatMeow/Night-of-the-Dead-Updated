@@ -1,6 +1,7 @@
 # Current Changes & Bugfixes Tracklist
 2020-12-5
 [LeoTheCat]
+[LeoTheCat]
 - MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved.
 - Stinger MK-3 damage changed from 300(+100 vs Massive) to 330 vs all.
 - 590A5 Combat Shotgun damage bonus vs massive reduced from 35 to 30 (total 70 -> 65).
@@ -11,8 +12,9 @@
 - One Shot One Kill base damage can now crit (previously One Shot One Kill cannot crit despite visual).
 - Critical hits doing 0 damage will no longer have the red number pop-up.
 - Fixed a bug causing the actual crit chance to be about twice as much as the stated value.
-- Fixed a design flaw causing flamethrower to land more crits than other weapons.
 - Crit skills from Rifleman, Assault, and Marksman have been buffed to compensate for the above bugfix.
+- Fixed a design flaw causing Flamethrower to land more crits than other weapons.
+- Increased Flamethrower base damage by 1 and reduced vs Armored/Massive penalty from -3 to -2 to compensate the above bugfix.
 - Fixed an issue causing UIs to not completely hide during cinematics for players who have died.
 - Fixed a bug where Stinger does not damage the impact target if it belongs to the attacking player.
 - Elite mutation Monstrous (red aura) will no longer boost the unit's spell damage (such as Cronus laser).
@@ -20,7 +22,10 @@
 - Recruit and Normal (vet) now has the same CP decay rate as Nightmare (15%).
 - Removed a 1sec shield regen delay on Chem Expert for consistency (all other classes have no delay).
 - Players can now use Num Pad 3~6 to play dance/cheer animations on their character. (Only apply to some models, may need Numlock to work)
-- Added a couple Psi Ops skins and re-organized the order.
+- Added more skins.
+- Added 2 new enchancement items.
+- Technician's nanite aura is now allowed to heal structures.
+- Creep tumors are now light instead of armored/massive.
 
 2020-11-29
 [ThunderRazor]

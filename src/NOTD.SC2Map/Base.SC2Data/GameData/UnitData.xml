@@ -1307,6 +1307,23 @@
             <ChanceArray index="Idle" value="90"/>
         </Fidget>
     </CUnit>
+    <CUnit id="CIAmmo" parent="ITEM">
+        <Race value="Terr"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unclickable" value="0"/>
+        <FlagArray index="Uncommandable" value="0"/>
+        <FlagArray index="Unhighlightable" value="0"/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="Pawnable" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Deceleration value="2.4375"/>
+        <LateralAcceleration value="46.0625"/>
+        <Sight value="0"/>
+        <Radius value="0.125"/>
+        <SeparationRadius value="0.1"/>
+        <InnerRadius value="0.125"/>
+    </CUnit>
     <CUnit id="InfestedAbominationBurrowed">
         <FlagArray index="Hero" value="1"/>
         <FlagArray index="Undetectable" value="1"/>
@@ -1968,6 +1985,21 @@
         <ShieldRegenDelay value="0"/>
         <LifeArmorTip value="Unit/Rifleman/LifeArmorToolTip"/>
         <BehaviorArray index="5" removed="1"/>
+    </CUnit>
+    <CUnit id="SynchronizationModule" parent="ITEM">
+        <Race value="Terr"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unclickable" value="0"/>
+        <FlagArray index="Uncommandable" value="0"/>
+        <FlagArray index="Unhighlightable" value="0"/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="Pawnable" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Sight value="0"/>
+        <Radius value="0.125"/>
+        <SeparationRadius value="0.1"/>
+        <InnerRadius value="0.125"/>
     </CUnit>
     <CUnit id="Slither" parent="Larva">
         <Name value="Unit/Name/Slither"/>
@@ -6320,6 +6352,8 @@
         <TacticalAI value=""/>
         <TacticalAIThink value=""/>
         <FlagArray index="Cloaked" value="0"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Armored" value="0"/>
     </CUnit>
     <CUnit id="Flamethrower3">
         <DeathRevealRadius value="5"/>
@@ -7736,6 +7770,8 @@
         <KillXP value="10"/>
         <TacticalAI value=""/>
         <BehaviorArray Link="DifficultyScalingHP"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Armored" value="0"/>
     </CUnit>
     <CUnit id="DestructibleDebris4x4">
         <LifeStart value="385"/>
@@ -9788,8 +9824,8 @@
         <Mob value="Campaign"/>
         <FlagArray index="NoDraw" value="1"/>
         <FlagArray index="Unradarable" value="1"/>
+        <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <Attributes index="Massive" value="1"/>
         <Attributes index="Structure" value="1"/>
         <LifeStart value="300"/>
         <LifeMax value="300"/>
@@ -9925,8 +9961,8 @@
         <FlagArray index="NoDraw" value="1"/>
         <FlagArray index="Unradarable" value="1"/>
         <PlaneArray index="Ground" value="1"/>
+        <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <Attributes index="Massive" value="1"/>
         <Attributes index="Structure" value="1"/>
         <LifeStart value="500"/>
         <LifeMax value="500"/>

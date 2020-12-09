@@ -144,6 +144,30 @@
         <EditorCategories value=""/>
         <Behavior value="AcidicBonusCloudOnHit"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CIAmmoApplyDOT">
+        <EditorCategories value=""/>
+        <Behavior value="ChemicalToxin"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CIAmmoApplyDebuff">
+        <EditorCategories value=""/>
+        <Behavior value="ChemicalVulnerability"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="CIAmmoApplySet">
+        <EditorCategories value=""/>
+        <EffectArray value="CIAmmoApplyDebuff"/>
+        <EffectArray value="CIAmmoApplyDOT"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="SyncModuleApplyBuff">
+        <Behavior value="SynchronizationModule"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SyncModuleApplyBuff2">
+        <Behavior value="SynchronizationModule2"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SyncModuleBuffSearchArea">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Heroic,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="8" Effect="SyncModuleApplyBuff2"/>
+    </CEffectEnumArea>
     <CEffectDamage id="CriticalDamage">
         <EditorCategories value=""/>
         <Flags index="NoScaledDealtBonus" value="1"/>
@@ -167,12 +191,14 @@
     <CEffectDamage id="InfernalFlameThrower">
         <ValidatorArray index="0" removed="1"/>
         <AttributeBonus index="Light" value="2"/>
-        <AttributeBonus index="Armored" value="-3"/>
+        <AttributeBonus index="Armored" value="-2"/>
         <AttributeBonus index="Biological" value="5"/>
-        <AttributeBonus index="Massive" value="-3"/>
+        <AttributeBonus index="Massive" value="-2"/>
         <ArmorReduction value="0"/>
         <Total value="Combine"/>
         <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
+        <Amount value="9"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="MonstrousPullCreatePersistent">
         <ValidatorArray value="CasterisMassive"/>
@@ -235,6 +261,7 @@
         <EditorCategories value=""/>
         <Death value="Fire"/>
         <Kind value="Ranged"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="AtrociousDebuffSearch">
         <EditorCategories value=""/>
@@ -260,6 +287,7 @@
         <AreaArray Radius="3" Fraction="0.66"/>
         <AreaArray Radius="4.5" Fraction="0.33"/>
         <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="ArtillerySearchAreaDummy">
         <EditorCategories value=""/>
@@ -314,6 +342,7 @@
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage3">
         <EditorCategories value=""/>
@@ -322,6 +351,7 @@
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="InfernoRemove">
         <EditorCategories value=""/>
@@ -346,6 +376,7 @@
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="InfernoSearchTargetChain">
         <EditorCategories value=""/>
@@ -564,6 +595,16 @@
         <AreaArray Radius="9" Effect="ShadowedSilenceFieldApply"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
+    <CEffectEnumArea id="SyncModuleBuffSearchAreaHeroic">
+        <EditorCategories value=""/>
+        <SearchFilters value="Heroic;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
+        <AreaArray Radius="8" Effect="SyncModuleApplyBuff"/>
+    </CEffectEnumArea>
+    <CEffectSet id="SyncModuleSearchSet">
+        <EditorCategories value=""/>
+        <EffectArray value="SyncModuleBuffSearchAreaHeroic"/>
+        <EffectArray value="SyncModuleBuffSearchArea"/>
+    </CEffectSet>
     <CEffectModifyUnit id="Tier1Skin">
         <EditorCategories value=""/>
     </CEffectModifyUnit>
@@ -1989,6 +2030,7 @@
         <AreaArray Radius="3" Fraction="0.66"/>
         <AreaArray Radius="4.5" Fraction="0.33"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="DeimosShockRifle">
         <EditorCategories value=""/>
@@ -3584,6 +3626,7 @@
         <ArmorReduction value="1"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="ArmageddonDamageFriendly">
         <EditorCategories value=""/>
@@ -3591,6 +3634,7 @@
         <ArmorReduction value="1"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="ArmageddonAfterShockPersistent">
         <EditorCategories value=""/>
@@ -3606,6 +3650,7 @@
         <ArmorReduction value="1"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="ArmageddonAfterShockSearch">
         <EditorCategories value=""/>
@@ -4939,6 +4984,7 @@
         <Flags index="Notification" value="1"/>
         <ExcludeArray Value="Target"/>
         <Kind value="Ranged"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="L3GrenadeExplosionDummy">
         <EditorCategories value=""/>
@@ -4948,6 +4994,7 @@
         <SearchFilters value="-;Player,Ally,Hover,RawResource,HarvestableResource,Item,Dead,Invulnerable"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="L3GrenadeExplosionAlly">
         <EditorCategories value=""/>
@@ -4956,6 +5003,7 @@
         <SearchFilters value="-;Neutral,Enemy,Item,Dead,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Kind value="Ranged"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="InfernalFlameThrowerE">
         <SearchFilters value="Ground;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Hidden,Invulnerable"/>
@@ -5535,19 +5583,19 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="NanitesUpgradeSearchLevel1">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Self,Neutral,Enemy,Biological,Structure,Worker,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Biological,Worker,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="0.5" Effect="NanitesUpgradeApplyLevel1"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="NanitesUpgradeSearchLevel2">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Self,Neutral,Enemy,Biological,Structure,Worker,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Biological,Worker,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1" Effect="NanitesUpgradeApplyLevel2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="NanitesUpgradeSearchLevel3">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Self,Neutral,Enemy,Biological,Structure,Worker,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Biological,Worker,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1.5" Effect="NanitesUpgradeApplyLevel3"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -6473,6 +6521,7 @@
         <Death value="Fire"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="BURNDamageLevel2">
         <EditorCategories value=""/>
@@ -6480,6 +6529,7 @@
         <Death value="Fire"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="BURNPersistentLevel1">
         <ValidatorArray value="NotDead"/>
@@ -7097,6 +7147,7 @@
         <Death value="Fire"/>
         <AttributeBonus index="Light" value="20"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="BurstFireDamageLevel2">
         <EditorCategories value=""/>
@@ -7105,6 +7156,7 @@
         <Death value="Fire"/>
         <AttributeBonus index="Light" value="40"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="BurstFireDamageLevel3">
         <EditorCategories value=""/>
@@ -7113,6 +7165,7 @@
         <Death value="Fire"/>
         <AttributeBonus index="Light" value="60"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="BurstFirePersistentLevel1">
         <EditorCategories value=""/>
@@ -8335,6 +8388,7 @@
         <Kind value="Splash"/>
         <ValidatorArray value="TargetIsEnemy"/>
         <Flags index="Notification" value="1"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="PlasmaDischargeDamageAllies">
         <EditorCategories value=""/>
@@ -8342,6 +8396,7 @@
         <Death value="Fire"/>
         <Kind value="Splash"/>
         <ValidatorArray value="TargetIsNotEnemy"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectSet id="PlasmaDischargeDamageSet">
         <EditorCategories value=""/>
@@ -8905,6 +8960,7 @@
         <Amount value="3.3332"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="Helium3IgniterRemoveLevel1">
         <EditorCategories value=""/>
@@ -9716,6 +9772,7 @@
         <Amount value="50"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectSet id="SigmaExplodeSet">
         <EditorCategories value=""/>
@@ -9927,6 +9984,7 @@
         <ImpactUnitValidator value="TargetIsNotAllyOrPlayer"/>
         <AreaArray Radius="5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="StingerMK3DamageAllies">
         <EditorCategories value=""/>
@@ -9939,6 +9997,7 @@
         <KindSplash value="Splash"/>
         <AreaArray Radius="5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectSet id="StingerMK3DamageSet">
         <EditorCategories value="Race:Terran"/>
@@ -10062,6 +10121,7 @@
         <AreaArray Radius="2.25" Fraction="0.65"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
+        <Flags index="Impact" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="Claws">
         <Amount value="22"/>
@@ -10093,6 +10153,7 @@
         <Amount value="50"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar2">
         <EditorCategories value=""/>
@@ -10100,6 +10161,7 @@
         <Amount value="50"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar3">
         <EditorCategories value=""/>
@@ -10107,6 +10169,7 @@
         <Amount value="50"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel2CreatePersistent">
         <EditorCategories value=""/>
@@ -10127,6 +10190,7 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel2DamageVar2">
         <EditorCategories value=""/>
@@ -10136,6 +10200,7 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel2DamageVar3">
         <EditorCategories value=""/>
@@ -10145,6 +10210,7 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="25"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel3CreatePersistent">
         <EditorCategories value=""/>
@@ -10165,6 +10231,7 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="75"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel3DamageVar2">
         <EditorCategories value=""/>
@@ -10174,6 +10241,7 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="75"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel3DamageVar3">
         <EditorCategories value=""/>
@@ -10183,6 +10251,7 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="25"/>
         <AttributeBonus index="Massive" value="75"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="ForwardObserverLaunch">
         <EditorCategories value=""/>
@@ -10246,6 +10315,7 @@
         <AttributeBonus index="Armored" value="10"/>
         <AttributeBonus index="Massive" value="30"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="NapalmBarrageSearch">
         <EditorCategories value=""/>
@@ -11016,6 +11086,7 @@
         <Amount value="150"/>
         <Visibility value="Hidden"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="CircularLanceDamage" parent="ThermalLancesMU">
         <ValidatorArray index="0" value="TargetisnotHadesTentacle"/>
@@ -11031,6 +11102,7 @@
         <EditorCategories value="Race:Neutral"/>
         <KindSplash value="Spell"/>
         <ImpactLocation Value="TargetPoint"/>
+        <Type value="Unknown"/>
     </CEffectDamage>
     <CEffectDamage id="HadesBloodWheelDamage" parent="ThermalLancesMU">
         <ValidatorArray index="0" value="TargetisnotHadesTentacle"/>
@@ -11046,6 +11118,7 @@
         <Amount value="22"/>
         <AreaArray Radius="0.25" Fraction="1"/>
         <SearchFilters value="-;Self,Air,RawResource,HarvestableResource,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
+        <Type value="Unknown"/>
     </CEffectDamage>
     <CEffectCreateUnit id="X1GuardianLevel1CreateUnit">
         <EditorCategories value=""/>
@@ -11132,6 +11205,7 @@
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
         <ExcludeArray Value="Target"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="MoreDoTsDamage">
         <EditorCategories value=""/>
@@ -11711,6 +11785,7 @@
         <AttributeBonus index="Massive" value="140"/>
         <AttributeBonus index="Structure" value="140"/>
         <AttributeBonus index="Heroic" value="-50"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel2Set">
         <EditorCategories value=""/>
@@ -11737,6 +11812,7 @@
         <AttributeBonus index="Massive" value="280"/>
         <AttributeBonus index="Structure" value="280"/>
         <AttributeBonus index="Heroic" value="-125"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1Set">
         <EditorCategories value=""/>
@@ -11965,6 +12041,7 @@
         <SearchFilters value="-;Player,Ally,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AttributeFactor index="Light" value="1.3332"/>
         <Total value="Combine"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="InfestedAbomination2" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -12078,6 +12155,7 @@
         <AreaArray index="1" removed="1"/>
         <AreaArray index="2" removed="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Stasis,Dead,Invulnerable"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="RaynorSnipeDamage">
         <Amount value="40"/>
@@ -12169,13 +12247,20 @@
         <SearchFilters value="-;Player,Ally,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AttributeFactor index="Light" value="1.3332"/>
         <Total value="Combine"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel2" parent="InfernalFlameThrower">
         <AttributeBonus index="Light" value="0"/>
+        <AttributeBonus index="Armored" value="0"/>
+        <AttributeBonus index="Biological" value="0"/>
+        <AttributeBonus index="Massive" value="0"/>
         <Amount value="0"/>
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel3" parent="InfernalFlameThrower">
         <AttributeBonus index="Light" value="0"/>
+        <AttributeBonus index="Armored" value="0"/>
+        <AttributeBonus index="Biological" value="0"/>
+        <AttributeBonus index="Massive" value="0"/>
         <Amount value="0"/>
     </CEffectDamage>
     <CEffectDamage id="FlamethrowerMK2Damage" parent="InfernalFlameThrower">
@@ -12389,6 +12474,7 @@
         <SearchFilters value="Ground;Self,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray index="1" Fraction="0.75"/>
         <AreaArray index="2" Fraction="0.5"/>
+        <Type value="Fire"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="WeaponsProficiencyLevel1Remove">
         <EditorCategories value=""/>

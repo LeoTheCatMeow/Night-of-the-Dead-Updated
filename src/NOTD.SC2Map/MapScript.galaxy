@@ -9819,14 +9819,16 @@ bool auto_gf_ECC1ItemSpawn_TriggerFunc (bool testConds, bool runActions) {
         gf_CreateItemNOTD("MP9A2SubMachineGun", 2);
     }
     else {
+        gf_CreateItemNOTD("MP9A2SubMachineGun", 1);
         gf_CreateItemNOTD("UA420AssaultRifle", 3);
-        gf_CreateItemNOTD("SniperRifle", 2);
+        gf_CreateItemNOTD("SniperRifle", 1);
     }
     gf_CreateItemNOTD("SniperRifle", 2);
     gf_CreateItemNOTD("HEAmmo", 2);
     gf_CreateItemNOTD("HPAmmo", 2);
     gf_CreateItemNOTD("APAmmo", 2);
     gf_CreateItemNOTD("FMJAmmo", 2);
+    gf_CreateItemNOTD("CIAmmo", 2);
     if ((gv_isVeteranSquad == false)) {
         gf_CreateItemLocalNOTD("APAmmo", 2, RegionFromId(3));
         gf_CreateItemLocalNOTD("Flamethrower", 2, RegionFromId(3));
@@ -10638,6 +10640,7 @@ bool auto_gf_ECChapter2ItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     gf_CreateItemNOTD("OccularImplants", 2);
     gf_CreateItemNOTD("HighCapacityClip", 2);
     gf_CreateItemNOTD("NanoHealthAugment", 2);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("ThermalSight", 1);
     gf_CreateItemNOTD("PersonnelArcReactor", 2);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
@@ -32306,6 +32309,7 @@ bool gt_ACC1ItemSpawn_Func (bool testConds, bool runActions) {
     gf_CreateItemNOTD("RoadFlare", 10);
     gf_CreateItemNOTD("ThermalSight", 1);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("C2Armor", 2);
     gf_CreateItemNOTD("C4Armor", 2);
     gf_CreateItemNOTD("XS4Armor", 1);
@@ -32318,6 +32322,7 @@ bool gt_ACC1ItemSpawn_Func (bool testConds, bool runActions) {
     gf_CreateItemNOTD("HPAmmo", 2);
     gf_CreateItemNOTD("APAmmo", 2);
     gf_CreateItemNOTD("FMJAmmo", 2);
+    gf_CreateItemNOTD("CIAmmo", 2);
     return true;
 }
 
@@ -34167,6 +34172,7 @@ bool gt_ACC2ItemSpawn_Func (bool testConds, bool runActions) {
     gf_CreateItemNOTD("ThermalSight", 1);
     gf_CreateItemNOTD("PersonnelArcReactor", 2);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("C4Armor", 1);
     gf_CreateItemNOTD("C6Armor", 1);
     gf_CreateItemNOTD("XS4Armor", 1);
@@ -36789,7 +36795,8 @@ bool gt_STC1ItemSpawn_Func (bool testConds, bool runActions) {
         gf_CreateItemNOTD("MP9A2SubMachineGun", 2);
     }
     else {
-        gf_CreateItemNOTD("SniperRifle", 2);
+        gf_CreateItemNOTD("SniperRifle", 1);
+        gf_CreateItemNOTD("MP9A2SubMachineGun", 1);
         gf_CreateItemNOTD("UA420AssaultRifle", 3);
         gf_CreateItemNOTD("KineticArmor", 1);
     }
@@ -36801,6 +36808,7 @@ bool gt_STC1ItemSpawn_Func (bool testConds, bool runActions) {
     gf_CreateItemNOTD("Flamethrower", 2);
     gf_CreateItemNOTD("ThermalSight", 2);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("C2Armor", 3);
     gf_CreateItemNOTD("C4Armor", 2);
     gf_CreateItemNOTD("C6Armor", 1);
@@ -36810,6 +36818,7 @@ bool gt_STC1ItemSpawn_Func (bool testConds, bool runActions) {
     gf_CreateItemNOTD("HPAmmo", 1);
     gf_CreateItemNOTD("APAmmo", 2);
     gf_CreateItemNOTD("FMJAmmo", 2);
+    gf_CreateItemNOTD("CIAmmo", 2);
     if ((gv_alivePlayers >= 7)) {
         gf_CreateItemLocalNOTD("Shotgun", 1, RegionFromId(122));
     }
@@ -39025,6 +39034,7 @@ bool gt_STC2ItemSpawn_Func (bool testConds, bool runActions) {
     gf_CreateItemNOTD("ThermalSight", 1);
     gf_CreateItemNOTD("PersonnelArcReactor", 2);
     gf_CreateItemNOTD("CombatMobilityAugment", 1);
+    gf_CreateItemNOTD("SynchronizationModule", 1);
     gf_CreateItemNOTD("C4Armor", 2);
     gf_CreateItemNOTD("XS4Armor", 1);
     gf_CreateItemNOTD("HighCapacityClip", 1);
@@ -43717,6 +43727,7 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
     fixed lv_damage;
     int lv_critTextTag;
     fixed lv_critTextHeightOffset;
+    int lv_critBehaviorCount;
 
     // Automatic Variable Declarations
     // Variable Initialization
@@ -43738,9 +43749,10 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
     }
 
     if (UnitHasBehavior(lv_attackingUnit, "CriticalStrikeAttacker") && UnitHasBehavior(EventUnit(), "CriticalStrikeDefender")) {
-        UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), (lv_damage * IntToFixed(UnitBehaviorCount(lv_attackingUnit, "CriticalStrikeAttacker"))));
-        UnitBehaviorRemove(lv_attackingUnit, "CriticalStrikeAttacker", c_unitBehaviorCountAll);
-        UnitBehaviorRemove(EventUnit(), "CriticalStrikeDefender", c_unitBehaviorCountAll);
+        lv_critBehaviorCount = UnitBehaviorCount(EventUnit(), "CriticalStrikeDefender");
+        UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), (lv_damage * IntToFixed(lv_critBehaviorCount)));
+        UnitBehaviorRemove(EventUnit(), "CriticalStrikeDefender", lv_critBehaviorCount);
+        UnitBehaviorRemove(lv_attackingUnit, "CriticalStrikeAttacker", lv_critBehaviorCount);
         lv_damage *= 2.0;
     }
     else if ((EventUnitDamageEffect() != "StingerMK3Damage") && (EventUnitDamageEffect() != "StingerMK3DamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && UnitHasBehavior2(lv_attackingUnit, "CritBonusDummy") && (gv_marineRounds[UnitGetOwner(lv_attackingUnit)] == 0)) {

@@ -2766,6 +2766,22 @@
                 <Field Id="Item"/>
             </Unit>
         </Instances>
+        <Instances Id="Synchronization Module">
+            <Fixed Fixed="8">
+                <Field Id="Weight"/>
+            </Fixed>
+            <Unit Unit="SynchronizationModule">
+                <Field Id="Item"/>
+            </Unit>
+        </Instances>
+        <Instances Id="CI Ammo">
+            <Fixed Fixed="3">
+                <Field Id="Weight"/>
+            </Fixed>
+            <Unit Unit="CIAmmo">
+                <Field Id="Item"/>
+            </Unit>
+        </Instances>
     </CUser>
     <CUser id="MedalLevels">
         <Fields Id="Medal Image" Type="Image"/>

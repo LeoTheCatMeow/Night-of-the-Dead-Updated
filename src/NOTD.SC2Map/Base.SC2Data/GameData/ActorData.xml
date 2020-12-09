@@ -185,6 +185,16 @@
         <On Terms="Effect.ApoptosisBloodWave.Start; PassChance 10.000000" Send="Create"/>
         <Sound value="Mutalisk_Attack"/>
     </CActorSound>
+    <CActorModel id="CIAmmoAnimation" parent="ModelAnimationStyleContinuous">
+        <Inherits index="Visibility" value="1"/>
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ChemicalVulnerability.On" Send="Create"/>
+        <On Terms="Behavior.ChemicalVulnerability.Off" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="ChemicalVulnerability"/>
+        <Scale value="0.500000"/>
+    </CActorModel>
     <CActorAction id="HardenedEnergySpark" parent="GenericAttack" effectAttack="HardenedEnergySparkModifyUnit">
         <LaunchAttachQuery Methods="AMFilterCenter"/>
         <LaunchAssets Sound="Probe_AttackLaunch"/>
@@ -194,6 +204,20 @@
         <On Terms="ActorCreation" Send="SetTintColor {0,255,64 3.000000}"/>
         <Scale value="0.300000"/>
     </CActorBeamSimple>
+    <CActorUnit id="CIAmmo" parent="GenericUnitBase" unitName="CIAmmo">
+        <EditorCategories value=""/>
+        <Model value="Crate"/>
+        <BuildModel value="Crate"/>
+        <EditorModel value="Crate"/>
+        <PlacementModel value="Crate"/>
+        <HeroIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
+        <HighlightTooltip value="Unit/Name/CIAmmoHighlightTooltip"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <UnitIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
+        <Scale value="0.800000"/>
+    </CActorUnit>
     <CActorModel id="MonstrousPull" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth {} {} ContentPlayOnce"/>
@@ -213,6 +237,20 @@
         <HostSiteOps Ops="SOpRaynorForwardLaunchGuide"/>
         <Scale value="0.300000,1.000000,1.000000"/>
     </CActorSplat>
+    <CActorUnit id="SynchronizationModule" parent="GenericUnitBase" unitName="SynchronizationModule">
+        <EditorCategories value=""/>
+        <On index="0" Send="Create SoundEmitter PersonnelArcReactor_Ambience"/>
+        <Model value="Crate"/>
+        <BuildModel value="Crate"/>
+        <EditorModel value="Crate"/>
+        <PlacementModel value="Crate"/>
+        <HeroIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
+        <HighlightTooltip value="Unit/Name/SynchronizationModuleHighlightTooltip"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <UnitIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
+    </CActorUnit>
     <CActorModel id="Shadowed" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
         <On Terms="Behavior.Shadowed.On" Send="Create"/>
@@ -781,6 +819,7 @@
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap MarksmanSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap MarksmanSkin2"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap Ghost"/>
+        <On Terms="Effect.Tier3Skin.Start" Send="ModelSwap MarksmanSkin3"/>
         <Model value="Ghost"/>
         <EventDataFootprint index="0" Actor="UnitFootprint" Model="GhostLaserLinesFootprint"/>
         <BuildModel value="Ghost"/>
@@ -2851,6 +2890,7 @@
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap PathfinderSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap PathfinderSkin2"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap Reaper"/>
+        <On Terms="Effect.Tier3Skin.Start" Send="ModelSwap PathfinderSkin3"/>
         <Model value="Reaper"/>
         <BuildModel value="Reaper"/>
         <DeathArray index="Normal" ModelLink="ReaperDeath" SoundLink="Reaper_Explode"/>
@@ -4239,6 +4279,7 @@
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap TechnicianSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap TechnicianSkin2"/>
         <On Terms="Effect.Default.Start" Send="ModelSwap Technician"/>
+        <On Terms="Effect.Tier3Skin.Start" Send="ModelSwap TechnicianSkin3"/>
         <GroupSoundArray index="What" value="Odin_GroupWhat"/>
         <GroupSoundArray index="Yes" value="Odin_GroupYes"/>
         <GroupSoundArray index="Attack" value="Odin_GroupAttack"/>

@@ -68,6 +68,13 @@
         <TintRacially value="1"/>
         <HidesForSimpleText value="0"/>
     </CButton>
+    <CButton id="CIAmmo">
+        <TooltipFlags index="ShowResources" value="0"/>
+        <Icon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value=""/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
     <CButton id="L3GrenadeLauncher2">
         <TooltipFlags index="ShowResources" value="0"/>
         <Icon value="NOTD Generic Art\NOTD L3 Grenade Launcher.dds"/>
@@ -209,6 +216,13 @@
     <CButton id="RetributionFieldPet2">
         <Icon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
         <AlertIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value=""/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="SynchronizationModule">
+        <TooltipFlags index="ShowResources" value="0"/>
+        <Icon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HotkeyAlias value=""/>
         <HidesForSimpleText value="0"/>
