@@ -177,12 +177,11 @@
     <CBehaviorBuff id="ChemicalToxin">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-minesplatter.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <MaxStackCount value="50"/>
-        <Duration value="2"/>
-        <Modification>
-            <VitalRegenArray index="Life" value="-3.5"/>
-        </Modification>
-        <MaxStackCountPerCaster value="25"/>
+        <MaxStackCount value="60"/>
+        <Duration value="2.1"/>
+        <MaxStackCountPerCaster value="30"/>
+        <Period value="1"/>
+        <PeriodicEffect value="ChemicalToxinDamage"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalVulnerability">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
@@ -410,7 +409,6 @@
             <DamageTakenFraction index="Melee" value="0.01"/>
             <DamageTakenFraction index="Ranged" value="0.01"/>
             <DamageTakenFraction index="Splash" value="0.01"/>
-            <DamageTakenFraction index="NoProc" value="0.01"/>
         </Modification>
         <DisableValidatorArray value="IsNotRealism"/>
         <RemoveValidatorArray value="IsNotRealism"/>
@@ -691,8 +689,31 @@
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <DamageResponse Handled="CIAmmoApplySet" Location="Attacker">
+            <ExcludeEffectArray value="ArmageddonDamage"/>
+            <ExcludeEffectArray value="VultureSpiderMinesDamage"/>
+            <ExcludeEffectArray value="ArmageddonAfterShockDamage"/>
+            <ExcludeEffectArray value="SatchelLevel1Damage"/>
+            <ExcludeEffectArray value="SatchelLevel2Damage"/>
+            <ExcludeEffectArray value="NapalmBarrageDamage"/>
+            <ExcludeEffectArray value="InfernalFlameThrower"/>
+            <ExcludeEffectArray value="FlameThrowerLevel2"/>
+            <ExcludeEffectArray value="FlameThrowerLevel3"/>
+            <ExcludeEffectArray value="BURNDamageLevel1"/>
+            <ExcludeEffectArray value="BURNDamageLevel2"/>
+            <ExcludeEffectArray value="BurstFireDamageLevel1"/>
+            <ExcludeEffectArray value="BurstFireDamageLevel2"/>
+            <ExcludeEffectArray value="BurstFireDamageLevel3"/>
+            <ExcludeEffectArray value="InfernoDamage"/>
+            <ExcludeEffectArray value="InfernoDamage2"/>
+            <ExcludeEffectArray value="ThermalLancesMU"/>
+            <ExcludeEffectArray value="SigmaDamage"/>
+            <ExcludeEffectArray value="NukeDamage"/>
+            <ExcludeEffectArray value="L3GrenadeExplosion"/>
+            <ExcludeEffectArray value="LaserRifleDamage"/>
+            <ExcludeEffectArray value="ArmorMeltDamage"/>
+            <ExcludeEffectArray value="ExplodingBarrelLargeExplosion"/>
+            <ExcludeEffectArray value="StingerMK3Damage"/>
             <Chance value="1"/>
-            <DamageType index="Fire" value="0"/>
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="VitalBonus50CP">

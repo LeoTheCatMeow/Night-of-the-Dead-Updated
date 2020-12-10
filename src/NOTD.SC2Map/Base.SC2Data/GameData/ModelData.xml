@@ -18,6 +18,12 @@
         <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3"/>
         <Lighting value=""/>
     </CModel>
+    <CModel id="AutoTurretDeath">
+        <Model value="Assets\Units\Terran\AutoTurret_Junker_Collection_Death\AutoTurret_Junker_Collection_Death.m3"/>
+    </CModel>
+    <CModel id="AutoTurretPlacement">
+        <Model value="Assets\Units\Terran\AutoTurret_Junker_Collection_Placement\AutoTurret_Junker_Collection_Placement.m3"/>
+    </CModel>
     <CModel id="ChemicalVulnerability">
         <Model value="Assets\Effects\Zerg\MiasmaImpact\MiasmaImpact.m3"/>
     </CModel>
@@ -1161,6 +1167,7 @@
         <SelectionLayer value="1"/>
         <SelectionRadius value="0.750000"/>
         <ShadowRadius value="0.750000"/>
+        <Model value="Assets\Units\Terran\AutoTurret_Junker_Collection\AutoTurret_Junker_Collection.m3"/>
     </CModel>
     <CModel id="BlackOps" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Terran\Spectre\Spectre.m3"/>

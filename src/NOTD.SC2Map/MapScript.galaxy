@@ -43737,13 +43737,6 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
     lv_critTextTag = c_textTagNone;
     lv_critTextHeightOffset = 1.5;
 
-    // Conditions
-    if (testConds) {
-        if (!((lv_damage > 0.0))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -44763,14 +44756,14 @@ bool gt_MiniTKPenalty_Func (bool testConds, bool runActions) {
     }
     gv_miniDeathsFriendly += 1;
     if ((gv_miniDeathsFriendly < 4)) {
-        gf_UpdateCredits(lv_index, -10);
-        gf_UpdateRating(lv_index, -10);
+        gf_UpdateRating(lv_index, -3);
+        gf_UpdateKarma(lv_index, -1);
         gv_playerXP[lv_index] -= 10;
     }
     else {
-        gf_UpdateCredits(lv_index, -100);
-        gf_UpdateRating(lv_index, -100);
-        gv_playerXP[lv_index] -= 100;
+        gf_UpdateRating(lv_index, -6);
+        gf_UpdateKarma(lv_index, -2);
+        gv_playerXP[lv_index] -= 20;
     }
     PlayerScoreValueSetFromInt(lv_index, "PlayerXP", gv_playerXP[lv_index]);
     gf_Save(libNtve_gf_KillingPlayer(), gv_bankSize);
