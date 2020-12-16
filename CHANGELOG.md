@@ -19,7 +19,6 @@
 2020-12-5
 [LeoTheCat]
 - MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved, adaptive value reverted to 1.
-- Stinger MK-3 damage changed from 300(+100 vs Massive) to 330 vs all.
 - 590A5 Combat Shotgun damage bonus vs massive reduced from 35 to 30 (total 70 -> 65).
 - Crowbar damage increased from 40 to 45.
 - Minor adjustments of the TK system, making texts fit in more & less flashy, tuning penalties to be more consistent & reasonable.
