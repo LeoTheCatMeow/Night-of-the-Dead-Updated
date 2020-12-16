@@ -132,11 +132,11 @@
         <InitialEffect value="AtrociousApplyBonusRegen"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification>
-            <DamageTakenFraction index="Spell" value="1"/>
+            <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.121"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.1601"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -148,7 +148,7 @@
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.0195"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.039"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBonusRegen">
         <InfoFlags index="Hidden" value="1"/>
@@ -174,12 +174,15 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ChemicalSynthesisLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalToxin">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-minesplatter.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <MaxStackCount value="60"/>
+        <MaxStackCount value="100"/>
         <Duration value="2.1"/>
-        <MaxStackCountPerCaster value="30"/>
         <Period value="1"/>
         <PeriodicEffect value="ChemicalToxinDamage"/>
     </CBehaviorBuff>
@@ -196,22 +199,11 @@
             <RequireEffectArray value="DesolationDamageLevel3"/>
             <RequireEffectArray value="InboundSicknessDamageLevel1"/>
             <RequireEffectArray value="InboundSicknessDamageLevel2"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage1"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage2"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage3"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage4"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage5"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage6"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage7"/>
-            <RequireEffectArray value="InboundSicknessVenomDamage8"/>
+            <RequireEffectArray value="InboundSicknessDOT"/>
             <RequireEffectArray value="ScorchedEarthDamage"/>
+            <RequireEffectArray value="ScorchedEarthVenomDamage"/>
             <RequireEffectArray value="VRL772Damage"/>
-            <RequireEffectArray value="VRL772VenomDamage1"/>
-            <RequireEffectArray value="VRL772VenomDamage2"/>
-            <RequireEffectArray value="VRL772VenomDamage3"/>
-            <RequireEffectArray value="VRL772VenomDamage4"/>
-            <RequireEffectArray value="VRL772VenomDamage5"/>
-            <RequireEffectArray value="ChemicalPlatingDamage"/>
+            <RequireEffectArray value="VRL772VenomDamage"/>
             <RequireEffectArray value="VolatileInjectionLevel1Damage"/>
             <RequireEffectArray value="VolatileInjectionLevel2Damage"/>
             <RequireEffectArray value="MoreDoTsDamage"/>
@@ -374,7 +366,7 @@
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
-            <DamageTakenFraction index="Spell" value="1"/>
+            <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxArray index="Life" value="100"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="2.4"/>
         </Modification>
@@ -592,12 +584,12 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification>
-            <DamageTakenFraction index="Spell" value="1"/>
+            <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxArray index="Life" value="100"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.25"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.3203"/>
         <Period value="1"/>
         <InitialEffect value="AtrociousApplyBonusRegen"/>
     </CBehaviorBuff>
@@ -1460,7 +1452,6 @@
         <Duration value="0.0627"/>
         <InitialEffect value="AssaultCritEffects"/>
         <InfoFlags index="Hidden" value="1"/>
-        <MaxStackCount value="100"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CronusBeams">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3369,12 +3360,21 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingLevel1" parent="ChemicalPlatingTemplate" Level="1">
         <BehaviorCategories index="User1" value="1"/>
+        <DamageResponse>
+            <Kind index="NoProc" value="0"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingLevel2" parent="ChemicalPlatingTemplate" Level="2">
         <BehaviorCategories index="User1" value="1"/>
+        <DamageResponse>
+            <Kind index="NoProc" value="0"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingLevel3" parent="ChemicalPlatingTemplate" Level="3">
         <BehaviorCategories index="User1" value="1"/>
+        <DamageResponse>
+            <Kind index="NoProc" value="0"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingOxalicPoison">
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-caduceusreactor.dds"/>
@@ -3443,19 +3443,33 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="InboundSicknessSlowLevel1">
+    <CBehaviorBuff id="InboundSicknessDebuffLevel1">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-huntermissile-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.95"/>
-        <Modification MoveSpeedMultiplier="0.9"/>
+        <Duration value="0.4">
+            <AccumulatorArray value="XVenomCountMin1"/>
+        </Duration>
+        <Period value="0.4"/>
+        <InitialEffect value="InboundSicknessRemoveVenom"/>
+        <PeriodicEffect value="InboundSicknessDOT"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="InboundSicknessSlowLevel2">
+    <CBehaviorBuff id="InboundSicknessDebuffLevel2">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-huntermissile-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.95"/>
-        <Modification MoveSpeedMultiplier="0.8"/>
+        <Duration value="0.6">
+            <AccumulatorArray value="XVenomCountMin1"/>
+        </Duration>
+        <Period value="0.3"/>
+        <InitialEffect value="InboundSicknessRemoveVenom"/>
+        <PeriodicEffect value="InboundSicknessDOT"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="MarkofthePredator">
         <InfoIcon value="Assets\Textures\btn-ability-zeratul-topbar-selectability.dds"/>
@@ -7886,7 +7900,7 @@
         <BehaviorCategories index="User1" value="1"/>
         <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="OpenWound2">
+    <CBehaviorBuff id="OpenWoundVisual">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.99"/>
@@ -8572,16 +8586,10 @@
     <CBehaviorBuff id="OpenWound">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="240"/>
-        <Modification>
-            <VitalRegenArray index="Life" value="-1"/>
-        </Modification>
         <MaxStackCount value="5"/>
-        <Period value="1"/>
-        <PeriodCount value="240"/>
-        <PeriodicEffect value="OpenWoundApplyBehavior"/>
-        <InitialEffect value="RemoveOpenWoundCloseCockpit"/>
+        <Duration value="240"/>
         <DurationOverride>
             <Duration value="288"/>
             <ValidatorArray value="IsNightmare"/>
@@ -8590,7 +8598,13 @@
             <Duration value="192"/>
             <ValidatorArray value="IsRecruit"/>
         </DurationOverride>
-        <BehaviorCategories index="User1" value="1"/>
+        <Period value="1"/>
+        <PeriodCount value="240"/>
+        <InitialEffect value="RemoveOpenWoundCloseCockpit"/>
+        <PeriodicEffect value="OpenWoundApplyBehaviorVisual"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="-1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="Turbo">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-twin-linkedflamethrower.dds"/>
@@ -8608,9 +8622,6 @@
         <Modification MoveSpeedMultiplier="0.95">
             <VitalRegenArray index="Life" value="-0.3984"/>
         </Modification>
-        <RemoveValidatorArray value="NoResistanceLevel1"/>
-        <RemoveValidatorArray value="NoResistanceLevel2"/>
-        <RemoveValidatorArray value="NoResistanceLevel3"/>
         <InitialEffect value="RemoveVenomCloseCockpit"/>
         <Period value="1"/>
         <PeriodCount value="180"/>

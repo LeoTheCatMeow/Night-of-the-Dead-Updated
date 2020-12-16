@@ -5,7 +5,7 @@
         <Fields Id="XPRequirement" Type="Int"/>
         <Fields Id="KarmaRequirement" Type="Int"/>
         <Instances Id="[Default]"/>
-        <Instances Id="ShopItem59">
+        <Instances Id="ShopItem61">
             <GameLink GameLink="Tier1Skin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -16,7 +16,7 @@
                 <Field Id="XPRequirement"/>
             </Int>
         </Instances>
-        <Instances Id="ShopItem60">
+        <Instances Id="ShopItem62">
             <GameLink GameLink="Tier2Skin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -27,7 +27,7 @@
                 <Field Id="KarmaRequirement"/>
             </Int>
         </Instances>
-        <Instances Id="ShopItem61">
+        <Instances Id="ShopItem63">
             <GameLink GameLink="Tier3Skin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -38,27 +38,27 @@
                 <Field Id="KarmaRequirement"/>
             </Int>
         </Instances>
-        <Instances Id="ShopItem62">
+        <Instances Id="ShopItem64">
             <GameLink GameLink="Default">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem63">
+        <Instances Id="ShopItem65">
             <GameLink GameLink="KittenSkin1">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem64">
+        <Instances Id="ShopItem66">
             <GameLink GameLink="KittenSkin2">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem65">
+        <Instances Id="ShopItem67">
             <GameLink GameLink="KittenSkin3">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem66">
+        <Instances Id="ShopItem68">
             <GameLink GameLink="KittenDefaultSkin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -2079,6 +2079,46 @@
             </Text>
         </Instances>
         <Instances Id="ShopItem59">
+            <GameLink GameLink="CIAmmo">
+                <Field Id="ShopUnit"/>
+            </GameLink>
+            <Image Image="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="50">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <String String="Buy &lt;c val=&quot;80FF80&quot;&gt;Chemical Infused Ammo&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem59_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem60">
+            <GameLink GameLink="SynchronizationModule">
+                <Field Id="ShopUnit"/>
+            </GameLink>
+            <Image Image="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="200">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="item">
+                <Field Id="Type"/>
+            </String>
+            <String String="Buy &lt;c val=&quot;80FF80&quot;&gt;Synchronization Module&lt;/c&gt;">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem60_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem61">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel1.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2091,11 +2131,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem59_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem61_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem60">
+        <Instances Id="ShopItem62">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel2.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2108,11 +2148,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem60_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem62_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem61">
+        <Instances Id="ShopItem63">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2125,11 +2165,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem61_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem63_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem62">
+        <Instances Id="ShopItem64">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel0.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2142,11 +2182,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem62_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem64_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem63">
+        <Instances Id="ShopItem65">
             <Image Image="Assets\Textures\btn-unit-terran-marine-silver.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2159,11 +2199,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem63_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem65_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem64">
+        <Instances Id="ShopItem66">
             <Image Image="Assets\Textures\btn-unit-zerg-baneling.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2176,11 +2216,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem64_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem66_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem65">
+        <Instances Id="ShopItem67">
             <Image Image="Assets\Textures\btn-unit-zerg-infestor-mecha.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2193,11 +2233,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem65_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem67_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem66">
+        <Instances Id="ShopItem68">
             <Image Image="Assets\Textures\btn-unit-terran-predator.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2210,7 +2250,7 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem66_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem68_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CAccumulatorBehavior id="XVenomCountMin1">
+        <MinAccumulation value="1"/>
+        <ApplicationRule value="Multiply"/>
+        <Behavior value="Venom"/>
+        <UnitSource Value="Target"/>
+    </CAccumulatorBehavior>
+    <CAccumulatorBehavior id="XVenomCount">
+        <ApplicationRule value="Multiply"/>
+        <Behavior value="Venom"/>
+        <UnitSource Value="Target"/>
+    </CAccumulatorBehavior>
+</Catalog>

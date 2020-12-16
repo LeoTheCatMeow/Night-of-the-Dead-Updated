@@ -26,8 +26,18 @@
     <CUpgrade id="ChemicalSynthesis">
         <EffectArray Operation="Subtract" Reference="Abil,Contaminate2,Cost[0].Vital[Energy]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Abil,Desolation,Cost[0].Vital[Energy]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Abil,InboundSickness,Cost[0].Vital[Energy]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ScorchedEarth,Cost[0].Vital[Energy]" Value="5"/>
         <EditorCategories value="Race:Terran"/>
         <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="ContaminateUpgrade">
+        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.CountMax" Value="2"/>
+        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.CountStart" Value="2"/>
+        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.TimeUse" Value="18.000000"/>
+        <EditorCategories value="Race:Terran"/>
     </CUpgrade>
     <CUpgrade id="ConcentratedFireCriticalStrike">
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.05"/>

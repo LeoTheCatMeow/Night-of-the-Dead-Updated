@@ -17,6 +17,8 @@
     <CModel id="Acidic">
         <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3"/>
         <Lighting value=""/>
+        <ScaleMax value="1.200000,1.200000,1.200000"/>
+        <ScaleMin value="1.200000,1.200000,1.200000"/>
     </CModel>
     <CModel id="AutoTurretDeath">
         <Model value="Assets\Units\Terran\AutoTurret_Junker_Collection_Death\AutoTurret_Junker_Collection_Death.m3"/>
@@ -33,7 +35,6 @@
         <EditorCategories value="Race:Terran"/>
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
-        <Radius value="0.375000"/>
         <ScaleMax value="1.250000,1.250000,1.100000"/>
         <ScaleMin value="1.250000,1.250000,1.100000"/>
         <SelectionRadius value="0.340800"/>
@@ -84,7 +85,6 @@
         <EditorCategories value="Race:Terran"/>
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
-        <Radius value="0.375000"/>
         <ScaleMax value="1.250000,1.250000,1.100000"/>
         <ScaleMin value="1.250000,1.250000,1.100000"/>
         <SelectionRadius value="0.340800"/>
@@ -104,12 +104,12 @@
             <Adaptions Slot="main"/>
         </TextureDeclares>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="Cronus2" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\InfestedColonist\InfestedColonist.m3"/>
         <RequiredAnims value="Assets\Units\Zerg\InfestedColonist_RequiredAnims\InfestedColonist_RequiredAnims.m3a"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
-        <Radius value="1.100000"/>
         <ScaleMax value="0.850000,0.850000,0.850000"/>
         <ScaleMin value="0.850000,0.850000,0.850000"/>
         <TechPurchaseCamera value="Star2CameraMid04"/>
@@ -121,6 +121,7 @@
         <Variations Probability="1">
             <TextureExpressionsForEditor Slot="main.diffuse" Expression="RequireAny 06"/>
         </Variations>
+        <Radius value="1.200000"/>
     </CModel>
     <CModel id="HelsAngelAssault">
         <Radius value="1.600000"/>
@@ -215,13 +216,17 @@
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="MonstrousPull">
         <Model value="Assets\Effects\Neutral\Diffusion_Shockwave_Coop\Diffusion_Shockwave_Coop.m3"/>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
     </CModel>
     <CModel id="PathfinderSkin3" parent="ReaperBase">
         <Model value="Assets\Units\Terran\Reaper_Silver\Reaper_Silver.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="PsiOpsSkin2" parent="Unit">
         <Model value="Assets\Units\Zerg\KerriganGhost\KerriganGhost_01.m3"/>
@@ -231,7 +236,6 @@
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
-        <Radius value="0.375000"/>
         <ScaleMax value="1.030000,1.030000,1.030000"/>
         <ScaleMin value="1.030000,1.030000,1.030000"/>
         <SelectionRadius value="0.375000"/>
@@ -296,21 +300,25 @@
         <EditorCategories value="Race:Terran"/>
         <Occlusion value="Show"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="Crate">
         <Occlusion value="Show"/>
     </CModel>
     <CModel id="DefensiveMatrixModel">
-        <ScaleMax value="0.800000,0.800000,0.800000"/>
-        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <ScaleMax value="0.350000,0.350000,0.350000"/>
+        <ScaleMin value="0.350000,0.350000,0.350000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="DemolitionsSkin2" parent="MarauderBase">
         <Model value="Assets\COOP\Mengsk\Units\Marauder_Mengsk_COOP\Marauder_Mengsk_COOP.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="DemolitionsSkin3" parent="MarauderBase">
         <Model value="Assets\Units\Terran\Marauder_Silver\Marauder_Silver.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="DestroyedNydusWorm">
         <Occlusion value="Hide"/>
@@ -318,6 +326,7 @@
     <CModel id="DevilDog">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="FlamethrowerSkin1" parent="Unit" Race="Terran">
         <Model value="Assets\COOP\Tychus\Units\Firebat_Heavens_COOP\Firebat_Heavens_COOP.m3"/>
@@ -331,6 +340,7 @@
             <Adaptions Slot="main"/>
         </TextureDeclares>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="FireMissionIndicatorModel">
         <Model value="Assets\COOP\Mengsk\Splats\Ghost_Mengsk_COOP_MiniNuke_Splat\Ghost_Mengsk_COOP_MiniNuke_Splat.m3"/>
@@ -351,6 +361,7 @@
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="GuardianoftheBeta2" parent="Unit" Race="Protoss">
         <Model value="Assets\Effects\Protoss\Ascendant_PowerUp\Ascendant_PowerUp.m3"/>
@@ -369,15 +380,21 @@
     <CModel id="Hardened">
         <Model value="Assets\Effects\Zerg\Primal_Guardian_Coop_Fury\Primal_Guardian_Coop_Fury.m3"/>
         <Lighting value=""/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
     </CModel>
     <CModel id="Atrocious">
         <Model value="Assets\Effects\Zerg\Defiler_Plague\Defiler_Plague.m3"/>
         <Lighting value=""/>
+        <ScaleMax value="0.550000,0.550000,0.550000"/>
+        <ScaleMin value="0.550000,0.550000,0.550000"/>
     </CModel>
     <CModel id="Roach"/>
     <CModel id="Scorching">
         <Model value="Assets\Effects\Zerg\PsionicShift\PsionicShift.m3"/>
         <Lighting value=""/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
     </CModel>
     <CModel id="Infection" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\DiseaseCloud\DiseaseCloud.m3"/>
@@ -417,10 +434,12 @@
     </CModel>
     <CModel id="Marauder">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="DemolitionsSkin1" parent="MarauderBase">
         <Model value="Assets\Units\Terran\Marauder_Umojan\Marauder_Umojan.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.700000"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="MarksmanSkin1" parent="GhostBase">
         <Model value="Assets\Units\Terran\Ghost_Umojan\Ghost_Umojan.m3"/>
@@ -429,6 +448,7 @@
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="MarksmanSkin2" parent="GhostBase">
         <Model value="Assets\Units\Terran\Ghost_Eidolon_Collection\Ghost_Eidolon_Collection.m3"/>
@@ -437,13 +457,13 @@
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="MedicSkin1" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Terran\Marine_Silver\Marine_Silver.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid03"/>
-        <Radius value="0.375000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <SquibTypeDefault value="Flesh"/>
@@ -459,7 +479,6 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid03"/>
-        <Radius value="0.375000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <SquibTypeDefault value="Flesh"/>
@@ -475,7 +494,6 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid03"/>
-        <Radius value="0.375000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <SquibTypeDefault value="Flesh"/>
@@ -491,6 +509,7 @@
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <ScaleMax value="1.010000,1.010000,1.010000"/>
         <ScaleMin value="1.010000,1.010000,1.010000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="PsiOpsSkin3" parent="Unit">
         <Model value="Assets\Units\Terran\NovaEx3\NovaEx3.m3"/>
@@ -500,7 +519,6 @@
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
-        <Radius value="0.375000"/>
         <ScaleMax value="0.950000,0.950000,0.950000"/>
         <ScaleMin value="0.950000,0.950000,0.950000"/>
         <SelectionRadius value="0.375000"/>
@@ -511,6 +529,7 @@
     <CModel id="PathfinderSkin2" parent="ReaperBase">
         <Model value="Assets\Units\Terran\Reaper_BlackOps\Reaper_BlackOps.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="PsiOpsSkin1" parent="Unit">
         <Model value="Assets\Units\Terran\GhostFemaleDominion\GhostFemaleDominion.m3"/>
@@ -519,7 +538,6 @@
         <EditorCategories value="Race:Terran"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
-        <Radius value="0.375000"/>
         <ScaleMax value="0.920000,0.920000,0.920000"/>
         <ScaleMin value="0.920000,0.920000,0.920000"/>
         <SelectionRadius value="0.375000"/>
@@ -538,10 +556,12 @@
     </CModel>
     <CModel id="Reaper">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="PathfinderSkin1" parent="ReaperBase">
         <Model value="Assets\Units\Terran\Reaper_Umojan\Reaper_Umojan.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="ReconSkin2" parent="Unit">
         <Model value="Assets\Units\Terran\Tosh\Tosh.m3"/>
@@ -550,7 +570,6 @@
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
-        <Radius value="0.375000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <SquibTypeDefault value="Flesh"/>
@@ -562,6 +581,7 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <ScaleMax value="1.200000,1.200000,1.200000"/>
         <ScaleMin value="1.200000,1.200000,1.200000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="MinerMale">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
@@ -635,6 +655,7 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <ScaleMax value="1.200000,1.200000,1.200000"/>
         <ScaleMin value="1.200000,1.200000,1.200000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="RiflemanSkin3" parent="MarineBase">
         <Model value="Assets\Units\Terran\Frontiers_Marine\Frontiers_Marine.m3"/>
@@ -644,6 +665,7 @@
         <ScaleMin value="0.400000,0.400000,0.400000"/>
         <WalkAnimMoveSpeed value="6"/>
         <RunAnimMoveSpeed value="6"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="ScorchedEarthIndicatorModel">
         <Model value="Assets\COOP\Mengsk\Splats\DirtyBomb_Mengsk_COOP_Splat\DirtyBomb_Mengsk_COOP_Splat.m3"/>
@@ -651,6 +673,8 @@
     <CModel id="Monstrous">
         <Model value="Assets\Effects\Protoss\Amon_Possession_Unit\Amon_Possession_Unit.m3"/>
         <Lighting value=""/>
+        <ScaleMax value="1.700000,1.700000,1.700000"/>
+        <ScaleMin value="1.700000,1.700000,1.700000"/>
     </CModel>
     <CModel id="SiegeBreaker">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="1.700000"/>
@@ -669,6 +693,7 @@
     </CModel>
     <CModel id="Spectre">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.300000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="ReconSkin1" parent="Unit">
         <Model value="Assets\COOP\Tychus\Units\Spectre_Heavens_COOP\Spectre_Heavens_COOP.m3"/>
@@ -677,7 +702,6 @@
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraMid04"/>
-        <Radius value="0.375000"/>
         <SelectionRadius value="0.375000"/>
         <ShadowRadius value="0.375000"/>
         <SquibTypeDefault value="Flesh"/>
@@ -696,6 +720,7 @@
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
+        <Radius value="0.550000"/>
     </CModel>
     <CModel id="EngineerSkin1" parent="Unit">
         <Model value="Assets\Units\Terran\HERC\HERC.m3"/>
@@ -714,6 +739,7 @@
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
         <UnitGlossaryCamera value="Star2CameraMid05"/>
+        <Radius value="0.550000"/>
     </CModel>
     <CModel id="TechnicianSkin1" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Terran\VikingAssault_Mecha_Collection\VikingAssault_Mecha_Collection.m3"/>
@@ -749,7 +775,6 @@
         </AttachProps>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.550000"/>
         <Occlusion value="Show"/>
-        <Radius value="0.650000"/>
         <ScaleMax value="0.960000,0.960000,0.820000"/>
         <ScaleMin value="0.960000,0.960000,0.820000"/>
         <SelectionRadius value="0.760000"/>
@@ -791,7 +816,6 @@
         </AttachProps>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.550000"/>
         <Occlusion value="Show"/>
-        <Radius value="0.650000"/>
         <ScaleMax value="0.740000,0.740000,0.860000"/>
         <ScaleMin value="0.740000,0.740000,0.860000"/>
         <SelectionRadius value="0.760000"/>
@@ -833,7 +857,6 @@
         </AttachProps>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.550000"/>
         <Occlusion value="Show"/>
-        <Radius value="0.650000"/>
         <ScaleMax value="0.900000,0.900000,0.900000"/>
         <ScaleMin value="0.900000,0.900000,0.900000"/>
         <SelectionRadius value="0.760000"/>
@@ -875,6 +898,7 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <Flags index="AutoUnload" value="1"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="CommandoSkin1" parent="Unit">
         <Model value="Assets\Units\Terran\Marine_Junker_Collection\Marine_Junker_Collection.m3"/>
@@ -882,7 +906,6 @@
         <EditorCategories value="Race:Terran"/>
         <Flags index="AutoUnload" value="1"/>
         <Occlusion value="Show"/>
-        <Radius value="0.375000"/>
         <ScaleMax value="1.100000,1.100000,1.100000"/>
         <ScaleMin value="1.100000,1.100000,1.100000"/>
         <SelectionRadius value="0.340800"/>
@@ -1205,8 +1228,9 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.010000"/>
     </CModel>
     <CModel id="DestructibleDebris4x4">
-        <Radius value="2.200000"/>
+        <Radius value="1.500000"/>
         <SelectionRadius value="2.200000"/>
+        <ShadowRadius value="2.200000"/>
     </CModel>
     <CModel id="DominionKillTeam">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
@@ -1223,6 +1247,7 @@
         <EditorCategories value="Race:Terran"/>
         <Occlusion value="Show"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
+        <Radius value="0.600000"/>
     </CModel>
     <CModel id="ExplodingBarrelDeath">
         <Model value="Assets\Effects\Terran\TerranBuildingDeathSmall\TerranBuildingDeathSmall_Low.m3"/>
@@ -1295,7 +1320,6 @@
         <Model value="Assets\Units\Terran\Marine\Marine.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <Occlusion value="Show"/>
-        <Radius value="0.375000"/>
         <SquibTypeDefault value="Flesh"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid03"/>
@@ -1355,6 +1379,7 @@
     </CModel>
     <CModel id="SCVFusionWelder">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.500000"/>
+        <Radius value="0.350000"/>
     </CModel>
     <CModel id="SS_TerraTron">
         <SelectionOffset value="0.000000,0.000000,-0.500000"/>
@@ -1502,6 +1527,7 @@
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="MedivacPortrait">
         <Lighting value="FemaleCivilian5Portrait"/>
@@ -3073,6 +3099,8 @@
         <EditorCategories value="Race:Zerg"/>
         <Lighting value="ToxicGasCloud"/>
         <AnimSpeed value="0.400000"/>
+        <ScaleMax value="0.450000,0.450000,0.450000"/>
+        <ScaleMin value="0.450000,0.450000,0.450000"/>
     </CModel>
     <CModel id="LevelUp" parent="PersistentSpellFX">
         <Model value="Assets\UI\BriefingUnitSelectProtoss\BriefingUnitSelectProtoss.m3"/>
@@ -3098,6 +3126,8 @@
         <EditorCategories value="Race:Zerg"/>
         <Lighting value="ToxicGasCloud"/>
         <AnimSpeed value="0.400000"/>
+        <ScaleMax value="1.200000,1.200000,1.200000"/>
+        <ScaleMin value="1.200000,1.200000,1.200000"/>
     </CModel>
     <CModel id="D8Charge">
         <AnimSpeed value="0.700000"/>
@@ -3430,11 +3460,11 @@
     </CModel>
     <CModel id="Venom" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\ToxicCreep\ToxicCreep.m3"/>
+        <AnimSpeed value="0.400000"/>
         <EditorCategories value="Race:Zerg"/>
         <Lighting value="ToxicGasCloud"/>
-        <AnimSpeed value="0.400000"/>
-        <ScaleMax value="0.150000,0.150000,0.150000"/>
-        <ScaleMin value="0.150000,0.150000,0.150000"/>
+        <ScaleMax value="0.120000,0.120000,0.120000"/>
+        <ScaleMin value="0.120000,0.120000,0.120000"/>
     </CModel>
     <CModel id="PrecisionShotLaunch" parent="LaunchFX">
         <Model value="Assets\Effects\Terran\SnipeLaunch\SnipeLaunch.m3"/>
@@ -3495,6 +3525,8 @@
         <EditorCategories value="Race:Zerg"/>
         <Lighting value="ToxicGasCloud"/>
         <AnimSpeed value="0.400000"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
     </CModel>
     <CModel id="PoisonGas" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\DiseaseCloud\DiseaseCloud.m3"/>
@@ -3517,6 +3549,8 @@
     <CModel id="WallofFireDamage" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Terran\HellionBeamImpact\HellionBeamImpact.m3"/>
         <Lighting value="RepulseStun"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
     </CModel>
     <CModel id="MindLink" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Terran\DominationImpact\DominationImpact.m3"/>
@@ -3717,7 +3751,7 @@
     <CModel id="X1" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Terran\ARES\ARES.m3"/>
         <Occlusion value="Show"/>
-        <Radius value="0.600000"/>
+        <Radius value="0.450000"/>
         <TechPurchaseCamera value="TechPurchaseDiamondback"/>
         <UnitGlossaryCamera value="Star2CameraMid07"/>
         <PlanetPanelCamera value="Star2CameraMid07"/>

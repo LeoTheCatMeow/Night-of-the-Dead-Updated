@@ -487,7 +487,7 @@ const int gv_c_PINGMAXCOUNT = 3;
 const fixed gv_c_PINGRESETTIME = 2.0;
 const fixed gv_c_PINGSUPPRESSIONTIME = 0.25;
 const fixed gv_c_PINGLOCKOUTTIME = 5.0;
-const int gv_numberOfShopOptions = 66;
+const int gv_numberOfShopOptions = 68;
 const string gv_bossFightStart = "StartBossFight";
 const string gv_bossFightEnd = "EndBossFight";
 const string gv_bossUnit = "Boss";
@@ -1395,7 +1395,7 @@ void InitGlobals () {
     }
     gv_infestors = UnitGroupEmpty();
     gv_outbreakCounter = 100;
-    gv_mutationChance = 6.0;
+    gv_mutationChance = 8.0;
     for (init_i = 0; init_i <= 4; init_i += 1) {
         for (init_j = 0; init_j <= 8; init_j += 1) {
             gv_medalsAwardedImages[init_i][init_j] = "Assets\\Textures\\black.dds";
@@ -7221,7 +7221,7 @@ void gf_ShopButton (int lp_panel, int lp_player, int lp_itemNumber, int lp_page)
     lv_tempPanel = DialogControlLastCreated();
     DialogControlHookup(lv_tempPanel, c_triggerControlTypeButton, "Button");
     gv_shopButtons[lp_player][lp_itemNumber] = DialogControlLastCreated();
-    if ((lp_page == 1) && (lp_itemNumber <= 58) && ((gv_noShopMode == true) || (gv_isVeteranSquad == false))) {
+    if ((lp_page == 1) && (lp_itemNumber <= 60) && ((gv_noShopMode == true) || (gv_isVeteranSquad == false))) {
         libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringToText(UserDataGetString("ShopItems", "ShopItem"+IntToString(lp_itemNumber), "Name", 1)) + StringExternal("Param/Value/3CFEA3BD") + UserDataGetText("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopTooltip", 1)), PlayerGroupAll());
         DialogControlHookup(lv_tempPanel, c_triggerControlTypeImage, "ShopImage");
         libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopImage", 1), PlayerGroupAll());
@@ -7277,7 +7277,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     lv_itemID = lp_itemID;
 
     // Implementation
-    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_isVeteranSquad == true) && (gv_noShopMode == false)) || (lv_itemID > 58) || (gv_trainingActivated == true))) {
+    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_isVeteranSquad == true) && (gv_noShopMode == false)) || (lv_itemID > 60) || (gv_trainingActivated == true))) {
         lv_itemCost = UserDataGetInt("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopCost", 1);
         if ((lv_itemCost == -1)) {
             if ((gv_playerXP[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "XPRequirement", 1)) && (gv_playerKarma[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "KarmaRequirement", 1))) {
@@ -9306,7 +9306,7 @@ bool gf_PostCinematicProcessing () {
             }
 
             libNtve_gf_RestoreUnitSelection(auto5200998B_var);
-            gf_ShowHideMarineDialog(true, auto5200998B_var, PlayerGroupActive());
+            gf_ShowHideMarineDialog(true, auto5200998B_var, PlayerGroupSingle(auto5200998B_var));
             DialogSetVisible(gv_equipment, PlayerGroupSingle(auto5200998B_var), true);
             CameraApplyInfo(auto5200998B_var, CameraInfoDefault(), 0.0, -1, 10, true);
             if ((UnitIsAlive(gv_marineHero[auto5200998B_var]) == true)) {
@@ -15240,6 +15240,12 @@ void gf_LevelUpTalentChemExpert (int lp_itemNo, unit lp_triggUnit, int lp_triggP
     // Implementation
     if ((lp_itemNo == 4)) {
         TechTreeUpgradeAddLevel(lp_triggPlayer, "ChemicalSynthesis", 1);
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 1)) {
+            UnitBehaviorAdd(lp_triggUnit, "ChemicalSynthesisLevel1", lp_triggUnit, 1);
+        }
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
+            TechTreeUpgradeAddLevel(lp_triggPlayer, "ContaminateUpgrade", 1);
+        }
     }
 
 }
@@ -16406,12 +16412,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitBehaviorAddPlayer(gv_marineHero[1], "CritTest", 1, 1);
     return true;
 }
 
@@ -19680,7 +19680,7 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
         lv_aOEtype = 3;
     }
     else if (auto668601B0_val == AbilityCommand("InboundSickness", 0)) {
-        lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "InboundSicknessSearchApplyLevel1", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
+        lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "InboundSicknessSearchLevel1", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
         lv_isBlast = true;
     }
     else if (auto668601B0_val == AbilityCommand("ScorchedEarth", 0)) {
@@ -22131,10 +22131,13 @@ bool gt_EliteMutation_Func (bool testConds, bool runActions) {
     }
 
     if (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeArmored)) {
-        lv_localMutationChance = (gv_mutationChance * 1.5);
+        lv_localMutationChance = (gv_mutationChance * 1.3);
     }
     if (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeMassive)) {
-        lv_localMutationChance = (gv_mutationChance * 2.25);
+        lv_localMutationChance = (gv_mutationChance * 2.4);
+    }
+    if (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeHeroic)) {
+        lv_localMutationChance = (gv_mutationChance * 3.5);
     }
     if ((RandomFixed(0.0, 100.0) > lv_localMutationChance)) {
         return true;
@@ -22269,7 +22272,7 @@ bool gt_EliteMutationChanceRotation_Func (bool testConds, bool runActions) {
         gv_mutationTrend[5] = 85;
         gv_mutationTrend[6] = 100;
     }
-    gv_mutationChance = ((SquareRoot(TimerGetElapsed(gv_gameTime)) / 7.0) + 6.0);
+    gv_mutationChance = ((SquareRoot(TimerGetElapsed(gv_gameTime)) / 10.0) + 8.0);
     return true;
 }
 
@@ -43743,13 +43746,12 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
     }
 
     if (UnitHasBehavior(lv_attackingUnit, "CriticalStrikeAttacker") && UnitHasBehavior(EventUnit(), "CriticalStrikeDefender")) {
-        lv_critBehaviorCount = UnitBehaviorCount(EventUnit(), "CriticalStrikeDefender");
+        lv_critBehaviorCount = UnitBehaviorCount(lv_attackingUnit, "CriticalStrikeAttacker");
         UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), (lv_damage * IntToFixed(lv_critBehaviorCount)));
-        UnitBehaviorRemove(EventUnit(), "CriticalStrikeDefender", lv_critBehaviorCount);
         UnitBehaviorRemove(lv_attackingUnit, "CriticalStrikeAttacker", lv_critBehaviorCount);
         lv_damage *= 2.0;
     }
-    else if ((EventUnitDamageEffect() != "StingerMK3Damage") && (EventUnitDamageEffect() != "StingerMK3DamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && UnitHasBehavior2(lv_attackingUnit, "CritBonusDummy") && (gv_marineRounds[UnitGetOwner(lv_attackingUnit)] == 0)) {
+    else if (UnitHasBehavior2(lv_attackingUnit, "CritBonusDummy") && (gv_marineRounds[UnitGetOwner(lv_attackingUnit)] == 0) && (EventUnitDamageEffect() != "CombatKnifeDamage") && (EventUnitDamageEffect() != "Crowbar") && (EventUnitDamageEffect() != "StingerMK3Damage") && (EventUnitDamageEffect() != "StingerMK3DamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && (EventUnitDamageEffect() != "OSOKLevel3BaseDamage") && (EventUnitDamageEffect() != "OSOKLevel3BarrettDamage") && (EventUnitDamageEffect() != "OSOKLevel2BaseDamage") && (EventUnitDamageEffect() != "OSOKLevel2BarrettDamage") && (EventUnitDamageEffect() != "OSOKLevel1BaseDamage") && (EventUnitDamageEffect() != "OSOKLevel1BarrettDamage") && (EventUnitDamageEffect() != "PrecisionShotLevel2Damage") && (EventUnitDamageEffect() != "PrecisionShotLevel1Damage")) {
         UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), lv_damage);
         lv_damage *= 2.0;
     }

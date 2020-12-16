@@ -164,7 +164,7 @@
         <On Terms="Behavior.AcidicBoss.On" Send="Create"/>
         <On Terms="Behavior.AcidicBoss.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="1.300000"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorUnit id="AcidicDeathPuddle" parent="GenericUnitStandard" unitName="AcidCloud">
         <EditorCategories value=""/>
@@ -216,8 +216,15 @@
         <StatusBarFlags index="Life" value="0"/>
         <StatusBarFlags index="Energy" value="0"/>
         <UnitIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
-        <Scale value="0.800000"/>
+        <Scale value="0.700000"/>
     </CActorUnit>
+    <CActorModel id="InboundSicknessBlast" parent="ModelAnimationStyleOneShot">
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
+        <On Terms="Effect.InboundSicknessSearchLevel1.Start" Send="Create"/>
+        <On Terms="Effect.InboundSicknessSearchLevel2.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor {129,255,111 0.500000}"/>
+        <Model value="HunterSeekerAttackImpact"/>
+    </CActorModel>
     <CActorModel id="MonstrousPull" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth {} {} ContentPlayOnce"/>
@@ -225,9 +232,8 @@
         <On Terms="Effect.MonstrousPullCreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.MonstrousPullCreatePersistent.Stop" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetTintColor 255,0,0"/>
-        <Host Subject="_Selectable" Scope="Caster"/>
+        <Host Subject="_Unit" Scope="Caster"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
-        <AutoScaleFactor value="0.800000"/>
     </CActorModel>
     <CActorSplat id="RaynorSnipeSplat">
         <On Terms="Abil.RaynorSnipe.TargetOff" Send="Destroy"/>
@@ -250,6 +256,7 @@
         <StatusBarFlags index="Life" value="0"/>
         <StatusBarFlags index="Energy" value="0"/>
         <UnitIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
+        <Scale value="0.900000"/>
     </CActorUnit>
     <CActorModel id="Shadowed" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
@@ -427,7 +434,7 @@
         <On Terms="Behavior.AtrociousHeroic.On" Send="Create"/>
         <On Terms="Behavior.AtrociousHeroic.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="0.800000"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorModel id="Scorching" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
@@ -437,7 +444,7 @@
         <On Terms="Behavior.ScorchingBoss.On" Send="Create"/>
         <On Terms="Behavior.ScorchingBoss.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="0.500000"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorSplat id="ImYourFatherTauntSplat" parent="GenericUnitSplat">
         <EditorCategories value=""/>
@@ -472,7 +479,7 @@
         <On Terms="Behavior.HardenedBoss.On" Send="Create"/>
         <On Terms="Behavior.HardenedBoss.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="0.500000"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorModel id="LevelUp2" parent="ModelAddition">
         <Terms value="ValidateUnit AboveLevel1"/>
@@ -736,6 +743,19 @@
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="HybridSingularityFeedbackWeapon"/>
         <AutoScaleFactor value="1.000000"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="CastShadows" value="0"/>
+        <Inherits index="CloakEffect" value="0"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="ModelMaterials" value="0"/>
+        <Inherits index="Opacity" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TeamColor" value="0"/>
+        <Inherits index="TimeScale" value="0"/>
+        <Inherits index="TintColor" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <Inherits index="WarpGroup" value="0"/>
     </CActorModel>
     <CActorModel id="InceptionDreamAnimations" parent="ModelAnimationStyleOneShot">
         <Sharing value="PerEffectTree"/>
@@ -1249,7 +1269,8 @@
         <On Terms="Behavior.MonstrousBoss.On" Send="Create"/>
         <On Terms="Behavior.MonstrousBoss.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="2.500000"/>
+        <AutoScaleFactor value="1.000000"/>
+        <Host Subject="_Unit"/>
     </CActorModel>
     <CActorText id="SethPolarityNegative">
         <On Terms="Behavior.NegativePolarity.On" Send="Create"/>
@@ -1867,17 +1888,6 @@
         <AutoScaleFactor value="1.000000"/>
         <Sharing value="PerEffectTree"/>
     </CActorModel>
-    <CActorSound id="ContaminateImpactSound">
-        <On Terms="Effect.ContaminateDamageSetLevel1.Start" Send="Create"/>
-        <On Terms="Effect.ContaminateDamageSetLevel2.Start" Send="Create"/>
-    </CActorSound>
-    <CActorModel id="InboundSicknessBlast" parent="ModelAnimationStyleContinuous">
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death"/>
-        <On Terms="Effect.InboundSicknessImpactSetLevel1.Start" Send="Create"/>
-        <On Terms="Effect.InboundSicknessImpactSetLevel2.Start" Send="Create"/>
-        <On Terms="ActorCreation" Send="SetTintColor {129,255,111 0.500000}"/>
-        <Model value="HunterSeekerAttackImpact"/>
-    </CActorModel>
     <CActorSplat id="InboundSicknessCursor" parent="TerranCursorSplat" abil="InboundSickness">
         <Model value="ZergAOECursorSplat"/>
     </CActorSplat>
@@ -1948,7 +1958,7 @@
         <Sound value="DesolationSound"/>
     </CActorSound>
     <CActorModel id="DesolationLaunch2" parent="ModelAnimationStyleOneShot">
-        <On Terms="Abil.Desolation.SourceFinishStart" Send="Create"/>
+        <On Terms="Abil.Desolation.SourceCastStart" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {103,233,106 3.000000}"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenterSoft SOpMoveRightForward"/>
@@ -1959,7 +1969,7 @@
         <FogVisibility value="Visible"/>
     </CActorRange>
     <CActorModel id="DesolationLaunch1" parent="ModelAnimationStyleOneShot">
-        <On index="2" Terms="Abil.Desolation.SourceFinishStart" Send="Create"/>
+        <On index="2" Terms="Abil.Desolation.SourceCastStart" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {103,233,106 3.000000}"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenterSoft SOpMoveLeftForward"/>
@@ -1972,7 +1982,7 @@
         <Beam value="HunterSeekerAttackBeam"/>
         <Missile value="HunterSeekerAttackMissile"/>
         <DamageMap index="None">
-            <Model value="TauntAnimation"/>
+            <Model value=""/>
             <Scale value="3.000000"/>
             <AnimProps value="Death"/>
             <Sound value="HunterSeekerAttackDamage"/>
@@ -4060,7 +4070,7 @@
         <Wireframe>
             <Image value="Assets\Textures\Wireframe-Zerg-InfestedMarine.dds"/>
         </Wireframe>
-        <Scale value="1.550000"/>
+        <Scale value="1.500000"/>
         <MinimapIcon value="Assets\Textures\ui_minimap_icon_biohazard.dds"/>
     </CActorUnit>
     <CActorUnit id="F19" parent="GenericUnitMorph" unitName="AirStrikeBombers">
@@ -5861,7 +5871,6 @@
     <CActorModel id="FungalGrowth">
         <On Terms="Behavior.VenomousExplosion.On" Send="Create"/>
         <On Terms="Behavior.VenomousExplosion.Off" Send="AnimBracketStop BSD"/>
-        <AutoScaleFactor value="2.000000"/>
     </CActorModel>
     <CActorUnit id="Hades" parent="GenericUnitBase" unitName="Hades">
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
@@ -6842,7 +6851,7 @@
         <On Terms="UnitBirth.PsiOpsMentalProjection" Send="Create"/>
         <Model value="ForcePushEffectSearch2"/>
         <Scale value="2.500000"/>
-        <AutoScaleFactor value="1.000000"/>
+        <AutoScaleFactor value="0.500000"/>
     </CActorModel>
     <CActorSiteMover id="MentalProjectionImpactSite">
         <Terms value="Cap 1"/>
@@ -7027,7 +7036,7 @@
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="Venom"/>
-        <AutoScaleFactor value="1.000000"/>
+        <AutoScaleFactor value="0.500000"/>
     </CActorModel>
     <CActorModel id="VolatileInjectionExplosion" parent="ModelAnimationStyleOneShot">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death,02 ContentPlayOnce"/>
@@ -8433,7 +8442,7 @@
         <EditorCategories value="DoodadType:Environment"/>
         <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BloodSplats"/>
         <On index="1" Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
-        <On Terms="Behavior.OpenWound2.On" Send="Create"/>
+        <On Terms="Effect.OpenWoundApplyBehaviorVisual.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="TimerSet 10.000000,5.000000 DelayDestroy"/>
         <Model value="BloodSplats"/>
         <Scale value="0.500000"/>
@@ -9985,7 +9994,7 @@
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="BlackoutControlled"/>
-        <AutoScaleFactor value="0.500000"/>
+        <AutoScaleFactor value="0.300000"/>
     </CActorModel>
     <CActorBeamSimple id="BlackoutControlBeam" parent="BeamSimpleAnimationStyleContinuous">
         <On Terms="Effect.BlackoutApplyMindControl.Start" Send="Create"/>
@@ -10149,7 +10158,7 @@
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="HallucinationDeath"/>
-        <AutoScaleFactor value="1.000000"/>
+        <AutoScaleFactor value="0.500000"/>
     </CActorModel>
     <CActorModel id="MentalProjectionBirth">
         <Inherits index="BaseModelScale" value="1"/>
@@ -10161,7 +10170,7 @@
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="HallucinationBirth"/>
-        <AutoScaleFactor value="1.000000"/>
+        <AutoScaleFactor value="0.500000"/>
     </CActorModel>
     <CActorSound id="MentalProjectionBirthSound" parent="SoundOneShot">
         <On Terms="Effect.MentalProjectionLevel1CreateHallucination.Start" Send="Create"/>
@@ -10864,7 +10873,7 @@
         <On Terms="Behavior.MindLinkLevel3.Destroy" Send="AnimBracketStop BSD"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
-        <AutoScaleFactor value="0.300000"/>
+        <AutoScaleFactor value="0.200000"/>
     </CActorModel>
     <CActorSound id="MindLinkEndSound" parent="SoundOneShot">
         <On Terms="Behavior.MindLinkLevel1.Off" Send="Create"/>
@@ -11934,23 +11943,13 @@
         </Wireframe>
     </CActorUnit>
     <CActorModel id="ShortCircuit" parent="ModelAnimationStyleContinuous">
-        <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
         <On index="0" Terms="Behavior.ShortCircuit.On" Send="Create"/>
         <On index="1" Terms="Behavior.ShortCircuit.Off" Send="Destroy Immediate"/>
         <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Stand,02 Stand,02 Death"/>
         <On Terms="ActorOrphan" Send="Destroy Immediate"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="0.300000"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <!--                                                                                         -->
     <!-- Broodling ............................................................................. -->
@@ -11963,16 +11962,6 @@
         <BarWidth value="16"/>
     </CActorUnit>
     <CActorModel id="Blind" parent="ModelAnimationStyleContinuous">
-        <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
         <On index="0" Terms="Behavior.Blind.On" Send="Create"/>
         <On index="1" Terms="Behavior.Blind.Off" Send="Destroy Immediate"/>
         <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Birth Stand Death"/>
@@ -12257,16 +12246,6 @@
         <BarWidth value="24"/>
     </CActorUnit>
     <CActorModel id="Cripple" parent="ModelAnimationStyleContinuous">
-        <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
         <On index="0" Terms="Behavior.Cripple.On" Send="Create"/>
         <On index="1" Terms="Behavior.Cripple.Off" Send="Destroy Immediate"/>
         <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Birth Stand Death"/>
@@ -12507,7 +12486,7 @@
         <On Terms="Effect.Helium3IgniterBurnDamage.Start; At Target" Send="Create"/>
         <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
         <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="WallofFireDamage"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
@@ -12727,16 +12706,6 @@
         <Sound value="PsionicShockwaveSound"/>
     </CActorSound>
     <CActorModel id="Venom" parent="ModelAnimationStyleContinuous">
-        <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
         <On index="0" Terms="Behavior.Venom.On" Send="Create"/>
         <On index="1" Terms="Behavior.Venom.Off" Send="Destroy Immediate"/>
         <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Birth Stand Death"/>
@@ -13120,25 +13089,12 @@
         <StatusBarFlags index="Life" value="0"/>
         <StatusBarFlags index="Energy" value="0"/>
     </CActorUnit>
-    <CActorModel id="OpenWound" parent="ModelAnimationStyleContinuous">
-        <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
-        <On index="0" Terms="Behavior.OpenWound2.On" Send="Create"/>
-        <On index="1" Terms="Behavior.OpenWound2.Off" Send="Destroy Immediate"/>
-        <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Birth Stand Death"/>
-        <On Terms="ActorOrphan" Send="Destroy Immediate"/>
+    <CActorModel id="OpenWound" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.OpenWoundApplyBehaviorVisual.Start" Send="Create"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="1.000000"/>
         <Scale value="0.700000"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorAction id="VoidRayAttack">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
@@ -13352,7 +13308,7 @@
         <On Terms="Behavior.Protect.Off" Send="AnimBracketStop BSD"/>
         <On Terms="ActorCreation; ValidateUnitType UnitisBrutaliskPet" Send="SetScale 0.400000"/>
         <Model value="DefensiveMatrixModel"/>
-        <AutoScaleFactor value="2.500000"/>
+        <AutoScaleFactor value="1.000000"/>
         <Inherits index="BaseModelScale" value="0"/>
         <AcceptedHostedPropTransfers index="BaseModelScale" value="0"/>
         <AcceptedHostedPropTransfers index="LocalTintColor" value="0"/>
@@ -15508,6 +15464,10 @@
         <On Terms="Behavior.SonicTrapSlowLevel2Heroic.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.ChargeStunLevel2.On" Send="Create"/>
         <On Terms="Behavior.ChargeStunLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.InboundSicknessDebuffLevel1.On" Send="Create"/>
+        <On Terms="Behavior.InboundSicknessDebuffLevel1.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.InboundSicknessDebuffLevel2.On" Send="Create"/>
+        <On Terms="Behavior.InboundSicknessDebuffLevel2.Off" Send="AnimBracketStop BSD"/>
     </CActorModel>
     <CActorModel id="NanoShockStun" parent="ModelAnimationStyleContinuous">
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>

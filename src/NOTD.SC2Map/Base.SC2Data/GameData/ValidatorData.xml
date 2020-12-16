@@ -149,6 +149,11 @@
         <Compare value="GT"/>
         <Behavior value="Blind"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasChemicalSynthesisLevel1">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="ChemicalSynthesisLevel1"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="HasCripple">
         <Compare value="GT"/>
         <Behavior value="Cripple"/>
@@ -176,6 +181,9 @@
         <Value value="12"/>
         <Behavior value="PetVeterancy"/>
     </CValidatorUnitCompareVeterancyLevel>
+    <CValidatorUnitCompareBehaviorCount id="IsNotBleedingVisual">
+        <Behavior value="OpenWoundVisual"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="IsNotRealism">
         <Value value="HasRealismUpgrade"/>
     </CValidatorPlayerRequirement>
@@ -1062,6 +1070,9 @@
         <CombineArray value="UnitisChemExpert"/>
         <Negate value="1"/>
     </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetisnotMechanical">
+        <Filters value="-;Mechanical"/>
+    </CValidatorUnitFilters>
     <CValidatorUnitType id="TargetisnotRecon">
         <Value value="Spectre"/>
         <Find value="0"/>
@@ -1483,46 +1494,10 @@
         <CombineArray value="UnitisZombieCocoon"/>
         <CombineArray value="UnitisEnemyLight"/>
     </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack1">
-        <Compare value="GE"/>
-        <Value value="1"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack3">
-        <Compare value="GE"/>
-        <Value value="3"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack2">
-        <Compare value="GE"/>
-        <Value value="2"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack6">
-        <Compare value="GE"/>
-        <Value value="6"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack5">
-        <Compare value="GE"/>
-        <Value value="5"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack4">
-        <Compare value="GE"/>
-        <Value value="4"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack7">
-        <Compare value="GE"/>
-        <Value value="7"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStack8">
-        <Compare value="GE"/>
-        <Value value="8"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="ValidVenomTarget">
+        <CombineArray value="HasChemicalSynthesisLevel1"/>
+        <CombineArray value="UnitIsBiological"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan12">
         <Compare value="GT"/>
         <Value value="12"/>
@@ -1574,6 +1549,11 @@
         <Find value="1"/>
         <Value value="HaveCriticalStrike"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareVital id="UnitShieldsLessThanFive">
+        <Compare value="LT"/>
+        <Value value="5"/>
+        <Vital value="Shields"/>
+    </CValidatorUnitCompareVital>
     <CValidatorUnitCompareBehaviorCount id="isNotPlayerUnit">
         <Behavior value="PlayerUnit"/>
     </CValidatorUnitCompareBehaviorCount>

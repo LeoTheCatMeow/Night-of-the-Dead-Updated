@@ -467,7 +467,7 @@
         <Effect index="0" value="InboundSicknessLaunchLevel1"/>
         <Effect value="InboundSicknessLaunchLevel2"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="25"/>
             <Cooldown TimeUse="20"/>
         </Cost>
         <TargetFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
@@ -939,7 +939,7 @@
             <Vital index="Energy" value="20"/>
             <Cooldown TimeUse="18"/>
         </Cost>
-        <TargetFilters value="-;Self,Mechanical"/>
+        <TargetFilters value="-;Self"/>
         <Range value="12"/>
         <PrepTime value="0"/>
         <PrepTime value="0"/>
@@ -976,10 +976,6 @@
         </Cost>
         <TargetFilters value="-;Player,Ally,Item,Invulnerable"/>
         <Range value="6"/>
-        <PrepTime value="0"/>
-        <CastIntroTime value="0"/>
-        <CastOutroTime value="0"/>
-        <FinishTime value="0"/>
         <UninterruptibleArray index="Prep" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
@@ -2284,6 +2280,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="ChargeSetLevel1"/>
         <Effect value="ChargeSetLevel2"/>
+        <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="20"/>
             <Cooldown TimeUse="6"/>
@@ -2293,10 +2290,9 @@
             <Cooldown TimeUse="6"/>
         </Cost>
         <Range value="15"/>
+        <LevelButtonTooltip value="Charge Level 2"/>
         <EffectRange index="0" value="3,15"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Charge2"/>
-        <LevelButtonTooltip value="Charge Level 2"/>
-        <Flags index="RequireTargetVision" value="0"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="Chew">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4896,9 +4892,9 @@
         <BehaviorArray value="TauntLevel1"/>
         <BehaviorArray value="TauntLevel2"/>
         <BehaviorArray value="TauntLevel3"/>
+        <AutoCastValidatorArray value="IsNotRealism"/>
         <LevelButtonOnTooltip value="Level 2 Taunt"/>
         <LevelButtonOnTooltip value="Level 3 Taunt"/>
-        <AutoCastValidatorArray value="IsNotRealism"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="TeamLocation">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4923,6 +4919,7 @@
             <Cooldown TimeUse="8"/>
         </Cost>
         <BehaviorArray value="Turbo"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <AutoCastValidatorArray value="CasterNotTurbo"/>

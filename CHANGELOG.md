@@ -1,5 +1,21 @@
 # Current Changes & Bugfixes Tracklist
 
+2020-12-14
+[LeoTheCat]
+- Added the 2 new enhancement items to shop.
+- Chemical Expert - Contaminate and Desolation friendly fire damage moderately reduced, can now be more effectively blocked by armor.
+- Chemical Expert - Contaminate now deal damage/apply venom at a faster interval (duration unchanged), overall dps improved.
+- Chemical Expert - Scorched Earth now correctly deal bonus damage up to 15 venom stacks (previously stopped at 8 stacks).
+- Chemical Expert - Scorched Earth damage increased from 120 + 25 per venom stack to 120 + 50 per venom stack.
+- Chemical Expert's abilities will no longer attempt to apply venom on targets that still have shields.
+- Chemical Expert - Chemical Synthesis now affects more abilities and has some additional effects added.
+- Chemical Expert- Inbound Sickness has been reworked.
+- Slight balancing of the mutation rate in elite mutation modes so that it's more consistent.
+- Fixed a bug causing faith self damage to crit.
+- Fixed many visual issues regarding model sizes, such as venom appearing extra large on certain bosses.
+- Fixed a visual issue where open wound's bleeding effect stops after mutiple stacks of open wound are applied.
+- Turbo (sprint ability on player summoned units) can now be auto-cast.
+
 2020-12-5
 [LeoTheCat]
 - MP9A2 Sub-Machine Gun range increased from 9 to 10, backswing slightly improved, adaptive value reverted to 1.
