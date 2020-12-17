@@ -43746,9 +43746,10 @@ bool gt_CriticalStrike_Func (bool testConds, bool runActions) {
     }
 
     if (UnitHasBehavior(lv_attackingUnit, "CriticalStrikeAttacker") && UnitHasBehavior(EventUnit(), "CriticalStrikeDefender")) {
-        lv_critBehaviorCount = UnitBehaviorCount(lv_attackingUnit, "CriticalStrikeAttacker");
+        lv_critBehaviorCount = MinI(UnitBehaviorCount(lv_attackingUnit, "CriticalStrikeAttacker"), UnitBehaviorCount(EventUnit(), "CriticalStrikeDefender"));
         UnitDamage(lv_attackingUnit, "CriticalDamage", EventUnit(), (lv_damage * IntToFixed(lv_critBehaviorCount)));
         UnitBehaviorRemove(lv_attackingUnit, "CriticalStrikeAttacker", lv_critBehaviorCount);
+        UnitBehaviorRemove(EventUnit(), "CriticalStrikeDefender", lv_critBehaviorCount);
         lv_damage *= 2.0;
     }
     else if (UnitHasBehavior2(lv_attackingUnit, "CritBonusDummy") && (gv_marineRounds[UnitGetOwner(lv_attackingUnit)] == 0) && (EventUnitDamageEffect() != "CombatKnifeDamage") && (EventUnitDamageEffect() != "Crowbar") && (EventUnitDamageEffect() != "StingerMK3Damage") && (EventUnitDamageEffect() != "StingerMK3DamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && (EventUnitDamageEffect() != "OSOKLevel3BaseDamage") && (EventUnitDamageEffect() != "OSOKLevel3BarrettDamage") && (EventUnitDamageEffect() != "OSOKLevel2BaseDamage") && (EventUnitDamageEffect() != "OSOKLevel2BarrettDamage") && (EventUnitDamageEffect() != "OSOKLevel1BaseDamage") && (EventUnitDamageEffect() != "OSOKLevel1BarrettDamage") && (EventUnitDamageEffect() != "PrecisionShotLevel2Damage") && (EventUnitDamageEffect() != "PrecisionShotLevel1Damage")) {
