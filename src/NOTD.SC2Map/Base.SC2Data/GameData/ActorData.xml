@@ -10997,11 +10997,8 @@
         <On Terms="UnitBirth.Beastling2" Send="SetTintColor 159,159,255"/>
         <On Terms="ActorCreation" Send="AttachModel ClicklingHead ClicklingHead {Head 0}"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
-        <Model value="Baneling"/>
         <Scale value="1.500000"/>
-        <BuildModel value="Baneling"/>
         <DeathArray index="Normal" ModelLink="BanelingDeath" SoundLink=""/>
-        <PlacementModel value="Baneling"/>
         <PortraitModel value="BanelingPortrait"/>
         <WalkAnimMoveSpeed value="2"/>
         <BarOffset value="35"/>
@@ -13510,13 +13507,10 @@
         <On Terms="AbilMorph.*.Finish; MorphTo Hugger; MorphFrom Hugger2" Send="AnimBracketStop Burrow"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
-        <Model value="Infestor"/>
         <Scale value="0.500000"/>
-        <BuildModel value="Infestor"/>
         <DeathArray index="Normal" ModelLink="InfestorDeath" SoundLink=""/>
         <DeathArray index="Disintegrate" ModelLink="InfestorDeathAcid" SoundLink="Uni_DeathFXAcid"/>
         <DeathArray index="Fire" ModelLink="InfestorDeathFire" SoundLink="Uni_DeathFXFire"/>
-        <PlacementModel value="Infestor"/>
         <PortraitModel value="InfestorPortrait"/>
         <WalkAnimMoveSpeed value="1.875"/>
         <BarOffset value="50"/>
@@ -15468,6 +15462,8 @@
         <On Terms="Behavior.InboundSicknessDebuffLevel1.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.InboundSicknessDebuffLevel2.On" Send="Create"/>
         <On Terms="Behavior.InboundSicknessDebuffLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.VRL772Stun.On" Send="Create"/>
+        <On Terms="Behavior.VRL772Stun.Off" Send="AnimBracketStop BSD"/>
     </CActorModel>
     <CActorModel id="NanoShockStun" parent="ModelAnimationStyleContinuous">
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>

@@ -4,17 +4,21 @@
 [LeoTheCat]
 - Added the 2 new enhancement items to shop.
 - Chemical Expert - Contaminate and Desolation friendly fire damage moderately reduced, can now be more effectively blocked by armor.
-- Chemical Expert - Contaminate now deal damage/apply venom at a faster interval (duration unchanged), overall dps improved.
+- Chemical Expert - Fixed a tooltip error regarding Contaminate's duration, it should be 12s instead of 10s.
+- Chemical Expert - Contaminate dps increased from 20/30/40 to 20/35/50, energy cost increased from 20 to 25.
+- Chemical Expert - Contaminate now deal damage/apply venom at a faster interval (does not affect total damage or duration).
+- Chemical Expert - Desolation energy cost reduced from 20 to 15.
 - Chemical Expert - Scorched Earth now correctly deal bonus damage up to 15 venom stacks (previously stopped at 8 stacks).
 - Chemical Expert - Scorched Earth damage increased from 120 + 25 per venom stack to 120 + 50 per venom stack.
 - Chemical Expert's abilities will no longer attempt to apply venom on targets that still have shields.
-- Chemical Expert - Chemical Synthesis now affects more abilities and has some additional effects added.
-- Chemical Expert- Inbound Sickness has been reworked.
+- Chemical Expert - Chemical Synthesis now affects all Desolator abilities and has some additional effects added.
+- Chemical Expert - Inbound Sickness has been reworked.
 - Slight balancing of the mutation rate in elite mutation modes so that it's more consistent.
 - Fixed a bug causing faith self damage to crit.
 - Fixed many visual issues regarding model sizes, such as venom appearing extra large on certain bosses.
 - Fixed a visual issue where open wound's bleeding effect stops after mutiple stacks of open wound are applied.
 - Turbo (sprint ability on player summoned units) can now be auto-cast.
+- HP scaling of enemies now scales more smoothly with squad rating rather than at fixed intervals (such as 1600, 1700, 1800).
 
 2020-12-5
 [LeoTheCat]

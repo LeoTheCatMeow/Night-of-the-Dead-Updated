@@ -3721,11 +3721,11 @@
         <Count value="1"/>
     </CEffectRemoveBehavior>
     <CEffectDamage id="ContaminateDamageFriendlyLevel2" parent="ContaminateDamageFriendlyTemplates">
-        <Amount value="6"/>
+        <Amount value="5.25"/>
         <ArmorReduction value="0.75"/>
     </CEffectDamage>
     <CEffectDamage id="ContaminateDamageFriendlyLevel3" parent="ContaminateDamageFriendlyTemplates">
-        <Amount value="9"/>
+        <Amount value="7.5"/>
         <ArmorReduction value="0.75"/>
     </CEffectDamage>
     <CEffectDamage id="DesolationDamageFriendlyLevel1">
@@ -3861,6 +3861,7 @@
         <ValidatorArray index="0" value="TargetisnotChemExpert"/>
         <ValidatorArray value="UnitShieldsLessThanFive"/>
         <ValidatorArray value="ValidVenomTarget"/>
+        <ValidatorArray value="NotStructureTarget"/>
         <EditorCategories value=""/>
         <Chance value="0.35"/>
         <Behavior value="Venom"/>
@@ -3874,14 +3875,14 @@
     </CEffectDamage>
     <CEffectDamage id="ContaminateDamageLevel2">
         <EditorCategories value=""/>
-        <Amount value="20"/>
+        <Amount value="17.5"/>
         <Death value="Disintegrate"/>
         <ValidatorArray value="EnemyTarget"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="ContaminateDamageLevel3">
         <EditorCategories value=""/>
-        <Amount value="30"/>
+        <Amount value="25"/>
         <Death value="Disintegrate"/>
         <ValidatorArray value="EnemyTarget"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
@@ -3980,9 +3981,9 @@
         <EditorCategories value=""/>
         <OffsetVectorStartLocation Value="TargetPoint"/>
         <PeriodCount value="20"/>
+        <PeriodicEffectArray value="ContaminateSearchLevel1"/>
         <PeriodicPeriodArray value="0.6"/>
         <HeightMap value="Ground"/>
-        <PeriodicEffectArray value="ContaminateSearchLevel1"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="ContaminatePersistentLevel2">
         <EditorCategories value=""/>
@@ -4037,6 +4038,7 @@
         <ValidatorArray index="0" value="TargetisnotChemExpert"/>
         <ValidatorArray value="UnitShieldsLessThanFive"/>
         <ValidatorArray value="ValidVenomTarget"/>
+        <ValidatorArray value="NotStructureTarget"/>
         <EditorCategories value=""/>
         <Behavior value="Venom"/>
     </CEffectApplyBehavior>

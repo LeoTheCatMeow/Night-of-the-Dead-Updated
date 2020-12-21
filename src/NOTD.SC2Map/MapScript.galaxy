@@ -2073,7 +2073,6 @@ void gf_EndGameUISetNOTD ();
 //--------------------------------------------------------------------------------------------------
 trigger gt_GenericTest;
 trigger gt_AddCredits;
-trigger gt_UnlockAllTalentPoints;
 trigger gt_ClassSelectOverride;
 trigger gt_ManualSave;
 trigger gt_AutoSave;
@@ -3487,37 +3486,48 @@ void gf_PlayerCountAdjustments () {
     auto9839E8AD_val = gv_totalPlayers;
     if (auto9839E8AD_val == 8) {
         gv_spawnFactor = 4;
-        gv_difficultyHPScaling += 0.1;
+        gv_difficultyHPScaling += 0.2;
 
     }
     else if (auto9839E8AD_val == 7) {
         gv_spawnFactor = 4;
-        gv_difficultyHPScaling += 0.05;
+        gv_difficultyHPScaling += 0.15;
 
     }
     else if (auto9839E8AD_val == 6) {
         gv_spawnFactor = 4;
-        gv_difficultyHPScaling -= 0.04;
+        gv_difficultyHPScaling += 0.1;
 
     }
     else if (auto9839E8AD_val == 5) {
         gv_spawnFactor = 4;
-        gv_difficultyHPScaling -= 0.08;
+        gv_difficultyHPScaling += 0.05;
 
     }
     else if (auto9839E8AD_val == 4) {
         gv_spawnFactor = 3;
-        gv_difficultyHPScaling -= 0.08;
+
+    }
+    else if (auto9839E8AD_val == 3) {
+        gv_spawnFactor = 3;
+        gv_difficultyHPScaling -= 0.1;
+
+    }
+    else if (auto9839E8AD_val == 2) {
+        gv_spawnFactor = 3;
+        gv_magazineAdjustment -= 1;
+        gv_difficultyHPScaling -= 0.15;
 
     }
     else {
         gv_spawnFactor = 3;
-        gv_difficultyHPScaling -= 0.12;
-        if ((gv_totalPlayers <= 2)) {
-            gv_magazineAdjustment -= 1;
-            gv_difficultyHPScaling -= 0.1;
-        }
-
+        gv_magazineAdjustment -= 1;
+        gv_difficultyHPScaling -= 0.2;
+    }
+    if ((gv_storyline == 4)) {
+        gv_spawnFactor = 4;
+        gv_difficultyHPScaling += 0.2;
+        gv_difficultyHPScaling = MinF(gv_difficultyHPScaling, 0.2);
     }
 }
 
@@ -3527,47 +3537,42 @@ void gf_SQDifficultyAdjustments () {
     if ((gv_squadRating >= 2400)) {
         gv_magazineAdjustment += 6;
         gv_spawnFactor += 4;
-        gv_difficultyHPScaling += 0.95;
     }
     else if ((gv_squadRating >= 2300)) {
         gv_magazineAdjustment += 6;
         gv_spawnFactor += 4;
-        gv_difficultyHPScaling += 0.9;
     }
     else if ((gv_squadRating >= 2200)) {
         gv_magazineAdjustment += 5;
         gv_spawnFactor += 3;
-        gv_difficultyHPScaling += 0.8;
     }
     else if ((gv_squadRating >= 2100)) {
         gv_magazineAdjustment += 5;
         gv_spawnFactor += 3;
-        gv_difficultyHPScaling += 0.75;
     }
     else if ((gv_squadRating >= 2000)) {
         gv_magazineAdjustment += 4;
         gv_spawnFactor += 2;
-        gv_difficultyHPScaling += 0.65;
     }
     else if ((gv_squadRating >= 1900)) {
         gv_magazineAdjustment += 3;
         gv_spawnFactor += 2;
-        gv_difficultyHPScaling += 0.5;
     }
     else if ((gv_squadRating >= 1800)) {
         gv_magazineAdjustment += 2;
         gv_spawnFactor += 2;
-        gv_difficultyHPScaling += 0.4;
+    }
+    else if ((gv_squadRating >= 1700)) {
+        gv_magazineAdjustment += 1;
+        gv_spawnFactor += 1;
     }
     else if ((gv_squadRating >= 1650)) {
         gv_spawnFactor += 1;
-        gv_difficultyHPScaling += 0.27;
     }
-    else if ((gv_squadRating >= 1550) && (gv_isVeteranSquad == true)) {
-        gv_difficultyHPScaling += 0.18;
-    }
+    gv_difficultyHPScaling += (SquareRoot(((MaxF(gv_squadRating, 1500.0) - 1500.0) / 10.0)) * 0.08);
+    gv_difficultyHPScaling += (SquareRoot((gv_scaledXP / 10.0)) * 0.002);
     if ((gv_isVeteranSquad == false)) {
-        gv_difficultyHPScaling -= 0.12;
+        gv_difficultyHPScaling -= 0.1;
     }
 
 }
@@ -16412,6 +16417,16 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(UnitFromId(360807995), "Atrocious", 1, 1);
+    UnitBehaviorAddPlayer(UnitFromId(61320538), "Atrocious", 1, 1);
+    UnitBehaviorAddPlayer(UnitFromId(1626806288), "Atrocious", 1, 1);
+    UnitBehaviorAddPlayer(UnitFromId(1773269481), "Atrocious", 1, 1);
+    UnitBehaviorAddPlayer(UnitFromId(1068050980), "Atrocious", 1, 1);
     return true;
 }
 
@@ -16446,33 +16461,6 @@ bool gt_AddCredits_Func (bool testConds, bool runActions) {
 void gt_AddCredits_Init () {
     gt_AddCredits = TriggerCreate("gt_AddCredits_Func");
     TriggerAddEventChatMessage(gt_AddCredits, 1, "-credit", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unlock All Talent Points
-//--------------------------------------------------------------------------------------------------
-bool gt_UnlockAllTalentPoints_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((GameIsTestMap(false) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    gv_talentsAvailable[1] = 22;
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_UnlockAllTalentPoints_Init () {
-    gt_UnlockAllTalentPoints = TriggerCreate("gt_UnlockAllTalentPoints_Func");
-    TriggerAddEventChatMessage(gt_UnlockAllTalentPoints, 1, "-talent", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -22121,6 +22109,10 @@ bool gt_EliteMutation_Func (bool testConds, bool runActions) {
         }
 
         if (!((UnitGetType(EventUnit()) != "Minion"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Slither"))) {
             return false;
         }
     }
@@ -41797,12 +41789,6 @@ bool gt_SurvivalInit_Func (bool testConds, bool runActions) {
 
     gv_survivalMode = true;
     gv_hitPar = 20;
-    if ((gv_totalPlayers < 5)) {
-        gv_spawnFactor += 1;
-        gv_difficultyHPScaling += 0.2;
-        CatalogFieldValueSet(c_gameCatalogBehavior, "DifficultyScalingHP", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", 13, FixedToString(gv_difficultyHPScaling, c_fixedPrecisionAny));
-        CatalogFieldValueSet(c_gameCatalogBehavior, "DifficultyScalingHP", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", 14, FixedToString(gv_difficultyHPScaling, c_fixedPrecisionAny));
-    }
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupAll(), 100.0, 0.0);
     CameraSetBounds(PlayerGroupActive(), RegionPlayableMap(), true);
     SoundtrackStop(PlayerGroupActive(), c_soundtrackCategoryMusic, true);
@@ -46268,7 +46254,6 @@ void gt_NOTDCreditsRoll_Init () {
 void InitTriggers () {
     gt_GenericTest_Init();
     gt_AddCredits_Init();
-    gt_UnlockAllTalentPoints_Init();
     gt_ClassSelectOverride_Init();
     gt_ManualSave_Init();
     gt_AutoSave_Init();

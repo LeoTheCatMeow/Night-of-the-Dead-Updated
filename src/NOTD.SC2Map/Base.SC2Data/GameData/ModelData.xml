@@ -26,6 +26,12 @@
     <CModel id="AutoTurretPlacement">
         <Model value="Assets\Units\Terran\AutoTurret_Junker_Collection_Placement\AutoTurret_Junker_Collection_Placement.m3"/>
     </CModel>
+    <CModel id="Beastling" parent="BanelingBase">
+        <Model value="Assets\Units\Zerg\BanelingEx1\BanelingEx1.m3"/>
+        <Radius value="0.600000"/>
+        <ScaleMax value="0.880000,0.880000,0.880000"/>
+        <ScaleMin value="0.720000,0.720000,0.720000"/>
+    </CModel>
     <CModel id="ChemicalVulnerability">
         <Model value="Assets\Effects\Zerg\MiasmaImpact\MiasmaImpact.m3"/>
     </CModel>
@@ -41,6 +47,10 @@
         <ShadowRadius value="0.340800"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid03"/>
+    </CModel>
+    <CModel id="Hugger" parent="InfestorBase">
+        <Model value="Assets\Units\Zerg\Infestor_Ex3\Infestor_Ex3.m3"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="KittenSkin3" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Zerg\Infestor_Mecha\Infestor_Mecha.m3"/>
@@ -386,10 +396,12 @@
     <CModel id="Atrocious">
         <Model value="Assets\Effects\Zerg\Defiler_Plague\Defiler_Plague.m3"/>
         <Lighting value=""/>
-        <ScaleMax value="0.550000,0.550000,0.550000"/>
-        <ScaleMin value="0.550000,0.550000,0.550000"/>
+        <ScaleMax value="0.600000,0.600000,0.600000"/>
+        <ScaleMin value="0.600000,0.600000,0.600000"/>
     </CModel>
-    <CModel id="Roach"/>
+    <CModel id="Roach">
+        <Radius value="0.600000"/>
+    </CModel>
     <CModel id="Scorching">
         <Model value="Assets\Effects\Zerg\PsionicShift\PsionicShift.m3"/>
         <Lighting value=""/>
@@ -1292,7 +1304,7 @@
         <RequiredAnims value="Assets\Units\Zerg\Queen_SwarmAnims\Queen_SwarmAnims.m3a"/>
         <Occlusion value="Show"/>
         <PlanetPanelCamera value="Star2CameraHigh08"/>
-        <Radius value="1.200000"/>
+        <Radius value="1.250000"/>
         <ScaleMax value="0.800000,0.800000,0.800000"/>
         <ScaleMin value="0.800000,0.800000,0.800000"/>
         <SelectionRadius value="0.972100"/>
@@ -2589,7 +2601,7 @@
         <Model value="Assets\Units\Zerg\RoachUpgrade\RoachUpgrade.m3"/>
         <Lighting value="Roach"/>
         <Occlusion value="Show"/>
-        <Radius value="0.650000"/>
+        <Radius value="0.700000"/>
         <SquibTypeDefault value="Flesh"/>
         <TechPurchaseCamera value="Star2CameraMid04"/>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
@@ -2829,7 +2841,7 @@
             <Keys index="SetA" value="1"/>
         </AttachProps>
         <Occlusion value="Show"/>
-        <Radius value="0.600000"/>
+        <Radius value="0.700000"/>
         <SquibTypeDefault value="Flesh"/>
         <TechPurchaseCamera value="Star2CameraMid08"/>
         <UnitGlossaryCamera value="Star2CameraMid08"/>

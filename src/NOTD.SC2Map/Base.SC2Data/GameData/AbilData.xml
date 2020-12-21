@@ -936,7 +936,7 @@
         <Effect value="ContaminateLaunchLevel3"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="25"/>
             <Cooldown TimeUse="18"/>
         </Cost>
         <TargetFilters value="-;Self"/>
@@ -971,7 +971,7 @@
         <Effect value="DesolationPersistentLevel3"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="3"/>
         </Cost>
         <TargetFilters value="-;Player,Ally,Item,Invulnerable"/>

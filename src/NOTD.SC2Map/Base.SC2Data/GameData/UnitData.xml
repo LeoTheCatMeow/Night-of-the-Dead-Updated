@@ -235,6 +235,18 @@
         <AbilArray index="1" removed="1"/>
         <AbilArray index="2" removed="1"/>
     </CUnit>
+    <CUnit id="Baneling">
+        <Attributes index="Light" value="1"/>
+        <Speed value="2.5"/>
+        <CostResource index="Minerals" value="0"/>
+        <CostResource index="Vespene" value="0"/>
+        <KillXP value="15"/>
+        <AbilArray index="5" removed="1"/>
+        <AbilArray index="6" removed="1"/>
+        <BehaviorArray Link="SharedExperience"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
+        <TacticalAIThink value=""/>
+    </CUnit>
     <CUnit id="BlackDog" parent="AutoTurret">
         <Name value="Unit/Name/BlackDog"/>
         <Description value="Button/Tooltip/BlackDog"/>
@@ -291,18 +303,6 @@
         <EnergyRegenRate value="0.3515"/>
         <Footprint value=""/>
         <Radius value="0.15"/>
-    </CUnit>
-    <CUnit id="Baneling">
-        <CostResource index="Minerals" value="0"/>
-        <CostResource index="Vespene" value="0"/>
-        <KillXP value="15"/>
-        <TacticalAIThink value=""/>
-        <AbilArray index="5" removed="1"/>
-        <AbilArray index="6" removed="1"/>
-        <BehaviorArray Link="SharedExperience"/>
-        <BehaviorArray Link="DifficultyScalingHP"/>
-        <Attributes index="Light" value="1"/>
-        <Speed value="2.5"/>
     </CUnit>
     <CUnit id="BanelingBurrowed">
         <Speed value="1.3007"/>
@@ -464,6 +464,9 @@
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
         <Mover value="Burrowed"/>
+        <Speed value="2.3984"/>
+        <StationaryTurningRate value="299.8828"/>
+        <TurningRate value="299.8828"/>
         <Sight value="8"/>
         <Food value="-0.5"/>
         <CostCategory value="Army"/>
@@ -494,9 +497,6 @@
         <HotkeyAlias value="Baneling"/>
         <KillDisplay value="Always"/>
         <AIEvaluateAlias value="Baneling"/>
-        <Speed value="2.3984"/>
-        <StationaryTurningRate value="299.8828"/>
-        <TurningRate value="299.8828"/>
     </CUnit>
     <CUnit id="Bob2">
         <DeathRevealRadius value="3"/>
@@ -3576,7 +3576,6 @@
         <Collide index="Burrow" value="1"/>
         <Collide index="Ground" value="0"/>
         <Collide index="ForceField" value="0"/>
-        <Attributes index="Light" value="0"/>
         <Attributes index="Massive" value="1"/>
         <LifeStart value="1500"/>
         <LifeMax value="1500"/>
@@ -3589,13 +3588,16 @@
         <AbilArray index="2" Link="Rampage"/>
         <AbilArray index="3" Link="UnburrowBrainBug"/>
         <AbilArray index="4" removed="1"/>
+        <AbilArray index="5" removed="1"/>
+        <AbilArray index="6" removed="1"/>
         <BehaviorArray index="0" Link="BrainBugPeriodicRampageCast"/>
-        <BehaviorArray index="1" Link="DetectorRange3"/>
+        <BehaviorArray Link="DetectorRange3"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
         <BehaviorArray Link="SharedExperience"/>
         <WeaponArray index="0" removed="1"/>
         <WeaponArray index="1" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="Rampage" AbilCmd="Rampage,Execute"/>
+            <LayoutButtons index="6" Face="Rampage" Type="Undefined" AbilCmd="Rampage,Execute" Row="0"/>
             <LayoutButtons index="7" Face="BurrowUp" AbilCmd="UnburrowBrainBug,Execute"/>
         </CardLayouts>
         <ScoreResult value=""/>
@@ -3607,9 +3609,10 @@
         <LifeArmor value="2"/>
         <EquipmentArray index="0" removed="1"/>
         <Food value="-2"/>
-        <TacticalAIThink value="AIThinkBaneling"/>
         <LifeRegenRate value="15"/>
         <KillDisplay value="Never"/>
+        <CostResource index="Minerals" value="0"/>
+        <CostResource index="Vespene" value="0"/>
     </CUnit>
     <CUnit id="Demeter2">
         <DeathRevealRadius value="3"/>
@@ -4067,13 +4070,14 @@
         <AbilArray index="2" Link="UnburrowBeastling"/>
         <AbilArray index="3" removed="1"/>
         <AbilArray index="4" removed="1"/>
+        <AbilArray index="5" removed="1"/>
+        <AbilArray index="6" removed="1"/>
         <BehaviorArray index="0" Link="SharedExperience"/>
-        <BehaviorArray index="1" Link="DifficultyScalingHP"/>
-        <BehaviorArray index="2" removed="1"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
         <WeaponArray index="0" removed="1"/>
         <WeaponArray index="1" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="BurrowUp" AbilCmd="UnburrowBeastling,Execute" Column="4"/>
+            <LayoutButtons index="6" Face="BurrowUp" Type="Undefined" AbilCmd="UnburrowBeastling,Execute" Row="0" Column="4"/>
             <LayoutButtons index="7" Face="BurrowUp" AbilCmd="UnburrowBeastling,Execute"/>
             <LayoutButtons index="8" removed="1"/>
             <LayoutButtons index="9" removed="1"/>
@@ -4093,7 +4097,10 @@
         <EquipmentArray index="0" Weapon="VolatileBurstDummyBeastling"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
-        <TacticalAIThink value="AIThinkBaneling"/>
+        <Attributes index="Light" value="1"/>
+        <CostResource index="Minerals" value="0"/>
+        <CostResource index="Vespene" value="0"/>
+        <KillXP value="15"/>
     </CUnit>
     <CUnit id="Devourer2">
         <DeathRevealRadius value="3"/>
@@ -6238,8 +6245,10 @@
         <AttackTargetPriority value="5"/>
         <AbilArray index="3" Link="ExplodeBeastling"/>
         <AbilArray index="4" Link="BurrowBeastling"/>
+        <AbilArray index="5" removed="1"/>
+        <AbilArray index="6" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" AbilCmd="ExplodeBeastling,Execute"/>
+            <LayoutButtons index="6" Face="" Type="Undefined" AbilCmd="ExplodeBeastling,Execute" Row="0"/>
             <LayoutButtons index="7" AbilCmd="BurrowBeastling,Execute"/>
         </CardLayouts>
         <SubgroupPriority value="1"/>
@@ -6249,7 +6258,12 @@
         <EquipmentArray index="0" Weapon="VolatileBurstDummyBeastling"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
-        <TacticalAIThink value="AIThinkBaneling"/>
+        <Attributes index="Light" value="1"/>
+        <CostResource index="Minerals" value="0"/>
+        <CostResource index="Vespene" value="0"/>
+        <KillXP value="15"/>
+        <BehaviorArray Link="SharedExperience"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
     </CUnit>
     <CUnit id="Gunship">
         <Race value="Terr"/>
@@ -6281,8 +6295,7 @@
         <Description value="Button/Tooltip/Blindling"/>
         <ReviveType value="Blindling"/>
         <BehaviorArray index="0" Link="SharedExperience"/>
-        <BehaviorArray index="1" Link="DifficultyScalingHP"/>
-        <BehaviorArray index="2" removed="1"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
         <WeaponArray index="0" Link="BlindlingBurst"/>
         <TacticalAI value="Blindling"/>
         <LeaderAlias value="Blindling"/>
@@ -6291,8 +6304,10 @@
         <AIEvaluateAlias value="Blindling"/>
         <AbilArray index="3" Link="BurrowBlindling"/>
         <AbilArray index="4" Link="BlindlingExplode"/>
+        <AbilArray index="5" removed="1"/>
+        <AbilArray index="6" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="BlindlingExplode" AbilCmd="attack,Execute"/>
+            <LayoutButtons index="6" Face="BlindlingExplode" Type="Undefined" AbilCmd="attack,Execute" Row="0"/>
             <LayoutButtons index="7" AbilCmd="BurrowBlindling,Execute"/>
         </CardLayouts>
         <LifeStart value="35"/>
@@ -6305,7 +6320,9 @@
         <EquipmentArray index="0" Weapon="BlindlingBurst"/>
         <StationaryTurningRate value="349.9804"/>
         <TurningRate value="349.9804"/>
-        <TacticalAIThink value="AIThinkBaneling"/>
+        <Attributes index="Light" value="1"/>
+        <CostResource index="Minerals" value="0"/>
+        <CostResource index="Vespene" value="0"/>
     </CUnit>
     <CUnit id="BrainBug" parent="Baneling">
         <Name value="Unit/Name/BrainBug"/>
@@ -6315,13 +6332,15 @@
         <LifeMax value="1500"/>
         <AbilArray index="3" Link="BurrowBrainBug"/>
         <AbilArray index="4" Link="Rampage"/>
-        <AbilArray Link="Charge"/>
+        <AbilArray index="5" Link="Charge"/>
+        <AbilArray index="6" removed="1"/>
         <BehaviorArray index="0" Link="BrainBugPeriodicRampageCast"/>
-        <BehaviorArray index="1" Link="DetectorRange3"/>
+        <BehaviorArray Link="DetectorRange3"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
         <BehaviorArray Link="SharedExperience"/>
         <WeaponArray index="0" Link="HulkClaws"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="Rampage" AbilCmd="Rampage,Execute"/>
+            <LayoutButtons index="6" Face="Rampage" Type="Undefined" AbilCmd="Rampage,Execute" Row="0"/>
             <LayoutButtons index="7" AbilCmd="BurrowBrainBug,Execute"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="1"/>
         </CardLayouts>
@@ -6330,7 +6349,6 @@
         <SelectAlias value="BrainBug"/>
         <SubgroupAlias value="BrainBug"/>
         <AIEvaluateAlias value="BrainBug"/>
-        <Attributes index="Light" value="0"/>
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Massive" value="1"/>
         <SpeedMultiplierCreep value="1.7"/>
@@ -6340,9 +6358,9 @@
         <EquipmentArray index="0" removed="1"/>
         <KillDisplay value="Never"/>
         <Food value="-2"/>
-        <TacticalAIThink value="AIThinkBaneling"/>
         <LifeRegenRate value="15"/>
-        <Speed value="2.9531"/>
+        <CostResource index="Minerals" value="0"/>
+        <CostResource index="Vespene" value="0"/>
     </CUnit>
     <CUnit id="CreepTumorBurrowed">
         <LifeStart value="500"/>
