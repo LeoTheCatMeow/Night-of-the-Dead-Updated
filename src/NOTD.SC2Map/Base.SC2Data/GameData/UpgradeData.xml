@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CUpgrade id="AntiVenomUpgrade">
+        <EffectArray Operation="Set" Reference="Effect,AntiVenom,VitalArray[Life].Change" Value="30"/>
+        <EffectArray Operation="Set" Reference="Effect,AntiVenomRemoveVenom,Count" Value="3"/>
+        <EffectArray Operation="Set" Reference="Button,AntiVenom,Tooltip" Value="Button/Tooltip/AntiVenom"/>
+        <EditorCategories value="Race:Terran"/>
+    </CUpgrade>
     <CUpgrade id="AssaultJumpLevel2">
         <EffectArray Operation="Set" Reference="Effect,AssaultJumpDamageLevel1,Amount[0]" Value="250"/>
         <EffectArray Operation="Set" Reference="Effect,AssaultJumpDamageLevel2,Amount[0]" Value="400"/>
@@ -24,20 +30,16 @@
         <EffectArray Operation="Set" Reference="Behavior,TheHorror,Modification[0].DeathResponse[0].Effect[0]" Value="BringThemDownSearchSlowLevel3"/>
     </CUpgrade>
     <CUpgrade id="ChemicalSynthesis">
-        <EffectArray Operation="Subtract" Reference="Abil,Contaminate2,Cost[0].Vital[Energy]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,Desolation,Cost[0].Vital[Energy]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,InboundSickness,Cost[0].Vital[Energy]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ScorchedEarth,Cost[0].Vital[Energy]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Abil,Contaminate2,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Abil,Desolation,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Abil,InboundSickness,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ScorchedEarth,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Abil,Shrinker,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Abil,EnergyTransfer,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,Penance,Cost[0].Vital[Energy]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Abil,VRL772,Cost[0].Vital[Energy]" Value="3"/>
         <EditorCategories value="Race:Terran"/>
         <MaxLevel value="2"/>
-    </CUpgrade>
-    <CUpgrade id="ContaminateUpgrade">
-        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
-        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.CountMax" Value="2"/>
-        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.CountStart" Value="2"/>
-        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.CountUse" Value="1"/>
-        <EffectArray Operation="Set" Reference="Abil,Contaminate2,Cost[0].Charge.TimeUse" Value="18.000000"/>
-        <EditorCategories value="Race:Terran"/>
     </CUpgrade>
     <CUpgrade id="ConcentratedFireCriticalStrike">
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.05"/>

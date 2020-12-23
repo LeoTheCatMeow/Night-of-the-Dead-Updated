@@ -15246,10 +15246,10 @@ void gf_LevelUpTalentChemExpert (int lp_itemNo, unit lp_triggUnit, int lp_triggP
     if ((lp_itemNo == 4)) {
         TechTreeUpgradeAddLevel(lp_triggPlayer, "ChemicalSynthesis", 1);
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 1)) {
-            UnitBehaviorAdd(lp_triggUnit, "ChemicalSynthesisLevel1", lp_triggUnit, 1);
+            UnitBehaviorAdd(lp_triggUnit, "ChemicalSynthesis", lp_triggUnit, 1);
         }
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
-            TechTreeUpgradeAddLevel(lp_triggPlayer, "ContaminateUpgrade", 1);
+            TechTreeUpgradeAddLevel(lp_triggPlayer, "AntiVenomUpgrade", 1);
         }
     }
 

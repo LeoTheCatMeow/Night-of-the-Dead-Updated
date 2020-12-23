@@ -467,7 +467,7 @@
         <Effect index="0" value="InboundSicknessLaunchLevel1"/>
         <Effect value="InboundSicknessLaunchLevel2"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
+            <Vital index="Energy" value="22"/>
             <Cooldown TimeUse="20"/>
         </Cost>
         <TargetFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
@@ -936,7 +936,7 @@
         <Effect value="ContaminateLaunchLevel3"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
+            <Vital index="Energy" value="22"/>
             <Cooldown TimeUse="18"/>
         </Cost>
         <TargetFilters value="-;Self"/>
@@ -1525,7 +1525,7 @@
         <Effect index="0" value="ScorchedEarthPersistent"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="35"/>
+            <Vital index="Energy" value="30"/>
             <Cooldown TimeUse="15"/>
         </Cost>
         <Range value="30"/>

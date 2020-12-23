@@ -238,6 +238,9 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
         <Radius value="0.500000"/>
     </CModel>
+    <CModel id="PointDefenseDrone">
+        <Radius value="0.500000"/>
+    </CModel>
     <CModel id="PsiOpsSkin2" parent="Unit">
         <Model value="Assets\Units\Zerg\KerriganGhost\KerriganGhost_01.m3"/>
         <RequiredAnims value="Assets\Units\Zerg\KerriganGhost_RequiredAnims\KerriganGhost_RequiredAnims.m3a"/>
@@ -1399,6 +1402,7 @@
     </CModel>
     <CModel id="ScienceVessel">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.300000"/>
+        <Radius value="0.500000"/>
     </CModel>
     <CModel id="M5PulseRifleAttackLaunch" parent="LaunchFX">
         <Model value="Assets\Effects\Protoss\ShadowCannonLaunch\ShadowCannonLaunch.m3"/>

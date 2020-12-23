@@ -12713,6 +12713,7 @@
         <On Terms="Behavior.VRL772Damage.Off" Send="Destroy Immediate"/>
         <On Terms="Behavior.VRL772Stun.On" Send="Create"/>
         <On Terms="Behavior.VRL772Stun.Off" Send="Destroy Immediate"/>
+        <On Terms="ActorCreation; ValidateUnit IsStructure" Send="Destroy Immediate"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>
