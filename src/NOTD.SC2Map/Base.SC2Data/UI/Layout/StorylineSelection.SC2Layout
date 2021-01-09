@@ -267,32 +267,32 @@
             </Frame>
         </Frame>
 
-        <Frame type="Button" name="RealismButton">
+        <Frame type="Button" name="HighSpawnButton">
             <Anchor side="Top" relative="$parent/EliteMutationButton" pos="Min" offset="175"/>
             <Anchor side="Left" relative="$parent/EliteMutationButton" pos="Min" offset="0"/>
             <Height val="150"/>
             <Width val="345"/>
 
-            <Frame type="Image" name="RealismImageFrame">
+            <Frame type="Image" name="HighSpawnImageFrame">
                 <Height val="150"/>
                 <Width val="330"/>
                 <Texture val="Assets\Textures\ui_battlenet_glue_collection_standarditemframe_disabled.dds"/>
                 <TextureType val="NineSlice"/>
                 <Anchor relative="$parent"/>
 
-                <Frame type="Image" name="RealismImage">
+                <Frame type="Image" name="HighSpawnImage">
                     <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
                     <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
                     <Height val="120"/>
                     <Width val="315"/>
                     <Texture val="Assets\Textures\ui_battlereports_raynorintro.dds"/>
-                    <Frame type="Label" name="RealismTitle">
+                    <Frame type="Label" name="HighSpawnTitle">
                          <Anchor side="Top" relative="$parent" pos="Min" offset="90"/>
                          <Anchor side="Left" relative="$parent" pos="Min" offset="20"/>
                          <Color val="255,255,255"/>
                          <Height val="120"/>
                          <Width val="315"/>
-                         <Text val="Realism"/>
+                         <Text val="High Spawn"/>
                          <Style val="HelpPanelListBoxItemTitle"/>
                     </Frame>  
                 </Frame>
@@ -300,8 +300,8 @@
         </Frame>
 
         <Frame type="Button" name="OutbreakButton">
-            <Anchor side="Top" relative="$parent/RealismButton" pos="Min" offset="175"/>
-            <Anchor side="Left" relative="$parent/RealismButton" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent/HighSpawnButton" pos="Min" offset="175"/>
+            <Anchor side="Left" relative="$parent/HighSpawnButton" pos="Min" offset="0"/>
             <Height val="150"/>
             <Width val="345"/>
 

@@ -464,14 +464,14 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="InboundSickness">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <Effect index="0" value="InboundSicknessLaunchLevel1"/>
-        <Effect value="InboundSicknessLaunchLevel2"/>
+        <Effect index="0" value="InboundSicknessCreatePersistentLevel1"/>
+        <Effect value="InboundSicknessCreatePersistentLevel2"/>
         <Cost>
             <Vital index="Energy" value="22"/>
-            <Cooldown TimeUse="20"/>
+            <Cooldown TimeUse="25"/>
         </Cost>
-        <TargetFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <Range value="15"/>
+        <TargetFilters value="-;Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
+        <Range value="10"/>
         <PrepTime value="0"/>
         <PrepTime value="0"/>
         <PrepTime value="0"/>
@@ -488,8 +488,8 @@
         <ValidatedArray index="Approach" value="0"/>
         <ValidatedArray index="Channel" value="0"/>
         <ValidatedArray index="Finish" value="1"/>
-        <CursorEffect value="InboundSicknessSearchLevel1"/>
-        <CursorEffect value="InboundSicknessSearchLevel1"/>
+        <CursorEffect value="InboundSicknessSearchLevel1Debuff"/>
+        <CursorEffect value="InboundSicknessSearchLevel2Debuff"/>
         <LevelButtonTooltip value="Level 2 Inbound Sickness"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="InboundSickness"/>
     </CAbilEffectTarget>
@@ -4708,7 +4708,7 @@
     </CAbilEffectInstant>
     <CAbilEffectTarget id="MindBlast">
         <Cost index="0">
-            <Vital index="Energy" value="30"/>
+            <Vital index="Energy" value="18"/>
             <Cooldown TimeUse="7"/>
         </Cost>
         <Effect value="MindBlastLevel2"/>
@@ -4929,10 +4929,10 @@
         <Effect index="0" value="VolatileInjectionLevel1Apply"/>
         <Effect value="VolatileInjectionLevel2Apply"/>
         <Cost>
-            <Vital index="Energy" value="15"/>
+            <Vital index="Energy" value="12"/>
             <Cooldown TimeUse="2"/>
         </Cost>
-        <TargetFilters value="-;Player,Ally,Missile,Item,Dead,Invulnerable"/>
+        <TargetFilters value="-;RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <Range value="12"/>
         <LevelButtonTooltip value="Level 2"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="VolatileInjection"/>

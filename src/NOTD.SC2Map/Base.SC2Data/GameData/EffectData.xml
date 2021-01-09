@@ -168,18 +168,89 @@
         <Kind value="NoProc"/>
         <Amount value="3.5"/>
     </CEffectDamage>
-    <CEffectDamage id="InboundSicknessDOT">
+    <CEffectApplyBehavior id="EnergyCapacitorApplyBuffLevel2">
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="EnergyCapacitorRegenerationLevel2"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="EnergyCapacitorLevel2Search">
         <EditorCategories value=""/>
-        <AttributeFactor index="Heroic" value="-0.7"/>
-        <Total value="Combine"/>
-        <VitalFractionCurrent index="Life" value="-0.01"/>
-        <VitalFractionMax index="Life" value="0.01"/>
-        <Death value="Disintegrate"/>
-    </CEffectDamage>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,Massive,Structure,Worker,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
+        <AreaArray Radius="6" Effect="EnergyCapacitorApplyBuffLevel2"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="InboundSicknessApplyLevel1Buff">
+        <EditorCategories value=""/>
+        <Behavior value="InboundSicknessBuffLevel1"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="InboundSicknessApplyLevel2Buff">
+        <EditorCategories value=""/>
+        <Behavior value="InboundSicknessBuffLevel2"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="InboundSicknessBuffAttackSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ContaminateApplyVenom"/>
+        <EffectArray value="InboundSicknessRemoveBuffLevel1"/>
+        <EffectArray value="InboundSicknessDamageLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="InboundSicknessBuffAttackSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ContaminateApplyVenom"/>
+        <EffectArray value="InboundSicknessRemoveBuffLevel2"/>
+        <EffectArray value="InboundSicknessDamageLevel2"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="InboundSicknessCreatePersistentLevel1">
+        <EditorCategories value=""/>
+        <InitialDelay value="1.2"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="InboundSicknessSearchSetLevel1"/>
+        <PeriodicPeriodArray value="1.2"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="InboundSicknessCreatePersistentLevel2">
+        <EditorCategories value=""/>
+        <InitialDelay value="1.2"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="InboundSicknessSearchSetLevel2"/>
+        <PeriodicPeriodArray value="1.2"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="InboundSicknessRemoveBuffLevel2">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <BehaviorLink value="InboundSicknessBuffLevel2"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="InboundSicknessRemoveVenom">
         <EditorCategories value=""/>
         <BehaviorLink value="Venom"/>
+        <Count value="1"/>
     </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="InboundSicknessRemoveBuffLevel1">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <BehaviorLink value="InboundSicknessBuffLevel1"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="InboundSicknessSearchLevel1Buff">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
+        <AreaArray Radius="5" Effect="InboundSicknessApplyLevel1Buff"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="InboundSicknessSearchLevel2Buff">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
+        <AreaArray Radius="5" Effect="InboundSicknessApplyLevel2Buff"/>
+    </CEffectEnumArea>
+    <CEffectSet id="InboundSicknessSearchSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="InboundSicknessSearchLevel1Buff"/>
+        <EffectArray value="InboundSicknessSearchLevel1Debuff"/>
+    </CEffectSet>
+    <CEffectSet id="InboundSicknessSearchSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="InboundSicknessSearchLevel2Buff"/>
+        <EffectArray value="InboundSicknessSearchLevel2Debuff"/>
+    </CEffectSet>
     <CEffectDamage id="InfernalFlameThrower">
         <ValidatorArray index="0" removed="1"/>
         <AttributeBonus index="Light" value="2"/>
@@ -191,14 +262,28 @@
         <Amount value="10"/>
         <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>
-    <CEffectDamage id="InboundSicknessVenomDamage">
+    <CEffectRemoveBehavior id="RemoveVolatileInjectionLevel1">
         <EditorCategories value=""/>
-        <Amount value="50">
-            <AccumulatorArray value="XVenomCount"/>
-        </Amount>
-        <Death value="Disintegrate"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
-    </CEffectDamage>
+        <BehaviorLink value="VolatileInjectionLevel1"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveVolatileInjectionLevel2">
+        <EditorCategories value=""/>
+        <BehaviorLink value="VolatileInjectionLevel2"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="EnergyCapacitorLevel1Search">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,Massive,Structure,Worker,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
+        <AreaArray Radius="6" Effect="EnergyCapacitorApplyBuffLevel1"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="EnergyCapacitorApplyBuffLevel1">
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="EnergyCapacitorRegenerationLevel1"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="SyncModuleApplyBuff">
         <Behavior value="SynchronizationModule"/>
     </CEffectApplyBehavior>
@@ -3859,7 +3944,7 @@
         <ValidatorArray value="UnitShieldsLessThanFive"/>
         <ValidatorArray value="ValidVenomTarget"/>
         <EditorCategories value=""/>
-        <Chance value="0.45"/>
+        <Chance value="0.4"/>
         <Behavior value="Venom"/>
     </CEffectApplyBehavior>
     <CEffectDamage id="ContaminateDamageLevel1">
@@ -3873,7 +3958,6 @@
         <EditorCategories value=""/>
         <Amount value="20"/>
         <Death value="Disintegrate"/>
-        <ValidatorArray value="EnemyTarget"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="ContaminateDamageLevel3">
@@ -3906,32 +3990,6 @@
         <Behavior value="AMRounds"/>
         <ValidatorArray index="0" removed="1"/>
     </CEffectApplyBehavior>
-    <CEffectDamage id="InboundSicknessDamageFriendlyLevel1">
-        <ValidatorArray value="FriendlyOrNeutralTarget"/>
-        <EditorCategories value=""/>
-        <ArmorReduction value="5"/>
-        <Amount value="30"/>
-        <Death value="Disintegrate"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
-    </CEffectDamage>
-    <CEffectDamage id="InboundSicknessDamageFriendlyLevel2">
-        <ValidatorArray value="FriendlyOrNeutralTarget"/>
-        <EditorCategories value=""/>
-        <ArmorReduction value="5"/>
-        <Amount value="60"/>
-        <Death value="Disintegrate"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
-    </CEffectDamage>
-    <CEffectSet id="InboundSicknessDamageSetLevel1">
-        <EditorCategories value=""/>
-        <EffectArray value="InboundSicknessDamageLevel1"/>
-        <EffectArray value="InboundSicknessApplyLevel1"/>
-    </CEffectSet>
-    <CEffectSet id="InboundSicknessDamageSetLevel2">
-        <EditorCategories value=""/>
-        <EffectArray value="InboundSicknessDamageLevel2"/>
-        <EffectArray value="InboundSicknessApplyLevel2"/>
-    </CEffectSet>
     <CEffectApplyBehavior id="MarchoftheMachinesApply">
         <EditorCategories value=""/>
         <Behavior value="MarchoftheMachinesDisableAttack"/>
@@ -4442,42 +4500,42 @@
         <HeightMap value="Ground"/>
         <InitialEffect value="NukeCreateRevealDummy2"/>
     </CEffectCreatePersistent>
-    <CEffectApplyBehavior id="InboundSicknessApplyLevel1">
+    <CEffectApplyBehavior id="InboundSicknessApplyLevel1Debuff">
+        <ValidatorArray index="0" value="HasVenom"/>
         <EditorCategories value=""/>
         <Behavior value="InboundSicknessDebuffLevel1"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="InboundSicknessApplyLevel2">
+    <CEffectApplyBehavior id="InboundSicknessApplyLevel2Debuff">
+        <ValidatorArray index="0" value="HasVenom"/>
         <EditorCategories value=""/>
         <Behavior value="InboundSicknessDebuffLevel2"/>
     </CEffectApplyBehavior>
     <CEffectDamage id="InboundSicknessDamageLevel1">
         <EditorCategories value=""/>
-        <Amount value="75"/>
+        <Amount value="25"/>
         <Death value="Disintegrate"/>
-        <ValidatorArray value="EnemyTarget"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="InboundSicknessDamageLevel2">
         <EditorCategories value=""/>
-        <Amount value="150"/>
+        <Amount value="35"/>
         <Death value="Disintegrate"/>
-        <ValidatorArray value="EnemyTarget"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="InboundSicknessLaunchLevel2">
         <EditorCategories value="Race:Terran"/>
-        <ImpactEffect value="InboundSicknessSearchLevel2"/>
+        <ImpactEffect value="InboundSicknessSearchLevel2Debuff"/>
         <AmmoUnit value="HunterSeekerWeapon"/>
     </CEffectLaunchMissile>
-    <CEffectEnumArea id="InboundSicknessSearchLevel1">
+    <CEffectEnumArea id="InboundSicknessSearchLevel1Debuff">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="2.5" Effect="InboundSicknessDamageSetLevel1"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="5" Effect="InboundSicknessApplyLevel1Debuff"/>
     </CEffectEnumArea>
-    <CEffectEnumArea id="InboundSicknessSearchLevel2">
+    <CEffectEnumArea id="InboundSicknessSearchLevel2Debuff">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="2.5" Effect="InboundSicknessDamageSetLevel2"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="5" Effect="InboundSicknessApplyLevel2Debuff"/>
     </CEffectEnumArea>
     <CEffectDamage id="ScorchedEarthVenomDamage">
         <EditorCategories value=""/>
@@ -4625,7 +4683,7 @@
     </CEffectEnumArea>
     <CEffectLaunchMissile id="InboundSicknessLaunchLevel1">
         <EditorCategories value="Race:Terran"/>
-        <ImpactEffect value="InboundSicknessSearchLevel1"/>
+        <ImpactEffect value="InboundSicknessSearchLevel1Debuff"/>
         <AmmoUnit value="HunterSeekerWeapon"/>
     </CEffectLaunchMissile>
     <CEffectEnumArea id="ScorchedEarthSearch">
@@ -11081,12 +11139,12 @@
         <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectDamage id="MoreDoTsDamage">
+        <ValidatorArray value="NotInvulnerable"/>
         <EditorCategories value=""/>
-        <Amount value="25"/>
+        <Kind value="Ranged"/>
+        <Amount value="35"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotInvulnerable"/>
-        <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="NanoHasteDummy">
         <EditorCategories value=""/>
@@ -11834,10 +11892,10 @@
     <CEffectEnumArea id="MoreDoTsSearch">
         <EditorCategories value=""/>
         <LaunchLocation Value="TargetPoint"/>
+        <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="5" Effect="MoreDoTsApply"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
-        <ImpactLocation Value="TargetPoint"/>
     </CEffectEnumArea>
     <CEffectDamage id="Claws2" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -12299,8 +12357,6 @@
         <EditorCategories value=""/>
         <Kind value="Splash"/>
         <Amount value="75"/>
-        <AreaArray Radius="3"/>
-        <SearchFilters value="-;Player,Ally,Item,Dead,Hidden,Invulnerable"/>
         <Death value="Disintegrate"/>
         <AttributeBonus index="Massive" value="75"/>
     </CEffectDamage>
@@ -12308,16 +12364,15 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Player,Ally,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3" Effect="VolatileInjectionLevel2Damage"/>
+        <AreaArray Radius="4" Effect="VolatileInjectionLevel2Damage"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <ValidatorArray value="EnemyTarget"/>
     </CEffectEnumArea>
     <CEffectDamage id="VolatileInjectionLevel2Damage">
         <EditorCategories value=""/>
         <Marker Link="Effect/VolatileInjectionLevel1Damage"/>
         <Kind value="Splash"/>
         <Amount value="150"/>
-        <AreaArray Radius="3"/>
-        <SearchFilters value="-;Player,Ally,Item,Dead,Hidden,Invulnerable"/>
         <Death value="Disintegrate"/>
         <AttributeBonus index="Massive" value="150"/>
     </CEffectDamage>
@@ -12325,8 +12380,9 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Player,Ally,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3" Effect="VolatileInjectionLevel1Damage"/>
+        <AreaArray Radius="4" Effect="VolatileInjectionLevel1Damage"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <ValidatorArray value="EnemyTarget"/>
     </CEffectEnumArea>
     <CEffectDamage id="VultureSpiderMinesDamage">
         <Amount value="40"/>

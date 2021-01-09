@@ -200,7 +200,6 @@
             <RequireEffectArray value="DesolationDamageLevel3"/>
             <RequireEffectArray value="InboundSicknessDamageLevel1"/>
             <RequireEffectArray value="InboundSicknessDamageLevel2"/>
-            <RequireEffectArray value="InboundSicknessDOT"/>
             <RequireEffectArray value="ScorchedEarthDamage"/>
             <RequireEffectArray value="ScorchedEarthVenomDamage"/>
             <RequireEffectArray value="VRL772Damage"/>
@@ -217,6 +216,53 @@
         <DamageResponse Handled="ApplyCriticalStrikeSet" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EnergyCapacitorAuraLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Handled="EnergyCapacitorLevel1Search" Location="Attacker">
+            <RequireEffectArray value="MindBlast"/>
+            <RequireEffectArray value="NanoShockLevel2"/>
+            <RequireEffectArray value="NanoShockLevel3"/>
+            <RequireEffectArray value="VolatileInjectionLevel1Damage"/>
+            <RequireEffectArray value="VolatileInjectionLevel2Damage"/>
+            <RequireEffectArray value="MoreDoTsDamage"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EnergyCapacitorAuraLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="EnergyCapacitorAuraLevel1"/>
+        </Modification>
+        <DamageResponse Handled="EnergyCapacitorLevel2Search" Location="Attacker">
+            <RequireEffectArray value="MindBlast"/>
+            <RequireEffectArray value="NanoShockLevel2"/>
+            <RequireEffectArray value="NanoShockLevel3"/>
+            <RequireEffectArray value="VolatileInjectionLevel1Damage"/>
+            <RequireEffectArray value="VolatileInjectionLevel2Damage"/>
+            <RequireEffectArray value="MoreDoTsDamage"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EnergyCapacitorRegenerationLevel1">
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-disruptor-novabattery.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <VitalRegenArray index="Energy" value="0.3984"/>
+        </Modification>
+        <BehaviorCategories index="User1" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EnergyCapacitorRegenerationLevel2">
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-disruptor-novabattery.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <VitalRegenArray index="Energy" value="0.6015"/>
+        </Modification>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EvasionBonus">
         <InfoFlags index="Hidden" value="1"/>
@@ -360,6 +406,28 @@
         </DamageResponse>
         <Period value="1.5"/>
         <PeriodicEffect value="HardenedEnergySparkSearch"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="InboundSicknessBuffLevel1">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-tychus-medic-matrixgenerator.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Handled="InboundSicknessBuffAttackSetLevel1" Location="Attacker">
+            <Kind index="Spell" value="0"/>
+            <Kind index="NoProc" value="0"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="InboundSicknessBuffLevel2">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-tychus-medic-matrixgenerator.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Handled="InboundSicknessBuffAttackSetLevel2" Location="Attacker">
+            <Kind index="Spell" value="0"/>
+            <Kind index="NoProc" value="0"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3447,28 +3515,26 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="InboundSicknessDebuffLevel1">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-huntermissile-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-tychus-medic-matrixgenerator.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.4">
-            <AccumulatorArray value="XVenomCountMin1"/>
-        </Duration>
-        <Period value="0.4"/>
+        <Duration value="0.5"/>
+        <Period value="0.1"/>
         <InitialEffect value="InboundSicknessRemoveVenom"/>
-        <PeriodicEffect value="InboundSicknessDOT"/>
+        <PeriodicEffect value="InboundSicknessDamageLevel1"/>
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
+        <PeriodCount value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InboundSicknessDebuffLevel2">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-huntermissile-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-tychus-medic-matrixgenerator.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.6">
-            <AccumulatorArray value="XVenomCountMin1"/>
-        </Duration>
-        <Period value="0.3"/>
+        <Duration value="0.5"/>
+        <Period value="0.1"/>
+        <PeriodCount value="1"/>
         <InitialEffect value="InboundSicknessRemoveVenom"/>
-        <PeriodicEffect value="InboundSicknessDOT"/>
+        <PeriodicEffect value="InboundSicknessDamageLevel2"/>
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
@@ -8489,7 +8555,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <MaxStackCount value="5"/>
         <MaxStackCountPerCaster value="5"/>
-        <Duration value="60"/>
+        <Duration value="45"/>
         <Period value="1"/>
         <InitialEffect value="MoreDoTsDamage"/>
         <PeriodicEffect value="MoreDoTsDamage"/>
@@ -8498,7 +8564,9 @@
             <AttackSpeedMultiplier value="0.9"/>
             <DetectArc value="0"/>
             <RadarArc value="0"/>
+            <LifeArmorBonus value="-2"/>
         </Modification>
+        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel1">
         <Alignment value="Positive"/>
@@ -8864,33 +8932,37 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel1">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-explode.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zagara-bilebombardment.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <TimeScaleSource Value="Global"/>
         <FinalEffect value="VolatileInjectionLevel1Search"/>
-        <MaxStackCount value="4"/>
-        <Modification>
-            <LifeArmorBonus value="-1"/>
-        </Modification>
-        <BehaviorCategories index="User12" value="1"/>
+        <MaxStackCount value="2"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <Duration value="10"/>
+        <Period value="0.125"/>
+        <PeriodCount value="4"/>
+        <PeriodicEffect value="AntiVenom"/>
+        <DamageResponse Exhausted="RemoveVolatileInjectionLevel1" ModifyFraction="1.1">
+            <Kind index="NoProc" value="0"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel2">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-explode.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zagara-bilebombardment.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <TimeScaleSource Value="Global"/>
-        <Modification>
-            <LifeArmorBonus value="-2"/>
-            <DeathResponse Effect="VolatileInjectionLevel2Search">
-                <Cost>
-                    <Charge Link="Behavior/VolatileInjectionLevel1"/>
-                    <Cooldown Link="Behavior/VolatileInjectionLevel1"/>
-                </Cost>
-            </DeathResponse>
-        </Modification>
         <FinalEffect value="VolatileInjectionLevel2Search"/>
-        <MaxStackCount value="4"/>
-        <BehaviorCategories index="User12" value="1"/>
+        <MaxStackCount value="2"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <Duration value="10"/>
+        <Period value="0.125"/>
+        <PeriodCount value="8"/>
+        <PeriodicEffect value="AntiVenom"/>
+        <DamageResponse Exhausted="RemoveVolatileInjectionLevel2" ModifyFraction="1.2">
+            <Kind index="NoProc" value="0"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="WeaponExpertiseLevel1">
         <Alignment value="Positive"/>

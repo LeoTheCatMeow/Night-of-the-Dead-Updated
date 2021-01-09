@@ -3018,7 +3018,7 @@
         <LifeRegenRate value="0.6015"/>
         <EnergyStart value="75"/>
         <EnergyMax value="75"/>
-        <EnergyRegenRate value="1.1992"/>
+        <EnergyRegenRate value="1.1484"/>
         <ShieldsStart value="50"/>
         <ShieldsMax value="50"/>
         <ShieldRegenRate value="1.5"/>
@@ -3588,8 +3588,6 @@
         <AbilArray index="2" Link="Rampage"/>
         <AbilArray index="3" Link="UnburrowBrainBug"/>
         <AbilArray index="4" removed="1"/>
-        <AbilArray index="5" removed="1"/>
-        <AbilArray index="6" removed="1"/>
         <BehaviorArray index="0" Link="BrainBugPeriodicRampageCast"/>
         <BehaviorArray Link="DetectorRange3"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
@@ -3597,7 +3595,7 @@
         <WeaponArray index="0" removed="1"/>
         <WeaponArray index="1" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="Rampage" Type="Undefined" AbilCmd="Rampage,Execute" Row="0"/>
+            <LayoutButtons index="6" Face="Rampage" AbilCmd="Rampage,Execute"/>
             <LayoutButtons index="7" Face="BurrowUp" AbilCmd="UnburrowBrainBug,Execute"/>
         </CardLayouts>
         <ScoreResult value=""/>
@@ -3611,8 +3609,6 @@
         <Food value="-2"/>
         <LifeRegenRate value="15"/>
         <KillDisplay value="Never"/>
-        <CostResource index="Minerals" value="0"/>
-        <CostResource index="Vespene" value="0"/>
     </CUnit>
     <CUnit id="Demeter2">
         <DeathRevealRadius value="3"/>
@@ -4070,14 +4066,12 @@
         <AbilArray index="2" Link="UnburrowBeastling"/>
         <AbilArray index="3" removed="1"/>
         <AbilArray index="4" removed="1"/>
-        <AbilArray index="5" removed="1"/>
-        <AbilArray index="6" removed="1"/>
         <BehaviorArray index="0" Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <WeaponArray index="0" removed="1"/>
         <WeaponArray index="1" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="BurrowUp" Type="Undefined" AbilCmd="UnburrowBeastling,Execute" Row="0" Column="4"/>
+            <LayoutButtons index="6" Face="BurrowUp" AbilCmd="UnburrowBeastling,Execute" Column="4"/>
             <LayoutButtons index="7" Face="BurrowUp" AbilCmd="UnburrowBeastling,Execute"/>
             <LayoutButtons index="8" removed="1"/>
             <LayoutButtons index="9" removed="1"/>
@@ -4097,10 +4091,6 @@
         <EquipmentArray index="0" Weapon="VolatileBurstDummyBeastling"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
-        <Attributes index="Light" value="1"/>
-        <CostResource index="Minerals" value="0"/>
-        <CostResource index="Vespene" value="0"/>
-        <KillXP value="15"/>
     </CUnit>
     <CUnit id="Devourer2">
         <DeathRevealRadius value="3"/>
@@ -6245,10 +6235,8 @@
         <AttackTargetPriority value="5"/>
         <AbilArray index="3" Link="ExplodeBeastling"/>
         <AbilArray index="4" Link="BurrowBeastling"/>
-        <AbilArray index="5" removed="1"/>
-        <AbilArray index="6" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="" Type="Undefined" AbilCmd="ExplodeBeastling,Execute" Row="0"/>
+            <LayoutButtons index="6" AbilCmd="ExplodeBeastling,Execute"/>
             <LayoutButtons index="7" AbilCmd="BurrowBeastling,Execute"/>
         </CardLayouts>
         <SubgroupPriority value="1"/>
@@ -6258,10 +6246,6 @@
         <EquipmentArray index="0" Weapon="VolatileBurstDummyBeastling"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
-        <Attributes index="Light" value="1"/>
-        <CostResource index="Minerals" value="0"/>
-        <CostResource index="Vespene" value="0"/>
-        <KillXP value="15"/>
         <BehaviorArray Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
     </CUnit>
@@ -6304,10 +6288,8 @@
         <AIEvaluateAlias value="Blindling"/>
         <AbilArray index="3" Link="BurrowBlindling"/>
         <AbilArray index="4" Link="BlindlingExplode"/>
-        <AbilArray index="5" removed="1"/>
-        <AbilArray index="6" removed="1"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="BlindlingExplode" Type="Undefined" AbilCmd="attack,Execute" Row="0"/>
+            <LayoutButtons index="6" Face="BlindlingExplode" AbilCmd="attack,Execute"/>
             <LayoutButtons index="7" AbilCmd="BurrowBlindling,Execute"/>
         </CardLayouts>
         <LifeStart value="35"/>
@@ -6320,9 +6302,6 @@
         <EquipmentArray index="0" Weapon="BlindlingBurst"/>
         <StationaryTurningRate value="349.9804"/>
         <TurningRate value="349.9804"/>
-        <Attributes index="Light" value="1"/>
-        <CostResource index="Minerals" value="0"/>
-        <CostResource index="Vespene" value="0"/>
     </CUnit>
     <CUnit id="BrainBug" parent="Baneling">
         <Name value="Unit/Name/BrainBug"/>
@@ -6332,15 +6311,14 @@
         <LifeMax value="1500"/>
         <AbilArray index="3" Link="BurrowBrainBug"/>
         <AbilArray index="4" Link="Rampage"/>
-        <AbilArray index="5" Link="Charge"/>
-        <AbilArray index="6" removed="1"/>
+        <AbilArray Link="Charge"/>
         <BehaviorArray index="0" Link="BrainBugPeriodicRampageCast"/>
         <BehaviorArray Link="DetectorRange3"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <BehaviorArray Link="SharedExperience"/>
         <WeaponArray index="0" Link="HulkClaws"/>
         <CardLayouts index="0">
-            <LayoutButtons index="6" Face="Rampage" Type="Undefined" AbilCmd="Rampage,Execute" Row="0"/>
+            <LayoutButtons index="6" Face="Rampage" AbilCmd="Rampage,Execute"/>
             <LayoutButtons index="7" AbilCmd="BurrowBrainBug,Execute"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="1"/>
         </CardLayouts>
@@ -6359,8 +6337,6 @@
         <KillDisplay value="Never"/>
         <Food value="-2"/>
         <LifeRegenRate value="15"/>
-        <CostResource index="Minerals" value="0"/>
-        <CostResource index="Vespene" value="0"/>
     </CUnit>
     <CUnit id="CreepTumorBurrowed">
         <LifeStart value="500"/>

@@ -396,11 +396,11 @@ Attribute005/Value008/Name=NMSurv
 Attribute005/Value009/Name=NMSec
 Attribute005/Value010/Name=AnyNM
 Attribute006/Name=Spawn Factor
-Attribute006/Value001/Desc=Standard spawn factor.
+Attribute006/Value001/Desc=Standard Spawn Factor.
 Attribute006/Value001/Name=Standard
-Attribute006/Value002/Desc=+1 Spawn factor adjustment.
+Attribute006/Value002/Desc=+1 SF and 10% HP Scaling
 Attribute006/Value002/Name=Elevated
-Attribute006/Value003/Desc=+2 SF for Recruit/Normal, SF set to 9 for Nightmare, fixed value.
+Attribute006/Value003/Desc=+2 SF, SF set to 9 for Nightmare, + 20% HP Scaling
 Attribute006/Value003/Name=High Spawn
 Barret/MMRifle Equipped=M45 Marksman Rifle or Barret M112 Equipped
 Behavior/Name/AMRounds=AM Rounds
@@ -511,6 +511,8 @@ Behavior/Name/DropMagazine=Drop Magazine
 Behavior/Name/EnergyBattery=Energy Battery
 Behavior/Name/EnergyBatteryLevel1=Energy Battery (Level 1)
 Behavior/Name/EnergyBatteryLevel2=Energy Battery (Level 2)
+Behavior/Name/EnergyCapacitorRegenerationLevel1=Energy Capacitor Regeneration Level 1
+Behavior/Name/EnergyCapacitorRegenerationLevel2=Energy Capacitor Regeneration Level 2
 Behavior/Name/EnergyFieldProtected=Energy Field (Protected)
 Behavior/Name/EnergyVortex=Energy Vortex
 Behavior/Name/Enraged=Enraged
@@ -583,6 +585,8 @@ Behavior/Name/ImprovedEquipment=Improved Equipment
 Behavior/Name/ImprovedSprintLevel1=Improved Sprint - Level 1
 Behavior/Name/ImprovedSprintLevel2=Improved Sprint - Level 2
 Behavior/Name/ImprovedSprintLevel3=Improved Sprint - Level 3
+Behavior/Name/InboundSicknessBuffLevel1=Inbound Sickness (Buff - Level 1)
+Behavior/Name/InboundSicknessBuffLevel2=Inbound Sickness (Buff - Level 2)
 Behavior/Name/InboundSicknessDebuffLevel1=Inbound Sickness (Debuff - Level 1)
 Behavior/Name/InboundSicknessDebuffLevel2=Inbound Sickness (Debuff - Level 2)
 Behavior/Name/Inception=Inception
@@ -892,6 +896,8 @@ Behavior/Tooltip/DropMagazine=Drops a magazine into your inventory. This allows 
 Behavior/Tooltip/EnergyBattery=Unit gains +0.35 energy regeneration.
 Behavior/Tooltip/EnergyBatteryLevel1=Increased base energy of 50. 5 radius energy regeneration aura to allies (+0.35/s).
 Behavior/Tooltip/EnergyBatteryLevel2=Increased base energy of 100. 10 radius energy regeneration aura to allies (+0.35/s).
+Behavior/Tooltip/EnergyCapacitorRegenerationLevel1=Unit gains 0.4 energy per second for 6 seconds.
+Behavior/Tooltip/EnergyCapacitorRegenerationLevel2=Unit gains 0.6 energy per second for 6 seconds.
 Behavior/Tooltip/EnergyFieldProtected=Unit is protected from Perses' waves of fire.
 Behavior/Tooltip/EnergyVortex=Erebos has unlocked its true psionic potential and is able to create physical manifestations of energy that burns matter.
 Behavior/Tooltip/Enraged=Unit attack speed +200%.
@@ -952,6 +958,8 @@ Behavior/Tooltip/ImprovedEquipment=+<d ref="100 * Behavior,ImprovedEquipment,Mod
 Behavior/Tooltip/ImprovedSprintLevel1=Increases movespeed by 70% for <d ref="Behavior,ImprovedSprintLevel1,Duration"/> seconds.
 Behavior/Tooltip/ImprovedSprintLevel2=Increases movespeed by 105% for <d ref="Behavior,ImprovedSprintLevel1,Duration"/> seconds.
 Behavior/Tooltip/ImprovedSprintLevel3=Increases movespeed by 140% for <d ref="Behavior,ImprovedSprintLevel1,Duration"/> seconds.
+Behavior/Tooltip/InboundSicknessBuffLevel1=Your next attack deals 25 bonus chemical damage
+Behavior/Tooltip/InboundSicknessBuffLevel2=Your next attack deals 35 bonus chemical damage
 Behavior/Tooltip/InboundSicknessDebuffLevel1=Unit is stunned.
 Behavior/Tooltip/InboundSicknessDebuffLevel2=Unit is stunned.
 Behavior/Tooltip/Inception=The universe around you pauses. You are free to act for 15 seconds. Combat damage increased by +150% (does not affect Shiva), faster regeneration, and can detect nearby cloaked units.
@@ -988,7 +996,7 @@ Behavior/Tooltip/MonofilamentCartridgeLevel2Stun=Stunned for 2 secs
 Behavior/Tooltip/MonofilamentCartridgeLevel3Stun=Stunned for 3 secs
 Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Monstrous,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+100% damage but -50% attack speed. <n/>+<d ref="Behavior,Monstrous,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.<n/><c val="FFFF00">Nearby enemies in a 7 radius are periodically pulled toward the unit (if unit is massive)</c>
 Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+<d ref="Behavior,MonstrousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+30% damage but -30% attack speed. <n/>+<d ref="Behavior,MonstrousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.<n/><c val="FFFF00">Nearby enemies in a 7 radius are periodically pulled toward the unit (if unit is massive)</c>
-Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Stacks up to 5 times.
+Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Loses 2 armor. Stacks up to 5 times.
 Behavior/Tooltip/MotionSensorArmorDebuff=Unit armor is reduced by 1.
 Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician and +1 HP regeneration to non-biological allies nearby Technician
 Behavior/Tooltip/NanitesUpgradeLevel2=+4 HP regeneration to Technician and +2 HP regeneration to non-biological allies nearby Technician
@@ -1141,8 +1149,8 @@ Behavior/Tooltip/VenomEnergyTransferLevel2=Unit is losing 0.5 health per second 
 Behavior/Tooltip/VenomousExplosion=Unit will explode in 5 secs, dealing 200 dmg to all units around 4 radius except self. 
 Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
 Behavior/Tooltip/ViscousDischarge2=Banelings cover their targets with a viscous discharge, slowing their movement speed for 1.5 seconds.
-Behavior/Tooltip/VolatileInjectionLevel1=-1 armor. When unit dies, it explodes and deals 75 damage in 4 radius. Stacks up to 4 times.
-Behavior/Tooltip/VolatileInjectionLevel2=-2 armor. When unit dies, it explodes and deals 150 damage in 4 radius. Stacks up to 4 times.
+Behavior/Tooltip/VolatileInjectionLevel1=Unit gains 40 HP but takes 10% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 75 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
+Behavior/Tooltip/VolatileInjectionLevel2=Unit gains 80 HP but takes 20% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 150 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
 Behavior/Tooltip/VortexBehavior=Units caught within the Gravity Grenade are pulled inwards until the effect ends.
 Behavior/Tooltip/WraithCorrosiveAcid=<c val="80FF80">Wraith Corrosive Acid</c><n/><n/>Attack Modifier: -1 armor for 30 seconds. Stacks up to 10 times.<n/>
 Behavior/Tooltip/ZEffect=Immobilized for 15 seconds. You cannot move at all, not even turn. Your squad must protect you.
@@ -1723,7 +1731,7 @@ Button/Tooltip/Immortal22=A zombie with rapidly regenerating cells that help it 
 Button/Tooltip/ImprovedCoolantLines=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
 Button/Tooltip/ImprovedCoolantLines2=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
 Button/Tooltip/InactiveDevastator=Heavy assault mech. Can use 250mm Strike Cannons.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
-Button/Tooltip/InboundSickness=Releases an AI-guided chemical bomb that locks on to the target enemy. Upon contact, all enemies within a 2.5 radius take impact damage and are briefly stunned. <n/><c val="FFFF00">The chemicals then cause severe sickness, stunning the targets further and dealing missing health damage based their current stack count of venom.</c> <n/>All venom stacks are then purged away from the targets. <n/>Missing health damage is reduced against bosses.<n/>Level 1 - Deals <d ref="Effect,InboundSicknessDamageLevel1,Amount"/> impact damage, up to 6s stun and 15% missing health damage.
+Button/Tooltip/InboundSickness=Deploys an AI controlled sentry that releases a special chemical agent every 1.2 seconds in a 5 radius. <n/>Affected allies: <c val="FFFF00">Empowers their next attack to deal bonus chemical damage with a chance to apply venom.<n/></c>Affected enemies:<c val="FFFF00"> Takes damage and are briefly stunned if they have venom. Each proc removes 1 stack of venom.</c><n/>Level 1 - 25 damage & bonus, lasts 12 seconds.
 Button/Tooltip/Inception=The universe around you slows down. You are free to act for 15 seconds. Damage increased by +150%, faster regeneration, and can detect nearby cloaked units. Zombies are slowed by 90%, Bosses by 80% and Allies by 45%.<n/><n/>"The trick isn't to see beyond the veil of Space-Time, it's to come back with your sanity intact."
 Button/Tooltip/IncompleteIvax=Heavy assault mech. Can use 250mm Strike Cannons.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/InfantrySpecializationLevel1=Allows Mobile Infantry to land Flamethrowers. You can customize your drop team in a sub-menu.
@@ -1810,7 +1818,7 @@ Button/Tooltip/MovePatrol2=Orders selected units to patrol between their current
 Button/Tooltip/MurlocMarine=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/NanitesUpgrade=Not only for medical purposes, the Technician utilizes nanites in the upkeep of weaponry and for minor repairs. They are not limited to the Technician's exosuit, and will repair things around him in a radius of 0.5, increasing health regeneration by 2.
 Button/Tooltip/NanoHealthAugment=<c val="80FF80">Nano-Health Augment</c><n/>Adds 0.4 health regeneration per second. Ideal for Marines in the front lines.<n/><n/>Health Bonus: <c val="FFFFFF">+11.5</c><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c>
-Button/Tooltip/NanoSear=Deals 25 damage/sec to enemies in 5 radius over 60 seconds. Attack and move speed of affected units is reduced by 10%. Stacks up to 5 times.
+Button/Tooltip/NanoSear=Deals 35 damage/second to enemies in 5 radius over 45 seconds. Reduces current attack and movement speed of affected units by 10% and armor by 2. Stacks up to 5 times.
 Button/Tooltip/NanoShield=Regenerates shields temporarily. Increases max shields by 30 and shield armor by 1. Lasts for 20 seconds.
 Button/Tooltip/NanoStrength=Increases target unit's attack damage and movespeed by 10% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Button/Tooltip/NanoWeave=Level 1 - Heals 5 HP/sec on target unit for 15 seconds.
@@ -1981,7 +1989,7 @@ Button/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 seco
 Button/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
 Button/Tooltip/Violet=Changes Marine color to <c val="8000FF">Violet</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/VolatileInjection=Level 1 - Injects a weaponized chemical compound onto a target and reduces its armor by 1. If the target dies, it explodes and deals 75 damage in 4 radius. Stacks up to 4 times.
+Button/Tooltip/VolatileInjection=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 40 HP, +10% damage taken, 75 damage explosion.
 Button/Tooltip/WallofFire=Creates a wall of fire with 8 width that lasts for 40 seconds. Deals 45 damage/sec to any unit that passes through it.Reduces affected unit movespeed by 30%.<n/><n/>Units affected by Fire Vulnerability take more damage.<n/><n/>"If you can't kill it, blow it, you can't blow it, then burn it over, it's just that simple."
 Button/Tooltip/WeaponExpertise=+10% attack damage. Additional +5% attack damage during Surgical Strike.
 Button/Tooltip/WeaponsModPoint=Allows modification of weapons.<n/><n/>Credits: <c val="71B8FF">10000</c>
@@ -2640,6 +2648,20 @@ DocInfo/PatchNote610=- Fixed many visual issues regarding model sizes, such as v
 DocInfo/PatchNote611=- Fixed a visual issue where open wound's bleeding effect stops after mutiple stacks of open wound are applied.
 DocInfo/PatchNote612=- Turbo (sprint ability on player summoned units) can now be auto-cast.
 DocInfo/PatchNote613=- HP scaling of enemies now scales more smoothly with squad rating rather than at fixed intervals (such as 1600, 1700, 1800).
+DocInfo/PatchNote614=[LeoTheCat]
+DocInfo/PatchNote615=- Reworked Chem Expert's Inbound Sickness again into something more team-oriented and practical.
+DocInfo/PatchNote616=- Added a range indicator for Chem Expert's VRL.
+DocInfo/PatchNote617=- Fixed a bug causing open wound's bleeding visual to appear on the caster.
+DocInfo/PatchNote618=- Brought back the old TK system and disabled the new TK system to reduce performance overhead (a better version will be made).
+DocInfo/PatchNote619=- Spawn Factor options also add 10/20% hp scaling in addition to 1/2 Spawn Factor, highest hp scaling limited to 250%.
+DocInfo/PatchNote620=- Replaced the Realism button with High Spawn button at storyline selection since realism sees rare use. It's still available via -real.
+DocInfo/PatchNote621=- Added a visual effect for Recon's Execute.
+DocInfo/PatchNote622=- Added a visual effect for Commando's Surgical Strike.
+DocInfo/PatchNote623=- Reworked Nano Medic's Energy Capacitor, allowing it offer energy regen to allies when medic damages enemies with her abilities.
+DocInfo/PatchNote624=- Reworked Nano Medic's Volatile Injection, making it more effective and allowing situational use on allies. 
+DocInfo/PatchNote625=- Tweaked Nano Medic's Nano Sear. Damage improved but duration reduced. Each stack now reduces some armor too. 
+DocInfo/PatchNote626=- Lowered the energy costs of some of Nano Medic's abilities.
+DocInfo/PatchNote627=
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -3046,6 +3068,10 @@ Effect/Name/DummySearch2=Dummy Search 2
 Effect/Name/EnergyBatteryApplyBehavior=Energy Battery (Apply Behavior)
 Effect/Name/EnergyBatteryLevel1Search=Energy Battery Level 1 (Search)
 Effect/Name/EnergyBatteryLevel2Search=Energy Battery Level 2 (Search)
+Effect/Name/EnergyCapacitorApplyBuffLevel1=Energy Capacitor Apply Buff Level 1
+Effect/Name/EnergyCapacitorApplyBuffLevel2=Energy Capacitor Apply Buff Level 2
+Effect/Name/EnergyCapacitorLevel1Search=Energy Capacitor Level 1 (Search)
+Effect/Name/EnergyCapacitorLevel2Search=Energy Capacitor Level 2 (Search)
 Effect/Name/EnergyFieldApply=Energy Field Apply
 Effect/Name/EnergyFieldLift=Energy Field Lift
 Effect/Name/EnergyFieldSearch=Energy Field Search
@@ -3378,21 +3404,27 @@ Effect/Name/ImpalerTentacleL1Missile=Impaler Tentacle L1 (Missile)
 Effect/Name/ImpalerTentacleR1Damage=Impaler Tentacle R1 (Damage)
 Effect/Name/ImpalerTentacleR1Missile=Impaler Tentacle R1 (Missile)
 Effect/Name/ImpalerTentacleU2=Spine Crawler (Damage) Copy
-Effect/Name/InboundSicknessApplyLevel1=Inbound Sickness Apply Level 1
-Effect/Name/InboundSicknessApplyLevel2=Inbound Sickness Apply Level 2
-Effect/Name/InboundSicknessDOT=Inbound Sickness DOT
-Effect/Name/InboundSicknessDamageFriendlyLevel1=Inbound Sickness Damage Friendly Level 1
-Effect/Name/InboundSicknessDamageFriendlyLevel2=Inbound Sickness Damage Friendly Level 2
+Effect/Name/InboundSicknessApplyLevel1Buff=Inbound Sickness Apply Level 1 (Buff)
+Effect/Name/InboundSicknessApplyLevel1Debuff=Inbound Sickness Apply Level 1 (Debuff)
+Effect/Name/InboundSicknessApplyLevel2Buff=Inbound Sickness Apply Level 2 (Buff)
+Effect/Name/InboundSicknessApplyLevel2Debuff=Inbound Sickness Apply Level 2 (Debuff)
+Effect/Name/InboundSicknessBuffAttackSetLevel1=Inbound Sickness Buff Attack Set Level 1
+Effect/Name/InboundSicknessBuffAttackSetLevel2=Inbound Sickness Buff Attack Set Level 2
+Effect/Name/InboundSicknessCreatePersistentLevel1=Inbound Sickness Create Persistent Level 1
+Effect/Name/InboundSicknessCreatePersistentLevel2=Inbound Sickness Create Persistent Level 2
 Effect/Name/InboundSicknessDamageLevel1=Inbound Sickness Damage Level 1
 Effect/Name/InboundSicknessDamageLevel2=Inbound Sickness Damage Level 2
-Effect/Name/InboundSicknessDamageSetLevel1=Inbound Sickness Damage Set Level 1
-Effect/Name/InboundSicknessDamageSetLevel2=Inbound Sickness Damage Set Level 2
 Effect/Name/InboundSicknessLaunchLevel1=Inbound Sickness Launch Level 1
 Effect/Name/InboundSicknessLaunchLevel2=Inbound Sickness Launch Level 2
+Effect/Name/InboundSicknessRemoveBuffLevel1=Inbound Sickness Remove Buff Level 1
+Effect/Name/InboundSicknessRemoveBuffLevel2=Inbound Sickness Remove Buff Level 2
 Effect/Name/InboundSicknessRemoveVenom=Inbound Sickness Remove Venom
-Effect/Name/InboundSicknessSearchLevel1=Inbound Sickness Search Level 1
-Effect/Name/InboundSicknessSearchLevel2=Inbound Sickness Search Level 2
-Effect/Name/InboundSicknessVenomDamage=Inbound Sickness Venom Damage
+Effect/Name/InboundSicknessSearchLevel1Buff=Inbound Sickness Search Level 1 (Buff)
+Effect/Name/InboundSicknessSearchLevel1Debuff=Inbound Sickness Search Level 1 (Debuff)
+Effect/Name/InboundSicknessSearchLevel2Buff=Inbound Sickness Search Level 2 (Buff)
+Effect/Name/InboundSicknessSearchLevel2Debuff=Inbound Sickness Search Level 2 (Debuff)
+Effect/Name/InboundSicknessSearchSetLevel1=Inbound Sickness Search Set Level 1
+Effect/Name/InboundSicknessSearchSetLevel2=Inbound Sickness Search Set Level 2
 Effect/Name/InceptionAllySearch=Inception Ally Search
 Effect/Name/InceptionApplyBehaviorSelf=Inception Apply Behavior Self
 Effect/Name/InceptionApplyBehaviorSelf2=Inception Apply Behavior Ally
@@ -3887,6 +3919,8 @@ Effect/Name/RemoveStealthMatrixCloak=Remove Stealth Matrix Cloak
 Effect/Name/RemoveStealthMatrixSelfCloakLevel1=Remove Stealth Matrix Self Cloak Level 1
 Effect/Name/RemoveStealthMatrixSelfCloakLevel2=Remove Stealth Matrix Self Cloak Level 2
 Effect/Name/RemoveVenomCloseCockpit=Remove Venom (Close Cockpit)
+Effect/Name/RemoveVolatileInjectionLevel1=Remove Volatile Injection Level 1
+Effect/Name/RemoveVolatileInjectionLevel2=Remove Volatile Injection Level 2
 Effect/Name/RepairLife=Repair (Life)
 Effect/Name/RepairRemoveShortCircuit=Repair (Remove - Short Circuit)
 Effect/Name/RepairSet=Repair (Set)
@@ -4342,7 +4376,7 @@ ItemClass/Name/Supplies=Supplies
 ItemClass/Name/Weapons=Weapons
 Killing Me Softly Level 2=Target is instantly killed. Does not work on bosses. 25 range. 10 sec cooldown.
 Level 1 Repair=Repairs shields/mechanical at rate of 1 per sec.
-Level 2=Level 2 - Injects a weaponized chemical compound onto a target and reduces its armor by 2. If the target dies, it explodes and deals 150 damage in 4 radius. Stacks up to 4 times.
+Level 2=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 2 - 80HP, +20% damage taken, 150 damage explosion.
 Level 2 - Cloak=Cloaks Recon. He will be invisible to most units. Able to detect invisible units up to 12 radius. 0.85 energy consumed per second.<n/><n/>"To be unseen to the world, to be a mere afterthought, to be a spectre itself"
 Level 2 Adrenaline=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Level 2 Air Strike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 150 damage. Stuns units for 3 seconds.<n/><n/>"Like a bolt out of the blue. "
@@ -4376,7 +4410,7 @@ Level 2 Gravity Grenade=Gravity Grenade<n/>Drags all units within an area to it 
 Level 2 Heartbeat Sensor=Enemies in 40 radius are highlighted in minimap. Also pings invi/burrowed units but does not reveal them.
 Level 2 Heightened Senses=Enemies in 18 radius glow red and take 25% more damage.  Reveals invisible units. Lasts 15 seconds. 
 Level 2 I'm Your Father=Provokes all enemies in 7 radius to attack demo for 6 sec. Taunted units deal 30% less damage.
-Level 2 Inbound Sickness=Releases an AI-guided chemical bomb that locks on to the target enemy. Upon contact, all enemies within a 2.5 radius take impact damage and are briefly stunned. <n/><c val="FFFF00">The chemicals then cause severe sickness, stunning the targets further and dealing missing health damage based their current stack count of venom.</c> <n/>All venom stacks are then purged away from the targets. <n/>Missing health damage is reduced against bosses.<n/>Level 2 - Deals <d ref="Effect,InboundSicknessDamageLevel2,Amount"/> impact damage, up to 9s stun and 30% missing health damage.
+Level 2 Inbound Sickness=Deploys an AI controlled sentry that releases a special chemical agent every 1.2 seconds in a 5 radius. <n/>Affected allies: <c val="FFFF00">Empowers their next attack to deal bonus chemical damage with a chance to apply venom.<n/></c>Affected enemies:<c val="FFFF00"> Takes damage and are briefly stunned if they have venom. Each proc removes 1 stack of venom.</c><n/>Level 2 - 35 damage & bonus, lasts 18 seconds.
 Level 2 Laser Designator=Reduces armor of target unit by 3 and reveals target to allies. Lasts for 60 sec.
 Level 2 Look!=Forces all enemies in 5 radius to stare at target. After 2 seconds, 50% chance for affected units to attack target.
 Level 2 Mad Spark=Launches a high frequency decoy beacon at target area, distracting and enraging enemies in 5 radius. Lasts 7 seconds.
@@ -4524,7 +4558,7 @@ Param/Value/0193DE09=We've arrived at the source.
 Param/Value/01991E09=<s val="BriefingHanText">Survivors: 39</s>
 Param/Value/02115397=Search the Airlock for clues
 Param/Value/021B3BD8=Move
-Param/Value/0249DD5A= has lost 50 Karma and 100 XP!
+Param/Value/0249DD5A= has lost 30 Rating & Karma and 100 XP!
 Param/Value/02746C5B=<s val="BriefingHanText">Mine Site Epsilon</s>
 Param/Value/02779103=Ivan Plushenko
 Param/Value/0286289B=The civilians are escaping. There's no telling how many are infected.
@@ -4782,7 +4816,6 @@ Param/Value/2CCB4E72=
 Param/Value/2CE8F35C=<s val="BriefingHanText">     The Compliance Nexuses remain a looming presence in Apollo and the rest of Earth...</s>
 Param/Value/2D013564=Our sensors have spotted Bergmann.
 Param/Value/2D25FC8C=Decision
-Param/Value/2D31245B=<s val="GlueButton"><c val="FF8080">!!!</c></s>
 Param/Value/2D573AA9=Traps in place.
 Param/Value/2D9718D5=(The Security Team returns from the city...)
 Param/Value/2D9A3D5E=(Nazara releases an EMP shockwave upon its destruction...)
@@ -5937,7 +5970,7 @@ Param/Value/EA780536=Not again. Brace yourselves.
 Param/Value/EA8C7D2D=Search for survivors in Apollo
 Param/Value/EACCCFD6=+3 XP for Performance Bonus
 Param/Value/EAE4AD6B=Use AOE abilities to conserve ammo
-Param/Value/EB366E98=<s val="InfoPaneHeroRank">Realism</s><n/>- Just like the old times.
+Param/Value/EB366E98=<s val="InfoPaneHeroRank">High Spawn</s><n/>- Adds 2 Spawn Factor & 20% HP Scaling<n/>- Nightmare Spawn Factor set to 9<n/>- Overrides the lobby setting
 Param/Value/EBEE9058=<c val="FF3030">@_@</c>
 Param/Value/EC3FECA5=(You notice a Compliance Implant at Tanaka's neck...)
 Param/Value/EC412052=A Blueberry Production
@@ -7046,7 +7079,7 @@ UserData/TalentTrees/Chemical Expert_Headers=<s val="HelpPanelListBoxItemTitle">
 UserData/TalentTrees/Chemical Expert_Headers_001=<s val="HelpPanelListBoxItemTitle">Ground Support</s>
 UserData/TalentTrees/Chemical Expert_Talent Tootips=<s val="AchievementFrameName">Desolation</s><n/>Releases a spray of chemical gas in a forward arc dealing damage and applying venom to biological targets.<n/>Level 1 - 50 damage. Inflicts 1 stack of venom.<n/>Level 2 - 100 damage. Inflicts 2 stacks of venom.<n/>Level 3 - 150 damage. Inflicts 4 stacks of venom.<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, reduced by 3 per armor.</c>
 UserData/TalentTrees/Chemical Expert_Talent Tootips_001=<s val="AchievementFrameName">Contaminate</s><n/>Contaminates an area with corrosive chemical that deals damage over time, lasts for 12 seconds, has an AOE of 3/4/5, biological targets have a chance to receive venom. The concentration is high enough to effect air targets. <n/>Level 1 - 20 damage per second. 3 AOE.<n/>Level 2 - 35 damage per second. 4 AOE.<n/>Level 3 - 50 damage per second. 5 AOE.<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, reduced by 1 per armor.</c>
-UserData/TalentTrees/Chemical Expert_Talent Tootips_002=<s val="AchievementFrameName">Inbound Sickness</s><n/>Releases an AI-guided chemical bomb that locks on to the target enemy. Upon contact, all enemies within a 2.5 radius take impact damage and are briefly stunned. <n/><c val="FFFF00">The chemicals then cause severe sickness, stunning the targets further and dealing missing health damage based their current stack count of venom.</c> <n/>All venom stacks are then purged away from the targets. <n/>Missing health damage is reduced against bosses.<n/>Level 1 - Deals <d ref="Effect,InboundSicknessDamageLevel1,Amount"/> impact damage, up to 6s stun and 15% missing health damage. <n/>Level 2 - Deals <d ref="Effect,InboundSicknessDamageLevel2,Amount"/> impact damage, up to 9s stun and 30% missing health damage.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Chemical Expert_Talent Tootips_002=<s val="AchievementFrameName">Inbound Sickness</s><n/>Deploys an AI controlled sentry that releases a special chemical agent every 1.2 seconds in a 5 radius. <n/>Affected allies: <c val="FFFF00">Empowers their next attack to deal bonus chemical damage with a chance to apply venom.<n/></c>Affected enemies:<c val="FFFF00"> Takes damage and are briefly stunned if they have venom. Each proc removes 1 stack of venom.</c><n/>Level 1 - 25 damage & bonus, lasts 12 seconds. <n/>Level 2 - 35 damage & bonus, lasts 18 seconds.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Talent Tootips_003=<s val="AchievementFrameName">Chemical Synthesis<n/>(Passive)</s><n/>Reduces the energy cost on all of Chemical Expert's abilities and improves venom handling. <n/>Level 1 - Energy cost reduced by 3, enables the application of venom against non-biological units.<n/>Level 2 - Energy cost reduced by 6, anti-venom removes 3 stacks of venom and restores 30 HP. <n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Talent Tootips_004=<s val="AchievementFrameName">Scorched Earth</s><n/>Unleashes 12 chemical missiles on target location, each causing <d ref="Effect,ScorchedEarthDamage,Amount"/> damage + <d ref="Effect,ScorchedEarthVenomDamage,Amount"/> per venom stack (max + 750), has a large casting range, care must be taken as friendly fire is possible.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage and cannot be reduced by armor.</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Talent Tootips_005=<s val="AchievementFrameName">Chemical Plating<n/>(Passive)</s><n/>Attacks on the Chemical Expert and allies in 5 radius stack an oxalic poison on attackers that lasts for 30 seconds. This poison slows movement by 4% and deals 5 damage per second. Maximum stack of 20.<n/>Level 1 - 1 poison stack per attack<n/>Level 2 - 2 poison stacks per attack<n/>Level 3 - 3 poison stacks per attack
@@ -7135,9 +7168,9 @@ UserData/TalentTrees/Medic_Talent Tootips_003=<s val="AchievementFrameName">Nano
 UserData/TalentTrees/Medic_Talent Tootips_004=<s val="AchievementFrameName">Restoration</s><n/>Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Restoration Buff amplifies effects of Medic's Anti-Venom and Surgical Laser. Allows  Surgical Laser to also cure Madness while active.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_005=<s val="AchievementFrameName">Nano-Shock</s><n/>Creates a focused blast of energy that stuns and deals damage to enemies in target area.<n/>Level 1 - 1 second stun and 20 damage<n/>Level 2 - 1.5 second stun and 40 damage<n/>Level 3 - 2.25 second stun and 80 damage
 UserData/TalentTrees/Medic_Talent Tootips_006=<s val="AchievementFrameName">Nano-Strength</s><n/>Nanobots are injected into the target's bloodstream. Target unit gains additional attack damage and movement speed for 35 seconds. Each level also increases HP regeneration by 0.1.<n/>Level 1 - +10% damage & movespeed<n/>Level 2 - +15% damage & movespeed<n/>Level 3 - +20% damage & movespeed<n/><n/>"Tssaa...yeah" - Private Bruce (KIA)
-UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Level 1 - Increases max energy by 70 and range of all Medic skills by 1.<n/>Level 2 - Increases max energy by 140 and range of all Medic skills by 2.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Medic_Talent Tootips_008=<s val="AchievementFrameName">Volatile Injection</s><n/>Injects a weaponized chemical compound into target and reduces its armor. When target dies, it releases an explosion that deals damage in 4 radius. Stacks up to 4 times. Deals 2x damage to Massive.<n/>Level 1 - 75 damage explosion. -1 armor debuff.<n/>Level 2 - 150 damage explosion. -2 armor debuff.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Medic_Talent Tootips_009=<s val="AchievementFrameName">Nano-Sear</s><n/>Deals 25 damage/second to enemies in 5 radius over 60 seconds. Reduces current attack and movement speed of affected units by 10%. Stacks up to 5 times.<n/><n/>"Terrible, terrible damage" - Sergeant Luke<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Increases the range of all Medic skills and provides energy regeneration in a 6 radius for 6 seconds whenever medic damages an enemy with her abilities. Does not stack.<n/>Level 1 - +1 cast range, 0.4 energy per second.<n/>Level 2 - +2 cast range, 0.6 energy per second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Medic_Talent Tootips_008=<s val="AchievementFrameName">Volatile Injection</s><n/>Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 40 HP, +10% damage taken, 75 damage explosion.<n/>Level 2 - 80HP, +20% damage taken, 150 damage explosion.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Medic_Talent Tootips_009=<s val="AchievementFrameName">Nano-Sear</s><n/>Deals 35 damage/second to enemies in 5 radius over 45 seconds. Reduces current attack and movement speed of affected units by 10% and armor by 2. Stacks up to 5 times.<n/><n/>"Terrible, terrible damage" - Sergeant Luke<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Headers=<s val="HelpPanelListBoxItemTitle">Gunslinger</s>
 UserData/TalentTrees/Pathfinder_Headers_001=<s val="HelpPanelListBoxItemTitle">Rocketeer</s>
 UserData/TalentTrees/Pathfinder_Talent Tootips=<s val="AchievementFrameName">Trick Shot<n/>(Passive)</s><n/>The Pathfinder angles his shots so they ricochet between targets. Requires P-45 Gauss Pistol.<n/>Level 1 -- Attacks bounce 1 time<n/>Level 2 -- Attacks bounce 2 times<n/>Level 3 -- Attacks bounce 3 times

@@ -48,9 +48,21 @@
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid03"/>
     </CModel>
+    <CModel id="EnergyCapacitorBuff">
+        <Model value="Assets\Effects\Protoss\Artanis_AstralWinds_Impact\Artanis_AstralWinds_Impact.m3"/>
+    </CModel>
+    <CModel id="ExecuteImpact">
+        <Model value="Assets\Effects\Protoss\Zealot_Aiur_Whirlwind_Impact\Zealot_Aiur_Whirlwind_Impact.m3"/>
+    </CModel>
     <CModel id="Hugger" parent="InfestorBase">
         <Model value="Assets\Units\Zerg\Infestor_Ex3\Infestor_Ex3.m3"/>
         <Radius value="0.500000"/>
+    </CModel>
+    <CModel id="HunterSeekerAttackImpact">
+        <Model value="Assets\Effects\Zerg\DiseaseMissileImpact\DiseaseMissileImpact.m3"/>
+    </CModel>
+    <CModel id="InboundSicknessSentry">
+        <Model value="Assets\Units\Terran\BioMechanical_RepairDrone\BioMechanical_RepairDrone.m3"/>
     </CModel>
     <CModel id="KittenSkin3" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Zerg\Infestor_Mecha\Infestor_Mecha.m3"/>
@@ -258,6 +270,9 @@
     </CModel>
     <CModel id="SS_SwarmGuardian">
         <Radius value="1.500000"/>
+    </CModel>
+    <CModel id="InboundSicknessImpact">
+        <Model value="Assets\COOP\Zeratul\Effects\Sentry_Zeratul_COOP_HealingBeamImpact\Sentry_Zeratul_COOP_HealingBeamImpact.m3"/>
     </CModel>
     <CModel id="Shadowed">
         <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
@@ -725,6 +740,9 @@
     </CModel>
     <CModel id="SuperCrane">
         <Occlusion value="Hide"/>
+    </CModel>
+    <CModel id="SurgicalStrikeEffect">
+        <Model value="Assets\Effects\Protoss\AmonShard_Heal_Beam_Impact\AmonShard_Heal_Beam_Impact.m3"/>
     </CModel>
     <CModel id="Swann">
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.400000"/>
