@@ -1149,8 +1149,8 @@ Behavior/Tooltip/VenomEnergyTransferLevel2=Unit is losing 0.5 health per second 
 Behavior/Tooltip/VenomousExplosion=Unit will explode in 5 secs, dealing 200 dmg to all units around 4 radius except self. 
 Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
 Behavior/Tooltip/ViscousDischarge2=Banelings cover their targets with a viscous discharge, slowing their movement speed for 1.5 seconds.
-Behavior/Tooltip/VolatileInjectionLevel1=Unit gains 40 HP but takes 10% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 75 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
-Behavior/Tooltip/VolatileInjectionLevel2=Unit gains 80 HP but takes 20% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 150 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
+Behavior/Tooltip/VolatileInjectionLevel1=Unit gains 30 HP but takes 10% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 75 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
+Behavior/Tooltip/VolatileInjectionLevel2=Unit gains 60 HP but takes 20% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 150 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
 Behavior/Tooltip/VortexBehavior=Units caught within the Gravity Grenade are pulled inwards until the effect ends.
 Behavior/Tooltip/WraithCorrosiveAcid=<c val="80FF80">Wraith Corrosive Acid</c><n/><n/>Attack Modifier: -1 armor for 30 seconds. Stacks up to 10 times.<n/>
 Behavior/Tooltip/ZEffect=Immobilized for 15 seconds. You cannot move at all, not even turn. Your squad must protect you.
@@ -1989,7 +1989,7 @@ Button/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 seco
 Button/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
 Button/Tooltip/Violet=Changes Marine color to <c val="8000FF">Violet</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/VolatileInjection=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 40 HP, +10% damage taken, 75 damage explosion.
+Button/Tooltip/VolatileInjection=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.
 Button/Tooltip/WallofFire=Creates a wall of fire with 8 width that lasts for 40 seconds. Deals 45 damage/sec to any unit that passes through it.Reduces affected unit movespeed by 30%.<n/><n/>Units affected by Fire Vulnerability take more damage.<n/><n/>"If you can't kill it, blow it, you can't blow it, then burn it over, it's just that simple."
 Button/Tooltip/WeaponExpertise=+10% attack damage. Additional +5% attack damage during Surgical Strike.
 Button/Tooltip/WeaponsModPoint=Allows modification of weapons.<n/><n/>Credits: <c val="71B8FF">10000</c>
@@ -2651,17 +2651,20 @@ DocInfo/PatchNote613=- HP scaling of enemies now scales more smoothly with squad
 DocInfo/PatchNote614=[LeoTheCat]
 DocInfo/PatchNote615=- Reworked Chem Expert's Inbound Sickness again into something more team-oriented and practical.
 DocInfo/PatchNote616=- Added a range indicator for Chem Expert's VRL.
-DocInfo/PatchNote617=- Fixed a bug causing open wound's bleeding visual to appear on the caster.
-DocInfo/PatchNote618=- Brought back the old TK system and disabled the new TK system to reduce performance overhead (a better version will be made).
-DocInfo/PatchNote619=- Spawn Factor options also add 10/20% hp scaling in addition to 1/2 Spawn Factor, highest hp scaling limited to 250%.
-DocInfo/PatchNote620=- Replaced the Realism button with High Spawn button at storyline selection since realism sees rare use. It's still available via -real.
-DocInfo/PatchNote621=- Added a visual effect for Recon's Execute.
-DocInfo/PatchNote622=- Added a visual effect for Commando's Surgical Strike.
-DocInfo/PatchNote623=- Reworked Nano Medic's Energy Capacitor, allowing it offer energy regen to allies when medic damages enemies with her abilities.
-DocInfo/PatchNote624=- Reworked Nano Medic's Volatile Injection, making it more effective and allowing situational use on allies. 
-DocInfo/PatchNote625=- Tweaked Nano Medic's Nano Sear. Damage improved but duration reduced. Each stack now reduces some armor too. 
-DocInfo/PatchNote626=- Lowered the energy costs of some of Nano Medic's abilities.
-DocInfo/PatchNote627=
+DocInfo/PatchNote617=- Due to Chem Expert's Chemical Synthesis rework, anti-venom is now allowed to cast onto non-bio units but will only heal bio units.
+DocInfo/PatchNote618=- CI Ammo debuff will avoid player and ally units to be consistent with HE Ammo debuff.
+DocInfo/PatchNote619=- Fixed a bug causing open wound's bleeding visual to appear on the caster.
+DocInfo/PatchNote620=- Brought back the old TK system and disabled the new TK system to reduce performance overhead (a better version will be made).
+DocInfo/PatchNote621=- Spawn Factor options also add 10/20% hp scaling in addition to 1/2 Spawn Factor, highest hp scaling limited to 250%.
+DocInfo/PatchNote622=- Replaced the Realism button with High Spawn button at storyline selection since realism sees rare use. It's still available via -real.
+DocInfo/PatchNote623=- Added a visual effect for Recon's Execute.
+DocInfo/PatchNote624=- Added a visual effect for Commando's Surgical Strike.
+DocInfo/PatchNote625=- Reworked Nano Medic's Energy Capacitor, allowing it offer energy regen to allies when medic damages enemies with her abilities.
+DocInfo/PatchNote626=- Reworked Nano Medic's Volatile Injection, making it more effective and allowing situational use on allies. 
+DocInfo/PatchNote627=- Tweaked Nano Medic's Nano Sear. Damage improved but duration reduced. Each stack now reduces some armor too. 
+DocInfo/PatchNote628=- Lowered the energy costs of some of Nano Medic's abilities.
+DocInfo/PatchNote629=- Fixed a bug with Marksman's model sizes.
+DocInfo/PatchNote630=
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -7169,7 +7172,7 @@ UserData/TalentTrees/Medic_Talent Tootips_004=<s val="AchievementFrameName">Rest
 UserData/TalentTrees/Medic_Talent Tootips_005=<s val="AchievementFrameName">Nano-Shock</s><n/>Creates a focused blast of energy that stuns and deals damage to enemies in target area.<n/>Level 1 - 1 second stun and 20 damage<n/>Level 2 - 1.5 second stun and 40 damage<n/>Level 3 - 2.25 second stun and 80 damage
 UserData/TalentTrees/Medic_Talent Tootips_006=<s val="AchievementFrameName">Nano-Strength</s><n/>Nanobots are injected into the target's bloodstream. Target unit gains additional attack damage and movement speed for 35 seconds. Each level also increases HP regeneration by 0.1.<n/>Level 1 - +10% damage & movespeed<n/>Level 2 - +15% damage & movespeed<n/>Level 3 - +20% damage & movespeed<n/><n/>"Tssaa...yeah" - Private Bruce (KIA)
 UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Increases the range of all Medic skills and provides energy regeneration in a 6 radius for 6 seconds whenever medic damages an enemy with her abilities. Does not stack.<n/>Level 1 - +1 cast range, 0.4 energy per second.<n/>Level 2 - +2 cast range, 0.6 energy per second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Medic_Talent Tootips_008=<s val="AchievementFrameName">Volatile Injection</s><n/>Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 40 HP, +10% damage taken, 75 damage explosion.<n/>Level 2 - 80HP, +20% damage taken, 150 damage explosion.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Medic_Talent Tootips_008=<s val="AchievementFrameName">Volatile Injection</s><n/>Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.<n/>Level 2 - 60HP, +20% damage taken, 150 damage explosion.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_009=<s val="AchievementFrameName">Nano-Sear</s><n/>Deals 35 damage/second to enemies in 5 radius over 45 seconds. Reduces current attack and movement speed of affected units by 10% and armor by 2. Stacks up to 5 times.<n/><n/>"Terrible, terrible damage" - Sergeant Luke<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Headers=<s val="HelpPanelListBoxItemTitle">Gunslinger</s>
 UserData/TalentTrees/Pathfinder_Headers_001=<s val="HelpPanelListBoxItemTitle">Rocketeer</s>

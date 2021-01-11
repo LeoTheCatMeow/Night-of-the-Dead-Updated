@@ -147,10 +147,12 @@
     <CEffectApplyBehavior id="CIAmmoApplyDOT">
         <EditorCategories value=""/>
         <Behavior value="ChemicalToxin"/>
+        <ValidatorArray index="0" value="TargetIsNotAllyOrPlayer"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="CIAmmoApplyDebuff">
         <EditorCategories value=""/>
         <Behavior value="ChemicalVulnerability"/>
+        <ValidatorArray index="0" value="TargetIsNotAllyOrPlayer"/>
     </CEffectApplyBehavior>
     <CEffectSet id="CIAmmoApplySet">
         <EditorCategories value=""/>
@@ -6359,6 +6361,7 @@
         <VitalArray index="Life">
             <Change value="10"/>
         </VitalArray>
+        <ValidatorArray value="UnitIsBiological"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="AnticipationApply">
         <EditorCategories value=""/>

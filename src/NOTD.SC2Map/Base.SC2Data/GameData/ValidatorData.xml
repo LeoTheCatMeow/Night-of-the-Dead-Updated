@@ -1237,6 +1237,9 @@
         <Compare value="GE"/>
         <Behavior value="Flashlight"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitFilters id="IsNotNeutral">
+        <Filters value="-;Neutral"/>
+    </CValidatorUnitFilters>
     <CValidatorUnitCompareVital id="UnithasMorethan2Energy2">
         <Compare value="GE"/>
         <Value value="2"/>

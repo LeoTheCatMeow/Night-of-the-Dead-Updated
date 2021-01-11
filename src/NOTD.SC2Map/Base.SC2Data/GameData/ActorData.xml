@@ -11519,7 +11519,7 @@
         <On Terms="Behavior.DisorientAssaultJumpLevel1.Off" Send="Destroy"/>
         <On Terms="Behavior.DisorientAssaultJumpLevel2.On" Send="Create"/>
         <On Terms="Behavior.DisorientAssaultJumpLevel2.Off" Send="Destroy"/>
-        <Host Subject="_Selectable"/>
+        <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Model value="NapalmFireDamage"/>
         <AutoScaleFactor value="1.000000"/>
@@ -13630,16 +13630,6 @@
         <DeathArray index="Normal" ModelLink="ColonistTransportDeath"/>
     </CActorUnit>
     <CActorModel id="MoreDOTS" parent="ModelAnimationStyleContinuous">
-        <Inherits index="BaseModelScale" value="1"/>
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
         <On index="0" Terms="Behavior.MoreDoTs.On" Send="Create"/>
         <On index="1" Terms="Behavior.MoreDoTs.Off" Send="Destroy Immediate"/>
         <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Birth Stand Death"/>
@@ -15519,6 +15509,7 @@
         <On Terms="Behavior.InboundSicknessDebuffLevel2.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.VRL772Stun.On" Send="Create"/>
         <On Terms="Behavior.VRL772Stun.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
     </CActorModel>
     <CActorModel id="NanoShockStun" parent="ModelAnimationStyleContinuous">
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>

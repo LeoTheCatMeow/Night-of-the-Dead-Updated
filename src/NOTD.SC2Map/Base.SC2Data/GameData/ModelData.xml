@@ -232,8 +232,8 @@
     <CModel id="MarksmanSkin3" parent="GhostBase">
         <Model value="Assets\COOP\Mengsk\Units\Ghost_Mengsk_COOP\Ghost_Mengsk_COOP.m3"/>
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.300000"/>
-        <ScaleMax value="1.300000,1.300000,1.300000"/>
-        <ScaleMin value="1.300000,1.300000,1.300000"/>
+        <ScaleMax value="1.200000,1.200000,1.200000"/>
+        <ScaleMin value="1.200000,1.200000,1.200000"/>
         <TextureDeclares Prefix="Hpoly_Ghost_">
             <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
@@ -390,6 +390,8 @@
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
         <Radius value="0.500000"/>
+        <ScaleMax value="1.010000,1.010000,1.010000"/>
+        <ScaleMin value="1.010000,1.010000,1.010000"/>
     </CModel>
     <CModel id="GuardianoftheBeta2" parent="Unit" Race="Protoss">
         <Model value="Assets\Effects\Protoss\Ascendant_PowerUp\Ascendant_PowerUp.m3"/>
@@ -479,6 +481,8 @@
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
         <Radius value="0.500000"/>
+        <ScaleMax value="1.010000,1.010000,1.010000"/>
+        <ScaleMin value="1.010000,1.010000,1.010000"/>
     </CModel>
     <CModel id="MarksmanSkin2" parent="GhostBase">
         <Model value="Assets\Units\Terran\Ghost_Eidolon_Collection\Ghost_Eidolon_Collection.m3"/>
@@ -488,6 +492,8 @@
             <Adaptions TriggerOnSubstring="_Emissive" Slot="main.emissive"/>
         </TextureDeclares>
         <Radius value="0.500000"/>
+        <ScaleMax value="1.010000,1.010000,1.010000"/>
+        <ScaleMin value="1.010000,1.010000,1.010000"/>
     </CModel>
     <CModel id="MedicSkin1" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Terran\Marine_Silver\Marine_Silver.m3"/>

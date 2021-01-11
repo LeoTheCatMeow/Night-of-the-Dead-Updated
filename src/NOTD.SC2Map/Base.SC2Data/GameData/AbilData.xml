@@ -73,7 +73,7 @@
         </Cost>
         <Range value="2.5"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AntiVenom"/>
-        <TargetFilters value="Ground,Biological,Visible;Enemy,Air,Structure,Missile,Destructible,Item,Dead,Hidden"/>
+        <TargetFilters value="Visible;Enemy,Air,Structure,Missile,Destructible,Item,Dead,Hidden"/>
         <Effect index="0" value="AntiVenomSet"/>
     </CAbilEffectTarget>
     <CAbilMove id="AsgardMove">
@@ -4929,8 +4929,8 @@
         <Effect index="0" value="VolatileInjectionLevel1Apply"/>
         <Effect value="VolatileInjectionLevel2Apply"/>
         <Cost>
-            <Vital index="Energy" value="12"/>
-            <Cooldown TimeUse="2"/>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="3"/>
         </Cost>
         <TargetFilters value="-;RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
         <Range value="12"/>

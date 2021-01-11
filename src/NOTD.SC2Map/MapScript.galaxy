@@ -16424,12 +16424,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_SetAlliance(1, 2, libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
     return true;
 }
 

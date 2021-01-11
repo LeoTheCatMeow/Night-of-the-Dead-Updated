@@ -1,5 +1,23 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-1-11
+[LeoTheCat]
+- Reworked Chem Expert's Inbound Sickness again into something more team-oriented and practical.
+- Added a range indicator for Chem Expert's VRL.
+- Due to Chem Expert's Chemical Synthesis rework, anti-venom is now allowed to cast onto non-bio units but will only heal bio units.
+- CI Ammo debuff will avoid player and ally units to be consistent with HE Ammo debuff.
+- Fixed a bug causing open wound's bleeding visual to appear on the caster.
+- Brought back the old TK system and disabled the new TK system to reduce performance overhead (a better version will be made).
+- Spawn Factor options also add 10/20% hp scaling in addition to 1/2 Spawn Factor, highest hp scaling limited to 250%.
+- Replaced the Realism button with High Spawn button at storyline selection since realism sees rare use. It's still available via -real.
+- Added a visual effect for Recon's Execute.
+- Added a visual effect for Commando's Surgical Strike.
+- Reworked Nano Medic's Energy Capacitor, allowing it offer energy regen to allies when medic damages enemies with her abilities.
+- Reworked Nano Medic's Volatile Injection, making it more effective and allowing situational use on allies. 
+- Tweaked Nano Medic's Nano Sear. Damage improved but duration reduced. Each stack now reduces some armor too. 
+- Lowered the energy costs of some of Nano Medic's abilities.
+- Fixed a bug with Marksman's model sizes.
+
 2020-12-14
 [LeoTheCat]
 - Added the 2 new enhancement items to shop.
