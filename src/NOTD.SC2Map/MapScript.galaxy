@@ -22812,11 +22812,8 @@ bool gt_AFKCheck_Func (bool testConds, bool runActions) {
         if (autoF1F743B0_var < 0) { break; }
         lv_index = autoF1F743B0_var;
         if ((libNtve_gf_UnitGetPropertyKills(gv_marineHero[lv_index], c_unitPropCurrent) < 12) && (UnitIsAlive(gv_marineHero[lv_index]) == true) && (gv_storyline != 3) && (gv_wave >= 2)) {
-            UnitRemove(gv_marineHero[lv_index]);
-            gf_UpdateKarma(lv_index, -15);
+            gf_UpdateKarma(lv_index, -5);
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (PlayerName(autoF1F743B0_var) + StringExternal("Param/Value/4DD907D3")));
-            gf_Save(autoF1F743B0_var, gv_bankSize);
-            GameOver(autoF1F743B0_var, c_gameOverDefeat, false, false);
         }
 
     }

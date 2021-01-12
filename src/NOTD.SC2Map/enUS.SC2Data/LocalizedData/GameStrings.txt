@@ -896,8 +896,8 @@ Behavior/Tooltip/DropMagazine=Drops a magazine into your inventory. This allows 
 Behavior/Tooltip/EnergyBattery=Unit gains +0.35 energy regeneration.
 Behavior/Tooltip/EnergyBatteryLevel1=Increased base energy of 50. 5 radius energy regeneration aura to allies (+0.35/s).
 Behavior/Tooltip/EnergyBatteryLevel2=Increased base energy of 100. 10 radius energy regeneration aura to allies (+0.35/s).
-Behavior/Tooltip/EnergyCapacitorRegenerationLevel1=Unit gains 0.4 energy per second for 6 seconds.
-Behavior/Tooltip/EnergyCapacitorRegenerationLevel2=Unit gains 0.6 energy per second for 6 seconds.
+Behavior/Tooltip/EnergyCapacitorRegenerationLevel1=Unit gains 0.35 energy per second for 6 seconds.
+Behavior/Tooltip/EnergyCapacitorRegenerationLevel2=Unit gains 0.65 energy per second for 6 seconds.
 Behavior/Tooltip/EnergyFieldProtected=Unit is protected from Perses' waves of fire.
 Behavior/Tooltip/EnergyVortex=Erebos has unlocked its true psionic potential and is able to create physical manifestations of energy that burns matter.
 Behavior/Tooltip/Enraged=Unit attack speed +200%.
@@ -2664,7 +2664,8 @@ DocInfo/PatchNote626=- Reworked Nano Medic's Volatile Injection, making it more 
 DocInfo/PatchNote627=- Tweaked Nano Medic's Nano Sear. Damage improved but duration reduced. Each stack now reduces some armor too. 
 DocInfo/PatchNote628=- Lowered the energy costs of some of Nano Medic's abilities.
 DocInfo/PatchNote629=- Fixed a bug with Marksman's model sizes.
-DocInfo/PatchNote630=
+DocInfo/PatchNote630=- AFK checks will no longer remove the player (will still remind the team).
+DocInfo/PatchNote631=
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4379,7 +4380,7 @@ ItemClass/Name/Supplies=Supplies
 ItemClass/Name/Weapons=Weapons
 Killing Me Softly Level 2=Target is instantly killed. Does not work on bosses. 25 range. 10 sec cooldown.
 Level 1 Repair=Repairs shields/mechanical at rate of 1 per sec.
-Level 2=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 2 - 80HP, +20% damage taken, 150 damage explosion.
+Level 2=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 2 - 60HP, +20% damage taken, 150 damage explosion.
 Level 2 - Cloak=Cloaks Recon. He will be invisible to most units. Able to detect invisible units up to 12 radius. 0.85 energy consumed per second.<n/><n/>"To be unseen to the world, to be a mere afterthought, to be a spectre itself"
 Level 2 Adrenaline=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Level 2 Air Strike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 150 damage. Stuns units for 3 seconds.<n/><n/>"Like a bolt out of the blue. "
@@ -5009,7 +5010,7 @@ Param/Value/4D701111=+
 Param/Value/4DA6AE6B=The compliance field is de-stabilizing. One more Nexus and we'll shut them down.
 Param/Value/4DA754D2=Swap Location
 Param/Value/4DC830E5=<s val="GlueButtonSmall">Survival: 
-Param/Value/4DD907D3='s Marine removed from game for inactivity.
+Param/Value/4DD907D3=has been AFK. 5 Karma deducted.
 Param/Value/4DF03C45=(You are currently piloting a Thor...)
 Param/Value/4E6B4398=<s val="GlueButton"><c val="F4D72B">Deimos has destroyed all our Devastators!</c></s>
 Param/Value/4E725D1E=I know all about 'em. Put a bullet in them - they die!
@@ -7171,7 +7172,7 @@ UserData/TalentTrees/Medic_Talent Tootips_003=<s val="AchievementFrameName">Nano
 UserData/TalentTrees/Medic_Talent Tootips_004=<s val="AchievementFrameName">Restoration</s><n/>Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Restoration Buff amplifies effects of Medic's Anti-Venom and Surgical Laser. Allows  Surgical Laser to also cure Madness while active.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_005=<s val="AchievementFrameName">Nano-Shock</s><n/>Creates a focused blast of energy that stuns and deals damage to enemies in target area.<n/>Level 1 - 1 second stun and 20 damage<n/>Level 2 - 1.5 second stun and 40 damage<n/>Level 3 - 2.25 second stun and 80 damage
 UserData/TalentTrees/Medic_Talent Tootips_006=<s val="AchievementFrameName">Nano-Strength</s><n/>Nanobots are injected into the target's bloodstream. Target unit gains additional attack damage and movement speed for 35 seconds. Each level also increases HP regeneration by 0.1.<n/>Level 1 - +10% damage & movespeed<n/>Level 2 - +15% damage & movespeed<n/>Level 3 - +20% damage & movespeed<n/><n/>"Tssaa...yeah" - Private Bruce (KIA)
-UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Increases the range of all Medic skills and provides energy regeneration in a 6 radius for 6 seconds whenever medic damages an enemy with her abilities. Does not stack.<n/>Level 1 - +1 cast range, 0.4 energy per second.<n/>Level 2 - +2 cast range, 0.6 energy per second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Increases the range of all Medic skills and provides energy regeneration in a 6 radius for 6 seconds whenever medic damages an enemy with her abilities. Does not stack.<n/>Level 1 - +1 cast range, 0.35 energy per second.<n/>Level 2 - +2 cast range, 0.65 energy per second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_008=<s val="AchievementFrameName">Volatile Injection</s><n/>Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.<n/>Level 2 - 60HP, +20% damage taken, 150 damage explosion.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_009=<s val="AchievementFrameName">Nano-Sear</s><n/>Deals 35 damage/second to enemies in 5 radius over 45 seconds. Reduces current attack and movement speed of affected units by 10% and armor by 2. Stacks up to 5 times.<n/><n/>"Terrible, terrible damage" - Sergeant Luke<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Headers=<s val="HelpPanelListBoxItemTitle">Gunslinger</s>
