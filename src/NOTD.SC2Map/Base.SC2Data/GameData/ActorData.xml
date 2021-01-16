@@ -8604,12 +8604,10 @@
         <Model value="FireMissionGroundImpactLevel1"/>
         <Scale value="0.500000,0.500000,1.000000"/>
     </CActorModel>
-    <CActorSound id="ShieldAbsorbImmortalSound">
-        <On Terms="Behavior.StaticShield.On" Send="Create"/>
-    </CActorSound>
     <!--                                                                                         -->
     <CActorModel id="ShieldAbsorbImmortalViz">
         <On Terms="Behavior.StaticShield.DamageHandled" Send="Create"/>
+        <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorAction id="ShockAttack" parent="GenericAttack" effectAttack="ShockApplyBehavior" effectImpact="" effectLaunch="">
         <On index="0" Terms="Effect.Bogus.Start; At Caster; FromEffectTreeDescendant" Send="ActionImpact"/>
@@ -8763,20 +8761,21 @@
         <Sound value="Medivac_HealLoop"/>
     </CActorSound>
     <CActorBeamSimple id="RepairBeam" parent="BeamSimpleAnimationStyleContinuous">
-        <On Terms="Abil.RepairNOTD.TargetChannelStart" Send="Create"/>
-        <On Terms="Abil.RepairNOTD.TargetChannelStop" Send="Destroy"/>
+        <On Terms="Effect.RepairShield.TargetStart" Send="Create"/>
+        <On Terms="Effect.RepairShield.TargetStop" Send="Destroy"/>
         <Model value="EngineerRepairBeam"/>
         <HostLaunch Subject="_Unit" Scope="Caster" Actor="Find"/>
         <HostImpact Subject="_Unit" Scope="Target" Actor="Find"/>
         <HostForProps Subject="_Unit" Scope="Caster" Actor="Find"/>
         <Inherits index="Visibility" value="1"/>
-        <HostLaunchSiteOps Ops="SOpAttachWeapon"/>
+        <HostLaunchSiteOps Ops="SOpAttachWeaponLeft"/>
         <HostImpactSiteOps Ops="SOpAttachCenter"/>
     </CActorBeamSimple>
     <CActorModel id="RepairImpactModel" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="$Birth PlayForever"/>
         <On Terms="Abil.RepairNOTD.TargetChannelStart" Send="Create"/>
         <On Terms="Abil.RepairNOTD.TargetChannelStop" Send="Destroy"/>
-        <Host Subject="_Selectable"/>
+        <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="NanoRepairBeamImpact"/>
     </CActorModel>

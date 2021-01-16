@@ -87,6 +87,7 @@ Abil/Name/FastFive=Fast Five
 Abil/Name/FibrinBandage=Fibrin Bandage
 Abil/Name/FieldNexus=Field Nexus
 Abil/Name/FieldProbe=Field Probe
+Abil/Name/FieldProbeWeaponSwap=Field Probe Weapon Swap
 Abil/Name/FieldRetrofit=Field Retrofit
 Abil/Name/FireMission=Fire Mission
 Abil/Name/FireUpGrenade=Fire Up Grenade
@@ -506,6 +507,7 @@ Behavior/Name/DisorientAssaultJumpLevel1=Disorient - Assault Jump (Level 1)
 Behavior/Name/DisorientAssaultJumpLevel2=Disorient - Assault Jump (Level 2)
 Behavior/Name/DisorientedBoomHeadshotLevel1=Disoriented (Boom! Headshot Level 1)
 Behavior/Name/DisorientedBoomHeadshotLevel2=Disoriented (Boom! Headshot Level 2)
+Behavior/Name/Disruption=Disruption
 Behavior/Name/DroneVeterancy=Drone Veterancy
 Behavior/Name/DropMagazine=Drop Magazine
 Behavior/Name/EnergyBattery=Energy Battery
@@ -892,12 +894,13 @@ Behavior/Tooltip/DisorientAssaultJumpLevel1=Unit is stunned.
 Behavior/Tooltip/DisorientAssaultJumpLevel2=Unit is stunned.
 Behavior/Tooltip/DisorientedBoomHeadshotLevel1=Unit is disoriented.
 Behavior/Tooltip/DisorientedBoomHeadshotLevel2=Unit is disoriented.
+Behavior/Tooltip/Disruption=Unit takes 5 less ranged damage.
 Behavior/Tooltip/DropMagazine=Drops a magazine into your inventory. This allows you to share ammo with others.
 Behavior/Tooltip/EnergyBattery=Unit gains +0.35 energy regeneration.
-Behavior/Tooltip/EnergyBatteryLevel1=Increased base energy of 50. 5 radius energy regeneration aura to allies (+0.35/s).
-Behavior/Tooltip/EnergyBatteryLevel2=Increased base energy of 100. 10 radius energy regeneration aura to allies (+0.35/s).
+Behavior/Tooltip/EnergyBatteryLevel1=8 radius energy regeneration aura to allies (+0.35/s).
+Behavior/Tooltip/EnergyBatteryLevel2=8 radius energy regeneration aura to allies (+0.35/s).
 Behavior/Tooltip/EnergyCapacitorRegenerationLevel1=Unit gains 0.35 energy per second for 6 seconds.
-Behavior/Tooltip/EnergyCapacitorRegenerationLevel2=Unit gains 0.65 energy per second for 6 seconds.
+Behavior/Tooltip/EnergyCapacitorRegenerationLevel2=Unit gains 0.7 energy per second for 6 seconds.
 Behavior/Tooltip/EnergyFieldProtected=Unit is protected from Perses' waves of fire.
 Behavior/Tooltip/EnergyVortex=Erebos has unlocked its true psionic potential and is able to create physical manifestations of energy that burns matter.
 Behavior/Tooltip/Enraged=Unit attack speed +200%.
@@ -1025,7 +1028,7 @@ Behavior/Tooltip/Overheating=The turret's cannons are overheated. -80% attack sp
 Behavior/Tooltip/PenalLegion=You have been identified as a hacker by the Wardens. Delete your bank file and visit www.notdstarcraft.com with a screenshot to clear yourself.
 Behavior/Tooltip/PenanceLevel1=Unit's Life/Shield Armor is reduced by 10, and its attack damage is increased by 50% for 15 seconds.
 Behavior/Tooltip/PenanceLevel2=Unit's Life/Shield Armor is reduced by 10, and its attack damage is increased by 100% for 15 seconds.
-Behavior/Tooltip/Penetrate=Unit suffers -4 armor for 8 seconds. 
+Behavior/Tooltip/Penetrate=Unit suffers -1 armor for 8 seconds, stacks up to 8 times.
 Behavior/Tooltip/PersonnelArcReactor=Increases Energy & Shield regeneration by 0.33 per sec.
 Behavior/Tooltip/PlasmaDischargeLevel1=Unit losses 2 armor and 30% movespeed for 7 seconds.
 Behavior/Tooltip/PlasmaDischargeLevel2=Unit losses 4 armor and 45% movespeed for 7 seconds.
@@ -1066,7 +1069,7 @@ Behavior/Tooltip/ShadowstepLevel1=Marksman moves at +150% speed.
 Behavior/Tooltip/ShadowstepLevel2=Marksman moves at +300% speed.
 Behavior/Tooltip/ShellMode=Unit channels all energy into vital support systems. Gains +10 Armor, +2 HP regeneration and +0.5 energy regeneration. Attack speed reduced to 20%. 
 Behavior/Tooltip/ShivaChemicalWastelandSlow=Unit is slowed 25% and takes 25 damage/sec. Burn baby, burn!
-Behavior/Tooltip/Shock=Unit suffers -50% movespeed for 5 seconds.
+Behavior/Tooltip/Shock=Unit suffers -30% movespeed for 5 seconds.
 Behavior/Tooltip/Shocked=Unit is slowed by 60%.
 Behavior/Tooltip/ShockwaveBarrageStunLevel1=Unit is stunned and receives -2 armor for 3 seconds.
 Behavior/Tooltip/ShockwaveBarrageStunLevel12=Unit is stunned and receives -2 armor for 1.5 seconds.
@@ -1099,8 +1102,8 @@ Behavior/Tooltip/SpikedArmorLevel2=Deals 10 damage to any unit that attacks Demo
 Behavior/Tooltip/SpikedArmorLevel3=Deals 20 damage to any unit that attacks Demo. +3 Shield Armor  and +15 Shields.
 Behavior/Tooltip/Sprint=Increases movespeed by 35% for <d ref="Behavior,Sprint,Duration"/> seconds.
 Behavior/Tooltip/SprintLevel1=Increases movespeed by 35% for <d ref="Behavior,SprintLevel1,Duration"/> seconds.
-Behavior/Tooltip/StaticShield=Deals 25 damage to units that attack the Field Probe
-Behavior/Tooltip/StaticShieldAura=All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
+Behavior/Tooltip/StaticShield=Unit gains +1 shield armor and deal 25 damage to attackers.
+Behavior/Tooltip/StaticShieldAura=Ally units within 9 radius gain Static Shield (+1 shield armor and deal 25 damage to units that attack them). Only affects units with shields.
 Behavior/Tooltip/StealthLevel1=Cloaked for 6 seconds.
 Behavior/Tooltip/StealthLevel2=Cloaked for 12 seconds.
 Behavior/Tooltip/StealthMatrixSelfCloakLevel1=You are cloaked, disabling Stealth Matrix or attacking will disable the cloak.
@@ -1245,9 +1248,7 @@ Button/Name/Desolation=Desolation
 Button/Name/Detonate=Detonate
 Button/Name/DisableInventoryTransfer=Disable Inventory Transfer
 Button/Name/DisruptionTower=Disruption Tower
-Button/Name/DisruptionTowerLevel1=Disruption Tower (Level 1)
 Button/Name/DisruptionTowerLevel13=Disruption Tower (Level 1)
-Button/Name/DisruptionTowerLevel2=Disruption Tower (Level 2)
 Button/Name/DisruptionTowerLevel23=Disruption Tower (Level 2)
 Button/Name/DroneInventory=Drone Inventory
 Button/Name/DropMagazine=Drop Magazine
@@ -1642,11 +1643,7 @@ Button/Tooltip/Devastator=Heavy assault mech.<n/><n/><c val="#ColorAttackInfo">C
 Button/Tooltip/Devourer=A large zombie that ejects volatile creatures upon death.
 Button/Tooltip/Devourer2=A large zombie that ejects volatile creatures upon death.
 Button/Tooltip/DisableInventoryTransfer=Disables receiveing items directly from other players
-Button/Tooltip/DisruptionTower=Up to 4 visible enemy units around 9 radius take 8 damage every 2 seconds. Deals more damage to Massive/Heroic units. Can only build 2 at a time.<n/><n/><c val="FFFF00">Engineer must be in 5 radius of Disruption Tower for it to kill enemies.</c>
-Button/Tooltip/DisruptionTowerLevel1=Up to 4 visible enemy units around 9 radius take 8 damage every 2 seconds. Deals more damage to Massive/Heroic units.<n/><n/><c val="FFFF00">Engineer must be in 5 radius of Disruption Tower for it to kill enemies.</c>
-Button/Tooltip/DisruptionTowerLevel13=Up to 4 visible enemy units around 9 radius take 8 damage every 2 seconds. Deals more damage to Massive/Heroic units.<n/><n/><c val="FFFF00">Engineer must be in 5 radius of Disruption Tower for it to kill enemies.</c>
-Button/Tooltip/DisruptionTowerLevel2=Up to 8 visible enemy units around 9 radius take 16 damage every 2 seconds. Deals more damage to Massive/Heroic units.<n/><n/><c val="FFFF00">Engineer must be in 5 radius of Disruption Tower for it to kill enemies.</c>
-Button/Tooltip/DisruptionTowerLevel23=Up to 8 visible enemy units around 9 radius take 16 damage every 2 seconds. Deals more damage to Massive/Heroic units.<n/><n/><c val="FFFF00">Engineer must be in 5 radius of Disruption Tower for it to kill enemies.</c>
+Button/Tooltip/DisruptionTower=Up to 8 visible enemy units around 9 radius take 12 damage every 1.2 seconds. Deals more damage to Massive/Heroic units. <n/><n/>Engineer must be in 5 radius of Disruption Tower for it to kill enemies. Can only build 2 at a time.<n/><n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c>
 Button/Tooltip/DominionKillTeam=The Demolitions serves and takes heavy punishment with his active combat skills.
 Button/Tooltip/DrBergmann=A scientist with a hidden agenda. A truly conflicted man.
 Button/Tooltip/DrGunjan=A highly respected scientist who has been serving on Apollo since it's inception.
@@ -1679,7 +1676,7 @@ Button/Tooltip/Faith=HP reduced by 50% and burns shields completely. Deals 777 d
 Button/Tooltip/FastFive=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 1 -- Shots do 10% additional damage
 Button/Tooltip/FibrinBandage=Uses Fibrin Bandage in inventory to instantly heal 50 HP on target unit.
 Button/Tooltip/FieldNexus=Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all non-boss air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
-Button/Tooltip/FieldProbe=Creates a 150 HP (50 Shields) mobile probe with following abilities: <n/> i) Shock - Deals -50% ms on target for 5 seconds <n/> ii) Penetrate - Deals -4 armor on target for 8 seconds. Stacks up to 2 times.
+Button/Tooltip/FieldProbe=Creates a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.
 Button/Tooltip/FieldRetrofit=<c val="FFFF00">Field Retrofit</c><n/>Cures Short Circuit. The materials required render the Maintenance Drone inoperative.
 Button/Tooltip/FireMission=Artillery strike that deals 50 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/FireVulnerability=Targets in 5 radius take 50% more damage from explosives. Lasts for 10 seconds.
@@ -1839,7 +1836,7 @@ Button/Tooltip/Parasite=A small, quick moving creature that often escapes notice
 Button/Tooltip/Parasite2=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
 Button/Tooltip/Pathfinder=Derived from the original Airborne Corps, Pathfinders are rapid response troops. They constantly patrol, looking for places to deploy at the slightest hint of danger. They are trained extensively in the use of light weapons and equipped with them as their primary weapon to make their insertions faster and smoother.
 Button/Tooltip/Penance=Unit's Life/Shield Armor is reduced by 10, and its attack damage is increased by 50% for 15 seconds.
-Button/Tooltip/Penetration=Deals -4 armor to target for 8 seconds. Can stack up to 2 times.
+Button/Tooltip/Penetration=Swap to Penetrate Missiles：<n/>Applies -1 armor to target for 8 seconds. Can stack up to 8 times.
 Button/Tooltip/Perses=
 Button/Tooltip/PersonnelArcReactor=<c val="80FF80">Arc Reactor</c><n/>Increases Energy & Shield regeneration by 0.33 per sec.<n/><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">250</c><n/><n/>"Manufactured by Stark Industries (2095)"
 Button/Tooltip/PfcBrooks=Private Fist Class Brooks<n/>Apollo Security<n/>Clerance Level: 2<n/>Service date: 2102
@@ -1874,7 +1871,7 @@ Button/Tooltip/Red=Changes Marine color to <c val="FF0000">Red</c> for all games
 Button/Tooltip/Refresher=Refreshes all cooldowns on Recon. Restores 30 energy & shields.<n/><n/>"Absolute prowess is not merely the obtaining of a talent but the constant and consistent repetition thereof."
 Button/Tooltip/Reinforce=Increases target mechanical unit's armor by 5 for 60 seconds.
 Button/Tooltip/Reload=Reloads your current weapon. All rounds in remaining magazine are discarded. Reloads 30% faster vs automatic reloads.
-Button/Tooltip/Repair2=Repairs shields/mechanical at rate of 1 per second. Has a 33% chance per second to remove Short Circuit.
+Button/Tooltip/Repair2=Repairs shields/mechanical at a rate of <d ref="Effect,RepairShield,RechargeVitalRate"/>/5 per second. Costs 0.1 energy per point of repair.<n/>Shields can be overcharged by an additional <d ref="Behavior,RepairShieldOvercharge,Modification.VitalMaxArray[1]"/> for 60 seconds. <n/><n/><c val="FFFF00">Has a 33% chance per cast to remove Short Circuit.</c>
 Button/Tooltip/Repulse=Units in 7 radius are stunned and lose 10 armor for 3 seconds. Deals 125 damage to affected units. Massive and Armored units take more damage. Increases Rifleman's movespeed by 50% & armor by 2 for 10 seconds. Grants detection.
 Button/Tooltip/Restoration=Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Buff amplifies effects of Medic's Anti-Venom and Surgical Laser.<n/>
 Button/Tooltip/RetributionFieldPet=The Pet unleashes a deadly field of electricity in a 1.5 radius. Deals 30 damage and completely penetrates armor.
@@ -1909,7 +1906,7 @@ Button/Tooltip/Shadowstep=Allows Marksman to move very quickly (+150% movespeed)
 Button/Tooltip/Shatter=Deals 150 damage to target unit. Deals 2x damage to bosses. If unit is stunned, gain 35 HP.
 Button/Tooltip/ShellMode=Unit gains +10 Armor and slight HP regeneration. Attack speed reduced to 20%. 
 Button/Tooltip/Shiva=<c val="972FFF">Shiva</c><n/>The highly-classified Shiva Launcher is capable of destroying almost everything in its path in a 30 radius. No human will survive this. <n/><n/><c val="FF0000">Use with extreme caution</c><n/><n/>Equip: <c val="FFFFFF">3 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/><n/>"Eats Tac Nukes for breakfast" - Shiva Commercial
-Button/Tooltip/Shock=Inflicts -50% movespeed on target for 5 seconds.
+Button/Tooltip/Shock=Swap to Shock Beam:<n/>50% chance to apply -30% movespeed on target for 5 seconds.
 Button/Tooltip/ShockwaveBarrage=Artillery strike that stuns targets in 5 radius area. Each Shell stuns and reduces 2 armor for 3 secs (not-stackable). Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
 Button/Tooltip/ShootGravityGun=Shoots Gravity Gun.
 Button/Tooltip/ShoottoMaim=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%, maximum stack of 3
@@ -1937,7 +1934,7 @@ Button/Tooltip/Sprint=Increases movespeed by 35% for <d ref="Behavior,Sprint,Dur
 Button/Tooltip/Sprint2=Increases movespeed by 35% for 5 seconds.
 Button/Tooltip/Sprint3=Increases movespeed by 35% for 5 seconds.
 Button/Tooltip/Stalker2=A deadly mutated beast.
-Button/Tooltip/StaticShieldAura=All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
+Button/Tooltip/StaticShieldAura=Ally units within 9 radius gain Static Shield (+1 shield armor and deal 25 damage to units that attack them). Only affects units with shields.
 Button/Tooltip/Stealth=Cloaks the Marksman for 6 seconds.
 Button/Tooltip/Stealth2=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/Stealth22=Activates a cloaking field that lasts 8 seconds.
@@ -2666,6 +2663,17 @@ DocInfo/PatchNote628=- Lowered the energy costs of some of Nano Medic's abilitie
 DocInfo/PatchNote629=- Fixed a bug with Marksman's model sizes.
 DocInfo/PatchNote630=- AFK checks will no longer remove the player (will still remind the team).
 DocInfo/PatchNote631=
+DocInfo/PatchNote632=[LeoTheCat]
+DocInfo/PatchNote633=-Disabled the option to add AI players since recruit mode can already be forced during mission select.
+DocInfo/PatchNote634=- Adjusted Assault's Defensive Plating from reducing 20%/40%/60% max ailment stacks to reducing 30%/40%/50% max ailment stacks.
+DocInfo/PatchNote635=- Engineer - Field Probe abilities are now converted to 2 different weapon modes that can be swapped. 
+DocInfo/PatchNote636=- Engineer - Energy Battery now grants a fixed 8 radius aura and no longer adds energy capacity. It instead improves Repair with each level.
+DocInfo/PatchNote637=- Engineer - Repair can now overcharges the target unit's shield, increasing its max capacity, auto-cast allowed.
+DocInfo/PatchNote638=- Engineer - Disruption Tower overall dps improved. It now also provides a -5 ranged damage taken aura to allies, can stack twice.
+DocInfo/PatchNote639=- Engineer - Field Nexus ability icons updated, move speed improved, and weapon removed to avoid uncessary aggro.
+DocInfo/PatchNote640=- Engineer - Field Nexus Static Shield now also grants 1 shield armor and can affect all allies with shields instead of just field probes.
+DocInfo/PatchNote641=- Engineer - Compliance Matrix mind control attack speed penalty lowered moderately.
+DocInfo/PatchNote642=- Engineer's Disruption Tower and Plasma Discharge energy costs have been moderately lowered.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -3056,6 +3064,8 @@ Effect/Name/DestroyHammeroftheGods=Destroy Hammer of the Gods
 Effect/Name/DestroyMaintenceDrone=Destroy Maintence Drone
 Effect/Name/DevourerClawsDamage=Devourer Claws (Damage)
 Effect/Name/DiamondbackBeam=X1 Eviscerator (Beam) Level 1
+Effect/Name/DisruptionTowerAuraApply=Disruption Tower Aura (Apply)
+Effect/Name/DisruptionTowerAuraSearchArea=Disruption Tower Aura (Search Area)
 Effect/Name/DisruptionTowerLevel1CreateUnit=Disruption Tower Level 1 (Create Unit)
 Effect/Name/DisruptionTowerLevel1DamageKill=Disruption Tower Level 1 (Damage Kill)
 Effect/Name/DisruptionTowerLevel1DamagePassive=Disruption Tower Level 1 (Damage Passive)
@@ -3782,7 +3792,9 @@ Effect/Name/PenanceApplyLevel2=Penance Apply Level 2
 Effect/Name/PenanceLaunchLevel1=Penance Launch Level 1
 Effect/Name/PenanceLaunchLevel2=Penance Launch Level 2
 Effect/Name/PenetrateApply=Penetrate Apply
+Effect/Name/PenetrateDamage=Penetrate (Damage)
 Effect/Name/PenetrateLaunchMissile=Penetrate Launch Missile
+Effect/Name/PenetrateSet=Penetrate (Set)
 Effect/Name/PenetratingDamage=Penetrating Damage
 Effect/Name/PersesApplyBehaviorBurst=Perses Apply Behavior Burst
 Effect/Name/PersesBurstDamage=Perses Burst Damage
@@ -3929,6 +3941,7 @@ Effect/Name/RepairLife=Repair (Life)
 Effect/Name/RepairRemoveShortCircuit=Repair (Remove - Short Circuit)
 Effect/Name/RepairSet=Repair (Set)
 Effect/Name/RepairShield=Repair (Shield)
+Effect/Name/RepairShieldOverchargeApplyBehavior=Repair Shield Overcharge (Apply Behavior)
 Effect/Name/ReplenishMines14=Replenish Mines -14
 Effect/Name/ReplenishMines2=Replenish Mines -10
 Effect/Name/ReplenishMines4=Replenish Mines +2
@@ -4073,6 +4086,7 @@ Effect/Name/ShivaPersistent=Shiva Persistent
 Effect/Name/ShivaSearchDamage=Shiva Search Damage
 Effect/Name/ShivaSet=Shiva Set
 Effect/Name/ShockApplyBehavior=Shock Apply Behavior
+Effect/Name/ShockSet=Shock (Set)
 Effect/Name/ShockwaveBarrageApplyLevel1=Shockwave Barrage (Apply) Level 1
 Effect/Name/ShockwaveBarrageApplyLevel12=Shockwave Barrage (Apply) Level 1
 Effect/Name/ShockwaveBarrageApplyLevel2=Shockwave Barrage (Apply) Level 2
@@ -4400,8 +4414,8 @@ Level 2 Counter Measures=Targets in <d ref="Effect,CounterMeasuresLevel2SearchAr
 Level 2 Crawler Drone=Technician sacrifices some of the plating of his exosuit and a healthy amount of nanites to create a Crawler Drone, search and rescue drones retooled with kinetic catapults that they use to launch debris at enemy targets. Maximum of 10.<n/>Level 2 - Crawler Drones have 120 health and deal 14 damage.
 Level 2 Crytoplast Injector=Level 2 - Heals 150 HP instantly on target unit. 
 Level 2 Desolation=Releases a spray of chemical gas in a forward arc dealing damage and applying venom to biological targets.<n/>Level 2 - 100 damage. Inflicts 2 stacks of venom.<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, reduced by <d ref="Effect,DesolationDamageFriendlyLevel1,ArmorReduction"/> per armor.</c>
-Level 2 Disruption Tower=Up to 8 visible enemy units around 9 radius take 16 damage every 2 seconds. Deals more damage to Massive/Heroic units. Can only build 2 at a time.<n/><n/><c val="FFFF00">Engineer must be in 5 radius of Disruption Tower for it to kill enemies.</c>
-Level 2 Energy Battery=Increase base energy by 100. 10 radius energy regeneration aura to allies (+0.35 regen rate).
+Level 2 Disruption Tower=Up to 16 visible enemy units around 9 radius take 18 damage every 1.2 seconds. Deals more damage to Massive/Heroic units. <n/><n/>Engineer must be in 5 radius of Disruption Tower for it to kill enemies. Can only build 2 at a time.<n/><n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c>
+Level 2 Energy Battery=8 radius energy regeneration aura to allies (+0.35 regen rate).
 Level 2 Energy Transfer=The Chemical Expert infuses target with a unique venom that drains HP and gives an energy regeneration boost. This can stack up to 4 times.<n/>Level 2 - +0.2 energy regeneration per stack
 Level 2 Escape=Resets cooldown of Sprint for all allies and forces them to Sprint. Gives all Marines in 9 radius 10 secs of perma cloak.
 Level 2 Field Probe=Creates a 150 HP (50 Shields) mobile probe with following abilities: <n/> i) Shock - Deals -50% ms on target for 5 seconds <n/> ii) Penetrate - Deals -5 armor on target for 5 seconds<n/><n/>Can build 2 at a time.
@@ -4433,7 +4447,7 @@ Level 2 Penance=Unit's Life/Shield Armor is reduced by 10, and its attack damage
 Level 2 Plasma Discharge=Primes a Plasma Detonator that deals 40 damage in 4 radius after 3.5 seconds. Affected units lose 4 armor & are slowed by 45% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 Level 2 Precision Shot=Deals 150 damage to target unit and slows movement by 60% for 5 seconds. 
 Level 2 Redundant Organs=Bob throws his spleens at zombies. Zombies become distracted for 7 secs while they feast.
-Level 2 Repair=Repairs shields/mechanical at rate of 3 per second. Has a 33% chance per second to remove Short Circuit.
+Level 2 Repair=Repairs shields/mechanical at rate of 10 per second. Has a 33% chance per second to remove Short Circuit.
 Level 2 Run Forest Run!=Increases movespeed by 24%. Reduces attack speed by 10%. Toggled ability
 Level 2 Satchel=Plants a timed explosive that detonates in 5 seconds, dealing 280 damage in 4 radius. <n/><n/>Deals 2x damage to massive units & structures.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Level 2 Sensor Tower=Reveals enemy units in 25 radius. Stationary and can only build 3 at a time.
@@ -4447,7 +4461,7 @@ Level 2 Sonic Trap=Creates an invulnerable beacon. When nearby enemies are detec
 Level 2 Speed of Thought=Psi Ops teleports next to target Marine. Enemies in 3 radius of target spot are stunned for 2 sec. 30 range.
 Level 2 Spiked Armor=Deals 10 damage to any unit that attacks Demo. Shield armor +2.
 Level 2 Stealth=Cloaks the Marksman for 12 seconds.
-Level 2 StealthLevel 2 Stealth2=Cloaks the Sniper for 12 seconds.
+Level 2 StealthLevel 2 Stealth2Level 2 StealthLevel 2 FieldProbeWeaponSwap=Cloaks the Marksman for 12 seconds.
 Level 2 Supply Station=Creates a supply station that replenishes 2 rounds/sec, 2 HP/sec, 2 energy/sec for all Marines in 2 radius. Supply Station lasts for 25 seconds.
 Level 2 Surgical Strike=Increase attack damage by 100% for 15 sec. 15 sec recovery (attack damage reduced by 30%).
 Level 2 Surveillance Drone=Technician releases a retooled aerial repair drone with 100 HP and 8 sight radius to scout for him. Detects invisible.
@@ -4479,7 +4493,7 @@ Level 3 NanoHasteLevel 3 NanoStrength=Increases target unit's attack damage and 
 Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 NanoStrength2Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 BattlefieldIntelligence=Increases target unit's attack damage and movespeed by 20% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Level 3 Nanosteel Net=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 30% by its thrashing attempts to escape. Lasts 5 seconds.
 Level 3 Plasma Discharge=Primes a Plasma Detonator that deals 80 damage in 4 radius after 3.5 seconds. Affected units lose 6 armor & are slowed by 60% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
-Level 3 Repair=Repairs shields/mechanical at rate of 5 per second. Has a 33% chance per second to remove Short Circuit.
+Level 3 Repair=Repairs shields/mechanical at rate of 15 per second. Has a 33% chance per second to remove Short Circuit.
 Level 3 Sensor Tower=Reveals enemy units in 35 radius. Stationary and can only build 3 at a time.
 Level 3 Shadowstep=Allows Marksman to move very quickly (+300% movespeed) and become cloaked for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
 Level 3 Shrinker=The Chemical Expert shoots a special energy beam that reduces the size of target unit (including allies), reducing it's threat level, increasing it's speed by 90% and reduces it's attack damage by the same amount. Lasts for 20 seconds, does not work on enemy Heroic.
@@ -6546,6 +6560,7 @@ Upgrade/Name/ConcentratedFireCriticalStrike2=Harvester of Sorrow Critical Strike
 Upgrade/Name/CripplingFire=Crippling Fire
 Upgrade/Name/CriticalStrikeKnife=Critical Strike Knife
 Upgrade/Name/CriticalStrikeSkill=Critical Strike Skill
+Upgrade/Name/EnergyBattery=Energy Battery
 Upgrade/Name/EnergyCapacitors=Energy Capacitors
 Upgrade/Name/FireUp=Fire Up
 Upgrade/Name/FireUpGrenadesLevel1=Fire Up Grenades Level 1
@@ -7075,7 +7090,7 @@ UserData/TalentTrees/Assault_Talent Tootips_002=<s val="AchievementFrameName">Am
 UserData/TalentTrees/Assault_Talent Tootips_003=<s val="AchievementFrameName">Blood Frenzy</s><n/>Assault gains attack damage. Critical Strike slows target's movespeed and attack speed by 30% for 1 second. Lasts for 10 seconds.<n/>Level 1 - +20% damage<n/>Level 2 - +40% damage<n/><n/>"Sit. Stay. Die!"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_004=<s val="AchievementFrameName">Harvester of Sorrow</s><n/>The Assault sings a song of war, attacking with hateful zeal and bringing doom to his foes. <n/><n/>The Assault gains 25% bonus Critical Strike, while losing 10% movespeed for 20 seconds. If the Assault scores a Critical Hit on an enemy while Concentrated Fire is active, they will suffer a 30% attack and movespeed loss for 0.5 seconds.<n/><n/>"Let the beatings begin!"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">Taunt</s> <n/>Forces enemies in 8 radius to attack Assault for a short duration. Taunted units deal less damage.<n/>Level 1 - 5 seconds duration. -10% damge.<n/>Level 2 - 6 seconds duration. -20% damage.<n/>Level 3 - 7 seconds duration. -30% damage.<n/><n/>"First day out of jail, I picked a fight in a bar. Turns out my opponent was a Marine. Join the Marines he said. Could use someone like you. So here I am" - Private Bruce
-UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor and provides protection against ailments.<n/>Level 1 - +2 armor, -20% max ailment stacks.<n/>Level 2 - +<d ref="Behavior,DefensivePlatingLevel2,Modification.LifeArmorBonus"/> armor, -40% max ailment stacks.<n/>Level 3 - +<d ref="Behavior,DefensivePlatingLevel3,Modification.LifeArmorBonus"/> armor, -60% max ailment stacks.
+UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">Defensive Plating<n/>(Passive)</s><n/>Increases Assault's armor and provides protection against ailments.<n/>Level 1 - +2 armor, -30% max ailment stacks.<n/>Level 2 - +<d ref="Behavior,DefensivePlatingLevel2,Modification.LifeArmorBonus"/> armor, -40% max ailment stacks.<n/>Level 3 - +<d ref="Behavior,DefensivePlatingLevel3,Modification.LifeArmorBonus"/> armor, -50% max ailment stacks.
 UserData/TalentTrees/Assault_Talent Tootips_007=<s val="AchievementFrameName">Charge</s><n/>Charges forward up to 15 distance to target point, knocking back any enemies in path. Deals damage and stuns all affected enemies. Deals +50% damage to Massive.<n/>Level 1 - Enemies in path receive 50 damage and are stunned for 2 seconds<n/>Level 2 - Enemies in path receive 100 damage and are stunned for 4 seconds<n/><n/>"He charged forth, borne upon red wings of rage."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">Cohesion<n/>(Passive)</s> <n/>Allies in 8 radius gain armor bonus and +0.4 health regeneration (This includes Assault).<n/>Level 1 - +1 armor<n/>Level 2 - +2 armor<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">Safeguard<n/>(Passive)</s><n/>Assault gains +1 armor for each hit taken. Each point gained lasts for <d ref="Behavior,Safeguard,Duration"/> second. Maximum +<d ref="Behavior,Safeguard,MaxStackCount"/> armor.<n/><n/>"Even a Nuke won't stop you!" - Ogilvy Defense Industries<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
@@ -7117,10 +7132,10 @@ UserData/TalentTrees/Demolitions_Talent Tootips_008=<s val="AchievementFrameName
 UserData/TalentTrees/Demolitions_Talent Tootips_009=<s val="AchievementFrameName">Time to Die</s><n/>Demo is highly resistant to most damage for 10 seconds and gains an <d ref="Behavior,TimetoDie,Modification.ShieldArmorMultiplier"/>x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 sec interval.<n/><n/>"All those moments will be lost in time... like tears in rain... Time to die. "<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Headers=<s val="HelpPanelListBoxItemTitle">Field Support</s>
 UserData/TalentTrees/Engineer_Headers_001=<s val="HelpPanelListBoxItemTitle">Combat</s>
-UserData/TalentTrees/Engineer_Talent Tootips=<s val="AchievementFrameName">Field Probe</s><n/>Create a 150 HP (50 Shields) mobile probe with following abilities: <n/>   i) Shock (Deals -50% ms on target for 5 seconds.) <n/>   ii) Penetrate (Deals -4 armor on target for 8 seconds. Stacks up to 2 times)<n/><n/>Level 1 -  Can build 1 at a time.<n/>Level 2 -  Can build 2 at a time.<n/>Level 3 -  Can build 3 at a time.
+UserData/TalentTrees/Engineer_Talent Tootips=<s val="AchievementFrameName">Field Probe</s><n/>Create a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds. <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.<n/><n/>Level 1 -  Can build 1 at a time.<n/>Level 2 -  Can build 2 at a time.<n/>Level 3 -  Can build 3 at a time.
 UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">Plasma Discharge</s><n/>Primes a Plasma Detonator that deals damage in 4 radius after 3.5 seconds. Affected units lose armor and movespeed for 7 seconds. Reduced impact on allies. Each level also decreases Energy cost.<n/>Level 1 - 20 damage, -2 armor, -30% movespeed.<n/>Level 2 - 40 damage, -4 armor, -45% movespeed.<n/>Level 3 - 80 damage, -6 armor, -60% movespeed.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
-UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/>Level 1 - 8 damage every 2 seconds. Affects 4 units.<n/>Level 2 - 16 damage every 2 seconds. Affects 8 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Increases Engineer's base energy. Aura grants +0.35 energy regeneration to allies.<n/>Level 1 - +50 base energy. 5 radius aura.<n/>Level 2 - +100 base energy. 10 radius aura.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. <n/>Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c><n/>Level 1 - 12 damage every 1.2 seconds. Affects 8 units.<n/>Level 2 - 18 damage every 1.2 seconds. Affects 16 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Improves shield repair speed and shield overcharge. <n/>Allies in 8 radius gains +0.35 energy regeneration.<n/>Level 1 - 10 per second shield repair, max 30 overcharge.<n/>Level 2 - 15 per second shield repair, max 45 overcharge.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 12 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 18 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 24 damage per attack. (Ignore armor)
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">It's Me Again!<n/>(Passive)</s><n/>Each subsequent attack on same target deals extra damage.<n/>Level 1 - +7% damage<n/>Level 2 - +14% damage<n/>Level 3 - +21% damage<n/><n/>Stacks up to 5 times.
@@ -7141,7 +7156,7 @@ UserData/TalentTrees/Flamethrower_Talent Tootips_008=<s val="AchievementFrameNam
 UserData/TalentTrees/Flamethrower_Talent Tootips_009=<s val="AchievementFrameName">Faith</s><n/>HP reduced by 50% and burns shields completely. Deals 777 damage to all units in 7 radius, and stuns them for 7 seconds. Heals allies for 35 HP. Flamethrower gains 10 armor for 10 seconds. Also removes 3 stacks of Open Wounds and Venom from Flamethrower.<n/><n/>"I find your lack of faith disturbing."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle">Fire Support</s>
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
-UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals bonus damage to armored and massive units at higher levels.<n/>Level 1 - 50 dmg per shell.<n/>Level 2 - 75 (+25/25 vs armored/massive) dmg per shell.<n/>Level 3 - 75 (+25/75 vs armored/massive) dmg per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
+UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals bonus damage to armored and massive units at higher levels.<n/>Level 1 - 50 dmg per shell.<n/>Level 2 - 75 (+25/25 vs armored/massive) dmg per shell.<n/>Level 3 - 75 (+25/75 vs armored/massive) dmg per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FFFF00">Type "-dp 1/2/3" to control shell dispersion, default is "-dp 1" at 5 radius.</c><n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 5 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -7172,7 +7187,7 @@ UserData/TalentTrees/Medic_Talent Tootips_003=<s val="AchievementFrameName">Nano
 UserData/TalentTrees/Medic_Talent Tootips_004=<s val="AchievementFrameName">Restoration</s><n/>Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Restoration Buff amplifies effects of Medic's Anti-Venom and Surgical Laser. Allows  Surgical Laser to also cure Madness while active.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_005=<s val="AchievementFrameName">Nano-Shock</s><n/>Creates a focused blast of energy that stuns and deals damage to enemies in target area.<n/>Level 1 - 1 second stun and 20 damage<n/>Level 2 - 1.5 second stun and 40 damage<n/>Level 3 - 2.25 second stun and 80 damage
 UserData/TalentTrees/Medic_Talent Tootips_006=<s val="AchievementFrameName">Nano-Strength</s><n/>Nanobots are injected into the target's bloodstream. Target unit gains additional attack damage and movement speed for 35 seconds. Each level also increases HP regeneration by 0.1.<n/>Level 1 - +10% damage & movespeed<n/>Level 2 - +15% damage & movespeed<n/>Level 3 - +20% damage & movespeed<n/><n/>"Tssaa...yeah" - Private Bruce (KIA)
-UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Increases the range of all Medic skills and provides energy regeneration in a 6 radius for 6 seconds whenever medic damages an enemy with her abilities. Does not stack.<n/>Level 1 - +1 cast range, 0.35 energy per second.<n/>Level 2 - +2 cast range, 0.65 energy per second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Medic_Talent Tootips_007=<s val="AchievementFrameName">Energy Capacitors<n/>(Passive)</s><n/>Increases the range of all Medic skills and provides energy regeneration in a 6 radius for 6 seconds whenever medic damages an enemy with her abilities. Does not stack.<n/>Level 1 - +1 cast range, 0.35 energy per second.<n/>Level 2 - +2 cast range, 0.70 energy per second.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_008=<s val="AchievementFrameName">Volatile Injection</s><n/>Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.<n/>Level 2 - 60HP, +20% damage taken, 150 damage explosion.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Medic_Talent Tootips_009=<s val="AchievementFrameName">Nano-Sear</s><n/>Deals 35 damage/second to enemies in 5 radius over 45 seconds. Reduces current attack and movement speed of affected units by 10% and armor by 2. Stacks up to 5 times.<n/><n/>"Terrible, terrible damage" - Sergeant Luke<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Headers=<s val="HelpPanelListBoxItemTitle">Gunslinger</s>
@@ -7307,6 +7322,7 @@ Weapon/Name/MohandarPrismaticBeam=MohandarPrismaticBeam
 Weapon/Name/NeedleClaws2=Needle Claws Copy
 Weapon/Name/NeedleSpines2=Needle Spines
 Weapon/Name/ParticleBeam=Shock Beam
+Weapon/Name/PenetrateMissiles=Penetrate Missiles
 Weapon/Name/PiercingTalons=Piercing Talons
 Weapon/Name/Predator2=Robotic Claws Copy
 Weapon/Name/PrismaticBeam=Void Ray - Prismatic Beam

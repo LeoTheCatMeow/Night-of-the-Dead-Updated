@@ -338,11 +338,6 @@
         <Value value="3"/>
         <Behavior value="OpenWound"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="OpenWoundStackMoreThan2">
-        <Compare value="GT"/>
-        <Value value="2"/>
-        <Behavior value="OpenWound"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="PetAboveLevel1">
         <Compare value="GE"/>
         <Value value="2"/>
@@ -1501,9 +1496,9 @@
         <CombineArray value="HasChemicalSynthesisLevel1"/>
         <CombineArray value="UnitIsBiological"/>
     </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan12">
+    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan11">
         <Compare value="GT"/>
-        <Value value="12"/>
+        <Value value="11"/>
         <Behavior value="Venom"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="OpenWoundStackMoreThan4">
@@ -1516,9 +1511,9 @@
         <Value value="9"/>
         <Behavior value="Venom"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan6">
+    <CValidatorUnitCompareBehaviorCount id="VenomStackMoreThan8">
         <Compare value="GT"/>
-        <Value value="6"/>
+        <Value value="8"/>
         <Behavior value="Venom"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorLocationCompareRange id="Within10Distance">

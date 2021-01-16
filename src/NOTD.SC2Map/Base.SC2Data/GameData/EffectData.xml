@@ -170,6 +170,17 @@
         <Kind value="NoProc"/>
         <Amount value="3.5"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="DisruptionTowerAuraApply">
+        <EditorCategories value=""/>
+        <Behavior value="Disruption"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="DisruptionTowerAuraSearchArea">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="9" Effect="DisruptionTowerAuraApply"/>
+    </CEffectEnumArea>
     <CEffectApplyBehavior id="EnergyCapacitorApplyBuffLevel2">
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel2"/>
@@ -264,6 +275,22 @@
         <Amount value="10"/>
         <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>
+    <CEffectDamage id="ParticleBeam">
+        <ArmorReduction value="0.5"/>
+        <Kind value="Ranged"/>
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectDamage id="PenetrateDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <ArmorReduction value="0"/>
+        <Kind value="Ranged"/>
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectSet id="PenetrateSet">
+        <EditorCategories value=""/>
+        <EffectArray value="PenetrateApply"/>
+        <EffectArray value="PenetrateDamage"/>
+    </CEffectSet>
     <CEffectRemoveBehavior id="RemoveVolatileInjectionLevel1">
         <EditorCategories value=""/>
         <BehaviorLink value="VolatileInjectionLevel1"/>
@@ -286,6 +313,15 @@
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel1"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="RepairShieldOverchargeApplyBehavior">
+        <EditorCategories value=""/>
+        <Behavior value="RepairShieldOvercharge"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="ShockSet">
+        <EditorCategories value=""/>
+        <EffectArray value="ParticleBeam"/>
+        <EffectArray value="ShockApplyBehavior"/>
+    </CEffectSet>
     <CEffectApplyBehavior id="SyncModuleApplyBuff">
         <Behavior value="SynchronizationModule"/>
     </CEffectApplyBehavior>
@@ -362,13 +398,13 @@
         <Count value="1"/>
     </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="DefensivePlatingRemoveOWLevel3">
-        <ValidatorArray index="0" value="OpenWoundStackMoreThan2"/>
+        <ValidatorArray index="0" value="OpenWoundStackMoreThan3"/>
         <EditorCategories value="Race:Terran"/>
         <BehaviorLink value="OpenWound"/>
         <Count value="1"/>
     </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="DefensivePlatingRemoveVenomLevel1">
-        <ValidatorArray index="0" value="VenomStackMoreThan12"/>
+        <ValidatorArray index="0" value="VenomStackMoreThan11"/>
         <EditorCategories value="Race:Terran"/>
         <BehaviorLink value="Venom"/>
         <Count value="1"/>
@@ -425,7 +461,7 @@
         <Count value="1"/>
     </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="DefensivePlatingRemoveVenomLevel3">
-        <ValidatorArray index="0" value="VenomStackMoreThan6"/>
+        <ValidatorArray index="0" value="VenomStackMoreThan8"/>
         <EditorCategories value="Race:Terran"/>
         <BehaviorLink value="Venom"/>
         <Count value="1"/>
@@ -599,9 +635,6 @@
     <CEffectApplyBehavior id="Reinforce">
         <EditorCategories value="Race:Terran"/>
     </CEffectApplyBehavior>
-    <CEffectDamage id="ParticleBeam">
-        <ArmorReduction value="0.5"/>
-    </CEffectDamage>
     <CEffectCreatePersistent id="GuardianBladesBurst">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
@@ -3330,11 +3363,13 @@
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="TowerLevel1SearchDamagePassive"/>
         <EffectArray value="TowerLevel1SearchDamageKill"/>
+        <EffectArray value="DisruptionTowerAuraSearchArea"/>
     </CEffectSet>
     <CEffectSet id="DisruptionTowerSearchSetLevel2">
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="TowerLevel2SearchDamagePassive"/>
         <EffectArray value="TowerLevel2SearchDamageKill"/>
+        <EffectArray value="DisruptionTowerAuraSearchArea"/>
     </CEffectSet>
     <CEffectLaunchMissile id="GlaiveWurm">
         <ImpactEffect value="GlaiveWurm2"/>
@@ -3621,13 +3656,13 @@
         <ValidatorArray value="TowerEnumerateValidator"/>
         <EditorCategories value="Race:Terran"/>
         <SearchFilters value="Visible;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray MaxCount="4" Radius="9" Effect="DisruptionTowerLevel1DamageKill"/>
+        <AreaArray MaxCount="8" Radius="9" Effect="DisruptionTowerLevel1DamageKill"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="TowerLevel2SearchDamageKill">
         <ValidatorArray value="TowerEnumerateValidator"/>
         <EditorCategories value="Race:Terran"/>
         <SearchFilters value="Visible;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray MaxCount="5" Radius="9" Effect="DisruptionTowerLevel2DamageKill"/>
+        <AreaArray MaxCount="16" Radius="9" Effect="DisruptionTowerLevel2DamageKill"/>
     </CEffectEnumArea>
     <CEffectDamage id="VolatileBurstBeastling" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -7391,6 +7426,7 @@
     <CEffectCreateUnit id="FieldProbeCreateUnit">
         <EditorCategories value=""/>
         <SpawnUnit value="FieldProbe"/>
+        <SpawnEffect value="KillsToCaster"/>
     </CEffectCreateUnit>
     <CEffectLaunchMissile id="GrenadeLaunchMissileLevel2">
         <ValidatorArray index="0" removed="1"/>
@@ -8461,7 +8497,7 @@
     <CEffectLaunchMissile id="PenetrateLaunchMissile">
         <ValidatorArray index="0" value="PunisherGrenadesLMTargetFilters"/>
         <EditorCategories value="Race:Terran"/>
-        <ImpactEffect value="PenetrateApply"/>
+        <ImpactEffect value="PenetrateSet"/>
         <AmmoUnit value="PunisherGrenadesLMWeapon"/>
         <Movers Link="PunisherGrenadesWeapon"/>
     </CEffectLaunchMissile>
@@ -9679,6 +9715,7 @@
     <CEffectApplyBehavior id="ShockApplyBehavior">
         <EditorCategories value=""/>
         <Behavior value="Shock"/>
+        <Chance value="0.5"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="ShockwaveBarrageApplyLevel12">
         <ValidatorArray index="0" value="UnitisHeroic"/>
@@ -9902,7 +9939,7 @@
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="StaticShieldApply">
-        <ValidatorArray index="0" value="TargetisFieldProbe"/>
+        <ValidatorArray index="0" value="hasShields"/>
         <EditorCategories value=""/>
         <Behavior value="StaticShield"/>
     </CEffectApplyBehavior>
@@ -9914,8 +9951,8 @@
     </CEffectDamage>
     <CEffectEnumArea id="StaticShieldSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Neutral,Enemy"/>
-        <AreaArray Radius="10" Effect="StaticShieldApply"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead"/>
+        <AreaArray Radius="9" Effect="StaticShieldApply"/>
     </CEffectEnumArea>
     <CEffectDamage id="StingerMK3Damage">
         <EditorCategories value=""/>
@@ -11067,10 +11104,10 @@
     </CEffectCreateUnit>
     <CEffectDamage id="DisruptionTowerLevel1DamagePassive">
         <EditorCategories value="Race:Terran"/>
-        <Amount value="8"/>
+        <Amount value="12"/>
         <Death value="Fire"/>
-        <AttributeBonus index="Massive" value="8"/>
-        <AttributeBonus index="Heroic" value="12"/>
+        <AttributeBonus index="Massive" value="12"/>
+        <AttributeBonus index="Heroic" value="36"/>
         <Flags index="Live" value="1"/>
         <Flags index="Notification" value="1"/>
         <ResponseFlags index="Acquire" value="1"/>
@@ -11078,10 +11115,10 @@
     </CEffectDamage>
     <CEffectDamage id="DisruptionTowerLevel2DamagePassive">
         <EditorCategories value="Race:Terran"/>
-        <Amount value="16"/>
+        <Amount value="18"/>
         <Death value="Fire"/>
-        <AttributeBonus index="Massive" value="16"/>
-        <AttributeBonus index="Heroic" value="24"/>
+        <AttributeBonus index="Massive" value="18"/>
+        <AttributeBonus index="Heroic" value="54"/>
         <Flags index="Live" value="1"/>
         <Flags index="Notification" value="1"/>
         <ResponseFlags index="Acquire" value="1"/>
@@ -11090,13 +11127,13 @@
     <CEffectEnumArea id="TowerLevel1SearchDamagePassive">
         <EditorCategories value="Race:Terran"/>
         <SearchFilters value="Visible;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray MaxCount="4" Radius="9" Effect="DisruptionTowerLevel1DamagePassive"/>
+        <AreaArray MaxCount="8" Radius="9" Effect="DisruptionTowerLevel1DamagePassive"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="TowerLevel2SearchDamagePassive">
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/DisruptionTowerLevel1Search"/>
         <SearchFilters value="Visible;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray MaxCount="8" Radius="9" Effect="DisruptionTowerLevel2DamagePassive"/>
+        <AreaArray MaxCount="16" Radius="9" Effect="DisruptionTowerLevel2DamagePassive"/>
     </CEffectEnumArea>
     <CEffectCreateUnit id="DisruptionTowerLevel2CreateUnit">
         <EditorCategories value="Race:Terran"/>
@@ -11116,7 +11153,7 @@
     <CEffectEnumArea id="EnergyBatteryLevel1Search">
         <EditorCategories value=""/>
         <SearchFilters value="-;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
-        <AreaArray Radius="5" Effect="EnergyBatteryApplyBehavior"/>
+        <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -11124,7 +11161,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/EnergyBatteryLevel1Search"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
-        <AreaArray Radius="10" Effect="EnergyBatteryApplyBehavior"/>
+        <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -11267,31 +11304,21 @@
         <EffectArray value="RepairRemoveShortCircuit"/>
     </CEffectSet>
     <CEffectCreateHealer id="RepairShield">
-        <ValidatorArray value="NotWarpingIn"/>
-        <ValidatorArray value="HiddenCompareBA"/>
-        <ValidatorArray value="HiddenCompareAB"/>
-        <ValidatorArray value="NotVortexd"/>
-        <ValidatorArray value="NotThorWreckage"/>
-        <ValidatorArray value="NotOdinWreckage"/>
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/Repair"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.33"/>
+        <DrainVitalCostFactor value="0.1"/>
         <RechargeVital value="Shields"/>
         <RechargeVitalRate value="5"/>
+        <Flags index="ContinueWhenFull" value="1"/>
+        <PeriodicEffect value="RepairShieldOverchargeApplyBehavior"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="RepairLife">
-        <ValidatorArray value="NotWarpingIn"/>
         <ValidatorArray value="IsMechanical"/>
-        <ValidatorArray value="HiddenCompareBA"/>
-        <ValidatorArray value="HiddenCompareAB"/>
-        <ValidatorArray value="NotVortexd"/>
-        <ValidatorArray value="NotThorWreckage"/>
-        <ValidatorArray value="NotOdinWreckage"/>
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/Repair"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.33"/>
+        <DrainVitalCostFactor value="0.1"/>
         <RechargeVitalRate value="5"/>
     </CEffectCreateHealer>
     <CEffectCreateUnit id="DisruptionTowerLevel1CreateUnit">
@@ -11866,7 +11893,7 @@
     <CEffectDamage id="AcidSalivaU">
         <Amount value="50"/>
         <ResponseFlags index="Flee" value="0"/>
-        <AttributeBonus index="Structure" value="120"/>
+        <AttributeBonus index="Structure" value="50"/>
         <ArmorReduction value="2"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>

@@ -14967,6 +14967,10 @@ void gf_LevelUpTalentEngineer (int lp_itemNo, unit lp_triggUnit, int lp_triggPla
         }
     }
 
+    if ((lp_itemNo == 4)) {
+        TechTreeUpgradeAddLevel(lp_triggPlayer, "EnergyBattery", 1);
+    }
+
     if ((lp_itemNo == 5)) {
         TriggerEnable(gt_FieldNexusShareVision, true);
         TriggerEnable(gt_FieldNexusRevokeSharedVision, true);

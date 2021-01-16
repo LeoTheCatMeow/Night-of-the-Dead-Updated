@@ -176,16 +176,15 @@
         <FlagArray index="PeonDisableCollision" value="1"/>
         <ErrorAlert value=""/>
         <InfoArray index="Build1" Unit="DisruptionTowerLevel1" Time="2">
-            <Vital index="Energy" value="40"/>
+            <Vital index="Energy" value="30"/>
             <Charge Link="Abil/TerranBuild"/>
             <Cooldown Link="Abil/TerranBuild" TimeUse="2"/>
-            <Button DefaultButtonFace="DisruptionTowerLevel1" Requirements="DisruptionTowerLevel1"/>
+            <Button DefaultButtonFace="DisruptionTowerLevel13" Requirements="DisruptionTowerLevel1"/>
         </InfoArray>
         <InfoArray index="Build2" Unit="DisruptionTowerLevel2" Time="2">
-            <Vital index="Energy" value="40"/>
-            <Charge Link=""/>
-            <Cooldown Link="" TimeUse="30"/>
-            <Button DefaultButtonFace="DisruptionTowerLevel2" Requirements="DisruptionTowerLevel2"/>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="2"/>
+            <Button DefaultButtonFace="DisruptionTowerLevel23" Requirements="DisruptionTowerLevel2"/>
         </InfoArray>
         <InfoArray index="Build6" Time="1">
             <Display index="Energy" value="1"/>
@@ -194,6 +193,7 @@
             <Cooldown Link="" TimeUse="60"/>
         </InfoArray>
         <Range value="1"/>
+        <EffectArray index="Finish" value="KillsToCaster"/>
     </CAbilBuild>
     <CAbilMorph id="BurrowBeastling">
         <AbilSetId value="BrwD"/>
@@ -303,9 +303,9 @@
         <Effect index="0" value="DisruptionTowerLevel1CreateUnit"/>
         <Effect value="DisruptionTowerLevel2CreateUnit"/>
         <Cost>
-            <Vital index="Energy" value="40"/>
+            <Vital index="Energy" value="30"/>
             <Charge Link="Abil/SensorTower"/>
-            <Cooldown Link="Abil/SensorTower" TimeUse="30"/>
+            <Cooldown Link="Abil/SensorTower" TimeUse="2"/>
         </Cost>
         <Range value="2"/>
         <PrepTime value="0.2"/>
@@ -1254,6 +1254,17 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CAbilBehavior id="FieldProbeWeaponSwap">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="Penetration"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="Shock"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <BehaviorArray value="FieldProbePenetrateWeaponOn"/>
+    </CAbilBehavior>
     <CAbilBehavior id="StealthIvax">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="Stealth2">
@@ -2803,7 +2814,7 @@
         <Effect value="PlasmaDischargeCreateUnit"/>
         <Effect value="PlasmaDischargeCreateUnit"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="15"/>
         </Cost>
         <Cost>
             <Vital index="Energy" value="16"/>
@@ -4486,12 +4497,13 @@
     <CAbilEffectTarget id="RepairNOTD">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="RepairSet"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="BestUnit" value="0"/>
         <Flags index="ReExecutable" value="1"/>
         <Flags index="Smart" value="1"/>
         <Flags index="PassengerAcquirePassengers" value="1"/>
         <TargetFilters value="-;Neutral,Enemy,Hover,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <Range value="3"/>
+        <Range value="4"/>
         <SmartValidatorArray value="RepairValidTargets"/>
         <AutoCastAcquireLevel value="Defensive"/>
         <AutoCastFilters value="Visible;Neutral,Enemy"/>
@@ -4509,6 +4521,7 @@
         <LevelButtonTooltip value="Level 2 Repair"/>
         <LevelButtonTooltip value="Level 3 Repair"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Repair2"/>
+        <AutoCastValidatorArray value="RepairValidTargets"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Repulse">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>

@@ -118,7 +118,7 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="ComplianceMatrix">
-        <Icon value="Assets\Textures\btn-ability-terran-chronoriftdevice.dds"/>
+        <Icon value="Assets\Textures\btn-progression-stetmann-07-improvedstetellites.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
     </CButton>
@@ -680,7 +680,7 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="IronHand">
-        <Icon value="Assets\Textures\btn-ability-terran-bombardmentstrike.dds"/>
+        <Icon value="Assets\Textures\btn-ability-terran-bombardmentstrike-color.dds"/>
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="TaurenSpaceMarine">
@@ -932,7 +932,7 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="Penetration">
-        <Icon value="Assets\Textures\btn-techupgrade-terran-maelstromrounds.dds"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
     </CButton>
@@ -948,7 +948,7 @@
         <TooltipFlags index="ShowResources" value="0"/>
     </CButton>
     <CButton id="Shock">
-        <Icon value="Assets\Textures\btn-ability-protoss-psistorm.dds"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel2.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
     </CButton>
@@ -975,25 +975,19 @@
         <Icon value="Assets\Textures\btn-research-zerg-psidisruptor.dds"/>
         <HidesForSimpleText value="0"/>
     </CButton>
-    <CButton id="DisruptionTowerLevel1">
-        <Icon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
-        <Hotkey value="Button/Hotkey/DisruptionTower"/>
-        <HidesForSimpleText value="0"/>
-    </CButton>
     <CButton id="DisruptionTowerLevel13">
         <Icon value="Assets\Textures\btn-research-zerg-psidisruptor.dds"/>
         <Hotkey value="Button/Hotkey/DisruptionTower"/>
         <HidesForSimpleText value="0"/>
-    </CButton>
-    <CButton id="DisruptionTowerLevel2">
-        <Icon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
-        <Hotkey value="Button/Hotkey/DisruptionTower"/>
-        <HidesForSimpleText value="0"/>
+        <Tooltip value="Button/Tooltip/DisruptionTower"/>
+        <AlertTooltip value="Button/Tooltip/DisruptionTower"/>
     </CButton>
     <CButton id="DisruptionTowerLevel23">
         <Icon value="Assets\Textures\btn-research-zerg-psidisruptor.dds"/>
         <Hotkey value="Button/Hotkey/DisruptionTower"/>
         <HidesForSimpleText value="0"/>
+        <Tooltip value="Level 2 Disruption Tower"/>
+        <AlertTooltip value="Level 2 Disruption Tower"/>
     </CButton>
     <CButton id="Faith">
         <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-immortalchampionvortex.dds"/>
@@ -1252,7 +1246,7 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="SelfDestruct">
-        <Icon value="Assets\Textures\btn-techupgrade-terran-tomahawkpowercell.dds"/>
+        <Icon value="Assets\Textures\btn-ability-zerg-extinction.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
     </CButton>
@@ -1276,7 +1270,7 @@
         <TooltipFlags index="ShowResources" value="0"/>
     </CButton>
     <CButton id="Sigma">
-        <Icon value="Assets\Textures\btn-tips-walloffire.dds"/>
+        <Icon value="Assets\Textures\btn-progression-protoss-fenix-6-forgeresearch.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
     </CButton>
@@ -1291,7 +1285,7 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="StaticShieldAura">
-        <Icon value="Assets\Textures\btn-ability-terran-electricfield.dds"/>
+        <Icon value="Assets\Textures\btn-ability-spearofadun-shieldovercharge.dds"/>
         <EditorCategories value="Race:Terran"/>
         <HidesForSimpleText value="0"/>
     </CButton>

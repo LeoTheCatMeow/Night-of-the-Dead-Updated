@@ -1261,7 +1261,7 @@
         <ShieldRegenDelay value="1"/>
         <ShieldRegenRate value="0.5"/>
         <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
-        <Speed value="1.8007"/>
+        <Speed value="2.1992"/>
         <Acceleration value="1000"/>
         <Sight value="10"/>
         <Food value="-1"/>
@@ -1272,21 +1272,17 @@
         <KillXP value="10"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
-        <AbilArray Link="attack"/>
         <AbilArray Link="Turbo"/>
         <AbilArray Link="Sigma"/>
         <AbilArray Link="ComplianceMatrix"/>
         <BehaviorArray Link="StaticShieldAura"/>
-        <WeaponArray Link="PhaseDisruptors" Turret="Immortal"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="1"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="2"/>
-            <LayoutButtons Type="Passive" AbilCmd="attack,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="Sigma" Type="AbilCmd" AbilCmd="Sigma,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="ComplianceMatrix" Type="AbilCmd" AbilCmd="ComplianceMatrix,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="StaticShieldAura" Type="Passive" Row="2" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="0" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
@@ -6029,9 +6025,6 @@
         <LifeMax value="150"/>
         <LifeRegenRate value="0.3007"/>
         <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
-        <EnergyStart value="75"/>
-        <EnergyMax value="150"/>
-        <EnergyRegenRate value="0.6015"/>
         <ShieldsStart value="50"/>
         <ShieldsMax value="50"/>
         <ShieldRegenDelay value="10"/>
@@ -6056,15 +6049,17 @@
         <AbilArray Link="move"/>
         <AbilArray Link="Penetrate"/>
         <AbilArray Link="Shock"/>
+        <AbilArray Link="FieldProbeWeaponSwap"/>
         <WeaponArray Link="ParticleBeam"/>
+        <WeaponArray Link="PenetrateMissiles"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Shock" Type="AbilCmd" AbilCmd="Shock,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="Penetration" Type="AbilCmd" AbilCmd="Penetrate,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="Penetration" Type="AbilCmd" AbilCmd="FieldProbeWeaponSwap,On" Row="2" Column="0"/>
+            <LayoutButtons Face="Shock" Type="AbilCmd" AbilCmd="FieldProbeWeaponSwap,Off" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.1875"/>
         <SeparationRadius value="0.2"/>
@@ -7835,8 +7830,8 @@
         <Attributes index="Armored" value="1"/>
         <Attributes index="Mechanical" value="1"/>
         <Attributes index="Structure" value="1"/>
-        <LifeStart value="150"/>
-        <LifeMax value="150"/>
+        <LifeStart value="225"/>
+        <LifeMax value="225"/>
         <LifeArmorName value="Unit/LifeArmorName/TerranBuildingPlating"/>
         <Sight value="7"/>
         <RepairTime value="50"/>
@@ -7849,7 +7844,6 @@
         <BehaviorArray Link="TowerLimit"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="DisruptionTowerLevel2" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="SelfDestruct" Type="AbilCmd" AbilCmd="SelfDestruct,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.1875"/>
@@ -7875,6 +7869,7 @@
         <LifeRegenRate value="1"/>
         <EnergyStart value="15"/>
         <EnergyMax value="15"/>
+        <Description value="Level 2 Disruption Tower"/>
     </CUnit>
     <CUnit id="LargeZombieCocoon">
         <DeathRevealRadius value="3"/>
@@ -9459,7 +9454,6 @@
         <BehaviorArray Link="TowerLimit"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="DisruptionTowerLevel1" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="SelfDestruct" Type="AbilCmd" AbilCmd="SelfDestruct,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.1875"/>
@@ -9483,6 +9477,7 @@
         <AIEvaluateAlias value=""/>
         <LifeArmor value="3"/>
         <LifeRegenRate value="1"/>
+        <Description value="Button/Tooltip/DisruptionTower"/>
     </CUnit>
     <CUnit id="SatchelLevel1">
         <Race value=""/>

@@ -45,6 +45,11 @@
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.05"/>
         <MaxLevel value="3"/>
     </CUpgrade>
+    <CUpgrade id="EnergyBattery">
+        <EffectArray Reference="Effect,RepairShield,RechargeVitalRate" Value="5.000000"/>
+        <EffectArray Reference="Behavior,RepairShieldOvercharge,Modification.VitalMaxArray[Shields]" Value="15"/>
+        <MaxLevel value="2"/>
+    </CUpgrade>
     <CUpgrade id="HarvesterofSorrowBonusCrit">
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.25"/>
     </CUpgrade>
@@ -199,10 +204,10 @@
         <MaxLevel value="9"/>
     </CUpgrade>
     <CUpgrade id="ProbeLimit">
-        <EffectArray Reference="Effect,FieldProbeLimit,MinCount[0]" Value="1"/>
-        <MaxLevel value="3"/>
         <Flags index="UpgradeCheat" value="0"/>
         <Alert value=""/>
+        <EffectArray Reference="Effect,FieldProbeLimit,MinCount[0]" Value="1"/>
+        <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="Realism">
         <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Melee]" Value="-0.05"/>

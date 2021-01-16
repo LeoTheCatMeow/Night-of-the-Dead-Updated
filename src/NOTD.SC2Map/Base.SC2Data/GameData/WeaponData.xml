@@ -223,6 +223,16 @@
         <DamagePoint value="0"/>
         <Effect value="GuardianBladesBurst"/>
     </CWeaponLegacy>
+    <CWeaponLegacy id="PenetrateMissiles">
+        <EditorCategories value="Race:Protoss"/>
+        <Options index="Disabled" value="1"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <DisplayEffect value="PenetrateDamage"/>
+        <TargetFilters value="Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="3"/>
+        <Period value="1"/>
+        <Effect value="PenetrateLaunchMissile"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="Predator2">
         <EditorCategories value="Race:Terran"/>
         <Options index="Melee" value="1"/>
@@ -791,6 +801,7 @@
         <Period value="1"/>
         <TargetFilters value="Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel2.dds"/>
+        <Effect value="ShockSet"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="Predator">
         <Range value="1.15"/>
