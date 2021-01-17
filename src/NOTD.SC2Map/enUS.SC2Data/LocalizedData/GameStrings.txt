@@ -2674,6 +2674,16 @@ DocInfo/PatchNote639=- Engineer - Field Nexus ability icons updated, move speed 
 DocInfo/PatchNote640=- Engineer - Field Nexus Static Shield now also grants 1 shield armor and can affect all allies with shields instead of just field probes.
 DocInfo/PatchNote641=- Engineer - Compliance Matrix mind control attack speed penalty lowered moderately.
 DocInfo/PatchNote642=- Engineer's Disruption Tower and Plasma Discharge energy costs have been moderately lowered.
+DocInfo/PatchNote643=[ThunderRazor]
+DocInfo/PatchNote644=-Added a merit system that lets players rate each other with merit and demerit points.
+DocInfo/PatchNote645=- Merits/demerits shall only be rewarded based on behavior and not skill (it is a peer to peer rating system).
+DocInfo/PatchNote646=- Every player can nomimate up to 10 merits and 10 demerits. (The most recent 10 will be kept and older ones discarded.)
+DocInfo/PatchNote647=- The player with the most merits (3 or more) will be awarded +5 karma at victory in the next game, if kept clean.
+DocInfo/PatchNote648=- Applying karmabite automatically demerits the griefing player, and demeriting a griefer automatically applies karmabite.
+DocInfo/PatchNote649=- 3 or more demerits locks out the griefer from being able to use shop and from selecting advanced classes, except in Survival.
+DocInfo/PatchNote650=- Vote kicking is integrated into the merit system.
+DocInfo/PatchNote651=- Original text commands (-vk, -karmabite) still work as intended, but you have the option of clicking UI buttons.
+DocInfo/PatchNote652=- Click on player portrait to show the demerits dialog.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4536,6 +4546,7 @@ One Shot, One Kill Level 3=Kills non-Heroics instantly. Deals 800 +1.2% of curre
 Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> designates <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
 Param/Expression/05D1FF35=Defend ~A~
+Param/Expression/0972D6BC=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/1B9D6FE5=~A~~B~~C~
 Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="0080FF">~B~</c>.
@@ -4555,6 +4566,7 @@ Param/Expression/606DB275=Magazine (~A~)
 Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/739881FA=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
 Param/Expression/749F018B=Survive (Wave ~A~/40)
 Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
@@ -4566,10 +4578,12 @@ Param/Expression/ABAE731B=~A~/~B~
 Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack!
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
 Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
 Param/Expression/FEC5EBF1=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Value/004D086A=<s val="GlueButton">Infestor
+Param/Value/004DD921= will meet Bob.</s>
 Param/Value/00AD8F43=Are you seeing this?
 Param/Value/018D8BCF=Proceed to Epsilon Mining Site
 Param/Value/0193DE09=We've arrived at the source.
@@ -4595,6 +4609,7 @@ Param/Value/048FA946=You've got to shoot 'em in the head. Give me your gun. I'll
 Param/Value/04F0C35D=The doctor needs to hurry up.
 Param/Value/0535EF66=I see...bright lights...
 Param/Value/05597CDB=Access the computers and download their logs.
+Param/Value/056257AC=</c></s>
 Param/Value/0567028D=+
 Param/Value/0577A641=: 
 Param/Value/05848868=No. All the gunfire is playing tricks with our ears.
@@ -4603,6 +4618,7 @@ Param/Value/05C9C370=Head to Central Square. We should set up an EVAC point for 
 Param/Value/060BE9EA=Talents Available: 
 Param/Value/062A9941=+2 XP for Mission Bonus
 Param/Value/064FA406=</s>
+Param/Value/06563FD7=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/069FDC3C=The power generators are scattered across Apollo.
 Param/Value/06A43C14=Keep the Sec Team unit alive for more fire power
 Param/Value/06C9BF47=We'll need more Marines to retake Apollo.
@@ -4610,6 +4626,7 @@ Param/Value/0713C853=Quiet Ping Enabled
 Param/Value/074C6AA8=Doctor
 Param/Value/076B1E59=I'm making a call to UGC headquarters to inform them of our progress.
 Param/Value/07C1794C=Do not fight this. You are only making this harder.
+Param/Value/07DA7452=<s val="Coop_CountdownText"><c val="F5D62B">
 Param/Value/07E6F2F0=+
 Param/Value/085CC1A1=Apollo Sec! Anybody here?
 Param/Value/086B1B18=28 Hours Later
@@ -4641,6 +4658,7 @@ Param/Value/0CC677C4=<s val="InfoPaneHeroRank">Allowed 1 random class selection.
 Param/Value/0CE405E2=Evasive maneuvers! Get away from those spores.
 Param/Value/0D23902A=<s val="InfoPaneHeroRank">Class limit exceeded - XP and Credit gain reduced by 40%!
 Param/Value/0D3A884E=Solid copy.
+Param/Value/0D570AB4=</c>
 Param/Value/0D7605AA=Head back to the Starport. We need to clear the way for more companies to arrive.
 Param/Value/0D7CAB5F=Couldn't have done it without you, doc. What next?
 Param/Value/0D90E221= (<c val="F20000">
@@ -4660,12 +4678,14 @@ Param/Value/0EE34416=Too many of them. Find a choke point.
 Param/Value/0F14107D=(Erebos begins to form a <c val="00FF00">regenerative shell</c>...)
 Param/Value/0F90DB7F=Sec Team A: Link Up with Sec Team B
 Param/Value/0FAEAC02=Athena...you are released.
+Param/Value/10739E12=</c></s>
 Param/Value/10880E5C=Phantom 6, Phantom 1 is in sector.
 Param/Value/10AF882F=</c></s>
 Param/Value/1134BED8=HAL Shutdown
 Param/Value/115D3793=The Marines Have Landed
 Param/Value/116239BA=Radar is picking up infantry. IFF returning negative. They're hostile.
 Param/Value/11E97FFE=+2 XP for Performance Bonus
+Param/Value/120BC323=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/12198CAD=The civies are safe. Looks pretty clear.
 Param/Value/126EB08C=<s val="GlueButton"><c val="F4D72B">Unlocking Bio-Dome A. These are the basic mutation. You'll nail them easily.</c>
 Param/Value/12947B75=All weapons on target.
@@ -4696,6 +4716,7 @@ Param/Value/163EA7C6=I'm your dropship pilot. We've located a suitable LZ. You n
 Param/Value/1655273D=Chase him.
 Param/Value/1657D975=We should burn these things down.
 Param/Value/169FB0FE=Wilco. Start sprinting!
+Param/Value/16DB58B8=<img width="76" height="76" path="Assets\Textures\ui_glues_ladder_score_rating_down.dds"/>
 Param/Value/16DD4057=What was that?
 Param/Value/16E1B302=Data Transfer Complete
 Param/Value/16FE1446=Roger. A quarantine unit is en route to pick it up.
@@ -4725,6 +4746,7 @@ Param/Value/1BA21C68=<s val="BriefingHanText">(Seismic activity detected...)</s>
 Param/Value/1BE7E05D=God have mercy on our souls.
 Param/Value/1C18972C=
 Param/Value/1C394A88=<s val="GlueButton"><c val="F4D72B">Humans, I am Ekvolbollishazarijajombashef.</c></s>
+Param/Value/1C3B42F0=</c></s>
 Param/Value/1C6F9E02=Next Promotion:
 Param/Value/1C72DC4A=Find a way into Apollo
 Param/Value/1C988643=Chapter 3
@@ -4798,6 +4820,7 @@ Param/Value/281EC738=He's heading towards one of the transports.
 Param/Value/281F82AD=It's real quiet here.
 Param/Value/283DECE1=(Tartarus' front carapace hardens...)
 Param/Value/28477055=It's not safe roaming around here. We need to get to the Armory.
+Param/Value/2851BFBF=</c> <c val="F5D62B">from the game.</c><n/>Requires 3 votes for removal.
 Param/Value/28827972=
 Param/Value/2888B3DA=Disarm and come in with us. We're on the same side.
 Param/Value/289F9ABF=Seal Bio-Domes (0/4)
@@ -4874,6 +4897,7 @@ Param/Value/3331F97F=has succumbed to serious injuries.
 Param/Value/333C00A9=<s val="BriefingHanText">   Balancing/Testers<n/>   HunterIZ, gruvious, Reaper, Yorick, FlintLckwood, Peerawatz, NiteShade, Ghost</s>
 Param/Value/335ED149=Nail all those Agrons down.
 Param/Value/338A4C58=We brought down that machine, but looks like we've got more ahead of us.
+Param/Value/3395507F=<s val="ABChoiceButtonText"><c val="FF4040">
 Param/Value/3399C292=<c val="CCCCCC">Equipment Closed</c>
 Param/Value/339DA5E3=+20 XP for Victory Bonus
 Param/Value/33B6A5BE=Field Marshal, I don't think it's a good idea to ask them to destroy the facility. Earth will be in an energy crisis without Apollo.
@@ -4884,6 +4908,7 @@ Param/Value/34A0856D=Who the - ...some survivors must have picked up our transmi
 Param/Value/34D579A6=<c val="ff0000">You have pinged too much.  Please wait a while.</c>
 Param/Value/34EBEAC5=<s val="GlueButton"><c val="F4D72B">Apollo needs to be destroyed. It hides something that threatens our collective safety.</c></s>
 Param/Value/34FC3D29=Rescue Civilians in Apollo. Bring them to the Containment Facility
+Param/Value/351A44C5=<c val="80B9FF">
 Param/Value/3542BD51=<s val="InfoPaneHeroRank">Supplies delivered into battlefield..</s>
 Param/Value/3549F488=(Launching Ion Cannons...)
 Param/Value/354C27AF=You cannot understand what happened here. But no matter...you will not live.
@@ -4951,6 +4976,7 @@ Param/Value/3EC532D7=[Outbreak]
 Param/Value/3EF0EAF1=It doesn't end here. We'll find a way into Apollo.
 Param/Value/3F1C4D5C= remaining
 Param/Value/3F3D628D=+1 XP for Mission Bonus
+Param/Value/3F540F77=</c></s>
 Param/Value/3FAE88EC=<s val="GlueButton">TIP: <c val="BEE916">
 Param/Value/404B0C5C=Enemies come in Waves in Survival. There are no missions. Survive as long as you can.
 Param/Value/40865F64=[<c val="FF0000">Priority Transmission</c>]<n/>General Koller: <n/>Hades is the primary source of the infestation. It's not going to go down without a fight. You're going to have to throw everything at it. Good luck!
@@ -4986,6 +5012,7 @@ Param/Value/4666C8A0=Chapter 3
 Param/Value/46F19DE3=Difficulty HP Scaling: 
 Param/Value/4713242D=Click to open Marine Equipment
 Param/Value/472EBABF=</c>
+Param/Value/476A1406=</c> <c val="F5D62B">for abusive behavior.</c><n/>If this is in response to a <c val="FF4040">team kill</c>, the player will incur additional penalties. Limit demerits to 10 players.
 Param/Value/477A5ACF=Put your guns down and we'll talk.
 Param/Value/4782E35D=We've heard enough from you.
 Param/Value/481CA5D5=UGC Command wants our lips sealed on this mission. Report in at 0900 hours for debriefing.
@@ -4998,6 +5025,7 @@ Param/Value/49319E6D=We've destroyed all the zombie worms.
 Param/Value/49791ACC=Investigate the Communications Tower
 Param/Value/4990863D=If the colonies revolt, there will be civil war. Millions more will die.
 Param/Value/49C90A50=+3 XP for Mission Bonus. 50 civilians rescued.
+Param/Value/4A43A269=<s val="AllianceColumnHeader"><c val="F5D62B">Vote<n/> Kick</c></s>
 Param/Value/4A4CFC07=Say hello to my little friend.
 Param/Value/4A8E52F6=Press B to allocate talent points
 Param/Value/4AB0C16C=I repeat...Broken Arrow!
@@ -5064,6 +5092,7 @@ Param/Value/526129D0=Focus fire on Beastlings. They are highly lethal on impact.
 Param/Value/52E03D70=This is Field Marshal Lee. It's good that you're alive. We have orders fo-
 Param/Value/52EDF8C1=Use flamethrowers to kill Hulks
 Param/Value/52FFD027=It's charging up for a massive fire wave.
+Param/Value/5336737D=<c val="F5D62B">Merits</c><n/>How many players consider your behavior <c val="2CF5CD">outstanding</c>.
 Param/Value/536BBA19=Argh!
 Param/Value/537C6F26=We don't have much time. The other team's trapped inside the living quarters.
 Param/Value/5395DC74=<s val="BriefingHanText">   www.notdstarcraft.com<n/>   https://discord.gg/cDWn9g<n/>
@@ -5123,6 +5152,7 @@ Param/Value/5D3AC51A=<s val="GlueButton"><c val="F4D72B">Plenty of incoming. Sta
 Param/Value/5D490B11=You become badly injured when your HP is below 20%. Critical injuries can kill you instantly.
 Param/Value/5D6CA469=Maintain tight formation.
 Param/Value/5D91964B=<s val="InfoPaneHeroRank">(Reactor Core activation requires 2 authorized personnel..)</s>
+Param/Value/5DA73F7C=<s val="ABChoiceButtonText"><c val="FF4040">
 Param/Value/5DCE3C68=The truck is destroyed.
 Param/Value/5E300354=!
 Param/Value/5E47C419=The UGC Martial Court has ruled the incident as an accident, no penalty incurred.
@@ -5195,6 +5225,7 @@ Param/Value/69580F03=: <c val="F4D72B">
 Param/Value/699F1ACC=Reaching LZ..
 Param/Value/6A1B8E3B=There's the assembly. Starting up.
 Param/Value/6A4ECC86=<s val="InfoPaneUnitInfo">
+Param/Value/6A606D49=<c val="2CF5CD">
 Param/Value/6A64E79E=We can use it. What about HAL?
 Param/Value/6AB43B51=You survive better when you are with other Marines. This is because they will:<n/>- Cover you while you're reloading<n/>- Help attack Zombies that are too powerful against a single Marine<n/>- Help divert Zombies if needed
 Param/Value/6AB98424=Watch out for Agrons. We need to evade them and exit via the airlock gates.
@@ -5202,6 +5233,7 @@ Param/Value/6ADF0DB6=HAL, assembly of the final mutation is complete.
 Param/Value/6B390343=Stay close. Stay close..
 Param/Value/6B3EB3B6=<s val="GlueButton"><c val="F4D72B">My unit is ready to move out. The armory is North East of Apollo.</c>
 Param/Value/6B844545=%
+Param/Value/6B8A1F0E=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/6B9F59C0=Dr. Omar
 Param/Value/6C371B25=I've found an access point.
 Param/Value/6C5FF689=Destroy Perses
@@ -5209,6 +5241,7 @@ Param/Value/6C7D2389=
 Param/Value/6C897E06=I recommend looking for him at these areas.
 Param/Value/6CC62F53=<s val="GlueButton"><c val="F4D72B">There's something you should see.</c></s>
 Param/Value/6CDABA30=Artillery Dispersion: <c val="FFFF00">Normal</c>
+Param/Value/6D39072C= is a known <c val="FF4040">abusive</c> player. Caution advised.
 Param/Value/6D589165=Where is he?
 Param/Value/6D6D3BA3=Your team will maintain the integrity of mining operations to ensure undisrupted flow of energy to Earth.
 Param/Value/6D8042EE=Marines! Anyone in there?
@@ -5244,6 +5277,7 @@ Param/Value/72600180=Yes, it carries some heavy firepower.
 Param/Value/72864709=<s val="GlueButton">Charlie
 Param/Value/72B3A8D0= designated
 Param/Value/72C03E64=
+Param/Value/72FC3F0D=<img width="76" height="76" path="Assets\Textures\ui_glues_ladder_score_rating_up.dds"/>
 Param/Value/73057007=Your unit performed admirably. You will be celebrated as heroes of Apollo.
 Param/Value/7314D1E2=Poison gas will disorient you temporarily
 Param/Value/736406F9=We have the package. Life signs stable.
@@ -5319,12 +5353,14 @@ Param/Value/7ED7EB38=We've got bigger problems on our hands, mate.
 Param/Value/7F3B5C2C=We're bringing you out.
 Param/Value/7F7D63B3=Zeus and Leto must be killed simultaneously to put them down permanently
 Param/Value/7F9D1519=Chemical Leak
+Param/Value/7FABFB5D=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/7FD7EB19=Move out of Demeters' vision to avoid his stare!
 Param/Value/7FE24471=<s val="InfoPaneHeroRank">(Seismic disturbance detected in Sector 2...)
 Param/Value/7FE27F29=<s val="InfoPaneHeroRank">SELECTION: A - Destroy Apollo and cleanse the infestation</s>
 Param/Value/7FF99FC6=<s val="GlueButton">
 Param/Value/80A4B9DE=What attacked you may have got to the Mine as well. Get there quickly!
 Param/Value/80A649EA=Your team needs to secure landing facilities for additional forces to arrive.
+Param/Value/80B834F3=<s val="ABChoiceButtonText"><c val="FF4040">
 Param/Value/80F5FFAE=We need to prevent anything from getting out of Apollo. Get to the Devastators in the airlock and quarantine the place.
 Param/Value/80F76E70=Killing Infestors reduce enemy spawns
 Param/Value/81199D5B=
@@ -5333,6 +5369,7 @@ Param/Value/8194ED27=The Compliance Nexuses are interfering with the minds of th
 Param/Value/81A3546D=<s val="GlueButton"><c val="F4D72B">Hurry, let's pop those cocoons. Or somebody's gonna get a hurt real bad!</c>
 Param/Value/81F61D65=Hold steady. Nothing we can't deal with.
 Param/Value/81FAFE7F=Half our men are dead because of him. FIND Tanaka!
+Param/Value/820255C1=<c val="F5D62B">Vote to remove</c> <c val="FFFFFF">
 Param/Value/823C2E42=Chapter 2
 Param/Value/82721D05=Class Selection
 Param/Value/82DEF515=Talents Available: 
@@ -5346,6 +5383,7 @@ Param/Value/83EBF2B8=Survive the outbreak with Apollo Security Team
 Param/Value/840B3441=<s val="ChatBar"><c val="0080FF">  
 Param/Value/8423EF3A=Survive the attack on Apollo Starport
 Param/Value/843B3A52=Destroy Bio-Dome D
+Param/Value/84424F37=</c></s>
 Param/Value/845C5CB0=<s val="GlueButton">Farica Augustin
 Param/Value/8505DA80=The infestation has taken hold at the airlock and your squad has riled their desire for blood. High ground will help you face the large hordes effectively.
 Param/Value/8569CB3E= -- (
@@ -5445,6 +5483,7 @@ Param/Value/93F78E01=+2 XP for Mission Bonus. 30 civilians rescued.
 Param/Value/940C1170=Fresh supplies. Let's take everything we have space for.
 Param/Value/94308139=Good men died to bring her in alive. Make their sacrifices worth it.
 Param/Value/944A02AA=Survive the Black Ops attack and bring them down. They are a direct threat to UGC Military operations and in violation of Article 49. Lethal force authorized.
+Param/Value/944B0349=<c val="F5D62B">Merit</c> <c val="FFFFFF">
 Param/Value/9480FDAF= vote kicked by 
 Param/Value/949319EE=Communication's dead. We're on our own.
 Param/Value/94C0F9D3=<c val="FF3030">?!!!</c>
@@ -5506,6 +5545,7 @@ Param/Value/9BE1C351=There's a military base to the West. Maybe the locals know 
 Param/Value/9C2CC7BC=<s val="InfoPaneHeroRank">
 Param/Value/9C362C62=HAL
 Param/Value/9C64BA34=We don't know what else is out there. Upgrade your talents to fight more effectively.
+Param/Value/9D107816=<c val="F5D62B">Demerits</c><n/>How many players consider your behavior <c val="FF4040">abusive</c>.
 Param/Value/9D1AD2FF=Rescue Civilians in Apollo. Bring them to the Containment Facility
 Param/Value/9D226B1A=I'm...sorry...
 Param/Value/9D2C0E2F=Target neutralized.
@@ -5546,6 +5586,7 @@ Param/Value/A32067A4=<s val="GlueButton"><c val="F4D72B">Let me light your path.
 Param/Value/A37105E0=Find Dr. Tanaka
 Param/Value/A388A277=28 hours after outbreak
 Param/Value/A39FDECC=+3 XP for Performance Bonus
+Param/Value/A3ABC359=</c></s>
 Param/Value/A3EF6D27=Regroup with your team and use the minimap to guide you
 Param/Value/A450A312=[<c val="FF0000">Priority Transmission</c>]<n/>General Koller: <n/>Perses is an airbourne threat to our space fleet and will ground our flight operations. Take it down ASAP, Marines!
 Param/Value/A49EACA3=<s val="BriefingHanText">Apollo Starport</s>
@@ -5600,6 +5641,7 @@ Param/Value/ACA7AE15=Let's sweep the rest of the airlock once we're ready.
 Param/Value/ACB8A4E6=Bring it down for good.
 Param/Value/ACBFAED5=This is wrong. This is a date that will live in infamy.
 Param/Value/ACC6387D=I wonder how many more of those things are out there?
+Param/Value/ACF8242C=</c>
 Param/Value/AD36FA0F=Requirements not met
 Param/Value/AD49B184=<s val="GlueButton">
 Param/Value/AD6DE3C6=Our lines have been compromised! Broken arrow.
@@ -5724,6 +5766,7 @@ Param/Value/C2F1C418=You heard the Lieutenant. Move.
 Param/Value/C31F7BC3=.</s></c>
 Param/Value/C32F4DC4=Total Shells
 Param/Value/C35F7AF8=My lab...is off limits!
+Param/Value/C376BFE2=</c></s>
 Param/Value/C383CB31=Spread out, keep a distance, keep constant pressure on it.
 Param/Value/C38A69BF=Destroy Compliance Nexuses (0/4)
 Param/Value/C3B479AA=Good to see you've all made it through.
@@ -5775,6 +5818,7 @@ Param/Value/CB61B932=<s val="GlueButton">
 Param/Value/CB734693=My research is almost complete.
 Param/Value/CBBE284F=Next Promotion:
 Param/Value/CBC10B72=It's at the military base. Let's go.
+Param/Value/CBC2EE47=<c val="F5D62B">Vote Kick</c><n/>How many players have voted to have you removed from the game.
 Param/Value/CC0DFB19=<s val="GlueButtonSmall">Marksman: 
 Param/Value/CC209D9A=)
 Param/Value/CC451A99=<s val="BriefingHanText">(Terminal: Retrieving Sec Tower locations...)</s>
@@ -5782,7 +5826,9 @@ Param/Value/CC518A95=<s val="GlueButton">Sec Team B: <c val="F4D72B">Defend our 
 Param/Value/CC5FA379=Survive the attack on Apollo Starport
 Param/Value/CC834827=I'm Assistant Science Officer Tanaka.
 Param/Value/CC852C44=Dr. Omar
+Param/Value/CC85AB51= has lost 30 Rating & Karma and 100 XP!
 Param/Value/CCAD1762=Stay away from the bodies.
+Param/Value/CD457CD2=</c></s>
 Param/Value/CD5B26BE=Retrieve Weapons & Ammo from Armory
 Param/Value/CD783517=Class Selection - Recruit
 Param/Value/CDB4532A=<s val="GlueButton"><c val="F4D72B">Motion sensors lit up like a Christmas tree, brace for a fast attack!</c></s>
@@ -5845,6 +5891,7 @@ Param/Value/D60C7F98=You're blinded. Use your radar to find teammates.
 Param/Value/D63C42F0=Shutdown HAL from the mainframe
 Param/Value/D6AABC9E=All the prisoners here are dead. Their life support terminated.
 Param/Value/D6AF6D94=<s val="GlueButton"><c val="F4D72B">Follow us.</c></s>
+Param/Value/D6D0B46A=<s val="ABChoiceButtonText"><c val="FF4040">
 Param/Value/D705BA5D=Monitor your squad's status in the Team UI at right
 Param/Value/D79ABDAA=-3 Rating: Communications Tower Mission Failed
 Param/Value/D7D37A75=+
@@ -5854,6 +5901,7 @@ Param/Value/D85DE6FB=<s val="InfoPaneUnitInfo">Zombie Wave:
 Param/Value/D8BB5BCF=Tissue Sample Collection
 Param/Value/D8E2D657=How could HAL be alive, after shutting down its mainframe?
 Param/Value/D8F65BA0=Doctor
+Param/Value/D935F3ED=</c></s>
 Param/Value/D9413C5B=<s val="CinematicLabel">  Dr. Bergmann: <c val="F4D72B">You...finish it...</c></s>
 Param/Value/D95CDF30=/12)</c>
 Param/Value/D96BF6CE=Please reconsider your actions.
@@ -5990,6 +6038,7 @@ Param/Value/EACCCFD6=+3 XP for Performance Bonus
 Param/Value/EAE4AD6B=Use AOE abilities to conserve ammo
 Param/Value/EB366E98=<s val="InfoPaneHeroRank">High Spawn</s><n/>- Adds 2 Spawn Factor & 20% HP Scaling<n/>- Nightmare Spawn Factor set to 9<n/>- Overrides the lobby setting
 Param/Value/EBEE9058=<c val="FF3030">@_@</c>
+Param/Value/EBF29E00=</c> <c val="F5D62B">for outstanding behavior.</c><n/>Limit merits to 10 players.
 Param/Value/EC3FECA5=(You notice a Compliance Implant at Tanaka's neck...)
 Param/Value/EC412052=A Blueberry Production
 Param/Value/EC43E9CC=</s>
@@ -6060,6 +6109,7 @@ Param/Value/F681A3C4=<s val="GlueButton"><c val="F4D72B">Humans, I am Ekvolbolli
 Param/Value/F6BC82F1=What's happening to me?
 Param/Value/F6D31C38=<s val="InfoPaneHeroRank">
 Param/Value/F70ACB5B=We can take either one of these entrances into the lab.
+Param/Value/F726E663=<c val="F5D62B">Demerit</c> <c val="FFFFFF">
 Param/Value/F7623B46=Attack
 Param/Value/F79FB8D1=</s>
 Param/Value/F7A04BFC=+3 XP for Mission Bonus. 50 civilians rescued.
