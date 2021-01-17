@@ -22315,11 +22315,11 @@ bool gt_ApplyReductionOnPlayerUnitCreation_Func (bool testConds, bool runActions
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((UnitGetOwner(EventUnitCreatedUnit()) < 9))) {
+        if (!((UnitGetOwner(EventUnitCreatedUnit()) <= 8))) {
             return false;
         }
 
-        if (!((UnitGetOwner(EventUnitCreatedUnit()) > 0))) {
+        if (!((UnitGetOwner(EventUnitCreatedUnit()) >= 1))) {
             return false;
         }
     }
@@ -22346,13 +22346,6 @@ void gt_ApplyReductionOnPlayerUnitCreation_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_ApplyReductionOnUnitArmorChange_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!(UnitBehaviorHasFlag(EventUnitBehavior(), c_unitBehaviorFlagUser12))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -22370,10 +22363,10 @@ bool gt_ApplyReductionOnUnitArmorChange_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_ApplyReductionOnUnitArmorChange_Init () {
     gt_ApplyReductionOnUnitArmorChange = TriggerCreate("gt_ApplyReductionOnUnitArmorChange_Func");
-    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(gt_ApplyReductionOnUnitArmorChange, null, null, c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeDecrease);
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -1,5 +1,18 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-1-14
+[LeoTheCat]
+- Disabled the option to add AI players since recruit mode can already be forced during mission select.
+- Adjusted Assault's Defensive Plating from reducing 20%/40%/60% max ailment stacks to reducing 30%/40%/50% max ailment stacks.
+- Engineer - Field Probe abilities are now converted to 2 different weapon modes that can be swapped. 
+- Engineer - Energy Battery now grants a fixed 8 radius aura and no longer adds energy capacity. It instead improves Repair with each level.
+- Engineer - Repair can now overcharges the target unit's shield, increasing its max capacity, auto-cast allowed.
+- Engineer - Disruption Tower overall dps improved. It now also provides a -5 ranged damage taken aura to allies, can stack twice.
+- Engineer - Field Nexus ability icons updated, move speed improved, and weapon removed to avoid uncessary aggro.
+- Engineer - Field Nexus Static Shield now also grants 1 shield armor and can affect all allies with shields instead of just field probes.
+- Engineer - Compliance Matrix mind control attack speed penalty lowered moderately.
+- Engineer's Disruption Tower and Plasma Discharge energy costs have been moderately lowered.
+
 2021-1-11
 [LeoTheCat]
 - Reworked Chem Expert's Inbound Sickness again into something more team-oriented and practical.
@@ -47,7 +60,6 @@
 - Fixed Rifleman animation bug during repulse.
 - Perception stat now correctly gives 1% crit chance per point (was 0.5%).
 - One Shot One Kill base damage can now crit (previously One Shot One Kill cannot crit despite visual).
-- Critical hits doing 0 damage will no longer have the red number pop-up.
 - Fixed a bug causing the actual crit chance to be about twice as much as the stated value.
 - Crit skills from Rifleman, Assault, and Marksman have been buffed to compensate for the above bugfix.
 - Fixed a design flaw causing Flamethrower to land more crits than other weapons.
