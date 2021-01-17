@@ -4707,9 +4707,6 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
         else if ((RandomInt(0, 1) == 1)) {
             libNtve_gf_AttachModelToUnit(gv_marineHero[lp_player], "FireMedium", "Ref_Weapon");
         }
-        else if ((RandomInt(0, 2) == 1)) {
-            libNtve_gf_AttachModelToUnit(gv_marineHero[lp_player], "ArtifactPiece1", "Ref_Overhead");
-        }
     }
     if ((gv_playerXP[lp_playerIndex] <= 2000)) {
         UIDisplayMessage(PlayerGroupSingle(lp_player), c_messageAreaDirective, StringExternal("Param/Value/1FDEF267"));
@@ -5889,10 +5886,10 @@ void gf_LoadDemerits (int lp_viewedPlayer) {
     while (true) {
         autoD715CA63_var = PlayerGroupNextPlayer(autoD715CA63_g, autoD715CA63_var);
         if (autoD715CA63_var < 0) { break; }
-        if (gf_DemeritsHandleExists(lv_handle, "Demerits", gv_demeritsBank[autoD715CA63_var]) && (PlayerHandle(autoD715CA63_var) != lv_handle)) {
+        if (gf_DemeritsHandleExists(lv_handle, "Demerits", gv_demeritsBank[autoD715CA63_var]) && !(gf_DemeritsHandleExists(lv_handle, "Merits", gv_demeritsBank[autoD715CA63_var])) && (PlayerHandle(autoD715CA63_var) != lv_handle)) {
             gv_totalDemerits[lp_viewedPlayer] += 1;
         }
-        if (gf_DemeritsHandleExists(lv_handle, "Merits", gv_demeritsBank[autoD715CA63_var]) && (PlayerHandle(autoD715CA63_var) != lv_handle)) {
+        if (gf_DemeritsHandleExists(lv_handle, "Merits", gv_demeritsBank[autoD715CA63_var]) && !(gf_DemeritsHandleExists(lv_handle, "Demerits", gv_demeritsBank[autoD715CA63_var])) && (PlayerHandle(autoD715CA63_var) != lv_handle)) {
             gv_totalMerits[lp_viewedPlayer] += 1;
             if ((gv_totalMerits[autoD715CA63_var] >= gv_maxMerits)) {
                 gv_maxMerits = gv_totalMerits[autoD715CA63_var];
@@ -5908,24 +5905,14 @@ void gf_DemeritsApplyVoteKick (int lp_viewingPlayer, int lp_viewedPlayer) {
     unit lv_bob;
 
     // Automatic Variable Declarations
-    playergroup autoC67777F3_g;
-    int autoC67777F3_var;
-
     // Variable Initialization
 
     // Implementation
-    if ((gv_totalVoteKicks[lp_viewedPlayer] < 3) && DialogControlIsEnabled(gv_demeritDialogVoteKickbtn[lp_viewedPlayer], lp_viewingPlayer)) {
+    if ((gv_totalVoteKicks[lp_viewedPlayer] < 3) && (gv_voteKick[lp_viewingPlayer].lv_nomination == false) && ((gv_demeritDialog[lp_viewedPlayer] == c_invalidDialogId) || DialogControlIsEnabled(gv_demeritDialogVoteKickbtn[lp_viewedPlayer], lp_viewingPlayer))) {
+        gf_DemeritDialogCreateShow(lp_viewingPlayer, lp_viewedPlayer);
         DialogControlSetEnabled(gv_demeritDialogVoteKickbtn[lp_viewedPlayer], PlayerGroupSingle(lp_viewingPlayer), false);
         gv_totalVoteKicks[lp_viewedPlayer] += 1;
-        autoC67777F3_g = gv_marineSquad;
-        autoC67777F3_var = -1;
-        while (true) {
-            autoC67777F3_var = PlayerGroupNextPlayer(autoC67777F3_g, autoC67777F3_var);
-            if (autoC67777F3_var < 0) { break; }
-            if ((PlayerStatus(autoC67777F3_var) != c_playerStatusUnused)) {
-                gf_DemeritDialogCreateShow(autoC67777F3_var, lp_viewedPlayer);
-            }
-        }
+        gv_voteKick[lp_viewingPlayer].lv_nomination = true;
         libNtve_gf_SetDialogItemText(gv_demeritDialogVotekicks[lp_viewedPlayer], (StringExternal("Param/Value/07DA7452") + IntToText(gv_totalVoteKicks[lp_viewedPlayer]) + StringExternal("Param/Value/10739E12")), PlayerGroupAll());
         DialogControlFadeTransparency(gv_demeritDialogVoteKicklbl[lp_viewedPlayer], PlayerGroupAll(), 0.0, 0.0);
         if ((gv_totalVoteKicks[lp_viewedPlayer] == 3)) {
@@ -5951,10 +5938,6 @@ void gf_DemeritsApplyVoteKick (int lp_viewingPlayer, int lp_viewedPlayer) {
         else {
             SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
             DialogControlFadeTransparency(gv_demeritDialogVoteKicklbl[lp_viewedPlayer], PlayerGroupAll(), 1.0, 50.0);
-            if ((PlayerStatus(lp_viewedPlayer) != c_playerStatusActive)) {
-                Wait(30.0, c_timeGame);
-                DialogSetVisible(gv_demeritDialog[lp_viewedPlayer], PlayerGroupAll(), false);
-            }
         }
     }
 }
@@ -5965,9 +5948,6 @@ void gf_DemeritsApplyDemerit (int lp_viewingPlayer, int lp_viewedPlayer) {
     bank lv_bank;
 
     // Automatic Variable Declarations
-    playergroup auto33772ABC_g;
-    int auto33772ABC_var;
-
     // Variable Initialization
     lv_handle = "";
     lv_bank = gv_demeritsBank[lp_viewingPlayer];
@@ -5989,9 +5969,6 @@ void gf_DemeritsApplyDemerit (int lp_viewingPlayer, int lp_viewedPlayer) {
         else {
             gf_DemeritsAddHandle(true, lp_viewedPlayer, lv_handle, "Demerits", lv_bank);
             gv_totalDemerits[lp_viewedPlayer] += 1;
-            if ((gv_totalDemerits[lp_viewedPlayer] >= gv_maxDemerits)) {
-                gf_HideAllDialogsForPlayer(lp_viewedPlayer);
-            }
             libNtve_gf_SetDialogItemText(gv_demeritDialogDemerits[lp_viewedPlayer], (StringExternal("Param/Value/80B834F3") + IntToText(gv_totalDemerits[lp_viewedPlayer]) + StringExternal("Param/Value/1C3B42F0")), PlayerGroupAll());
             if (gf_DemeritsHandleExists(lv_handle, "Merits", lv_bank)) {
                 gf_DemeritsAddHandle(false, lp_viewedPlayer, lv_handle, "Merits", lv_bank);
@@ -6003,15 +5980,6 @@ void gf_DemeritsApplyDemerit (int lp_viewingPlayer, int lp_viewedPlayer) {
                     libNtve_gf_SetDialogItemText(gv_demeritDialogMerits[lp_viewedPlayer], (StringExternal("Param/Value/06563FD7") + IntToText(gv_totalMerits[lp_viewedPlayer]) + StringExternal("Param/Value/D935F3ED")), PlayerGroupAll());
                 }
                 DialogControlFadeTransparency(gv_demeritDialogMeritlbl[lp_viewedPlayer], PlayerGroupSingle(lp_viewingPlayer), 0.0, 50.0);
-            }
-            auto33772ABC_g = gv_marineSquad;
-            auto33772ABC_var = -1;
-            while (true) {
-                auto33772ABC_var = PlayerGroupNextPlayer(auto33772ABC_g, auto33772ABC_var);
-                if (auto33772ABC_var < 0) { break; }
-                if ((PlayerStatus(auto33772ABC_var) != c_playerStatusUnused)) {
-                    gf_DemeritDialogCreateShow(auto33772ABC_var, lp_viewedPlayer);
-                }
             }
             DialogControlFadeTransparency(gv_demeritDialogDemeritlbl[lp_viewedPlayer], PlayerGroupSingle(lp_viewingPlayer), 0.0, 0.0);
             if (gv_victimOfTK[lp_viewingPlayer] && gv_playerIsBad[lp_viewedPlayer]) {
@@ -6731,6 +6699,9 @@ void gf_HideAllDialogsForPlayer (int lp_player) {
         if ((gv_MissionLog[lv_index] != c_invalidDialogId)) {
             DialogSetVisible(gv_MissionLog[lv_index], PlayerGroupSingle(lp_player), false);
         }
+    }
+    if ((gv_demeritDialogOpen[lp_player] != 0) && (gv_demeritDialog[gv_demeritDialogOpen[lp_player]] != c_invalidDialogId)) {
+        DialogSetVisible(gv_demeritDialog[gv_demeritDialogOpen[lp_player]], PlayerGroupSingle(lp_player), false);
     }
 }
 
@@ -18229,7 +18200,6 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
     else {
     }
     if ((((lv_voteKickTarget >= 1) && (lv_voteKickTarget <= 8)) == true) && (lv_votingPlayer != lv_voteKickTarget) && (gv_voteKick[lv_voteKickTarget].lv_kicked == false)) {
-        gf_DemeritDialogCreateShow(lv_votingPlayer, lv_voteKickTarget);
         gf_DemeritsApplyVoteKick(lv_votingPlayer, lv_voteKickTarget);
         return true;
         gv_voteKick[lv_votingPlayer].lv_nomination = true;
@@ -46414,6 +46384,9 @@ bool gt_TalentTreeToggle_Func (bool testConds, bool runActions) {
     }
     else {
         DialogSetVisible(gv_talentTree[lv_ownerofHero], PlayerGroupSingle(lv_selectingPlayer), false);
+        if ((gv_demeritDialogOpen[lv_selectingPlayer] > 0) && (gv_demeritDialog[gv_demeritDialogOpen[lv_selectingPlayer]] != c_invalidDialogId)) {
+            DialogSetVisible(gv_demeritDialog[gv_demeritDialogOpen[lv_selectingPlayer]], PlayerGroupSingle(lv_selectingPlayer), false);
+        }
     }
     return true;
 }
