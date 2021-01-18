@@ -403,6 +403,12 @@ Attribute006/Value002/Desc=+1 SF and 10% HP Scaling
 Attribute006/Value002/Name=Elevated
 Attribute006/Value003/Desc=+2 SF, SF set to 9 for Nightmare, + 20% HP Scaling
 Attribute006/Value003/Name=High Spawn
+Attribute007/Desc=Enforces merits and demerits. It is recommended to disable this option in a private lobby and keep enabled in a public lobby. Use demerits to help protect the team from abusive players. Abusive players will lose access to advanced selections and items.
+Attribute007/Name=Merits
+Attribute007/Value001/Desc=Merits and demerits will be enforced.
+Attribute007/Value001/Name=Enforced
+Attribute007/Value002/Desc=Abusive players will have full access as any other player.
+Attribute007/Value002/Name=Disabled
 Barret/MMRifle Equipped=M45 Marksman Rifle or Barret M112 Equipped
 Behavior/Name/AMRounds=AM Rounds
 Behavior/Name/APAmmo=<c val="80FF80">AP Ammo</c>
@@ -2677,13 +2683,14 @@ DocInfo/PatchNote642=- Engineer's Disruption Tower and Plasma Discharge energy c
 DocInfo/PatchNote643=[ThunderRazor]
 DocInfo/PatchNote644=-Added a merit system that lets players rate each other with merit and demerit points.
 DocInfo/PatchNote645=- Merits/demerits shall only be rewarded based on behavior and not skill (it is a peer to peer rating system).
-DocInfo/PatchNote646=- Every player can nomimate up to 10 merits and 10 demerits. (The most recent 10 will be kept and older ones discarded.)
+DocInfo/PatchNote646=- Every player can nomimate up to 10 merits and 5 demerits. (The most recent 10 or 5 will be kept and older ones discarded.)
 DocInfo/PatchNote647=- The player with the most merits (3 or more) will be awarded +5 karma at victory in the next game, if kept clean.
-DocInfo/PatchNote648=- Applying karmabite automatically demerits the griefing player, and demeriting a griefer automatically applies karmabite.
-DocInfo/PatchNote649=- 3 or more demerits locks out the griefer from being able to use shop and from selecting advanced classes, except in Survival.
-DocInfo/PatchNote650=- Vote kicking is integrated into the merit system.
-DocInfo/PatchNote651=- Original text commands (-vk, -karmabite) still work as intended, but you have the option of clicking UI buttons.
-DocInfo/PatchNote652=- Click on player portrait to show the demerits dialog.
+DocInfo/PatchNote648=- Merits can be used to vouch for demerited players (2:1 ratio).
+DocInfo/PatchNote649=- Applying karmabite automatically demerits the griefing player, and demeriting a griefer automatically applies karmabite.
+DocInfo/PatchNote650=- 3 or more demerits locks out the griefer from being able to use shop and from selecting advanced classes except in Survival.
+DocInfo/PatchNote651=- Click on player portrait to show the demerits dialog.
+DocInfo/PatchNote652=- Clck any UI button to hide the dialog (most UI buttons will work).
+DocInfo/PatchNote653=- Added option to permanently hide the dialog (check box in top right of screen).
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -5650,6 +5657,7 @@ Param/Value/ADA92E45=has been decimated by <c val="FF0000">
 Param/Value/ADEF0862=+1 XP for Performance Bonus
 Param/Value/AE9A22A2=<s val="GlueButton"><c val="FF8080">Friendly Fire!</c></s>
 Param/Value/AEC7D830=All options considered. Neutralization logical choice.
+Param/Value/AEEDB270=Click to toggle visibility of the demerits dialog.
 Param/Value/AF9FAF8F=Everyone alright? Let's patch those wounds.
 Param/Value/AFF5BDD4=<s val="BriefingHanText">(Strange noises emanate from the Mine Shaft...)</s>
 Param/Value/B02BD24D=<s val="BriefingHanText">Apollo Power Level: 
