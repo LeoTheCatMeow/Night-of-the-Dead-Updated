@@ -2303,8 +2303,8 @@
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="HurlBoulders" Type="AbilCmd" AbilCmd="HurlBoulders,Execute" Row="2" Column="1"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.625"/>
+        <InnerRadius value="0.625"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -5083,8 +5083,8 @@
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowMinion,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.4375"/>
+        <InnerRadius value="0.4375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -5745,8 +5745,8 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.625"/>
+        <InnerRadius value="0.625"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="6"/>
@@ -6187,7 +6187,7 @@
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="NeuralParasite,Cancel" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowDemeter,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <InnerRadius value="0.375"/>
+        <InnerRadius value="0.6875"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -6212,6 +6212,7 @@
         <PushPriority value="11"/>
         <Mover value="Stalker"/>
         <Food value="-10"/>
+        <Radius value="0.6875"/>
     </CUnit>
     <CUnit id="Beastling" parent="Baneling">
         <Name value="Unit/Name/Beastling"/>
@@ -6243,6 +6244,8 @@
         <TurningRate value="299.8828"/>
         <BehaviorArray Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
+        <Radius value="0.4375"/>
+        <InnerRadius value="0.4375"/>
     </CUnit>
     <CUnit id="Gunship">
         <Race value="Terr"/>
@@ -6839,7 +6842,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
         </CardLayouts>
-        <Radius value="1"/>
+        <Radius value="1.25"/>
         <SeparationRadius value="1"/>
         <ScoreMake value="100"/>
         <ScoreKill value="100"/>
@@ -6913,7 +6916,7 @@
             </LayoutButtons>
             <LayoutButtons Face="Satchel" Type="AbilCmd" AbilCmd="SatchelDeployment,Execute" Row="2" Column="1"/>
         </CardLayouts>
-        <Radius value="1.5"/>
+        <Radius value="1.6875"/>
         <SeparationRadius value="0.35"/>
         <SubgroupPriority value="8"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
@@ -9087,9 +9090,9 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
         </CardLayouts>
-        <Radius value="0.4375"/>
+        <Radius value="0.5625"/>
         <SeparationRadius value="0.45"/>
-        <InnerRadius value="0.4375"/>
+        <InnerRadius value="0.5625"/>
         <CargoSize value="4"/>
         <ScoreMake value="400"/>
         <ScoreKill value="800"/>
@@ -9173,8 +9176,8 @@
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="NeuralParasite,Cancel" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowInfestor,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.4375"/>
+        <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -9361,8 +9364,8 @@
         <CardLayouts index="0">
             <LayoutButtons index="5" AbilCmd="BurrowInfestorTerranDown,Execute" Row="1"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.625"/>
+        <InnerRadius value="0.625"/>
         <MinimapRadius value="3"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <TacticalAI value="Deimos"/>
@@ -9931,8 +9934,8 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="UnburrowHulk,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.4375"/>
+        <InnerRadius value="0.4375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -10067,8 +10070,8 @@
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowHulk,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"/>
         </CardLayouts>
-        <Radius value="0.375"/>
-        <InnerRadius value="0.375"/>
+        <Radius value="0.4375"/>
+        <InnerRadius value="0.4375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -10987,7 +10990,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
         </CardLayouts>
         <Radius value="1.6875"/>
-        <InnerRadius value="0.6875"/>
+        <InnerRadius value="1.6875"/>
         <MinimapRadius value="7"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <AIEvalFactor value="0.55"/>
@@ -11120,7 +11123,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
         </CardLayouts>
-        <InnerRadius value="0.6875"/>
+        <InnerRadius value="0.75"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -11147,7 +11150,7 @@
         <VisionHeight value="2"/>
         <MinimapRadius value="3"/>
         <Mass value="1"/>
-        <Radius value="0.6875"/>
+        <Radius value="0.75"/>
         <SeparationRadius value="0.7"/>
         <Mover value="Stalker"/>
         <BehaviorArray Link="Detector5"/>
@@ -11206,7 +11209,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRoachDown,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <InnerRadius value="0.5"/>
+        <InnerRadius value="0.625"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -11225,6 +11228,7 @@
             <ChanceArray index="Idle" value="33"/>
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
+        <Radius value="0.625"/>
     </CUnit>
     <CUnit id="SecurityGateDiagonalBLUR">
         <FlagArray index="Unselectable" value="1"/>
@@ -11714,6 +11718,12 @@
         <TurningRate value="174.9023"/>
         <Mover value="Stalker"/>
         <WeaponArray index="0" Link="GuardianBlades"/>
+        <LifeArmorFormula>
+            <NegativeArmorMultiplier value="0"/>
+            <NegativeDamageBase value="0.98"/>
+            <PositiveArmorMultiplier value="0"/>
+            <PositiveDamageRatio value="0.02"/>
+        </LifeArmorFormula>
     </CUnit>
     <CUnit id="Zergling">
         <Food value="0"/>

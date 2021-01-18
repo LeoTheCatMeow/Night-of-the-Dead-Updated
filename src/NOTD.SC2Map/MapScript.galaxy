@@ -880,8 +880,6 @@ bool gv_infestorAggroMode;
 int gv_outbreakCounter;
 int[7] gv_mutationTrend;
 fixed gv_mutationChance;
-int[101] gv_positiveArmorCache;
-int[101] gv_negativeArmorCache;
 int gv_legionOfMeritCivsRescued;
 bool gv_distinguishedServiceMedalFailed;
 bool gv_navyCrossFailed;
@@ -1945,7 +1943,6 @@ void gf_SmartSpawnWithBehaviorNOTD (string lp_spawningUnit, fixed lp_spawnRange,
 void gf_WaveSpawnAroundMarines (string lp_spawningUnit, fixed lp_spawnRange, int lp_spawnAmount);
 void gf_WaveSpawnAtRegion (string lp_spawningUnit, region lp_spawnRegion, int lp_spawnAmount);
 void gf_ClearZombieWave ();
-void gf_CalculateReduction (unit lp_unit);
 void gf_ZombieAIWorldEvents ();
 void gf_GameState ();
 void gf_BlackMaskApplication ();
@@ -2245,9 +2242,6 @@ trigger gt_OutbreakSpawn;
 trigger gt_EliteMutation;
 trigger gt_EliteMutationBoss;
 trigger gt_EliteMutationChanceRotation;
-trigger gt_DamageReductionSystemInitialize;
-trigger gt_ApplyReductionOnPlayerUnitCreation;
-trigger gt_ApplyReductionOnUnitArmorChange;
 trigger gt_Barrels;
 trigger gt_BarrelKills;
 trigger gt_GateEnterAirlockMainGateOuter;
@@ -8360,29 +8354,6 @@ bool auto_gf_ClearZombieWave_TriggerFunc (bool testConds, bool runActions) {
 
     }
     return true;
-}
-
-void gf_CalculateReduction (unit lp_unit) {
-    // Variable Declarations
-    int lv_unitArmor;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-
-    // Implementation
-    lv_unitArmor = MaxI(UnitGetPropertyInt(lp_unit, c_unitPropLifeArmor, c_unitPropCurrent), UnitGetPropertyInt(lp_unit, c_unitPropShieldArmor, c_unitPropCurrent));
-    if ((lv_unitArmor > 0)) {
-        UnitBehaviorRemove(lp_unit, "DamageReduction2", c_unitBehaviorCountAll);
-        libNtve_gf_SetBehaviorCount(lp_unit, "DamageReduction", lp_unit, gv_positiveArmorCache[MinI(lv_unitArmor, 100)]);
-    }
-    else if ((lv_unitArmor < 0)) {
-        UnitBehaviorRemove(lp_unit, "DamageReduction", c_unitBehaviorCountAll);
-        libNtve_gf_SetBehaviorCount(lp_unit, "DamageReduction2", lp_unit, gv_negativeArmorCache[MinI(-lv_unitArmor, 100)]);
-    }
-    else if ((lv_unitArmor == 0)) {
-        UnitBehaviorRemove(lp_unit, "DamageReduction", c_unitBehaviorCountAll);
-        UnitBehaviorRemove(lp_unit, "DamageReduction2", c_unitBehaviorCountAll);
-    }
 }
 
 trigger auto_gf_ZombieAIWorldEvents_Trigger = null;
@@ -19708,10 +19679,6 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
         if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
             return false;
         }
-
-        if (!(UnitBehaviorHasFlag(lv_behavior, c_unitBehaviorFlagUser1))) {
-            return false;
-        }
     }
 
     // Actions
@@ -19740,7 +19707,7 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnActivateBehavior_Init () {
     gt_OnActivateBehavior = TriggerCreate("gt_OnActivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChange(gt_OnActivateBehavior, null, null, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -19769,10 +19736,6 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
         }
 
         if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
-            return false;
-        }
-
-        if (!(UnitBehaviorHasFlag(EventUnitBehavior(), c_unitBehaviorFlagUser1))) {
             return false;
         }
     }
@@ -19813,7 +19776,7 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnDeactivateBehavior_Init () {
     gt_OnDeactivateBehavior = TriggerCreate("gt_OnDeactivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChange(gt_OnDeactivateBehavior, null, null, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -19865,8 +19828,8 @@ bool gt_OnBehaviorUpdate_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnBehaviorUpdate_Init () {
     gt_OnBehaviorUpdate = TriggerCreate("gt_OnBehaviorUpdate_Func");
-    TriggerAddEventUnitBehaviorChange(gt_OnBehaviorUpdate, null, null, c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(gt_OnBehaviorUpdate, null, null, c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnBehaviorUpdate, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnBehaviorUpdate, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeDecrease);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -22915,104 +22878,6 @@ void gt_EliteMutationChanceRotation_Init () {
     gt_EliteMutationChanceRotation = TriggerCreate("gt_EliteMutationChanceRotation_Func");
     TriggerEnable(gt_EliteMutationChanceRotation, false);
     TriggerAddEventTimePeriodic(gt_EliteMutationChanceRotation, 300.0, c_timeGame);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Damage Reduction System Initialize
-//--------------------------------------------------------------------------------------------------
-bool gt_DamageReductionSystemInitialize_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    const int auto53E2E754_ae = 100;
-    int auto53E2E754_var;
-    unitgroup auto5FD03FD3_g;
-    int auto5FD03FD3_u;
-    unit auto5FD03FD3_var;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto53E2E754_var = 1;
-    for ( ; auto53E2E754_var <= auto53E2E754_ae; auto53E2E754_var += 1 ) {
-        gv_positiveArmorCache[auto53E2E754_var] = RoundI(((auto53E2E754_var / (auto53E2E754_var + 100.0)) * 100.0));
-        gv_negativeArmorCache[auto53E2E754_var] = RoundI(((Pow(1.01, IntToFixed(auto53E2E754_var)) - 1.0) * 100.0));
-    }
-    auto5FD03FD3_g = UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    auto5FD03FD3_u = UnitGroupCount(auto5FD03FD3_g, c_unitCountAll);
-    for (;; auto5FD03FD3_u -= 1) {
-        auto5FD03FD3_var = UnitGroupUnitFromEnd(auto5FD03FD3_g, auto5FD03FD3_u);
-        if (auto5FD03FD3_var == null) { break; }
-        gf_CalculateReduction(auto5FD03FD3_var);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DamageReductionSystemInitialize_Init () {
-    gt_DamageReductionSystemInitialize = TriggerCreate("gt_DamageReductionSystemInitialize_Func");
-    TriggerAddEventMapInit(gt_DamageReductionSystemInitialize);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Apply Reduction On Player Unit Creation
-//--------------------------------------------------------------------------------------------------
-bool gt_ApplyReductionOnPlayerUnitCreation_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((UnitGetOwner(EventUnitCreatedUnit()) <= 8))) {
-            return false;
-        }
-
-        if (!((UnitGetOwner(EventUnitCreatedUnit()) >= 1))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((gv_realismActivated == false) && (UnitGetPropertyInt(EventUnitCreatedUnit(), c_unitPropLifeArmor, c_unitPropCurrent) != 0)) {
-        gf_CalculateReduction(EventUnitCreatedUnit());
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ApplyReductionOnPlayerUnitCreation_Init () {
-    gt_ApplyReductionOnPlayerUnitCreation = TriggerCreate("gt_ApplyReductionOnPlayerUnitCreation_Func");
-    TriggerAddEventUnitCreated(gt_ApplyReductionOnPlayerUnitCreation, null, null, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Apply Reduction On Unit Armor Change
-//--------------------------------------------------------------------------------------------------
-bool gt_ApplyReductionOnUnitArmorChange_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if (UnitGroupHasUnit(gv_marines, EventUnit())) {
-        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(EventUnit()), "ShieldArmorLevel", UnitGetOwner(EventUnit()), FixedToString(MaxI((UnitGetPropertyInt(EventUnit(), c_unitPropShieldArmor, c_unitPropCurrent) - UnitGetPropertyInt(EventUnit(), c_unitPropShieldArmor, c_unitPropNormal)), 0), 0));
-    }
-    if ((gv_realismActivated == false)) {
-        gf_CalculateReduction(EventUnit());
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ApplyReductionOnUnitArmorChange_Init () {
-    gt_ApplyReductionOnUnitArmorChange = TriggerCreate("gt_ApplyReductionOnUnitArmorChange_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_ApplyReductionOnUnitArmorChange, null, c_unitBehaviorFlagUser12, c_unitBehaviorChangeDecrease);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -46999,9 +46864,6 @@ void InitTriggers () {
     gt_EliteMutation_Init();
     gt_EliteMutationBoss_Init();
     gt_EliteMutationChanceRotation_Init();
-    gt_DamageReductionSystemInitialize_Init();
-    gt_ApplyReductionOnPlayerUnitCreation_Init();
-    gt_ApplyReductionOnUnitArmorChange_Init();
     gt_Barrels_Init();
     gt_BarrelKills_Init();
     gt_GateEnterAirlockMainGateOuter_Init();

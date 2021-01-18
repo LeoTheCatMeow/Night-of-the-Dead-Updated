@@ -228,6 +228,17 @@
             <DamageTakenUnscaled index="Ranged" value="-5"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="EnergyBattery2">
+        <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.01"/>
+        <Modification>
+            <VitalMaxIncreaseAffectsCurrentArray index="Energy" value="0"/>
+            <VitalMaxArray index="Energy" value="20"/>
+            <VitalRegenArray index="Energy" value="0.3515"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="EnergyCapacitorAuraLevel1">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -463,35 +474,6 @@
         </DamageResponse>
         <Period value="4"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="DamageReduction">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <BuffFlags index="Countdown" value="0"/>
-        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
-        <MaxStackCount value="100"/>
-        <Modification>
-            <DamageTakenFraction index="Melee" value="-0.01"/>
-            <DamageTakenFraction index="Ranged" value="-0.01"/>
-            <DamageTakenFraction index="Splash" value="-0.01"/>
-        </Modification>
-        <DisableValidatorArray value="IsNotRealism"/>
-        <RemoveValidatorArray value="IsNotRealism"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="DamageReduction2">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <BuffFlags index="Countdown" value="0"/>
-        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
-        <MaxStackCount value="300"/>
-        <Modification>
-            <DamageTakenFraction index="Spell" value="0.01"/>
-            <DamageTakenFraction index="Melee" value="0.01"/>
-            <DamageTakenFraction index="Ranged" value="0.01"/>
-            <DamageTakenFraction index="Splash" value="0.01"/>
-        </Modification>
-        <DisableValidatorArray value="IsNotRealism"/>
-        <RemoveValidatorArray value="IsNotRealism"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InfernoChainNapalm">
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
@@ -734,16 +716,6 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="RepairShieldOvercharge">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <BuffFlags index="RefreshStack" value="1"/>
-        <Duration value="60"/>
-        <Modification>
-            <VitalMaxIncreaseAffectsCurrentArray index="Shields" value="0"/>
-            <VitalMaxArray index="Shields" value="15"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="SynchronizationModule">
@@ -4143,10 +4115,10 @@
         <Duration value="1.999"/>
         <Player Value="Target"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="-0.4"/>
-            <DamageDealtFraction index="Melee" value="-0.4"/>
-            <DamageDealtFraction index="Ranged" value="-0.4"/>
-            <DamageDealtFraction index="Splash" value="-0.4"/>
+            <DamageDealtFraction index="Spell" value="-0.45"/>
+            <DamageDealtFraction index="Melee" value="-0.45"/>
+            <DamageDealtFraction index="Ranged" value="-0.45"/>
+            <DamageDealtFraction index="Splash" value="-0.45"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="DisableAttack">
@@ -7504,12 +7476,14 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyBattery">
         <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.01"/>
         <Modification>
+            <VitalMaxIncreaseAffectsCurrentArray index="Energy" value="0"/>
+            <VitalMaxArray index="Energy" value="10"/>
             <VitalRegenArray index="Energy" value="0.3515"/>
         </Modification>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyBatteryLevel1">
         <Alignment value="Positive"/>
@@ -7931,10 +7905,10 @@
         <PeriodCount value="0"/>
         <Player Value="Target"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="-0.2"/>
-            <DamageDealtFraction index="Melee" value="-0.2"/>
-            <DamageDealtFraction index="Ranged" value="-0.2"/>
-            <DamageDealtFraction index="Splash" value="-0.2"/>
+            <DamageDealtFraction index="Spell" value="-0.15"/>
+            <DamageDealtFraction index="Melee" value="-0.15"/>
+            <DamageDealtFraction index="Ranged" value="-0.15"/>
+            <DamageDealtFraction index="Splash" value="-0.15"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherLevel1">
@@ -8761,8 +8735,8 @@
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-garystetelliteovercharge-speed.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Requirements value="Safeguard"/>
-        <MaxStackCount value="6"/>
-        <Duration value="6"/>
+        <MaxStackCount value="7"/>
+        <Duration value="5"/>
         <Modification>
             <LifeArmorBonus value="1"/>
         </Modification>

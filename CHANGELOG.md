@@ -1,5 +1,27 @@
 # Current Changes & Bugfixes Tracklist
 
+[ThunderRazor]
+-Added a merit system that lets players rate each other with merit and demerit points.
+- Merits/demerits shall only be rewarded based on behavior and not skill (it is a peer to peer rating system).
+- Every player can nomimate up to 10 merits and 5 demerits. (The most recent 10 or 5 will be kept and older ones discarded.)
+- The player with the most merits (3 or more) will be awarded +5 karma at victory in the next game, if kept clean.
+- Merits can be used to vouch for demerited players (2:1 ratio).
+- Applying karmabite automatically demerits the griefing player, and demeriting a griefer automatically applies karmabite.
+- 3 or more demerits locks out the griefer from being able to use shop and from selecting advanced classes except in Survival.
+- Click on player portrait to show the demerits dialog.
+- Clck any UI button to hide the dialog (most UI buttons will work).
+- Added option to permanently hide the dialog (check box in top right of screen).
+
+[LeoTheCat]
+- Removed the shield overcharge feature on Engineer's repair. (Therefore Energy Battery no longer improves the shield overcharge as well). 
+- Energy Battery still improves repair speed, but now also grants 10/20 max energy increase to all allies that can use energy in the aura.
+- Removed the % damage reduction system due to its performance issue and complex nature, all player armor mechanics reverted back to OG.
+- Preiously adjusted tank talents, including Demo's I'm Your Father and Assault's Safeguard reverted to their original numbers.
+- As a side effect of the removal of this system, shield armor tooltip is currently unavailable.
+- Shotgun's damage vs massive has been reverted to 70 from 65.
+- Removed flamethrower's 2 damage penalty vs Armored.
+- Increased the radius of some enemies.
+
 2021-1-14
 [LeoTheCat]
 - Disabled the option to add AI players since recruit mode can already be forced during mission select.

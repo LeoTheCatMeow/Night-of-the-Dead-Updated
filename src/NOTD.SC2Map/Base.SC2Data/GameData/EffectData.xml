@@ -136,6 +136,11 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="NukeRevealDummy"/>
     </CEffectCreateUnit>
+    <CEffectDamage id="ArmorMeltDamage">
+        <EditorCategories value=""/>
+        <Flags index="NoBehaviorResponse" value="1"/>
+        <Death value="Fire"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="AtrociousApplyBonusRegen">
         <EditorCategories value=""/>
         <Behavior value="AtrociousBonusRegen"/>
@@ -181,6 +186,10 @@
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,UnderConstruction,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="9" Effect="DisruptionTowerAuraApply"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="EnergyBatteryApplyBehavior2">
+        <EditorCategories value=""/>
+        <Behavior value="EnergyBattery2"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="EnergyCapacitorApplyBuffLevel2">
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel2"/>
@@ -267,7 +276,6 @@
     <CEffectDamage id="InfernalFlameThrower">
         <ValidatorArray index="0" removed="1"/>
         <AttributeBonus index="Light" value="2"/>
-        <AttributeBonus index="Armored" value="-2"/>
         <AttributeBonus index="Biological" value="5"/>
         <AttributeBonus index="Massive" value="-2"/>
         <ArmorReduction value="0"/>
@@ -312,10 +320,6 @@
     <CEffectApplyBehavior id="EnergyCapacitorApplyBuffLevel1">
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel1"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="RepairShieldOverchargeApplyBehavior">
-        <EditorCategories value=""/>
-        <Behavior value="RepairShieldOvercharge"/>
     </CEffectApplyBehavior>
     <CEffectSet id="ShockSet">
         <EditorCategories value=""/>
@@ -414,11 +418,6 @@
         <EffectArray value="DefensivePlatingRemoveVenomLevel1"/>
         <EffectArray value="DefensivePlatingRemoveOWLevel1"/>
     </CEffectSet>
-    <CEffectDamage id="ArmorMeltDamage">
-        <EditorCategories value=""/>
-        <Death value="Fire"/>
-        <Flags index="NoBehaviorResponse" value="1"/>
-    </CEffectDamage>
     <CEffectEnumArea id="AtrociousDebuffSearch">
         <EditorCategories value=""/>
         <SearchFilters value="-;Self,Player,Ally,Neutral,Mechanical,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
@@ -489,6 +488,7 @@
         <AreaArray Radius="1.5" Fraction="0.6"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
+        <ArmorReduction value="0.85"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage">
         <EditorCategories value=""/>
@@ -2971,7 +2971,7 @@
         <EditorCategories value="Race:Terran"/>
         <ImpactLocation Value="TargetUnit"/>
         <AttributeBonus index="Light" value="5"/>
-        <AttributeBonus index="Massive" value="30"/>
+        <AttributeBonus index="Massive" value="35"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
@@ -7834,6 +7834,7 @@
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
+        <ArmorReduction value="0.85"/>
     </CEffectDamage>
     <CEffectDamage id="Crowbar">
         <EditorCategories value="Race:Terran"/>
@@ -7870,7 +7871,7 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Invulnerable"/>
         <Death value="Blast"/>
-        <ArmorReduction value="0.3"/>
+        <ArmorReduction value="0.5"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
@@ -11152,7 +11153,7 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="EnergyBatteryLevel1Search">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
+        <SearchFilters value="CanHaveEnergy;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
         <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
@@ -11160,8 +11161,8 @@
     <CEffectEnumArea id="EnergyBatteryLevel2Search">
         <EditorCategories value=""/>
         <Marker Link="Effect/EnergyBatteryLevel1Search"/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
-        <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior"/>
+        <SearchFilters value="CanHaveEnergy;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
+        <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -11309,9 +11310,7 @@
         <DrainVital value="Energy"/>
         <DrainVitalCostFactor value="0.1"/>
         <RechargeVital value="Shields"/>
-        <RechargeVitalRate value="5"/>
-        <Flags index="ContinueWhenFull" value="1"/>
-        <PeriodicEffect value="RepairShieldOverchargeApplyBehavior"/>
+        <RechargeVitalRate value="7"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="RepairLife">
         <ValidatorArray value="IsMechanical"/>
@@ -12208,11 +12207,9 @@
         <Type value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel2" parent="InfernalFlameThrower">
-        <AttributeBonus index="Light" value="0"/>
         <Amount value="0"/>
     </CEffectDamage>
     <CEffectDamage id="FlameThrowerLevel3" parent="InfernalFlameThrower">
-        <AttributeBonus index="Light" value="0"/>
         <Amount value="0"/>
     </CEffectDamage>
     <CEffectDamage id="FlamethrowerMK2Damage" parent="InfernalFlameThrower">

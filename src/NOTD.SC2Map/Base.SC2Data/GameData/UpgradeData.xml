@@ -209,12 +209,7 @@
         <EffectArray Reference="Effect,FieldProbeLimit,MinCount[0]" Value="1"/>
         <MaxLevel value="3"/>
     </CUpgrade>
-    <CUpgrade id="Realism">
-        <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Melee]" Value="-0.05"/>
-        <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Ranged]" Value="-0.05"/>
-        <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Spell]" Value="-0.05"/>
-        <EffectArray Reference="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[Splash]" Value="-0.05"/>
-    </CUpgrade>
+    <CUpgrade id="Realism"/>
     <CUpgrade id="RiflemanGrenades">
         <Alert value=""/>
         <EffectArray Reference="Effect,GrenadeLevel1Damage,Amount[0]" Value="3"/>
