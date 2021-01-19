@@ -709,7 +709,8 @@ bool[9] gv_playerIsNewbie;
 int[9] gv_marineWeightPoints;
 unitgroup gv_marines;
 string[9] gv_friendlyFireBuff;
-trigger[4] gv_domeSpawn;
+trigger[5] gv_domeSpawn;
+string gv_domeSequence;
 int gv_spawnFactor;
 string gv_sFOption;
 int gv_performanceTimer;
@@ -1273,6 +1274,7 @@ void InitGlobals () {
     gv_activePlayers = PlayerGroupEmpty();
     gv_admin = PlayerGroupEmpty();
     gv_marines = UnitGroupEmpty();
+    gv_domeSequence = "";
     gv_spawnFactor = 1;
     gv_sFOption = "0001";
     gv_isVeteranSquad = true;
@@ -17403,6 +17405,7 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
     gv_domeSpawn[1] = gt_W10DomeA;
     gv_domeSpawn[2] = gt_W11DomeB;
     gv_domeSpawn[3] = gt_W12DomeC;
+    gv_domeSpawn[4] = gt_W13DomeD;
     SoundtrackDefault(PlayerGroupAll(), c_soundtrackCategoryMusic, "Mission_MusicCue005", c_soundtrackCueAny, c_soundtrackIndexAny);
     SoundChannelMute(PlayerGroupAll(), c_soundCategoryCombat, false);
     SoundChannelMute(PlayerGroupAll(), c_soundCategoryAmbient, false);
@@ -30386,17 +30389,20 @@ void gt_Wave8BanelingSurprise_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_Wave9DrBergmannEncounter_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    int lv_nextDomeSpawn;
     int lv_localIntA;
+    string lv_sequence;
+    int lv_index;
 
     // Automatic Variable Declarations
     unitgroup autoCCB81824_g;
     int autoCCB81824_u;
     unit autoCCB81824_var;
+    const int auto0C23B2C5_ae = 2;
+    int auto0C23B2C5_var;
 
     // Variable Initialization
-    lv_nextDomeSpawn = RandomInt(1, 3);
     lv_localIntA = RandomInt(1, 3);
+    lv_sequence = "123";
 
     // Conditions
     if (testConds) {
@@ -30461,7 +30467,15 @@ bool gt_Wave9DrBergmannEncounter_Func (bool testConds, bool runActions) {
         if (autoCCB81824_var == null) { break; }
         UnitRemove(autoCCB81824_var);
     }
-    TriggerExecute(gv_domeSpawn[lv_nextDomeSpawn], true, false);
+    auto0C23B2C5_var = 0;
+    for ( ; auto0C23B2C5_var <= auto0C23B2C5_ae; auto0C23B2C5_var += 1 ) {
+        lv_index = RandomInt(1, (3 - auto0C23B2C5_var));
+        gv_domeSequence = (gv_domeSequence + StringSub(lv_sequence, lv_index, lv_index));
+        lv_sequence = StringReplace(lv_sequence, "", lv_index, lv_index);
+    }
+    gv_domeSequence = (gv_domeSequence + "4");
+    TriggerExecute(gv_domeSpawn[StringToInt(StringSub(gv_domeSequence, 1, 1))], true, false);
+    gv_domeSequence = StringReplace(gv_domeSequence, "", 1, 1);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/F33DB05F"));
     return true;
 }
@@ -30690,9 +30704,6 @@ void gt_Wave10OptionalCivilianEntersContainment_Init () {
 // Trigger: W10 - Dome A
 //--------------------------------------------------------------------------------------------------
 bool gt_W10DomeA_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_nextDomeSpawn;
-
     // Automatic Variable Declarations
     const int autoD3603E86_n = 33;
     int autoD3603E86_i;
@@ -30701,9 +30712,6 @@ bool gt_W10DomeA_Func (bool testConds, bool runActions) {
     unitgroup auto8827FDD8_g;
     int auto8827FDD8_u;
     unit auto8827FDD8_var;
-
-    // Variable Initialization
-    lv_nextDomeSpawn = RandomInt(1, 3);
 
     // Conditions
     if (testConds) {
@@ -30763,14 +30771,8 @@ bool gt_W10DomeA_Func (bool testConds, bool runActions) {
     Wait(2.0, c_timeReal);
     ObjectiveDestroy(gv_primaryObjective);
     gf_AwardPlayerXPNOTD(2);
-    if ((TriggerGetExecCount(gv_domeSpawn[1]) == 1) && (TriggerGetExecCount(gv_domeSpawn[2]) == 1) && (TriggerGetExecCount(gv_domeSpawn[3]) == 1)) {
-        TriggerExecute(gt_W13DomeD, true, false);
-        return true;
-    }
-    while ((TriggerGetExecCount(gv_domeSpawn[lv_nextDomeSpawn]) != 0)) {
-        lv_nextDomeSpawn = RandomInt(1, 3);
-    }
-    TriggerExecute(gv_domeSpawn[lv_nextDomeSpawn], true, false);
+    TriggerExecute(gv_domeSpawn[StringToInt(StringSub(gv_domeSequence, 1, 1))], true, false);
+    gv_domeSequence = StringReplace(gv_domeSequence, "", 1, 1);
     return true;
 }
 
@@ -30785,7 +30787,6 @@ void gt_W10DomeA_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_W11DomeB_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    int lv_nextDomeSpawn;
     point lv_attackWaveWaypoint;
     unitgroup lv_airWave;
 
@@ -30801,7 +30802,6 @@ bool gt_W11DomeB_Func (bool testConds, bool runActions) {
     fixed auto2D31A5F3_at;
 
     // Variable Initialization
-    lv_nextDomeSpawn = RandomInt(1, 3);
     lv_airWave = UnitGroupEmpty();
 
     // Conditions
@@ -30886,14 +30886,8 @@ bool gt_W11DomeB_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_AutoSave, true, false);
     Wait(2.0, c_timeReal);
     ObjectiveDestroy(gv_primaryObjective);
-    if ((TriggerGetExecCount(gv_domeSpawn[1]) == 1) && (TriggerGetExecCount(gv_domeSpawn[2]) == 1) && (TriggerGetExecCount(gv_domeSpawn[3]) == 1)) {
-        TriggerExecute(gt_W13DomeD, true, false);
-        return true;
-    }
-    while ((TriggerGetExecCount(gv_domeSpawn[lv_nextDomeSpawn]) != 0)) {
-        lv_nextDomeSpawn = RandomInt(1, 3);
-    }
-    TriggerExecute(gv_domeSpawn[lv_nextDomeSpawn], true, false);
+    TriggerExecute(gv_domeSpawn[StringToInt(StringSub(gv_domeSequence, 1, 1))], true, false);
+    gv_domeSequence = StringReplace(gv_domeSequence, "", 1, 1);
     return true;
 }
 
@@ -30907,17 +30901,11 @@ void gt_W11DomeB_Init () {
 // Trigger: W12 - Dome C
 //--------------------------------------------------------------------------------------------------
 bool gt_W12DomeC_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_nextDomeSpawn;
-
     // Automatic Variable Declarations
     const int autoD16789D3_n = 15;
     int autoD16789D3_i;
     int auto813FACF3_n;
     int auto813FACF3_i;
-
-    // Variable Initialization
-    lv_nextDomeSpawn = RandomInt(1, 3);
 
     // Conditions
     if (testConds) {
@@ -30975,14 +30963,8 @@ bool gt_W12DomeC_Func (bool testConds, bool runActions) {
     Wait(2.0, c_timeReal);
     gf_AwardPlayerXPNOTD(2);
     ObjectiveDestroy(gv_primaryObjective);
-    if ((TriggerGetExecCount(gv_domeSpawn[1]) == 1) && (TriggerGetExecCount(gv_domeSpawn[2]) == 1) && (TriggerGetExecCount(gv_domeSpawn[3]) == 1)) {
-        TriggerExecute(gt_W13DomeD, true, false);
-        return true;
-    }
-    while ((TriggerGetExecCount(gv_domeSpawn[lv_nextDomeSpawn]) != 0)) {
-        lv_nextDomeSpawn = RandomInt(1, 3);
-    }
-    TriggerExecute(gv_domeSpawn[lv_nextDomeSpawn], true, false);
+    TriggerExecute(gv_domeSpawn[StringToInt(StringSub(gv_domeSequence, 1, 1))], true, false);
+    gv_domeSequence = StringReplace(gv_domeSequence, "", 1, 1);
     return true;
 }
 
