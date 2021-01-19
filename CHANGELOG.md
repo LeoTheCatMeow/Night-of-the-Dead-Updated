@@ -15,12 +15,12 @@
 [LeoTheCat]
 - Removed the shield overcharge feature on Engineer's repair. (Therefore Energy Battery no longer improves the shield overcharge as well). 
 - Energy Battery still improves repair speed, but now also grants 10/20 max energy increase to all allies that can use energy in the aura.
-- Removed the % damage reduction system due to its performance issue and complex nature, all player armor mechanics reverted back to OG.
+- Removed the % damage reduction system due to its performance issue and complex nature, all armor mechanics reverted back to OG.
 - Preiously adjusted tank talents, including Demo's I'm Your Father and Assault's Safeguard reverted to their original numbers.
 - As a side effect of the removal of this system, shield armor tooltip is currently unavailable.
-- Shotgun's damage vs massive has been reverted to 70 from 65.
-- Removed flamethrower's 2 damage penalty vs Armored.
-- Increased the radius of some enemies.
+- 590A5 Combat Shotgun damage vs Massive has been reverted to 70 from 65, splash damage moderately lowered instead.
+- Removed Flamethrower MK-3's 2 damage penalty vs Armored.
+- Increased the radius of most EC, AC bosses and a few regular enemies to better match their visual size. (Affects Flamethrower MK-3 damage)
 
 2021-1-14
 [LeoTheCat]

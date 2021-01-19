@@ -2977,9 +2977,9 @@
         <Total value="Combine"/>
         <Amount value="35"/>
         <Death value="Blast"/>
-        <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.75"/>
-        <AreaArray Radius="4" Fraction="0.5"/>
+        <AreaArray Radius="1" Fraction="0.75"/>
+        <AreaArray Radius="2" Fraction="0.5"/>
+        <AreaArray Radius="4" Fraction="0.25"/>
         <SearchFilters value="-;Self,Player,Ally,Destructible,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="SlowRoastApplyBehavior">
@@ -7865,7 +7865,7 @@
         <AttributeBonus index="Heroic" value="20"/>
         <Kind value="Ranged"/>
         <Amount value="55"/>
-        <AreaArray Radius="0.6" Fraction="1"/>
+        <AreaArray Radius="0.6" Fraction="0.75"/>
         <AreaArray Radius="1.2" Fraction="0.5"/>
         <AreaArray Radius="1.8" Fraction="0.25"/>
         <ExcludeArray Value="Target"/>
