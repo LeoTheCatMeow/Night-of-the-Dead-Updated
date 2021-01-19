@@ -286,13 +286,13 @@
     <CEffectDamage id="ParticleBeam">
         <ArmorReduction value="0.5"/>
         <Kind value="Ranged"/>
-        <Amount value="10"/>
+        <Amount value="12"/>
     </CEffectDamage>
     <CEffectDamage id="PenetrateDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
-        <Amount value="5"/>
+        <Amount value="7"/>
     </CEffectDamage>
     <CEffectSet id="PenetrateSet">
         <EditorCategories value=""/>
@@ -7193,15 +7193,10 @@
         <Total value="Combine"/>
         <Amount value="140"/>
         <Death value="Eviscerate"/>
-        <AreaArray>
-            <RectangleWidth value="0.5"/>
-            <RectangleHeight value="3"/>
-            <Fraction value="1"/>
-            <Validator value="IsNotRealism"/>
-        </AreaArray>
+        <AreaArray RectangleWidth="0.5" RectangleHeight="3" Fraction="1"/>
         <AreaRelativeOffset value="0,-1.5"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="-;Self,Player,Ally,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Item,Dead,Hidden,Invulnerable"/>
         <MaxCount value="2"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="CounterMeasuresLaunchMissileLevel2">

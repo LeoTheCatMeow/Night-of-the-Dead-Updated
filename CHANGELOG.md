@@ -1,16 +1,18 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-1-18
 [ThunderRazor]
--Added a merit system that lets players rate each other with merit and demerit points.
+- Added a merit system that lets players rate each other with merit and demerit points.
 - Merits/demerits shall only be rewarded based on behavior and not skill (it is a peer to peer rating system).
 - Every player can nomimate up to 10 merits and 5 demerits. (The most recent 10 or 5 will be kept and older ones discarded.)
 - The player with the most merits (3 or more) will be awarded +5 karma at victory in the next game, if kept clean.
-- Merits can be used to vouch for demerited players (2:1 ratio).
 - Applying karmabite automatically demerits the griefing player, and demeriting a griefer automatically applies karmabite.
-- 3 or more demerits locks out the griefer from being able to use shop and from selecting advanced classes except in Survival.
+- 3 or more demerits locks out the griefer from being able to use shop, control leaver, and select advanced classes except in Survival.
+- Merits can be used to vouch for demerited players (requires 2 merits to cancel 1 demerit).
 - Click on player portrait to show the demerits dialog.
 - Clck any UI button to hide the dialog (most UI buttons will work).
 - Added option to permanently hide the dialog (check box in top right of screen).
+- Added more randomness to the triggering order of domes in EC.
 
 [LeoTheCat]
 - Removed the shield overcharge feature on Engineer's repair. (Therefore Energy Battery no longer improves the shield overcharge as well). 
@@ -21,6 +23,7 @@
 - 590A5 Combat Shotgun damage vs Massive has been reverted to 70 from 65, splash damage moderately lowered instead.
 - Removed Flamethrower MK-3's 2 damage penalty vs Armored.
 - Increased the radius of most EC, AC bosses and a few regular enemies to better match their visual size. (Affects Flamethrower MK-3 damage)
+- Removed Barret M112's ability to accidentally damage neutral objects via pierce (can still target neutral objects as the primary target).
 
 2021-1-14
 [LeoTheCat]

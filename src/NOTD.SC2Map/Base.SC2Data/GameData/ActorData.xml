@@ -8641,7 +8641,6 @@
         <ActionFlags index="LaunchForceSite" value="1"/>
     </CActorAction>
     <CActorSound id="ShockImpactSound" parent="SoundOneShot">
-        <On Terms="Effect.ShockApplyBehavior.Start" Send="Create"/>
         <Sound value="EMPBurstSound"/>
     </CActorSound>
     <CActorSound id="ShockSoundLaunch" parent="SoundOneShot">
@@ -8650,10 +8649,9 @@
     </CActorSound>
     <CActorModel id="ShockAnimation" parent="ModelAnimationStyleOneShot">
         <FogVisibility value="Visible"/>
-        <On Terms="Effect.ShockApplyBehavior.Start" Send="Create"/>
         <HostSiteOps Ops="SOpShadow"/>
         <Model value="GhostEMPAttackImpactEffect"/>
-        <Scale value="0.400000"/>
+        <Scale value="0.300000"/>
     </CActorModel>
     <CActorSiteOpForward id="SOpForwardPsiOps">
         <HostForward Subject="PsiOps"/>
