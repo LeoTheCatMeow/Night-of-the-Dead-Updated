@@ -752,6 +752,15 @@
         <UninterruptibleArray index="Finish" value="1"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Protect"/>
     </CAbilEffectTarget>
+    <CAbilEffectInstant id="RemoteSelfDestruct">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteSelfDestructSearch"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="RemoteSelfDestruct"/>
+    </CAbilEffectInstant>
     <CAbilEffectTarget id="Repair">
         <Flags index="AutoCastOn" value="1"/>
     </CAbilEffectTarget>
@@ -1545,7 +1554,7 @@
         <UninterruptibleArray index="Channel" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
         <CursorEffect value="ScorchedEarthEstimatedSearch"/>
-        <EffectRange index="0" value="5.5,500"/>
+        <EffectRange index="0" value="0,500"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ScorchedEarth"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="ShoottoMaim">

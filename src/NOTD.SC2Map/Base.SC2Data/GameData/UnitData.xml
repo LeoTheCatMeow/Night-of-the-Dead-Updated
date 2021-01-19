@@ -10779,6 +10779,7 @@
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
+        <AbilArray Link="RemoteSelfDestruct"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
         <BehaviorArray Link="EnergyBatteryLevel1"/>
@@ -10815,6 +10816,7 @@
             <LayoutButtons Face="FieldNexus" Type="AbilCmd" AbilCmd="FieldNexus,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="BoomHeadshot" Type="AbilCmd" AbilCmd="BoomHeadshot,On" Row="1" Column="2"/>
             <LayoutButtons Face="X1Guardian" Type="AbilCmd" AbilCmd="X1Guardian,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="RemoteSelfDestruct" Type="AbilCmd" AbilCmd="RemoteSelfDestruct,Execute" Row="2" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>

@@ -283,6 +283,11 @@
         <Amount value="10"/>
         <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>
+    <CEffectDamage id="Kill">
+        <Flags index="Notification" value="0"/>
+        <SearchFlags index="CallForHelp" value="0"/>
+        <SearchFlags index="SameCliff" value="0"/>
+    </CEffectDamage>
     <CEffectDamage id="ParticleBeam">
         <ArmorReduction value="0.5"/>
         <Kind value="Ranged"/>
@@ -299,6 +304,15 @@
         <EffectArray value="PenetrateApply"/>
         <EffectArray value="PenetrateDamage"/>
     </CEffectSet>
+    <CEffectEnumArea id="RemoteSelfDestructSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistance"/>
+        </TargetSorts>
+        <AreaArray MaxCount="1" Radius="30" Effect="SelfDestructSetRemote"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
     <CEffectRemoveBehavior id="RemoveVolatileInjectionLevel1">
         <EditorCategories value=""/>
         <BehaviorLink value="VolatileInjectionLevel1"/>
@@ -321,6 +335,11 @@
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel1"/>
     </CEffectApplyBehavior>
+    <CEffectSet id="SelfDestructSetRemote">
+        <EditorCategories value=""/>
+        <EffectArray value="Kill"/>
+        <EffectArray value="SelfDestructSearch"/>
+    </CEffectSet>
     <CEffectSet id="ShockSet">
         <EditorCategories value=""/>
         <EffectArray value="ParticleBeam"/>

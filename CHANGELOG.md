@@ -12,11 +12,12 @@
 - Click on player portrait to show the demerits dialog.
 - Clck any UI button to hide the dialog (most UI buttons will work).
 - Added option to permanently hide the dialog (check box in top right of screen).
-- Added more randomness to the triggering order of domes in EC.
+- Optimized the random sequence of EC domes
 
 [LeoTheCat]
 - Removed the shield overcharge feature on Engineer's repair. (Therefore Energy Battery no longer improves the shield overcharge as well). 
 - Energy Battery still improves repair speed, but now also grants 10/20 max energy increase to all allies that can use energy in the aura.
+- Added a button for Engineer to remotely self-destruct Disruption Towers.
 - Removed the % damage reduction system due to its performance issue and complex nature, all armor mechanics reverted back to OG.
 - Preiously adjusted tank talents, including Demo's I'm Your Father and Assault's Safeguard reverted to their original numbers.
 - As a side effect of the removal of this system, shield armor tooltip is currently unavailable.

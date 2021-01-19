@@ -4767,6 +4767,9 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
         TechTreeAbilityAllow(lp_player, AbilityCommand("MassDesignate", 0), false);
         TriggerEnable(gt_Backstab, true);
     }
+    else if ((UnitGetType(gv_marineHero[lp_playerIndex]) == "Engineer")) {
+        TechTreeAbilityAllow(lp_player, AbilityCommand("RemoteSelfDestruct", 0), false);
+    }
     else if ((UnitGetType(gv_marineHero[lp_playerIndex]) == "Rifleman")) {
         TechTreeUpgradeAddLevel(lp_playerIndex, "RiflemanGrenades", 1);
     }
@@ -15481,6 +15484,10 @@ void gf_LevelUpTalentEngineer (int lp_itemNo, unit lp_triggUnit, int lp_triggPla
         else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 3)) {
             TechTreeUpgradeAddLevel(lp_triggPlayer, "PlasmaDischargeLevel3", 1);
         }
+    }
+
+    if ((lp_itemNo == 3)) {
+        TechTreeAbilityAllow(lp_triggPlayer, AbilityCommand("RemoteSelfDestruct", 0), true);
     }
 
     if ((lp_itemNo == 4)) {

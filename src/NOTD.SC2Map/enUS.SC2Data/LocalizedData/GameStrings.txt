@@ -212,6 +212,7 @@ Abil/Name/Reflexes=Reflexes
 Abil/Name/Refresher=Refresher
 Abil/Name/Reinforce=Reinforce
 Abil/Name/Reload=Reload
+Abil/Name/RemoteSelfDestruct=Remote Self-Destruct
 Abil/Name/RepairNOTD=Repair
 Abil/Name/Repulse=Repulse
 Abil/Name/Restoration=Restoration
@@ -905,8 +906,8 @@ Behavior/Tooltip/Disruption=Unit takes 5 less ranged damage.
 Behavior/Tooltip/DropMagazine=Drops a magazine into your inventory. This allows you to share ammo with others.
 Behavior/Tooltip/EnergyBattery=Unit gains +0.35 energy regeneration and +10 energy.
 Behavior/Tooltip/EnergyBattery2=Unit gains +0.35 energy regeneration and +20 energy.
-Behavior/Tooltip/EnergyBatteryLevel1=8 radius energy regeneration aura to allies (+0.35/s).
-Behavior/Tooltip/EnergyBatteryLevel2=8 radius energy regeneration aura to allies (+0.35/s).
+Behavior/Tooltip/EnergyBatteryLevel1=9 radius energy regeneration aura to allies (+0.35/s) and +10 max energy.
+Behavior/Tooltip/EnergyBatteryLevel2=9 radius energy regeneration aura to allies (+0.35/s) and +20 max energy.
 Behavior/Tooltip/EnergyCapacitorRegenerationLevel1=Unit gains 0.35 energy per second for 6 seconds.
 Behavior/Tooltip/EnergyCapacitorRegenerationLevel2=Unit gains 0.7 energy per second for 6 seconds.
 Behavior/Tooltip/EnergyFieldProtected=Unit is protected from Perses' waves of fire.
@@ -1421,6 +1422,7 @@ Button/Name/Red=Red
 Button/Name/Refresher=Refresher
 Button/Name/Reinforce=Reinforce
 Button/Name/Reload=Reload
+Button/Name/RemoteSelfDestruct=Remote Self-Destruct
 Button/Name/Repair2=Repair
 Button/Name/Repulse=Repulse
 Button/Name/Restoration=Restoration
@@ -1879,6 +1881,7 @@ Button/Tooltip/Red=Changes Marine color to <c val="FF0000">Red</c> for all games
 Button/Tooltip/Refresher=Refreshes all cooldowns on Recon. Restores 30 energy & shields.<n/><n/>"Absolute prowess is not merely the obtaining of a talent but the constant and consistent repetition thereof."
 Button/Tooltip/Reinforce=Increases target mechanical unit's armor by 5 for 60 seconds.
 Button/Tooltip/Reload=Reloads your current weapon. All rounds in remaining magazine are discarded. Reloads 30% faster vs automatic reloads.
+Button/Tooltip/RemoteSelfDestruct=Self-destructs the nearest Disruption Tower. Stuns all units in 7 radius for 2 seconds.
 Button/Tooltip/Repair2=Repairs shields/mechanical at a rate of <d ref="Effect,RepairShield,RechargeVitalRate"/>/5 per second. Costs 0.1 energy per point of repair.<n/><n/><c val="FFFF00">Has a 33% chance per cast to remove Short Circuit.</c>
 Button/Tooltip/Repulse=Units in 7 radius are stunned and lose 10 armor for 3 seconds. Deals 125 damage to affected units. Massive and Armored units take more damage. Increases Rifleman's movespeed by 50% & armor by 2 for 10 seconds. Grants detection.
 Button/Tooltip/Restoration=Heals 70 HP and regenerates 15 energy instantly to all allied units in 6 radius (also affects Mechanical). The Medic herself regains 40 HP.<n/><n/>Affected units gain Restoration buff for 7 seconds. Buff amplifies effects of Medic's Anti-Venom and Surgical Laser.<n/>
@@ -2693,18 +2696,19 @@ DocInfo/PatchNote650=- Merits can be used to vouch for demerited players (requir
 DocInfo/PatchNote651=- Click on player portrait to show the demerits dialog.
 DocInfo/PatchNote652=- Clck any UI button to hide the dialog (most UI buttons will work).
 DocInfo/PatchNote653=- Added option to permanently hide the dialog (check box in top right of screen).
-DocInfo/PatchNote654=- Added more randomness to the triggering order of domes in EC.
+DocInfo/PatchNote654=- Optimized the random sequence of EC domes
 DocInfo/PatchNote655=
 DocInfo/PatchNote656=[LeoTheCat]
 DocInfo/PatchNote657=- Removed the shield overcharge feature on Engineer's repair. (Therefore Energy Battery no longer improves the shield overcharge as well). 
 DocInfo/PatchNote658=- Energy Battery still improves repair speed, but now also grants 10/20 max energy increase to all allies that can use energy in the aura.
-DocInfo/PatchNote659=- Removed the % damage reduction system due to its performance issue and complex nature, all armor mechanics reverted back to OG.
-DocInfo/PatchNote660=- Preiously adjusted tank talents, including Demo's I'm Your Father and Assault's Safeguard reverted to their original numbers.
-DocInfo/PatchNote661=- As a side effect of the removal of this system, shield armor tooltip is currently unavailable.
-DocInfo/PatchNote662=- 590A5 Combat Shotgun damage vs Massive has been reverted to 70 from 65, splash damage moderately lowered instead.
-DocInfo/PatchNote663=- Removed Flamethrower MK-3's 2 damage penalty vs Armored.
-DocInfo/PatchNote664=- Increased the radius of most EC, AC bosses and a few regular enemies to better match their visual size. (Affects Flamethrower MK-3 damage)
-DocInfo/PatchNote665=- Removed Barret M112's ability to accidentally damage neutral objects via pierce (can still target neutral objects as the primary target).
+DocInfo/PatchNote659=- Added a button for Engineer to remotely self-destruct Disruption Towers.
+DocInfo/PatchNote660=- Removed the % damage reduction system due to its performance issue and complex nature, all armor mechanics reverted back to OG.
+DocInfo/PatchNote661=- Preiously adjusted tank talents, including Demo's I'm Your Father and Assault's Safeguard reverted to their original numbers.
+DocInfo/PatchNote662=- As a side effect of the removal of this system, shield armor tooltip is currently unavailable.
+DocInfo/PatchNote663=- 590A5 Combat Shotgun damage vs Massive has been reverted to 70 from 65, splash damage moderately lowered instead.
+DocInfo/PatchNote664=- Removed Flamethrower MK-3's 2 damage penalty vs Armored.
+DocInfo/PatchNote665=- Increased the radius of most EC, AC bosses and a few regular enemies to better match their visual size. (Affects Flamethrower MK-3 damage)
+DocInfo/PatchNote666=- Removed Barret M112's ability to accidentally damage neutral objects via pierce (can still target neutral objects as the primary target).
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -3953,6 +3957,7 @@ Effect/Name/RegenerationSet=Regeneration Set
 Effect/Name/Reinforce=Reinforce
 Effect/Name/Reload=Reload
 Effect/Name/ReloadMagazine=Reload Magazine
+Effect/Name/RemoteSelfDestructSearch=Remote Self-Destruct (Search)
 Effect/Name/RemoveArmor=Remove Armor
 Effect/Name/RemoveArmorSet=Remove Armor Set
 Effect/Name/RemoveArrmor=Remove Arrmor Search
@@ -4059,6 +4064,7 @@ Effect/Name/SearchChew=Search Chew
 Effect/Name/SelfDestructApplyStun=Self-Destruct Apply Stun
 Effect/Name/SelfDestructSearch=Self-Destruct Search
 Effect/Name/SelfDestructSet=Self-Destruct Set
+Effect/Name/SelfDestructSetRemote=Self-Destruct Set Remote
 Effect/Name/SensoryConfusionApplyCloak=Sensory Confusion (Apply Cloak)
 Effect/Name/SensoryConfusionRemove=Sensory Confusion (Remove)
 Effect/Name/SethAOEDamage=Seth AOE Damage
@@ -7207,7 +7213,7 @@ UserData/TalentTrees/Engineer_Headers_001=<s val="HelpPanelListBoxItemTitle">Com
 UserData/TalentTrees/Engineer_Talent Tootips=<s val="AchievementFrameName">Field Probe</s><n/>Create a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds. <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.<n/><n/>Level 1 -  Can build 1 at a time.<n/>Level 2 -  Can build 2 at a time.<n/>Level 3 -  Can build 3 at a time.
 UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">Plasma Discharge</s><n/>Primes a Plasma Detonator that deals damage in 4 radius after 3.5 seconds. Affected units lose armor and movespeed for 7 seconds. Reduced impact on allies. Each level also decreases Energy cost.<n/>Level 1 - 20 damage, -2 armor, -30% movespeed.<n/>Level 2 - 40 damage, -4 armor, -45% movespeed.<n/>Level 3 - 80 damage, -6 armor, -60% movespeed.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. <n/>Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c><n/>Level 1 - 12 damage every 1.2 seconds. Affects 8 units.<n/>Level 2 - 18 damage every 1.2 seconds. Affects 16 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Grants bonus max energy and +0.35 energy regeneration to allies in 8 radius. <n/>Also improves Engineer's shield repair speed. <n/>Level 1 - +10 energy, 12 per second shield repair.<n/>Level 2 - +20 energy, 17 per second shield repair.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Grants bonus max energy and +0.35 energy regeneration to allies in 9 radius. <n/>Also improves Engineer's shield repair speed. <n/>Level 1 - +10 energy, 12 per second shield repair.<n/>Level 2 - +20 energy, 17 per second shield repair.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 12 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 18 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 24 damage per attack. (Ignore armor)
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">It's Me Again!<n/>(Passive)</s><n/>Each subsequent attack on same target deals extra damage.<n/>Level 1 - +7% damage<n/>Level 2 - +14% damage<n/>Level 3 - +21% damage<n/><n/>Stacks up to 5 times.

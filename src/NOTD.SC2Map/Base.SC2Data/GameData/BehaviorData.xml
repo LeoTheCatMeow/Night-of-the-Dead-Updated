@@ -232,12 +232,13 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
         <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1.01"/>
+        <Duration value="2"/>
         <Modification>
             <VitalMaxIncreaseAffectsCurrentArray index="Energy" value="0"/>
             <VitalMaxArray index="Energy" value="20"/>
             <VitalRegenArray index="Energy" value="0.3515"/>
         </Modification>
+        <BuffFlags index="RefreshStack" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyCapacitorAuraLevel1">
         <InfoFlags index="Hidden" value="1"/>
@@ -7478,12 +7479,13 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-nova-blink.dds"/>
         <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1.01"/>
+        <Duration value="2"/>
         <Modification>
             <VitalMaxIncreaseAffectsCurrentArray index="Energy" value="0"/>
             <VitalMaxArray index="Energy" value="10"/>
             <VitalRegenArray index="Energy" value="0.3515"/>
         </Modification>
+        <BuffFlags index="RefreshStack" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EnergyBatteryLevel1">
         <Alignment value="Positive"/>
