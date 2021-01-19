@@ -5771,13 +5771,13 @@ void gf_DemeritDialogCreateShow (int lp_viewingPlayer, int lp_viewedPlayer) {
     if (gv_demeritsEnabled) {
         if ((gv_demeritDialog[lp_viewedPlayer] == c_invalidDialogId)) {
             TriggerEnable(gt_Demerits, false);
-            DialogCreate(322, 80, c_anchorTopRight, -25, 25, true);
+            DialogCreate(322, 78, c_anchorTopRight, -25, 25, true);
             DialogSetImageVisible(DialogLastCreated(), false);
             if ((PlayerStatus(lp_viewedPlayer) != c_playerStatusUnused)) {
-                DialogSetPositionRelative(DialogLastCreated(), c_anchorTopRight, gv_playerMedalsDialog[lp_viewedPlayer], c_anchorBottomRight, 0, 0);
+                DialogSetPositionRelative(DialogLastCreated(), c_anchorTopLeft, gv_playerMedalsDialog[lp_viewedPlayer], c_anchorBottomRight, -25, 160);
             }
             else {
-                DialogSetPositionRelative(DialogLastCreated(), c_anchorTopRight, gv_playerMedalsDialog[lp_viewingPlayer], c_anchorBottomRight, 0, 0);
+                DialogSetPositionRelative(DialogLastCreated(), c_anchorTopLeft, gv_playerMedalsDialog[lp_viewingPlayer], c_anchorBottomRight, -25, 160);
             }
             gv_demeritDialog[lp_viewedPlayer] = DialogLastCreated();
             libNtve_gf_CreateDialogItemLabel(gv_demeritDialog[lp_viewedPlayer], 200, 25, c_anchorLeft, 0, -12, (StringExternal("Param/Value/351A44C5") + PlayerName(lp_viewedPlayer) + StringExternal("Param/Value/0D570AB4")), ColorWithAlpha(0,0,0,0), false, 2.0);
@@ -15091,7 +15091,7 @@ void gf_RestoreLeaverControl () {
         while (true) {
             autoAFE8F994_var = PlayerGroupNextPlayer(autoAFE8F994_g, autoAFE8F994_var);
             if (autoAFE8F994_var < 0) { break; }
-            if ((gv_totalDemerits[lv_playerIndex] < gv_maxDemerits) && (gv_playerKarma[lv_playerIndex] >= 1525)) {
+            if ((gv_meritBalance[lv_playerIndex] >= gv_minMerits) && (gv_playerKarma[lv_playerIndex] >= 1525)) {
                 libNtve_gf_SetAlliance(lv_playerIndex, autoAFE8F994_var, libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
             }
             else {
@@ -19409,7 +19409,7 @@ bool gt_DemeritsVisible_Func (bool testConds, bool runActions) {
     }
 
     Wait(0.0625, c_timeGame);
-    if (libNtve_gf_DialogItemIsChecked(gv_demeritVisibilityBtn, 1)) {
+    if (libNtve_gf_DialogItemIsChecked(gv_demeritVisibilityBtn, lv_viewingPlayer)) {
         gv_demeritsVisible[lv_viewingPlayer] = true;
         BankValueSetFromFlag(gv_demeritsBank[lv_viewingPlayer], "Options", "UIVisible", true);
     }
