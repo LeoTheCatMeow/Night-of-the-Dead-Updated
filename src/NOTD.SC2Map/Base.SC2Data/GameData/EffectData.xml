@@ -11168,7 +11168,7 @@
     <CEffectEnumArea id="EnergyBatteryLevel1Search">
         <EditorCategories value=""/>
         <SearchFilters value="CanHaveEnergy;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
-        <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior"/>
+        <AreaArray Radius="9" Effect="EnergyBatteryApplyBehavior"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -11176,7 +11176,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/EnergyBatteryLevel1Search"/>
         <SearchFilters value="CanHaveEnergy;Neutral,Enemy,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Uncommandable,UnderConstruction,Dead"/>
-        <AreaArray Radius="8" Effect="EnergyBatteryApplyBehavior2"/>
+        <AreaArray Radius="9" Effect="EnergyBatteryApplyBehavior2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
