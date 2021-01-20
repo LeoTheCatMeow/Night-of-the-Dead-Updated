@@ -1,4 +1,7 @@
 # Current Changes & Bugfixes Tracklist
+2021-1-21
+[reduxGelum]
+- Fixed terrain causing enemy pathing errors
 
 2021-1-18
 [ThunderRazor]
