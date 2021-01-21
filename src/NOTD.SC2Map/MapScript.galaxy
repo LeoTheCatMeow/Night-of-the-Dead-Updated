@@ -825,7 +825,6 @@ int gv_noRandoms;
 int gv_maxRandom;
 bool gv_outbreakActivated;
 bool gv_eliteMutationActivated;
-bool gv_realismActivated;
 bool gv_trainingActivated;
 int[10] gv_trainingShopPurchases;
 int gv_demeritVisibilityBtn;
@@ -2179,7 +2178,6 @@ trigger gt_DisableRandomButton;
 trigger gt_NightmareMode;
 trigger gt_OutbreakCommand;
 trigger gt_EliteMutationCommand;
-trigger gt_RealismCommand;
 trigger gt_TrainingCommand;
 trigger gt_SpectatorModeType;
 trigger gt_SpectatorModeClick;
@@ -3410,10 +3408,6 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
     lv_missionTimeLabel = c_invalidDialogControlId;
 
     // Implementation
-    if ((GameAttributeGameValue("2") == "0001")) {
-        TriggerExecute(gt_NavyCross, true, false);
-    }
-
     gf_SetPlayerLives();
     gf_PlayerCountAdjustments();
     gf_SQDifficultyAdjustments();
@@ -3494,11 +3488,10 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
         gf_NOTDBanlist();
     }
 
-    Wait(20.0, c_timeReal);
+    Wait(30.0, c_timeReal);
     TriggerEnable(gt_NightmareMode, false);
     TriggerEnable(gt_OutbreakCommand, false);
     TriggerEnable(gt_EliteMutationCommand, false);
-    TriggerEnable(gt_RealismCommand, false);
     TriggerEnable(gt_TrainingCommand, false);
     return true;
 }
@@ -3805,8 +3798,8 @@ void gf_ExecuteStorylineMods () {
     if ((gv_storylineModOn[5] == true)) {
         TriggerExecute(gt_AllRandom, false, false);
     }
-    if ((gv_storylineModOn[6] == true)) {
-        TriggerExecute(gt_NavyCross, false, false);
+    if (((gv_storylineModOn[6] == true) || (GameAttributeGameValue("2") == "0001"))) {
+        TriggerExecute(gt_NavyCross, true, false);
     }
 }
 
@@ -4684,9 +4677,7 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     gf_EquipmentDialogCreation(lp_playerIndex);
     gf_BehaviorTrackerUICreation(lp_playerIndex);
     UnitSelect(gv_marineHero[lp_playerIndex], lp_player, true);
-    if ((gv_realismActivated == false)) {
-        gf_EnableDisablePingPanel(true, PlayerGroupSingle(lp_player));
-    }
+    gf_EnableDisablePingPanel(true, PlayerGroupSingle(lp_player));
     if ((gv_playerRandom[lp_playerIndex] == true)) {
         gf_UpdateKarma(lp_playerIndex, -5);
     }
@@ -4891,12 +4882,10 @@ bool auto_gf_AmmoUICreation_TriggerFunc (bool testConds, bool runActions) {
     gv_ammoUIMoveButton[lp_player] = DialogControlLastCreated();
     libNtve_gf_SetDialogItemTooltip(gv_ammoUIMoveButton[lp_player], StringExternal("Param/Value/4DA754D2"), PlayerGroupActive());
     libNtve_gf_SetDialogItemImage(gv_ammoUIMoveButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_refreshicon.dds", PlayerGroupActive());
-    if ((gv_realismActivated == false)) {
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "BehaviorTrackerDisplayButton");
-        gv_behaviorTrackerDisplayButton[lp_player] = DialogControlLastCreated();
-        libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDisplayButton[lp_player], StringExternal("Param/Value/56673624"), PlayerGroupActive());
-        libNtve_gf_SetDialogItemImage(gv_behaviorTrackerDisplayButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_reportmap.dds", PlayerGroupActive());
-    }
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "BehaviorTrackerDisplayButton");
+    gv_behaviorTrackerDisplayButton[lp_player] = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDisplayButton[lp_player], StringExternal("Param/Value/56673624"), PlayerGroupActive());
+    libNtve_gf_SetDialogItemImage(gv_behaviorTrackerDisplayButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_reportmap.dds", PlayerGroupActive());
     DialogSetVisible(gv_ammoCounterDialog[lp_player], PlayerGroupSingle(lp_player), true);
     gf_UIDialogCreation(gv_ammoBarHeight[lp_player], gv_ammoBarWidth[lp_player], 375, 230, c_anchorBottom);
     gv_ammoBarDialog[lp_player] = DialogLastCreated();
@@ -4943,9 +4932,6 @@ bool auto_gf_BehaviorTrackerUICreation_TriggerFunc (bool testConds, bool runActi
     lv_tempDialogItem = c_invalidDialogControlId;
 
     // Implementation
-    if ((gv_realismActivated == true)) {
-        return true;
-    }
     gf_UIDialogCreation(48, 640, -165, 310, c_anchorBottom);
     gv_behaviorTrackerDialog[lp_player] = DialogLastCreated();
     DialogControlCreateFromTemplate(gv_behaviorTrackerDialog[lp_player], c_triggerControlTypePanel, "BehaviorTracker/BehaviorTracker");
@@ -5746,9 +5732,6 @@ void gf_DisplaySquadInformation () {
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
     if ((gv_outbreakActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/3EC532D7")) + gv_endStyling));
-    }
-    if ((gv_realismActivated == true)) {
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/B07D8A00")) + gv_endStyling));
     }
     if ((gv_eliteMutationActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/723F181B")) + gv_endStyling));
@@ -17250,7 +17233,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     TriggerEnable(gt_NightmareMode, true);
     TriggerEnable(gt_OutbreakCommand, true);
     TriggerEnable(gt_EliteMutationCommand, true);
-    TriggerEnable(gt_RealismCommand, true);
     TriggerEnable(gt_TrainingCommand, true);
     DialogCreate(66, 66, c_anchorBottom, -450, 230, true);
     gv_equipment = DialogLastCreated();
@@ -17615,6 +17597,10 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     gv_storylineModSelection[2] = DialogControlLastCreated();
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "HighSpawnImageFrame");
     gv_storylineModSelectionFrame[2] = DialogControlLastCreated();
+    if ((GameAttributeGameValue("6") == "0003")) {
+        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[2], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
+        gv_storylineModOn[2] = true;
+    }
     DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "OutbreakButton");
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/997DA716"), PlayerGroupAll());
     gv_storylineModSelection[3] = DialogControlLastCreated();
@@ -17629,16 +17615,28 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     gv_storylineModSelection[4] = DialogControlLastCreated();
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "NoRandomImageFrame");
     gv_storylineModSelectionFrame[4] = DialogControlLastCreated();
+    if ((GameAttributeGameValue("3") == "0002") && (gv_noNewbie == true)) {
+        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[4], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
+        gv_storylineModOn[4] = true;
+    }
     DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "AllRandomButton");
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/9DCA133F"), PlayerGroupAll());
     gv_storylineModSelection[5] = DialogControlLastCreated();
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "AllRandomImageFrame");
     gv_storylineModSelectionFrame[5] = DialogControlLastCreated();
+    if ((GameAttributeGameValue("3") == "0003") && (gv_noNewbie == true)) {
+        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[5], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
+        gv_storylineModOn[5] = true;
+    }
     DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "NavyCrossButton");
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/31C1E4F1"), PlayerGroupAll());
     gv_storylineModSelection[6] = DialogControlLastCreated();
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "NavyCrossImageFrame");
     gv_storylineModSelectionFrame[6] = DialogControlLastCreated();
+    if ((GameAttributeGameValue("2") == "0001") && (gv_noNewbie == true)) {
+        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[6], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
+        gv_storylineModOn[6] = true;
+    }
     DialogSetVisible(gv_storylineModDialog, PlayerGroupAll(), true);
     DialogSetVisible(gv_storylineModDialog2, PlayerGroupAll(), true);
     if ((gv_isVeteranSquad == true) && (gv_noNewbie == true)) {
@@ -19089,59 +19087,6 @@ void gt_EliteMutationCommand_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Realism Command
-//--------------------------------------------------------------------------------------------------
-bool gt_RealismCommand_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    playergroup auto6106808A_g;
-    int auto6106808A_var;
-    playergroup auto45037B76_g;
-    int auto45037B76_var;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    gv_realismActivated = true;
-    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/A8DB2FB8"));
-    gf_EnableDisablePingPanel(false, gv_marineSquad);
-    auto6106808A_g = PlayerGroupAll();
-    auto6106808A_var = -1;
-    while (true) {
-        auto6106808A_var = PlayerGroupNextPlayer(auto6106808A_g, auto6106808A_var);
-        if (auto6106808A_var < 0) { break; }
-        TechTreeUpgradeAddLevel(auto6106808A_var, "Realism", 1);
-    }
-    auto45037B76_g = gv_marineSquad;
-    auto45037B76_var = -1;
-    while (true) {
-        auto45037B76_var = PlayerGroupNextPlayer(auto45037B76_g, auto45037B76_var);
-        if (auto45037B76_var < 0) { break; }
-        if ((gv_behaviorTrackerDialog[auto45037B76_var] != c_invalidDialogId)) {
-            DialogDestroy(gv_behaviorTrackerDialog[auto45037B76_var]);
-            gv_behaviorTrackerDialog[auto45037B76_var] = c_invalidDialogId;
-        }
-        if ((gv_behaviorTrackerDisplayButton[auto45037B76_var] != c_invalidDialogId)) {
-            DialogControlDestroy(gv_behaviorTrackerDisplayButton[auto45037B76_var]);
-            gv_behaviorTrackerDisplayButton[auto45037B76_var] = c_invalidDialogControlId;
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_RealismCommand_Init () {
-    gt_RealismCommand = TriggerCreate("gt_RealismCommand_Func");
-    TriggerEnable(gt_RealismCommand, false);
-    TriggerAddEventChatMessage(gt_RealismCommand, 1, "-realism", true);
-    TriggerAddEventChatMessage(gt_RealismCommand, 1, "-real", true);
-    TriggerAddEventChatMessage(gt_RealismCommand, 2, "-realism", true);
-    TriggerAddEventChatMessage(gt_RealismCommand, 2, "-real", true);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Training Command
 //--------------------------------------------------------------------------------------------------
 bool gt_TrainingCommand_Func (bool testConds, bool runActions) {
@@ -19682,10 +19627,6 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_realismActivated == false))) {
-            return false;
-        }
-
         if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
             return false;
         }
@@ -19741,10 +19682,6 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_realismActivated == false))) {
-            return false;
-        }
-
         if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
             return false;
         }
@@ -19807,10 +19744,6 @@ bool gt_OnBehaviorUpdate_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_realismActivated == false))) {
-            return false;
-        }
-
         if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
             return false;
         }
@@ -19861,10 +19794,6 @@ bool gt_BehaviroDurationUpdate_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_realismActivated == false))) {
-            return false;
-        }
-
         if (!(((gv_behaviorTrackerDialog[1] != c_invalidDialogId) || (gv_behaviorTrackerDialog[2] != c_invalidDialogId) || (gv_behaviorTrackerDialog[3] != c_invalidDialogId) || (gv_behaviorTrackerDialog[4] != c_invalidDialogId) || (gv_behaviorTrackerDialog[5] != c_invalidDialogId) || (gv_behaviorTrackerDialog[6] != c_invalidDialogId) || (gv_behaviorTrackerDialog[7] != c_invalidDialogId) || (gv_behaviorTrackerDialog[8] != c_invalidDialogId)))) {
             return false;
         }
@@ -19921,10 +19850,6 @@ bool gt_BehaviorTrackerDisplayButtonCallback_Func (bool testConds, bool runActio
 
     // Conditions
     if (testConds) {
-        if (!((gv_realismActivated == false))) {
-            return false;
-        }
-
         if (!(((EventDialogControl() == gv_behaviorTrackerDisplayButton[1]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[2]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[3]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[4]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[5]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[6]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[7]) || (EventDialogControl() == gv_behaviorTrackerDisplayButton[8])))) {
             return false;
         }
@@ -46788,7 +46713,6 @@ void InitTriggers () {
     gt_NightmareMode_Init();
     gt_OutbreakCommand_Init();
     gt_EliteMutationCommand_Init();
-    gt_RealismCommand_Init();
     gt_TrainingCommand_Init();
     gt_SpectatorModeType_Init();
     gt_SpectatorModeClick_Init();
