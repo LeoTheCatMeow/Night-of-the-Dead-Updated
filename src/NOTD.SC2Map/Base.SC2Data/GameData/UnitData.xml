@@ -1347,6 +1347,8 @@
         </CardLayouts>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
+        <Radius value="0.5625"/>
+        <InnerRadius value="0.375"/>
     </CUnit>
     <CUnit id="InfestedWorm">
         <DeathTime value="5"/>
@@ -1386,7 +1388,6 @@
         <KillXP value="12"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <BehaviorArray Link="makeCreep2x2"/>
-        <Radius value="0"/>
         <SeparationRadius value="0"/>
         <Footprint value="Footprint1x1Underground"/>
         <PlacementFootprint value="Footprint1x1Underground"/>
@@ -1818,7 +1819,7 @@
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.75"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.4375"/>
         <ScoreResult value="BuildOrder"/>
         <SubgroupPriority value="18"/>
         <MinimapRadius value="0.75"/>
@@ -2242,7 +2243,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="UnburrowTitan,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <Radius value="0.375"/>
+        <Radius value="0.625"/>
         <InnerRadius value="0.375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
@@ -2304,7 +2305,7 @@
             <LayoutButtons Face="HurlBoulders" Type="AbilCmd" AbilCmd="HurlBoulders,Execute" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.625"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.4375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -3729,7 +3730,7 @@
             <LayoutButtons index="6" removed="1"/>
         </CardLayouts>
         <Radius value="2"/>
-        <InnerRadius value="2"/>
+        <InnerRadius value="1"/>
         <MinimapRadius value="2.75"/>
         <EditorCategories value="ObjectType:Unit"/>
         <TacticalAI value="Hades"/>
@@ -4137,7 +4138,7 @@
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0.6"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -4228,7 +4229,7 @@
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="NeuralParasite,Cancel" Row="2" Column="3"/>
         </CardLayouts>
         <Radius value="0.6875"/>
-        <InnerRadius value="0.5"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -4872,7 +4873,7 @@
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -5084,7 +5085,7 @@
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.4375"/>
-        <InnerRadius value="0.4375"/>
+        <InnerRadius value="0.375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -5212,6 +5213,8 @@
         <BehaviorArray Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <LifeArmor value="4"/>
+        <Radius value="0.625"/>
+        <InnerRadius value="0.375"/>
     </CUnit>
     <CUnit id="SCV">
         <LifeArmor value="15"/>
@@ -5519,8 +5522,8 @@
         <BehaviorArray Link="Frenzy"/>
         <BehaviorArray Link="SharedExperience"/>
         <Sight value="1"/>
-        <Radius value="0.3125"/>
-        <InnerRadius value="0.3125"/>
+        <Radius value="0.6875"/>
+        <InnerRadius value="0.4375"/>
         <SubgroupPriority value="2"/>
         <StationaryTurningRate value="199.8632"/>
         <TurningRate value="199.8632"/>
@@ -5746,7 +5749,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
         </CardLayouts>
         <Radius value="0.625"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="6"/>
@@ -5930,7 +5933,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
         </CardLayouts>
-        <Radius value="0.375"/>
+        <Radius value="0.5625"/>
         <SeparationRadius value="0.4"/>
         <InnerRadius value="0.375"/>
         <CargoSize value="4"/>
@@ -6187,7 +6190,7 @@
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="NeuralParasite,Cancel" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowDemeter,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <InnerRadius value="0.6875"/>
+        <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -6245,7 +6248,6 @@
         <BehaviorArray Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <Radius value="0.4375"/>
-        <InnerRadius value="0.4375"/>
     </CUnit>
     <CUnit id="Gunship">
         <Race value="Terr"/>
@@ -6336,7 +6338,6 @@
         <Food value="-2"/>
         <LifeRegenRate value="15"/>
         <Radius value="0.4375"/>
-        <InnerRadius value="0.4375"/>
     </CUnit>
     <CUnit id="CreepTumorBurrowed">
         <LifeStart value="500"/>
@@ -6703,7 +6704,7 @@
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowCharlie,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.4375"/>
-        <InnerRadius value="0.5"/>
+        <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -6779,9 +6780,9 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
         </CardLayouts>
-        <Radius value="0.75"/>
+        <Radius value="0.4375"/>
         <SeparationRadius value="0"/>
-        <InnerRadius value="0.5"/>
+        <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
         <ScoreKill value="700"/>
         <SubgroupPriority value="2"/>
@@ -7198,7 +7199,7 @@
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0.6"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -7366,7 +7367,7 @@
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0.6"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -7542,9 +7543,9 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
         </CardLayouts>
-        <Radius value="0.75"/>
+        <Radius value="0.5625"/>
         <SeparationRadius value="0"/>
-        <InnerRadius value="0.5"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreKill value="700"/>
         <SubgroupPriority value="19"/>
@@ -9094,7 +9095,7 @@
         </CardLayouts>
         <Radius value="0.5625"/>
         <SeparationRadius value="0.45"/>
-        <InnerRadius value="0.5625"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="4"/>
         <ScoreMake value="400"/>
         <ScoreKill value="800"/>
@@ -9178,8 +9179,8 @@
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="NeuralParasite,Cancel" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowInfestor,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <Radius value="0.4375"/>
-        <InnerRadius value="0.4375"/>
+        <Radius value="0.5625"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -9258,7 +9259,7 @@
             <LayoutButtons Face="BurrowMove" Type="AbilCmd" AbilCmd="BurrowHugger,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.6875"/>
-        <InnerRadius value="0.5"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreMake value="350"/>
         <ScoreKill value="700"/>
@@ -9367,7 +9368,7 @@
             <LayoutButtons index="5" AbilCmd="BurrowInfestorTerranDown,Execute" Row="1"/>
         </CardLayouts>
         <Radius value="0.625"/>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.4375"/>
         <MinimapRadius value="3"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <TacticalAI value="Deimos"/>
@@ -9800,8 +9801,8 @@
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowSeeker,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"/>
         </CardLayouts>
-        <Radius value="0.3125"/>
-        <InnerRadius value="0.3125"/>
+        <Radius value="0.375"/>
+        <InnerRadius value="0.375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="6"/>
@@ -9837,6 +9838,7 @@
         <PlaneArray index="Ground" value="1"/>
         <TacticalAI value=""/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <Radius value="1"/>
     </CUnit>
     <CUnit id="Immortal2">
         <DeathRevealRadius value="0"/>
@@ -9937,7 +9939,7 @@
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="UnburrowHulk,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.4375"/>
-        <InnerRadius value="0.4375"/>
+        <InnerRadius value="0.375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -9974,6 +9976,7 @@
         <MinimapRadius value="0"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <TacticalAI value=""/>
+        <Radius value="1"/>
     </CUnit>
     <CUnit id="ZombieLevel1">
         <DeathRevealRadius value="0"/>
@@ -10073,7 +10076,7 @@
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.4375"/>
-        <InnerRadius value="0.4375"/>
+        <InnerRadius value="0.375"/>
         <ScoreMake value="75"/>
         <ScoreKill value="125"/>
         <SubgroupPriority value="1"/>
@@ -10994,7 +10997,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
         </CardLayouts>
         <Radius value="1.6875"/>
-        <InnerRadius value="1.6875"/>
+        <InnerRadius value="0.625"/>
         <MinimapRadius value="7"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Melee"/>
         <AIEvalFactor value="0.55"/>
@@ -11127,7 +11130,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
         </CardLayouts>
-        <InnerRadius value="0.75"/>
+        <InnerRadius value="0.5"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -11213,7 +11216,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRoachDown,Execute" Row="2" Column="4"/>
         </CardLayouts>
-        <InnerRadius value="0.625"/>
+        <InnerRadius value="0.375"/>
         <CargoSize value="2"/>
         <ScoreMake value="75"/>
         <ScoreKill value="150"/>
@@ -11489,7 +11492,7 @@
         <BehaviorArray index="7" removed="1"/>
         <KillXP value="25"/>
         <PushPriority value="10"/>
-        <InnerRadius value="0.75"/>
+        <InnerRadius value="0.625"/>
         <Speed value="1.4492"/>
         <SubgroupPriority value="12"/>
         <Radius value="1"/>
