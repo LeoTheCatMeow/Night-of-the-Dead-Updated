@@ -1096,6 +1096,7 @@
     </CBehaviorCreepSource>
     <CBehaviorBuff id="ClassPointsBonus">
         <InfoIcon value="Assets\Textures\btn-ability-zeratul-sentry-eclipseprotocol.dds"/>
+        <BehaviorCategories index="Permanent" value="1"/>
         <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="Countdown" value="0"/>
@@ -2194,15 +2195,11 @@
             <DamageDealtFraction index="Ranged" value="0.07"/>
             <DamageDealtFraction index="Splash" value="0.07"/>
         </Modification>
-        <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel1"/>
+        <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel1Damage"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItsMeAgainDamageLevel2">
-        <Cost>
-            <Charge Link="Behavior/ItsMeAgainDamageLevel1"/>
-            <Cooldown Link="Behavior/ItsMeAgainDamageLevel1"/>
-        </Cost>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCount value="5"/>
         <Modification>
@@ -2216,21 +2213,11 @@
                 </Cost>
             </DeathResponse>
         </Modification>
-        <DamageResponse>
-            <Cost>
-                <Charge Link="Behavior/ItsMeAgainDamageLevel1"/>
-                <Cooldown Link="Behavior/ItsMeAgainDamageLevel1"/>
-            </Cost>
-        </DamageResponse>
-        <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel2"/>
+        <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel2Damage"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItsMeAgainDamageLevel3">
-        <Cost>
-            <Charge Link="Behavior/ItsMeAgainDamageLevel1"/>
-            <Cooldown Link="Behavior/ItsMeAgainDamageLevel1"/>
-        </Cost>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCount value="5"/>
         <Modification>
@@ -2244,13 +2231,7 @@
                 </Cost>
             </DeathResponse>
         </Modification>
-        <DamageResponse>
-            <Cost>
-                <Charge Link="Behavior/ItsMeAgainDamageLevel1"/>
-                <Cooldown Link="Behavior/ItsMeAgainDamageLevel1"/>
-            </Cost>
-        </DamageResponse>
-        <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel3"/>
+        <Tooltip value="Behavior/Tooltip/ItsMeAgainLevel3Damage"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-raynor-shockwavemissilebattery.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
@@ -8575,12 +8556,10 @@
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <TimeScaleSource Value="Global"/>
         <Duration value="35"/>
         <Period value="1.5"/>
         <InitialEffect value="NanoHasteDummy"/>
         <PeriodicEffect value="NanoHasteDummy"/>
-        <Player Value="Target"/>
         <Modification MoveSpeedMultiplier="1.1">
             <DamageDealtFraction index="Spell" value="0.1"/>
             <DamageDealtFraction index="Melee" value="0.1"/>
@@ -8594,12 +8573,10 @@
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <TimeScaleSource Value="Global"/>
         <Duration value="35"/>
         <Period value="1.5"/>
         <InitialEffect value="NanoHasteLevel2Set"/>
         <PeriodicEffect value="NanoHasteDummy"/>
-        <Player Value="Target"/>
         <Modification MoveSpeedMultiplier="1.15">
             <DamageDealtFraction index="Spell" value="0.15"/>
             <DamageDealtFraction index="Melee" value="0.15"/>
@@ -8613,12 +8590,10 @@
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-stetelliteoverloadenergy.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <TimeScaleSource Value="Global"/>
         <Duration value="35"/>
         <Period value="1.5"/>
         <InitialEffect value="NanoHasteLevel3Set"/>
         <PeriodicEffect value="NanoHasteDummy"/>
-        <Player Value="Target"/>
         <Modification MoveSpeedMultiplier="1.2">
             <DamageDealtFraction index="Spell" value="0.2"/>
             <DamageDealtFraction index="Melee" value="0.2"/>

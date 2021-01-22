@@ -805,6 +805,16 @@
         <EditorCategories value=""/>
         <Behavior value="AcidicToxin"/>
     </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="VRL772RemoveOpenWound">
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="OpenWound"/>
+        <Count value="5"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="VRL772RemoveCripple">
+        <EditorCategories value="Race:Terran"/>
+        <BehaviorLink value="Cripple"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
     <CEffectDamage id="VolatileBurstU4" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
@@ -3146,8 +3156,10 @@
     <CEffectSet id="VRL772RemoveAilmentSet">
         <ValidatorArray value="TargetisAllyMarine"/>
         <EditorCategories value="Race:Terran"/>
-        <EffectArray value="VRL772RemoveMadness"/>
         <EffectArray value="VRL772RemoveVenom"/>
+        <EffectArray value="VRL772RemoveOpenWound"/>
+        <EffectArray value="VRL772RemoveCripple"/>
+        <EffectArray value="VRL772RemoveMadness"/>
         <EffectArray value="VRL772RemoveBlind"/>
         <EffectArray value="VRL772RemoveInfected"/>
     </CEffectSet>
@@ -4449,7 +4461,7 @@
     <CEffectRemoveBehavior id="VRL772RemoveVenom">
         <EditorCategories value="Race:Terran"/>
         <BehaviorLink value="Venom"/>
-        <Count value="10"/>
+        <Count value="15"/>
     </CEffectRemoveBehavior>
     <CEffectEnumArea id="VRL772Search">
         <EditorCategories value="Race:Terran"/>
@@ -8382,7 +8394,7 @@
     </CEffectCreateUnit>
     <CEffectDamage id="PlasmaDischargeDamage">
         <EditorCategories value=""/>
-        <Amount value="20"/>
+        <Amount value="30"/>
         <Death value="Fire"/>
         <Kind value="Splash"/>
         <ValidatorArray value="TargetIsEnemy"/>
@@ -8390,7 +8402,7 @@
     </CEffectDamage>
     <CEffectDamage id="PlasmaDischargeDamageAllies">
         <EditorCategories value=""/>
-        <Amount value="5"/>
+        <Amount value="7.5"/>
         <Death value="Fire"/>
         <Kind value="Splash"/>
         <ValidatorArray value="TargetIsNotEnemy"/>

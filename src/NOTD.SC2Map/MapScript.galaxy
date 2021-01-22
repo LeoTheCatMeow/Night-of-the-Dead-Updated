@@ -856,8 +856,6 @@ bool[9] gv_reloading;
 int[9] gv_smartReloadCount;
 int[9] gv_totalReloadCount;
 string[9][11] gv_marineBehaviors;
-string[9][11] gv_marineBehaviorsOverflow;
-int[9] gv_overflowCount;
 bool[9] gv_victimOfTK;
 bool[9] gv_playerHasRankedUp;
 bool[9] gv_victimTKisIndirect;
@@ -2192,8 +2190,7 @@ trigger gt_AmmoUsageL3;
 trigger gt_AmmoUIMoveButtonCallback;
 trigger gt_OnActivateBehavior;
 trigger gt_OnDeactivateBehavior;
-trigger gt_OnBehaviorUpdate;
-trigger gt_BehaviroDurationUpdate;
+trigger gt_BehaviorUpdate;
 trigger gt_BehaviorTrackerDisplayButtonCallback;
 trigger gt_ReceivesDamage;
 trigger gt_BadlyInjured;
@@ -19618,8 +19615,6 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     const int auto795BCCAA_ae = 10;
     int auto795BCCAA_var;
-    const int auto77824E3C_ae = 10;
-    int auto77824E3C_var;
 
     // Variable Initialization
     lv_behavior = EventUnitBehavior();
@@ -19627,7 +19622,11 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
+
+        if (!((lv_player <= 8))) {
             return false;
         }
     }
@@ -19639,16 +19638,8 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 
     auto795BCCAA_var = 1;
     for ( ; auto795BCCAA_var <= auto795BCCAA_ae; auto795BCCAA_var += 1 ) {
-        if ((gv_marineBehaviors[lv_player][auto795BCCAA_var] == null)) {
+        if (((gv_marineBehaviors[lv_player][auto795BCCAA_var] == null) || (gv_marineBehaviors[lv_player][auto795BCCAA_var] == lv_behavior))) {
             gf_DisplayBehavior(EventUnit(), lv_player, auto795BCCAA_var, lv_behavior);
-            return true;
-        }
-    }
-    auto77824E3C_var = 1;
-    for ( ; auto77824E3C_var <= auto77824E3C_ae; auto77824E3C_var += 1 ) {
-        if ((gv_marineBehaviorsOverflow[lv_player][auto77824E3C_var] == null)) {
-            gv_marineBehaviorsOverflow[lv_player][auto77824E3C_var] = lv_behavior;
-            gv_overflowCount[lv_player] += 1;
             return true;
         }
     }
@@ -19658,7 +19649,14 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnActivateBehavior_Init () {
     gt_OnActivateBehavior = TriggerCreate("gt_OnActivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -19668,13 +19666,10 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
     // Variable Declarations
     string lv_behavior;
     int lv_player;
-    int lv_openSlot;
 
     // Automatic Variable Declarations
     const int auto34491D84_ae = 10;
     int auto34491D84_var;
-    const int auto75DA134A_ae = 10;
-    int auto75DA134A_var;
 
     // Variable Initialization
     lv_behavior = EventUnitBehavior();
@@ -19682,7 +19677,11 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
+
+        if (!((lv_player <= 8))) {
             return false;
         }
     }
@@ -19697,24 +19696,7 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
         if ((gv_marineBehaviors[lv_player][auto34491D84_var] == lv_behavior)) {
             gv_marineBehaviors[lv_player][auto34491D84_var] = null;
             DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_player][auto34491D84_var], PlayerGroupActive(), false);
-            lv_openSlot = auto34491D84_var;
-            break;
-        }
-    }
-    if ((gv_overflowCount[lv_player] > 0)) {
-        auto75DA134A_var = 1;
-        for ( ; auto75DA134A_var <= auto75DA134A_ae; auto75DA134A_var += 1 ) {
-            if ((gv_marineBehaviorsOverflow[lv_player][auto75DA134A_var] != null)) {
-                lv_behavior = gv_marineBehaviorsOverflow[lv_player][auto75DA134A_var];
-                gv_overflowCount[lv_player] -= 1;
-                if (UnitHasBehavior2(EventUnit(), lv_behavior)) {
-                    gf_DisplayBehavior(EventUnit(), lv_player, lv_openSlot, lv_behavior);
-                }
-                else {
-                    gv_marineBehaviorsOverflow[lv_player][auto75DA134A_var] = null;
-                }
-                return true;
-            }
+            return true;
         }
     }
     return true;
@@ -19723,64 +19705,22 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnDeactivateBehavior_Init () {
     gt_OnDeactivateBehavior = TriggerCreate("gt_OnDeactivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: OnBehaviorUpdate
+// Trigger: BehaviorUpdate
 //--------------------------------------------------------------------------------------------------
-bool gt_OnBehaviorUpdate_Func (bool testConds, bool runActions) {
+bool gt_BehaviorUpdate_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    string lv_behavior;
-    int lv_player;
-
-    // Automatic Variable Declarations
-    const int autoE118865E_ae = 10;
-    int autoE118865E_var;
-
-    // Variable Initialization
-    lv_behavior = EventUnitBehavior();
-    lv_player = UnitGetOwner(EventUnit());
-
-    // Conditions
-    if (testConds) {
-        if (!(UnitGroupHasUnit(gv_marines, EventUnit()))) {
-            return false;
-        }
-
-        if (!(UnitBehaviorHasFlag(EventUnitBehavior(), c_unitBehaviorFlagUser1))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoE118865E_var = 1;
-    for ( ; autoE118865E_var <= autoE118865E_ae; autoE118865E_var += 1 ) {
-        if ((gv_marineBehaviors[lv_player][autoE118865E_var] == lv_behavior)) {
-            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lv_player][autoE118865E_var], IntToText(UnitBehaviorCount(EventUnit(), lv_behavior)), PlayerGroupActive());
-            break;
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_OnBehaviorUpdate_Init () {
-    gt_OnBehaviorUpdate = TriggerCreate("gt_OnBehaviorUpdate_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnBehaviorUpdate, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnBehaviorUpdate, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeDecrease);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: BehaviroDurationUpdate
-//--------------------------------------------------------------------------------------------------
-bool gt_BehaviroDurationUpdate_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_pickedmarine;
+    int lv_pickedMarine;
     string lv_behavior;
     fixed lv_duration;
 
@@ -19794,7 +19734,7 @@ bool gt_BehaviroDurationUpdate_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(((gv_behaviorTrackerDialog[1] != c_invalidDialogId) || (gv_behaviorTrackerDialog[2] != c_invalidDialogId) || (gv_behaviorTrackerDialog[3] != c_invalidDialogId) || (gv_behaviorTrackerDialog[4] != c_invalidDialogId) || (gv_behaviorTrackerDialog[5] != c_invalidDialogId) || (gv_behaviorTrackerDialog[6] != c_invalidDialogId) || (gv_behaviorTrackerDialog[7] != c_invalidDialogId) || (gv_behaviorTrackerDialog[8] != c_invalidDialogId)))) {
+        if (!((gv_gameOver == false))) {
             return false;
         }
     }
@@ -19807,25 +19747,26 @@ bool gt_BehaviroDurationUpdate_Func (bool testConds, bool runActions) {
     autoEEF506FA_var = 1;
     for ( ; autoEEF506FA_var <= autoEEF506FA_ae; autoEEF506FA_var += 1 ) {
         if ((gv_behaviorTrackerDialog[autoEEF506FA_var] != c_invalidDialogId)) {
-            lv_pickedmarine = autoEEF506FA_var;
+            lv_pickedMarine = autoEEF506FA_var;
             auto1E955283_var = 1;
             for ( ; auto1E955283_var <= auto1E955283_ae; auto1E955283_var += 1 ) {
-                if ((gv_marineBehaviors[lv_pickedmarine][auto1E955283_var] != null)) {
-                    lv_behavior = gv_marineBehaviors[lv_pickedmarine][auto1E955283_var];
+                if ((gv_marineBehaviors[lv_pickedMarine][auto1E955283_var] != null) && (UnitBehaviorHasFlag(gv_marineBehaviors[lv_pickedMarine][auto1E955283_var], c_unitBehaviorFlagPermanent) == false)) {
+                    lv_behavior = gv_marineBehaviors[lv_pickedMarine][auto1E955283_var];
+                    libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lv_pickedMarine][auto1E955283_var], IntToText(UnitBehaviorCount(gv_marineHero[lv_pickedMarine], lv_behavior)), PlayerGroupActive());
                     if ((libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogBehavior, lv_behavior, "Duration", c_playerAny) >= 3.0)) {
-                        lv_duration = UnitBehaviorDuration(gv_marineHero[lv_pickedmarine], lv_behavior);
+                        lv_duration = UnitBehaviorDuration(gv_marineHero[lv_pickedMarine], lv_behavior);
                         if ((lv_duration > 60.0)) {
                             lv_duration = (lv_duration / 60.0);
-                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedmarine][auto1E955283_var], FixedToText(lv_duration, 0), PlayerGroupActive());
-                            libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedmarine][auto1E955283_var], Color(28*100/255,167*100/255,234*100/255), PlayerGroupActive());
+                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], FixedToText(lv_duration, 0), PlayerGroupActive());
+                            libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], Color(28*100/255,167*100/255,234*100/255), PlayerGroupActive());
                         }
                         else {
-                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedmarine][auto1E955283_var], FixedToText(lv_duration, 0), PlayerGroupActive());
-                            libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedmarine][auto1E955283_var], Color(254*100/255,138*100/255,14*100/255), PlayerGroupActive());
+                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], FixedToText(lv_duration, 0), PlayerGroupActive());
+                            libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], Color(254*100/255,138*100/255,14*100/255), PlayerGroupActive());
                         }
                     }
                     else {
-                        libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedmarine][auto1E955283_var], StringToText(""), PlayerGroupActive());
+                        libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], StringToText(""), PlayerGroupActive());
                     }
                 }
             }
@@ -19835,9 +19776,9 @@ bool gt_BehaviroDurationUpdate_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_BehaviroDurationUpdate_Init () {
-    gt_BehaviroDurationUpdate = TriggerCreate("gt_BehaviroDurationUpdate_Func");
-    TriggerAddEventTimePeriodic(gt_BehaviroDurationUpdate, 0.1, c_timeGame);
+void gt_BehaviorUpdate_Init () {
+    gt_BehaviorUpdate = TriggerCreate("gt_BehaviorUpdate_Func");
+    TriggerAddEventTimePeriodic(gt_BehaviorUpdate, 0.1, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -46727,8 +46668,7 @@ void InitTriggers () {
     gt_AmmoUIMoveButtonCallback_Init();
     gt_OnActivateBehavior_Init();
     gt_OnDeactivateBehavior_Init();
-    gt_OnBehaviorUpdate_Init();
-    gt_BehaviroDurationUpdate_Init();
+    gt_BehaviorUpdate_Init();
     gt_BehaviorTrackerDisplayButtonCallback_Init();
     gt_ReceivesDamage_Init();
     gt_BadlyInjured_Init();

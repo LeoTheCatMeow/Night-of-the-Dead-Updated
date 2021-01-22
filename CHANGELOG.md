@@ -1,7 +1,18 @@
 # Current Changes & Bugfixes Tracklist
+
 2021-1-21
-[reduxGelum]
-- Fixed terrain causing enemy pathing errors
+[ReduxGelum]
+- Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
+- As a result certain exploit spots are no long effective.
+ 
+- [LeoTheCat]
+- Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
+- Storyline selection UI will now reflect lobby options for consistency (e.g. High Spawn should be highlighted if lobby option is set so).
+- Realism command has been removed as pretty much all controversial changes have been reverted to the original.
+- Engineer - Plasma Discharge damage increased from 20/40/80 to 30/60/90 (level1 zombie has 87.5hp at 250% scaling).
+- Fixed some Engineer tooltip errors in the behavior bar.
+- Tried to improve behavior bar's performance.
+- Chem Expert - VRL-772 now properly removes all ailments instead of just some.
 
 2021-1-18
 [ThunderRazor]

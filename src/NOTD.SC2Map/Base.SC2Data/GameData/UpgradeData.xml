@@ -327,13 +327,13 @@
         <EffectArray Operation="Set" Reference="Effect,LookPersistentOrder,PeriodicPeriodArray[2]" Value="1.000000"/>
     </CUpgrade>
     <CUpgrade id="PlasmaDischargeLevel2">
-        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamageAllies,Amount" Value="10"/>
-        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamage,Amount" Value="40"/>
+        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamageAllies,Amount" Value="15"/>
+        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamage,Amount" Value="60"/>
         <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeApplySlowArmor,Behavior" Value="PlasmaDischargeLevel2"/>
     </CUpgrade>
     <CUpgrade id="PlasmaDischargeLevel3">
-        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamageAllies,Amount" Value="15"/>
-        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamage,Amount" Value="80"/>
+        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamageAllies,Amount" Value="22.5"/>
+        <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeDamage,Amount" Value="90"/>
         <EffectArray Operation="Set" Reference="Effect,PlasmaDischargeApplySlowArmor,Behavior" Value="PlasmaDischargeLevel3"/>
     </CUpgrade>
     <CUpgrade id="RighteousnessLevel2">

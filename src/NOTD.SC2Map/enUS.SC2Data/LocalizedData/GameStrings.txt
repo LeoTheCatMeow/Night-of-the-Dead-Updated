@@ -980,7 +980,10 @@ Behavior/Tooltip/Inferno=Unit is burned from within and will explode in 5 second
 Behavior/Tooltip/Intimidation=-1 Life & Shield Armor for 4 seconds. Stacks up to 5 times.
 Behavior/Tooltip/IronHand=Iron Hand protocol activated. +100% attack speed for 5 seconds. Will suffer from Overheating subsequently.
 Behavior/Tooltip/ItsMeAgainLevel1=Each subsequent attack on same unit deals 7% additional damage. Stacks up to 5 times.
+Behavior/Tooltip/ItsMeAgainLevel1Damage=Each subsequent attack on same unit deals 7% additional damage. Stacks up to 5 times.
 Behavior/Tooltip/ItsMeAgainLevel2=Each subsequent attack on same unit deals 14% additional damage. Stacks up to 5 times.
+Behavior/Tooltip/ItsMeAgainLevel2Damage=Each subsequent attack on same unit deals 14% additional damage. Stacks up to 5 times.
+Behavior/Tooltip/ItsMeAgainLevel3Damage=Each subsequent attack on same unit deals 21% additional damage. Stacks up to 5 times.
 Behavior/Tooltip/LaserDesignatorLevel1=Unit's armor is reduced by 1.
 Behavior/Tooltip/LaserDesignatorLevel2=Unit's armor is reduced by 3.
 Behavior/Tooltip/LaserDesignatorLevel3=Unit's armor is reduced by 5.
@@ -1856,7 +1859,7 @@ Button/Tooltip/PlasmaCutterOverchargeLevel1=Deals 150 damage to a single target,
 Button/Tooltip/PlasmaCutterOverchargeLevel2=Deals 200 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.
 Button/Tooltip/PlasmaCutterOverchargeLevel3=Deals 250 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.
 Button/Tooltip/PlasmaDetonator=
-Button/Tooltip/PlasmaDischarge=Primes a Plasma Detonator that deals 20 damage in 4 radius after 3.5 seconds. Affected units lose 2 armor & are slowed by 30% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
+Button/Tooltip/PlasmaDischarge=Primes a Plasma Detonator that deals 30 damage in 4 radius after 3.5 seconds. Affected units lose 2 armor & are slowed by 30% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 Button/Tooltip/PrecisionShot=Deals 75 damage to target unit and slows movement by 30% for 5 seconds. 
 Button/Tooltip/Predator2= 
 Button/Tooltip/PredatorPet=An advanced recon robot used by UGC since 2074. Can receive upgrade modules as it levels up.
@@ -2717,6 +2720,10 @@ DocInfo/PatchNote671=- [LeoTheCat]
 DocInfo/PatchNote672=- Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
 DocInfo/PatchNote673=- Storyline selection UI will now reflect lobby options for consistency (e.g. High Spawn should be highlighted if lobby option is set so).
 DocInfo/PatchNote674=- Realism command has been removed as pretty much all controversial changes have been reverted to the original.
+DocInfo/PatchNote675=- Engineer - Plasma Discharge damage increased from 20/40/80 to 30/60/90 (level1 zombie has 87.5hp at 250% scaling).
+DocInfo/PatchNote676=- Fixed some Engineer tooltip errors in the behavior bar.
+DocInfo/PatchNote677=- Tried to improve behavior bar's performance.
+DocInfo/PatchNote678=- Chem Expert - VRL-772 now properly removes all ailments instead of just some.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4364,8 +4371,10 @@ Effect/Name/VRL772DamageSet=VRL-772 Damage Set
 Effect/Name/VRL772ImpactSet=VRL-772 Impact Set
 Effect/Name/VRL772RemoveAilmentSet=VRL-772 Remove Ailment Set
 Effect/Name/VRL772RemoveBlind=VRL-772 Remove Blind
+Effect/Name/VRL772RemoveCripple=VRL-772 Remove Cripple
 Effect/Name/VRL772RemoveInfected=VRL-772 Remove Infected
 Effect/Name/VRL772RemoveMadness=VRL-772 Remove Madness
+Effect/Name/VRL772RemoveOpenWound=VRL-772 Remove Open Wound
 Effect/Name/VRL772RemoveVenom=VRL-772 Remove Venom
 Effect/Name/VRL772Search=VRL-772 Search
 Effect/Name/VRL772VenomDamage=VRL-772 Venom Damage
@@ -4489,7 +4498,7 @@ Level 2 NanoHasteLevel 2 NanoStrengthLevel 2 NanoHasteLevel 2 NanoStrength2Level
 Level 2 NanoWeave=Heals 8 HP/sec on target unit for 15 seconds.
 Level 2 Nanosteel Net=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 25% by its thrashing attempts to escape. Lasts 4 seconds.
 Level 2 Penance=Unit's Life/Shield Armor is reduced by 10, and its attack damage is increased by 100% for 15 seconds.
-Level 2 Plasma Discharge=Primes a Plasma Detonator that deals 40 damage in 4 radius after 3.5 seconds. Affected units lose 4 armor & are slowed by 45% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
+Level 2 Plasma Discharge=Primes a Plasma Detonator that deals 60 damage in 4 radius after 3.5 seconds. Affected units lose 4 armor & are slowed by 45% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 Level 2 Precision Shot=Deals 150 damage to target unit and slows movement by 60% for 5 seconds. 
 Level 2 Redundant Organs=Bob throws his spleens at zombies. Zombies become distracted for 7 secs while they feast.
 Level 2 Repair=Repairs shields/mechanical at rate of 10 per second. Has a 33% chance per second to remove Short Circuit.
@@ -4537,7 +4546,7 @@ Level 3 Mobile Infantry=1 Marine lands at target location to support you. Each a
 Level 3 NanoHasteLevel 3 NanoStrength=Increases target unit's attack damage and movespeed by 20% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 NanoStrength2Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 BattlefieldIntelligence=Increases target unit's attack damage and movespeed by 20% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Level 3 Nanosteel Net=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 30% by its thrashing attempts to escape. Lasts 5 seconds.
-Level 3 Plasma Discharge=Primes a Plasma Detonator that deals 80 damage in 4 radius after 3.5 seconds. Affected units lose 6 armor & are slowed by 60% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
+Level 3 Plasma Discharge=Primes a Plasma Detonator that deals 90 damage in 4 radius after 3.5 seconds. Affected units lose 6 armor & are slowed by 60% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 Level 3 Repair=Repairs shields/mechanical at rate of 15 per second. Has a 33% chance per second to remove Short Circuit.
 Level 3 Sensor Tower=Reveals enemy units in 35 radius. Stationary and can only build 3 at a time.
 Level 3 Shadowstep=Allows Marksman to move very quickly (+300% movespeed) and become cloaked for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
@@ -7217,9 +7226,9 @@ UserData/TalentTrees/Demolitions_Talent Tootips_009=<s val="AchievementFrameName
 UserData/TalentTrees/Engineer_Headers=<s val="HelpPanelListBoxItemTitle">Field Support</s>
 UserData/TalentTrees/Engineer_Headers_001=<s val="HelpPanelListBoxItemTitle">Combat</s>
 UserData/TalentTrees/Engineer_Talent Tootips=<s val="AchievementFrameName">Field Probe</s><n/>Create a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds. <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.<n/><n/>Level 1 -  Can build 1 at a time.<n/>Level 2 -  Can build 2 at a time.<n/>Level 3 -  Can build 3 at a time.
-UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">Plasma Discharge</s><n/>Primes a Plasma Detonator that deals damage in 4 radius after 3.5 seconds. Affected units lose armor and movespeed for 7 seconds. Reduced impact on allies. Each level also decreases Energy cost.<n/>Level 1 - 20 damage, -2 armor, -30% movespeed.<n/>Level 2 - 40 damage, -4 armor, -45% movespeed.<n/>Level 3 - 80 damage, -6 armor, -60% movespeed.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
+UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">Plasma Discharge</s><n/>Primes a Plasma Detonator that deals damage in 4 radius after 3.5 seconds. Affected units lose armor and movespeed for 7 seconds. Reduced impact on allies. Each level also decreases Energy cost.<n/>Level 1 - 30 damage, -2 armor, -30% movespeed.<n/>Level 2 - 60 damage, -4 armor, -45% movespeed.<n/>Level 3 - 90 damage, -6 armor, -60% movespeed.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. <n/>Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c><n/>Level 1 - 12 damage every 1.2 seconds. Affects 8 units.<n/>Level 2 - 18 damage every 1.2 seconds. Affects 16 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Grants bonus max energy and +0.35 energy regeneration to allies in 9 radius. <n/>Also improves Engineer's shield repair speed. <n/>Level 1 - +10 energy, 12 per second shield repair.<n/>Level 2 - +20 energy, 17 per second shield repair.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Grants bonus max energy and +0.35 energy regeneration to allies in 9 radius. <n/>Also improves Engineer's shield repair speed.<n/>Level 1 - +10 energy, 12 per second shield repair.<n/>Level 2 - +20 energy, 17 per second shield repair.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 12 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 18 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 24 damage per attack. (Ignore armor)
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">It's Me Again!<n/>(Passive)</s><n/>Each subsequent attack on same target deals extra damage.<n/>Level 1 - +7% damage<n/>Level 2 - +14% damage<n/>Level 3 - +21% damage<n/><n/>Stacks up to 5 times.
