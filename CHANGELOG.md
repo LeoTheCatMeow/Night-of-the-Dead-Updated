@@ -1,4 +1,7 @@
 # Current Changes & Bugfixes Tracklist
+2021-1-23
+[ReduxGelum]
+- Fixed fog, by testored map height field back to original value (-12 off base height)
 
 2021-1-21
 [ReduxGelum]
