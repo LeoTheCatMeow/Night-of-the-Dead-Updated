@@ -1,11 +1,11 @@
 # Current Changes & Bugfixes Tracklist
 
-2021-1-21
+2021-1-23
 [ReduxGelum]
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
 - As a result certain exploit spots are no long effective.
- 
-- [LeoTheCat]
+
+[LeoTheCat]
 - Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
 - Storyline selection UI will now reflect lobby options for consistency (e.g. High Spawn should be highlighted if lobby option is set so).
 - Realism command has been removed as pretty much all controversial changes have been reverted to the original.
@@ -13,6 +13,9 @@
 - Fixed some Engineer tooltip errors in the behavior bar.
 - Tried to improve behavior bar's performance.
 - Chem Expert - VRL-772 now properly removes all ailments instead of just some.
+- Marksman - One Shot, One Kill lv1/lv2 damage increased from 200/400 to 400/600.
+- Marksman - Master Marksman passive reworked, still upgrades One Shot, One Kill but no longer stuns. Has a more unique effect instead. 
+- Moved CP Bonus out of the behavior bar and added the stack count to its tooltip (still visible in the default sc2 behavior bar).
 
 2021-1-18
 [ThunderRazor]
