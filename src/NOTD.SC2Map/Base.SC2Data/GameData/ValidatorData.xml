@@ -154,6 +154,24 @@
         <Value value="1"/>
         <Behavior value="ChemicalSynthesis"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="HasConcentrationLevel1">
+        <Find value="1"/>
+        <UnitSelectionNotRequired value="1"/>
+        <Value value="ConcentrationLevel1"/>
+        <WhichUnit Value="Target"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HasConcentrationLevel2">
+        <Find value="1"/>
+        <UnitSelectionNotRequired value="1"/>
+        <Value value="ConcentrationLevel2"/>
+        <WhichUnit Value="Target"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HasConcentrationLevel3">
+        <Find value="1"/>
+        <UnitSelectionNotRequired value="1"/>
+        <Value value="ConcentrationLevel3"/>
+        <WhichUnit Value="Target"/>
+    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="HasCripple">
         <Compare value="GT"/>
         <Behavior value="Cripple"/>
@@ -933,6 +951,12 @@
         <Value value="100"/>
         <Vital value="Energy"/>
     </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareBehaviorCount id="TargetNotinLockOn">
+        <Behavior value="MasterMarksmanLockOn"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetNotinLockOnDelay">
+        <Behavior value="MasterMarksmanLockOnDelay"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitBehaviorState id="TargetUnitisStunned">
         <Enabled value="1"/>
         <BehaviorState value="Stun"/>

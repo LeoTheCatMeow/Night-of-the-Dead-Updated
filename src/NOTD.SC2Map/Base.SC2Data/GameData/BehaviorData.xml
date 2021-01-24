@@ -460,6 +460,23 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="MasterMarksmanLockOn">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.7"/>
+        <InitialEffect value="LockOnReveal"/>
+        <DamageResponse Handled="MasterMarksmanProcLockOnSet">
+            <RequireEffectArray value="OSOKLevel1BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel2BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel3BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="0.5">
@@ -719,6 +736,13 @@
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="SuppressRegularXPSharing">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="SuppressXPSharing" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="SynchronizationModule">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-immortalityprotocol.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -854,9 +878,8 @@
         <InfoIcon value="Assets\Textures\btn-ability-nova-domination.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
-    <CBehaviorVeterancy id="PetVeterancy2">
+    <CBehaviorVeterancy id="BlaqkVeterancy">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <SharedXPMaxCount index="Kills" value="0"/>
         <VeterancyLevelArray MinVeterancyXP="75">
             <Modification>
                 <DeathResponse>
@@ -1097,11 +1120,10 @@
     <CBehaviorBuff id="ClassPointsBonus">
         <InfoIcon value="Assets\Textures\btn-ability-zeratul-sentry-eclipseprotocol.dds"/>
         <BehaviorCategories index="Permanent" value="1"/>
-        <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="Countdown" value="0"/>
         <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
-        <MaxStackCount value="50"/>
+        <MaxStackCount value="1000"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="WraithCorrosiveAcid">
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-corrosiveacid.dds"/>
@@ -1266,6 +1288,7 @@
     </CBehaviorAttribute>
     <CBehaviorVeterancy id="Basic_Hero">
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy"/>
         <VeterancyLevelArray MinVeterancyXP="50">
             <Modification Detect="12" DetectFilters="-;Player,Neutral,Enemy"/>
         </VeterancyLevelArray>
@@ -1335,7 +1358,6 @@
         <VeterancyLevelArray MinVeterancyXP="35000">
             <Modification Detect="12" DetectFilters="-;Player,Neutral,Enemy"/>
         </VeterancyLevelArray>
-        <SharedXPMaxCount index="Kills" value="0"/>
     </CBehaviorVeterancy>
     <CBehaviorBuff id="BlazeofGlory">
         <InfoFlags index="Hidden" value="1"/>
@@ -1506,9 +1528,6 @@
     <CBehaviorBuff id="CriticalStrikeDealer">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification>
-            <StateFlags index="SuppressXPSharing" value="1"/>
-        </Modification>
         <DamageResponse Handled="ApplyCriticalStrikeSet" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
@@ -2140,11 +2159,11 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="SharedExperience">
+        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DamageResponse Fatal="1" Handled="SharedExperienceSearchSet">
             <Chance value="1"/>
         </DamageResponse>
-        <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShortRangeWeapons">
         <Cost>
@@ -4654,13 +4673,6 @@
             </Modification>
         </VeterancyLevelArray>
     </CBehaviorVeterancy>
-    <CBehaviorBuff id="XPShareSuppression">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification>
-            <StateFlags index="SuppressXPSharing" value="1"/>
-        </Modification>
-    </CBehaviorBuff>
     <CBehaviorBuff id="ZEffect">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
@@ -5863,6 +5875,7 @@
     </CBehaviorBuff>
     <CBehaviorVeterancy id="PetVeterancy">
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
         <VeterancyLevelArray MinVeterancyXP="75"/>
         <VeterancyLevelArray MinVeterancyXP="225">
             <Modification SightBonus="3">
@@ -5994,7 +6007,6 @@
                 <VitalMaxFractionArray index="Energy" value="0.2854"/>
             </Modification>
         </VeterancyLevelArray>
-        <SharedXPMaxCount index="Kills" value="0"/>
     </CBehaviorVeterancy>
     <CBehaviorBuff id="BlackoutLevel1">
         <Alignment value="Positive"/>
@@ -6297,7 +6309,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.314"/>
             </Modification>
         </VeterancyLevelArray>
-        <SharedXPMaxCount index="Kills" value="4294967295"/>
+        <ShareFilters index="Kills" value="-;Ally,Neutral,Enemy,Hallucination"/>
     </CBehaviorVeterancy>
     <CBehaviorBuff id="FrenzyBuffLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -8337,24 +8349,22 @@
         <InfoIcon value="Assets\Textures\btn-unit-terran-ghost.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="MasterMarksman"/>
-        <DamageResponse Handled="MasterMarksmanApplyStun" Location="Attacker">
+        <DamageResponse Handled="MasterMarksmanApplyLockOnDelay" Location="Attacker">
+            <RequireEffectArray value="C10CanisterRifle"/>
+            <RequireEffectArray value="BarrettM112"/>
             <Chance value="1"/>
         </DamageResponse>
         <DisableValidatorArray value="SniperRifleEquipped"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="MasterMarksmanStun">
+    <CBehaviorBuff id="MasterMarksmanLockOnDelay">
         <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="2"/>
-        <PeriodCount value="0"/>
-        <Modification>
-            <ModifyFlags index="DisableAbils" value="1"/>
-            <StateFlags index="Stun" value="1"/>
-            <AbilClassEnableArray index="CAbilInventory" value="1"/>
-            <AbilClassEnableArray index="CAbilLearn" value="1"/>
-        </Modification>
-        <MaxStackCountPerCaster value="10"/>
+        <Duration value="0.4"/>
+        <DurationRandomMin value="2"/>
+        <DurationRandomMax value="0.1"/>
+        <ExpireEffect value="MasterMarksmanApplyLockOn"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="LaserDesignatorLevel1">
         <Alignment value="Negative"/>

@@ -256,6 +256,16 @@
         <On Terms="Effect.InboundSicknessCreatePersistentLevel2.Stop" Send="Destroy"/>
         <Scale value="0.700000"/>
     </CActorModel>
+    <CActorModel id="LockOn" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MasterMarksmanLockOn.On" Send="Create"/>
+        <On Terms="Behavior.MasterMarksmanLockOn.Off" Send="TimerSet 0.100000"/>
+        <On Terms="Effect.MasterMarksmanRemoveLockOn.Start" Send="SetTintColor {255,255,128 3.000000}"/>
+        <On Terms="TimerExpired" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Scale value="0.700000"/>
+    </CActorModel>
     <CActorModel id="MonstrousPull" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth {} {} ContentPlayOnce"/>
@@ -543,7 +553,7 @@
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 2.500000 AsDuration"/>
         <On Terms="BehaviorLevel.Basic_Hero" Send="Create"/>
-        <On Terms="BehaviorLevel.PetVeterancy2" Send="Create"/>
+        <On Terms="BehaviorLevel.BlaqkVeterancy" Send="Create"/>
         <On Terms="ActorDestruction" Target="LevelUpText" Send="Destroy"/>
         <On Terms="ActorCreation" Send="Create LevelUpText"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
@@ -6682,8 +6692,8 @@
         <On Terms="Behavior.SafeguardHidden.DamageHandled" Send="Create"/>
         <Sound value="Immortal_HardenedShieldImpact"/>
     </CActorSound>
-    <CActorSound id="OneShotOneKillLevel3" parent="SoundOneShot">
-        <On Terms="Effect.OSOKLevel3FiringSet.Start" Send="Create"/>
+    <CActorSound id="OneShotOneKillLockOnProc" parent="SoundOneShot">
+        <On Terms="Effect.MasterMarksmanProcLockOnSet.Start" Send="Create"/>
     </CActorSound>
     <CActorModel id="EnergyFieldBirth" parent="ModelAnimationStyleOneShot">
         <Inherits index="Visibility" value="1"/>
@@ -15414,8 +15424,6 @@
         <On Terms="Behavior.MonofilamentCartridgeLevel1Stun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel2Stun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel3Stun.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.MasterMarksmanStun.On; ValidateUnit UnitIsBiological" Send="Create"/>
-        <On Terms="Behavior.MasterMarksmanStun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.CounterMeasuresLevel1.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <On Terms="Behavior.CounterMeasuresLevel2.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <On Terms="Behavior.CounterMeasuresLevel3.On; ValidateUnit UnitIsBiological" Send="Create"/>

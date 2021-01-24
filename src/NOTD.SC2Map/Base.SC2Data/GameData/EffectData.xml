@@ -288,6 +288,58 @@
         <SearchFlags index="CallForHelp" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
     </CEffectDamage>
+    <CEffectCreatePersistent id="LockOnReveal">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="4"/>
+        <PeriodicPeriodArray value="0.5"/>
+        <RevealRadius value="2"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="LoS" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="MasterMarksmanApplyLockOn">
+        <ValidatorArray index="0" value="TargetNotinLockOn"/>
+        <EditorCategories value=""/>
+        <Behavior value="MasterMarksmanLockOn"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="MasterMarksmanProcLockOnSet">
+        <EditorCategories value=""/>
+        <EffectArray value="MasterMarksmanRegainEnergy"/>
+        <EffectArray value="MasterMarksmanRemoveLockOn"/>
+        <EffectArray value="MasterMarksmanRegainConcentrationLevel1"/>
+        <EffectArray value="MasterMarksmanRegainConcentrationLevel2"/>
+        <EffectArray value="MasterMarksmanRegainConcentrationLevel3"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="MasterMarksmanRegainConcentrationLevel1">
+        <ValidatorArray index="0" value="HasConcentrationLevel1"/>
+        <EditorCategories value=""/>
+        <Behavior value="ConcentrationLevel1"/>
+        <Count value="2"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="MasterMarksmanRegainConcentrationLevel2">
+        <ValidatorArray index="0" value="HasConcentrationLevel2"/>
+        <EditorCategories value=""/>
+        <Behavior value="ConcentrationLevel2"/>
+        <Count value="2"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="MasterMarksmanRegainConcentrationLevel3">
+        <ValidatorArray index="0" value="HasConcentrationLevel3"/>
+        <EditorCategories value=""/>
+        <Behavior value="ConcentrationLevel3"/>
+        <Count value="2"/>
+    </CEffectApplyBehavior>
+    <CEffectModifyUnit id="MasterMarksmanRegainEnergy">
+        <EditorCategories value=""/>
+        <VitalArray index="Energy">
+            <Change value="10"/>
+        </VitalArray>
+    </CEffectModifyUnit>
+    <CEffectRemoveBehavior id="MasterMarksmanRemoveLockOn">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <BehaviorLink value="MasterMarksmanLockOn"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
     <CEffectDamage id="ParticleBeam">
         <ArmorReduction value="0.5"/>
         <Kind value="Ranged"/>
@@ -3421,7 +3473,7 @@
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
-        <Amount value="520"/>
+        <Amount value="780"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="OSOKLevel3BarrettBossDamage" parent="DU_WEAP">
@@ -3495,7 +3547,7 @@
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
-        <Amount value="260"/>
+        <Amount value="520"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -11504,11 +11556,12 @@
         <EffectArray value="ImYourFatherIssueAttack"/>
         <EffectArray value="ImYourFatherApplyBehaviorLevel1"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="MasterMarksmanApplyStun">
+    <CEffectApplyBehavior id="MasterMarksmanApplyLockOnDelay">
+        <ValidatorArray index="0" value="EnemyTarget"/>
+        <ValidatorArray value="TargetNotinLockOn"/>
+        <ValidatorArray value="TargetNotinLockOnDelay"/>
         <EditorCategories value=""/>
-        <Behavior value="MasterMarksmanStun"/>
-        <ValidatorArray index="0" value="MasterMarksmanDistanceCheck"/>
-        <ValidatorArray value="UnitisnotHeroic"/>
+        <Behavior value="MasterMarksmanLockOnDelay"/>
     </CEffectApplyBehavior>
     <CEffectSet id="Cleave">
         <EditorCategories value="Race:Zerg"/>
@@ -11877,7 +11930,7 @@
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
-        <Amount value="400"/>
+        <Amount value="600"/>
         <Death value="Blast"/>
         <ValidatorArray value="BarrettNotEquipped"/>
     </CEffectDamage>
@@ -11887,7 +11940,7 @@
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
-        <Amount value="200"/>
+        <Amount value="400"/>
         <Death value="Blast"/>
         <ValidatorArray value="BarrettNotEquipped"/>
     </CEffectDamage>

@@ -61,7 +61,6 @@
         <BehaviorArray Link="KittenBeacon"/>
         <BehaviorArray Link="Flashlight"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
-        <BehaviorArray Link="CriticalStrikeDealerKnife"/>
         <CardLayouts>
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
@@ -103,6 +102,7 @@
     <CUnit default="1" id="BaseHeroLight" parent="BaseHero">
         <EditorCategories value=""/>
         <StationaryTurningRate value="524.8828"/>
+        <BehaviorArray Link="CriticalStrikeDealerKnife"/>
     </CUnit>
     <CUnit default="1" id="PetTemplate">
         <Name value="Unit/Name/PetTemplate"/>
@@ -780,7 +780,7 @@
         <AbilArray index="5" Link="PredatorCloak2"/>
         <AbilArray index="6" Link="ZeratulBlink2"/>
         <AbilArray index="7" Link="LightningField2"/>
-        <BehaviorArray index="0" Link="PetVeterancy2"/>
+        <BehaviorArray index="0" Link="BlaqkVeterancy"/>
         <BehaviorArray index="1" Link="KittenBeacon2"/>
         <BehaviorArray index="2" Link="MarkofthePredator2"/>
         <WeaponArray index="0" Link="Predator2"/>
@@ -926,6 +926,7 @@
         <BehaviorArray Link="ChemicalDeathWaste"/>
         <BehaviorArray Link="FlashlightFatsuits"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
@@ -1181,6 +1182,7 @@
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="FlashlightFatsuits"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <WeaponArray index="0" removed="1"/>
         <CardLayouts index="0">
             <LayoutButtons index="0" Face="MoveHoldPosition" AbilCmd="move,HoldPos"/>
@@ -1603,7 +1605,7 @@
         <LifeRegenRate value="0.1992"/>
         <EnergyStart value="200"/>
         <EnergyMax value="200"/>
-        <EnergyRegenRate value="0.7187"/>
+        <EnergyRegenRate value="0.75"/>
         <ShieldsStart value="35"/>
         <ShieldsMax value="35"/>
         <ShieldRegenRate value="1.5"/>
@@ -1655,6 +1657,7 @@
         <BehaviorArray Link="ConcentrationLevel1Dummy"/>
         <BehaviorArray Link="ConcentrationLevel2Dummy"/>
         <BehaviorArray Link="ConcentrationLevel3Dummy"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
@@ -1772,7 +1775,7 @@
             <ChanceArray index="Idle" value="33"/>
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
-        <BehaviorArray index="5" removed="1"/>
+        <BehaviorArray index="5" Link="SuppressRegularXPSharing"/>
     </CUnit>
     <CUnit id="Menoetes">
         <DeathRevealRadius value="3"/>
@@ -1932,13 +1935,16 @@
         <LifeStart value="200"/>
         <LifeMax value="200"/>
         <LifeArmor value="1"/>
+        <LifeRegenDelay value="0.5"/>
         <LifeRegenRate value="0.1718"/>
+        <LifeArmorTip value="Unit/Rifleman/LifeArmorToolTip"/>
         <EnergyStart value="100"/>
         <EnergyMax value="100"/>
         <EnergyRegenRate value="1.3593"/>
         <ShieldsStart value="35"/>
         <ShieldsMax value="35"/>
         <ShieldArmor value="1"/>
+        <ShieldRegenDelay value="0"/>
         <ShieldRegenRate value="1.75"/>
         <Speed value="2.4765"/>
         <SpeedMultiplierCreep value="0.8"/>
@@ -1952,6 +1958,7 @@
         <AbilArray Link="WeaponsProficiency"/>
         <AbilArray Link="SalineIV"/>
         <AbilArray Link="QuickUseItem"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts index="0">
             <LayoutButtons Face="XM35GrenadeLauncher" Type="AbilCmd" AbilCmd="XM35GrenadeLauncher,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="SalineIV" Type="AbilCmd" AbilCmd="SalineIV,Execute" Row="2" Column="0"/>
@@ -1978,10 +1985,6 @@
             <ChanceArray index="Idle" value="33"/>
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
-        <LifeRegenDelay value="0.5"/>
-        <ShieldRegenDelay value="0"/>
-        <LifeArmorTip value="Unit/Rifleman/LifeArmorToolTip"/>
-        <BehaviorArray index="5" removed="1"/>
     </CUnit>
     <CUnit id="SynchronizationModule" parent="ITEM">
         <Race value="Terr"/>
@@ -2131,6 +2134,7 @@
         <BehaviorArray Link="Flashlight"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
         <BehaviorArray Link="HeroDetectorRadar2"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <WeaponArray index="0" removed="1"/>
         <CardLayouts index="0">
             <LayoutButtons index="0" Face="MoveHoldPosition" AbilCmd="move,HoldPos"/>
@@ -2346,7 +2350,7 @@
         <FlagArray index="IgnoreTerrainZInit" value="1"/>
         <Mover value="GrenadeLauncherMover5"/>
         <BehaviorArray Link="GrenadeCollision"/>
-        <BehaviorArray Link="XPShareSuppression"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
         <TacticalAI value="GrenadeLauncherAmmo1"/>
         <AIEvaluateAlias value="GrenadeLauncherAmmo1"/>
@@ -2490,6 +2494,7 @@
         <BehaviorArray Link="CominginHotDummyLevel1"/>
         <BehaviorArray Link="CominginHotDummyLevel2"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <WeaponArray index="0" removed="1"/>
         <WeaponArray index="1" removed="1"/>
         <CardLayouts index="0">
@@ -2716,6 +2721,7 @@
         <BehaviorArray Link="BallisticsLevel2"/>
         <BehaviorArray Link="CockpitClosed"/>
         <BehaviorArray Link="RecruitDamageReduction"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
@@ -3066,6 +3072,7 @@
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="FlashlightFatsuits"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <WeaponArray index="0" removed="1"/>
         <CardLayouts index="0">
             <LayoutButtons index="0" Face="MoveHoldPosition" AbilCmd="move,HoldPos"/>
@@ -3166,7 +3173,7 @@
         <BehaviorArray index="2" Link="DefensivePlatingLevel2"/>
         <BehaviorArray index="3" Link="DefensivePlatingLevel3"/>
         <BehaviorArray index="4" Link="CohesionAuraLevel1"/>
-        <BehaviorArray index="5" Link="CohesionAuraLevel2"/>
+        <BehaviorArray Link="CohesionAuraLevel2"/>
         <BehaviorArray Link="SafeguardHidden"/>
         <BehaviorArray Link="KittenBeacon"/>
         <BehaviorArray Link="RecruitDamageReduction"/>
@@ -3298,7 +3305,7 @@
         <AbilArray Link="Overdrive"/>
         <AbilArray Link="X1UpgradeLevel2"/>
         <BehaviorArray Link="X1BotVeterancy"/>
-        <BehaviorArray Link="XPShareSuppression"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="X1Holdfire"/>
         <BehaviorArray Link="X1GuardianLimit"/>
         <TurretArray value="Diamondback"/>
@@ -6436,6 +6443,7 @@
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="FlashlightFatsuits"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
@@ -8351,6 +8359,7 @@
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="Flashlight"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
@@ -8565,7 +8574,7 @@
         <BehaviorArray Link="Detector2"/>
         <BehaviorArray Link="DroneVeterancy"/>
         <BehaviorArray Link="Flashlight"/>
-        <BehaviorArray Link="XPShareSuppression"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="ReaperMK13Limit"/>
         <WeaponArray Link="AutoTurret"/>
         <CardLayouts>
@@ -9677,7 +9686,7 @@
         <TurretArray value="Diamondback"/>
         <ShieldArmorName value="Unit/LifeArmorName/TerranInfantryArmor"/>
         <BehaviorArray Link="X1BotVeterancy"/>
-        <BehaviorArray Link="XPShareSuppression"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="X1Holdfire"/>
         <BehaviorArray Link="X1GuardianLimit"/>
         <HotkeyCategory value="Hotkey/Minis"/>
@@ -9752,7 +9761,7 @@
         <Radius value="0.3125"/>
         <SeparationRadius value="0.3"/>
         <BehaviorArray Link="X1BotVeterancy"/>
-        <BehaviorArray Link="XPShareSuppression"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="X1Holdfire"/>
         <BehaviorArray Link="X1GuardianLimit"/>
         <HotkeyAlias value="X1GuardianLevel1"/>
@@ -10499,6 +10508,7 @@
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="Flashlight"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <WeaponArray index="0" removed="1"/>
         <Radius value="0.1875"/>
         <SeparationRadius value="0.2"/>
@@ -10795,6 +10805,7 @@
         <BehaviorArray Link="KittenBeacon"/>
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="FlashlightFatsuits"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
@@ -11574,6 +11585,7 @@
         <BehaviorArray Link="RecruitDamageReduction"/>
         <BehaviorArray Link="Flashlight"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
+        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <CardLayouts>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>

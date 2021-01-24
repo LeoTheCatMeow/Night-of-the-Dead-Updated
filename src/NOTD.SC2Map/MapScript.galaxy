@@ -1853,9 +1853,6 @@ void gf_ClassPointBarCreation (int lp_parentDialog, int lp_parentDialogItem, int
 bool gf_ClassSelectionDialog (int lp_player, int lp_dialogItem);
 void gf_ClassCreationMaster (int lp_player, int lp_playerIndex);
 void gf_RegisterMarineWithEvents (unit lp_marine);
-void gf_AmmoUICreation (int lp_player);
-void gf_BehaviorTrackerUICreation (int lp_player);
-void gf_EquipmentDialogCreation (int lp_player);
 void gf_StartingBonuses (int lp_playerIndex);
 void gf_ClassLimitCheck ();
 int gf_GetRandomRange (int lp_player);
@@ -1883,6 +1880,7 @@ void gf_DemeritsApplyMerit (int lp_viewingPlayer, int lp_viewedPlayer);
 void gf_DemeritsAddHandle (bool lp_add, int lp_viewedPlayer, string lp_handle, string lp_section, bank lp_bank);
 bool gf_DemeritsHandleExists (string lp_handle, string lp_section, bank lp_bank);
 void gf_DemeritsScanHandles (string lp_section, bank lp_bank);
+void gf_AmmoUICreation (int lp_player);
 fixed gf_GetWeaponReload (int lp_player, unit lp_reloadingUnit, int lp_reload, string lp_weapon);
 fixed gf_CommandoReload (fixed lp_currentReload, unit lp_firingUnit);
 void gf_ReloadTextTag (int lp_player);
@@ -1895,7 +1893,9 @@ void gf_LowAmmoMessage (unit lp_reloadingUnit);
 void gf_ReloadCleanup (int lp_player, unit lp_reloadingUnit);
 void gf_UpdateAmmoDialog (int lp_playerNumber);
 void gf_AmmoUIMove (int lp_player);
+void gf_BehaviorTrackerUICreation (int lp_player);
 void gf_DisplayBehavior (unit lp_unit, int lp_player, int lp_slot, string lp_behavior);
+void gf_BehaviorUpdate ();
 void gf_ToggleBehaviorTracker (int lp_dialogOwner, int lp_player, bool lp_show);
 bool gf_AilmentResistanceCheck (unit lp_localUnitA);
 void gf_ControllerLabel (unit lp_unit, int lp_controller, bool lp_show);
@@ -1910,6 +1910,7 @@ void gf_DeathDisplay (string lp_damageEffect, int lp_playerNumber, unit lp_kille
 void gf_DeathRating (unit lp_deadMarine, int lp_playerNumber);
 void gf_DeathCamera (region lp_deathLocation, unit lp_deadMarine, int lp_playerNumber);
 void gf_DeathDialogDestruction (int lp_playerNumber);
+void gf_EquipmentDialogCreation (int lp_player);
 void gf_DisableAttackEquippingWeapons (int lp_inventoryOwner, string lp_equipment);
 void gf_ShowInventory (int lp_observer, bool lp_includeSelf);
 unit gf_GetFirstItem (unit lp_hero, int lp_invContainer);
@@ -2189,8 +2190,6 @@ trigger gt_AmmoUsageStinger;
 trigger gt_AmmoUsageL3;
 trigger gt_AmmoUIMoveButtonCallback;
 trigger gt_OnActivateBehavior;
-trigger gt_OnDeactivateBehavior;
-trigger gt_BehaviorUpdate;
 trigger gt_BehaviorTrackerDisplayButtonCallback;
 trigger gt_ReceivesDamage;
 trigger gt_BadlyInjured;
@@ -2535,10 +2534,10 @@ trigger gt_Anticipation;
 trigger gt_Concentration;
 trigger gt_SupplyStation;
 trigger gt_LaserDesignator;
-trigger gt_HammeroftheGodsCamShake;
 trigger gt_FieldNexusRevokeSharedVision;
 trigger gt_FieldNexusShareVision;
 trigger gt_Synergy;
+trigger gt_HammeroftheGodsCamShake;
 trigger gt_Inception;
 trigger gt_MindLinkShareDamage;
 trigger gt_MindLinkShareVision;
@@ -4839,133 +4838,6 @@ void gf_RegisterMarineWithEvents (unit lp_marine) {
     TriggerAddEventUnitRegion(gt_ShopForceClose, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(178), false);
 }
 
-trigger auto_gf_AmmoUICreation_Trigger = null;
-int auto_gf_AmmoUICreation_lp_player;
-
-void gf_AmmoUICreation (int lp_player) {
-    auto_gf_AmmoUICreation_lp_player = lp_player;
-
-    if (auto_gf_AmmoUICreation_Trigger == null) {
-        auto_gf_AmmoUICreation_Trigger = TriggerCreate("auto_gf_AmmoUICreation_TriggerFunc");
-    }
-
-    TriggerExecute(auto_gf_AmmoUICreation_Trigger, false, false);
-}
-
-bool auto_gf_AmmoUICreation_TriggerFunc (bool testConds, bool runActions) {
-    int lp_player = auto_gf_AmmoUICreation_lp_player;
-
-    // Variable Declarations
-    int lv_tempDialogFrame;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_tempDialogFrame = c_invalidDialogControlId;
-
-    // Implementation
-    gf_UIDialogCreation(35, 270, 260, 255, c_anchorBottom);
-    gv_ammoCounterDialog[lp_player] = DialogLastCreated();
-    DialogControlCreateFromTemplate(gv_ammoCounterDialog[lp_player], c_triggerControlTypePanel, "AmmoUI/AmmoCounter");
-    lv_tempDialogFrame = DialogControlLastCreated();
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "AmmoCountImage");
-    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/DD35AB49"), PlayerGroupActive());
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "AmmoCountLabel");
-    gv_ammoCounterDialogItem[lp_player][0] = DialogControlLastCreated();
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "MagazineCountImage");
-    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/2BAB2E60"), PlayerGroupActive());
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "MagazineCountLabel");
-    gv_ammoCounterDialogItem[lp_player][1] = DialogControlLastCreated();
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "AmmoUIMoveButton");
-    gv_ammoUIMoveButton[lp_player] = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemTooltip(gv_ammoUIMoveButton[lp_player], StringExternal("Param/Value/4DA754D2"), PlayerGroupActive());
-    libNtve_gf_SetDialogItemImage(gv_ammoUIMoveButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_refreshicon.dds", PlayerGroupActive());
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "BehaviorTrackerDisplayButton");
-    gv_behaviorTrackerDisplayButton[lp_player] = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDisplayButton[lp_player], StringExternal("Param/Value/56673624"), PlayerGroupActive());
-    libNtve_gf_SetDialogItemImage(gv_behaviorTrackerDisplayButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_reportmap.dds", PlayerGroupActive());
-    DialogSetVisible(gv_ammoCounterDialog[lp_player], PlayerGroupSingle(lp_player), true);
-    gf_UIDialogCreation(gv_ammoBarHeight[lp_player], gv_ammoBarWidth[lp_player], 375, 230, c_anchorBottom);
-    gv_ammoBarDialog[lp_player] = DialogLastCreated();
-    libNtve_gf_CreateDialogItemImage(DialogLastCreated(), gv_ammoBarWidth[lp_player], gv_ammoBarHeight[lp_player], c_anchorTopLeft, 0, 0, StringExternal("Param/Value/F01780C4"), "Assets\\Textures\\ui_ingame_resourcesharing_numberfieldselectedframe_zerg.dds", c_triggerImageTypeBorder, true, Color(100,100,100), c_triggerBlendModeNormal);
-    gv_ammoBarDialogRoundsBorder[lp_player] = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemDesaturated(DialogControlLastCreated(), true, PlayerGroupAll());
-    libNtve_gf_SetDialogItemDesaturationColor(DialogControlLastCreated(), Color(28*100/255,167*100/255,234*100/255), PlayerGroupAll());
-    libNtve_gf_CreateDialogItemImage(DialogLastCreated(), gv_ammoBarWidth[lp_player], gv_ammoBarHeight[lp_player], c_anchorTopLeft, 0, 0, StringToText(""), "Assets\\Textures\\ui_ingame_resourcesharing_numberfieldselectedframe.dds", c_triggerImageTypeBorder, true, Color(100,100,100), c_triggerBlendModeNormal);
-    gv_ammoBarDialogRounds[lp_player] = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemDesaturated(DialogControlLastCreated(), true, PlayerGroupAll());
-    libNtve_gf_SetDialogItemDesaturationColor(DialogControlLastCreated(), Color(28*100/255,167*100/255,234*100/255), PlayerGroupAll());
-    DialogSetVisible(gv_ammoBarDialog[lp_player], PlayerGroupSingle(lp_player), true);
-    gv_ammoBarPosition[lp_player] = 0;
-    gf_UpdateAmmoDialog(lp_player);
-    return true;
-}
-
-trigger auto_gf_BehaviorTrackerUICreation_Trigger = null;
-int auto_gf_BehaviorTrackerUICreation_lp_player;
-
-void gf_BehaviorTrackerUICreation (int lp_player) {
-    auto_gf_BehaviorTrackerUICreation_lp_player = lp_player;
-
-    if (auto_gf_BehaviorTrackerUICreation_Trigger == null) {
-        auto_gf_BehaviorTrackerUICreation_Trigger = TriggerCreate("auto_gf_BehaviorTrackerUICreation_TriggerFunc");
-    }
-
-    TriggerExecute(auto_gf_BehaviorTrackerUICreation_Trigger, false, false);
-}
-
-bool auto_gf_BehaviorTrackerUICreation_TriggerFunc (bool testConds, bool runActions) {
-    int lp_player = auto_gf_BehaviorTrackerUICreation_lp_player;
-
-    // Variable Declarations
-    int lv_tempDialogFrame;
-    int lv_tempDialogItem;
-
-    // Automatic Variable Declarations
-    const int autoC53733A6_ae = 10;
-    int autoC53733A6_var;
-
-    // Variable Initialization
-    lv_tempDialogFrame = c_invalidDialogControlId;
-    lv_tempDialogItem = c_invalidDialogControlId;
-
-    // Implementation
-    gf_UIDialogCreation(48, 640, -165, 310, c_anchorBottom);
-    gv_behaviorTrackerDialog[lp_player] = DialogLastCreated();
-    DialogControlCreateFromTemplate(gv_behaviorTrackerDialog[lp_player], c_triggerControlTypePanel, "BehaviorTracker/BehaviorTracker");
-    lv_tempDialogFrame = DialogControlLastCreated();
-    autoC53733A6_var = 1;
-    for ( ; autoC53733A6_var <= autoC53733A6_ae; autoC53733A6_var += 1 ) {
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, libNtve_gf_ConvertStringToUILayoutFrameName(("BehaviorIcon" + IntToString((autoC53733A6_var - 1)))));
-        gv_behaviorTrackerDialogItem[lp_player][autoC53733A6_var] = DialogControlLastCreated();
-        lv_tempDialogItem = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeImage, "IconImage");
-        gv_behaviorTrackerDialogItemImage[lp_player][autoC53733A6_var] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeLabel, "IconLabel");
-        gv_behaviorTrackerDialogItemLabel[lp_player][autoC53733A6_var] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeLabel, "IconLabel2");
-        gv_behaviorTrackerDialogItemLabel2[lp_player][autoC53733A6_var] = DialogControlLastCreated();
-        DialogControlSetVisible(lv_tempDialogItem, PlayerGroupActive(), false);
-    }
-    return true;
-}
-
-void gf_EquipmentDialogCreation (int lp_player) {
-    // Variable Declarations
-    int lv_instance;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_instance = UserDataGetInt("Classes", gv_playerClass[lp_player], "Slot", 1);
-
-    // Implementation
-    DialogControlCreateFromTemplate(gv_equipment, c_triggerControlTypeButton, "MarineEquipment/MarineEquipment/MarineEquipmentButton");
-    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Classes", gv_playerClass[lp_player], "Class Image", 1), PlayerGroupAll());
-    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/4713242D"), PlayerGroupAll());
-    gv_equipmentButton[lp_player] = DialogControlLastCreated();
-    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
-    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lp_player), true);
-}
-
 void gf_StartingBonuses (int lp_playerIndex) {
     // Variable Declarations
     int lv_classPoints;
@@ -4975,7 +4847,7 @@ void gf_StartingBonuses (int lp_playerIndex) {
 
     // Implementation
     lv_classPoints = gf_GetClassCP(lp_playerIndex, UnitGetType(gv_marineHero[lp_playerIndex]));
-    libNtve_gf_SetBehaviorCount(gv_marineHero[lp_playerIndex], "ClassPointsBonus", gv_marineHero[lp_playerIndex], MinI(50, lv_classPoints));
+    libNtve_gf_SetBehaviorCount(gv_marineHero[lp_playerIndex], "ClassPointsBonus", gv_marineHero[lp_playerIndex], MinI(1000, lv_classPoints));
     if ((lv_classPoints >= 10)) {
         SoundPlay(SoundLink(UserDataGetSound("Classes", gv_playerClass[lp_playerIndex], "Class CP Sound", 1), c_soundIndexAny), PlayerGroupActive(), 100.0, 0.0);
         UnitSetPropertyFixed(gv_marineHero[lp_playerIndex], c_unitPropLevel, 2.0);
@@ -6168,6 +6040,67 @@ void gf_DemeritsScanHandles (string lp_section, bank lp_bank) {
     }
 }
 
+trigger auto_gf_AmmoUICreation_Trigger = null;
+int auto_gf_AmmoUICreation_lp_player;
+
+void gf_AmmoUICreation (int lp_player) {
+    auto_gf_AmmoUICreation_lp_player = lp_player;
+
+    if (auto_gf_AmmoUICreation_Trigger == null) {
+        auto_gf_AmmoUICreation_Trigger = TriggerCreate("auto_gf_AmmoUICreation_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_AmmoUICreation_Trigger, false, false);
+}
+
+bool auto_gf_AmmoUICreation_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_gf_AmmoUICreation_lp_player;
+
+    // Variable Declarations
+    int lv_tempDialogFrame;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_tempDialogFrame = c_invalidDialogControlId;
+
+    // Implementation
+    gf_UIDialogCreation(35, 270, 260, 255, c_anchorBottom);
+    gv_ammoCounterDialog[lp_player] = DialogLastCreated();
+    DialogControlCreateFromTemplate(gv_ammoCounterDialog[lp_player], c_triggerControlTypePanel, "AmmoUI/AmmoCounter");
+    lv_tempDialogFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "AmmoCountImage");
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/DD35AB49"), PlayerGroupActive());
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "AmmoCountLabel");
+    gv_ammoCounterDialogItem[lp_player][0] = DialogControlLastCreated();
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "MagazineCountImage");
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/2BAB2E60"), PlayerGroupActive());
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "MagazineCountLabel");
+    gv_ammoCounterDialogItem[lp_player][1] = DialogControlLastCreated();
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "AmmoUIMoveButton");
+    gv_ammoUIMoveButton[lp_player] = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemTooltip(gv_ammoUIMoveButton[lp_player], StringExternal("Param/Value/4DA754D2"), PlayerGroupActive());
+    libNtve_gf_SetDialogItemImage(gv_ammoUIMoveButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_refreshicon.dds", PlayerGroupActive());
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "BehaviorTrackerDisplayButton");
+    gv_behaviorTrackerDisplayButton[lp_player] = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDisplayButton[lp_player], StringExternal("Param/Value/56673624"), PlayerGroupActive());
+    libNtve_gf_SetDialogItemImage(gv_behaviorTrackerDisplayButton[lp_player], "Assets\\Textures\\ui_glues_bluebuttons_reportmap.dds", PlayerGroupActive());
+    DialogSetVisible(gv_ammoCounterDialog[lp_player], PlayerGroupSingle(lp_player), true);
+    gf_UIDialogCreation(gv_ammoBarHeight[lp_player], gv_ammoBarWidth[lp_player], 375, 230, c_anchorBottom);
+    gv_ammoBarDialog[lp_player] = DialogLastCreated();
+    libNtve_gf_CreateDialogItemImage(DialogLastCreated(), gv_ammoBarWidth[lp_player], gv_ammoBarHeight[lp_player], c_anchorTopLeft, 0, 0, StringExternal("Param/Value/F01780C4"), "Assets\\Textures\\ui_ingame_resourcesharing_numberfieldselectedframe_zerg.dds", c_triggerImageTypeBorder, true, Color(100,100,100), c_triggerBlendModeNormal);
+    gv_ammoBarDialogRoundsBorder[lp_player] = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemDesaturated(DialogControlLastCreated(), true, PlayerGroupAll());
+    libNtve_gf_SetDialogItemDesaturationColor(DialogControlLastCreated(), Color(28*100/255,167*100/255,234*100/255), PlayerGroupAll());
+    libNtve_gf_CreateDialogItemImage(DialogLastCreated(), gv_ammoBarWidth[lp_player], gv_ammoBarHeight[lp_player], c_anchorTopLeft, 0, 0, StringToText(""), "Assets\\Textures\\ui_ingame_resourcesharing_numberfieldselectedframe.dds", c_triggerImageTypeBorder, true, Color(100,100,100), c_triggerBlendModeNormal);
+    gv_ammoBarDialogRounds[lp_player] = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemDesaturated(DialogControlLastCreated(), true, PlayerGroupAll());
+    libNtve_gf_SetDialogItemDesaturationColor(DialogControlLastCreated(), Color(28*100/255,167*100/255,234*100/255), PlayerGroupAll());
+    DialogSetVisible(gv_ammoBarDialog[lp_player], PlayerGroupSingle(lp_player), true);
+    gv_ammoBarPosition[lp_player] = 0;
+    gf_UpdateAmmoDialog(lp_player);
+    return true;
+}
+
 fixed gf_GetWeaponReload (int lp_player, unit lp_reloadingUnit, int lp_reload, string lp_weapon) {
     // Variable Declarations
     int lv_index;
@@ -6538,6 +6471,56 @@ bool auto_gf_AmmoUIMove_TriggerFunc (bool testConds, bool runActions) {
     return true;
 }
 
+trigger auto_gf_BehaviorTrackerUICreation_Trigger = null;
+int auto_gf_BehaviorTrackerUICreation_lp_player;
+
+void gf_BehaviorTrackerUICreation (int lp_player) {
+    auto_gf_BehaviorTrackerUICreation_lp_player = lp_player;
+
+    if (auto_gf_BehaviorTrackerUICreation_Trigger == null) {
+        auto_gf_BehaviorTrackerUICreation_Trigger = TriggerCreate("auto_gf_BehaviorTrackerUICreation_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_BehaviorTrackerUICreation_Trigger, false, false);
+}
+
+bool auto_gf_BehaviorTrackerUICreation_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_gf_BehaviorTrackerUICreation_lp_player;
+
+    // Variable Declarations
+    int lv_tempDialogFrame;
+    int lv_tempDialogItem;
+
+    // Automatic Variable Declarations
+    const int autoC53733A6_ae = 10;
+    int autoC53733A6_var;
+
+    // Variable Initialization
+    lv_tempDialogFrame = c_invalidDialogControlId;
+    lv_tempDialogItem = c_invalidDialogControlId;
+
+    // Implementation
+    gf_UIDialogCreation(48, 640, -165, 310, c_anchorBottom);
+    gv_behaviorTrackerDialog[lp_player] = DialogLastCreated();
+    DialogControlCreateFromTemplate(gv_behaviorTrackerDialog[lp_player], c_triggerControlTypePanel, "BehaviorTracker/BehaviorTracker");
+    lv_tempDialogFrame = DialogControlLastCreated();
+    autoC53733A6_var = 1;
+    for ( ; autoC53733A6_var <= autoC53733A6_ae; autoC53733A6_var += 1 ) {
+        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, libNtve_gf_ConvertStringToUILayoutFrameName(("BehaviorIcon" + IntToString((autoC53733A6_var - 1)))));
+        gv_behaviorTrackerDialogItem[lp_player][autoC53733A6_var] = DialogControlLastCreated();
+        lv_tempDialogItem = DialogControlLastCreated();
+        DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeImage, "IconImage");
+        gv_behaviorTrackerDialogItemImage[lp_player][autoC53733A6_var] = DialogControlLastCreated();
+        DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeLabel, "IconLabel");
+        gv_behaviorTrackerDialogItemLabel[lp_player][autoC53733A6_var] = DialogControlLastCreated();
+        DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeLabel, "IconLabel2");
+        gv_behaviorTrackerDialogItemLabel2[lp_player][autoC53733A6_var] = DialogControlLastCreated();
+        DialogControlSetVisible(lv_tempDialogItem, PlayerGroupActive(), false);
+    }
+    gf_BehaviorUpdate();
+    return true;
+}
+
 void gf_DisplayBehavior (unit lp_unit, int lp_player, int lp_slot, string lp_behavior) {
     // Automatic Variable Declarations
     // Implementation
@@ -6546,6 +6529,72 @@ void gf_DisplayBehavior (unit lp_unit, int lp_player, int lp_slot, string lp_beh
     libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDialogItemImage[lp_player][lp_slot], StringExternal(CatalogFieldValueGet(c_gameCatalogBehavior, lp_behavior, "Tooltip", c_playerAny)), PlayerGroupActive());
     libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lp_player][lp_slot], IntToText(UnitBehaviorCount(lp_unit, lp_behavior)), PlayerGroupActive());
     DialogControlSetVisible(gv_behaviorTrackerDialogItem[lp_player][lp_slot], PlayerGroupActive(), true);
+}
+
+trigger auto_gf_BehaviorUpdate_Trigger = null;
+
+void gf_BehaviorUpdate () {
+    if (auto_gf_BehaviorUpdate_Trigger == null) {
+        auto_gf_BehaviorUpdate_Trigger = TriggerCreate("auto_gf_BehaviorUpdate_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_BehaviorUpdate_Trigger, false, false);
+}
+
+bool auto_gf_BehaviorUpdate_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_pickedMarine;
+    string lv_behavior;
+    fixed lv_duration;
+    int lv_stackCount;
+
+    // Automatic Variable Declarations
+    const int autoC5617623_ae = 8;
+    int autoC5617623_var;
+    const int autoE93C7F2A_ae = 10;
+    int autoE93C7F2A_var;
+
+    // Variable Initialization
+
+    // Implementation
+    while ((gv_gameOver == false)) {
+        autoC5617623_var = 1;
+        for ( ; autoC5617623_var <= autoC5617623_ae; autoC5617623_var += 1 ) {
+            if ((gv_behaviorTrackerDialog[autoC5617623_var] != c_invalidDialogId)) {
+                lv_pickedMarine = autoC5617623_var;
+                autoE93C7F2A_var = 1;
+                for ( ; autoE93C7F2A_var <= autoE93C7F2A_ae; autoE93C7F2A_var += 1 ) {
+                    if ((gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var] != null) && (UnitBehaviorHasFlag(gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var], c_unitBehaviorFlagPermanent) == false)) {
+                        lv_behavior = gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var];
+                        lv_stackCount = UnitBehaviorCount(gv_marineHero[lv_pickedMarine], lv_behavior);
+                        if ((lv_stackCount <= 0)) {
+                            gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var] = null;
+                            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_pickedMarine][autoE93C7F2A_var], PlayerGroupActive(), false);
+                            continue;
+                        }
+                        libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lv_pickedMarine][autoE93C7F2A_var], IntToText(lv_stackCount), PlayerGroupActive());
+                        if ((libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogBehavior, lv_behavior, "Duration", c_playerAny) >= 3.0)) {
+                            lv_duration = UnitBehaviorDuration(gv_marineHero[lv_pickedMarine], lv_behavior);
+                            if ((lv_duration > 60.0)) {
+                                lv_duration = (lv_duration / 60.0);
+                                libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][autoE93C7F2A_var], FixedToText(lv_duration, 0), PlayerGroupActive());
+                                libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][autoE93C7F2A_var], Color(28*100/255,167*100/255,234*100/255), PlayerGroupActive());
+                            }
+                            else {
+                                libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][autoE93C7F2A_var], FixedToText(lv_duration, 0), PlayerGroupActive());
+                                libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][autoE93C7F2A_var], Color(254*100/255,138*100/255,14*100/255), PlayerGroupActive());
+                            }
+                        }
+                        else {
+                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][autoE93C7F2A_var], StringToText(""), PlayerGroupActive());
+                        }
+                    }
+                }
+            }
+        }
+        Wait(0.2, c_timeGame);
+    }
+    return true;
 }
 
 trigger auto_gf_ToggleBehaviorTracker_Trigger = null;
@@ -7007,6 +7056,23 @@ bool auto_gf_DeathDialogDestruction_TriggerFunc (bool testConds, bool runActions
     }
 
     return true;
+}
+
+void gf_EquipmentDialogCreation (int lp_player) {
+    // Variable Declarations
+    int lv_instance;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_instance = UserDataGetInt("Classes", gv_playerClass[lp_player], "Slot", 1);
+
+    // Implementation
+    DialogControlCreateFromTemplate(gv_equipment, c_triggerControlTypeButton, "MarineEquipment/MarineEquipment/MarineEquipmentButton");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Classes", gv_playerClass[lp_player], "Class Image", 1), PlayerGroupAll());
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/4713242D"), PlayerGroupAll());
+    gv_equipmentButton[lp_player] = DialogControlLastCreated();
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lp_player), true);
 }
 
 trigger auto_gf_DisableAttackEquippingWeapons_Trigger = null;
@@ -19657,128 +19723,6 @@ void gt_OnActivateBehavior_Init () {
     TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
     TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
     TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: OnDeactivateBehavior
-//--------------------------------------------------------------------------------------------------
-bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string lv_behavior;
-    int lv_player;
-
-    // Automatic Variable Declarations
-    const int auto34491D84_ae = 10;
-    int auto34491D84_var;
-
-    // Variable Initialization
-    lv_behavior = EventUnitBehavior();
-    lv_player = UnitGetOwner(EventUnit());
-
-    // Conditions
-    if (testConds) {
-        if (!((lv_player >= 1))) {
-            return false;
-        }
-
-        if (!((lv_player <= 8))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto34491D84_var = 1;
-    for ( ; auto34491D84_var <= auto34491D84_ae; auto34491D84_var += 1 ) {
-        if ((gv_marineBehaviors[lv_player][auto34491D84_var] == lv_behavior)) {
-            gv_marineBehaviors[lv_player][auto34491D84_var] = null;
-            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_player][auto34491D84_var], PlayerGroupActive(), false);
-            return true;
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_OnDeactivateBehavior_Init () {
-    gt_OnDeactivateBehavior = TriggerCreate("gt_OnDeactivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: BehaviorUpdate
-//--------------------------------------------------------------------------------------------------
-bool gt_BehaviorUpdate_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_pickedMarine;
-    string lv_behavior;
-    fixed lv_duration;
-
-    // Automatic Variable Declarations
-    const int autoEEF506FA_ae = 8;
-    int autoEEF506FA_var;
-    const int auto1E955283_ae = 10;
-    int auto1E955283_var;
-
-    // Variable Initialization
-
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoEEF506FA_var = 1;
-    for ( ; autoEEF506FA_var <= autoEEF506FA_ae; autoEEF506FA_var += 1 ) {
-        if ((gv_behaviorTrackerDialog[autoEEF506FA_var] != c_invalidDialogId)) {
-            lv_pickedMarine = autoEEF506FA_var;
-            auto1E955283_var = 1;
-            for ( ; auto1E955283_var <= auto1E955283_ae; auto1E955283_var += 1 ) {
-                if ((gv_marineBehaviors[lv_pickedMarine][auto1E955283_var] != null) && (UnitBehaviorHasFlag(gv_marineBehaviors[lv_pickedMarine][auto1E955283_var], c_unitBehaviorFlagPermanent) == false)) {
-                    lv_behavior = gv_marineBehaviors[lv_pickedMarine][auto1E955283_var];
-                    libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lv_pickedMarine][auto1E955283_var], IntToText(UnitBehaviorCount(gv_marineHero[lv_pickedMarine], lv_behavior)), PlayerGroupActive());
-                    if ((libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogBehavior, lv_behavior, "Duration", c_playerAny) >= 3.0)) {
-                        lv_duration = UnitBehaviorDuration(gv_marineHero[lv_pickedMarine], lv_behavior);
-                        if ((lv_duration > 60.0)) {
-                            lv_duration = (lv_duration / 60.0);
-                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], FixedToText(lv_duration, 0), PlayerGroupActive());
-                            libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], Color(28*100/255,167*100/255,234*100/255), PlayerGroupActive());
-                        }
-                        else {
-                            libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], FixedToText(lv_duration, 0), PlayerGroupActive());
-                            libNtve_gf_SetDialogItemColor(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], Color(254*100/255,138*100/255,14*100/255), PlayerGroupActive());
-                        }
-                    }
-                    else {
-                        libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel2[lv_pickedMarine][auto1E955283_var], StringToText(""), PlayerGroupActive());
-                    }
-                }
-            }
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_BehaviorUpdate_Init () {
-    gt_BehaviorUpdate = TriggerCreate("gt_BehaviorUpdate_Func");
-    TriggerAddEventTimePeriodic(gt_BehaviorUpdate, 0.1, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44441,48 +44385,6 @@ void gt_LaserDesignator_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hammer of the Gods - Cam Shake
-//--------------------------------------------------------------------------------------------------
-bool gt_HammeroftheGodsCamShake_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    const int autoF6EB5B1C_ae = gv_numberofPlayers;
-    int autoF6EB5B1C_var;
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGetType(EventUnit()) == "BlackDog"))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoF6EB5B1C_var = gv_indexBaseValue;
-    for ( ; autoF6EB5B1C_var <= autoF6EB5B1C_ae; autoF6EB5B1C_var += 1 ) {
-        if ((UnitIsAlive(gv_marineHero[autoF6EB5B1C_var]) || UnitIsAlive(gv_playerPet[autoF6EB5B1C_var]))) {
-            if (((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_playerPet[autoF6EB5B1C_var])) <= 3.0) || (DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_marineHero[autoF6EB5B1C_var])) <= 3.0))) {
-                CameraShakeStart(autoF6EB5B1C_var, c_cameraPositionBoth, c_cameraDirectionXZ, 0.02, 1.0, 100.0, 0.1);
-            }
-            else if (((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_marineHero[autoF6EB5B1C_var])) <= 5.0) || (DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_playerPet[autoF6EB5B1C_var])) <= 5.0))) {
-                CameraShakeStart(autoF6EB5B1C_var, c_cameraPositionBoth, c_cameraDirectionXZ, 0.005, 1.0, 100.0, 0.1);
-            }
-        }
-
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_HammeroftheGodsCamShake_Init () {
-    gt_HammeroftheGodsCamShake = TriggerCreate("gt_HammeroftheGodsCamShake_Func");
-    TriggerEnable(gt_HammeroftheGodsCamShake, false);
-    TriggerAddEventUnitStartedAttack(gt_HammeroftheGodsCamShake, null);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Field Nexus - Revoke Shared Vision
 //--------------------------------------------------------------------------------------------------
 bool gt_FieldNexusRevokeSharedVision_Func (bool testConds, bool runActions) {
@@ -44788,6 +44690,48 @@ void gt_Synergy_Init () {
     TriggerAddEventUnitDamaged(gt_Synergy, null, c_unitDamageTypeAny, c_unitDamageEither, "X1EvisceratorBeamLevel2");
     TriggerAddEventUnitDamaged(gt_Synergy, null, c_unitDamageTypeAny, c_unitDamageEither, "X1EvisceratorBeamLevel3");
     TriggerAddEventUnitDamaged(gt_Synergy, null, c_unitDamageTypeAny, c_unitDamageEither, "ThermalLancesMU");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hammer of the Gods - Cam Shake
+//--------------------------------------------------------------------------------------------------
+bool gt_HammeroftheGodsCamShake_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int autoF6EB5B1C_ae = gv_numberofPlayers;
+    int autoF6EB5B1C_var;
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "BlackDog"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoF6EB5B1C_var = gv_indexBaseValue;
+    for ( ; autoF6EB5B1C_var <= autoF6EB5B1C_ae; autoF6EB5B1C_var += 1 ) {
+        if ((UnitIsAlive(gv_marineHero[autoF6EB5B1C_var]) || UnitIsAlive(gv_playerPet[autoF6EB5B1C_var]))) {
+            if (((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_playerPet[autoF6EB5B1C_var])) <= 3.0) || (DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_marineHero[autoF6EB5B1C_var])) <= 3.0))) {
+                CameraShakeStart(autoF6EB5B1C_var, c_cameraPositionBoth, c_cameraDirectionXZ, 0.02, 1.0, 100.0, 0.1);
+            }
+            else if (((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_marineHero[autoF6EB5B1C_var])) <= 5.0) || (DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(gv_playerPet[autoF6EB5B1C_var])) <= 5.0))) {
+                CameraShakeStart(autoF6EB5B1C_var, c_cameraPositionBoth, c_cameraDirectionXZ, 0.005, 1.0, 100.0, 0.1);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_HammeroftheGodsCamShake_Init () {
+    gt_HammeroftheGodsCamShake = TriggerCreate("gt_HammeroftheGodsCamShake_Func");
+    TriggerEnable(gt_HammeroftheGodsCamShake, false);
+    TriggerAddEventUnitStartedAttack(gt_HammeroftheGodsCamShake, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -46667,8 +46611,6 @@ void InitTriggers () {
     gt_AmmoUsageL3_Init();
     gt_AmmoUIMoveButtonCallback_Init();
     gt_OnActivateBehavior_Init();
-    gt_OnDeactivateBehavior_Init();
-    gt_BehaviorUpdate_Init();
     gt_BehaviorTrackerDisplayButtonCallback_Init();
     gt_ReceivesDamage_Init();
     gt_BadlyInjured_Init();
@@ -47013,10 +46955,10 @@ void InitTriggers () {
     gt_Concentration_Init();
     gt_SupplyStation_Init();
     gt_LaserDesignator_Init();
-    gt_HammeroftheGodsCamShake_Init();
     gt_FieldNexusRevokeSharedVision_Init();
     gt_FieldNexusShareVision_Init();
     gt_Synergy_Init();
+    gt_HammeroftheGodsCamShake_Init();
     gt_Inception_Init();
     gt_MindLinkShareDamage_Init();
     gt_MindLinkShareVision_Init();
