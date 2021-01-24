@@ -2,7 +2,7 @@
 
 2021-1-24
 [ReduxGelum]
-- Fixed fog by restoring map height field back to original value (-12 off base height)
+- Fixed fog by testored map height field back to original value (-12 off base height)
 - Fixed cronus initial beam effect invisible on low graphics settings
 
 2021-1-23
