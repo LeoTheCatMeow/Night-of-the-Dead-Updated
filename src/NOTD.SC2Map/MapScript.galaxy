@@ -1112,6 +1112,7 @@ int[9] gv_modTotalPointsNegative;
 fixed[9] gv_baseMarineReloadMultiplier;
 fixed[9] gv_baseMarineSwitchingMultiplier;
 fixed[9] gv_baseMarineWeightPointMultiplier;
+unit[9] gv_lockedOnUnits;
 unit[9] gv_reaperMK13;
 unit[9] gv_fieldNexus;
 bool gv_fieldNexusAlive;
@@ -2532,6 +2533,7 @@ trigger gt_CriticalStrike;
 trigger gt_ArmorMelt;
 trigger gt_Anticipation;
 trigger gt_Concentration;
+trigger gt_MasterMarksmanLockOnLimit;
 trigger gt_SupplyStation;
 trigger gt_LaserDesignator;
 trigger gt_FieldNexusRevokeSharedVision;
@@ -15443,6 +15445,7 @@ void gf_LevelUpTalentMarksman (int lp_itemNo, unit lp_triggUnit, int lp_triggPla
 
     if ((lp_itemNo == 5)) {
         UnitIssueOrder(lp_triggUnit, Order(AbilityCommand("LearnMarksman", 2)), c_orderQueueAddToFront);
+        TriggerEnable(gt_MasterMarksmanLockOnLimit, true);
     }
 
     if ((lp_itemNo == 7)) {
@@ -44273,6 +44276,60 @@ void gt_Concentration_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Master Marksman Lock On Limit
+//--------------------------------------------------------------------------------------------------
+bool gt_MasterMarksmanLockOnLimit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_attackingUnit;
+    unit lv_attackedUnit;
+    int lv_ownerofAttackingUnit;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_attackingUnit = EventUnitDamageSourceUnit();
+    lv_attackedUnit = EventUnit();
+    lv_ownerofAttackingUnit = UnitGetOwner(lv_attackingUnit);
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(lv_attackingUnit, "MasterMarksman"))) {
+            return false;
+        }
+
+        if (!((lv_ownerofAttackingUnit >= 1))) {
+            return false;
+        }
+
+        if (!((lv_ownerofAttackingUnit <= 8))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((gv_lockedOnUnits[lv_ownerofAttackingUnit] == null)) {
+        gv_lockedOnUnits[lv_ownerofAttackingUnit] = lv_attackedUnit;
+    }
+    else if ((gv_lockedOnUnits[lv_ownerofAttackingUnit] != lv_attackedUnit)) {
+        UnitBehaviorRemove(gv_lockedOnUnits[lv_ownerofAttackingUnit], "MasterMarksmanLockOn", 1);
+        UnitBehaviorRemove(gv_lockedOnUnits[lv_ownerofAttackingUnit], "MasterMarksmanLockOnDelay", 1);
+        gv_lockedOnUnits[lv_ownerofAttackingUnit] = lv_attackedUnit;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_MasterMarksmanLockOnLimit_Init () {
+    gt_MasterMarksmanLockOnLimit = TriggerCreate("gt_MasterMarksmanLockOnLimit_Func");
+    TriggerEnable(gt_MasterMarksmanLockOnLimit, false);
+    TriggerAddEventUnitDamaged(gt_MasterMarksmanLockOnLimit, null, c_unitDamageTypeRanged, c_unitDamageEither, "C10CanisterRifle");
+    TriggerAddEventUnitDamaged(gt_MasterMarksmanLockOnLimit, null, c_unitDamageTypeRanged, c_unitDamageEither, "BarrettM112");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Supply Station
 //--------------------------------------------------------------------------------------------------
 bool gt_SupplyStation_Func (bool testConds, bool runActions) {
@@ -46953,6 +47010,7 @@ void InitTriggers () {
     gt_ArmorMelt_Init();
     gt_Anticipation_Init();
     gt_Concentration_Init();
+    gt_MasterMarksmanLockOnLimit_Init();
     gt_SupplyStation_Init();
     gt_LaserDesignator_Init();
     gt_FieldNexusRevokeSharedVision_Init();

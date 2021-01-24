@@ -259,12 +259,10 @@
     <CActorModel id="LockOn" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On Terms="Behavior.MasterMarksmanLockOn.On" Send="Create"/>
-        <On Terms="Behavior.MasterMarksmanLockOn.Off" Send="TimerSet 0.100000"/>
-        <On Terms="Effect.MasterMarksmanRemoveLockOn.Start" Send="SetTintColor {255,255,128 3.000000}"/>
-        <On Terms="TimerExpired" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.MasterMarksmanLockOn.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.MasterMarksmanProcLockOnSet.Start" Send="SetTintColor {255,255,128 3.000000}"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
-        <Scale value="0.700000"/>
     </CActorModel>
     <CActorModel id="MonstrousPull" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>

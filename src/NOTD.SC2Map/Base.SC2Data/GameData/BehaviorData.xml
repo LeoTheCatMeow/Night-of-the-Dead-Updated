@@ -465,9 +465,9 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1.7"/>
+        <Duration value="1.8"/>
         <InitialEffect value="LockOnReveal"/>
-        <DamageResponse Handled="MasterMarksmanProcLockOnSet">
+        <DamageResponse Handled="MasterMarksmanProcLockOnSet" ModifyFraction="1.3">
             <RequireEffectArray value="OSOKLevel1BaseDamage"/>
             <RequireEffectArray value="OSOKLevel2BaseDamage"/>
             <RequireEffectArray value="OSOKLevel3BaseDamage"/>
@@ -476,6 +476,7 @@
             <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
             <Chance value="1"/>
         </DamageResponse>
+        <ExpireEffect value="MasterMarksmanApplyLockOnDelay"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -8349,7 +8350,7 @@
         <InfoIcon value="Assets\Textures\btn-unit-terran-ghost.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="MasterMarksman"/>
-        <DamageResponse Handled="MasterMarksmanApplyLockOnDelay" Location="Attacker">
+        <DamageResponse Handled="MasterMarksmanApplyLockOn" Location="Attacker">
             <RequireEffectArray value="C10CanisterRifle"/>
             <RequireEffectArray value="BarrettM112"/>
             <Chance value="1"/>
@@ -8361,10 +8362,10 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.4"/>
-        <DurationRandomMin value="2"/>
+        <Duration value="1"/>
+        <DurationRandomMin value="2.5"/>
         <DurationRandomMax value="0.1"/>
-        <ExpireEffect value="MasterMarksmanApplyLockOn"/>
+        <ExpireEffect value="MasterMarksmanReapplyLockOn"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="LaserDesignatorLevel1">
         <Alignment value="Negative"/>

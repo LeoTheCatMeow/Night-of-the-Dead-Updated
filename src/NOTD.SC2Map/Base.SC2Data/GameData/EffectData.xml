@@ -291,21 +291,26 @@
     <CEffectCreatePersistent id="LockOnReveal">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
-        <PeriodCount value="4"/>
+        <PeriodCount value="5"/>
         <PeriodicPeriodArray value="0.5"/>
         <RevealRadius value="2"/>
         <RevealFlags index="Unfog" value="1"/>
         <RevealFlags index="LoS" value="1"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="MasterMarksmanApplyLockOn">
-        <ValidatorArray index="0" value="TargetNotinLockOn"/>
+        <ValidatorArray index="0" value="EnemyTarget"/>
+        <ValidatorArray value="TargetNotinLockOn"/>
+        <ValidatorArray value="TargetNotinLockOnDelay"/>
+        <EditorCategories value=""/>
+        <Behavior value="MasterMarksmanLockOn"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="MasterMarksmanReapplyLockOn">
         <EditorCategories value=""/>
         <Behavior value="MasterMarksmanLockOn"/>
     </CEffectApplyBehavior>
     <CEffectSet id="MasterMarksmanProcLockOnSet">
         <EditorCategories value=""/>
         <EffectArray value="MasterMarksmanRegainEnergy"/>
-        <EffectArray value="MasterMarksmanRemoveLockOn"/>
         <EffectArray value="MasterMarksmanRegainConcentrationLevel1"/>
         <EffectArray value="MasterMarksmanRegainConcentrationLevel2"/>
         <EffectArray value="MasterMarksmanRegainConcentrationLevel3"/>
@@ -11557,9 +11562,6 @@
         <EffectArray value="ImYourFatherApplyBehaviorLevel1"/>
     </CEffectSet>
     <CEffectApplyBehavior id="MasterMarksmanApplyLockOnDelay">
-        <ValidatorArray index="0" value="EnemyTarget"/>
-        <ValidatorArray value="TargetNotinLockOn"/>
-        <ValidatorArray value="TargetNotinLockOnDelay"/>
         <EditorCategories value=""/>
         <Behavior value="MasterMarksmanLockOnDelay"/>
     </CEffectApplyBehavior>
