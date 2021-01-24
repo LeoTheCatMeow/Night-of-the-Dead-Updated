@@ -148,9 +148,6 @@
     <CModel id="HelsAngelAssault">
         <Radius value="1.600000"/>
     </CModel>
-    <CModel id="LockOn">
-        <Model value="Assets\Effects\Terran\MiraHorner_Raven_Coop_Target_Impact\MiraHorner_Raven_Coop_Target_Impact.m3"/>
-    </CModel>
     <CModel id="Lurker">
         <Radius value="1.300000"/>
     </CModel>
@@ -2796,7 +2793,7 @@
         <Model value="Assets\Effects\Protoss\DisruptionWeb\DisruptionWeb.m3"/>
     </CModel>
     <CModel id="PunchImpact" parent="ImpactFX">
-        <Model value="Assets\Effects\Other\GenericImpactSmear\GenericImpactSmear.m3"/>
+        <Model value="Assets\Effects\Protoss\ZeratulBlinkIn\ZeratulBlinkIn.m3"/>
         <EditorCategories value="Race:Terran"/>
         <Lighting value="SiegeTankAttackImpact"/>
         <LowQualityModel value="PunchImpact"/>

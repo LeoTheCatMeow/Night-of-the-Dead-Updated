@@ -3,12 +3,16 @@
 [ReduxGelum]
 - Fixed fog, by testored map height field back to original value (-12 off base height)
 
+2021-1-23
+[ReduxGelum]
+- Fixed cronus initial beam effect invisible on low graphics settings
+
 2021-1-21
 [ReduxGelum]
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
-- As a result certain exploit spots are no long effective.
+- As a result certain exploit spots are no longer effective.
  
-- [LeoTheCat]
+[LeoTheCat]
 - Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
 - Storyline selection UI will now reflect lobby options for consistency (e.g. High Spawn should be highlighted if lobby option is set so).
 - Realism command has been removed as pretty much all controversial changes have been reverted to the original.
