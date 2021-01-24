@@ -3,11 +3,12 @@
 2021-1-24
 [ReduxGelum]
 - Fixed fog by testored map height field back to original value (-12 off base height)
+- Fixed cronus initial beam effect invisible on low graphics settings
 
 2021-1-23
 [ReduxGelum]
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
-- As a result certain exploit spots are no long effective.
+- As a result certain exploit spots are no longer effective.
 
 [LeoTheCat]
 - Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
