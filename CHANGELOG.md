@@ -3,8 +3,8 @@
 2021-1-23
 [ReduxGelum]
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
-- As a result certain exploit spots are no long effective.
-- Fixed cronus initial beam effect invisible on low graphics settings
+- As a result certain exploit spots are no longer effective.
+- Fixed cronus initial beam effect invisible on low graphics settings.
 
 [LeoTheCat]
 - Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
@@ -18,6 +18,8 @@
 - Marksman - One Shot, One Kill lv1/lv2 damage increased from 200/400 to 400/600.
 - Marksman - Master Marksman passive reworked, still upgrades One Shot, One Kill but no longer stuns. Has a more unique effect instead. 
 - Moved CP Bonus out of the behavior bar and added the stack count to its tooltip (still visible in the default sc2 behavior bar).
+- Flamethrower - Helium-3 Igniter lv3 now also allows Flamethrower MK-3 to target air.
+- Added a placement indicator for Recon's Supply Station.
 
 2021-1-18
 [ThunderRazor]

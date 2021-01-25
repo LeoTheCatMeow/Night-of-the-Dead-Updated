@@ -291,6 +291,10 @@
         <On Terms="Effect.InboundSicknessSearchSetLevel2.Start" Send="Create"/>
         <Scale value="10.000000,1.000000,10.000000"/>
     </CActorModel>
+    <CActorSplat id="SupplyStationCursorSplat" parent="ProtossCursorSplat">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Abil.SupplyStation.Cursor" Send="Create"/>
+    </CActorSplat>
     <CActorRange id="VRLRange" parent="RangeAbil" abil="VRL772"/>
     <CActorModel id="SurgicalStrikeEffect" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>

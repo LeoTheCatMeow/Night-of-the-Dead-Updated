@@ -282,6 +282,7 @@
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,AttributeBonus[Light]" Value="2"/>
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel3,AttributeBonus[Massive]" Value="-2"/>
         <EffectArray Operation="Set" Reference="Effect,FlameThrowerLevel2,Amount" Value="13"/>
+        <EffectArray Operation="Set" Reference="Weapon,Flamethrower,TargetFilters" Value="-;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CUpgrade>
     <CUpgrade id="Helium3IgniterLevel2" parent="HighCapacityBarrels">
         <Name value="Upgrade/Name/Helium3IgniterLevel2"/>
@@ -302,6 +303,7 @@
         <EffectArray index="14" removed="1"/>
         <EffectArray index="15" removed="1"/>
         <EffectArray index="16" removed="1"/>
+        <EffectArray index="17" removed="1"/>
     </CUpgrade>
     <CUpgrade id="Helium3IgniterLevel1" parent="HighCapacityBarrels">
         <Name value="Upgrade/Name/Helium3IgniterLevel1"/>
@@ -322,6 +324,7 @@
         <EffectArray index="14" removed="1"/>
         <EffectArray index="15" removed="1"/>
         <EffectArray index="16" removed="1"/>
+        <EffectArray index="17" removed="1"/>
     </CUpgrade>
     <CUpgrade id="LookLevel2">
         <EffectArray Operation="Set" Reference="Effect,LookPersistentOrder,PeriodicPeriodArray[2]" Value="1.000000"/>

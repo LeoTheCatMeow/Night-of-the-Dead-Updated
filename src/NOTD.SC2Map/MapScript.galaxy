@@ -2191,6 +2191,7 @@ trigger gt_AmmoUsageStinger;
 trigger gt_AmmoUsageL3;
 trigger gt_AmmoUIMoveButtonCallback;
 trigger gt_OnActivateBehavior;
+trigger gt_OnDeactivateBehavior;
 trigger gt_BehaviorTrackerDisplayButtonCallback;
 trigger gt_ReceivesDamage;
 trigger gt_BadlyInjured;
@@ -19707,7 +19708,7 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 
     auto795BCCAA_var = 1;
     for ( ; auto795BCCAA_var <= auto795BCCAA_ae; auto795BCCAA_var += 1 ) {
-        if (((gv_marineBehaviors[lv_player][auto795BCCAA_var] == null) || (gv_marineBehaviors[lv_player][auto795BCCAA_var] == lv_behavior))) {
+        if ((gv_marineBehaviors[lv_player][auto795BCCAA_var] == null)) {
             gf_DisplayBehavior(EventUnit(), lv_player, auto795BCCAA_var, lv_behavior);
             return true;
         }
@@ -19726,6 +19727,70 @@ void gt_OnActivateBehavior_Init () {
     TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
     TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
     TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: OnDeactivateBehavior
+//--------------------------------------------------------------------------------------------------
+bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_behavior;
+    int lv_player;
+
+    // Automatic Variable Declarations
+    const int autoD99E77A9_ae = 10;
+    int autoD99E77A9_var;
+
+    // Variable Initialization
+    lv_behavior = EventUnitBehavior();
+    lv_player = UnitGetOwner(EventUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
+
+        if (!((lv_player <= 8))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoD99E77A9_var = 1;
+    for ( ; autoD99E77A9_var <= autoD99E77A9_ae; autoD99E77A9_var += 1 ) {
+        if ((gv_marineBehaviors[lv_player][autoD99E77A9_var] == lv_behavior)) {
+            gv_marineBehaviors[lv_player][autoD99E77A9_var] = null;
+            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_player][autoD99E77A9_var], PlayerGroupActive(), false);
+            return true;
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_OnDeactivateBehavior_Init () {
+    gt_OnDeactivateBehavior = TriggerCreate("gt_OnDeactivateBehavior_Func");
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -46668,6 +46733,7 @@ void InitTriggers () {
     gt_AmmoUsageL3_Init();
     gt_AmmoUIMoveButtonCallback_Init();
     gt_OnActivateBehavior_Init();
+    gt_OnDeactivateBehavior_Init();
     gt_BehaviorTrackerDisplayButtonCallback_Init();
     gt_ReceivesDamage_Init();
     gt_BadlyInjured_Init();
