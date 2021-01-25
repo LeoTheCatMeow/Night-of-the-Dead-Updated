@@ -474,6 +474,9 @@
             <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
             <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
             <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
+            <RequireEffectArray value="RaynorSnipeDamage"/>
+            <RequireEffectArray value="MonofilamentCartridgeDamageLevel2"/>
+            <RequireEffectArray value="MonofilamentCartridgeDamageLevel3"/>
             <Chance value="1"/>
         </DamageResponse>
         <ExpireEffect value="MasterMarksmanApplyLockOnDelay"/>
@@ -8351,6 +8354,10 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="MasterMarksman"/>
         <DamageResponse Handled="MasterMarksmanApplyLockOn" Location="Attacker">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <RequireEffectArray value="C10CanisterRifle"/>
             <RequireEffectArray value="BarrettM112"/>
             <Chance value="1"/>

@@ -271,6 +271,11 @@
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid04"/>
     </CModel>
+    <CModel id="CronusSmoke" parent="ImpactFX">
+        <Model value="Assets\Effects\Other\GenericImpactSmear\GenericImpactSmear.m3"/>
+        <LowQualityModel value="ZeratulBlinkIn"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
     <CModel id="SS_SwarmGuardian">
         <Radius value="1.500000"/>
     </CModel>

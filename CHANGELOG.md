@@ -4,6 +4,7 @@
 [ReduxGelum]
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
 - As a result certain exploit spots are no long effective.
+- Fixed cronus initial beam effect invisible on low graphics settings
 
 [LeoTheCat]
 - Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
@@ -13,6 +14,7 @@
 - Fixed some Engineer tooltip errors in the behavior bar.
 - Tried to improve behavior bar's performance.
 - Chem Expert - VRL-772 now properly removes all ailments instead of just some.
+- Marksman - Monofilament Cartridge damage increased from 40/80/160 to 45/90/180. (level2 zombie has 175hp at 250% scaling).
 - Marksman - One Shot, One Kill lv1/lv2 damage increased from 200/400 to 400/600.
 - Marksman - Master Marksman passive reworked, still upgrades One Shot, One Kill but no longer stuns. Has a more unique effect instead. 
 - Moved CP Bonus out of the behavior bar and added the stack count to its tooltip (still visible in the default sc2 behavior bar).

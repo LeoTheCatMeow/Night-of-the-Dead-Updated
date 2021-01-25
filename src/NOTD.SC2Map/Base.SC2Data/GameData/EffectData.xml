@@ -319,19 +319,16 @@
         <ValidatorArray index="0" value="HasConcentrationLevel1"/>
         <EditorCategories value=""/>
         <Behavior value="ConcentrationLevel1"/>
-        <Count value="2"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="MasterMarksmanRegainConcentrationLevel2">
         <ValidatorArray index="0" value="HasConcentrationLevel2"/>
         <EditorCategories value=""/>
         <Behavior value="ConcentrationLevel2"/>
-        <Count value="2"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="MasterMarksmanRegainConcentrationLevel3">
         <ValidatorArray index="0" value="HasConcentrationLevel3"/>
         <EditorCategories value=""/>
         <Behavior value="ConcentrationLevel3"/>
-        <Count value="2"/>
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="MasterMarksmanRegainEnergy">
         <EditorCategories value=""/>
@@ -10916,7 +10913,7 @@
         <Marker Link="Effect/RaynorSnipeDamage"/>
         <ImpactLocation Value="TargetUnit"/>
         <Kind value="Splash"/>
-        <Amount value="56"/>
+        <Amount value="63"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Enemy,Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -10926,7 +10923,7 @@
         <Marker Link="Effect/RaynorSnipeDamage"/>
         <ImpactLocation Value="TargetUnit"/>
         <Kind value="Splash"/>
-        <Amount value="28"/>
+        <Amount value="31.5"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Enemy,Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -10935,7 +10932,7 @@
         <EditorCategories value="Race:Terran"/>
         <ImpactLocation Value="TargetUnit"/>
         <Kind value="Splash"/>
-        <Amount value="14"/>
+        <Amount value="15.75"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Enemy,Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -11691,20 +11688,20 @@
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/RaynorSnipeDamage"/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="80"/>
+        <Amount value="90"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Massive" value="40"/>
+        <AttributeBonus index="Massive" value="45"/>
     </CEffectDamage>
     <CEffectDamage id="MonofilamentCartridgeDamageLevel3">
         <ValidatorArray value="TargetIsEnemy"/>
         <EditorCategories value="Race:Terran"/>
         <Marker Link="Effect/RaynorSnipeDamage"/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="160"/>
+        <Amount value="180"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Massive" value="80"/>
+        <AttributeBonus index="Massive" value="90"/>
     </CEffectDamage>
     <CEffectEnumArea id="RaynorSnipeSearch">
         <SearchFilters value="-;Self,Missile,Item,Dead,Invulnerable"/>
@@ -12196,12 +12193,12 @@
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Stasis,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="RaynorSnipeDamage">
-        <Amount value="40"/>
+        <Amount value="45"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Dead,Invulnerable"/>
         <ValidatorArray index="0" value="TargetIsEnemy"/>
         <Kind value="Spell"/>
-        <AttributeBonus index="Massive" value="20"/>
+        <AttributeBonus index="Massive" value="22.5"/>
     </CEffectDamage>
     <CEffectModifyUnit id="Bandage">
         <EditorCategories value="Race:Terran"/>
