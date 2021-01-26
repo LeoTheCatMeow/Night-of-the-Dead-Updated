@@ -38757,9 +38757,6 @@ bool gt_STBoss2Clone_Func (bool testConds, bool runActions) {
     GameSetLighting("AdsiPistol", 0.5);
     Wait(0.2, c_timeGame);
     libNtve_gf_ChangeUnitDamage(gv_nazara, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Minimal);
-    UnitBehaviorRemove(gv_nazara, "LaserDesignatorLevel1", 3);
-    UnitBehaviorRemove(gv_nazara, "LaserDesignatorLevel2", 3);
-    UnitBehaviorRemove(gv_nazara, "LaserDesignatorLevel3", 3);
     UnitSetPosition(gv_nazara, RegionRandomPoint(RegionCircle(UnitGetPosition(gv_nazara), 9.0)), false);
     auto7CE22C3A_g = gv_marines;
     auto7CE22C3A_u = UnitGroupCount(auto7CE22C3A_g, c_unitCountAll);

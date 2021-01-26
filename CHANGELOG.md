@@ -20,6 +20,11 @@
 - Moved CP Bonus out of the behavior bar and added the stack count to its tooltip (still visible in the default sc2 behavior bar).
 - Flamethrower - Helium-3 Igniter lv3 now also allows Flamethrower MK-3 to target air.
 - Added a placement indicator for Recon's Supply Station.
+- Brought back the original NOTD lighting (darker, has fog).
+- Added the flashlight for Marksman for consistency with other classes.
+- LD effect will now remain after Nazara splits.
+- Engineer - Compliance Matrix is now transient (does not break follow order).
+- Reduced the intensity of Recon's upgraded flares.
 
 2021-1-18
 [ThunderRazor]
