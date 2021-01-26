@@ -5,6 +5,7 @@
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
 - As a result certain exploit spots are no longer effective.
 - Fixed cronus initial beam effect invisible on low graphics settings.
+- Fixed texture set after 6 years (finally!).
 
 [LeoTheCat]
 - Fixed the inner radius of Eos and some other enemies so that they don't get stuck. This radius does not affect Flamethrower MK-3 dps.
@@ -20,10 +21,7 @@
 - Moved CP Bonus out of the behavior bar and added the stack count to its tooltip (still visible in the default sc2 behavior bar).
 - Flamethrower - Helium-3 Igniter lv3 now also allows Flamethrower MK-3 to target air.
 - Added a placement indicator for Recon's Supply Station.
-- Brought back the original NOTD lighting (darker, has fog).
-- Added the flashlight for Marksman for consistency with other classes.
 - LD effect will now remain after Nazara splits.
-- Engineer - Compliance Matrix is now transient (does not break follow order).
 - Reduced the intensity of Recon's upgraded flares.
 - Fixed Surv wave 37 enemies dying before reaching players.
 
