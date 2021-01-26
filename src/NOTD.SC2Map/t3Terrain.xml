@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain version="115">
-    <heightMap tileSet="MeinhoffEx1" uvtiling="24.000000 24.000000 0.000000 0.000000 " dim="257 257 " offset="0.000000 0.000000 0.000000 " scale="1.000000e+00 1.000000e+00 1.000000e+00 ">
+    <heightMap tileSet="Meinhoff" uvtiling="24.000000 24.000000 0.000000 0.000000 " dim="257 257 " offset="0.000000 0.000000 0.000000 " scale="1.000000e+00 1.000000e+00 1.000000e+00 ">
         <cliffSetList num="4">
             <cliffSet i="0" name="MeinhoffCliff0"/>
             <cliffSet i="1" name="MeinhoffCliff1"/>
@@ -113,11 +113,11 @@
             <cliffDoodad name="TerrainObjectBraxisAlphaZergHoleLarge1" pos="103.000000 221.000000 0.000000 " rot="0"/>
             <cliffDoodad name="TerrainObjectBraxisAlphaZergHoleLarge1" pos="75.000000 227.000000 0.000000 " rot="0"/>
         </cliffDoodadList>
-        <vertData quantizeBias="9.088455e+00" quantizeScale="5.021353e-04" standardHeight="8.000000e+00" name="t3HeightMap"/>
+        <vertData quantizeBias="9.088704e+00" quantizeScale="5.021353e-04" standardHeight="8.000000e+00" name="t3HeightMap"/>
         <masks name="t3TextureMasks"/>
         <textureSetList num="8">
             <textureSet i="0" name="MeinhoffEx1"/>
-            <textureSet i="1" name=""/>
+            <textureSet i="1" name="Meinhoff"/>
             <textureSet i="2" name=""/>
             <textureSet i="3" name=""/>
             <textureSet i="4" name=""/>
@@ -2376,7 +2376,7 @@
             <cc i="3695" f="1" cid="0" cvar="2"/>
             <cc i="3696" f="1" cid="0" cvar="0"/>
             <cc i="3698" f="1" cid="0" cvar="3"/>
-            <cc i="3706" f="1" cid="0" cvar="0"/>
+            <cc i="3706" f="1" cid="0" cvar="3"/>
             <cc i="3707" f="1" cid="0" cvar="1"/>
             <cc i="3719" f="0" cid="3" cvar="0"/>
             <cc i="3720" f="0" cid="3" cvar="0"/>
@@ -2477,7 +2477,7 @@
             <cc i="3956" f="0" cid="1" cvar="0"/>
             <cc i="3958" f="0" cid="3" cvar="0"/>
             <cc i="3959" f="0" cid="3" cvar="0"/>
-            <cc i="3962" f="1" cid="0" cvar="0"/>
+            <cc i="3962" f="1" cid="0" cvar="2"/>
             <cc i="3963" f="1" cid="0" cvar="0"/>
             <cc i="3973" f="1" cid="0" cvar="1"/>
             <cc i="3974" f="1" cid="0" cvar="1"/>
@@ -2570,9 +2570,9 @@
             <cc i="4206" f="1" cid="0" cvar="0"/>
             <cc i="4208" f="1" cid="0" cvar="0"/>
             <cc i="4210" f="1" cid="0" cvar="2"/>
-            <cc i="4215" f="1" cid="0" cvar="3"/>
+            <cc i="4215" f="1" cid="0" cvar="2"/>
             <cc i="4216" f="1" cid="0" cvar="1"/>
-            <cc i="4217" f="1" cid="0" cvar="2"/>
+            <cc i="4217" f="1" cid="0" cvar="3"/>
             <cc i="4218" f="1" cid="0" cvar="3"/>
             <cc i="4226" f="2" cid="0" cvar="0"/>
             <cc i="4227" f="2" cid="0" cvar="0"/>
