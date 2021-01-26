@@ -25,6 +25,7 @@
 - LD effect will now remain after Nazara splits.
 - Engineer - Compliance Matrix is now transient (does not break follow order).
 - Reduced the intensity of Recon's upgraded flares.
+- Fixed Surv wave 37 enemies dying before reaching players.
 
 2021-1-18
 [ThunderRazor]

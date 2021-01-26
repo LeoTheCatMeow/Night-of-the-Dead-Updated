@@ -6528,10 +6528,10 @@ void gf_DisplayBehavior (unit lp_unit, int lp_player, int lp_slot, string lp_beh
     // Automatic Variable Declarations
     // Implementation
     gv_marineBehaviors[lp_player][lp_slot] = lp_behavior;
-    libNtve_gf_SetDialogItemImage(gv_behaviorTrackerDialogItemImage[lp_player][lp_slot], (CatalogFieldValueGet(c_gameCatalogBehavior, lp_behavior, "InfoIcon", c_playerAny)), PlayerGroupActive());
-    libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDialogItemImage[lp_player][lp_slot], StringExternal(CatalogFieldValueGet(c_gameCatalogBehavior, lp_behavior, "Tooltip", c_playerAny)), PlayerGroupActive());
-    libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lp_player][lp_slot], IntToText(UnitBehaviorCount(lp_unit, lp_behavior)), PlayerGroupActive());
-    DialogControlSetVisible(gv_behaviorTrackerDialogItem[lp_player][lp_slot], PlayerGroupActive(), true);
+    libNtve_gf_SetDialogItemImage(gv_behaviorTrackerDialogItemImage[lp_player][lp_slot], (CatalogFieldValueGet(c_gameCatalogBehavior, lp_behavior, "InfoIcon", c_playerAny)), PlayerGroupAll());
+    libNtve_gf_SetDialogItemTooltip(gv_behaviorTrackerDialogItemImage[lp_player][lp_slot], StringExternal(CatalogFieldValueGet(c_gameCatalogBehavior, lp_behavior, "Tooltip", c_playerAny)), PlayerGroupAll());
+    libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lp_player][lp_slot], IntToText(UnitBehaviorCount(lp_unit, lp_behavior)), PlayerGroupAll());
+    DialogControlSetVisible(gv_behaviorTrackerDialogItem[lp_player][lp_slot], PlayerGroupAll(), true);
 }
 
 trigger auto_gf_BehaviorUpdate_Trigger = null;
@@ -6567,12 +6567,12 @@ bool auto_gf_BehaviorUpdate_TriggerFunc (bool testConds, bool runActions) {
                 lv_pickedMarine = autoC5617623_var;
                 autoE93C7F2A_var = 1;
                 for ( ; autoE93C7F2A_var <= autoE93C7F2A_ae; autoE93C7F2A_var += 1 ) {
-                    if ((gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var] != null) && (UnitBehaviorHasFlag(gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var], c_unitBehaviorFlagPermanent) == false)) {
+                    if ((gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var] != null)) {
                         lv_behavior = gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var];
                         lv_stackCount = UnitBehaviorCount(gv_marineHero[lv_pickedMarine], lv_behavior);
                         if ((lv_stackCount <= 0)) {
                             gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var] = null;
-                            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_pickedMarine][autoE93C7F2A_var], PlayerGroupActive(), false);
+                            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_pickedMarine][autoE93C7F2A_var], PlayerGroupAll(), false);
                             continue;
                         }
                         libNtve_gf_SetDialogItemText(gv_behaviorTrackerDialogItemLabel[lv_pickedMarine][autoE93C7F2A_var], IntToText(lv_stackCount), PlayerGroupActive());
@@ -19683,6 +19683,8 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
     int lv_player;
 
     // Automatic Variable Declarations
+    const int auto23A97CF9_ae = 10;
+    int auto23A97CF9_var;
     const int auto795BCCAA_ae = 10;
     int auto795BCCAA_var;
 
@@ -19706,6 +19708,12 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    auto23A97CF9_var = 1;
+    for ( ; auto23A97CF9_var <= auto23A97CF9_ae; auto23A97CF9_var += 1 ) {
+        if ((gv_marineBehaviors[lv_player][auto23A97CF9_var] == lv_behavior)) {
+            return true;
+        }
+    }
     auto795BCCAA_var = 1;
     for ( ; auto795BCCAA_var <= auto795BCCAA_ae; auto795BCCAA_var += 1 ) {
         if ((gv_marineBehaviors[lv_player][auto795BCCAA_var] == null)) {
@@ -19719,14 +19727,7 @@ bool gt_OnActivateBehavior_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnActivateBehavior_Init () {
     gt_OnActivateBehavior = TriggerCreate("gt_OnActivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnActivateBehavior, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeActivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -19765,7 +19766,7 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
     for ( ; autoD99E77A9_var <= autoD99E77A9_ae; autoD99E77A9_var += 1 ) {
         if ((gv_marineBehaviors[lv_player][autoD99E77A9_var] == lv_behavior)) {
             gv_marineBehaviors[lv_player][autoD99E77A9_var] = null;
-            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_player][autoD99E77A9_var], PlayerGroupActive(), false);
+            DialogControlSetVisible(gv_behaviorTrackerDialogItem[lv_player][autoD99E77A9_var], PlayerGroupAll(), false);
             return true;
         }
     }
@@ -19775,22 +19776,7 @@ bool gt_OnDeactivateBehavior_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_OnDeactivateBehavior_Init () {
     gt_OnDeactivateBehavior = TriggerCreate("gt_OnDeactivateBehavior_Func");
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[1]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[2]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[3]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[4]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[5]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[6]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[7]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, UnitRefFromVariable("gv_marineHero[8]"), c_unitBehaviorFlagUser1, c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChangeFromCategory(gt_OnDeactivateBehavior, null, c_unitBehaviorFlagUser1, c_unitBehaviorChangeDeactivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -38778,9 +38764,6 @@ bool gt_STBoss2Clone_Func (bool testConds, bool runActions) {
 
     }
     Wait(1.0, c_timeGame);
-    UnitBehaviorRemove(gv_nazara, "LaserDesignatorLevel1", 3);
-    UnitBehaviorRemove(gv_nazara, "LaserDesignatorLevel2", 3);
-    UnitBehaviorRemove(gv_nazara, "LaserDesignatorLevel3", 3);
     GameSetLighting("NOTDSecTeamLight", 0.5);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/B88C671E"));
     Wait(3.0, c_timeReal);
@@ -42716,7 +42699,7 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
     SoundPlay(SoundLink("UI_ChatMessageReceived", -1), PlayerGroupAll(), 100.0, 0.0);
     gf_StoryMessageNOTD(StringExternal("Param/Value/2BC9DA7A"));
     TriggerExecute(gt_STC1ItemSpawn, true, false);
-    Wait(30.0, c_timeReal);
+    Wait(20.0, c_timeReal);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto6DA4E8D0_n = (gv_spawnFactor * 10);
@@ -43055,8 +43038,8 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     int autoC4BAA258_i;
     const int autoC3E14E51_ae = gv_numberofPlayers;
     int autoC3E14E51_var;
-    int auto9BC4682E_n;
-    int auto9BC4682E_i;
+    int autoD3BDB475_n;
+    int autoD3BDB475_i;
     int autoD0D79160_n;
     int autoD0D79160_i;
     int autoBC9AEA32_n;
@@ -43127,14 +43110,14 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         Wait(0.1, c_timeReal);
     }
     UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-    auto9BC4682E_n = (gv_spawnFactor * 6);
-    for (auto9BC4682E_i = 1; auto9BC4682E_i <= auto9BC4682E_n; auto9BC4682E_i += 1) {
-        gf_SmartSpawnNOTD("X1GuardianLevel2", 90.0);
+    autoD3BDB475_n = (gv_spawnFactor * 6);
+    for (autoD3BDB475_i = 1; autoD3BDB475_i <= autoD3BDB475_n; autoD3BDB475_i += 1) {
+        gf_SmartSpawnWithBehaviorNOTD("X1GuardianLevel2", 90.0, "Detector5", "PersonalCloakingFree", "AdvancedMutation");
         Wait(0.2, c_timeReal);
-        gf_SmartSpawnWithBehaviorNOTD("CrawlerDroneLevel2", 90.0, "Detector5", "PersonalCloakingFree", null);
+        gf_SmartSpawnWithBehaviorNOTD("CrawlerDroneLevel2", 90.0, "Detector5", "PersonalCloakingFree", "AdvancedMutation");
         Wait(0.2, c_timeReal);
-        gf_SmartSpawnNOTD("FieldProbe", 90.0);
-        Wait(2.0, c_timeReal);
+        gf_SmartSpawnWithBehaviorNOTD("FieldProbe", 90.0, "Detector5", "PersonalCloakingFree", "AdvancedMutation");
+        Wait(1.0, c_timeReal);
     }
     Wait(20.0, c_timeReal);
     gf_SmartSpawnNOTD("Nazara", 90.0);

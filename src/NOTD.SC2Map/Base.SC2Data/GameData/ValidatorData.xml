@@ -351,6 +351,11 @@
         <Compare value="Eq"/>
         <LaunchLocation Value="CasterUnit"/>
     </CValidatorLocationEnumArea>
+    <CValidatorPlayerCompareRace id="NotZombiePlayer">
+        <WhichPlayer Value="Caster"/>
+        <Compare value="NE"/>
+        <Value value="Zerg"/>
+    </CValidatorPlayerCompareRace>
     <CValidatorUnitCompareBehaviorCount id="OpenWoundStackMoreThan3">
         <Compare value="GT"/>
         <Value value="3"/>

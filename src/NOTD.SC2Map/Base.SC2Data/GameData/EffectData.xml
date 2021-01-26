@@ -1261,6 +1261,7 @@
         <SearchFilters value="Armored,Mechanical;Ally,Neutral,Enemy,Psionic,Structure,Heroic,Dead"/>
         <ExcludeArray Value="Source"/>
         <AreaArray Radius="500" Effect="SuicideOther"/>
+        <ValidatorArray value="NotZombiePlayer"/>
     </CEffectEnumArea>
     <CEffectCreatePersistent id="CannonSwapDelay">
         <EditorCategories value=""/>
@@ -2246,6 +2247,7 @@
         </TargetSorts>
         <AreaArray Radius="500" Effect="SuicideOther"/>
         <MinCount value="10"/>
+        <ValidatorArray value="NotZombiePlayer"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="CrippleApplySelf2">
         <ValidatorArray index="0" removed="1"/>
@@ -2385,6 +2387,7 @@
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
         <AreaArray Radius="500" Effect="SuicideOther"/>
+        <ValidatorArray value="NotZombiePlayer"/>
     </CEffectEnumArea>
     <CEffectCreateUnit id="FlareCreateRevealDummy">
         <WhichLocation Value="TargetPoint"/>
@@ -10044,7 +10047,7 @@
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
         <ImpactUnitValidator value="TargetIsNotAllyOrPlayer"/>
-        <AreaArray Radius="5" Fraction="0.75"/>
+        <AreaArray Radius="5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <AttributeBonus index="Massive" value="100"/>
     </CEffectDamage>
