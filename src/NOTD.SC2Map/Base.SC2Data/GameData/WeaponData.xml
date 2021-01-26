@@ -965,8 +965,6 @@
         <Range value="4.65"/>
         <MinScanRange value="4"/>
         <Backswing value="0.3"/>
-        <AcquireFilters value="Ground;-"/>
-        <ChaseFilters value="Ground;-"/>
         <AllowedMovement value="Slowing"/>
         <AcquireScanFilters value="-;Hidden,Invulnerable"/>
         <Tip value="Button/Tooltip/FlamethrowerMK3"/>
@@ -975,6 +973,7 @@
         <TargetFilters value="Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="1"/>
         <AllowedMovement value="Moving"/>
+        <DisplayEffect value="GlaiveWurm2"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="InfestedGuassRifle">
         <Period value="0.6"/>

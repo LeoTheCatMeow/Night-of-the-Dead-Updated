@@ -176,6 +176,11 @@
         <Compare value="GT"/>
         <Behavior value="Cripple"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasHeliumIgnitorLevel3">
+        <WhichUnit Value="Source"/>
+        <Compare value="GT"/>
+        <Behavior value="Helium3IgniterLevel3"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="HasInfection">
         <Compare value="GT"/>
         <Behavior value="Infection"/>
@@ -1520,6 +1525,10 @@
         <CombineArray value="UnitisAthenasCocoon"/>
         <CombineArray value="UnitisZombieCocoon"/>
         <CombineArray value="UnitisEnemyLight"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ValidFlamethrowerMK3Target">
+        <CombineArray value="HasHeliumIgnitorLevel3"/>
+        <CombineArray value="IsGroundUnit"/>
     </CValidatorCombine>
     <CValidatorCombine id="ValidVenomTarget">
         <CombineArray value="HasChemicalSynthesisLevel1"/>
