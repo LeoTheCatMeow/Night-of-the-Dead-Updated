@@ -54,6 +54,12 @@
     <CModel id="ExecuteImpact">
         <Model value="Assets\Effects\Protoss\Zealot_Aiur_Whirlwind_Impact\Zealot_Aiur_Whirlwind_Impact.m3"/>
     </CModel>
+    <CModelFoliage id="FaithImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\YamatoMissileImpact\YamatoMissileImpact.m3"/>
+        <AnimSpeed value="0.500000"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="2.000000,2.000000,2.000000"/>
+    </CModelFoliage>
     <CModel id="Hugger" parent="InfestorBase">
         <Model value="Assets\Units\Zerg\Infestor_Ex3\Infestor_Ex3.m3"/>
         <Radius value="0.500000"/>

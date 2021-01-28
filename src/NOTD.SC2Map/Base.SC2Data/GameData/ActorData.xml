@@ -10699,8 +10699,6 @@
         <Inherits index="Visibility" value="1"/>
         <On Terms="Effect.FaithSearchSet.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {255,232,151 13.000000}"/>
-        <Model value="SmiteImpact"/>
-        <Scale value="2.200000"/>
     </CActorModel>
     <CActorSound id="SmiteSound" parent="SoundOneShot">
         <EditorCategories value=""/>
