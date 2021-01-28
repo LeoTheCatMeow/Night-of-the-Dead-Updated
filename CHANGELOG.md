@@ -1,5 +1,10 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-1-28
+[ReduxGelum]
+- Changed faith effect model to differentiate from smite
+- Enabled transient for faith ability
+
 2021-1-23
 [ReduxGelum]
 - Overall enemy pathing optimization - preventing units from getting stuck and causing lag.
