@@ -1896,13 +1896,13 @@
         <Attributes index="Structure" value="1"/>
         <EditorCategories value=""/>
         <AbilArray Link="Detonate"/>
-        <BehaviorArray Link="ArmageddonBombLimit"/>
         <CardLayouts>
             <LayoutButtons Face="Detonate" Type="AbilCmd" AbilCmd="Detonate,On" Row="2" Column="0"/>
         </CardLayouts>
         <LifeStart value="75"/>
         <LifeMax value="75"/>
         <Sight value="1"/>
+        <EffectArray index="Create" value="ArmageddonBombLimit"/>
     </CUnit>
     <CUnit id="MissleRevealDummy">
         <Race value="Terr"/>
@@ -3262,13 +3262,12 @@
     </CUnit>
     <CUnit id="SentinelMine">
         <Description value="Button/Tooltip/WidowMine"/>
-        <DeathRevealRadius value="5"/>
+        <DeathRevealRadius value="4"/>
         <DeathRevealDuration value="3"/>
         <Race value="Terr"/>
         <Mob value="Multiplayer"/>
         <FlagArray index="Turnable" value="0"/>
         <FlagArray index="UseLineOfSight" value="1"/>
-        <FlagArray index="Invulnerable" value="1"/>
         <FlagArray index="Cloaked" value="1"/>
         <FlagArray index="Buried" value="1"/>
         <FlagArray index="AlwaysThreatens" value="1"/>
@@ -3281,12 +3280,12 @@
         <Collide index="Burrow" value="1"/>
         <Attributes index="Light" value="1"/>
         <Attributes index="Mechanical" value="1"/>
-        <LifeStart value="25"/>
-        <LifeMax value="25"/>
+        <LifeStart value="75"/>
+        <LifeMax value="75"/>
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
         <Acceleration value="1000"/>
         <StationaryTurningRate value="2292.8906"/>
-        <Sight value="5"/>
+        <Sight value="4"/>
         <CostCategory value="Army"/>
         <RepairTime value="20"/>
         <AttackTargetPriority value="20"/>
@@ -3294,7 +3293,7 @@
         <AbilArray Link="WidowMineAttack"/>
         <AbilArray Link="SentinelMineSelfDestruct"/>
         <BehaviorArray Link="WidowMineArmed"/>
-        <EffectArray index="Create" value="ArmageddonBombLimit2"/>
+        <EffectArray index="Create" value="SentinelMineLimit"/>
         <CardLayouts>
             <LayoutButtons Face="WidowMineBioSplash" Type="AbilCmd" AbilCmd="WidowMineAttack,Execute" Row="0" Column="0"/>
             <LayoutButtons Face="SentinelMineSelfDestruct" Type="AbilCmd" AbilCmd="SentinelMineSelfDestruct,Execute" Row="0" Column="4"/>

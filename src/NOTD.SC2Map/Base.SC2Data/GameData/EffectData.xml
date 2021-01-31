@@ -136,14 +136,25 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="NukeRevealDummy"/>
     </CEffectCreateUnit>
-    <CEffectEnumArea id="ArmageddonBombLimit2">
+    <CEffectEnumArea id="SentinelMineLimit">
+        <EditorCategories value=""/>
+        <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
+        <AreaArray Radius="500" Effect="SentinelMineLimitApply"/>
+        <MinCount value="15"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="ArmageddonBombLimitApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="ArmageddonBombLimit"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SentinelMineLimitKill">
         <EditorCategories value=""/>
         <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
         <TargetSorts RequestCount="1">
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
-        <AreaArray Radius="500" Effect="Suicide"/>
-        <MinCount value="15"/>
+        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <MaxCount value="1"/>
     </CEffectEnumArea>
     <CEffectDamage id="ArmageddonDamageAftershock">
         <EditorCategories value=""/>
@@ -551,6 +562,20 @@
         <EffectArray value="Kill"/>
         <EffectArray value="SelfDestructSearch"/>
     </CEffectSet>
+    <CEffectApplyBehavior id="SentinelMineLimitApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="SentinelMineLimit"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ArmageddonBombLimitKill">
+        <EditorCategories value=""/>
+        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
     <CEffectSet id="ShockSet">
         <EditorCategories value=""/>
         <EffectArray value="ParticleBeam"/>
@@ -1074,8 +1099,7 @@
         <EffectArray value="Suicide"/>
     </CEffectSet>
     <CEffectSet id="WidowMineExplodeSet">
-        <EffectArray index="0" value="WidowMineExplodeSplashSearch"/>
-        <EffectArray index="1" removed="1"/>
+        <EffectArray index="0" value="WidowMineExplodeSearchFriendly"/>
     </CEffectSet>
     <CEffectDamage id="WidowMineExplodeSplash">
         <ValidatorArray index="0" removed="1"/>
@@ -1087,10 +1111,25 @@
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
     </CEffectDamage>
+    <CEffectDamage id="WidowMineExplodeDamageFriendly" parent="DU_WEAP">
+        <EditorCategories value="Race:Terran"/>
+        <ArmorReduction value="0.5"/>
+        <Kind value="Spell"/>
+        <KindSplash value="Splash"/>
+        <Amount value="5"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
     <CEffectEnumArea id="WidowMineExplodeSplashSearch">
         <ExcludeArray index="0" removed="1"/>
         <SearchFilters value="-;Player,Ally,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray index="0" Radius="1.5"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="WidowMineExplodeSearchFriendly">
+        <EditorCategories value="Race:Terran"/>
+        <SearchFilters value="-;Neutral,Enemy,Mechanical,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.5" Effect="WidowMineExplodeDamageFriendly"/>
+        <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="WraithCorrosiveAcidApplyDebuff">
         <EditorCategories value="Race:Zerg"/>
@@ -1477,8 +1516,8 @@
     <CEffectDamage id="CominginHotDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <AttributeBonus index="Heroic" value="9"/>
-        <Amount value="9"/>
+        <AttributeBonus index="Heroic" value="10"/>
+        <Amount value="10"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="CominginHotSearchLevel1">
@@ -4083,11 +4122,8 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="ArmageddonBombLimit">
         <EditorCategories value=""/>
-        <SearchFilters value="Mechanical,Structure;Ally,Neutral,Enemy,Heroic,Dead"/>
-        <TargetSorts RequestCount="1">
-            <SortArray value="TSDistanceToTarget"/>
-        </TargetSorts>
-        <AreaArray Radius="500" Effect="Suicide"/>
+        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <AreaArray Radius="500" Effect="ArmageddonBombLimitApply"/>
         <MinCount value="3"/>
     </CEffectEnumArea>
     <CEffectSet id="ArmageddonSet">
@@ -4109,6 +4145,7 @@
     </CEffectSet>
     <CEffectDamage id="ContaminateDamageFriendlyLevel1" parent="ContaminateDamageFriendlyTemplates">
         <Amount value="4.5"/>
+        <ArmorReduction value="0.25"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="AMRoundsRemoveHEF">
         <EditorCategories value=""/>
@@ -4117,14 +4154,16 @@
     </CEffectRemoveBehavior>
     <CEffectDamage id="ContaminateDamageFriendlyLevel2" parent="ContaminateDamageFriendlyTemplates">
         <Amount value="6"/>
+        <ArmorReduction value="0.25"/>
     </CEffectDamage>
     <CEffectDamage id="ContaminateDamageFriendlyLevel3" parent="ContaminateDamageFriendlyTemplates">
         <Amount value="7.5"/>
+        <ArmorReduction value="0.25"/>
     </CEffectDamage>
     <CEffectDamage id="DesolationDamageFriendlyLevel1">
         <ValidatorArray value="FriendlyOrNeutralTarget"/>
         <EditorCategories value=""/>
-        <ArmorReduction value="3"/>
+        <ArmorReduction value="2"/>
         <Amount value="15"/>
         <Death value="Disintegrate"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
@@ -4132,7 +4171,7 @@
     <CEffectDamage id="DesolationDamageFriendlyLevel2">
         <ValidatorArray value="FriendlyOrNeutralTarget"/>
         <EditorCategories value=""/>
-        <ArmorReduction value="3"/>
+        <ArmorReduction value="2"/>
         <Amount value="30"/>
         <Death value="Disintegrate"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
@@ -4140,7 +4179,7 @@
     <CEffectDamage id="DesolationDamageFriendlyLevel3">
         <ValidatorArray value="FriendlyOrNeutralTarget"/>
         <EditorCategories value=""/>
-        <ArmorReduction value="3"/>
+        <ArmorReduction value="2"/>
         <Amount value="45"/>
         <Death value="Disintegrate"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>

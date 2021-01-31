@@ -5257,6 +5257,9 @@
         <Wireframe>
             <Image value="Assets\Textures\wireframe-terran-widowmine.dds"/>
         </Wireframe>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
     </CActorUnit>
     <CActorUnit id="X1GuardianLevel1" parent="GenericUnitStandard" unitName="X1GuardianLevel1">
         <Macros value="UnloadDropAnim"/>

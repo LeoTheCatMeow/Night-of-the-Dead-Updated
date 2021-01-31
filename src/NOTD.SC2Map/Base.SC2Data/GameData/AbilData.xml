@@ -4299,6 +4299,7 @@
                 <HideCount value="1"/>
                 <Link value="Abil/BuildMines"/>
             </Charge>
+            <Cooldown TimeUse="0.5"/>
         </Cost>
         <LevelButtonTooltip value="Mines Level 2"/>
         <LevelButtonTooltip value="Mines Level 3"/>
@@ -4314,12 +4315,12 @@
     <CAbilEffectTarget id="WidowMineAttack">
         <Cost index="0">
             <Charge>
-                <CountMax value="5"/>
-                <CountStart value="5"/>
+                <CountMax value="4"/>
+                <CountStart value="4"/>
                 <CountUse value="1"/>
                 <Link value="Abil/WidowMineAttackCharge"/>
             </Charge>
-            <Cooldown TimeUse="5"/>
+            <Cooldown TimeUse="4"/>
         </Cost>
         <Range index="0" value="4"/>
         <AutoCastRange value="4"/>
@@ -4704,6 +4705,7 @@
                 <Link value="Abil/BuildMines"/>
                 <Location value="Unit"/>
             </Charge>
+            <Cooldown TimeUse="0.5"/>
         </Cost>
         <Range value="9"/>
         <AutoCastFilters value="-;-"/>

@@ -215,7 +215,7 @@
         <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="30"/>
+        <MaxStackCount value="5"/>
         <Duration value="15"/>
         <Period value="0.25"/>
         <PeriodicEffect value="CominginHotDamage"/>
@@ -232,7 +232,7 @@
         <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="30"/>
+        <MaxStackCount value="5"/>
         <Duration value="15"/>
         <Period value="0.5"/>
         <PeriodicEffect value="CominginHotDamage"/>
@@ -740,6 +740,12 @@
             <RequireEffectArray value="StingerMK3Damage"/>
             <Chance value="1"/>
         </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SentinelMineLimit">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.2"/>
+        <ExpireEffect value="SentinelMineLimitKill"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Shadowed">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3142,9 +3148,10 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ArmageddonBombLimit">
-        <EditorCategories value="AbilityorEffectType:Units"/>
         <InfoFlags index="Hidden" value="1"/>
-        <InitialEffect value="ArmageddonBombLimit"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.2"/>
+        <ExpireEffect value="ArmageddonBombLimitKill"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Armageddon">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -8390,7 +8397,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.9"/>
-        <DurationRandomMin value="2.5"/>
+        <DurationRandomMin value="2.1"/>
         <DurationRandomMax value="0.1"/>
         <ExpireEffect value="MasterMarksmanReapplyLockOn"/>
     </CBehaviorBuff>

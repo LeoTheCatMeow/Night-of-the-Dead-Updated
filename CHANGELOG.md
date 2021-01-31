@@ -6,11 +6,11 @@
 - Enabled transient for faith ability.
 
 [LeoTheCat]
-- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 5 times when deployed, max 15 on the battelfield.
+- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 4 times when deployed, max 15 on the battelfield.
 - Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
 - Other abilities on Demo's Explosive tree also rely on the charges available on Make Explosives.
 - Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
-- When exceeding the # limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the newly created one will be destroyed.
+- When exceeding the number limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the farthest one will be destroyed.
 - Demo's Armageddon tremors will now mini stuns instead of slows.
 - Rifleman - Saline IV now also affects 1 other most wounded ally marine in 3 radius.
 - Simplified Forward Observer's Fire Mission damage to 50/75/100 + 50% vs Massive.
@@ -22,7 +22,7 @@
 - Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
 - Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
 - Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
-- Pathfinder - Coming in Hot's DOT improved to 18/36 DPS for 15 seconds, doubled against Heroic, all stacks refresh when re-applied.
+- Pathfinder - Coming in Hot's DOT improved to 20/40 DPS, 15 seconds, 5 stacks max, 2x against Heroic, all stacks refresh when re-applied.
 - Pathfinder - No Quarter cooldown reduced from 45 to 20, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
 - Pathfinder - Shoot To Maim energy cost per shot removed.
 
