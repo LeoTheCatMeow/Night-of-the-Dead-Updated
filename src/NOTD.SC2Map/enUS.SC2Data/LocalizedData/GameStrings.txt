@@ -1554,7 +1554,7 @@ Button/Tooltip/AnticipationLevel1=7 radius aura. Deals +15% extra damage when ta
 Button/Tooltip/AnticipationLevel2=7 radius aura. Deals +30% extra damage when target is more than 9 distance away.
 Button/Tooltip/Apoptosis=A creature capable of producing nightmares.
 Button/Tooltip/ArchonPet=Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/Armageddon=Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <c val="FF0000">Explosion can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper
+Button/Tooltip/Armageddon=Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper
 Button/Tooltip/ArmageddonBomb=
 Button/Tooltip/Assault=
 Button/Tooltip/AssaultJump=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 1 -- 150 damage, 8 range, AOE 3, grants 80% evasion for 1 second
@@ -1911,7 +1911,7 @@ Button/Tooltip/Safeguard=Gains +1 armor for each hit taken during a 5 seconds du
 Button/Tooltip/SalineIV=Heals self and 1 other most wounded ally marine in 3 radius for 20 HP.
 Button/Tooltip/SalineIVMini=Heals self and 1 other most wounded ally marine in 3 radius for 40 HP. Removes 1 stack of venom.
 Button/Tooltip/Sap=Stuns target for 7 seconds. Bosses are stunned for 3 seconds. Damage taken breaks Sap.
-Button/Tooltip/Satchel=Plants a timed explosive that detonates in 2.5 seconds, dealing 140 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <c val="FF0000">Explosion deals friendly fire damage.
+Button/Tooltip/Satchel=Plants a timed explosive that detonates in 3 seconds, dealing 140 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <n/><c val="FF0000">Explosion deals 35% friendly fire damage.</c>
 Button/Tooltip/SatchelLevel1=Plants a timed explosive that detonates in 5 sec, dealing 135 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/SatchelLevel2=Plants a timed explosive that detonates in 5 sec, dealing 270 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/Scope=Marksman front vision (120 radius cone) increased by 4.
@@ -2752,10 +2752,10 @@ DocInfo/PatchNote693=
 DocInfo/PatchNote694=[LeoTheCat]
 DocInfo/PatchNote695=- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 4 times when deployed, max 15 on the battelfield.
 DocInfo/PatchNote696=- Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
-DocInfo/PatchNote697=- Other abilities on Demo's Explosive tree also rely on the charges available on Make Explosives.
-DocInfo/PatchNote698=- Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
-DocInfo/PatchNote699=- When exceeding the number limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the farthest one will be destroyed.
-DocInfo/PatchNote700=- Demo's Armageddon tremors will now mini stuns instead of slows.
+DocInfo/PatchNote697=- Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
+DocInfo/PatchNote698=- When exceeding the number limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the farthest one will be destroyed.
+DocInfo/PatchNote699=- Demo's Satchel now activates within 3 seconds instead of 5 seconds.
+DocInfo/PatchNote700=- Demo's Armageddon tremors now mini stuns instead of slows.
 DocInfo/PatchNote701=- Rifleman - Saline IV now also affects 1 other most wounded ally marine in 3 radius.
 DocInfo/PatchNote702=- Simplified Forward Observer's Fire Mission damage to 50/75/100 + 50% vs Massive.
 DocInfo/PatchNote703=- Simplified Forward Observer's Napalm Barrage damage to 40 + 50% Massive.
@@ -4117,6 +4117,8 @@ Effect/Name/SatchelLevel1Build=Satchel Level 1 (Build)
 Effect/Name/SatchelLevel1Damage=Satchel Level 1 (Damage)
 Effect/Name/SatchelLevel1DamageFriendly=Satchel Level 1 (Damage Friendly)
 Effect/Name/SatchelLevel1DamageSet=Satchel Level 1 (Damage Set)
+Effect/Name/SatchelLevel1SearchEnemy=Satchel Level 1 (Search Enemy)
+Effect/Name/SatchelLevel1SearchFriendly=Satchel Level 1 (Search Friendly)
 Effect/Name/SatchelLevel1Set=Satchel Level 1 (Set)
 Effect/Name/SatchelLevel1Spawn=Satchel Level 1 Spawn
 Effect/Name/SatchelLevel2AftershockDamage=Satchel Level 2 (Aftershock Damage)
@@ -4124,14 +4126,12 @@ Effect/Name/SatchelLevel2Build=Satchel Level 2 (Build)
 Effect/Name/SatchelLevel2Damage=Satchel Level 2 (Damage)
 Effect/Name/SatchelLevel2DamageFriendly=Satchel Level 2 (Damage Friendly)
 Effect/Name/SatchelLevel2DamageSet=Satchel Level 2 (Damage Set)
+Effect/Name/SatchelLevel2SearchEnemy=Satchel Level 2 (Search Enemy)
+Effect/Name/SatchelLevel2SearchFriendly=Satchel Level 2 (Search Friendly)
 Effect/Name/SatchelLevel2Set=Satchel Level 2 (Set)
 Effect/Name/SatchelLevel2Spawn=Satchel Level 2 Spawn
 Effect/Name/SatchelLifeDamage=Satchel Life Damage
 Effect/Name/SatchelSearch=Satchel Search
-Effect/Name/SatchelSearchDamageEnemyLevel1=Satchel Search Damage Enemy Level 1
-Effect/Name/SatchelSearchDamageEnemyLevel2=Satchel Search Damage Enemy Level 2
-Effect/Name/SatchelSearchDamageFriendlyLevel1=Satchel Search Damage Friendly Level 1
-Effect/Name/SatchelSearchDamageFriendlyLevel2=Satchel Search Damage Friendly Level 2
 Effect/Name/SatchelSearchDummy=Satchel Search Dummy
 Effect/Name/SatchelShieldDamage=Satchel Shield Damage
 Effect/Name/ScavengeCreate=Scavenge Create
@@ -4593,7 +4593,7 @@ Level 2 Precision Shot=Deals 150 damage to target unit and slows movement by 60%
 Level 2 Redundant Organs=Bob throws his spleens at zombies. Zombies become distracted for 7 secs while they feast.
 Level 2 Repair=Repairs shields/mechanical at rate of 10 per second. Has a 33% chance per second to remove Short Circuit.
 Level 2 Run Forest Run!=Increases movespeed by 24%. Reduces attack speed by 10%. Toggled ability
-Level 2 Satchel=Plants a timed explosive that detonates in 5 seconds, dealing 280 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <c val="FF0000">Explosion deals friendly fire damage.
+Level 2 Satchel=Plants a timed explosive that detonates in 3 seconds, dealing 280 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <n/><c val="FF0000">Explosion deals 35% friendly fire damage.</c>
 Level 2 Sensor Tower=Reveals enemy units in 25 radius. Stationary and can only build 3 at a time.
 Level 2 Shadowstep=Allows Marksman to move very quickly (+300% movespeed) for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
 Level 2 Shatter=Deals 300 damage to target unit. Deals 2x damage to bosses. If unit is stunned, gain 70 HP.
@@ -7308,9 +7308,9 @@ UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">Expl
 UserData/TalentTrees/Demolitions_Headers_001=<s val="HelpPanelListBoxItemTitle">Fortitude</s>
 UserData/TalentTrees/Demolitions_Talent Tootips=<s val="AchievementFrameName">Sentinel Mine</s><n/>Plants a sentinel mine that oversees a 4 radius area, firing mini missiles at incoming hostiles. Can fire once every 4 seconds, dealing damage in a small area. Holds 4 missiles and self-destructs when depleted.<n/>Level 1 - 30 damage.<n/>Level 2 - 45 damage.<n/>Level 3 - 60 damage.<n/><n/>Costs 1 explosive charge and may deploy up to 15 on the battlefield.<n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised.</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName">Explosive Aftershock<n/>(Passive)</s><n/>Demolitions' explosives - Sentinel Mine/Satchel/Armageddon have a 100%/40%/25% chance to trigger additional aftershocks within their targets, dealing an additional fraction of the original damage in a 1/3/4 radius area. Effective against enemies in clusters.<n/>Level 1 - 10% aftershock damage.<n/>Level 2 - 20% aftershock damage.<n/>Level 3 - 30% aftershock damage.
-UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 5 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/>Costs 1 explosive charge per use. <c val="FF0000">Explosion deals friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 3 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/>Costs 1 explosive charge per use. <n/><c val="FF0000">Explosion deals 35% friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <c val="FF0000">Explosion can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Armor<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +4 and +15 Shields<n/><n/>"I'll cut you" - Yuki
 UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - <d ref="Behavior,ImYourFatherTauntedLevel1,Modification.DamageDealtFraction[0] * 100"/>% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage for 8 seconds
 UserData/TalentTrees/Demolitions_Talent Tootips_007=<s val="AchievementFrameName">Look!</s><n/>Forces enemies in 5 radius to stare at target. After a short duration, 50% chance for affected units to attack target. <n/>Level 1 - 1 second<n/>Level 2 - 2 seconds<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>

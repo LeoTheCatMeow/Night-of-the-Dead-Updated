@@ -8,10 +8,10 @@
 [LeoTheCat]
 - Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 4 times when deployed, max 15 on the battelfield.
 - Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
-- Other abilities on Demo's Explosive tree also rely on the charges available on Make Explosives.
 - Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
 - When exceeding the number limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the farthest one will be destroyed.
-- Demo's Armageddon tremors will now mini stuns instead of slows.
+- Demo's Satchel now activates within 3 seconds instead of 5 seconds.
+- Demo's Armageddon tremors now mini stuns instead of slows.
 - Rifleman - Saline IV now also affects 1 other most wounded ally marine in 3 radius.
 - Simplified Forward Observer's Fire Mission damage to 50/75/100 + 50% vs Massive.
 - Simplified Forward Observer's Napalm Barrage damage to 40 + 50% Massive.

@@ -4299,10 +4299,9 @@
                 <HideCount value="1"/>
                 <Link value="Abil/BuildMines"/>
             </Charge>
-            <Cooldown TimeUse="0.5"/>
+            <Cooldown TimeUse="0.3"/>
         </Cost>
-        <LevelButtonTooltip value="Mines Level 2"/>
-        <LevelButtonTooltip value="Mines Level 3"/>
+        <Placeholder value="WidowMineBurrowed"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="WeaponExpertise">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4705,13 +4704,13 @@
                 <Link value="Abil/BuildMines"/>
                 <Location value="Unit"/>
             </Charge>
-            <Cooldown TimeUse="0.5"/>
+            <Cooldown TimeUse="0.3"/>
         </Cost>
         <Range value="9"/>
         <AutoCastFilters value="-;-"/>
         <PrepTime value="0.5"/>
         <CancelableArray index="Approach" value="1"/>
-        <CursorEffect value="SatchelLevel1Damage"/>
+        <CursorEffect value="SatchelLevel1SearchEnemy"/>
         <AINotifyEffect value=""/>
         <LevelButtonTooltip value="Level 2 Satchel"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Satchel"/>

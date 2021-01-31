@@ -267,7 +267,7 @@
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
     </CEffectDamage>
-    <CEffectEnumArea id="SatchelSearchDamageFriendlyLevel1">
+    <CEffectEnumArea id="SatchelLevel1SearchFriendly">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4" Effect="SatchelLevel1DamageFriendly"/>
@@ -275,7 +275,7 @@
     </CEffectEnumArea>
     <CEffectDamage id="SatchelLevel1DamageFriendly">
         <EditorCategories value=""/>
-        <ArmorReduction value="1"/>
+        <ArmorReduction value="2"/>
         <Amount value="49"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
@@ -287,7 +287,7 @@
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
-    <CEffectEnumArea id="SatchelSearchDamageEnemyLevel1">
+    <CEffectEnumArea id="SatchelLevel1SearchEnemy">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4" Effect="SatchelLevel1DamageSet"/>
@@ -545,13 +545,13 @@
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel1"/>
     </CEffectApplyBehavior>
-    <CEffectEnumArea id="SatchelSearchDamageEnemyLevel2">
+    <CEffectEnumArea id="SatchelLevel2SearchEnemy">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4" Effect="SatchelLevel2DamageSet"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
-    <CEffectEnumArea id="SatchelSearchDamageFriendlyLevel2">
+    <CEffectEnumArea id="SatchelLevel2SearchFriendly">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4" Effect="SatchelLevel2DamageFriendly"/>
@@ -2270,8 +2270,6 @@
     <CEffectApplyBehavior id="SatchelDamageBehaviorLevel2">
         <EditorCategories value=""/>
         <Behavior value="SatchelLevel2"/>
-        <Flags index="UseDuration" value="1"/>
-        <Duration value="5"/>
     </CEffectApplyBehavior>
     <CEffectSwitch id="SatchelDeploymentChoice">
         <EditorCategories value=""/>
@@ -4085,7 +4083,7 @@
     </CEffectDamage>
     <CEffectDamage id="ArmageddonDamageFriendly">
         <EditorCategories value=""/>
-        <Amount value="85"/>
+        <Amount value="110"/>
         <ArmorReduction value="2"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
@@ -12040,8 +12038,8 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/SatchelLevel1Set"/>
         <EffectArray value="Suicide"/>
-        <EffectArray value="SatchelSearchDamageEnemyLevel2"/>
-        <EffectArray value="SatchelSearchDamageFriendlyLevel2"/>
+        <EffectArray value="SatchelLevel2SearchEnemy"/>
+        <EffectArray value="SatchelLevel2SearchFriendly"/>
     </CEffectSet>
     <CEffectDamage id="SatchelLevel2Damage">
         <EditorCategories value="Race:Terran"/>
@@ -12058,8 +12056,8 @@
     <CEffectSet id="SatchelLevel1Set">
         <EditorCategories value=""/>
         <EffectArray value="Suicide"/>
-        <EffectArray value="SatchelSearchDamageEnemyLevel1"/>
-        <EffectArray value="SatchelSearchDamageFriendlyLevel1"/>
+        <EffectArray value="SatchelLevel1SearchEnemy"/>
+        <EffectArray value="SatchelLevel1SearchFriendly"/>
     </CEffectSet>
     <CEffectCreatePersistent id="ScopeRadius1">
         <EditorCategories value=""/>
