@@ -176,7 +176,7 @@
         <Compare value="GT"/>
         <Behavior value="Cripple"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="HasHeliumIgnitorLevel3">
+    <CValidatorUnitCompareBehaviorCount id="HasHeliumIgniterLevel3">
         <WhichUnit Value="Source"/>
         <Compare value="GT"/>
         <Behavior value="Helium3IgniterLevel3"/>
@@ -1527,7 +1527,7 @@
         <CombineArray value="UnitisEnemyLight"/>
     </CValidatorCombine>
     <CValidatorCombine id="ValidFlamethrowerMK3Target">
-        <CombineArray value="HasHeliumIgnitorLevel3"/>
+        <CombineArray value="HasHeliumIgniterLevel3"/>
         <CombineArray value="IsGroundUnit"/>
     </CValidatorCombine>
     <CValidatorCombine id="ValidVenomTarget">
@@ -1554,6 +1554,12 @@
         <Value value="8"/>
         <Behavior value="Venom"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareChargeUsed id="WidowMineOutofCharges">
+        <Compare value="GE"/>
+        <ChargeLink value="Abil/WidowMineAttackCharge"/>
+        <Ability value="WidowMineAttack"/>
+        <Value value="5"/>
+    </CValidatorUnitCompareChargeUsed>
     <CValidatorLocationCompareRange id="Within10Distance">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LE"/>

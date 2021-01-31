@@ -639,7 +639,7 @@
     <CActorModel id="Armageddon" parent="ModelAnimationStyleOneShot">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death Stand {} ContentPlayOnce 10.000000 AsDuration"/>
         <On Terms="Effect.ArmageddonSet.Start" Send="Create"/>
-        <On Terms="Effect.ArmageddonAfterShockPersistent.Stop" Send="Destroy"/>
+        <On Terms="Effect.ArmageddonRadiationPersistent.Stop" Send="Destroy"/>
         <On Terms="ActorDestruction" Send="SoundSetMuted"/>
         <On Terms="ActorCreation" Send="Create ArmageddonSound"/>
         <Model value="TerrainObjectCharDestructibleFissure"/>
@@ -1180,9 +1180,8 @@
     <CActorModel id="BattlefieldIntelligenceAnimation" parent="ModelAnimationStyleContinuous">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death OpeningPlayForever"/>
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
-        <On Terms="Effect.BattlefieldIntelligenceDummy.Start; At TargetOuter" Send="Create"/>
         <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
-        <On Terms="Behavior.BattlefieldIntelligence.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.BattlefieldIntelligenceDummy.Start; At TargetOuter" Send="Create"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="BattlefieldIntelligence"/>
@@ -1861,8 +1860,8 @@
     </CActorModel>
     <CActorModel id="ArmageddonGas" parent="ModelAnimationStyleContinuous">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} OpeningPlayForever"/>
-        <On Terms="Effect.ArmageddonAfterShockPersistent.Start" Send="Create"/>
-        <On Terms="Effect.ArmageddonAfterShockPersistent.Stop" Send="Destroy"/>
+        <On Terms="Effect.ArmageddonRadiationPersistent.Start" Send="Create"/>
+        <On Terms="Effect.ArmageddonRadiationPersistent.Stop" Send="Destroy"/>
         <On Terms="ActorCreation.ArmageddonGas" Send="SetTintColor 135,26,14"/>
         <Model value="ArmageddonAfterShock"/>
         <Scale value="5.500000,5.500000,5.000000"/>
@@ -1874,7 +1873,7 @@
     </CActorSound>
     <CActorSound id="ArmageddonTremorSound" parent="SoundOneShot">
         <EditorCategories value=""/>
-        <On Terms="Effect.ArmageddonSlowSearch.Start" Send="Create"/>
+        <On Terms="Effect.ArmageddonStunSearch.Start" Send="Create"/>
         <Sound value="Banshee_AttackImpact2"/>
     </CActorSound>
     <CActorRange id="ShrinkerRange" parent="RangeAbil" abil="Shrinker">
@@ -5187,6 +5186,78 @@
         <Macros value=""/>
         <Macros value="Shrinker"/>
     </CActorUnit>
+    <CActorUnit id="WidowMine2" parent="GenericUnitStandard" unitName="WidowMine">
+        <Aliases value="_UnitSmall"/>
+        <Macros value="ZergBurrowStandardAnimMacro"/>
+        <Macros value="ZergSmallBurrowEffects"/>
+        <Macros value="UnloadDropAnim"/>
+        <Macros value="TerrainSquibAnimations"/>
+        <Macros value="PhysicsDeathsSwarmGround"/>
+        <On Terms="UnitBirth.SentinelMine" Send="Create"/>
+        <On Terms="UnitBirth.SentinelMine" Send="AnimPlay Burrow Burrow PlayForever,NonLooping"/>
+        <On Terms="ActorCreation" Send="StatusSet Fired 0"/>
+        <On Terms="ActorCreation" Send="Create WidowMineReadyAttach"/>
+        <On Terms="AbilMorph.*.Start; MorphTo WidowMineBurrowed" Send="AnimPlay Burrow Burrow PlayForever,NonLooping"/>
+        <On Terms="AbilMorph.*.Start; MorphTo WidowMineBurrowed" Send="AnimClear Unburrow"/>
+        <On Terms="AbilMorph.*.Start; MorphTo WidowMine" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Start; MorphTo WidowMine" Send="AnimPlay Unburrow Unburrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo WidowMine" Send="AnimClear Unburrow"/>
+        <On Terms="Abil.WidowMineAttack.SourcePrepStart" Send="Create WidowMineWarning"/>
+        <On Terms="Abil.WidowMineAttack.SourcePrepStop" Target="WidowMineWarning" Send="Destroy"/>
+        <On Terms="Abil.WidowMineAttack.SourceCastStart" Send="StatusSet Fired 1"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsBuried" Send="DeathCustomize Variation0"/>
+        <On Terms="Behavior.WidowMineAnimationController.On" Target="WidowMineReadyAttach" Send="AnimBracketStop Work"/>
+        <On Terms="Behavior.WidowMineAnimationController.Off" Target="WidowMineReadyAttach" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End ClosingFull"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="Create WidowMine_Land"/>
+        <Scale value="0.700000"/>
+        <ModelFlags index="OutlineEmitter" value="1"/>
+        <DeathArray index="Normal" ModelLink="WidowMineDeath" SoundLink="Terran_ExplosionSmall"/>
+        <DeathCustoms ModelLink="WidowMineDeathRagdoll" Name="RagdollBasic">
+            <BodySquibs Name="TerranSquibDeathRagdoll"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Fire"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Fire"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Acid"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Acid"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms ModelLink="WidowMineBurrowDeath" Name="Variation0"/>
+        <DeathCustoms ModelLink="Invisible" Name="Variation1"/>
+        <PlacementModel value="SpiderMinePlacement"/>
+        <PortraitModel value="WidowMinePortrait"/>
+        <TerrainSquibs>
+            <MovementDistance value="0.150000,0.150000"/>
+            <IdlePeriod value="0.100000,0.250000"/>
+            <RangeUp value="1.000000"/>
+            <RangeDown value="1.000000"/>
+            <AttachQuery Methods="AMFilterCenter"/>
+            <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLargeVehicle"/>
+        </TerrainSquibs>
+        <WalkAnimMoveSpeed value="2.8125"/>
+        <BarOffset value="35"/>
+        <BarWidth value="42"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-terran-widowmine.dds"/>
+        </GroupIcon>
+        <HighlightTooltip value="Unit/Name/WidowMine2"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+        <NameOffset value="10"/>
+        <UnitIcon value="Assets\Textures\btn-unit-terran-widowmine.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-terran-widowmine.dds"/>
+        </Wireframe>
+    </CActorUnit>
     <CActorUnit id="X1GuardianLevel1" parent="GenericUnitStandard" unitName="X1GuardianLevel1">
         <Macros value="UnloadDropAnim"/>
         <Macros value=""/>
@@ -6478,15 +6549,19 @@
         <Inherits index="BaseModelScale" value="1"/>
         <Inherits index="Scale" value="1"/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death OpeningPlayForever"/>
-        <On index="1" Terms="Abil.SalineIV.SourceCastStart" Send="Create"/>
-        <On index="2" Terms="Abil.SalineIV.SourceCastStart" Send="TimerSet 1.000000 Timer"/>
-        <On Terms="TimerExpired; TimerName Timer" Send="Destroy"/>
-        <On Terms="Behavior.Medkit.On" Send="Create"/>
+        <On index="1" Terms="TimerExpired; TimerName Timer" Send="Destroy"/>
+        <On index="2" Terms="Behavior.Medkit.On" Send="Create"/>
         <On Terms="Behavior.Medkit.Off" Send="Destroy"/>
         <On Terms="Effect.BandageSet.Start; At Target" Send="Create"/>
         <On Terms="Effect.Medkit.Start; At Target" Send="Create"/>
         <On Terms="Effect.BandageSet.Start" Send="TimerSet 1.000000 Timer"/>
-        <On Terms="Effect.Medkit.Start" Send="TimerSet 0.950000 Timer"/>
+        <On Terms="Effect.Medkit.Start" Send="TimerSet 1.000000 Timer"/>
+        <On Terms="Effect.SalineIV.Start; At Target" Send="Create"/>
+        <On Terms="Effect.SalineIV.Start" Send="TimerSet 1.000000 Timer"/>
+        <On Terms="Effect.SalineIVLevel2.Start; At Target" Send="Create"/>
+        <On Terms="Effect.SalineIVLevel2.Start" Send="TimerSet 1.000000 Timer"/>
+        <On Terms="Effect.SalineIVLevel3.Start; At Target" Send="Create"/>
+        <On Terms="Effect.SalineIVLevel3.Start" Send="TimerSet 1.000000 Timer"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="HealModel"/>
@@ -11521,10 +11596,10 @@
         <On Terms="Effect.PersesBurstDamage.Start" Send="Create"/>
         <On Terms="Effect.PersesBurstDamage.Start" Send="TimerSet 0.900000 Timer"/>
         <On Terms="TimerExpired; TimerName Timer" Send="Destroy"/>
-        <On Terms="Behavior.DisorientAssaultJumpLevel1.On" Send="Create"/>
-        <On Terms="Behavior.DisorientAssaultJumpLevel1.Off" Send="Destroy"/>
-        <On Terms="Behavior.DisorientAssaultJumpLevel2.On" Send="Create"/>
-        <On Terms="Behavior.DisorientAssaultJumpLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.CominginHotDOTLevel1.On" Send="Create"/>
+        <On Terms="Behavior.CominginHotDOTLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.CominginHotDOTLevel2.On" Send="Create"/>
+        <On Terms="Behavior.CominginHotDOTLevel2.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Model value="NapalmFireDamage"/>
@@ -15423,12 +15498,6 @@
         <On Terms="Behavior.MonofilamentCartridgeLevel1Stun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel2Stun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.MonofilamentCartridgeLevel3Stun.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.CounterMeasuresLevel1.On; ValidateUnit UnitIsBiological" Send="Create"/>
-        <On Terms="Behavior.CounterMeasuresLevel2.On; ValidateUnit UnitIsBiological" Send="Create"/>
-        <On Terms="Behavior.CounterMeasuresLevel3.On; ValidateUnit UnitIsBiological" Send="Create"/>
-        <On Terms="Behavior.CounterMeasuresLevel1.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.CounterMeasuresLevel2.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.CounterMeasuresLevel3.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.BloodFrenzyLevel1Stun.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <On Terms="Behavior.BloodFrenzyLevel2Stun.On; ValidateUnit UnitIsBiological" Send="Create"/>
         <On Terms="Behavior.BloodFrenzyLevel1Stun.Off" Send="AnimBracketStop BSD"/>
@@ -15445,14 +15514,14 @@
         <On Terms="Behavior.VengeanceStun.On" Send="Create"/>
         <On Terms="Behavior.SpeedofThoughtStun.On" Send="Create"/>
         <On Terms="Behavior.SpeedofThoughtStun.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.PunchTargetLevel1.On" Send="Create"/>
-        <On Terms="Behavior.PunchTargetLevel1.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.PunchTargetLevel2.On" Send="Create"/>
-        <On Terms="Behavior.PunchTargetLevel2.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.PunchTargetLevel3.On" Send="Create"/>
-        <On Terms="Behavior.PunchTargetLevel3.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.SUPERBOBTarget.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.SUPERBOBTarget.On" Send="Create"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel1.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel12.On" Send="Create"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel12.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel22.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ShockwaveBarrageStunLevel22.On" Send="Create"/>
         <On Terms="Behavior.StunGravityGun.On" Send="Create"/>
         <On Terms="Behavior.StunGravityGun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.StunPerses.On" Send="Create"/>
@@ -15465,10 +15534,6 @@
         <On Terms="Behavior.PrecisionShotLevel1.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.PrecisionShotLevel2.On" Send="Create"/>
         <On Terms="Behavior.PrecisionShotLevel2.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.SapStun2.On" Send="Create"/>
-        <On Terms="Behavior.SapStun.On" Send="Create"/>
-        <On Terms="Behavior.SapStun.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.SapStun2.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.ChargeStunLevel1.On" Send="Create"/>
         <On Terms="Behavior.ChargeStunLevel1.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.StunShotgun.On" Send="Create"/>
@@ -15485,10 +15550,6 @@
         <On Terms="Behavior.SapStun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.SapStun2.On" Send="Create"/>
         <On Terms="Behavior.SapStun2.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.StunLevel1.On" Send="Create"/>
-        <On Terms="Behavior.StunLevel1.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.StunLevel2.On" Send="Create"/>
-        <On Terms="Behavior.StunLevel2.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.Shriek.On" Send="Create"/>
         <On Terms="Behavior.Shriek.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.BringThemDownLevel1Slow.On" Send="Create"/>
@@ -15513,6 +15574,8 @@
         <On Terms="Behavior.InboundSicknessDebuffLevel2.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.VRL772Stun.On" Send="Create"/>
         <On Terms="Behavior.VRL772Stun.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ArmageddonStun.On" Send="Create"/>
+        <On Terms="Behavior.ArmageddonStun.Off" Send="AnimBracketStop BSD"/>
         <Host Subject="_Unit"/>
     </CActorModel>
     <CActorModel id="NanoShockStun" parent="ModelAnimationStyleContinuous">

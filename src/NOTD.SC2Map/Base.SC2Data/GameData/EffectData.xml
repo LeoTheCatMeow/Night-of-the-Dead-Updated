@@ -136,6 +136,152 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="NukeRevealDummy"/>
     </CEffectCreateUnit>
+    <CEffectEnumArea id="ArmageddonBombLimit2">
+        <EditorCategories value=""/>
+        <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="500" Effect="Suicide"/>
+        <MinCount value="15"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="ArmageddonDamageAftershock">
+        <EditorCategories value=""/>
+        <Chance value="0.25"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="4" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+    </CEffectDamage>
+    <CEffectSet id="ArmageddonDamageSet">
+        <EditorCategories value=""/>
+        <EffectArray value="ArmageddonDamage"/>
+        <EffectArray value="ArmageddonDamageAftershock"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="CominginHotDOTLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CominginHotDOTLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="CominginHotDOTSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="CominginHotLevel1" Effect="CominginHotDOTLevel1"/>
+        <CaseArray Validator="CominginHotLevel2" Effect="CominginHotDOTLevel2"/>
+    </CEffectSwitch>
+    <CEffectSet id="NoQuarterInvulnerableSet">
+        <EditorCategories value=""/>
+        <EffectArray value="NoQuarterApplyInvulnerable"/>
+        <EffectArray value="NoQuarterAssaultJumpRecharge"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="NoQuarterAssaultJumpRecharge">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <Cost Abil="AssaultJump,Execute" ChargeCountUse="-1"/>
+    </CEffectModifyUnit>
+    <CEffectEnumArea id="SalineIVLevel1SearchFriendly">
+        <EditorCategories value=""/>
+        <SearchFilters value="Biological,Heroic;Self,Neutral,Enemy,Structure,Missile,Item,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSLifeFraction"/>
+        </TargetSorts>
+        <AreaArray Radius="3" Effect="SalineIVLevel1EffectSet"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SalineIVLevel2SearchFriendly">
+        <EditorCategories value=""/>
+        <SearchFilters value="Biological,Heroic;Self,Neutral,Enemy,Structure,Missile,Item,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSLifeFraction"/>
+        </TargetSorts>
+        <AreaArray Radius="3" Effect="SalineIVLevel2EffectSet"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="SalineIVLevel1Set">
+        <EditorCategories value=""/>
+        <EffectArray value="SalineIVLevel1EffectSet"/>
+        <EffectArray value="SalineIVLevel1SearchFriendly"/>
+    </CEffectSet>
+    <CEffectSet id="SalineIVLevel2Set">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SalineIVLevel1Set"/>
+        <EffectArray value="SalineIVLevel2EffectSet"/>
+        <EffectArray value="SalineIVLevel2SearchFriendly"/>
+    </CEffectSet>
+    <CEffectEnumArea id="SalineIVLevel3SearchFriendly">
+        <EditorCategories value=""/>
+        <SearchFilters value="Biological,Heroic;Self,Neutral,Enemy,Structure,Missile,Item,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSLifeFraction"/>
+        </TargetSorts>
+        <AreaArray Radius="3" Effect="SalineIVLevel3EffectSet"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="SalineIVLevel3Set">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SalineIVLevel1Set"/>
+        <EffectArray value="SalineIVLevel3EffectSet"/>
+        <EffectArray value="SalineIVLevel3SearchFriendly"/>
+    </CEffectSet>
+    <CEffectDamage id="SatchelLevel1AftershockDamage">
+        <EditorCategories value="Race:Terran"/>
+        <Chance value="0.4"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Visibility value="Visible"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Splash"/>
+        <Death value="Blast"/>
+        <AreaArray Radius="3" Fraction="1"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+    </CEffectDamage>
+    <CEffectSet id="SatchelLevel1DamageSet">
+        <EditorCategories value=""/>
+        <EffectArray value="SatchelLevel1Damage"/>
+        <EffectArray value="SatchelLevel1AftershockDamage"/>
+    </CEffectSet>
+    <CEffectSet id="SatchelLevel2DamageSet">
+        <EditorCategories value=""/>
+        <EffectArray value="SatchelLevel2Damage"/>
+        <EffectArray value="SatchelLevel2AftershockDamage"/>
+    </CEffectSet>
+    <CEffectDamage id="SatchelLevel2AftershockDamage">
+        <EditorCategories value="Race:Terran"/>
+        <Chance value="0.4"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Visibility value="Visible"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Splash"/>
+        <Death value="Blast"/>
+        <AreaArray Radius="3" Fraction="1"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="SatchelSearchDamageFriendlyLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="SatchelLevel1DamageFriendly"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="SatchelLevel1DamageFriendly">
+        <EditorCategories value=""/>
+        <ArmorReduction value="1"/>
+        <Amount value="49"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="SatchelLevel2DamageFriendly">
+        <EditorCategories value=""/>
+        <ArmorReduction value="2"/>
+        <Amount value="98"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="SatchelSearchDamageEnemyLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="SatchelLevel1DamageSet"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
     <CEffectDamage id="ArmorMeltDamage">
         <EditorCategories value=""/>
         <Flags index="NoBehaviorResponse" value="1"/>
@@ -388,6 +534,18 @@
         <EditorCategories value="Race:Terran"/>
         <Behavior value="EnergyCapacitorRegenerationLevel1"/>
     </CEffectApplyBehavior>
+    <CEffectEnumArea id="SatchelSearchDamageEnemyLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="SatchelLevel2DamageSet"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SatchelSearchDamageFriendlyLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="SatchelLevel2DamageFriendly"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
     <CEffectSet id="SelfDestructSetRemote">
         <EditorCategories value=""/>
         <EffectArray value="Kill"/>
@@ -397,6 +555,12 @@
         <EditorCategories value=""/>
         <EffectArray value="ParticleBeam"/>
         <EffectArray value="ShockApplyBehavior"/>
+    </CEffectSet>
+    <CEffectCreateUnit id="SpawnSpiderMine">
+        <SpawnUnit index="0" value="SentinelMine"/>
+    </CEffectCreateUnit>
+    <CEffectSet id="SpawnSpiderMineSet">
+        <EffectArray index="1" removed="1"/>
     </CEffectSet>
     <CEffectApplyBehavior id="SyncModuleApplyBuff">
         <Behavior value="SynchronizationModule"/>
@@ -896,6 +1060,38 @@
         <ExcludeArray Value="Outer"/>
         <SearchFilters value="Ground;Self,Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="WidowMineApplyAnimation2">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="WidowMineAnimationController"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="WidowMineAttack">
+        <ValidatorArray index="2" removed="1"/>
+    </CEffectSet>
+    <CEffectSet id="WidowMineChargeCheck">
+        <ValidatorArray value="WidowMineOutofCharges"/>
+        <EditorCategories value=""/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectSet id="WidowMineExplodeSet">
+        <EffectArray index="0" value="WidowMineExplodeSplashSearch"/>
+        <EffectArray index="1" removed="1"/>
+    </CEffectSet>
+    <CEffectDamage id="WidowMineExplodeSplash">
+        <ValidatorArray index="0" removed="1"/>
+        <ShieldBonus value="0"/>
+        <Amount value="30"/>
+        <AreaArray Radius="1"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+        <SearchFlags index="CallForHelp" value="0"/>
+        <SearchFlags index="OffsetByUnitRadius" value="0"/>
+        <SearchFlags index="OffsetAreaByAngle" value="0"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="WidowMineExplodeSplashSearch">
+        <ExcludeArray index="0" removed="1"/>
+        <SearchFilters value="-;Player,Ally,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray index="0" Radius="1.5"/>
+    </CEffectEnumArea>
     <CEffectApplyBehavior id="WraithCorrosiveAcidApplyDebuff">
         <EditorCategories value="Race:Zerg"/>
         <Behavior value="CorrosiveAcid"/>
@@ -1281,17 +1477,10 @@
     <CEffectDamage id="CominginHotDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="6"/>
+        <AttributeBonus index="Heroic" value="9"/>
+        <Amount value="9"/>
         <Death value="Fire"/>
     </CEffectDamage>
-    <CEffectCreatePersistent id="CominginHotPersistent">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <InitialEffect value="CominginHotDamage"/>
-        <PeriodCount value="4"/>
-        <PeriodicEffectArray value="CominginHotDamage"/>
-        <PeriodicPeriodArray value="1"/>
-    </CEffectCreatePersistent>
     <CEffectEnumArea id="CominginHotSearchLevel1">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
@@ -1315,13 +1504,13 @@
     <CEffectSet id="CominginHotSet">
         <ValidatorArray value="CominginHot"/>
         <EditorCategories value=""/>
-        <EffectArray value="CominginHotPersistent"/>
-        <EffectArray value="CominginHotSwitch"/>
+        <EffectArray value="CominginHotDOTSwitch"/>
+        <EffectArray value="CominginHotSlowSwitch"/>
     </CEffectSet>
-    <CEffectSwitch id="CominginHotSwitch">
+    <CEffectSwitch id="CominginHotSlowSwitch">
         <EditorCategories value=""/>
         <CaseArray Validator="CominginHotLevel1" Effect="CominginHotBehaviorLevel1"/>
-        <CaseArray Validator="CominginHotLevel12" Effect="CominginHotBehaviorLevel12"/>
+        <CaseArray Validator="CominginHotLevel2" Effect="CominginHotBehaviorLevel12"/>
     </CEffectSwitch>
     <CEffectCreatePersistent id="CronusNightmareBeamPersistent">
         <EditorCategories value=""/>
@@ -2076,7 +2265,7 @@
     </CEffectSet>
     <CEffectEnumArea id="ShieldEnergyDamageSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Invulnerable"/>
         <AreaArray Radius="4" Effect="ShieldEnergyDamage"/>
     </CEffectEnumArea>
     <CEffectCreateUnit id="LifeSatchel">
@@ -2954,11 +3143,11 @@
         <PeriodicPeriodArray value="10"/>
         <ValidatorArray value="Targetisalive"/>
     </CEffectCreatePersistent>
-    <CEffectSet id="SalineIVLevel1Set">
+    <CEffectSet id="SalineIVLevel1EffectSet">
         <EditorCategories value=""/>
         <EffectArray value="SalineIV"/>
     </CEffectSet>
-    <CEffectSet id="SalineIVLevel3Set">
+    <CEffectSet id="SalineIVLevel3EffectSet">
         <EditorCategories value=""/>
         <Marker Link="Effect/SalineIVLevel1Set"/>
         <EffectArray value="SalineIVLevel3"/>
@@ -2970,7 +3159,7 @@
         <EditorCategories value=""/>
         <Behavior value="SatchelShieldEnergyDamage"/>
     </CEffectApplyBehavior>
-    <CEffectSet id="SalineIVLevel2Set">
+    <CEffectSet id="SalineIVLevel2EffectSet">
         <EditorCategories value=""/>
         <Marker Link="Effect/SalineIVLevel1Set"/>
         <EffectArray value="SalineIVLevel2"/>
@@ -3311,7 +3500,7 @@
         <Amount value="40"/>
         <SearchFilters value="Ground;Self,Enemy,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
-    <CEffectDamage id="ArmageddonAfterShockDamageFriendly">
+    <CEffectDamage id="ArmageddonRadiationDamageFriendly">
         <ValidatorArray value="TargetIsNotEnemy"/>
         <EditorCategories value=""/>
         <ArmorReduction value="1"/>
@@ -3319,15 +3508,15 @@
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="ArmageddonApplyAfterShock">
+    <CEffectApplyBehavior id="ArmageddonApplyRadiation">
         <EditorCategories value=""/>
-        <Behavior value="ArmageddonAfterShock"/>
+        <Behavior value="ArmageddonRadiation"/>
     </CEffectApplyBehavior>
-    <CEffectSet id="ArmageddonAfterShockSet">
+    <CEffectSet id="ArmageddonRadiationSet">
         <EditorCategories value=""/>
-        <EffectArray value="ArmageddonAfterShockDamage"/>
-        <EffectArray value="ArmageddonAfterShockDamageFriendly"/>
-        <EffectArray value="ArmageddonApplyAfterShock"/>
+        <EffectArray value="ArmageddonRadiationDamage"/>
+        <EffectArray value="ArmageddonRadiationDamageFriendly"/>
+        <EffectArray value="ArmageddonApplyRadiation"/>
     </CEffectSet>
     <CEffectApplyBehavior id="BoomHeadshotLevel1HeroicApply">
         <ValidatorArray index="0" value="UnitisHeroic"/>
@@ -3838,9 +4027,9 @@
     <CEffectLaunchMissile id="AcidSalivaLM">
         <DeathType value="Disintegrate"/>
     </CEffectLaunchMissile>
-    <CEffectApplyBehavior id="ArmageddonApplySlow">
+    <CEffectApplyBehavior id="ArmageddonApplyStun">
         <EditorCategories value=""/>
-        <Behavior value="ArmageddonSlow"/>
+        <Behavior value="ArmageddonStun"/>
     </CEffectApplyBehavior>
     <CEffectCreateUnit id="ArmageddonCreateUnit">
         <EditorCategories value=""/>
@@ -3853,36 +4042,34 @@
         <EditorCategories value=""/>
         <AttributeBonus index="Massive" value="550"/>
         <Amount value="550"/>
-        <ArmorReduction value="1"/>
         <Death value="Fire"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="ArmageddonDamageFriendly">
         <EditorCategories value=""/>
         <Amount value="85"/>
-        <ArmorReduction value="1"/>
+        <ArmorReduction value="2"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
-    <CEffectCreatePersistent id="ArmageddonAfterShockPersistent">
+    <CEffectCreatePersistent id="ArmageddonRadiationPersistent">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
         <PeriodCount value="20"/>
-        <PeriodicEffectArray value="ArmageddonAfterShockSearch"/>
+        <PeriodicEffectArray value="ArmageddonRadiationSearch"/>
         <PeriodicPeriodArray value="1"/>
     </CEffectCreatePersistent>
-    <CEffectDamage id="ArmageddonAfterShockDamage">
-        <EditorCategories value=""/>
-        <Amount value="45"/>
+    <CEffectDamage id="ArmageddonRadiationDamage">
         <ValidatorArray value="EnemyTarget"/>
+        <EditorCategories value=""/>
         <ArmorReduction value="1"/>
+        <Amount value="45"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
-    <CEffectEnumArea id="ArmageddonAfterShockSearch">
+    <CEffectEnumArea id="ArmageddonRadiationSearch">
         <EditorCategories value=""/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Destructible,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="5" Effect="ArmageddonAfterShockSet"/>
+        <AreaArray Radius="5" Effect="ArmageddonRadiationSet"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ArmageddonSearchDamageEnemy">
         <EditorCategories value=""/>
@@ -3900,20 +4087,20 @@
         <TargetSorts RequestCount="1">
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
-        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <AreaArray Radius="500" Effect="Suicide"/>
         <MinCount value="3"/>
     </CEffectEnumArea>
     <CEffectSet id="ArmageddonSet">
         <EditorCategories value=""/>
+        <EffectArray value="Suicide"/>
         <EffectArray value="ArmageddonSearchDamageEnemy"/>
         <EffectArray value="ArmageddonSearchDamageFriendly"/>
-        <EffectArray value="ArmageddonAfterShockPersistent"/>
-        <EffectArray value="Suicide"/>
+        <EffectArray value="ArmageddonRadiationPersistent"/>
     </CEffectSet>
-    <CEffectEnumArea id="ArmageddonSlowSearch">
+    <CEffectEnumArea id="ArmageddonStunSearch">
         <EditorCategories value=""/>
         <SearchFilters value="Ground;Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="5" Effect="ArmageddonApplySlow"/>
+        <AreaArray Radius="5" Effect="ArmageddonApplyStun"/>
     </CEffectEnumArea>
     <CEffectSet id="AMRoundsSet">
         <EditorCategories value=""/>
@@ -4799,7 +4986,7 @@
     <CEffectEnumArea id="NoQuarterSearch4">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="2" Effect="NoQuarterApplyInvulnerable"/>
+        <AreaArray Radius="2" Effect="NoQuarterInvulnerableSet"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="PlasmaDischargeSearchDummy">
         <EditorCategories value=""/>
@@ -4880,12 +5067,10 @@
     <CEffectSet id="ShoottoMaimSetLevel1">
         <EditorCategories value=""/>
         <EffectArray value="ShoottoMaimApplyLevel1"/>
-        <EffectArray value="ShoottoMaimDrainMana"/>
     </CEffectSet>
     <CEffectSet id="ShoottoMaimSetLevel2">
         <EditorCategories value=""/>
         <EffectArray value="ShoottoMaimApplyLevel2"/>
-        <EffectArray value="ShoottoMaimDrainMana"/>
     </CEffectSet>
     <CEffectLaunchMissile id="LaunchGrenadeBounce4">
         <ValidatorArray index="0" value="OriginUnitisnotDead"/>
@@ -4900,7 +5085,6 @@
     <CEffectSet id="ShoottoMaimSetLevel3">
         <EditorCategories value=""/>
         <EffectArray value="ShoottoMaimApplyLevel3"/>
-        <EffectArray value="ShoottoMaimDrainMana"/>
     </CEffectSet>
     <CEffectApplyBehavior id="ShrinkerApplyLevel1">
         <ValidatorArray index="0" value="TargetisNotEnemyBoss"/>
@@ -7937,7 +8121,7 @@
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
         <Amount value="25"/>
-        <AreaArray Radius="0.75" Fraction="1"/>
+        <AreaArray Radius="1.25" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -10216,6 +10400,7 @@
         <Amount value="50"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <AttributeBonus index="Massive" value="25"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar2">
         <EditorCategories value=""/>
@@ -10223,6 +10408,7 @@
         <Amount value="50"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <AttributeBonus index="Massive" value="25"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel1DamageVar3">
         <EditorCategories value=""/>
@@ -10230,6 +10416,7 @@
         <Amount value="50"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <AttributeBonus index="Massive" value="25"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel2CreatePersistent">
         <EditorCategories value=""/>
@@ -10248,8 +10435,7 @@
         <Amount value="75"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Armored" value="25"/>
-        <AttributeBonus index="Massive" value="25"/>
+        <AttributeBonus index="Massive" value="37.5"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel2DamageVar2">
         <EditorCategories value=""/>
@@ -10257,8 +10443,7 @@
         <Amount value="75"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Armored" value="25"/>
-        <AttributeBonus index="Massive" value="25"/>
+        <AttributeBonus index="Massive" value="37.5"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel2DamageVar3">
         <EditorCategories value=""/>
@@ -10266,8 +10451,7 @@
         <Amount value="75"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Armored" value="25"/>
-        <AttributeBonus index="Massive" value="25"/>
+        <AttributeBonus index="Massive" value="37.5"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FireMissionLevel3CreatePersistent">
         <EditorCategories value=""/>
@@ -10283,29 +10467,26 @@
     <CEffectDamage id="FireMissionLevel3DamageVar1">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="75"/>
+        <Amount value="100"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Armored" value="25"/>
-        <AttributeBonus index="Massive" value="75"/>
+        <AttributeBonus index="Massive" value="50"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel3DamageVar2">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="75"/>
+        <Amount value="100"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Armored" value="25"/>
-        <AttributeBonus index="Massive" value="75"/>
+        <AttributeBonus index="Massive" value="50"/>
     </CEffectDamage>
     <CEffectDamage id="FireMissionLevel3DamageVar3">
         <EditorCategories value=""/>
         <Marker Link="Effect/FireMissionLevel1DamageVar1"/>
-        <Amount value="75"/>
+        <Amount value="100"/>
         <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AttributeBonus index="Armored" value="25"/>
-        <AttributeBonus index="Massive" value="75"/>
+        <AttributeBonus index="Massive" value="50"/>
     </CEffectDamage>
     <CEffectEnumArea id="ForwardObserverLaunch">
         <EditorCategories value=""/>
@@ -10330,7 +10511,6 @@
         <AreaArray Radius="1.5" Fraction="0.6"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
-        <ArmorReduction value="1.3"/>
     </CEffectDamage>
     <CEffectDamage id="HydraliskMelee">
         <Amount value="15"/>
@@ -10364,10 +10544,9 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="NapalmBarrageDamage">
         <EditorCategories value=""/>
-        <Amount value="30"/>
+        <Amount value="40"/>
         <Death value="Fire"/>
-        <AttributeBonus index="Armored" value="10"/>
-        <AttributeBonus index="Massive" value="30"/>
+        <AttributeBonus index="Massive" value="20"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="NapalmBarrageSearch">
@@ -11807,55 +11986,41 @@
         <ValidatorArray value="BuildPathing"/>
     </CEffectCreateUnit>
     <CEffectDamage id="SatchelLevel1Damage">
-        <EditorCategories value="Race:Terran"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ResponseFlags index="Flee" value="1"/>
-        <ArmorReduction value="1"/>
         <Visibility value="Visible"/>
         <Flags index="Notification" value="1"/>
         <Kind value="Splash"/>
         <Amount value="140"/>
         <Death value="Blast"/>
-        <AreaArray Radius="4" Fraction="1"/>
-        <ExcludeArray Value="Outer"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground;Air,Missile,Item,Dead,Invulnerable"/>
-        <SearchFlags index="CallForHelp" value="1"/>
-        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
         <AttributeBonus index="Massive" value="140"/>
         <AttributeBonus index="Structure" value="140"/>
-        <AttributeBonus index="Heroic" value="-50"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel2Set">
         <EditorCategories value=""/>
         <Marker Link="Effect/SatchelLevel1Set"/>
         <EffectArray value="Suicide"/>
-        <EffectArray value="SatchelLevel2Damage"/>
+        <EffectArray value="SatchelSearchDamageEnemyLevel2"/>
+        <EffectArray value="SatchelSearchDamageFriendlyLevel2"/>
     </CEffectSet>
     <CEffectDamage id="SatchelLevel2Damage">
         <EditorCategories value="Race:Terran"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ResponseFlags index="Flee" value="1"/>
-        <ArmorReduction value="1"/>
         <Visibility value="Visible"/>
         <Flags index="Notification" value="1"/>
         <Kind value="Splash"/>
         <Amount value="280"/>
         <Death value="Blast"/>
-        <AreaArray Radius="4" Fraction="1"/>
-        <ExcludeArray Value="Outer"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground;Air,Missile,Item,Dead,Invulnerable"/>
-        <SearchFlags index="CallForHelp" value="1"/>
-        <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <AttributeBonus index="Massive" value="280"/>
         <AttributeBonus index="Structure" value="280"/>
-        <AttributeBonus index="Heroic" value="-125"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1Set">
         <EditorCategories value=""/>
         <EffectArray value="Suicide"/>
-        <EffectArray value="SatchelLevel1Damage"/>
+        <EffectArray value="SatchelSearchDamageEnemyLevel1"/>
+        <EffectArray value="SatchelSearchDamageFriendlyLevel1"/>
     </CEffectSet>
     <CEffectCreatePersistent id="ScopeRadius1">
         <EditorCategories value=""/>

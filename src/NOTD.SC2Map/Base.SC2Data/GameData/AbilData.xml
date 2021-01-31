@@ -83,6 +83,24 @@
         <MoveFilters value="-;Player,Ally,Neutral,Enemy"/>
         <MoveSmartPriority value="0"/>
     </CAbilMove>
+    <CAbilEffectInstant id="MakeExplosives">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Effect index="0" removed="1"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Charge>
+                <CountMax value="30"/>
+                <CountUse value="-2"/>
+                <Link value="Abil/BuildMines"/>
+                <Location value="Unit"/>
+            </Charge>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="MakeExplosives"/>
+    </CAbilEffectInstant>
     <CAbilEffectInstant id="LightningField2">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="RetributionFieldSearch2"/>
@@ -242,8 +260,14 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="ArmageddonCreateUnit"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
-            <Cooldown TimeUse="25"/>
+            <Charge>
+                <CountMax value="30"/>
+                <CountUse value="2"/>
+                <HideCount value="1"/>
+                <Link value="Abil/BuildMines"/>
+                <Location value="Unit"/>
+            </Charge>
+            <Cooldown TimeUse="3"/>
         </Cost>
         <Range value="13"/>
         <CursorEffect value="ArmageddonSearchDamageEnemy"/>
@@ -793,6 +817,19 @@
         </InfoArray>
         <Activity value="UI/Rifleman Gear"/>
     </CAbilMorph>
+    <CAbilEffectInstant id="SalineIVMini">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Effect index="0" value="SalineIVLevel2Set"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="35"/>
+            <Cooldown TimeUse="25"/>
+        </Cost>
+        <AINotifyEffect value="SalineIV"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SalineIVMini"/>
+    </CAbilEffectInstant>
     <CAbilEffectInstant id="SatchelDeployment">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="SatchelDeploymentChoice"/>
@@ -807,6 +844,12 @@
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Channel" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="SentinelMineSelfDestruct">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Effect index="0" value="Suicide"/>
+        <Cost/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SentinelMineSelfDestruct"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Shatter2">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -851,7 +894,7 @@
         <Cost>
             <Vital index="Energy" value="12"/>
             <Charge Link="Abil/Medpack"/>
-            <Cooldown Link="Abil/SuppressiveFire" TimeUse="8"/>
+            <Cooldown Link="Abil/SuppressiveFire" TimeUse="10"/>
         </Cost>
         <RefundFraction Charge="0" Cooldown="0"/>
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
@@ -1065,8 +1108,8 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="NoQuarterLaunch"/>
         <Cost>
-            <Vital index="Energy" value="35"/>
-            <Cooldown Link="Abil/Charge2" TimeUse="45"/>
+            <Vital index="Energy" value="25"/>
+            <Cooldown Link="Abil/Charge2" TimeUse="20"/>
         </Cost>
         <Range value="12"/>
         <EffectRange index="0" value="3,15"/>
@@ -1205,7 +1248,7 @@
                 <CountStart value="3"/>
                 <CountUse value="1"/>
                 <Location value="Unit"/>
-                <TimeUse value="30"/>
+                <TimeUse value="25"/>
             </Charge>
             <Cooldown TimeUse="1"/>
         </Cost>
@@ -1289,6 +1332,24 @@
         <Effect value="RemoveStealthMatrixCloak"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="StealthMatrixDeactivate"/>
         <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="Stimpack">
+        <InfoTooltipPriority value="0"/>
+        <Flags index="AutoCast" value="1"/>
+        <Cost index="0">
+            <Vital index="Life" value="0"/>
+            <Vital index="Energy" value="10"/>
+            <Charge HideCount="1"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <CastIntroTime value="0.05"/>
+        <AcquirePriority value="0"/>
+        <CmdButtonArray index="Execute" Requirements="">
+            <Flags index="ToSelection" value="0"/>
+        </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="SurgicalLaser">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -1429,25 +1490,24 @@
         <CursorEffect value="VRL772Search"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="VRL772"/>
     </CAbilEffectTarget>
-    <CAbilEffectInstant id="VeteransFocus">
+    <CAbilEffectTarget id="VeteransFocus">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Flags index="AllowMovement" value="1"/>
         <Flags index="AutoCast" value="1"/>
+        <Flags index="BestUnit" value="0"/>
         <Flags index="NoDeceleration" value="1"/>
-        <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="12"/>
+            <Vital index="Energy" value="24"/>
             <Charge Link="Abil/Medpack"/>
-            <Cooldown Link="Abil/SuppressiveFire" TimeUse="8"/>
+            <Cooldown Link="Abil/SuppressiveFire" TimeUse="30"/>
         </Cost>
-        <RefundFraction Charge="0" Cooldown="0"/>
-        <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
-        <Range value="1"/>
-        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
+        <TargetFilters value="Biological;Neutral,Enemy,Air,Missile,Destructible,Dead"/>
+        <Range value="5"/>
+        <AutoCastFilters value="Visible;Neutral,Enemy"/>
+        <AutoCastValidatorArray value="CasterNotVeteransFocus"/>
         <CastIntroTime value="0"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="VeteransFocus"/>
-        <AutoCastValidatorArray value="CasterNotVeteransFocus"/>
-    </CAbilEffectInstant>
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="Sprint2">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="SprintLevel1"/>
@@ -1571,7 +1631,6 @@
         <BehaviorArray value="ShootToMaimLevel1"/>
         <BehaviorArray value="ShootToMaimLevel2"/>
         <BehaviorArray value="ShootToMaimLevel3"/>
-        <ValidatorArray value="UnithasMorethan2Energy2"/>
         <LevelButtonOnTooltip value="Shoot To Maim Level 2"/>
         <LevelButtonOnTooltip value="Shoot To Maim Level 3"/>
     </CAbilBehavior>
@@ -3047,8 +3106,8 @@
         <Cost>
             <Vital index="Energy" value="8"/>
             <Charge>
-                <CountMax value="1600"/>
-                <CountStart value="1600"/>
+                <CountMax value="1500"/>
+                <CountStart value="1500"/>
                 <CountUse value="10"/>
                 <HideCount value="1"/>
                 <Location value="Unit"/>
@@ -3059,7 +3118,6 @@
         <CursorEffect value="ArtillerySearchAreaDummy"/>
         <LevelButtonTooltip value="Fire Mission Level 2"/>
         <LevelButtonTooltip value="Fire Mission Level 3"/>
-        <LevelButtonTooltip value="Level 3 Fire Mission"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="FireMission"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="InfantrySpecialization">
@@ -3094,10 +3152,12 @@
         <Flags index="Transient" value="1"/>
         <Cost>
             <Vital index="Energy" value="30"/>
+            <Charge CountMax="30" CountStart="8" Location="Unit"/>
+            <Cooldown TimeUse="1"/>
         </Cost>
         <LevelButtonTooltip value="Level 2 Build Mines"/>
         <LevelButtonTooltip value="Level 3 Build Mines"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="BuildMines"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="MakeExplosives"/>
     </CAbilEffectInstant>
     <CAbilMorph id="BurrowInfestor">
         <AbilSetId value="BrwD"/>
@@ -3169,8 +3229,8 @@
         <Cost>
             <Vital index="Energy" value="15"/>
             <Charge>
-                <CountMax value="1600"/>
-                <CountStart value="1600"/>
+                <CountMax value="1500"/>
+                <CountStart value="1500"/>
                 <CountUse value="10"/>
                 <HideCount value="1"/>
                 <Link value="Abil/FireMission"/>
@@ -3206,8 +3266,8 @@
         <Cost>
             <Vital index="Energy" value="5"/>
             <Charge>
-                <CountMax value="1600"/>
-                <CountStart value="1600"/>
+                <CountMax value="1500"/>
+                <CountStart value="1500"/>
                 <CountUse value="10"/>
                 <HideCount value="1"/>
                 <Link value="Abil/FireMission"/>
@@ -3456,7 +3516,7 @@
             <Button DefaultButtonFace="SpiderMine"/>
         </InfoArray>
         <InfoArray index="Learn2" Abil="BuildMines">
-            <Button DefaultButtonFace="BuildMines"/>
+            <Button DefaultButtonFace="MakeExplosives"/>
         </InfoArray>
         <InfoArray index="Learn3" Abil="Satchel">
             <Button DefaultButtonFace="Satchel"/>
@@ -4231,6 +4291,18 @@
         <LevelButtonTooltip value="Level 2 Gravity Grenade"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="GravityGrenade"/>
     </CAbilEffectTarget>
+    <CAbilEffectTarget id="VultureSpiderMines">
+        <Cost index="0">
+            <Charge>
+                <CountMax value="30"/>
+                <CountStart value="0"/>
+                <HideCount value="1"/>
+                <Link value="Abil/BuildMines"/>
+            </Charge>
+        </Cost>
+        <LevelButtonTooltip value="Mines Level 2"/>
+        <LevelButtonTooltip value="Mines Level 3"/>
+    </CAbilEffectTarget>
     <CAbilBehavior id="WeaponExpertise">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="14SlotBag">
@@ -4239,6 +4311,21 @@
         <BehaviorArray value="WeaponExpertiseLevel1"/>
         <BehaviorArray value="WeaponExpertiseLevel2"/>
     </CAbilBehavior>
+    <CAbilEffectTarget id="WidowMineAttack">
+        <Cost index="0">
+            <Charge>
+                <CountMax value="5"/>
+                <CountStart value="5"/>
+                <CountUse value="1"/>
+                <Link value="Abil/WidowMineAttackCharge"/>
+            </Charge>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range index="0" value="4"/>
+        <AutoCastRange value="4"/>
+        <AutoCastValidatorArray index="0" value="NotHallucinationOrNotDetected"/>
+        <AutoCastValidatorArray index="1" removed="1"/>
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="X1Guardian">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="X1GuardianLevel1CreateUnit"/>
@@ -4610,7 +4697,13 @@
         <Effect value="SatchelLevel2Build"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="15"/>
+            <Charge>
+                <CountMax value="30"/>
+                <CountUse value="1"/>
+                <HideCount value="1"/>
+                <Link value="Abil/BuildMines"/>
+                <Location value="Unit"/>
+            </Charge>
         </Cost>
         <Range value="9"/>
         <AutoCastFilters value="-;-"/>
@@ -4857,23 +4950,6 @@
         <AutoCastRange value="1"/>
         <AcquirePriority value="0"/>
     </CAbilEffectInstant>
-    <CAbilEffectInstant id="Stimpack">
-        <CastIntroTime value="0.05"/>
-        <Cost index="0">
-            <Vital index="Life" value="0"/>
-            <Charge HideCount="1"/>
-            <Cooldown TimeUse="15"/>
-        </Cost>
-        <InfoTooltipPriority value="0"/>
-        <CmdButtonArray index="Execute" Requirements="">
-            <Flags index="ToSelection" value="0"/>
-        </CmdButtonArray>
-        <Flags index="AutoCast" value="1"/>
-        <AutoCastAcquireLevel value="Defensive"/>
-        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
-        <AutoCastRange value="1"/>
-        <AcquirePriority value="0"/>
-    </CAbilEffectInstant>
     <CAbilEffectInstant id="Talents">
         <AbilSetId value="Talents"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4960,31 +5036,6 @@
         <Range value="12"/>
         <LevelButtonTooltip value="Level 2"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="VolatileInjection"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="VultureSpiderMines">
-        <Cost index="0">
-            <Charge CountMax="15" CountStart="8"/>
-        </Cost>
-        <Cost>
-            <Charge>
-                <CountMax value="30"/>
-                <CountUse value="1"/>
-                <Link value="Abil/VultureSpiderMines"/>
-                <Location value="Unit"/>
-            </Charge>
-            <Cooldown Link="Abil/VultureSpiderMines"/>
-        </Cost>
-        <Cost>
-            <Charge>
-                <CountMax value="45"/>
-                <CountUse value="1"/>
-                <Link value="Abil/VultureSpiderMines"/>
-                <Location value="Unit"/>
-            </Charge>
-            <Cooldown Link="Abil/VultureSpiderMines"/>
-        </Cost>
-        <LevelButtonTooltip value="Mines Level 2"/>
-        <LevelButtonTooltip value="Mines Level 3"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="WallofFire">
         <EditorCategories value="AbilityorEffectType:Units"/>

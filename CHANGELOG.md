@@ -2,8 +2,29 @@
 
 2021-1-28
 [ReduxGelum]
-- Changed faith effect model to differentiate from smite
-- Enabled transient for faith ability
+- Changed faith effect model to differentiate from smite.
+- Enabled transient for faith ability.
+
+[LeoTheCat]
+- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 5 times when deployed, max 15 on the battelfield.
+- Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
+- Other abilities on Demo's Explosive tree also rely on the charges available on Make Explosives.
+- Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
+- When exceeding the # limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the newly created one will be destroyed.
+- Demo's Armageddon tremors will now mini stuns instead of slows.
+- Rifleman - Saline IV now also affects 1 other most wounded ally marine in 3 radius.
+- Simplified Forward Observer's Fire Mission damage to 50/75/100 + 50% vs Massive.
+- Simplified Forward Observer's Napalm Barrage damage to 40 + 50% Massive.
+- Units stunned by Forward Observer's Shockwave Barrage will have the stun visual effect properly displayed.
+- Forward Observer's Artillery tree now starts with 1700 shells in Nightmare mode but 1500 in easier modes.
+- Forward Observer's rifleman minis have their stimpack replaced by Level 2 Saline IV, with a much longer cooldown and higher energy cost.
+- Forward Observer's marksman minis can now cast Veteran's Focus on other bio units. Duration and energy cost increased.
+- Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
+- Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
+- Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
+- Pathfinder - Coming in Hot's DOT improved to 18/36 DPS for 15 seconds, doubled against Heroic, all stacks refresh when re-applied.
+- Pathfinder - No Quarter cooldown reduced from 45 to 20, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
+- Pathfinder - Shoot To Maim energy cost per shot removed.
 
 2021-1-23
 [ReduxGelum]
@@ -19,7 +40,7 @@
 - Engineer - Plasma Discharge damage increased from 20/40/80 to 30/60/90 (level1 zombie has 87.5hp at 250% scaling).
 - Fixed some Engineer tooltip errors in the behavior bar.
 - Tried to improve behavior bar's performance.
-- Chem Expert - VRL-772 now properly removes all ailments instead of just some.
+- Chem Expert - VRL-772 now cures all ailments instead of just some.
 - Marksman - Monofilament Cartridge damage increased from 40/80/160 to 45/90/180. (level2 zombie has 175hp at 250% scaling).
 - Marksman - One Shot, One Kill lv1/lv2 damage increased from 200/400 to 400/600.
 - Marksman - Master Marksman passive reworked, still upgrades One Shot, One Kill but no longer stuns. Has a more unique effect instead. 

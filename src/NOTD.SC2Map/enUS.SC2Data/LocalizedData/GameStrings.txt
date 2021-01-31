@@ -162,6 +162,7 @@ Abil/Name/LunarBoosters=Tech Upgrades
 Abil/Name/MadSpark=Mad Spark
 Abil/Name/Magazine=Magazine
 Abil/Name/MaintenanceDrone=Maintenance Drone
+Abil/Name/MakeExplosives=Make Explosives
 Abil/Name/MarchoftheMachine=March of the Machines
 Abil/Name/MarksmanGear=Marksman Gear
 Abil/Name/MassDesignate=Mass Designate
@@ -224,6 +225,7 @@ Abil/Name/RogueGhostCloak2=Cloak
 Abil/Name/Sadist=Sadist
 Abil/Name/Safeguard=Safeguard
 Abil/Name/SalineIV=Saline IV
+Abil/Name/SalineIVMini=Saline IV Mini
 Abil/Name/Sap=Sap
 Abil/Name/Satchel=Satchel
 Abil/Name/SatchelDeployment=Satchel Deployment
@@ -231,6 +233,7 @@ Abil/Name/SatelliteLink=Satellite Link
 Abil/Name/Scope=Scope
 Abil/Name/ScorchedEarth=Scorched Earth
 Abil/Name/SelfDestruct=Self-Destruct
+Abil/Name/SentinelMineSelfDestruct=Sentinel Mine Self-Destruct
 Abil/Name/Shadowstep=Shadowstep
 Abil/Name/Shatter2=Shatter
 Abil/Name/ShellMode=Shell Mode
@@ -305,7 +308,7 @@ Abil/Name/VRL772=VRL-772
 Abil/Name/Vengeance=Vengeance
 Abil/Name/VeteransFocus=Veteran's Focus
 Abil/Name/VolatileInjection=Volatile Injection
-Abil/Name/VultureSpiderMines=Mines
+Abil/Name/VultureSpiderMines=Sentinel Mine
 Abil/Name/WallofFire=Wall of Fire
 Abil/Name/WeaponExpertise=Weapon Expertise
 Abil/Name/WeaponsProficiency=Weapons Proficiency
@@ -434,8 +437,8 @@ Behavior/Name/AnticipationLevel1=Anticipation (Level 1)
 Behavior/Name/AnticipationLevel2=Anticipation (Level 2)
 Behavior/Name/ApoptosisBloodArmorVet=Apoptosis Blood Armor Vet
 Behavior/Name/Armageddon=Armageddon
-Behavior/Name/ArmageddonAfterShock=Armageddon (After Shock)
-Behavior/Name/ArmageddonSlow=Armageddon (Slow)
+Behavior/Name/ArmageddonRadiation=Armageddon (Radiation)
+Behavior/Name/ArmageddonStun=Armageddon (Stun)
 Behavior/Name/ArmorDebuffAPAmmo=Armor Debuff (AP Ammo)
 Behavior/Name/AssaultJumpEvasionLevel1=Assault Jump Evasion Level 1
 Behavior/Name/AssaultJumpEvasionLevel2=Assault Jump Evasion Level 2
@@ -491,6 +494,8 @@ Behavior/Name/CohesionLevel2=Cohesion (Level 2)
 Behavior/Name/CombatHardenedLevel2=Combat Hardened (Level 2)
 Behavior/Name/CombatKnife=Combat Knife
 Behavior/Name/CombatMobilityAugment=<c val="80FF80">Combat Mobility Augment</c>
+Behavior/Name/CominginHotDOTLevel1=Coming in Hot DOT (Level 1)
+Behavior/Name/CominginHotDOTLevel2=Coming in Hot DOT (Level 2)
 Behavior/Name/CommandAuraBuff=Command Aura Buff
 Behavior/Name/ComplianceMatrix=Compliance Matrix
 Behavior/Name/ConcentratedFireLevel1=Concentrated Fire (Level 1)
@@ -832,8 +837,8 @@ Behavior/Tooltip/AdvancedMutation=+100% HP
 Behavior/Tooltip/AllSeeingEyes=Demeter cannot be blinded.
 Behavior/Tooltip/AnticipationLevel1=Unit deals +15% extra damage when target is more than 9 distance away.
 Behavior/Tooltip/AnticipationLevel2=Unit deals +30% extra damage when target is more than 9 distance away.
-Behavior/Tooltip/ArmageddonAfterShock=Unit is being damaged by the after shock of the Armageddon Charge.
-Behavior/Tooltip/ArmageddonSlow=Unit is slowed by 15% for 5 seconds. Stacks up to 3 times.
+Behavior/Tooltip/ArmageddonRadiation=Unit is being damaged by the after shock of the Armageddon Charge.
+Behavior/Tooltip/ArmageddonStun=Unit is briefly stunned.
 Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
 Behavior/Tooltip/AssaultJumpEvasionLevel1=Unit gains 80% evasion for 1 second.
 Behavior/Tooltip/AssaultJumpEvasionLevel2=Unit gains 85% evasion for 2 seconds.
@@ -885,6 +890,8 @@ Behavior/Tooltip/CohesionLevel2=Unit gains +2 armor and +0.4 health regeneration
 Behavior/Tooltip/CombatHardenedLevel2=Passive: +40% HP & energy regen rate. 
 Behavior/Tooltip/CombatKnife=Unit slowed by 70% for 2 secs
 Behavior/Tooltip/CombatMobilityAugment=Increases movespeed by 10%
+Behavior/Tooltip/CominginHotDOTLevel1=Unit is burning for 24 HP/s.
+Behavior/Tooltip/CominginHotDOTLevel2=Unit is burning for 48 HP/s.
 Behavior/Tooltip/ComplianceMatrix=Unit is under permanent control of Compliance Matrix. +2 armor and has reduced attack speed.
 Behavior/Tooltip/ConcentratedFireLevel1=+50% attack speed and +1 sight range. -5% movespeed. +5% Critical Strike chance if talent is learnt. Lasts for 7 seconds
 Behavior/Tooltip/ConcentratedFireLevel2=+100% attack speed and +2 sight range. -5% movespeed. +10% Critical Strike chance if talent is learnt. Lasts for 7 seconds
@@ -897,8 +904,8 @@ Behavior/Tooltip/CorrosiveAcid=-1 armor for 30 seconds. Stacks up to 5 times.
 Behavior/Tooltip/Cripple=Unit has fractured bones and suffers from -30% movespeed. Can be cured via Medic's Surgical Laser.
 Behavior/Tooltip/CronusDebuff=Unit takes 50% reduced damage from Cronus' beams for 2 minutes.
 Behavior/Tooltip/DamagedIVAX=-50% attack speed
-Behavior/Tooltip/DisorientAssaultJumpLevel1=Unit is stunned.
-Behavior/Tooltip/DisorientAssaultJumpLevel2=Unit is stunned.
+Behavior/Tooltip/DisorientAssaultJumpLevel1=Unit is disoriented, losing vision, detection, and has 30% reduced attack and move speed.
+Behavior/Tooltip/DisorientAssaultJumpLevel2=Unit is disoriented, losing vision, detection, and has 60% reduced attack and move speed.
 Behavior/Tooltip/DisorientedBoomHeadshotLevel1=Unit is disoriented.
 Behavior/Tooltip/DisorientedBoomHeadshotLevel2=Unit is disoriented.
 Behavior/Tooltip/Disruption=Unit takes 5 less ranged damage.
@@ -1032,7 +1039,7 @@ Behavior/Tooltip/NanosteelNetSlowTemplate=Unit is slowed by 20%.
 Behavior/Tooltip/Napalm2=Burning in Napalm. Unit takes damage over time and moves 30% slower.
 Behavior/Tooltip/NegativePolarity=Deals 35 per sec to anyone with Positive Polarity. Damage amplification to 200% to allies with Negative Polarity in 3 radius. 
 Behavior/Tooltip/NeuralParasite=This unit is being immobilized by a Hugger.
-Behavior/Tooltip/NoQuarterInvulnerable=Pathfinder is invulnerable for 4 seconds. 
+Behavior/Tooltip/NoQuarterInvulnerable=Pathfinder is invulnerable for 5 seconds. 
 Behavior/Tooltip/OpenWound=Unit is bleeding and losing 1 hp per second. Can be cured with Bandage or Medic's Surgical Laser
 Behavior/Tooltip/Overheating=The turret's cannons are overheated. -80% attack speed for 5 seconds.
 Behavior/Tooltip/PenalLegion=You have been identified as a hacker by the Wardens. Delete your bank file and visit www.notdstarcraft.com with a screenshot to clear yourself.
@@ -1160,7 +1167,7 @@ Behavior/Tooltip/Venom=Unit is feeling feeling weak, losing 0.4 hp per second an
 Behavior/Tooltip/VenomEnergyTransferLevel1=Unit is losing 0.5 health per second but gains 0.1 energy regeneration. Can stack up to 4 times. Can be cured by Anti-Venom.
 Behavior/Tooltip/VenomEnergyTransferLevel2=Unit is losing 0.5 health per second but gains 0.2 energy regeneration. Can stack up to 4 times. Can be cured by Anti-Venom.
 Behavior/Tooltip/VenomousExplosion=Unit will explode in 5 secs, dealing 200 dmg to all units around 4 radius except self. 
-Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
+Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 30 seconds.
 Behavior/Tooltip/ViscousDischarge2=Banelings cover their targets with a viscous discharge, slowing their movement speed for 1.5 seconds.
 Behavior/Tooltip/VolatileInjectionLevel1=Unit gains 30 HP but takes 10% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 75 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
 Behavior/Tooltip/VolatileInjectionLevel2=Unit gains 60 HP but takes 20% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 150 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
@@ -1206,7 +1213,6 @@ Button/Name/BringThemDown=Bring Them Down
 Button/Name/Brown=Brown
 Button/Name/Brutalisk=Brutalisk
 Button/Name/BuildEngineer=Build - Engineer
-Button/Name/BuildMines=Build Mines
 Button/Name/BurstFire=Burst Fire
 Button/Name/C2Armor=C2 Armor
 Button/Name/C4Armor=C4 Armor
@@ -1361,6 +1367,7 @@ Button/Name/MP9A2SubMachineGun=<c val="F2D737">MP9A2 Sub-Machine Gun</c>
 Button/Name/MadSpark=Mad Spark
 Button/Name/Magazine=Magazine
 Button/Name/MaintenanceDrone=Maintenance Drone
+Button/Name/MakeExplosives=Make Explosives
 Button/Name/MarchoftheMachine=March of the Machines
 Button/Name/MarineActions=Marine Actions
 Button/Name/MarkofPredator=Mark of Predator
@@ -1439,6 +1446,7 @@ Button/Name/SadistLevel1=Sadist (Level 1)
 Button/Name/SadistLevel2=Sadist (Level 2)
 Button/Name/Safeguard=Safeguard
 Button/Name/SalineIV=Saline IV
+Button/Name/SalineIVMini=Saline IV Mini
 Button/Name/Sap=Sap
 Button/Name/Satchel=Satchel
 Button/Name/SatelliteLinkLevel1=Satellite Link Level 1
@@ -1448,6 +1456,7 @@ Button/Name/ScorchedEarth=Scorched Earth
 Button/Name/SelfDestruct=Self-Destruct
 Button/Name/SensoryConfusionLevel1=Sensory Confusion (Level 1)
 Button/Name/SensoryConfusionLevel2=Sensory Confusion (Level 2)
+Button/Name/SentinelMineSelfDestruct=Sentinel Mine Self-Destruct
 Button/Name/Shadowstep=Shadowstep
 Button/Name/Shatter=Shatter
 Button/Name/ShellMode=Shell Mode
@@ -1465,7 +1474,7 @@ Button/Name/Smite=Smite
 Button/Name/SniperRifle=M45 Marksman Rifle
 Button/Name/SonicTrapLevel1=Sonic Trap
 Button/Name/SpeedofThought=Speed of Thought
-Button/Name/SpiderMine=Mines
+Button/Name/SpiderMine=Sentinel Mine
 Button/Name/SpikedArmorLevel1=Spiked Armor (Level 1)
 Button/Name/SpikedArmorLevel2=Spiked Armor (Level 2)
 Button/Name/SpikedArmorLevel3=Spiked Armor (Level 3)
@@ -1545,7 +1554,7 @@ Button/Tooltip/AnticipationLevel1=7 radius aura. Deals +15% extra damage when ta
 Button/Tooltip/AnticipationLevel2=7 radius aura. Deals +30% extra damage when target is more than 9 distance away.
 Button/Tooltip/Apoptosis=A creature capable of producing nightmares.
 Button/Tooltip/ArchonPet=Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/Armageddon=Plants an Armageddon Charge.<n/><n/>When primed via remote detonation, takes 3 seconds to arm. During the 3 seconds to arming, the charge sends tremors through the ground which reduces movement speed of all ground units within 6 radius by 15% per tremor. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 10 seconds in 5 radius and deals 45 damage per second.<n/><c val="FF0000"><n/>Limit of 3 Armageddon Charges at any given time. Can severely damage friendlies.</c><n/><n/>''This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper
+Button/Tooltip/Armageddon=Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <c val="FF0000">Explosion can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper
 Button/Tooltip/ArmageddonBomb=
 Button/Tooltip/Assault=
 Button/Tooltip/AssaultJump=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 1 -- 150 damage, 8 range, AOE 3, grants 80% evasion for 1 second
@@ -1580,7 +1589,6 @@ Button/Tooltip/BringThemDown=Bring Them Down (Passive)<n/>The Commando aims to m
 Button/Tooltip/Brown=Changes Marine color to <c val="804040">Brown</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Brutalisk=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/BuildEngineer=Construct towers.
-Button/Tooltip/BuildMines=Creates 2 Mines.
 Button/Tooltip/BurstFire=Deals 50 damage to units in a forward arc (6 range). Deals 40% extra damage to Light units. Affects air units too.
 Button/Tooltip/C2Armor=<c val="FFFF00">C2 Armor</c><n/>A durable polymer suit that has plate inserts to protect vital areas. While it doesn’t offer the impact dampening that heavier armors do, the durable and flexible material that slides over the Marine’s combat suit is extremely resistant to tearing and puncturing.<n/><n/>Adds 2 armor and 40% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">15</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>"Manufactured in the Democratic Republic of East China" - Manufacturer's Label
 Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking attachable plates that lock on to the combat suit to provide protection from blunt trauma to vital areas, while joints are bolstered by armored pads.<n/><n/>Adds 4 armor and 20% ailment resistance.<n/><n/>Weight: <c val="FFFFFF">20</c><n/>Credits: <c val="FFFFFF">250</c><n/><n/>"What do you mean it doesn't explode?" - NFG
@@ -1689,7 +1697,7 @@ Button/Tooltip/FibrinBandage=Uses Fibrin Bandage in inventory to instantly heal 
 Button/Tooltip/FieldNexus=Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all non-boss air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
 Button/Tooltip/FieldProbe=Creates a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.
 Button/Tooltip/FieldRetrofit=<c val="FFFF00">Field Retrofit</c><n/>Cures Short Circuit. The materials required render the Maintenance Drone inoperative.
-Button/Tooltip/FireMission=Artillery strike that deals 50 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Button/Tooltip/FireMission=Artillery strike that deals 50 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/FireVulnerability=Targets in 5 radius take 50% more damage from explosives. Lasts for 10 seconds.
 Button/Tooltip/Flamethrower2=Specialized anti-infantry attacker.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/Flamethrower3=The Flamethrower excels at close proximity combat.
@@ -1794,6 +1802,7 @@ Button/Tooltip/MaintenanceDrone=Technician releases a retooled aerial repair dro
 Button/Tooltip/MaintenanceDroneMK1=Technician releases a retooled aerial repair drone to scout for him. Lasts 20 seconds.
 Button/Tooltip/MaintenanceDroneMK2=Technician releases a retooled aerial repair drone to scout for him. Lasts 20 seconds.
 Button/Tooltip/MaintenanceDroneMK3=Technician releases a retooled aerial repair drone to scout for him. Lasts 20 seconds.
+Button/Tooltip/MakeExplosives=Create 2 explosive charges that are used by Demolitions' explosive abilities.
 Button/Tooltip/MarchoftheMachine=Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out... Technician gains +300% armor & health and +100% damage. -25% attack speed and movespeed. Will attack allies if not managed. No effect on Shiva damage.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c>
 Button/Tooltip/MarineActions=Displays a list of Marine actions.
 Button/Tooltip/MarkofPredator=You have chosen to rise beyond death. You are a warrior in the truest sense.<n/><n/>Additional upgrades are unlocked as you level up:<n/>Lv2 - Ocular Implant upgrade<n/>Lv3 - Detection upgrade<n/>Lv4 - C2 Armor upgrade<n/>Lv5 - Backstab ability<n/>Lv6 - C4 Armor upgrade<n/>Lv7 - Pirahna Missiles<n/>Lv8 - C6 Armor upgrade<n/>Lv9 - Radar passive<n/>Lv10 - Blink ability<n/>Lv11 - Cloak Field passive<n/>Lv12 - Increased size and increased Lighting Field radius <n/><n/>Life, Shield, Energy, and Damage receive minor improvements with each level.
@@ -1831,9 +1840,9 @@ Button/Tooltip/NanoShield=Regenerates shields temporarily. Increases max shields
 Button/Tooltip/NanoStrength=Increases target unit's attack damage and movespeed by 10% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Button/Tooltip/NanoWeave=Level 1 - Heals 5 HP/sec on target unit for 15 seconds.
 Button/Tooltip/NanosteelNet=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 20% by its thrashing attempts to escape. Lasts 3 seconds.
-Button/Tooltip/NapalmBarrage=Artillery strike that burns targets for 30 (+10/30 vs armored/massive) dmg/sec for 10 secs per shell in a 5 radius area, stacking up to 4 times. 5 sec barrage time. Slows affected units by 30%.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
+Button/Tooltip/NapalmBarrage=An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec for 10 seconds, stacking up to 4 times. 5 sec barrage time. Deals 50% more damage vs Massive. Units burnt in Napalm move 30% slower.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
 Button/Tooltip/Nazara=
-Button/Tooltip/NoQuarter=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
+Button/Tooltip/NoQuarter=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability and immediately readies an Assault Jump. Deals triple damage to Heroic.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 5 seconds.
 Button/Tooltip/NydusCanal=
 Button/Tooltip/OcularImplants2=<c val="FFFF00">Ocular Implants</c><n/>Increases Sight Radius by 3.<n/><n/>Maximum Stack: <c val="FFFFFF">2</c><n/>Weight: <c val="FFFFFF">2</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"All the better to see you with, my dear" - PFC Wulf
 Button/Tooltip/Ogilvy=Local Miner. The backbone of the economy.
@@ -1899,9 +1908,10 @@ Button/Tooltip/RoadFlare=<c val="FFFF00">Road Flare</c><n/>Illuminates a 9 radiu
 Button/Tooltip/SadistLevel1=Gains 2 HP and 1 Shield for every enemy killed.
 Button/Tooltip/SadistLevel2=Gains 4 HP and 2 Shields for every enemy killed.
 Button/Tooltip/Safeguard=Gains +1 armor for each hit taken during a 5 seconds duration. Maximum +7 armor.
-Button/Tooltip/SalineIV=Heals 20 HP instantly
+Button/Tooltip/SalineIV=Heals self and 1 other most wounded ally marine in 3 radius for 20 HP.
+Button/Tooltip/SalineIVMini=Heals self and 1 other most wounded ally marine in 3 radius for 40 HP. Removes 1 stack of venom.
 Button/Tooltip/Sap=Stuns target for 7 seconds. Bosses are stunned for 3 seconds. Damage taken breaks Sap.
-Button/Tooltip/Satchel=Plants a timed explosive that detonates in 5 seconds, dealing 140 damage in 4 radius. <n/><n/>Deals 2x damage to massive units & structures.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Button/Tooltip/Satchel=Plants a timed explosive that detonates in 2.5 seconds, dealing 140 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <c val="FF0000">Explosion deals friendly fire damage.
 Button/Tooltip/SatchelLevel1=Plants a timed explosive that detonates in 5 sec, dealing 135 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/SatchelLevel2=Plants a timed explosive that detonates in 5 sec, dealing 270 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/Scope=Marksman front vision (120 radius cone) increased by 4.
@@ -1912,6 +1922,7 @@ Button/Tooltip/SeekerBurrowed=A fast-moving zombie that attacks with vicious fer
 Button/Tooltip/SelfDestruct=Self-destructs this structure. Stuns all units in 7 radius for 2 seconds.
 Button/Tooltip/SensoryConfusionLevel1=Being attacked has 20% chance to make Psi Ops cloak for 10 seconds.
 Button/Tooltip/SensoryConfusionLevel2=Being attacked has 40% chance to make Psi Ops cloak for 10 seconds.
+Button/Tooltip/SentinelMineSelfDestruct=Self-destructs this mine.
 Button/Tooltip/Seth=
 Button/Tooltip/SgtStallans=Sergeant Stallans<n/>Apollo Security<n/>Clerance Level: 3<n/>Service date: 2094
 Button/Tooltip/Shadowstep=Allows Marksman to move very quickly (+150% movespeed) for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
@@ -1936,7 +1947,7 @@ Button/Tooltip/SonicTrapLevel1=Creates an invulnerable beacon. When nearby enemi
 Button/Tooltip/SpecialPet=Credits: <c val="71B8FF">5000</c><n/>Requirement: <c val="FFFF00">5000 XP</c>
 Button/Tooltip/Spectre=The Recon is the eye and ear of the team, providing utility support with his array of talents.
 Button/Tooltip/SpeedofThought=Psi Ops teleports next to target Marine. Enemies in 3 radius of target spot are stunned for 2 sec. 15 range. 5 sec cooldown.
-Button/Tooltip/SpiderMine=Plants Mines that do 40 damage in 2 radius. 15 max charges. Mines deal 25% less damage to Bosses. Damage is reduced by armor.<n/><n/><c val="FF0000">Warning: Exploding mines damage friendlies.</c>
+Button/Tooltip/SpiderMine=Plants a sentinel mine that oversees a 5 radius area, firing mini missiles at incoming hostiles. Can fire once every 5 seconds, dealing <d ref="Effect,WidowMineExplodeSplash,Amount"/> damage in a small area. Holds 5 missiles and self-destructs when depleted.<n/><n/>Costs 1 explosive charge and may deploy up to 15 on the battlefield.
 Button/Tooltip/SpikedArmor=Deals 3 damage to any unit that attacks Demo.
 Button/Tooltip/SpikedArmorLevel1=Deals 5 damage to any unit that attacks Demo. Shield armor +1.
 Button/Tooltip/SpikedArmorLevel2=Deals 10 damage to any unit that attacks Demo. Shield armor +2.
@@ -1952,7 +1963,7 @@ Button/Tooltip/Stealth2=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/Stealth22=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/StealthMatrixActivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
 Button/Tooltip/StealthMatrixDeactivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
-Button/Tooltip/Stim=Marine fires and moves 20% faster for 15 seconds.
+Button/Tooltip/Stim=Gains 50% attack speed and 30% move speed for 15 seconds.
 Button/Tooltip/StingerMK3=<c val="972FFF">Stinger MK-3</c><n/>Rocket Launcher that does significant splash damage. Use with extreme caution.<n/>Consumes 10 rounds per shot. <n/><c val="FF0000">Deals 25% friendly fire dmg.</c><n/><n/>Base Range: <c val="FFFFFF">20</c><n/>Splash: <c val="FFFFFF">5</c><n/>Reload: <c val="FFFFFF">6 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">325</c><n/>Adaptive: <c val="FFFFFF">0</c><n/>Flag: <c val="FFFFFF">Ranged, Fire, Splash</c><n/><n/>"Say hello to my little friend" - Lt. Lee
 Button/Tooltip/Strangler=An air creature that is capable of choking and incapacitating its targets
 Button/Tooltip/SupplyStation=Creates a supply station that replenishes 1 round/sec, 1 HP/sec, 1 energy/sec for all Marines in 2 radius. Supply Station lasts for 25 seconds.
@@ -1990,13 +2001,13 @@ Button/Tooltip/TitanBurrowed=An enormously tough zombie.
 Button/Tooltip/TruckSemiUnit=Property of Apollo Mining Industries
 Button/Tooltip/Turbo=35% increased movespeed for 5 seconds.
 Button/Tooltip/TychusChaingun=The Assault is a heavy duty offensive and defensive unit.
-Button/Tooltip/UA420AssaultRifle=<c val="F2D737">UA420 Assault Rifle</c><n/>Slower firing than the UA General Purpose Rifle but packs a bigger punch. Also penetrates deeper into armor.<n/><n/>Base Range: <c val="FFFFFF">15</c><n/>Splash: <c val="FFFFFF">0.75</c><n/>Reload: <c val="FFFFFF">2.8 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Adaptive: <c val="FFFFFF">0.5</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"This is my UA420 Assault Rifle, there are many like it but this one is mine." - Pvt. Benson
+Button/Tooltip/UA420AssaultRifle=<c val="F2D737">UA420 Assault Rifle</c><n/>Slower firing than the UA General Purpose Rifle but packs a bigger punch. Also penetrates deeper into armor.<n/><n/>Base Range: <c val="FFFFFF">15</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">2.8 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Adaptive: <c val="FFFFFF">0.5</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"This is my UA420 Assault Rifle, there are many like it but this one is mine." - Pvt. Benson
 Button/Tooltip/UGCDropship=Customized Dropship used for mission insertions.
-Button/Tooltip/VRL772=VRL fires in a straight line, dealing 150 damage + 25 per venom stacks (max +375) and becomes dormant for 4 seconds, during which targets will take +20% damage. The virus then regains control.<n/><n/>Any heroic marines caught in the VRL Laser is cured of all viruses (Venom, Madness, Blind and Infection), and gain +25% attack & movement speed for 10 seconds. VRL is harmless to non-infested and mechanical units.
+Button/Tooltip/VRL772=VRL fires in a straight line, dealing 150 damage + 25 per venom stacks (max +375) and becomes dormant for 4 seconds, during which targets will take +20% damage. The virus then regains control.<n/><n/>Any heroic marines caught in the VRL Laser is cured of all ailments, and gain +25% attack & movement speed for 10 seconds. VRL is harmless to non-infested and mechanical units.
 Button/Tooltip/VengeanceLevel1=15% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
-Button/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 10 seconds.
+Button/Tooltip/VeteransFocus=Grants a biological unit +4 Sight Range and +15% attack damage for 30 seconds.
 Button/Tooltip/Violet=Changes Marine color to <c val="8000FF">Violet</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/VolatileInjection=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.
 Button/Tooltip/WallofFire=Creates a wall of fire with 8 width that lasts for 40 seconds. Deals 45 damage/sec to any unit that passes through it.Reduces affected unit movespeed by 30%.<n/><n/>Units affected by Fire Vulnerability take more damage.<n/><n/>"If you can't kill it, blow it, you can't blow it, then burn it over, it's just that simple."
@@ -2005,6 +2016,7 @@ Button/Tooltip/WeaponsModPoint=Allows modification of weapons.<n/><n/>Credits: <
 Button/Tooltip/WeaponsProficiency=Reload time reduced by 25%. Damage increased by 14%
 Button/Tooltip/WeaponsProficiency2=Reload time reduced by 25%. Damage increased by 7%
 Button/Tooltip/White=Changes Marine color to <c val="FFFFFF">White</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
+Button/Tooltip/WidowMineBioSplash=Fires mini missiles that deal <c val="FFFF00"><d ref="Effect,WidowMineExplodeSplash,Amount"/></c> damage to incoming hostiles in a small area.
 Button/Tooltip/Wraith2=A deadly and invisible air mutation. Capable of inflicting Corossive Acid on targets.
 Button/Tooltip/X1Armor=Experimental armor. 7 sec cloak when used
 Button/Tooltip/X1Guardian=Summons a 100 HP battle bot. Deals 12 damage per attack (1.3 attack speed). 
@@ -2723,7 +2735,7 @@ DocInfo/PatchNote676=- Realism command has been removed as pretty much all contr
 DocInfo/PatchNote677=- Engineer - Plasma Discharge damage increased from 20/40/80 to 30/60/90 (level1 zombie has 87.5hp at 250% scaling).
 DocInfo/PatchNote678=- Fixed some Engineer tooltip errors in the behavior bar.
 DocInfo/PatchNote679=- Tried to improve behavior bar's performance.
-DocInfo/PatchNote680=- Chem Expert - VRL-772 now properly removes all ailments instead of just some.
+DocInfo/PatchNote680=- Chem Expert - VRL-772 now cures all ailments instead of just some.
 DocInfo/PatchNote681=- Marksman - Monofilament Cartridge damage increased from 40/80/160 to 45/90/180. (level2 zombie has 175hp at 250% scaling).
 DocInfo/PatchNote682=- Marksman - One Shot, One Kill lv1/lv2 damage increased from 200/400 to 400/600.
 DocInfo/PatchNote683=- Marksman - Master Marksman passive reworked, still upgrades One Shot, One Kill but no longer stuns. Has a more unique effect instead. 
@@ -2733,6 +2745,30 @@ DocInfo/PatchNote686=- Added a placement indicator for Recon's Supply Station.
 DocInfo/PatchNote687=- LD effect will now remain after Nazara splits.
 DocInfo/PatchNote688=- Reduced the intensity of Recon's upgraded flares.
 DocInfo/PatchNote689=- Fixed Surv wave 37 enemies dying before reaching players.
+DocInfo/PatchNote690=[ReduxGelum]
+DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
+DocInfo/PatchNote692=- Enabled transient for faith ability.
+DocInfo/PatchNote693=
+DocInfo/PatchNote694=[LeoTheCat]
+DocInfo/PatchNote695=- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 5 times when deployed, max 15 on the battelfield.
+DocInfo/PatchNote696=- Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
+DocInfo/PatchNote697=- Other abilities on Demo's Explosive tree also rely on the charges available on Make Explosives.
+DocInfo/PatchNote698=- Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
+DocInfo/PatchNote699=- When exceeding the # limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the newly created one will be destroyed.
+DocInfo/PatchNote700=- Demo's Armageddon tremors will now mini stuns instead of slows.
+DocInfo/PatchNote701=- Rifleman - Saline IV now also affects 1 other most wounded ally marine in 3 radius.
+DocInfo/PatchNote702=- Simplified Forward Observer's Fire Mission damage to 50/75/100 + 50% vs Massive.
+DocInfo/PatchNote703=- Simplified Forward Observer's Napalm Barrage damage to 40 + 50% Massive.
+DocInfo/PatchNote704=- Units stunned by Forward Observer's Shockwave Barrage will have the stun visual effect properly displayed.
+DocInfo/PatchNote705=- Forward Observer's Artillery tree now starts with 1700 shells in Nightmare mode but 1500 in easier modes.
+DocInfo/PatchNote706=- Forward Observer's rifleman minis have their stimpack replaced by Level 2 Saline IV, with a much longer cooldown and higher energy cost.
+DocInfo/PatchNote707=- Forward Observer's marksman minis can now cast Veteran's Focus on other bio units. Duration and energy cost increased.
+DocInfo/PatchNote708=- Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
+DocInfo/PatchNote709=- Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
+DocInfo/PatchNote710=- Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
+DocInfo/PatchNote711=- Pathfinder - Coming in Hot's DOT improved to 18/36 DPS for 15 seconds, doubled against Heroic, all stacks refresh when re-applied.
+DocInfo/PatchNote712=- Pathfinder - No Quarter cooldown reduced from 45 to 20, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
+DocInfo/PatchNote713=- Pathfinder - Shoot To Maim energy cost per shot removed.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2823,20 +2859,24 @@ Effect/Name/ApplySuicide=Apply Suicide
 Effect/Name/ApplyTachyonCloak=Apply Tachyon Cloak
 Effect/Name/ApplyTachyonCloakNoDraw=Apply Tachyon Cloak  (NoDraw)
 Effect/Name/ApplyVenomousExplosion=Apply Venomous Explosion
-Effect/Name/ArmageddonAfterShockDamage=Armageddon After Shock Damage
-Effect/Name/ArmageddonAfterShockDamageFriendly=Armageddon After Shock Damage Friendly
-Effect/Name/ArmageddonAfterShockPersistent=Armageddon After Shock Persistent
-Effect/Name/ArmageddonAfterShockSearch=Armageddon After Shock Search
-Effect/Name/ArmageddonAfterShockSet=Armageddon After Shock Set
-Effect/Name/ArmageddonApplyAfterShock=Armageddon Apply After Shock
-Effect/Name/ArmageddonApplySlow=Armageddon Apply Slow
+Effect/Name/ArmageddonApplyRadiation=Armageddon Apply Radiation
+Effect/Name/ArmageddonApplyStun=Armageddon Apply Stun
+Effect/Name/ArmageddonBombLimit=Armageddon Bomb Limit
+Effect/Name/ArmageddonBombLimit2=Sentinel Mine Limit
 Effect/Name/ArmageddonCreateUnit=Armageddon Create Unit
 Effect/Name/ArmageddonDamage=Armageddon Damage
+Effect/Name/ArmageddonDamageAftershock=Armageddon Damage Aftershock
 Effect/Name/ArmageddonDamageFriendly=Armageddon Damage Friendly
+Effect/Name/ArmageddonDamageSet=Armageddon Damage (Set)
+Effect/Name/ArmageddonRadiationDamage=Armageddon Radiation Damage
+Effect/Name/ArmageddonRadiationDamageFriendly=Armageddon Radiation Damage Friendly
+Effect/Name/ArmageddonRadiationPersistent=Armageddon Radiation Persistent
+Effect/Name/ArmageddonRadiationSearch=Armageddon Radiation Search
+Effect/Name/ArmageddonRadiationSet=Armageddon Radiation Set
 Effect/Name/ArmageddonSearchDamageEnemy=Armageddon Search Damage Enemy
 Effect/Name/ArmageddonSearchDamageFriendly=Armageddon Search Damage Friendly
 Effect/Name/ArmageddonSet=Armageddon Set
-Effect/Name/ArmageddonSlowSearch=Armageddon Slow Search
+Effect/Name/ArmageddonStunSearch=Armageddon Stun Search
 Effect/Name/ArmorMeltDamage=Armor Melt Damage
 Effect/Name/ArtillerySearchAreaDummy=Artillery Search Area (Dummy)
 Effect/Name/AsgardHighPriorityTargetPersistent=Asgard High Priority Target Persistent
@@ -3026,13 +3066,15 @@ Effect/Name/CombatKnifeDamageSet=Combat Knife Damage Set
 Effect/Name/CombatKnifeSearch=Combat Knife (Search)
 Effect/Name/CominginHotBehaviorLevel1=Coming in Hot Behavior Level 1
 Effect/Name/CominginHotBehaviorLevel12=Coming in Hot Behavior Level 2
+Effect/Name/CominginHotDOTLevel1=Coming in Hot DOT Level 1
+Effect/Name/CominginHotDOTLevel2=Coming in Hot DOT Level 2
+Effect/Name/CominginHotDOTSwitch=Coming in Hot DOT Switch
 Effect/Name/CominginHotDamage=Coming in Hot Damage
-Effect/Name/CominginHotPersistent=Coming in Hot Persistent
 Effect/Name/CominginHotSearchLevel1=Coming in Hot Search Level 1
 Effect/Name/CominginHotSearchLevel2=Coming in Hot Search Level 2
 Effect/Name/CominginHotSearchLevel3=Coming in Hot Search Level 3
 Effect/Name/CominginHotSet=Coming in Hot Set
-Effect/Name/CominginHotSwitch=Coming in Hot Switch
+Effect/Name/CominginHotSlowSwitch=Coming in Hot Slow Switch
 Effect/Name/CommandAuraApply=Command Aura (Apply)
 Effect/Name/CommandAuraSearchArea=Command Aura (Search Area)
 Effect/Name/ComplianceMatrixApply=Compliance Matrix Apply
@@ -3822,8 +3864,10 @@ Effect/Name/NeuralParasitePersistentApplyTargeted=Neural Parasite (Persistent - 
 Effect/Name/NeuralParasiteSearch=Neural Parasite (Search)
 Effect/Name/NeuralParasiteSet=Neural Parasite (Set)
 Effect/Name/NoQuarterApplyInvulnerable=No Quarter Apply Invulnerable
+Effect/Name/NoQuarterAssaultJumpRecharge=No Quarter Assault Jump Recharge
 Effect/Name/NoQuarterDamage12=No Quarter Damage
 Effect/Name/NoQuarterImpactSet=No Quarter Impact Set
+Effect/Name/NoQuarterInvulnerableSet=No Quarter Invulnerable Set
 Effect/Name/NoQuarterLaunch=No Quarter Launch
 Effect/Name/NoQuarterSearch4=No Quarter Invulnerable Search
 Effect/Name/NukeCreateRevealDummy2=Scorched Earth Reveal Dummy
@@ -4044,10 +4088,16 @@ Effect/Name/RoadFlareSpawn=Road Flare Spawn
 Effect/Name/SadistLevel1RemoveBehavior=Sadist Level 1 (Remove Behavior)
 Effect/Name/SafeguardApply=Safeguard Apply
 Effect/Name/SalineIV=Saline IV Level 1
+Effect/Name/SalineIVLevel1EffectSet=Saline IV Level 1 Effect Set
+Effect/Name/SalineIVLevel1SearchFriendly=Saline IV Level 1 Search Friendly
 Effect/Name/SalineIVLevel1Set=Saline IV Level 1 Set
 Effect/Name/SalineIVLevel2=Saline IV Level 2
+Effect/Name/SalineIVLevel2EffectSet=Saline IV Level 2 Effect Set
+Effect/Name/SalineIVLevel2SearchFriendly=Saline IV Level 2 Search Friendly
 Effect/Name/SalineIVLevel2Set=Saline IV Level 2 Set
 Effect/Name/SalineIVLevel3=Saline IV Level 3
+Effect/Name/SalineIVLevel3EffectSet=Saline IV Level 3 Effect Set
+Effect/Name/SalineIVLevel3SearchFriendly=Saline IV Level 3 Search Friendly
 Effect/Name/SalineIVLevel3Set=Saline IV Level 3 Set
 Effect/Name/SalineIVRemoveCripple=Saline IV (Remove - Cripple)
 Effect/Name/SalineIVRemoveOpenWound=Saline IV (Remove - Open Wound)
@@ -4061,16 +4111,26 @@ Effect/Name/SatchelDamageBehaviorLevel2=Satchel Damage Behavior Level 2
 Effect/Name/SatchelDeployment=Satchel Deployment
 Effect/Name/SatchelDeploymentChoice=Satchel Deployment Choice
 Effect/Name/SatchelDoubleDeployment=Satchel Double Deployment
+Effect/Name/SatchelLevel1AftershockDamage=Satchel Level 1 (Aftershock Damage)
 Effect/Name/SatchelLevel1Build=Satchel Level 1 (Build)
 Effect/Name/SatchelLevel1Damage=Satchel Level 1 (Damage)
+Effect/Name/SatchelLevel1DamageFriendly=Satchel Level 1 (Damage Friendly)
+Effect/Name/SatchelLevel1DamageSet=Satchel Level 1 (Damage Set)
 Effect/Name/SatchelLevel1Set=Satchel Level 1 (Set)
 Effect/Name/SatchelLevel1Spawn=Satchel Level 1 Spawn
+Effect/Name/SatchelLevel2AftershockDamage=Satchel Level 2 (Aftershock Damage)
 Effect/Name/SatchelLevel2Build=Satchel Level 2 (Build)
 Effect/Name/SatchelLevel2Damage=Satchel Level 2 (Damage)
+Effect/Name/SatchelLevel2DamageFriendly=Satchel Level 2 (Damage Friendly)
+Effect/Name/SatchelLevel2DamageSet=Satchel Level 2 (Damage Set)
 Effect/Name/SatchelLevel2Set=Satchel Level 2 (Set)
 Effect/Name/SatchelLevel2Spawn=Satchel Level 2 Spawn
 Effect/Name/SatchelLifeDamage=Satchel Life Damage
 Effect/Name/SatchelSearch=Satchel Search
+Effect/Name/SatchelSearchDamageEnemyLevel1=Satchel Search Damage Enemy Level 1
+Effect/Name/SatchelSearchDamageEnemyLevel2=Satchel Search Damage Enemy Level 2
+Effect/Name/SatchelSearchDamageFriendlyLevel1=Satchel Search Damage Friendly Level 1
+Effect/Name/SatchelSearchDamageFriendlyLevel2=Satchel Search Damage Friendly Level 2
 Effect/Name/SatchelSearchDummy=Satchel Search Dummy
 Effect/Name/SatchelShieldDamage=Satchel Shield Damage
 Effect/Name/ScavengeCreate=Scavenge Create
@@ -4254,6 +4314,8 @@ Effect/Name/SpawnCreeponDeath=Spawn Creep on Death
 Effect/Name/SpawnCreeponDeathPersistant=Spawn Creep on Death Persistant
 Effect/Name/SpawnSeeker=Spawn Seeker
 Effect/Name/SpawnSeekerSet=Spawn Seeker Set
+Effect/Name/SpawnSpiderMine=Spawn Sentinel Mine Level 1
+Effect/Name/SpawnSpiderMineSet=Spawn Sentinel Mine Set Level 1
 Effect/Name/SpeedofThought=Speed of Thought
 Effect/Name/SpeedofThoughtPersistent=Speed of Thought (Persistent)
 Effect/Name/SpeedofThoughtSearch=Speed of Thought (Search)
@@ -4421,6 +4483,10 @@ Effect/Name/WeaponsExpertiseSurgicalStrikeBonus=Weapons Expertise Surgical Strik
 Effect/Name/WeaponsExpertiseSurgicalStrikeBonusLevel1ApplyBehavior=Weapons Expertise Surgical Strike Bonus Level 1 Apply Behavior
 Effect/Name/WeaponsExpertiseSurgicalStrikeBonusLevel2ApplyBehavior=Weapons Expertise Surgical Strike Bonus Level 2 Apply Behavior
 Effect/Name/WeaponsProficiencyLevel1Remove=Weapons Proficiency Level 1 (Remove)
+Effect/Name/WidowMineApplyAnimation2=Widow Mine Apply Animation
+Effect/Name/WidowMineChargeCheck=Widow Mine Charge Check
+Effect/Name/WidowMineExplodeSplash=Widow Mine Explode Damage
+Effect/Name/WidowMineExplodeSplashSearch=Widow Mine Explode Search
 Effect/Name/WraithCorrosiveAcidApplyDebuff=Wraith Corrosive Acid Apply Debuff
 Effect/Name/X1EvisceratorBeamLevel2=X1 Eviscerator (Beam) Level 2
 Effect/Name/X1EvisceratorBeamLevel3=X1 Eviscerator (Beam) Level 3
@@ -4441,8 +4507,8 @@ Fast Five Level 2=Using superior reflexes and skill, the Pathfinder fires off fi
 Fast Five Level 3=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 3 -- Shots do 30% additional damage
 Fast Five Level 4=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 4 -- Shots do 40% additional damage
 Field Probe Level 2=Build 2 Field Probes.
-Fire Mission Level 2=Artillery strike that deals 75 (+25/25 vs armored/massive) damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.
-Fire Mission Level 3=Artillery strike that deals 75 (+25/75 vs armored/massive) damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time.
+Fire Mission Level 2=Artillery strike that deals 75 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Fire Mission Level 3=Artillery strike that deals 100 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 First=Test
 Flamer Equipped=Flamethrower Mk-3 Equipped
 Focused Fire Level 2=Increases attack damage by 25% and sight range by 3. Reduces attack speed by 18%. Targets are slowed by 5%. Lasts for 5 seconds.
@@ -4521,7 +4587,7 @@ Level 2 Precision Shot=Deals 150 damage to target unit and slows movement by 60%
 Level 2 Redundant Organs=Bob throws his spleens at zombies. Zombies become distracted for 7 secs while they feast.
 Level 2 Repair=Repairs shields/mechanical at rate of 10 per second. Has a 33% chance per second to remove Short Circuit.
 Level 2 Run Forest Run!=Increases movespeed by 24%. Reduces attack speed by 10%. Toggled ability
-Level 2 Satchel=Plants a timed explosive that detonates in 5 seconds, dealing 280 damage in 4 radius. <n/><n/>Deals 2x damage to massive units & structures.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Level 2 Satchel=Plants a timed explosive that detonates in 5 seconds, dealing 280 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <c val="FF0000">Explosion deals friendly fire damage.
 Level 2 Sensor Tower=Reveals enemy units in 25 radius. Stationary and can only build 3 at a time.
 Level 2 Shadowstep=Allows Marksman to move very quickly (+300% movespeed) for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
 Level 2 Shatter=Deals 300 damage to target unit. Deals 2x damage to bosses. If unit is stunned, gain 70 HP.
@@ -6233,8 +6299,8 @@ RequirementNode/Tooltip/Eq4239871994CountAbilOverdriveCompleteOnly2=Overdrive Ta
 RequirementNode/Tooltip/GTE840649728CountBehaviorBandageCarriedCompleteOnly1=Bandage in inventory
 RequirementNode/Tooltip/LT3507390604SumCountUnitMobileInfantryFlamethrowerCompleteOnlyCountUnitMobileInfantryMarksmanCompleteOnlyCountUnitMobileInfantryRiflemanCompleteOnlyCountAbilMobileInfantryCompleteOnlyAtUnit=Control less than 3 Mobile Infantry
 Righteousness Level 2=+1 armor for each unit damaged by Smite. Lasts 16 seconds.<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."
-Saline IV Level 2=Level 2 - Heals 40 HP instantly. Also removes 1 stack of Venom.
-Saline IV Level 3=Level 3 - Heals 60 HP instantly. Remove 1 stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.
+Saline IV Level 2=Heals self and 1 other most wounded ally marine in 3 radius for 40 HP. Also removes 1 stack of Venom.
+Saline IV Level 3=Heals self and 1 other most wounded ally marine in 3 radius for 60 HP. Remove 1 stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.
 ScoreValue/Name/AverageXPPerGame=Average XP Per Game
 ScoreValue/Name/Credits=Credits
 ScoreValue/Name/CreditsChange=Credits Change
@@ -6563,6 +6629,7 @@ Unit/Name/SatchelLevel1=Satchel (Level 1)
 Unit/Name/SatchelLevel2=Satchel (Level 2)
 Unit/Name/Seeker=Seeker
 Unit/Name/SeekerBurrowed=Seeker
+Unit/Name/SentinelMine=Sentinel Mine
 Unit/Name/Seth=Seth
 Unit/Name/SgtStallans=Sgt. Stallans
 Unit/Name/Sheep2=Sheep
@@ -6620,6 +6687,7 @@ Unit/Name/UGCDropship=UGC Dropship
 Unit/Name/Ultralisk=Agron
 Unit/Name/WallofFire=
 Unit/Name/WallofFireDummy=Wall of Fire (Dummy)
+Unit/Name/WidowMine2=Widow Mine
 Unit/Name/Wraith2=Wraith
 Unit/Name/X1GuardianLevel1=X1 Guardian MK-1
 Unit/Name/X1GuardianLevel2=X1 Guardian MK-2
@@ -6672,6 +6740,7 @@ Upgrade/Name/CriticalStrikeKnife=Critical Strike Knife
 Upgrade/Name/CriticalStrikeSkill=Critical Strike Skill
 Upgrade/Name/EnergyBattery=Energy Battery
 Upgrade/Name/EnergyCapacitors=Energy Capacitors
+Upgrade/Name/ExplosiveAftershockUpgrade=Explosive Aftershock Upgrade
 Upgrade/Name/FireUp=Fire Up
 Upgrade/Name/FireUpGrenadesLevel1=Fire Up Grenades Level 1
 Upgrade/Name/FireUpGrenadesLevel12=Fire Up Grenades Level 2
@@ -6689,6 +6758,7 @@ Upgrade/Name/HighCapacityBarrels=Helium-3 Igniter Level 3
 Upgrade/Name/ImprovedCoolantLinesLevel1=Improved Coolant Lines
 Upgrade/Name/LookLevel2=Look! Level 2
 Upgrade/Name/MobileInfantryImprovedEquipment=Mobile Infantry Improved Equipment
+Upgrade/Name/NightmareShellUpgrade=Nightmare Shell Upgrade
 Upgrade/Name/PerceptionCriticalStrike=Perception Critical Strike
 Upgrade/Name/PlasmaDischargeLevel2=Plasma Discharge Level 2
 Upgrade/Name/PlasmaDischargeLevel3=Plasma Discharge Level 3
@@ -7215,7 +7285,7 @@ UserData/TalentTrees/Chemical Expert_Talent Tootips_005=<s val="AchievementFrame
 UserData/TalentTrees/Chemical Expert_Talent Tootips_006=<s val="AchievementFrameName">Shrinker</s><n/>The Chemical Expert shoots a special energy beam that reduces the size of target unit (including allies), reducing it's threat level, increasing it's speed by 30/60/90% and reduces it's attack damage by the same amount. Lasts for 20 seconds, does not work on enemy Heroic.<n/>Level 1 - 30% speed increase and attack damage reduction<n/>Level 2 - 60% speed increase and attack damage reduction<n/>Level 3 - 90% speed increase and attack damage reduction
 UserData/TalentTrees/Chemical Expert_Talent Tootips_007=<s val="AchievementFrameName">Penance</s><n/>Shoots a special canister onto a single target (including friendlies), reducing its Life/Shield Armor by 10, and increases damage dealt for 15 seconds.<n/>Level 1 - Increases damage by 50%<n/>Level 2 - Increases damage by 100%<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Chemical Expert_Talent Tootips_008=<s val="AchievementFrameName">Energy Transfer</s><n/>The Chemical Expert infuses target with a unique venom that drains HP and gives an energy regeneration boost. This can stack up to 4 times.<n/>Level 1 - +0.1 energy regeneration per stack<n/>Level 2 - +0.2 energy regeneration per stack<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Chemical Expert_Talent Tootips_009=<s val="AchievementFrameName">VRL-772 </s><n/>Virus Removal Laser-772 is a new form of medical technology that destroys viruses using intense light of the UV spectrum. VRL fires in a straight line, dealing 150 damage + 25 per venom stack (max +375) and becomes dormant for 4 seconds, during which targets will take +20% damage. The virus then regains control.<n/><n/>Any heroic marines caught in the VRL Laser is cured of all viruses (Venom, Madness, Blind and Infection), and gain +25% attack & movement speed for 10 seconds. VRL is harmless to non-infested and mechanical units.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Chemical Expert_Talent Tootips_009=<s val="AchievementFrameName">VRL-772 </s><n/>Virus Removal Laser-772 is a new form of medical technology that destroys viruses using intense light of the UV spectrum. VRL fires in a straight line, dealing 150 damage + 25 per venom stack (max +375) and becomes dormant for 4 seconds, during which targets will take +20% damage. The virus then regains control.<n/><n/>Any heroic marines caught in the VRL Laser is cured of all ailments, and gain +25% attack & movement speed for 10 seconds. VRL is harmless to non-infested and mechanical units.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Commando_Headers=<s val="HelpPanelListBoxItemTitle">Operations</s>
 UserData/TalentTrees/Commando_Headers_001=<s val="HelpPanelListBoxItemTitle">Delta</s>
 UserData/TalentTrees/Commando_Talent Tootips=<s val="AchievementFrameName">Surgical Strike</s> <n/>Increased attack damage for 15 seconds.<n/>Level 1 -  +50% damage<n/>Level 2 -  +100% damage<n/>Level 3 -  +150% damage<n/><n/><c val="FF0000">15 second recovery (attack damage reduced by 30%)</c>.
@@ -7230,11 +7300,11 @@ UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">M
 UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">The Horror</s><n/>The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds.<n/><n/><c val="FF0000">Warning: Can blind allies in target area</c><n/><n/>"You want to see something real scary?"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">Explosives</s>
 UserData/TalentTrees/Demolitions_Headers_001=<s val="HelpPanelListBoxItemTitle">Fortitude</s>
-UserData/TalentTrees/Demolitions_Talent Tootips=<s val="AchievementFrameName">Plant Mines</s><n/>Plants Mines that do damage in 2 radius. Deals 25% less damage to Bosses. You gain 8 mines when you first learn this ability.<n/>Level 1 - 40 damage. 15 max charges.<n/>Level 2 - 60 damage. 30 max charges.<n/>Level 3 - 80 damage. 45 max charges.<n/><n/><c val="FF0000">Warning: Exploding mines damage friendlies.</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName">Build Mines</s><n/>Level 1 - Creates 2 Mines.<n/>Level 2 - Creates 4 Mines.<n/>Level 3 - Creates 6 Mines.
-UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 5 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Demolitions_Talent Tootips=<s val="AchievementFrameName">Sentinel Mine</s><n/>Plants a sentinel mine that oversees a 5 radius area, firing mini missiles at incoming hostiles. Can fire once every 5 seconds, dealing damage in a small area. Holds 5 missiles and self-destructs when depleted.<n/>Level 1 - 30 damage.<n/>Level 2 - 45 damage.<n/>Level 3 - 60 damage.<n/><n/>Costs 1 explosive charge and may deploy up to 15 on the battlefield.
+UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName">Explosive Aftershock<n/>(Passive)</s><n/>Demolitions' explosives - Sentinel Mine/Satchel/Armageddon have a 100%/40%/25% chance to trigger additional aftershocks within their targets, dealing an additional fraction of the original damage in a 1/3/4 radius area. Effective against enemies in clusters.<n/>Level 1 - 10% aftershock damage.<n/>Level 2 - 20% aftershock damage.<n/>Level 3 - 30% aftershock damage.
+UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 5 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/>Costs 1 explosive charge per use. <c val="FF0000">Explosion deals friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 3 seconds to arm. During the 3 seconds to arming, the charge sends tremors through the ground which reduces movement speed of all ground units within 5 radius by 15% per tremor. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><c val="FF0000"><n/>Limit of 3 Armageddon Charges at any given time. Can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <c val="FF0000">Explosion can severely damage friendlies.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Armor<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +4 and +15 Shields<n/><n/>"I'll cut you" - Yuki
 UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - <d ref="Behavior,ImYourFatherTauntedLevel1,Modification.DamageDealtFraction[0] * 100"/>% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage for 8 seconds
 UserData/TalentTrees/Demolitions_Talent Tootips_007=<s val="AchievementFrameName">Look!</s><n/>Forces enemies in 5 radius to stare at target. After a short duration, 50% chance for affected units to attack target. <n/>Level 1 - 1 second<n/>Level 2 - 2 seconds<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -7266,15 +7336,15 @@ UserData/TalentTrees/Flamethrower_Talent Tootips_008=<s val="AchievementFrameNam
 UserData/TalentTrees/Flamethrower_Talent Tootips_009=<s val="AchievementFrameName">Faith</s><n/>HP reduced by 50% and burns shields completely. Deals 777 damage to all units in 7 radius, and stuns them for 7 seconds. Heals allies for 35 HP. Flamethrower gains 10 armor for 10 seconds. Also removes 3 stacks of Open Wounds and Venom from Flamethrower.<n/><n/>"I find your lack of faith disturbing."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle">Fire Support</s>
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
-UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals bonus damage to armored and massive units at higher levels.<n/>Level 1 - 50 dmg per shell.<n/>Level 2 - 75 (+25/25 vs armored/massive) dmg per shell.<n/>Level 3 - 75 (+25/75 vs armored/massive) dmg per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FFFF00">Type "-dp 1/2/3" to control shell dispersion, default is "-dp 1" at 5 radius.</c><n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
+UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals 50% more damage vs massive units.<n/>Level 1 - 50 damage per shell.<n/>Level 2 - 75 damage per shell.<n/>Level 3 - 100 damage per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FFFF00">Type "-dp 1/2/3" to control shell dispersion, default is "-dp 1" at 5 radius.</c><n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 5 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 30 (+10/30 vs armored/massive) dmg/sec for 10 seconds, stacking up to 4 times. 5 sec barrage time. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec for 10 seconds, stacking up to 4 times. 5 sec barrage time. Deals 50% more damage vs Massive. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +3 armor for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which gives +15% damage and +4 sight range on activation.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which grants a biological unit +15% damage and +4 sight range.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_009=<s val="AchievementFrameName">TX-179 Asgard</s><n/>Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. The Asgard has following weapon:<n/>- Gauss Cannon: Deals 80 damage across 1.5 radius. +200% damage vs. Armored. <n/>(Right-Click to Attack)<n/><n/>Type '-gbuddy X' to assign a living player as your Gunship buddy. You will follow this player when Gunship is active. When you use your own number, you will remain stationary when Gunship is active. Press M anytime to deactive the Gunship.<n/><n/><c val="FF0000">Warning: Can deal friendly fire to allies</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Marksman_Headers=<s val="HelpPanelListBoxItemTitle">Assassination</s>
 UserData/TalentTrees/Marksman_Headers_001=<s val="HelpPanelListBoxItemTitle">Subtlety</s>
@@ -7305,13 +7375,13 @@ UserData/TalentTrees/Pathfinder_Headers_001=<s val="HelpPanelListBoxItemTitle">R
 UserData/TalentTrees/Pathfinder_Talent Tootips=<s val="AchievementFrameName">Trick Shot<n/>(Passive)</s><n/>The Pathfinder angles his shots so they ricochet between targets. Requires P-45 Gauss Pistol.<n/>Level 1 -- Attacks bounce 1 time<n/>Level 2 -- Attacks bounce 2 times<n/>Level 3 -- Attacks bounce 3 times
 UserData/TalentTrees/Pathfinder_Talent Tootips_001=<s val="AchievementFrameName">Fast Five</s><n/>Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/>Level 1 -- Shots do 10% additional damage<n/>Level 2 -- Shots do 20% additional damage<n/>Level 3 -- Shots do 30% additional damage
 UserData/TalentTrees/Pathfinder_Talent Tootips_002=<s val="AchievementFrameName">Handgun Expertise<n/>(Passive)</s><n/>The Pathfinder's proficiency level with the P-45 Gauss Pistol is that of an expert, and as a result, he gains increased range and damage.<n/>Level 1 -- Increases range by 3, Damage by 6, and increases armor penetration by 0.5 <n/>Level 2 -- Increases range by 6, Damage by 12, and increases armor penetration by 1<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Pathfinder_Talent Tootips_003=<s val="AchievementFrameName">Shoot to Maim</s><n/>The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots. Uses 1.5 energy per shot.<n/>Level 1 - +10% damage, each Maim stack slows by 5%, maximum stack of 3<n/>Level 2 - +20% damage, each Maim stack slows by 7.5%, maximum stack of 3<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Pathfinder_Talent Tootips_003=<s val="AchievementFrameName">Shoot to Maim</s><n/>The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots. <n/>Level 1 - +10% damage, each Maim stack slows by 5%, maximum stack of 3<n/>Level 2 - +20% damage, each Maim stack slows by 7.5%, maximum stack of 3<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_004=<s val="AchievementFrameName">Invaders Must Die (Passive)</s><n/>Back into the groove of using his honed abilities instead of sitting around and waiting for deployment, the Pathfinder unlocks once more his full potential and returns to his previous height of skill. Upgrades Trick Shot, Fast Five, Handgun Expertise and Shoot to Maim by 1 level.<n/>Trick Shot Level 4 -- Attacks bounce 4 times<n/>Fast Five Level 4 -- Shots do 40% additional damage<n/>Handgun Expertise Level 3 -- Increases range by 9, Damage by 18, and increases armor penetration by 1.5<n/>Shoot to Maim Level 3 - +30% damage, each Maim stack slows by 10%, maximum stack of 4<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_005=<s val="AchievementFrameName">Assault Jump</s><n/>Utilizing his jetpack, the Pathfinder takes to the skies and slams down on enemies, dealing a heavy damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time. Each level also increases Shield Armor by 1.<n/>Level 1 -- 150 damage, AOE 3, grants 80% evasion for 1 second<n/>Level 2 -- 300 damage, AOE 3.5, grants 85% evasion for 1.5 seconds<n/>Level 3 -- 450 damage, AOE 4, grants 90% evasion for 2 seconds<n/><n/><c val="FF0000">Does not travel if there are no units in target area.</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_006=<s val="AchievementFrameName">Full Throttle<n/>(Passive)</s><n/>The Pathfinder engages the afterburner and surges forward with a great burst of speed. Upgrades the base Sprint ability. Removes collision when active.<n/>Level 1 -- +70% movespeed.<n/>Level 2 -- +105% movespeed.<n/>Level 3 -- +140% movespeed.
-UserData/TalentTrees/Pathfinder_Talent Tootips_007=<s val="AchievementFrameName">Coming in Hot<n/>(Passive)</s><n/>The Pathfinder opens the throttle wider for jumps, increasing the damage that he does with Assault Jumps and setting enemies ablaze upon landing.<n/>Level 1 -- Assault Jump deals 25 additional damage, slows attack/movespeed by 30% for 2 seconds, and applies a stacking burning DOT.<n/>Level 2 -- Assault Jump deals 50 additional damage, slows attack/movespeed by 60% for 3 seconds, and applies a stacking burning DOT.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Pathfinder_Talent Tootips_007=<s val="AchievementFrameName">Coming in Hot<n/>(Passive)</s><n/>The Pathfinder opens the throttle wider for jumps, increasing the damage that he does with Assault Jumps and setting enemies ablaze upon landing, temporarily disorienting them<n/>Level 1 -- Assault Jump deals 25 additional damage, slows attack/movespeed by 30% for 3 seconds, and applies a stacking burning DOT.<n/>Level 2 -- Assault Jump deals 50 additional damage, slows attack/movespeed by 60% for 3 seconds, and applies a stacking burning DOT.<n/><n/>Burning DOT: 18/36 DPS for 15 seconds, doubled against Heroic, re-application refreshes all stacks.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_008=<s val="AchievementFrameName">Improved Coolant Lines<n/>(Passive)</s><n/>The Pathfinder upgrades his jetpack with an improved coolant distribution system, increasing its overall performance and allowing him to make jumps more often.<n/>Level 1 -- Assault Jumps are produced 7.5 seconds faster, energy regen is increased by .35/sec<n/>Level 2 -- Assault Jumps are produced 15 seconds faster, energy regen is increased by .7/sec<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Pathfinder_Talent Tootips_009=<s val="AchievementFrameName">No Quarter</s><n/>The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Pathfinder_Talent Tootips_009=<s val="AchievementFrameName">No Quarter</s><n/>The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability and immediately readies an Assault Jump. Deals triple damage to Heroic.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 5 seconds.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Psi Ops_Headers=<s val="HelpPanelListBoxItemTitle">Telepathy</s>
 UserData/TalentTrees/Psi Ops_Headers_001=<s val="HelpPanelListBoxItemTitle">Mind Mastery</s>
 UserData/TalentTrees/Psi Ops_Talent Tootips=<s val="AchievementFrameName">Force Push</s><n/>Knocks targets in 3 radius of target area back. Allied units then gain Sprint while enemies are stunned for 2 seconds.<n/>Level 1 - 3 distance knockback<n/>Level 2 - 5 distance knockback<n/>Level 3 - 7 distance knockback<n/><n/>Effect is halved on Bosses.
@@ -7343,7 +7413,7 @@ UserData/TalentTrees/Rifleman_Talent Tootips_001=<s val="AchievementFrameName">F
 UserData/TalentTrees/Rifleman_Talent Tootips_002=<s val="AchievementFrameName">Weapons Proficiency<n/>(Passive)</s><n/>Reload time reduced<n/>Level 1 - 17.5% reduced reload time. Focus Fire duration and cooldown increased by 1 second.<n/>Level 2 - 35% reduced reload time. Focus Fire duration and cooldown increased by 2 seconds.<n/><n/>"It's how you use it that matters" - Dr. Ng<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_003=<s val="AchievementFrameName">XM-35 Grenade Launcher</s><n/>Deals damage in 3 radius. Deals +33% damage vs Light.  Gains larger AoE while Focus Fire is active.<n/>Level 1 - 75 damage.  Gains 3 damage per level of the Rifleman.<n/>Level 2 - 150 damage.  Gains 6 damage per level of the Rifleman.<n/><n/>"When the pin is pulled, Mr. Grenade is not our friend." - UGC Marine Corps<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_004=<s val="AchievementFrameName">Bloodlust</s><n/>The carnage the Rifleman unleashes triggers a martial trance, sending him into a state of heightened reflexes and combat fervor, granting him +50% attack speed and damage for 10 seconds. Reduces base armor to 0 during Bloodlust.<n/><n/>"Today is a good day for someone else to die." - Kogan the Butcher<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Rifleman_Talent Tootips_005=<s val="AchievementFrameName">Saline IV</s><n/>Heals Rifleman instantly. Each level reduces cooldown and energy cost slightly.<n/>Level 1 - 20 HP<n/>Level 2 - 40 HP. Removes 1 Stack of Venom.<n/>Level 3 - 60 HP. Removes 1 Stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.<n/><n/>"I laugh in the face of danger" - Sgt. Zohar
+UserData/TalentTrees/Rifleman_Talent Tootips_005=<s val="AchievementFrameName">Saline IV</s><n/>Heals Rifleman and 1 other most wounded ally marine in 3 radius. Each level reduces cooldown and energy cost slightly.<n/>Level 1 - 20 HP<n/>Level 2 - 40 HP. Removes 1 Stack of Venom.<n/>Level 3 - 60 HP. Removes 1 Stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.<n/><n/>"I laugh in the face of danger" - Sgt. Zohar
 UserData/TalentTrees/Rifleman_Talent Tootips_006=<s val="AchievementFrameName">Crippling Fire<n/>(Passive)</s><n/>The Rifleman aims to slow the advance of enemy targets during Focus Fire, hitting their joints and ligaments. Produces additional effects when used with Precision Shot.<n/>Level 1 - Applies 15% movement speed slow and 5% attack speed slow for 1 second. Precision Shot stuns for 0.5 seconds.<n/>Level 2 - Applies 20% movement speed slow and 10% attack speed slow for 1 second. Precision Shot stuns for 1 seconds.<n/>Level 3 - Applies 25% movement speed slow and 15% attack speed slow to enemies for 1 second. Precision Shot stuns for 1.5 seconds.<n/><n/>"God is not on the side of battalions, but on the side that shoots best."
 UserData/TalentTrees/Rifleman_Talent Tootips_007=<s val="AchievementFrameName">Sonic Trap</s><n/>Creates a beacon with 7 charges. When enemies come within 3 radius, Sonic Trap activates and illuminates surrounding area, losing a charge. Normal enemies in range are pushed back and stunned and Massive and Heroic units are slowed 4 seconds. 5 second interval pulses. Limit of 5 active Sonic Traps.<n/>Level 1 - Normal enemies are pushed back 5 distance and stunned for 0.3 seconds. Massive units slowed 25%, Heroic slowed 12%.<n/>Level 2 - Normal enemies are pushed back 5 distance and stunned for 1.2 seconds. Massive units slowed 50%, Heroic slowed 24%. <n/><n/>"Stay away"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_008=<s val="AchievementFrameName">Precision Shot</s><n/>Deals damage to target unit and slows movement for 5 seconds. Stuns target if Focus Fire is active. Deals +67% damage to massive units.<n/>Level 1 - 75 damage, -30% movespeed<n/>Level 2 - 150 damage, -60% movespeed<n/><n/>"10 Credits says I can hit that can from here." - Pfc. Randy<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>

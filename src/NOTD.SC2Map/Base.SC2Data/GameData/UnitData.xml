@@ -1172,6 +1172,7 @@
         <AbilArray Link="CurrentMagazine"/>
         <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
+        <AbilArray Link="MakeExplosives"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="SpikedArmorLevel1"/>
         <BehaviorArray Link="SpikedArmorLevel2"/>
@@ -1192,7 +1193,7 @@
             <LayoutButtons index="4" Face="MarineActions" Type="Submenu" AbilCmd="Sprint,Execute" SubmenuCardId="2" Row="1"/>
             <LayoutButtons index="5" Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Column="4"/>
             <LayoutButtons index="6" Face="Attack" AbilCmd="attack,Execute" Row="0" Column="1"/>
-            <LayoutButtons index="7" Face="BuildMines" Type="AbilCmd" AbilCmd="BuildMines,Execute" Column="1"/>
+            <LayoutButtons index="7" Face="MakeExplosives" Type="AbilCmd" AbilCmd="MakeExplosives,Execute" Column="1"/>
             <LayoutButtons Face="SpiderMine" Type="AbilCmd" AbilCmd="VultureSpiderMines,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="Satchel" Type="AbilCmd" AbilCmd="Satchel,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="FireVulnerability" Type="AbilCmd" AbilCmd="FireVulnerability,Execute" Row="2" Column="3"/>
@@ -1207,7 +1208,6 @@
             <LayoutButtons Face="Cancel2" Type="CancelSubmenu" AbilCmd="Sprint,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="DropMagazine" Type="AbilCmd" AbilCmd="DropMagazine,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="GhostHoldFire,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="RetrieveMine" Type="AbilCmd" AbilCmd="RetrieveMine,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="GhostWeaponsFree,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>
@@ -1552,7 +1552,7 @@
         <LifeArmorLevel value="1"/>
         <EnergyStart value="35"/>
         <EnergyMax value="75"/>
-        <EnergyRegenRate value="1.5"/>
+        <EnergyRegenRate value="1"/>
         <ShieldsStart value="35"/>
         <ShieldsMax value="35"/>
         <ShieldRegenRate value="1.5"/>
@@ -3259,6 +3259,60 @@
     </CUnit>
     <CUnit id="WeaponHybridD">
         <FlagArray index="Invulnerable" value="1"/>
+    </CUnit>
+    <CUnit id="SentinelMine">
+        <Description value="Button/Tooltip/WidowMine"/>
+        <DeathRevealRadius value="5"/>
+        <DeathRevealDuration value="3"/>
+        <Race value="Terr"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AlwaysThreatens" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="25"/>
+        <LifeMax value="25"/>
+        <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="2292.8906"/>
+        <Sight value="5"/>
+        <CostCategory value="Army"/>
+        <RepairTime value="20"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="WidowMineUnburrow"/>
+        <AbilArray Link="WidowMineAttack"/>
+        <AbilArray Link="SentinelMineSelfDestruct"/>
+        <BehaviorArray Link="WidowMineArmed"/>
+        <EffectArray index="Create" value="ArmageddonBombLimit2"/>
+        <CardLayouts>
+            <LayoutButtons Face="WidowMineBioSplash" Type="AbilCmd" AbilCmd="WidowMineAttack,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="SentinelMineSelfDestruct" Type="AbilCmd" AbilCmd="SentinelMineSelfDestruct,Execute" Row="0" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.25"/>
+        <SeparationRadius value="0.25"/>
+        <SubgroupPriority value="4"/>
+        <MinimapRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <TacticalAIThink value="AIThinkWidowMineBurrowed"/>
+        <LeaderAlias value="WidowMine"/>
+        <HotkeyAlias value="WidowMine"/>
+        <SelectAlias value="WidowMine"/>
+        <SubgroupAlias value="WidowMine"/>
+        <TechAliasArray value="Alias_WidowMine"/>
+        <EquipmentArray Weapon="WidowMineDummy"/>
+        <KillDisplay value="Never"/>
+        <RankDisplay value="Never"/>
     </CUnit>
     <CUnit id="X1GuardianLevel2">
         <DeathRevealRadius value="3"/>
@@ -6103,8 +6157,8 @@
         <Name value="Unit/Name/Strangler"/>
         <Description value="Button/Tooltip/Strangler"/>
         <ReviveType value="Strangler"/>
-        <LifeStart value="125"/>
-        <LifeMax value="125"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
         <LifeArmor value="20"/>
         <Height value="2"/>
         <AbilArray index="0" Link="stop"/>
@@ -8856,7 +8910,6 @@
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="CloakOnGhost" Type="AbilCmd" AbilCmd="GhostCloak,On" Row="1" Column="0"/>
             <LayoutButtons Face="CloakOff" Type="AbilCmd" AbilCmd="GhostCloak,Off" Row="1" Column="1"/>
-            <LayoutButtons Face="Stim" Type="AbilCmd" AbilCmd="Stimpack,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
         </CardLayouts>
         <Radius value="0.1875"/>
@@ -10273,7 +10326,7 @@
             <LayoutButtons index="6" Face="FlamethrowerGear" Type="AbilCmd" AbilCmd="FlamethrowerGear,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
-            <LayoutButtons Face="VeteransFocus" Type="AbilCmd" AbilCmd="VeteransFocus,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="VeteransFocus" Type="AbilCmd" AbilCmd="VeteransFocus,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <ReviveInfoBase>
             <Charge Link="MobileInfantryMarksman/Revive"/>
@@ -10290,7 +10343,6 @@
         <WeaponArray index="0" Link="M45AMarksmanRifle"/>
         <SeparationRadius value="0.3125"/>
         <EnergyMax value="60"/>
-        <EnergyRegenRate value="1"/>
         <LifeRegenRate value="0.3007"/>
         <AcquireMovementLimit value="-1"/>
         <AcquireLeashRadius value="-1"/>
@@ -10301,7 +10353,7 @@
         <Name value="Unit/Name/MobileInfantryRifleman"/>
         <Description value="Button/Tooltip/MobileInfantryRifleman"/>
         <ReviveType value="MobileInfantryRifleman"/>
-        <AbilArray Link="Stimpack"/>
+        <AbilArray Link="SalineIVMini"/>
         <AbilArray Link="MarksmanGear"/>
         <AbilArray Link="FlamethrowerGear"/>
         <AbilArray Link="SpectreHoldFire"/>
@@ -10316,7 +10368,7 @@
             <LayoutButtons index="0" Face="MoveHoldPosition" AbilCmd="move,HoldPos" Column="1"/>
             <LayoutButtons index="1" Face="Attack" AbilCmd="attack,Execute" Column="3"/>
             <LayoutButtons index="2" Face="MovePatrol" AbilCmd="move,Patrol" Column="2"/>
-            <LayoutButtons index="3" Face="Stim" AbilCmd="Stimpack,Execute" Row="2" Column="0"/>
+            <LayoutButtons index="3" Face="SalineIVMini" AbilCmd="SalineIVMini,Execute" Row="2" Column="0"/>
             <LayoutButtons index="4" Face="Sprint" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons index="5" Face="Move" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons index="6" Face="FlamethrowerGear" Type="AbilCmd" AbilCmd="FlamethrowerGear,Execute" Row="2" Column="3"/>
@@ -10332,7 +10384,6 @@
         <LifeMax value="130"/>
         <SeparationRadius value="0.3125"/>
         <EnergyMax value="60"/>
-        <EnergyRegenRate value="1"/>
         <BehaviorArray Link="OpenWoundChance"/>
         <BehaviorArray Link="VenomChance"/>
         <BehaviorArray Link="CrippleChance"/>
@@ -10361,9 +10412,9 @@
             <LayoutButtons index="4" Face="Move" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons index="5" Face="RiflemanGear" AbilCmd="RiflemanGear,Execute" Row="2" Column="3"/>
             <LayoutButtons index="6" Face="MarksmanGear" Type="AbilCmd" AbilCmd="MarksmanGear,Execute" Row="2" Column="4"/>
-            <LayoutButtons Face="SlowRoast" Type="AbilCmd" AbilCmd="SlowRoast,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="SlowRoast" Type="AbilCmd" AbilCmd="SlowRoast,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <TacticalAI value="MobileInfantryFlamethrower"/>
         <LeaderAlias value="MobileInfantryFlamethrower"/>
@@ -10382,7 +10433,6 @@
         <WeaponArray index="0" Link="FlamethrowerMK2"/>
         <SeparationRadius value="0.3125"/>
         <EnergyMax value="60"/>
-        <EnergyRegenRate value="1.1015"/>
         <BehaviorArray Link="OpenWoundChance"/>
         <BehaviorArray Link="VenomChance"/>
         <BehaviorArray Link="CrippleChance"/>
@@ -10415,6 +10465,7 @@
             <Cooldown Link="PfcBrooks/Revive"/>
         </ReviveInfoBase>
         <Attributes index="Light" value="0"/>
+        <EnergyRegenRate value="1.5"/>
     </CUnit>
     <CUnit id="LtSheng" parent="Marine">
         <Name value="Unit/Name/LtSheng"/>
@@ -10441,6 +10492,7 @@
         <InnerRadius value="0.25"/>
         <WeaponArray index="0" Link="UA420AssaultRifle"/>
         <AbilArray Link="Stimpack"/>
+        <EnergyRegenRate value="1.5"/>
     </CUnit>
     <CUnit id="ForwardObserver" parent="Marine">
         <Name value="Unit/Name/ForwardObserver"/>
@@ -10599,6 +10651,7 @@
             <Cooldown Link="CplIrvin/Revive"/>
         </ReviveInfoBase>
         <Attributes index="Light" value="0"/>
+        <EnergyRegenRate value="1.5"/>
     </CUnit>
     <CUnit id="SgtStallans" parent="Marine">
         <Name value="Unit/Name/SgtStallans"/>
@@ -10622,6 +10675,7 @@
             <Cooldown Link="SgtStallans/Revive"/>
         </ReviveInfoBase>
         <Attributes index="Light" value="0"/>
+        <EnergyRegenRate value="1.5"/>
     </CUnit>
     <CUnit id="Medivac">
         <LifeStart value="1500"/>

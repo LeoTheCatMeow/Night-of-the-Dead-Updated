@@ -210,12 +210,32 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="CominginHotDOTLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="30"/>
+        <Duration value="15"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="CominginHotDamage"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="CriticalStrikeDealerKnife">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DamageResponse Handled="ApplyCriticalStrikeSet" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CominginHotDOTLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="30"/>
+        <Duration value="15"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="CominginHotDamage"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Disruption">
         <InfoIcon value="Assets\Textures\btn-research-zerg-psidisruptor.dds"/>
@@ -465,7 +485,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1.8"/>
+        <Duration value="1.85"/>
         <InitialEffect value="LockOnReveal"/>
         <DamageResponse Handled="MasterMarksmanProcLockOnSet" ModifyFraction="1.3">
             <RequireEffectArray value="OSOKLevel1BaseDamage"/>
@@ -611,7 +631,7 @@
         <DamageResponse ModifyFraction="0.25">
             <RequireEffectArray value="ArmageddonDamage"/>
             <RequireEffectArray value="VultureSpiderMinesDamage"/>
-            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
             <RequireEffectArray value="NapalmBarrageDamage"/>
@@ -696,7 +716,7 @@
         <DamageResponse ModifyFraction="0.7">
             <RequireEffectArray value="ArmageddonDamage"/>
             <RequireEffectArray value="VultureSpiderMinesDamage"/>
-            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
             <RequireEffectArray value="NapalmBarrageDamage"/>
@@ -782,7 +802,7 @@
         <DamageResponse Handled="CIAmmoApplySet" Location="Attacker">
             <ExcludeEffectArray value="ArmageddonDamage"/>
             <ExcludeEffectArray value="VultureSpiderMinesDamage"/>
-            <ExcludeEffectArray value="ArmageddonAfterShockDamage"/>
+            <ExcludeEffectArray value="ArmageddonRadiationDamage"/>
             <ExcludeEffectArray value="SatchelLevel1Damage"/>
             <ExcludeEffectArray value="SatchelLevel2Damage"/>
             <ExcludeEffectArray value="NapalmBarrageDamage"/>
@@ -1128,6 +1148,18 @@
         <BuffFlags index="Countdown" value="0"/>
         <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
         <MaxStackCount value="1000"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WidowMineAnimationController">
+        <DisplayDuration index="Self" value="0"/>
+        <DisplayDuration index="Ally" value="0"/>
+        <DisableValidatorArray index="0" removed="1"/>
+        <DisableValidatorArray index="1" removed="1"/>
+        <DisableValidatorArray index="2" removed="1"/>
+        <DisableValidatorArray index="3" removed="1"/>
+        <Duration value="5"/>
+        <Period value="0.5"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffect value="WidowMineChargeCheck"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="WraithCorrosiveAcid">
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-corrosiveacid.dds"/>
@@ -1575,7 +1607,7 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <Duration value="2"/>
+        <Duration value="3"/>
         <Modification>
             <SightMaximum value="1"/>
             <MoveSpeedMultiplier value="0.7"/>
@@ -1583,14 +1615,6 @@
             <DetectArc value="0"/>
             <RadarArc value="0"/>
             <ModifyFlags index="Reveal" value="1"/>
-            <AbilClassEnableArray index="CAbilInventory" value="1"/>
-            <AbilClassEnableArray index="CAbilLearn" value="1"/>
-            <DeathResponse>
-                <Cost>
-                    <Charge Link="Behavior/Bite"/>
-                    <Cooldown Link="Behavior/Bite"/>
-                </Cost>
-            </DeathResponse>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="DisorientAssaultJumpLevel2">
@@ -1605,14 +1629,6 @@
             <DetectArc value="0"/>
             <RadarArc value="0"/>
             <ModifyFlags index="Reveal" value="1"/>
-            <AbilClassEnableArray index="CAbilInventory" value="1"/>
-            <AbilClassEnableArray index="CAbilLearn" value="1"/>
-            <DeathResponse>
-                <Cost>
-                    <Charge Link="Behavior/Bite"/>
-                    <Cooldown Link="Behavior/Bite"/>
-                </Cost>
-            </DeathResponse>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ElieFast">
@@ -2984,17 +3000,17 @@
             <Charge TimeUse="2"/>
             <Cooldown TimeUse="7"/>
         </Cost>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
+        <InfoIcon value="Assets\Textures\btn-progression-protoss-fenix-10-acceleratedtech.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <MaxStackCountPerCaster value="1"/>
-        <Duration value="10"/>
-        <Period value="10"/>
+        <Duration value="30"/>
         <Modification SightBonus="4">
             <DamageDealtFraction index="Spell" value="0.15"/>
             <DamageDealtFraction index="Melee" value="0.15"/>
             <DamageDealtFraction index="Ranged" value="0.15"/>
             <DamageDealtFraction index="Splash" value="0.15"/>
         </Modification>
+        <BehaviorCategories index="User1" value="1"/>
+        <InitialEffect value="BattlefieldIntelligenceDummy"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Suicide10seconds">
         <InfoFlags index="Hidden" value="1"/>
@@ -3132,23 +3148,23 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Armageddon">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
+        <Duration value="4"/>
         <Period value="1"/>
-        <PeriodCount value="3"/>
-        <PeriodicEffect value="ArmageddonSlowSearch"/>
+        <PeriodCount value="4"/>
+        <PeriodicEffect value="ArmageddonStunSearch"/>
         <ExpireEffect value="ArmageddonSet"/>
         <Modification SightBonus="6"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ArmageddonSlow">
+    <CBehaviorBuff id="ArmageddonStun">
+        <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\wireframe-terran-nukepack.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="3"/>
-        <MaxStackCountPerCaster value="3"/>
-        <Duration value="5.5"/>
-        <Modification MoveSpeedMultiplier="0.85"/>
-        <Alignment value="Negative"/>
+        <Duration value="0.5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ArmageddonAfterShock">
+    <CBehaviorBuff id="ArmageddonRadiation">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\wireframe-terran-nukepack.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3552,7 +3568,7 @@
     <CBehaviorBuff id="NoQuarterInvulnerable">
         <InfoIcon value="Assets\Textures\btn-upgrade-mengsk-engineeringbay-orbitaldrop.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="4"/>
+        <Duration value="5"/>
         <Modification>
             <StateFlags index="Invulnerable" value="1"/>
         </Modification>
@@ -3726,7 +3742,6 @@
     <CBehaviorBuff id="ShootToMaimLevel1">
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="UnithasMorethan5Energy"/>
         <DamageResponse Handled="ShoottoMaimSetLevel1" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
@@ -3766,7 +3781,6 @@
     <CBehaviorBuff id="ShootToMaimLevel2">
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="UnithasMorethan5Energy"/>
         <DamageResponse Handled="ShoottoMaimSetLevel2" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
@@ -3777,7 +3791,6 @@
     <CBehaviorBuff id="ShootToMaimLevel3">
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="UnithasMorethan5Energy"/>
         <DamageResponse Handled="ShoottoMaimSetLevel3" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
@@ -7507,8 +7520,8 @@
         <Duration value="5"/>
         <DamageResponse ModifyFraction="1.5">
             <RequireEffectArray value="ArmageddonDamage"/>
-            <RequireEffectArray value="VultureSpiderMinesDamage"/>
-            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="WidowMineExplodeSplash"/>
+            <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
             <RequireEffectArray value="NapalmBarrageDamage"/>
@@ -7528,8 +7541,11 @@
             <RequireEffectArray value="L3GrenadeExplosion"/>
             <RequireEffectArray value="LaserRifleDamage"/>
             <RequireEffectArray value="ArmorMeltDamage"/>
-            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
             <RequireEffectArray value="StingerMK3Damage"/>
+            <RequireEffectArray value="SatchelLevel1AftershockDamage"/>
+            <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
+            <RequireEffectArray value="ArmageddonDamageAftershock"/>
+            <RequireEffectArray value="CominginHotDamage"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -7816,8 +7832,8 @@
     <CBehaviorBuff id="FireVulnerabilityLevel1">
         <DamageResponse ModifyFraction="1.5">
             <RequireEffectArray value="ArmageddonDamage"/>
-            <RequireEffectArray value="VultureSpiderMinesDamage"/>
-            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="WidowMineExplodeSplash"/>
+            <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
             <RequireEffectArray value="NapalmBarrageDamage"/>
@@ -7837,8 +7853,11 @@
             <RequireEffectArray value="L3GrenadeExplosion"/>
             <RequireEffectArray value="LaserRifleDamage"/>
             <RequireEffectArray value="ArmorMeltDamage"/>
-            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
             <RequireEffectArray value="StingerMK3Damage"/>
+            <RequireEffectArray value="SatchelLevel1AftershockDamage"/>
+            <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
+            <RequireEffectArray value="ArmageddonDamageAftershock"/>
+            <RequireEffectArray value="CominginHotDamage"/>
             <Chance value="1"/>
         </DamageResponse>
         <Alignment value="Negative"/>
@@ -7850,8 +7869,8 @@
         <Alignment value="Negative"/>
         <DamageResponse ModifyFraction="2">
             <RequireEffectArray value="ArmageddonDamage"/>
-            <RequireEffectArray value="VultureSpiderMinesDamage"/>
-            <RequireEffectArray value="ArmageddonAfterShockDamage"/>
+            <RequireEffectArray value="WidowMineExplodeSplash"/>
+            <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
             <RequireEffectArray value="NapalmBarrageDamage"/>
@@ -7871,8 +7890,11 @@
             <RequireEffectArray value="L3GrenadeExplosion"/>
             <RequireEffectArray value="LaserRifleDamage"/>
             <RequireEffectArray value="ArmorMeltDamage"/>
-            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
             <RequireEffectArray value="StingerMK3Damage"/>
+            <RequireEffectArray value="SatchelLevel1AftershockDamage"/>
+            <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
+            <RequireEffectArray value="ArmageddonDamageAftershock"/>
+            <RequireEffectArray value="CominginHotDamage"/>
             <Chance value="1"/>
         </DamageResponse>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-fireroach-increasefiredamage.dds"/>
@@ -8043,19 +8065,17 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SatchelLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
+        <Duration value="2.5"/>
         <PeriodCount value="1"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Period value="1.3"/>
         <PeriodicEffect value="SatchelBeepDummy"/>
         <ExpireEffect value="SatchelLevel1Set"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SatchelLevel2">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
+        <Duration value="2.5"/>
         <PeriodCount value="1"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Period value="1.3"/>
         <PeriodicEffect value="SatchelBeepDummy"/>
         <ExpireEffect value="SatchelLevel2Set"/>
     </CBehaviorBuff>
@@ -8369,7 +8389,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1"/>
+        <Duration value="0.9"/>
         <DurationRandomMin value="2.5"/>
         <DurationRandomMax value="0.1"/>
         <ExpireEffect value="MasterMarksmanReapplyLockOn"/>

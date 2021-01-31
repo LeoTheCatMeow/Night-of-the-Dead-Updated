@@ -50,6 +50,18 @@
         <EffectArray Reference="Behavior,RepairShieldOvercharge,Modification.VitalMaxArray[Shields]" Value="15"/>
         <MaxLevel value="2"/>
     </CUpgrade>
+    <CUpgrade id="ExplosiveAftershockUpgrade">
+        <EffectArray Reference="Effect,ArmageddonDamageAftershock,Amount" Value="55"/>
+        <EffectArray Reference="Effect,SatchelLevel2AftershockDamage,Amount" Value="28"/>
+        <EffectArray Reference="Effect,SatchelLevel1AftershockDamage,Amount" Value="14"/>
+        <EffectArray Reference="Effect,WidowMineExplodeSplash,AreaArray[0].Fraction" Value="0.1"/>
+        <EffectArray Reference="Effect,ArmageddonDamageAftershock,AttributeBonus[Massive]" Value="55"/>
+        <EffectArray Reference="Effect,SatchelLevel2AftershockDamage,AttributeBonus[Massive]" Value="28"/>
+        <EffectArray Reference="Effect,SatchelLevel2AftershockDamage,AttributeBonus[Structure]" Value="28"/>
+        <EffectArray Reference="Effect,SatchelLevel1AftershockDamage,AttributeFactor[Massive]" Value="14"/>
+        <EffectArray Reference="Effect,SatchelLevel1AftershockDamage,AttributeBonus[Structure]" Value="14"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
     <CUpgrade id="HarvesterofSorrowBonusCrit">
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.25"/>
     </CUpgrade>
@@ -197,6 +209,10 @@
         <AffectedUnitArray value="MobileInfantryRifleman"/>
         <AffectedUnitArray value="MobileInfantryFlamethrower"/>
         <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="NightmareShellUpgrade">
+        <EffectArray Operation="Set" Reference="Abil,FireMission,Cost[0].Charge.CountMax" Value="1700"/>
+        <EffectArray Operation="Set" Reference="Abil,FireMission,Cost[0].Charge.CountStart" Value="1700"/>
     </CUpgrade>
     <CUpgrade id="PerceptionCriticalStrike">
         <Alert value=""/>
