@@ -1125,7 +1125,8 @@
         <Effect index="0" value="BURNSetLevel1"/>
         <Effect value="BURNSetLevel2"/>
         <Cost>
-            <Vital index="Energy" value="10"/>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="1"/>
         </Cost>
         <TargetFilters value="Visible;Self,Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <Range value="9"/>
@@ -2921,8 +2922,8 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="InfernoSet"/>
         <Cost>
-            <Vital index="Energy" value="30"/>
-            <Cooldown TimeUse="15"/>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="20"/>
         </Cost>
         <Range value="12"/>
         <AINotifyEffect value=""/>

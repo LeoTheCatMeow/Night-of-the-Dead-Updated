@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CValidatorUnitCompareBehaviorCount id="BURNFrenzyLimit">
+        <WhichUnit Value="Source"/>
+        <Compare value="LT"/>
+        <Value value="15"/>
+        <Behavior value="BURNFrenzy"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorLocationPathable id="BuildPathing">
         <Types index="Building" value="0"/>
     </CValidatorLocationPathable>

@@ -174,6 +174,20 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="InfernoPeriodic">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.2"/>
+        <Period value="0.1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffect value="InfernoDamage2"/>
+        <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
+            <ExcludeEffectArray value="BurstFireDamageLevel1"/>
+            <ExcludeEffectArray value="BurstFireDamageLevel2"/>
+            <ExcludeEffectArray value="BurstFireDamageLevel3"/>
+            <Chance value="0.4"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalSynthesis">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -486,6 +500,13 @@
             <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BURNFrenzy">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffect value="FrenzyApplyBuffSet"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MasterMarksmanLockOn">
         <Alignment value="Negative"/>
@@ -4800,17 +4821,9 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-jotunboosters.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="5"/>
-        <MaxStackCountPerCaster value="5"/>
+        <MaxStackCount value="10"/>
         <Period value="1"/>
         <PeriodicEffect value="BURNDamageLevel1"/>
-        <Modification>
-            <LifeArmorBonus value="-2"/>
-        </Modification>
-        <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
-            <Chance value="1"/>
-        </DamageResponse>
-        <BehaviorCategories index="User12" value="1"/>
         <Duration value="3.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BURNLevel2">
@@ -4818,22 +4831,9 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-jotunboosters.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="5"/>
-        <MaxStackCountPerCaster value="5"/>
+        <MaxStackCount value="10"/>
         <Period value="1"/>
         <PeriodicEffect value="BURNDamageLevel2"/>
-        <Modification>
-            <LifeArmorBonus value="-2"/>
-            <DeathResponse>
-                <Cost>
-                    <Charge Link="Behavior/BURNLevel1"/>
-                </Cost>
-            </DeathResponse>
-        </Modification>
-        <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
-            <Chance value="1"/>
-        </DamageResponse>
-        <BehaviorCategories index="User12" value="1"/>
         <Duration value="3.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Backstab">
@@ -6111,6 +6111,7 @@
         <PeriodCount value="1"/>
         <PeriodicEffect value="BurstFireDamageLevel1"/>
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
+            <RequireEffectArray value="BurstFireDamageLevel1"/>
             <Chance value="1"/>
         </DamageResponse>
         <FinalEffect value="InfernoRemove"/>
@@ -6123,6 +6124,7 @@
         <PeriodCount value="1"/>
         <PeriodicEffect value="BurstFireDamageLevel2"/>
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
+            <RequireEffectArray value="BurstFireDamageLevel2"/>
             <Chance value="1"/>
         </DamageResponse>
         <FinalEffect value="InfernoRemove"/>
@@ -6135,6 +6137,7 @@
         <PeriodCount value="1"/>
         <PeriodicEffect value="BurstFireDamageLevel3"/>
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
+            <RequireEffectArray value="BurstFireDamageLevel3"/>
             <Chance value="1"/>
         </DamageResponse>
         <FinalEffect value="InfernoRemove"/>
@@ -6459,12 +6462,11 @@
         <DisplayDuration index="Enemy" value="1"/>
         <ExpireEffect value="InfernoDamageSet"/>
         <FinalEffect value="InfernoDamageSet"/>
-        <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
-            <Chance value="0.3"/>
-        </DamageResponse>
         <Period value="1"/>
-        <PeriodicEffect value="InfernoDamage2"/>
+        <PeriodicEffect value="InfernoPeriodicSearch"/>
         <Modification MoveSpeedMultiplier="0.5"/>
+        <PeriodCount value="4"/>
+        <InitialEffect value="InfernoPeriodicSearch"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MercAirDropC">
         <FinalEffect value="MoveOrderOffset"/>

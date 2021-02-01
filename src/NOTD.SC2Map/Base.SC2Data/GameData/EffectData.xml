@@ -136,6 +136,25 @@
         <SpawnOwner Value="Neutral"/>
         <SpawnUnit value="NukeRevealDummy"/>
     </CEffectCreateUnit>
+    <CEffectApplyBehavior id="InfernoApplyPeriodic">
+        <EditorCategories value=""/>
+        <Behavior value="InfernoPeriodic"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BURNApplyFrenzyBuff">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="BURNFrenzy"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="BURNApplySetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="BURNApplyLevel1"/>
+        <EffectArray value="BURNApplyFrenzyBuff"/>
+    </CEffectSet>
+    <CEffectSet id="BURNApplySetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="BURNApplyLevel2"/>
+        <EffectArray value="BURNApplyFrenzyBuff"/>
+    </CEffectSet>
     <CEffectEnumArea id="SentinelMineLimit">
         <EditorCategories value=""/>
         <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
@@ -595,7 +614,7 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="SyncModuleBuffSearchArea">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,Heroic,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Heroic,Worker,RawResource,HarvestableResource,Missile,Item,Buried,UnderConstruction,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="8" Effect="SyncModuleApplyBuff2"/>
     </CEffectEnumArea>
     <CEffectDamage id="CriticalDamage">
@@ -726,20 +745,6 @@
         <BehaviorLink value="Venom"/>
         <Count value="1"/>
     </CEffectRemoveBehavior>
-    <CEffectApplyBehavior id="FrenzyApplyBuffLevel12">
-        <ValidatorArray index="0" value="FrenzyLevel12"/>
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-        <Behavior value="FrenzyBuffLevel1"/>
-        <Count value="10"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="FrenzyApplyBuffLevel22">
-        <ValidatorArray index="0" value="FrenzyLevel22"/>
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-        <Behavior value="FrenzyBuffLevel2"/>
-        <Count value="10"/>
-    </CEffectApplyBehavior>
     <CEffectDamage id="GuassRifle">
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
@@ -758,6 +763,7 @@
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AttributeBonus index="Armored" value="60"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage3">
         <EditorCategories value=""/>
@@ -790,6 +796,7 @@
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <AttributeBonus index="Armored" value="4"/>
     </CEffectDamage>
     <CEffectEnumArea id="InfernoSearchTargetChain">
         <EditorCategories value=""/>
@@ -806,10 +813,10 @@
         <EffectArray value="InfernoDamage3"/>
         <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
-    <CEffectEnumArea id="InfernoSearchTargetCreateNapalm">
+    <CEffectEnumArea id="InfernoPeriodicSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="Ground,Armored,Biological;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="3" Effect="InfernoApplyChainTarget"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
+        <AreaArray Radius="3" Effect="InfernoApplyPeriodic"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
     </CEffectEnumArea>
     <CEffectModifyUnit id="KittenDefaultSkin">
@@ -1522,21 +1529,21 @@
     </CEffectDamage>
     <CEffectEnumArea id="CominginHotSearchLevel1">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AreaArray Radius="3" Effect="CominginHotSet"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="CominginHotSearchLevel2">
         <EditorCategories value=""/>
         <Marker Link="Effect/CominginHotSearchLevel1"/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AreaArray Radius="3.5" Effect="CominginHotSet"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="CominginHotSearchLevel3">
         <EditorCategories value=""/>
         <Marker Link="Effect/CominginHotSearchLevel1"/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AreaArray Radius="4" Effect="CominginHotSet"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
@@ -6814,14 +6821,14 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="BURNDamageLevel1">
         <EditorCategories value=""/>
-        <Amount value="40"/>
+        <Amount value="20"/>
         <Death value="Fire"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="BURNDamageLevel2">
         <EditorCategories value=""/>
-        <Amount value="40"/>
+        <Amount value="20"/>
         <Death value="Fire"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
@@ -6834,10 +6841,10 @@
         <Flags index="Channeled" value="1"/>
         <Flags index="PersistUntilDestroyed" value="1"/>
         <InitialEffect value="BURNApplyLevel1"/>
-        <PeriodCount value="5"/>
+        <PeriodCount value="10"/>
         <PeriodicValidator value="NotDeadandNotInvulnerableBurn"/>
-        <PeriodicEffectArray value="BURNApplyLevel1"/>
-        <PeriodicPeriodArray value="1"/>
+        <PeriodicEffectArray value="BURNApplySetLevel1"/>
+        <PeriodicPeriodArray value="0.8"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="BURNPersistentLevel2">
         <ValidatorArray value="NotDead"/>
@@ -6847,9 +6854,9 @@
         <Flags index="Channeled" value="1"/>
         <Flags index="PersistUntilDestroyed" value="1"/>
         <InitialEffect value="BURNApplyLevel2"/>
-        <PeriodCount value="5"/>
+        <PeriodCount value="10"/>
         <PeriodicValidator value="NotDeadandNotInvulnerableBurn"/>
-        <PeriodicEffectArray value="BURNApplyLevel2"/>
+        <PeriodicEffectArray value="BURNApplySetLevel2"/>
         <PeriodicPeriodArray value="0.4"/>
     </CEffectCreatePersistent>
     <CEffectSet id="BURNSetLevel1">
@@ -9607,8 +9614,6 @@
         <EffectArray value="InfernoPersistentSearch4"/>
         <EffectArray value="InfernoPersistentSearch5"/>
         <EffectArray value="InfernoSearchTargetPersistent"/>
-        <EffectArray value="FrenzyApplyBuffLevel12"/>
-        <EffectArray value="FrenzyApplyBuffLevel22"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectCreatePersistent id="Initial">

@@ -8932,7 +8932,7 @@ point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRan
 bool gf_CPDecayFactor () {
     // Automatic Variable Declarations
     // Implementation
-    if ((((gv_nightmare == true) && (RandomInt(1, 100) <= 15)) || ((gv_nightmare == false) && (gv_isVeteranSquad == true) && (RandomInt(1, 100) <= 15)) || ((gv_nightmare == false) && (gv_isVeteranSquad == false) && (RandomInt(1, 100) <= 15)))) {
+    if ((((gv_nightmare == true) && (RandomInt(1, 100) <= 10)) || ((gv_nightmare == false) && (gv_isVeteranSquad == true) && (RandomInt(1, 100) <= 10)) || ((gv_nightmare == false) && (gv_isVeteranSquad == false) && (RandomInt(1, 100) <= 10)))) {
         return true;
     }
     else {
@@ -46360,7 +46360,7 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
 
     auto4111D9D3_var = gv_indexBaseValue;
     for ( ; auto4111D9D3_var <= auto4111D9D3_ae; auto4111D9D3_var += 1 ) {
-        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && gv_playerRandom[auto4111D9D3_var] && (!(gv_isVeteranSquad))) {
+        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && gv_playerRandom[auto4111D9D3_var] && (!(gv_nightmare))) {
             UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, StringExternal("Param/Value/FF26767E"));
             gf_UpdateKarma(auto4111D9D3_var, 1);
             continue;
