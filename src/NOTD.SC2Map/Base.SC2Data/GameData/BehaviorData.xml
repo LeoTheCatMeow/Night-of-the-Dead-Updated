@@ -210,13 +210,20 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="CinematicInvulnerability">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="CominginHotDOTLevel2">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <BuffFlags index="RefreshStack" value="1"/>
         <MaxStackCount value="5"/>
-        <Duration value="15"/>
+        <Duration value="10"/>
         <Period value="0.25"/>
         <PeriodicEffect value="CominginHotDamage"/>
     </CBehaviorBuff>
@@ -233,7 +240,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <BuffFlags index="RefreshStack" value="1"/>
         <MaxStackCount value="5"/>
-        <Duration value="15"/>
+        <Duration value="10"/>
         <Period value="0.5"/>
         <PeriodicEffect value="CominginHotDamage"/>
     </CBehaviorBuff>

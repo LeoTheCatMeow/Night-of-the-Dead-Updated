@@ -140,7 +140,7 @@
         <EditorCategories value=""/>
         <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
         <AreaArray Radius="500" Effect="SentinelMineLimitApply"/>
-        <MinCount value="15"/>
+        <MinCount value="7"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ArmageddonBombLimitApply">
         <EditorCategories value=""/>
@@ -1104,7 +1104,7 @@
     <CEffectDamage id="WidowMineExplodeSplash">
         <ValidatorArray index="0" removed="1"/>
         <ShieldBonus value="0"/>
-        <Amount value="30"/>
+        <Amount value="60"/>
         <AreaArray Radius="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
         <SearchFlags index="CallForHelp" value="0"/>
@@ -1116,7 +1116,7 @@
         <ArmorReduction value="0.5"/>
         <Kind value="Spell"/>
         <KindSplash value="Splash"/>
-        <Amount value="5"/>
+        <Amount value="10"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectEnumArea id="WidowMineExplodeSplashSearch">
@@ -1516,8 +1516,8 @@
     <CEffectDamage id="CominginHotDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <AttributeBonus index="Heroic" value="10"/>
-        <Amount value="10"/>
+        <AttributeBonus index="Heroic" value="8"/>
+        <Amount value="8"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectEnumArea id="CominginHotSearchLevel1">

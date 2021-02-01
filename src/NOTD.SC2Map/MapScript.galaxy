@@ -2234,7 +2234,7 @@ trigger gt_ZombieDeathEffects;
 trigger gt_InfestorKilled;
 trigger gt_InfestorAmbientSpawns;
 trigger gt_InfestorAI;
-trigger gt_ClearImmortalEnemies;
+trigger gt_ClearImmortalEnemiesObsolete;
 trigger gt_OutbreakSpawn;
 trigger gt_EliteMutation;
 trigger gt_EliteMutationBoss;
@@ -9744,7 +9744,10 @@ bool gf_PreCinematicProcessing () {
         for (;; auto50F7BEB9_u -= 1) {
             auto50F7BEB9_var = UnitGroupUnitFromEnd(auto50F7BEB9_g, auto50F7BEB9_u);
             if (auto50F7BEB9_var == null) { break; }
-            libNtve_gf_MakeUnitInvulnerable(auto50F7BEB9_var, true);
+            if ((UnitGetType(auto50F7BEB9_var) != "Kitten")) {
+                UnitBehaviorAdd(auto50F7BEB9_var, "CinematicInvulnerability", auto50F7BEB9_var, 1);
+            }
+
             libNtve_gf_PauseUnit(auto50F7BEB9_var, true);
         }
     }
@@ -9905,7 +9908,7 @@ bool gf_PostCinematicProcessing () {
             autoE3D2E958_var = UnitGroupUnitFromEnd(autoE3D2E958_g, autoE3D2E958_u);
             if (autoE3D2E958_var == null) { break; }
             if ((UnitGetType(autoE3D2E958_var) != "Kitten")) {
-                libNtve_gf_MakeUnitInvulnerable(autoE3D2E958_var, false);
+                UnitBehaviorRemove(autoE3D2E958_var, "CinematicInvulnerability", 1);
             }
 
             libNtve_gf_PauseUnit(autoE3D2E958_var, false);
@@ -11077,7 +11080,7 @@ bool auto_gf_ECNydusSpawn_TriggerFunc (bool testConds, bool runActions) {
         }
 
         Wait(0.1, c_timeGame);
-        libNtve_gf_UnitCreateFacingPoint(1, "Ultralisk", 0, 14, RegionRandomPoint(gv_nydusNetwork[lv_nydusSpawnAreas[lv_localIntA]]), RegionRandomPoint(RegionPlayableMap()));
+        libNtve_gf_UnitCreateFacingPoint(1, "Ultralisk", 0, 14, RegionGetCenter(gv_nydusNetwork[lv_nydusSpawnAreas[lv_localIntA]]), RegionRandomPoint(RegionPlayableMap()));
         UnitGroupAdd(gv_nydusWormAgronGroup, UnitLastCreated());
         AIAttackWaveAddEscortUnit(14, UnitLastCreated(), lv_lastcreatedworm, 3.0, 270.0);
         PingCreate(PlayerGroupActive(), "PingObjective", RegionGetCenter(gv_nydusNetwork[lv_nydusSpawnAreas[lv_localIntA]]), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 300.0);
@@ -15505,13 +15508,13 @@ void gf_LevelUpTalentDemolitions (int lp_itemNo, unit lp_triggUnit, int lp_trigg
     if ((lp_itemNo == 1)) {
         TechTreeAbilityAllow(lp_triggPlayer, AbilityCommand("MakeExplosives", 0), true);
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
-            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeSplash", "Amount", lp_triggPlayer, "45");
-            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeDamageFriendly", "Amount", lp_triggPlayer, "7.5");
+            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeSplash", "Amount", lp_triggPlayer, "90");
+            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeDamageFriendly", "Amount", lp_triggPlayer, "15");
         }
 
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 3)) {
-            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeSplash", "Amount", lp_triggPlayer, "60");
-            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeDamageFriendly", "Amount", lp_triggPlayer, "10");
+            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeSplash", "Amount", lp_triggPlayer, "120");
+            CatalogFieldValueSet(c_gameCatalogEffect, "WidowMineExplodeDamageFriendly", "Amount", lp_triggPlayer, "20");
         }
 
     }
@@ -22384,9 +22387,9 @@ void gt_InfestorAI_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Clear Immortal Enemies
+// Trigger: Clear Immortal Enemies (Obsolete)
 //--------------------------------------------------------------------------------------------------
-bool gt_ClearImmortalEnemies_Func (bool testConds, bool runActions) {
+bool gt_ClearImmortalEnemiesObsolete_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     unitgroup auto3028720B_g;
     int auto3028720B_u;
@@ -22424,9 +22427,10 @@ bool gt_ClearImmortalEnemies_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_ClearImmortalEnemies_Init () {
-    gt_ClearImmortalEnemies = TriggerCreate("gt_ClearImmortalEnemies_Func");
-    TriggerAddEventTimePeriodic(gt_ClearImmortalEnemies, 15.0, c_timeGame);
+void gt_ClearImmortalEnemiesObsolete_Init () {
+    gt_ClearImmortalEnemiesObsolete = TriggerCreate("gt_ClearImmortalEnemiesObsolete_Func");
+    TriggerEnable(gt_ClearImmortalEnemiesObsolete, false);
+    TriggerAddEventTimePeriodic(gt_ClearImmortalEnemiesObsolete, 15.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -28116,12 +28120,13 @@ bool gt_ECHulkCounter_Func (bool testConds, bool runActions) {
     }
 
     gv_civHulks += IntToFixed(gv_spawnFactor);
+    Wait(5.0, c_timeReal);
     for (autoD77F1086_i = 1; autoD77F1086_i <= autoD77F1086_n; autoD77F1086_i += 1) {
-        Wait(1.0, c_timeGame);
+        Wait(1.0, c_timeReal);
         if (gv_colonyShipRescue) {
             return true;
         }
-        gv_civHulks += (IntToFixed(gv_spawnFactor) * 0.33);
+        gv_civHulks += (IntToFixed(gv_spawnFactor) * 0.15);
     }
     return true;
 }
@@ -46720,7 +46725,7 @@ void InitTriggers () {
     gt_InfestorKilled_Init();
     gt_InfestorAmbientSpawns_Init();
     gt_InfestorAI_Init();
-    gt_ClearImmortalEnemies_Init();
+    gt_ClearImmortalEnemiesObsolete_Init();
     gt_OutbreakSpawn_Init();
     gt_EliteMutation_Init();
     gt_EliteMutationBoss_Init();

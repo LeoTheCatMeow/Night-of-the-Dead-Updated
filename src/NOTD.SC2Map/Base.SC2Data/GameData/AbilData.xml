@@ -92,12 +92,12 @@
         <Cost>
             <Vital index="Energy" value="25"/>
             <Charge>
-                <CountMax value="30"/>
+                <CountMax value="20"/>
                 <CountUse value="-2"/>
                 <Link value="Abil/BuildMines"/>
                 <Location value="Unit"/>
             </Charge>
-            <Cooldown TimeUse="1"/>
+            <Cooldown TimeUse="0.5"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="MakeExplosives"/>
     </CAbilEffectInstant>
@@ -261,13 +261,13 @@
         <Effect index="0" value="ArmageddonCreateUnit"/>
         <Cost>
             <Charge>
-                <CountMax value="30"/>
+                <CountMax value="20"/>
                 <CountUse value="2"/>
                 <HideCount value="1"/>
                 <Link value="Abil/BuildMines"/>
                 <Location value="Unit"/>
             </Charge>
-            <Cooldown TimeUse="3"/>
+            <Cooldown TimeUse="5"/>
         </Cost>
         <Range value="13"/>
         <CursorEffect value="ArmageddonSearchDamageEnemy"/>
@@ -1109,7 +1109,7 @@
         <Effect index="0" value="NoQuarterLaunch"/>
         <Cost>
             <Vital index="Energy" value="25"/>
-            <Cooldown Link="Abil/Charge2" TimeUse="20"/>
+            <Cooldown Link="Abil/Charge2" TimeUse="30"/>
         </Cost>
         <Range value="12"/>
         <EffectRange index="0" value="3,15"/>
@@ -2184,6 +2184,7 @@
             <Cooldown Link="Abil/TimetoDie" TimeUse="60"/>
         </Cost>
         <BehaviorArray value="Armageddon"/>
+        <Flags index="BestUnit" value="1"/>
     </CAbilBehavior>
     <CAbilBehavior id="IronHand">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4294,14 +4295,16 @@
     <CAbilEffectTarget id="VultureSpiderMines">
         <Cost index="0">
             <Charge>
-                <CountMax value="30"/>
+                <CountMax value="20"/>
                 <CountStart value="0"/>
+                <CountUse value="2"/>
                 <HideCount value="1"/>
                 <Link value="Abil/BuildMines"/>
             </Charge>
             <Cooldown TimeUse="0.3"/>
         </Cost>
         <Placeholder value="WidowMineBurrowed"/>
+        <Range index="0" value="6"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="WeaponExpertise">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4314,17 +4317,16 @@
     <CAbilEffectTarget id="WidowMineAttack">
         <Cost index="0">
             <Charge>
-                <CountMax value="4"/>
-                <CountStart value="4"/>
+                <CountMax value="7"/>
+                <CountStart value="7"/>
                 <CountUse value="1"/>
                 <Link value="Abil/WidowMineAttackCharge"/>
             </Charge>
             <Cooldown TimeUse="4"/>
         </Cost>
-        <Range index="0" value="4"/>
-        <AutoCastRange value="4"/>
         <AutoCastValidatorArray index="0" value="NotHallucinationOrNotDetected"/>
         <AutoCastValidatorArray index="1" removed="1"/>
+        <PrepTime index="0" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="X1Guardian">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -4698,7 +4700,7 @@
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Charge>
-                <CountMax value="30"/>
+                <CountMax value="20"/>
                 <CountUse value="1"/>
                 <HideCount value="1"/>
                 <Link value="Abil/BuildMines"/>
@@ -4708,7 +4710,6 @@
         </Cost>
         <Range value="9"/>
         <AutoCastFilters value="-;-"/>
-        <PrepTime value="0.5"/>
         <CancelableArray index="Approach" value="1"/>
         <CursorEffect value="SatchelLevel1SearchEnemy"/>
         <AINotifyEffect value=""/>
