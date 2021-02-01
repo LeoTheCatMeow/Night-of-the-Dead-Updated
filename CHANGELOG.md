@@ -6,7 +6,7 @@
 - Enabled transient for faith ability.
 
 [LeoTheCat]
-- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 6 times when deployed, max 7 on the battelfield.
+- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 7 times when deployed, max 7 on the battelfield.
 - Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
 - Demo's explosive abilities consume charges from Make Explosives.
 - Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
