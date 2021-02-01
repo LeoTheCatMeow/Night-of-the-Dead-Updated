@@ -6,8 +6,9 @@
 - Enabled transient for faith ability.
 
 [LeoTheCat]
-- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 4 times when deployed, max 15 on the battelfield.
+- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 6 times when deployed, max 7 on the battelfield.
 - Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
+- Demo's explosive abilities consume charges from Make Explosives.
 - Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
 - When exceeding the number limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the farthest one will be destroyed.
 - Demo's Satchel now activates within 3 seconds instead of 5 seconds.
@@ -22,9 +23,11 @@
 - Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
 - Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
 - Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
-- Pathfinder - Coming in Hot's DOT improved to 20/40 DPS, 15 seconds, 5 stacks max, 2x against Heroic, all stacks refresh when re-applied.
-- Pathfinder - No Quarter cooldown reduced from 45 to 20, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
+- Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks, refreshable.
+- Pathfinder - No Quarter cooldown reduced from 45 to 30, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
 - Pathfinder - Shoot To Maim energy cost per shot removed.
+- Agrons that guard nydus worms in EC are now spawned right next to the worms, making them less likely to block off zombies.
+- Players now have more time to rescue the civillians in EC before too many of them get infected.
 
 2021-1-23
 [ReduxGelum]
