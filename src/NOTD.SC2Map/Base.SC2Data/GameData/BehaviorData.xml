@@ -1490,7 +1490,9 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="CrawlerDroneLimit">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <InitialEffect value="CrawlerDroneLimit"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.2"/>
+        <ExpireEffect value="CrawlerDroneLimitKill"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PlayerLives">
         <InfoFlags index="Hidden" value="1"/>
@@ -1868,8 +1870,9 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="FieldProbeLimit">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <InitialEffect value="FieldProbeLimit"/>
         <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.2"/>
+        <ExpireEffect value="FieldProbeLimitKill"/>
     </CBehaviorBuff>
     <CBehaviorAttribute id="FlamerEquipped">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2790,8 +2793,9 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="TowerLimit">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <InitialEffect value="TowerLimit"/>
         <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.2"/>
+        <ExpireEffect value="TowerLimitKill"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="TransfusionOvertimeHeal">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -5919,7 +5923,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="300" LevelGainEffect="AddPetDetection5">
+        <VeterancyLevelArray MinVeterancyXP="300">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="0.5"/>
                 <DamageDealtUnscaled index="Melee" value="0.5"/>
@@ -5942,7 +5946,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.121"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="550" LevelGainEffect="AddBackstab">
+        <VeterancyLevelArray MinVeterancyXP="550">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="0.5"/>
                 <DamageDealtUnscaled index="Melee" value="0.5"/>
@@ -5965,7 +5969,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1464"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="800" LevelGainEffect="Level7WeaponChange">
+        <VeterancyLevelArray MinVeterancyXP="800">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="0.5"/>
                 <DamageDealtUnscaled index="Melee" value="0.5"/>
@@ -5976,7 +5980,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1611"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="1050" LevelGainEffect="Level8Armor">
+        <VeterancyLevelArray MinVeterancyXP="1050">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="1"/>
                 <DamageDealtUnscaled index="Melee" value="1"/>
@@ -5987,7 +5991,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1772"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="1200" LevelGainEffect="Level9Radar">
+        <VeterancyLevelArray MinVeterancyXP="1200">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="1"/>
                 <DamageDealtUnscaled index="Melee" value="1"/>
@@ -6009,7 +6013,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.2143"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="2000" LevelGainEffect="Level11CloakField">
+        <VeterancyLevelArray MinVeterancyXP="2000">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="1"/>
                 <DamageDealtUnscaled index="Melee" value="1"/>
@@ -6184,7 +6188,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="2" LevelGainEffect="">
+        <VeterancyLevelArray index="2">
             <Modification DetectBonus="5">
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6218,7 +6222,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="4">
+        <VeterancyLevelArray index="4" LevelGainEffect="AddBackstab">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6252,7 +6256,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="6" LevelGainEffect="">
+        <VeterancyLevelArray index="6">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6269,7 +6273,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="7">
+        <VeterancyLevelArray index="7" LevelGainEffect="Level8Armor">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6286,7 +6290,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="8">
+        <VeterancyLevelArray index="8" LevelGainEffect="Level9Radar">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6314,7 +6318,7 @@
                 <DamageDealtUnscaled index="Splash" value="0"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="10" LevelGainEffect="">
+        <VeterancyLevelArray index="10">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>

@@ -262,7 +262,7 @@
         <Cost>
             <Charge>
                 <CountMax value="20"/>
-                <CountUse value="2"/>
+                <CountUse value="3"/>
                 <HideCount value="1"/>
                 <Link value="Abil/BuildMines"/>
                 <Location value="Unit"/>
@@ -272,6 +272,7 @@
         <Range value="13"/>
         <CursorEffect value="ArmageddonSearchDamageEnemy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Armageddon"/>
+        <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="BringThemDown">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1114,6 +1115,7 @@
         <Range value="12"/>
         <EffectRange index="0" value="3,15"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="NoQuarter"/>
+        <CursorEffect value="NoQuarterSearchDummy"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="ImprovedCoolantLines">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1125,7 +1127,7 @@
         <Effect index="0" value="BURNSetLevel1"/>
         <Effect value="BURNSetLevel2"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="1"/>
         </Cost>
         <TargetFilters value="Visible;Self,Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
@@ -1317,6 +1319,17 @@
             <Cooldown TimeUse="1"/>
         </Cost>
         <BehaviorArray value="FieldProbePenetrateWeaponOn"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="CloakField">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="OracleCloakField" Requirements="CloakField"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="OracleCloakField" Requirements="CloakField"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <BehaviorArray value="CloakField"/>
     </CAbilBehavior>
     <CAbilBehavior id="StealthIvax">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1617,6 +1630,7 @@
         <CursorEffect value="ScorchedEarthEstimatedSearch"/>
         <EffectRange index="0" value="0,500"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ScorchedEarth"/>
+        <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="ShoottoMaim">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -2922,7 +2936,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="InfernoSet"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="25"/>
             <Cooldown TimeUse="20"/>
         </Cost>
         <Range value="12"/>
@@ -3121,6 +3135,7 @@
         <LevelButtonTooltip value="Fire Mission Level 2"/>
         <LevelButtonTooltip value="Fire Mission Level 3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="FireMission"/>
+        <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="InfantrySpecialization">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3244,6 +3259,7 @@
         <CursorEffect value="ArtillerySearchAreaDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="NapalmBarrage"/>
         <Flags index="RequireTargetVision" value="0"/>
+        <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="OdinBarrage">
         <Flags index="RequireTargetVision" value="0"/>
@@ -3281,6 +3297,7 @@
         <CursorEffect value="ArtillerySearchAreaDummy"/>
         <LevelButtonTooltip value="Level 2 Shockwave Barrage"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ShockwaveBarrage"/>
+        <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
     </CAbilEffectTarget>
     <CAbilTrain id="SummonMercenaries"/>
     <CAbilEffectTarget id="SurveillanceFlare">
@@ -3804,6 +3821,7 @@
         <ShowProgressArray index="Prep" value="1"/>
         <ProgressButtonArray index="Prep" value="TacticalNuke"/>
         <PrepTime value="0"/>
+        <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="ReaperMK13">
         <Alignment value="Positive"/>
@@ -4255,12 +4273,16 @@
     </CAbilMorph>
     <CAbilBehavior id="Vengeance">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="On" DefaultButtonFace="VengeanceLevel1">
+        <CmdButtonArray index="On" DefaultButtonFace="VengeanceOn">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="VengeanceOff"/>
         <BehaviorArray value="VengeanceLevel1"/>
         <BehaviorArray value="VengeanceLevel2"/>
         <BehaviorArray value="VengeanceLevel3"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="ToggledOn" value="1"/>
+        <Flags index="Transient" value="1"/>
     </CAbilBehavior>
     <CAbilEffectTarget id="GravityGrenade">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4800,7 +4822,6 @@
         <CmdButtonArray index="Off" DefaultButtonFace="Cancel2222">
             <Flags index="IgnoreUser" value="1"/>
         </CmdButtonArray>
-        <AutoCastValidatorArray value="IsNotRealism"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="ConcentratedFire">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>

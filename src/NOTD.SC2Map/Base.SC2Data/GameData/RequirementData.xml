@@ -83,6 +83,10 @@
         <NodeArray index="Use" Link="GTECountBehaviorPetVeterancyCompleteOnlyAtUnit10"/>
         <NodeArray index="Show" Link="GTECountBehaviorPetVeterancyCompleteOnlyAtUnit10"/>
     </CRequirement>
+    <CRequirement id="CloakField">
+        <NodeArray index="Use" Link="GTECountBehaviorPetVeterancyCompleteOnlyAtUnit11"/>
+        <NodeArray index="Show" Link="GTECountBehaviorPetVeterancyCompleteOnlyAtUnit11"/>
+    </CRequirement>
     <CRequirement id="PistolEquipped">
         <CanBeSuppressed index="Use" value="0"/>
         <NodeArray index="Use" Link="GTECountBehaviorPistolEquippedCompleteOnly1"/>

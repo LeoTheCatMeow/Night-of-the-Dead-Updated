@@ -58,6 +58,7 @@ Abil/Name/Charge2=Charge
 Abil/Name/ChemicalExtraction=Chemical Extraction
 Abil/Name/ChemicalPlating=Chemical Plating
 Abil/Name/Chew=Chew
+Abil/Name/CloakField=Cloak Field
 Abil/Name/Cohesion=Cohesion
 Abil/Name/CombatKnife=Combat Knife
 Abil/Name/ComingInHot=Coming In Hot
@@ -506,7 +507,6 @@ Behavior/Name/ConcentrationLevel2=Concentration (Level 2)
 Behavior/Name/ConcentrationLevel3=Concentration (Level 3)
 Behavior/Name/Corrosion=Corrosion
 Behavior/Name/CorrosiveAcid=Corrosive Acid
-Behavior/Name/CrawlerDroneLimit=Crawler Drone Limit
 Behavior/Name/Cripple=Cripple
 Behavior/Name/CriticalStrikeLevel1Dummy=Critical Strike Level 1 (Dummy)
 Behavior/Name/CriticalStrikeLevel1Dummy2=Critical Strike Level 2 (Dummy)
@@ -1522,6 +1522,8 @@ Button/Name/VRL772=VRL-772
 Button/Name/VengeanceLevel1=Vengeance (Level 1)
 Button/Name/VengeanceLevel2=Vengeance (Level 2)
 Button/Name/VengeanceLevel3=Vengeance (Level 3)
+Button/Name/VengeanceOff=Vengeance Off
+Button/Name/VengeanceOn=Vengeance On
 Button/Name/VeteransFocus=Veteran's Focus
 Button/Name/Violet=Violet
 Button/Name/VolatileInjection=Volatile Injection
@@ -1554,13 +1556,13 @@ Button/Tooltip/AnticipationLevel1=7 radius aura. Deals +15% extra damage when ta
 Button/Tooltip/AnticipationLevel2=7 radius aura. Deals +30% extra damage when target is more than 9 distance away.
 Button/Tooltip/Apoptosis=A creature capable of producing nightmares.
 Button/Tooltip/ArchonPet=Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/Armageddon=Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper
+Button/Tooltip/Armageddon=Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 3 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper
 Button/Tooltip/ArmageddonBomb=
 Button/Tooltip/Assault=
 Button/Tooltip/AssaultJump=Utilizing his jetpack, the Pathfinder takes to the skies and then slams down on enemies, dealing a large amount of damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time.<n/><n/>Level 1 -- 150 damage, 8 range, AOE 3, grants 80% evasion for 1 second
 Button/Tooltip/Athena=
 Button/Tooltip/Attack2=Orders selected units to move to the target point, fighting nearby enemies along the way. Targeting a unit with the Attack command orders that it be attacked until it is destroyed.
-Button/Tooltip/BURN=The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 1 - +20 DPS/tick, 0.8s/tick.<n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled.<n/>BURN! damage caps out at a maximum of 200 DPS.
+Button/Tooltip/BURN=The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 1 - +20 DPS/tick, 0.8s/tick.<n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled. BURN! damage caps out at a maximum of 200 DPS.
 Button/Tooltip/Backpack=Your backpack carries supplies.<n/><n/>You need to equip Weapons/Armor/Enhancements on your Marine to use them.
 Button/Tooltip/BadKarma=Reduces target player's Karma by 1.
 Button/Tooltip/Bandage=<c val="FFFF00">Fibrin Bandage</c><n/>Instantly heals 50 HP. Also removes 1 stack of Open Wounds.<n/><n/>Credits: <c val="FFFFFF">15</c>
@@ -1752,7 +1754,7 @@ Button/Tooltip/Inception=The universe around you slows down. You are free to act
 Button/Tooltip/IncompleteIvax=Heavy assault mech. Can use 250mm Strike Cannons.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/InfantrySpecializationLevel1=Allows Mobile Infantry to land Flamethrowers. You can customize your drop team in a sub-menu.
 Button/Tooltip/InfantrySpecializationLevel2=Allows Mobile Infantry to land Snipers. You can customize your drop team in a sub-menu.
-Button/Tooltip/Inferno=Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing 200 damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville
+Button/Tooltip/Inferno=Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing <d ref="Effect,InfernoDamage,Amount"/> damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville
 Button/Tooltip/InfestedAbomination=An abomination that is capable of ranged attacks.
 Button/Tooltip/InfestedCocoon=Zombie cocoon. Destroy it before it can hatch.
 Button/Tooltip/InfestedColonistShip=Colony Ship that has been Infested. Likely used as a massive nest and breeding ground.
@@ -1848,6 +1850,7 @@ Button/Tooltip/OcularImplants2=<c val="FFFF00">Ocular Implants</c><n/>Increases 
 Button/Tooltip/Ogilvy=Local Miner. The backbone of the economy.
 Button/Tooltip/OneShotOneKill=Deals 400 damage to target unit. <n/><n/> +30% damage with Barrett equipped. Procs Concentration
 Button/Tooltip/OpenCockpit=Technician opens cockpit. Due to life support systems not having to work as hard, gains increased energy regeneration of 1 energy/sec.
+Button/Tooltip/OracleCloakField=Toggle pet Cloak Field.
 Button/Tooltip/Orange=Changes Marine color to <c val="FF8000">Orange</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/OrbitalLaser=
 Button/Tooltip/Overdrive=X-1 Guardian activates its devastating twin plasma turrets. Lasts 20 seconds.
@@ -1912,6 +1915,7 @@ Button/Tooltip/SalineIV=Heals self and 1 other most wounded ally marine in 3 rad
 Button/Tooltip/SalineIVMini=Heals self and 1 other most wounded ally marine in 3 radius for 40 HP. Removes 1 stack of venom.
 Button/Tooltip/Sap=Stuns target for 7 seconds. Bosses are stunned for 3 seconds. Damage taken breaks Sap.
 Button/Tooltip/Satchel=Plants a timed explosive that detonates in 3 seconds, dealing 140 damage in 4 radius. Deals 2x damage to massive units & structures.<n/><n/>Costs 1 explosive charge per use. <n/><c val="FF0000">Explosion deals 35% friendly fire damage.</c>
+Button/Tooltip/SatchelIVAX=Plants a timed explosive that detonates in 5 sec, dealing 135 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/SatchelLevel1=Plants a timed explosive that detonates in 5 sec, dealing 135 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/SatchelLevel2=Plants a timed explosive that detonates in 5 sec, dealing 270 damage in 4 radius.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/Scope=Marksman front vision (120 radius cone) increased by 4.
@@ -2007,6 +2011,8 @@ Button/Tooltip/VRL772=VRL fires in a straight line, dealing 150 damage + 25 per 
 Button/Tooltip/VengeanceLevel1=15% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
+Button/Tooltip/VengeanceOff=Disable Vengeance, preventing attackers from getting stunned.
+Button/Tooltip/VengeanceOn=Activate Vengeance, any attacker has a chance to be stunned (including yourself).
 Button/Tooltip/VeteransFocus=Grants a biological unit +4 Sight Range and +15% attack damage for 30 seconds.
 Button/Tooltip/Violet=Changes Marine color to <c val="8000FF">Violet</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/VolatileInjection=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.
@@ -2060,12 +2066,16 @@ DocInfo/PatchNote001=- Pathfinder - Shoot To Maim energy cost per shot removed.
 DocInfo/PatchNote002=- Agrons that guard nydus worms in EC are now spawned right next to the worms, making them less likely to block off zombies.
 DocInfo/PatchNote003=- Players now have more time to rescue the civillians in EC before too many of them get infected.
 DocInfo/PatchNote004=[LeoTheCat]
-DocInfo/PatchNote005=- Flamethrower - BURN! no longer reduces armor, now generates Frenzy during channel, faster at Level 2, energy cost increased from 10 to 20.
-DocInfo/PatchNote006=- Flamethrower - Inferno damage improved from 150 to 150 + 40% vs Armored. Cost reduced from 30 to 20. Cooldown increased from 15 to 20.
+DocInfo/PatchNote005=- Flamethrower - BURN! no longer reduces armor, now generates Frenzy during channel, faster at Level 2, energy cost increased from 10 to 15.
+DocInfo/PatchNote006=- Flamethrower - Inferno damage improved from 150 to 150 + 40% vs Armored. Cost reduced from 30 to 25. Cooldown increased from 15 to 20.
 DocInfo/PatchNote007=- Flamethrower - Inferno no longer grants 10 Frenzy on cast, Inferno kill Frenzy chance improved from 30% to 40%.
 DocInfo/PatchNote008=- Fixed a bug on Flamethrower's Inferno where it is not generating the correct amount of Frenzy.
 DocInfo/PatchNote009=- Lowered CP decay rate from 15% to 10%, allowing an average 0.3 gain in pubs and 1.3 gain in nightmare.
 DocInfo/PatchNote010=- CP gain or losses are now prevented in Normal mode too if the player randomed (since not all pub games are recruit these days).
+DocInfo/PatchNote011=- Flamthrower's Vengeance and Pet's Cloak Field can now be toggled.
+DocInfo/PatchNote012=- Technician's crawler drones, Engineer's towers and probes now also have the "smart limit system" (only 1 gets destroyed instead of all).
+DocInfo/PatchNote013=- Replaced the faith animation with a new one (the current one looks too similar to an explosion).
+DocInfo/PatchNote014=- Added a cursor indicator for Pathfinder's No Quarter.
 DocInfo/PatchNote690=[ReduxGelum]
 DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
 DocInfo/PatchNote692=- Enabled transient for faith ability.
@@ -2437,6 +2447,8 @@ Effect/Name/CrawlerDroneApplyDummy2=Crawler Drone Apply Dummy 2
 Effect/Name/CrawlerDroneCreateLevel1=Crawler Drone Create Level 1
 Effect/Name/CrawlerDroneCreateLevel2=Crawler Drone Create Level 2
 Effect/Name/CrawlerDroneLimit=Crawler Drone Limit
+Effect/Name/CrawlerDroneLimitApply=Crawler Drone Limit Apply
+Effect/Name/CrawlerDroneLimitKill=Crawler Drone Limit Kill
 Effect/Name/CrawlerDronePersistentLevel1=Crawler Drone Persistent Level 1
 Effect/Name/CrawlerDronePersistentLevel2=Crawler Drone Persistent Level 2
 Effect/Name/CreateNapalmFire=Create Napalm Fire
@@ -2577,6 +2589,8 @@ Effect/Name/FastFiveLevel4Apply=Fast Five Level 4 (Apply)
 Effect/Name/FieldNexusCreateUnit=Field Nexus Create Unit
 Effect/Name/FieldProbeCreateUnit=Field Probe Create Unit
 Effect/Name/FieldProbeLimit=Field Probe Limit
+Effect/Name/FieldProbeLimitApply=Field Probe Limit Apply
+Effect/Name/FieldProbeLimitKill=Field Probe Limit Kill
 Effect/Name/FieldRetrofitMaintenanceDroneSuicide=Field Retrofit (Maintenance Drone Suicide)
 Effect/Name/FieldRetrofitRemoveShortCircuit=Field Retrofit (Remove Short Circuit)
 Effect/Name/FieldRetrofitSet=Field Retrofit (Set)
@@ -3009,7 +3023,7 @@ Effect/Name/MadSparkLevel1Apply=Mad Spark Level 1 Apply
 Effect/Name/MadSparkSearch=Mad Spark Search
 Effect/Name/MadSparkSet=Mad Spark Set
 Effect/Name/Magazine=Magazine
-Effect/Name/MaintenanceDroneLimit=MaintenanceDroneLimit
+Effect/Name/MaintenanceDroneLimit=Maintenance Drone Limit
 Effect/Name/MarchoftheMachinesApply=March of the Machines Apply
 Effect/Name/MarchoftheMachinesDrainEnergy=March of the Machines Drain Energy
 Effect/Name/MarchoftheMachinesIssueAttack=March of the Machines Issue Attack
@@ -3194,6 +3208,7 @@ Effect/Name/NoQuarterImpactSet=No Quarter Impact Set
 Effect/Name/NoQuarterInvulnerableSet=No Quarter Invulnerable Set
 Effect/Name/NoQuarterLaunch=No Quarter Launch
 Effect/Name/NoQuarterSearch4=No Quarter Invulnerable Search
+Effect/Name/NoQuarterSearchDummy=No Quarter Search (Dummy)
 Effect/Name/NukeCreateRevealDummy2=Scorched Earth Reveal Dummy
 Effect/Name/OSOKLevel1BarrettDamage=OSOK Level 1 (Barrett Damage)
 Effect/Name/OSOKLevel1BaseDamage=OSOK Level 1 (Base Damage)
@@ -3754,6 +3769,8 @@ Effect/Name/TowerLevel1SearchDamagePassive=Tower Level 1 (Search) - Damage Passi
 Effect/Name/TowerLevel2SearchDamageKill=Tower Level 2 (Search) - Damage Kill
 Effect/Name/TowerLevel2SearchDamagePassive=Tower Level 2 (Search) - Damage Passive
 Effect/Name/TowerLimit=Tower Limit
+Effect/Name/TowerLimitApply=Tower Limit Apply
+Effect/Name/TowerLimitKill=Tower Limit Kill
 Effect/Name/TransfusionApplyBehavior=Transfusion Apply Behavior
 Effect/Name/TransfusionSet=Transfusion Set
 Effect/Name/TrickShotFirstBounceLaunch=Trick Shot First Bounce Launch
@@ -3865,7 +3882,7 @@ Level 2=Injects an unstable chemical compound into the target, provides healing 
 Level 2 - Cloak=Cloaks Recon. He will be invisible to most units. Able to detect invisible units up to 12 radius. 0.85 energy consumed per second.<n/><n/>"To be unseen to the world, to be a mere afterthought, to be a spectre itself"
 Level 2 Adrenaline=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Level 2 Air Strike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 150 damage. Stuns units for 3 seconds.<n/><n/>"Like a bolt out of the blue. "
-Level 2 BURN!=The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 2 - +20 DPS/tick, 0.4s/tick. <n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled. <n/>BURN! damage caps out at a maximum of 200 DPS.
+Level 2 BURN!=The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 2 - +20 DPS/tick, 0.3s/tick. <n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled. BURN! damage caps out at a maximum of 200 DPS.
 Level 2 Bite=Target loses100 HP, Bob gains 40 HP. Target is stunned for 3 seconds. You can..MUST...not bite allies.
 Level 2 Blackout=Toggled. All attacks Blind targets. Each attack costs 2 Energy. 5% chance to turn non-Hero target into uncontrollable allied units for 5 seconds.
 Level 2 BlackoutLevel 2 Blackout2Level 2 BlackoutLevel 2 OpenCockpit=Toggled. All attacks Blind targets. Each attack costs 2 Energy. 5% chance to turn non-Hero target into uncontrollable allied units for 5 seconds.
@@ -3928,6 +3945,7 @@ Level 2 Sonic Trap=Creates an invulnerable beacon. When nearby enemies are detec
 Level 2 Speed of Thought=Psi Ops teleports next to target Marine. Enemies in 3 radius of target spot are stunned for 2 sec. 30 range.
 Level 2 Spiked Armor=Deals 10 damage to any unit that attacks Demo. Shield armor +2.
 Level 2 Stealth=Cloaks the Marksman for 12 seconds.
+Level 2 StealthLevel 2 Stealth2Level 2 StealthLevel 2 CloakField=Cloaks the Marksman for 12 seconds.
 Level 2 StealthLevel 2 Stealth2Level 2 StealthLevel 2 FieldProbeWeaponSwap=Cloaks the Marksman for 12 seconds.
 Level 2 Supply Station=Creates a supply station that replenishes 2 rounds/sec, 2 HP/sec, 2 energy/sec for all Marines in 2 radius. Supply Station lasts for 25 seconds.
 Level 2 Surgical Strike=Increase attack damage by 100% for 15 sec. 15 sec recovery (attack damage reduced by 30%).
@@ -5954,6 +5972,7 @@ Unit/Name/RoadFlare=Road Flare
 Unit/Name/RoadFlareFire=Road Flare Fire
 Unit/Name/RoadFlareHighlightTooltip=Road Flare
 Unit/Name/SalineIVCanister=Saline IV Canister
+Unit/Name/SatchelIVAX=Satchel (IVAX)
 Unit/Name/SatchelLevel1=Satchel (Level 1)
 Unit/Name/SatchelLevel2=Satchel (Level 2)
 Unit/Name/Seeker=Seeker
@@ -6633,7 +6652,7 @@ UserData/TalentTrees/Demolitions_Talent Tootips=<s val="AchievementFrameName">Se
 UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName">Explosive Aftershock<n/>(Passive)</s><n/>Demolitions' explosives - Sentinel Mine/Satchel/Armageddon have a 100%/40%/25% chance to trigger additional aftershocks within their targets, dealing an additional fraction of the original damage in a 1/3/4 radius area. Effective against enemies in clusters.<n/>Level 1 - 10% aftershock damage.<n/>Level 2 - 20% aftershock damage.<n/>Level 3 - 30% aftershock damage.
 UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 3 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/>Costs 1 explosive charge per use. <n/><c val="FF0000">Explosion deals 35% friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 2 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 3 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_005=<s val="AchievementFrameName">Spiked Armor<n/>(Passive)</s><n/>Deals damage to any unit that attacks Demolitions.  Deals 2x damage to Massive. Also improves Demo's Shields.<n/>Level 1 - 5 damage. Shield Armor +1 and +5 Shields<n/>Level 2 - 10 damage. Shield Armor +2 and +10 Shields<n/>Level 3 - 20 damage. Shield Armor +4 and +15 Shields<n/><n/>"I'll cut you" - Yuki
 UserData/TalentTrees/Demolitions_Talent Tootips_006=<s val="AchievementFrameName">I'm Your Father</s><n/>Provokes enemies in 7 radius to attack Demolitions temporarily. Provoked enemies deal less damage.<n/>Level 1 - <d ref="Behavior,ImYourFatherTauntedLevel1,Modification.DamageDealtFraction[0] * 100"/>% damage for 4 seconds<n/>Level 2 - -30% damage for 6 seconds<n/>Level 3 - <d ref="Behavior,ImYourFatherTauntedLevel3,Modification.DamageDealtFraction[0] * 100"/>% damage for 8 seconds
 UserData/TalentTrees/Demolitions_Talent Tootips_007=<s val="AchievementFrameName">Look!</s><n/>Forces enemies in 5 radius to stare at target. After a short duration, 50% chance for affected units to attack target. <n/>Level 1 - 1 second<n/>Level 2 - 2 seconds<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6655,9 +6674,9 @@ UserData/TalentTrees/Flamethrower_Headers=<s val="HelpPanelListBoxItemTitle">Pyr
 UserData/TalentTrees/Flamethrower_Headers_001=<s val="HelpPanelListBoxItemTitle">Order</s>
 UserData/TalentTrees/Flamethrower_Talent Tootips=<s val="AchievementFrameName">Helium-3 Igniter<n/>(Passive)</s><n/>Increase range of flamer and damage.<n/>Level 1 - +1 range and +10% damage<n/>Level 2 - +2 range and +20% damage<n/>Level 3 - +3 range and +30% damage. Fires plasma flame that burns targets for +10 dmg over 3 seconds. Can target air.
 UserData/TalentTrees/Flamethrower_Talent Tootips_001=<s val="AchievementFrameName">Burst Fire</s><n/>Deals damage to units in a forward arc. Deals 40% extra damage to Light units. Must have Flamethrower weapon equipped.<n/>Level 1 - 50 damage<n/>Level 2 - 100 damage<n/>Level 3 - 150 damage<n/><n/>6 range. Affects air units too.
-UserData/TalentTrees/Flamethrower_Talent Tootips_002=<s val="AchievementFrameName">BURN!</s><n/>The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 1 - +20 DPS/tick, 0.8s/tick. <n/>Level 2 - +20 DPS/tick, 0.4s/tick. <n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled.<n/>BURN! damage caps out at a maximum of 200 DPS.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_002=<s val="AchievementFrameName">BURN!</s><n/>The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 1 - +20 DPS/tick, 0.6s/tick. <n/>Level 2 - +20 DPS/tick, 0.3s/tick. <n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled. BURN! damage caps out at a maximum of 200 DPS.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Flamethrower_Talent Tootips_003=<s val="AchievementFrameName">Frenzy<n/>(Passive)</s><n/>Flamethrower gains increased attack/move speed and damage for each unit killed by Burst Fire and Inferno (40% chance for Inferno). Lasts for 30 seconds. Max stack of 30.<n/>Level 1 - +1% attack/move and +2% damage<n/>Level 2 - +2% attack/move and +4% damage<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">Inferno</s><n/>Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing 200 damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">Inferno</s><n/>Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing <d ref="Effect,InfernoDamage,Amount"/> damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Flamethrower_Talent Tootips_005=<s val="AchievementFrameName">Smite</s><n/>Deals damage based on current HP and movespeed reduction to enemies in 3 radius of target area for 4 seconds. Less effective on Bosses.<n/>Level 1 - 10% of current HP and -18% movespeed<n/>Level 2 - 20% of current HP and -36% movespeed<n/>Level 3 - 30% of current HP and -54% movespeed
 UserData/TalentTrees/Flamethrower_Talent Tootips_006=<s val="AchievementFrameName">Vengeance<n/>(Passive)</s><n/>Chance for attackers to be stunned for 2 seconds. <n/>Level 1 - 15% chance<n/>Level 2 - 30% chance<n/>Level 3 - 45% chance<n/><n/>"And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the LORD when I lay my vengeance upon thee." - Ezekiel 25:17
 UserData/TalentTrees/Flamethrower_Talent Tootips_007=<s val="AchievementFrameName">Righteousness</s><n/>+1 armor for each unit damaged by Smite.<n/>Level 1 - Lasts 8 secs<n/>Level 2 - Lasts 16 secs<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>

@@ -139,6 +139,7 @@
         <AbilArray Link="PredatorCloak"/>
         <AbilArray Link="ZeratulBlink"/>
         <AbilArray Link="LightningField"/>
+        <AbilArray Link="CloakField"/>
         <BehaviorArray Link="PetVeterancy"/>
         <BehaviorArray Link="KittenBeacon"/>
         <BehaviorArray Link="MarkofthePredator"/>
@@ -154,6 +155,7 @@
             <LayoutButtons Face="ZeratulBlink" Type="AbilCmd" AbilCmd="ZeratulBlink,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="RetributionFieldPet" Type="AbilCmd" AbilCmd="LightningField,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="MarkofPredator" Type="Passive" Behavior="MarkofthePredator" Row="1" Column="0"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.1875"/>
         <SeparationRadius value="0.1875"/>
@@ -772,14 +774,6 @@
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
         <KillXP value="30"/>
-        <AbilArray index="0" Link="attack2"/>
-        <AbilArray index="1" Link="move2"/>
-        <AbilArray index="2" Link="stop2"/>
-        <AbilArray index="3" Link="Sprint3"/>
-        <AbilArray index="4" Link="TeamLocation2"/>
-        <AbilArray index="5" Link="PredatorCloak2"/>
-        <AbilArray index="6" Link="ZeratulBlink2"/>
-        <AbilArray index="7" Link="LightningField2"/>
         <BehaviorArray index="0" Link="BlaqkVeterancy"/>
         <BehaviorArray index="1" Link="KittenBeacon2"/>
         <BehaviorArray index="2" Link="MarkofthePredator2"/>
@@ -802,6 +796,10 @@
             <Charge Link="Brutalisk2/Revive"/>
             <Cooldown Link="Brutalisk2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="CellularStructure">
         <DeathRevealRadius value="3"/>
@@ -1008,7 +1006,6 @@
         <AbilArray Link="GhostWeaponsFree"/>
         <BehaviorArray Link="Scavenge"/>
         <BehaviorArray Link="CrawlerDroneBirthStun"/>
-        <BehaviorArray Link="CrawlerDroneLimit"/>
         <WeaponArray Link="KineticCatapultLevel1"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -1048,6 +1045,7 @@
         <MinimapRadius value="0.2"/>
         <ShieldArmorName value="Unit/LifeArmorName/TerranInfantryArmor"/>
         <HotkeyCategory value="Hotkey/Minis"/>
+        <EffectArray index="Create" value="CrawlerDroneLimit"/>
     </CUnit>
     <CUnit id="CrawlerDroneLevel2">
         <Race value="Terr"/>
@@ -1071,7 +1069,6 @@
         <AbilArray Link="GhostWeaponsFree"/>
         <BehaviorArray Link="Scavenge"/>
         <BehaviorArray Link="CrawlerDroneBirthStun"/>
-        <BehaviorArray Link="CrawlerDroneLimit"/>
         <WeaponArray Link="KineticCatapultLevel2"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -1111,6 +1108,7 @@
         <MinimapRadius value="0.2"/>
         <ShieldArmorName value="Unit/LifeArmorName/TerranInfantryArmor"/>
         <HotkeyCategory value="Hotkey/Minis"/>
+        <EffectArray index="Create" value="CrawlerDroneLimit"/>
     </CUnit>
     <CUnit id="D8ChargeWeapon">
         <FlagArray index="Invulnerable" value="1"/>
@@ -1985,6 +1983,14 @@
             <ChanceArray index="Idle" value="33"/>
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
+    </CUnit>
+    <CUnit id="SatchelIVAX">
+        <Race value=""/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <LifeStart value="15"/>
+        <LifeMax value="15"/>
+        <EditorCategories value=""/>
     </CUnit>
     <CUnit id="SynchronizationModule" parent="ITEM">
         <Race value="Terr"/>
@@ -4349,6 +4355,10 @@
             <Cooldown Link="ZerglingPet/Revive"/>
         </ReviveInfoBase>
         <Speed value="3.3007"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Immortal22">
         <DeathRevealRadius value="0"/>
@@ -4535,6 +4545,10 @@
             <Charge Link="Hydralisk2/Revive"/>
             <Cooldown Link="Hydralisk2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="ComplianceNexus">
         <DeathRevealRadius value="3"/>
@@ -4644,6 +4658,10 @@
             <Charge Link="Brutalisk2/Revive"/>
             <Cooldown Link="Brutalisk2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Kerrigan2" parent="PetTemplate">
         <Name value="Unit/Name/Kerrigan2"/>
@@ -4683,6 +4701,10 @@
             <Charge Link="Kerrigan2/Revive"/>
             <Cooldown Link="Kerrigan2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Minion2">
         <DeathRevealRadius value="0"/>
@@ -4884,6 +4906,10 @@
             <Charge Link="Predator2/Revive"/>
             <Cooldown Link="Predator2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Slasher2">
         <DeathRevealRadius value="3"/>
@@ -4997,6 +5023,10 @@
             <Charge Link="TaurenSpaceMarine2/Revive"/>
             <Cooldown Link="TaurenSpaceMarine2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="SpineCrawler">
         <LifeStart value="750"/>
@@ -5048,6 +5078,10 @@
             <Charge Link="Tassadar2/Revive"/>
             <Cooldown Link="Tassadar2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="HadesTentacle" parent="SpineCrawler">
         <Name value="Unit/Name/HadesTentacle"/>
@@ -5195,6 +5229,10 @@
             <Charge Link="HybridProtoss/Revive"/>
             <Cooldown Link="HybridProtoss/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Ogilvy">
         <DeathRevealRadius value="3"/>
@@ -5452,6 +5490,10 @@
             <Charge Link="Zeratul2/Revive"/>
             <Cooldown Link="Zeratul2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="StingerMK3" parent="ITEM">
         <Race value="Terr"/>
@@ -5509,6 +5551,10 @@
             <Charge Link="HybridZerg/Revive"/>
             <Cooldown Link="HybridZerg/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="StingerMk3Missile" parent="MISSILE">
         <Race value="Terr"/>
@@ -5554,6 +5600,10 @@
             <Charge Link="MurlocMarine2/Revive"/>
             <Cooldown Link="MurlocMarine2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="SigmaFlare">
         <ReviveType value="RoadFlareFire"/>
@@ -6136,7 +6186,7 @@
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <HotkeyCategory value="Hotkey/Minis"/>
         <Height value="0.2"/>
-        <BehaviorArray Link="FieldProbeLimit"/>
+        <EffectArray index="Create" value="FieldProbeLimit"/>
     </CUnit>
     <CUnit id="PlasmaDetonator">
         <FlagArray index="Invulnerable" value="1"/>
@@ -6520,6 +6570,8 @@
             <LayoutButtons Face="Smite" Type="AbilCmd" AbilCmd="Smite,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="Faith" Type="AbilCmd" AbilCmd="Faith,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="Shatter" Type="AbilCmd" AbilCmd="Shatter2,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="VengeanceOn" Type="AbilCmd" AbilCmd="Vengeance,On" Row="1" Column="3"/>
+            <LayoutButtons Face="VengeanceOff" Type="AbilCmd" AbilCmd="Vengeance,Off" Row="1" Column="3"/>
         </CardLayouts>
         <CardLayouts CardId="2">
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="0"/>
@@ -6611,6 +6663,10 @@
             <Charge Link="Predator2/Revive"/>
             <Cooldown Link="Predator2/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Dummy">
         <Race value="Zerg"/>
@@ -7908,7 +7964,6 @@
         <BehaviorArray Link="FireSuppressionSystem"/>
         <BehaviorArray Link="TerranBuildingBurnDown"/>
         <BehaviorArray Link="DisruptionTowerLevel2Search"/>
-        <BehaviorArray Link="TowerLimit"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="SelfDestruct" Type="AbilCmd" AbilCmd="SelfDestruct,Execute" Row="2" Column="0"/>
@@ -7937,6 +7992,7 @@
         <EnergyStart value="15"/>
         <EnergyMax value="15"/>
         <Description value="Level 2 Disruption Tower"/>
+        <EffectArray index="Create" value="TowerLimit"/>
     </CUnit>
     <CUnit id="LargeZombieCocoon">
         <DeathRevealRadius value="3"/>
@@ -9521,7 +9577,6 @@
         <BehaviorArray Link="FireSuppressionSystem"/>
         <BehaviorArray Link="TerranBuildingBurnDown"/>
         <BehaviorArray Link="DisruptionTowerLevel1Search"/>
-        <BehaviorArray Link="TowerLimit"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="SelfDestruct" Type="AbilCmd" AbilCmd="SelfDestruct,Execute" Row="2" Column="0"/>
@@ -9548,6 +9603,7 @@
         <LifeArmor value="3"/>
         <LifeRegenRate value="1"/>
         <Description value="Button/Tooltip/DisruptionTower"/>
+        <EffectArray index="Create" value="TowerLimit"/>
     </CUnit>
     <CUnit id="SatchelLevel1">
         <Race value=""/>
@@ -9604,6 +9660,10 @@
             <Charge Link="ArchonPet/Revive"/>
             <Cooldown Link="ArchonPet/Revive"/>
         </ReviveInfoBase>
+        <CardLayouts index="0">
+            <LayoutButtons index="9" Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,Off" Row="2" Column="4"/>
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="CloakField,On" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="SpiderMine">
         <Sight value="1"/>

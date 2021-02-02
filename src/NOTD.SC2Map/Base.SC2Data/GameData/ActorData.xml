@@ -274,6 +274,9 @@
         <Host Subject="_Unit" Scope="Caster"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
     </CActorModel>
+    <CActorSplat id="NoQuarterCursorSplat" parent="TerranCursorSplat" abil="NoQuarter">
+        <EditorCategories value=""/>
+    </CActorSplat>
     <CActorSplat id="RaynorSnipeSplat">
         <On Terms="Abil.RaynorSnipe.TargetOff" Send="Destroy"/>
         <On Terms="Abil.RaynorSnipe.ButtonHoverOff" Send="Destroy"/>
@@ -291,6 +294,42 @@
         <On Terms="Effect.InboundSicknessSearchSetLevel2.Start" Send="Create"/>
         <Scale value="10.000000,1.000000,10.000000"/>
     </CActorModel>
+    <CActorUnit id="SatchelIVAX" parent="GenericUnitSelectable" unitName="SatchelIVAX">
+        <AcceptedHostedPropTransfers index="CloakEffect" value="0"/>
+        <AcceptedHostedPropTransfers index="LocalTintColor" value="0"/>
+        <AcceptedHostedPropTransfers index="Scale" value="0"/>
+        <AcceptedHostedPropTransfers index="TeamColor" value="0"/>
+        <AcceptedHostedPropTransfers index="TintColor" value="0"/>
+        <On Terms="ActorCreation" Send="$Birth"/>
+        <On Terms="ActorCreation" Send="AnimBaselineStop"/>
+        <On Terms="AnimDone; AnimName Birth" Send="$Stand 0 -1.000000 -1.000000 3.000000 AsDuration"/>
+        <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
+        <On Terms="Behavior.SatchelLifeDamage.On" Send="SetTeamColor 255,0,0 255,0,0"/>
+        <On Terms="Behavior.SatchelShieldEnergyDamage.On" Send="SetTeamColor 64,0,128 64,0,128"/>
+        <On Terms="Behavior.SatchelLifeDamage.On" Send="SetScale 3.000000,3.000000,3.750000"/>
+        <On Terms="Behavior.SatchelShieldEnergyDamage.On" Send="SetScale 3.000000,3.000000,3.750000"/>
+        <Model value="D8ClusterBomb"/>
+        <Scale value="2.000000"/>
+        <BuildModel value="D8ClusterBomb"/>
+        <DeathArray index="Normal" AnimProps="Death" ModelLink="D8Charge" SoundLink="Reaper_D8ChargeExplode"/>
+        <DeathArray index="Eat" AnimProps="Death,Eat"/>
+        <DeathArray index="Eviscerate" AnimProps="Death,Eviscerate"/>
+        <DeathArray index="Fire" AnimProps="Death,Fire"/>
+        <DeathArray index="Silentkill" AnimProps="Death,Silentkill"/>
+        <DeathArray index="Squish" AnimProps="Death,Squish"/>
+        <PlacementModel value="D8ClusterBomb"/>
+        <PortraitModel value="AdjutantPortrait"/>
+        <BarOffset value="10"/>
+        <BarWidth value="36"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-D8Charge.dds"/>
+        </GroupIcon>
+        <HeroIcon value="Assets\Textures\btn-ability-terran-d8charge.dds"/>
+        <UnitIcon value="Assets\Textures\btn-ability-terran-d8charge.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-D8Charge.dds"/>
+        </Wireframe>
+    </CActorUnit>
     <CActorSplat id="SupplyStationCursorSplat" parent="ProtossCursorSplat">
         <EditorCategories value=""/>
         <On index="0" Terms="Abil.SupplyStation.Cursor" Send="Create"/>
@@ -8991,6 +9030,7 @@
         <On Terms="Effect.GunshipSupportHellfireMissileDamageVar7.Start" Send="Create"/>
         <On Terms="Effect.GunshipSupportHellfireMissileDamageVar8.Start" Send="Create"/>
         <On Terms="UnitDeath.SatchelLevel2" Send="Create"/>
+        <On Terms="UnitDeath.SatchelIVAX" Send="Create"/>
         <HostSiteOps Ops="LowerBy375"/>
         <Model value="FireMissionGroundImpactLevel1"/>
     </CActorModel>
@@ -10776,7 +10816,7 @@
     <CActorModel id="FaithImpact" parent="ModelAnimationStyleOneShot">
         <Inherits index="Visibility" value="1"/>
         <On Terms="Effect.FaithSearchSet.Start" Send="Create"/>
-        <On Terms="ActorCreation" Send="SetTintColor {255,232,151 13.000000}"/>
+        <Scale value="1.200000"/>
     </CActorModel>
     <CActorSound id="SmiteSound" parent="SoundOneShot">
         <EditorCategories value=""/>
@@ -13806,11 +13846,13 @@
     <CActorModel id="SatchelAnimationExplosion" parent="ModelAnimationStyleOneShot">
         <On Terms="UnitDeath.SatchelLevel1" Send="Create"/>
         <On Terms="UnitDeath.SatchelLevel2" Send="Create"/>
+        <On Terms="UnitDeath.SatchelIVAX" Send="Create"/>
     </CActorModel>
     <CActorSound id="SatchelSoundExplosion" parent="SoundOneShot">
         <On Terms="UnitDeath.SatchelLevel1" Send="Create"/>
         <On Terms="UnitDeath.SatchelLevel2" Send="Create"/>
         <On Terms="Effect.StingerMK3SearchDamage.Start" Send="Create"/>
+        <On Terms="UnitDeath.SatchelIVAX" Send="Create"/>
         <Sound value="SatchelExplosion"/>
     </CActorSound>
     <CActorEventMacro id="D8ClusterBombAnim">
@@ -13821,10 +13863,6 @@
         <On Terms="ActorCreation" Send="AnimBaselineStop"/>
         <On Terms="AnimDone; AnimName Birth" Send="$Stand 0 -1.000000 -1.000000 1.500000 AsDuration"/>
         <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
-        <On Terms="Behavior.SatchelLifeDamage.On" Send="SetTeamColor 255,0,0 255,0,0"/>
-        <On Terms="Behavior.SatchelShieldEnergyDamage.On" Send="SetTeamColor 64,0,128 64,0,128"/>
-        <On Terms="Behavior.SatchelLifeDamage.On" Send="SetScale 3.000000,3.000000,3.750000"/>
-        <On Terms="Behavior.SatchelShieldEnergyDamage.On" Send="SetScale 3.000000,3.000000,3.750000"/>
         <Model value="D8ClusterBomb"/>
         <BuildModel value="D8ClusterBomb"/>
         <DeathArray index="Normal" AnimProps="Death" ModelLink="D8Charge" SoundLink="Reaper_D8ChargeExplode"/>

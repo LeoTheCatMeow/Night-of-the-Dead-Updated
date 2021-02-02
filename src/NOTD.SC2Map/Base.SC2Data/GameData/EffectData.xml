@@ -155,6 +155,11 @@
         <EffectArray value="BURNApplyLevel2"/>
         <EffectArray value="BURNApplyFrenzyBuff"/>
     </CEffectSet>
+    <CEffectEnumArea id="NoQuarterSearchDummy">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="8"/>
+    </CEffectEnumArea>
     <CEffectEnumArea id="SentinelMineLimit">
         <EditorCategories value=""/>
         <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
@@ -165,6 +170,30 @@
         <EditorCategories value=""/>
         <WhichUnit Value="Source"/>
         <Behavior value="ArmageddonBombLimit"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CrawlerDroneLimitApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="CrawlerDroneLimit"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="FieldProbeLimitKill">
+        <EditorCategories value=""/>
+        <SearchFilters value="Light,Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Missile,Item,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="FieldProbeLimitApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="FieldProbeLimit"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="TowerLimitApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="TowerLimit"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="SentinelMineLimitKill">
         <EditorCategories value=""/>
@@ -595,6 +624,24 @@
         <AreaArray Radius="500" Effect="SuicideOther"/>
         <MaxCount value="1"/>
     </CEffectEnumArea>
+    <CEffectEnumArea id="CrawlerDroneLimitKill">
+        <EditorCategories value=""/>
+        <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Armored,Biological,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="TowerLimitKill">
+        <EditorCategories value=""/>
+        <SearchFilters value="Ground,Armored,Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
     <CEffectSet id="ShockSet">
         <EditorCategories value=""/>
         <EffectArray value="ParticleBeam"/>
@@ -768,7 +815,7 @@
     <CEffectDamage id="InfernoDamage3">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="15"/>
+        <Amount value="10"/>
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
@@ -802,7 +849,7 @@
         <EditorCategories value=""/>
         <Chance value="0.4"/>
         <SearchFilters value="Biological;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="6" Effect="InfernoApply"/>
+        <AreaArray Radius="5" Effect="InfernoApply"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
         <MaxCount value="6"/>
     </CEffectEnumArea>
@@ -2253,7 +2300,7 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/LifeSatchel"/>
         <SpawnEffect value="SatchelShieldDamage"/>
-        <SpawnUnit value="SatchelLevel1"/>
+        <SpawnUnit value="SatchelIVAX"/>
         <SpawnOffset value="0,0"/>
     </CEffectCreateUnit>
     <CEffectCreatePersistent id="LaunchPersistent5">
@@ -2315,7 +2362,7 @@
     <CEffectCreateUnit id="LifeSatchel">
         <EditorCategories value=""/>
         <SpawnEffect value="SatchelLifeDamage"/>
-        <SpawnUnit value="SatchelLevel1"/>
+        <SpawnUnit value="SatchelIVAX"/>
         <SpawnOffset value="0,0"/>
     </CEffectCreateUnit>
     <CEffectCreatePersistent id="MissleSwapDelay">
@@ -2473,11 +2520,8 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="CrawlerDroneLimit">
         <EditorCategories value=""/>
-        <SearchFilters value="Mechanical;Ally,Neutral,Enemy,Armored,Biological,Robotic,Structure,Heroic,Buried,Dead,Hidden,Invulnerable"/>
-        <TargetSorts RequestCount="1">
-            <SortArray value="TSDistanceToTarget"/>
-        </TargetSorts>
-        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Armored,Biological,Robotic,Structure,Heroic,Buried,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="500" Effect="CrawlerDroneLimitApply"/>
         <MinCount value="10"/>
         <ValidatorArray value="NotZombiePlayer"/>
     </CEffectEnumArea>
@@ -2613,12 +2657,8 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="FieldProbeLimit">
         <EditorCategories value=""/>
-        <ExcludeArray/>
-        <SearchFilters value="Light,Mechanical;Ally,Neutral,Enemy,Armored,Biological,Heroic"/>
-        <TargetSorts RequestCount="1">
-            <SortArray value="TSDistanceToTarget"/>
-        </TargetSorts>
-        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <SearchFilters value="Light,Mechanical;Self,Ally,Neutral,Enemy,Armored,Biological,Heroic"/>
+        <AreaArray Radius="500" Effect="FieldProbeLimitApply"/>
         <ValidatorArray value="NotZombiePlayer"/>
     </CEffectEnumArea>
     <CEffectCreateUnit id="FlareCreateRevealDummy">
@@ -3371,11 +3411,8 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="TowerLimit">
         <EditorCategories value=""/>
-        <SearchFilters value="Ground,Armored,Mechanical,Structure;Ally,Neutral,Enemy,Biological,Heroic,Item,Buried,Dead,Hidden,Invulnerable"/>
-        <TargetSorts RequestCount="1">
-            <SortArray value="TSDistanceToTarget"/>
-        </TargetSorts>
-        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <SearchFilters value="Ground,Armored,Mechanical,Structure;Self,Ally,Neutral,Enemy,Biological,Heroic,Item,Buried,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="500" Effect="TowerLimitApply"/>
         <MinCount value="2"/>
     </CEffectEnumArea>
     <CEffectModifyUnit id="Transfusion2" parent="Transfusion">
@@ -6844,7 +6881,7 @@
         <PeriodCount value="10"/>
         <PeriodicValidator value="NotDeadandNotInvulnerableBurn"/>
         <PeriodicEffectArray value="BURNApplySetLevel1"/>
-        <PeriodicPeriodArray value="0.8"/>
+        <PeriodicPeriodArray value="0.6"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="BURNPersistentLevel2">
         <ValidatorArray value="NotDead"/>
@@ -6857,7 +6894,7 @@
         <PeriodCount value="10"/>
         <PeriodicValidator value="NotDeadandNotInvulnerableBurn"/>
         <PeriodicEffectArray value="BURNApplySetLevel2"/>
-        <PeriodicPeriodArray value="0.4"/>
+        <PeriodicPeriodArray value="0.3"/>
     </CEffectCreatePersistent>
     <CEffectSet id="BURNSetLevel1">
         <EditorCategories value=""/>
