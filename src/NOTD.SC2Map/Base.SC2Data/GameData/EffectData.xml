@@ -125,7 +125,7 @@
         <EditorCategories value=""/>
         <Behavior value="AcidicToxin"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AddPetDetection5">
+    <CEffectApplyBehavior id="Level3Detection5">
         <EditorCategories value=""/>
         <Behavior value="Detector5"/>
     </CEffectApplyBehavior>
@@ -633,6 +633,11 @@
         <AreaArray Radius="500" Effect="SuicideOther"/>
         <MaxCount value="1"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="SonicTrapLimitApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="SonicTrapLimit"/>
+    </CEffectApplyBehavior>
     <CEffectEnumArea id="TowerLimitKill">
         <EditorCategories value=""/>
         <SearchFilters value="Ground,Armored,Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
@@ -1101,6 +1106,15 @@
         <EditorCategories value=""/>
         <Behavior value="AcidicToxin"/>
     </CEffectApplyBehavior>
+    <CEffectEnumArea id="SonicTrapLimitKill">
+        <EditorCategories value=""/>
+        <SearchFilters value="Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
     <CEffectRemoveBehavior id="VRL772RemoveOpenWound">
         <EditorCategories value="Race:Terran"/>
         <BehaviorLink value="OpenWound"/>
@@ -1868,17 +1882,14 @@
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="Level7WeaponChange">
-        <ValidatorArray index="0" value="5000XPCheck"/>
         <EditorCategories value=""/>
         <Behavior value="Level7Weapons"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="Level8Armor">
-        <ValidatorArray index="0" value="5000XPCheck"/>
         <EditorCategories value=""/>
         <Behavior value="C2Armor"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="Level9Radar">
-        <ValidatorArray index="0" value="5000XPCheck"/>
         <EditorCategories value=""/>
         <Behavior value="SensorTowerRadar"/>
     </CEffectApplyBehavior>
@@ -3882,11 +3893,8 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="SonicTrapLimit">
         <EditorCategories value=""/>
-        <SearchFilters value="Structure;Ally,Neutral,Enemy,Heroic,Dead"/>
-        <TargetSorts RequestCount="1">
-            <SortArray value="TSDistanceToTarget"/>
-        </TargetSorts>
-        <AreaArray Radius="500" Effect="SuicideOther"/>
+        <SearchFilters value="Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <AreaArray Radius="500" Effect="SonicTrapLimitApply"/>
         <MinCount value="5"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="SonicTrapLevel1Slow">

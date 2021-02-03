@@ -5923,7 +5923,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="300">
+        <VeterancyLevelArray MinVeterancyXP="300" LevelGainEffect="Level3Detection5">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="0.5"/>
                 <DamageDealtUnscaled index="Melee" value="0.5"/>
@@ -5969,7 +5969,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1464"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="800">
+        <VeterancyLevelArray MinVeterancyXP="800" LevelGainEffect="Level7WeaponChange">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="0.5"/>
                 <DamageDealtUnscaled index="Melee" value="0.5"/>
@@ -5980,7 +5980,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1611"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="1050">
+        <VeterancyLevelArray MinVeterancyXP="1050" LevelGainEffect="Level8Armor">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="1"/>
                 <DamageDealtUnscaled index="Melee" value="1"/>
@@ -5991,7 +5991,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.1772"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="1200">
+        <VeterancyLevelArray MinVeterancyXP="1200" LevelGainEffect="Level9Radar">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="1"/>
                 <DamageDealtUnscaled index="Melee" value="1"/>
@@ -6188,7 +6188,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="2">
+        <VeterancyLevelArray index="2" LevelGainEffect="">
             <Modification DetectBonus="5">
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6256,7 +6256,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="6">
+        <VeterancyLevelArray index="6" LevelGainEffect="">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6273,7 +6273,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="7" LevelGainEffect="Level8Armor">
+        <VeterancyLevelArray index="7">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6290,7 +6290,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="8" LevelGainEffect="Level9Radar">
+        <VeterancyLevelArray index="8">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>
@@ -6661,7 +6661,7 @@
         <MaxStackCountPerCaster value="2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RighteousnessLevel1">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-raynor-juggernautplating.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="RighteousnessLevel1"/>
         <Period value="0.01"/>
@@ -6669,7 +6669,7 @@
         <PeriodicEffect value="RighteousnessCountApply"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RighteousnessLevel2">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-raynor-juggernautplating.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="RighteousnessLevel2"/>
         <Period value="0.01"/>
@@ -6958,7 +6958,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="VengeanceStun">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="10"/>
         <Duration value="2.2"/>
@@ -6973,7 +6973,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SmiteLevel1">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-psioniclash.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-purificationblast.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="4"/>
         <Period value="0.01"/>
@@ -6983,7 +6983,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SmiteLevel2">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-psioniclash.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-purificationblast.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="4"/>
         <Period value="0.01"/>
@@ -6993,7 +6993,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SmiteLevel3">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-psioniclash.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-purificationblast.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="4"/>
         <Modification MoveSpeedMultiplier="0.46"/>
@@ -7021,7 +7021,7 @@
         <ExpireEffect value="SurveillanceFlaresDrop2nd"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VengeanceLevel1">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="VengeanceLevel1"/>
         <DamageResponse Handled="VengeanceApply">
@@ -7030,9 +7030,10 @@
             <Chance value="0.15"/>
         </DamageResponse>
         <Alignment value="Positive"/>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VengeanceLevel2">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="VengeanceLevel2"/>
         <Period value="0.01"/>
@@ -7046,9 +7047,10 @@
         <Modification>
             <BehaviorLinkDisableArray value="VengeanceLevel1"/>
         </Modification>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VengeanceLevel3">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="VengeanceLevel3"/>
         <Period value="0.01"/>
@@ -7063,6 +7065,7 @@
             <BehaviorLinkDisableArray value="VengeanceLevel1"/>
             <BehaviorLinkDisableArray value="VengeanceLevel2"/>
         </Modification>
+        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FaithStun">
         <Alignment value="Negative"/>
@@ -7360,9 +7363,10 @@
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SonicTrapLimit">
-        <EditorCategories value="AbilityorEffectType:Units"/>
         <InfoFlags index="Hidden" value="1"/>
-        <InitialEffect value="SonicTrapLimit"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.2"/>
+        <ExpireEffect value="SonicTrapLimitKill"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SonicTrapCount">
         <InfoFlags index="Hidden" value="1"/>

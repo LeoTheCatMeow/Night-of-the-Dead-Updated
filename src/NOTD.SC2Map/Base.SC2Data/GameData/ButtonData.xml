@@ -229,6 +229,11 @@
         <Icon value="Assets\Textures\btn-upgrade-stetmann-dualqueue.dds"/>
         <HidesForSimpleText value="0"/>
     </CButton>
+    <CButton id="SelfDestruct2">
+        <Icon value="Assets\Textures\btn-ability-zerg-extinction.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
     <CButton id="SentinelMineSelfDestruct">
         <Icon value="Assets\Textures\btn-ability-zerg-extinction.dds"/>
         <EditorCategories value="Race:Terran"/>
@@ -413,9 +418,6 @@
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="VengeanceOn">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds"/>
-    </CButton>
-    <CButton id="VengeanceOff">
         <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-arbiterchampiondetectionresearch.dds"/>
     </CButton>
     <CButton id="VeteransFocus">

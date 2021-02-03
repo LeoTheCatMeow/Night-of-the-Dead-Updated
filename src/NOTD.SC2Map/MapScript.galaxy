@@ -11124,6 +11124,9 @@ bool auto_gf_ECNydusMobs_TriggerFunc (bool testConds, bool runActions) {
     unitgroup auto6779876B_g;
     int auto6779876B_u;
     unit auto6779876B_var;
+    unitgroup autoAB456B98_g;
+    int autoAB456B98_u;
+    unit autoAB456B98_var;
     unitgroup auto800DE2F4_g;
     int auto800DE2F4_u;
     unit auto800DE2F4_var;
@@ -11177,7 +11180,13 @@ bool auto_gf_ECNydusMobs_TriggerFunc (bool testConds, bool runActions) {
         }
     }
     AISetGroupScriptControlled(gv_nydusWormAgronGroup, false);
-    UnitGroupAddUnitGroup(gv_zombieWave, gv_nydusWormAgronGroup);
+    autoAB456B98_g = gv_nydusWormAgronGroup;
+    autoAB456B98_u = UnitGroupCount(autoAB456B98_g, c_unitCountAll);
+    for (;; autoAB456B98_u -= 1) {
+        autoAB456B98_var = UnitGroupUnitFromEnd(autoAB456B98_g, autoAB456B98_u);
+        if (autoAB456B98_var == null) { break; }
+        UnitKill(autoAB456B98_var);
+    }
     auto800DE2F4_g = gv_nydusWormSpineGroup;
     auto800DE2F4_u = UnitGroupCount(auto800DE2F4_g, c_unitCountAll);
     for (;; auto800DE2F4_u -= 1) {

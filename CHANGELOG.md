@@ -1,5 +1,18 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-2-3
+[LeoTheCat]
+- Flamethrower - BURN! no longer reduces armor, now generates Frenzy during channel, faster at Level 2, energy cost increased from 10 to 15.
+- Flamethrower - Inferno damage improved from 150 to 150 + 40% vs Armored. Cost reduced from 30 to 25. Cooldown increased from 15 to 20.
+- Flamethrower - Inferno no longer grants 10 Frenzy on cast, Inferno kill Frenzy chance improved from 30% to 40%.
+- Fixed a bug on Flamethrower's Inferno where it is not generating the correct amount of Frenzy.
+- Lowered CP decay rate from 15% to 10%, allowing an average 0.3 gain in pubs and 1.3 gain in nightmare.
+- CP gain or losses are now prevented in Normal mode too if the player randomed (since not all pub games are recruit these days).
+- Flamthrower's Vengeance and Pet's Cloak Field can now be toggled.
+- Added the improved limit system for Crawler Drones, Field Probes, Disruption Towers, and Sonic Traps (1 gets destroyed instead of all). 
+- Replaced the faith animation with a new one (the current one looks too similar to an explosion).
+- Added a cursor indicator for Pathfinder's No Quarter.
+
 2021-1-28
 [ReduxGelum]
 - Changed faith effect model to differentiate from smite.
