@@ -137,6 +137,12 @@
         <Scale value="1.350000,1.350000,1.000000"/>
         <FogVisibility value="Visible"/>
     </CActorModel>
+    <CActorModel id="Absolution" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.AbsolutionCreatePersistent.Start" Send="Create"/>
+        <On Terms="Effect.AbsolutionCreatePersistent.Stop" Send="Destroy"/>
+        <Scale value="0.780000"/>
+    </CActorModel>
     <CActorAction id="AcidAttack" parent="GenericAttack" effectAttack="" effectImpact="AcidMissileDamage" effectLaunch="AcidMissileMissile">
         <On index="0" Terms="Effect.AcidMissileDamage.Start; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
         <On index="3" Terms="Effect.AcidMissileDamage.Start; FromEffectTreeDescendant" Send="ActionDamagePhysics"/>
@@ -1769,7 +1775,7 @@
         <Range value="7.000000"/>
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
-    <CActorRange id="PsionicTempestRange" parent="RangeAbil" abil="PsionicTempest">
+    <CActorRange id="AbsolutionRange" parent="RangeAbil" abil="Absolution">
         <Inherits index="Visibility" value="0"/>
         <FogVisibility value="Visible"/>
         <RangeFlags index="Minimap" value="1"/>
@@ -2370,15 +2376,6 @@
         <On Terms="Behavior.ShellMode.On" Send="Create"/>
     </CActorSound>
     <CActorModel id="TheHorror" parent="ModelAnimationStyleContinuous">
-        <Inherits index="CastShadows" value="1"/>
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Decal" value="1"/>
-        <Inherits index="LocalTintColor" value="1"/>
-        <Inherits index="Opacity" value="1"/>
-        <Inherits index="Scale" value="1"/>
-        <Inherits index="TimeScale" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <Inherits index="WarpGroup" value="1"/>
         <On index="0" Terms="Behavior.TheHorror.On" Send="Create"/>
         <On index="1" Terms="Behavior.TheHorror.Off" Send="Destroy Immediate"/>
         <On index="2" Terms="ActorCreation" Send="AnimBracketStart Birth Birth Stand Death"/>
@@ -2388,7 +2385,8 @@
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="Blind"/>
-        <AutoScaleFactor value="2.000000"/>
+        <AutoScaleFactor value="1.000000"/>
+        <Scale value="1.700000"/>
     </CActorModel>
     <CActorAction id="TheHorrorAttack" parent="GenericAttack" effectImpact="TheHorrorSearch" effectLaunch="TheHorrorLaunch">
         <LaunchAssets Model="UltrasonicPulseAttackLaunch" Sound="Spectre_UltrasonicPulseLaunch"/>
@@ -3654,9 +3652,8 @@
         <On Terms="Abil.Exhaust.SourceCastStop" Send="Create"/>
         <Sound value="AntiVenom"/>
     </CActorSound>
-    <CActorSplat id="PsionicTempestCursor" parent="TerranCursorSplat" abil="CounterMeasures">
-        <On index="0" Terms="Abil.PsionicTempest.Cursor" Send="Create"/>
-        <Scale value="5.000000"/>
+    <CActorSplat id="AbsolutionCursor" parent="TerranCursorSplat" abil="Absolution">
+        <Model value="ProtossAOECursorSplat"/>
     </CActorSplat>
     <CActorRange id="MobileInfantryRange" parent="RangeAbil" abil="MobileInfantry">
         <Flags index="SuppressSaveLoad" value="0"/>
@@ -10357,7 +10354,7 @@
         <On Terms="Effect.MentalProjectionLevel2CreateHallucination.Start" Send="Create"/>
         <Sound value="Sentry_HallucinationLaunchSmall"/>
     </CActorSound>
-    <CActorRange id="MindRavageRange" parent="RangeAbil" abil="MindRavage">
+    <CActorRange id="PsionicTempestRange" parent="RangeAbil" abil="PsionicTempest">
         <FogVisibility value="Visible"/>
     </CActorRange>
     <CActorRange id="MindLinkRange" parent="RangeAbil" abil="MindLink">
@@ -10377,7 +10374,6 @@
         <Scale value="0.600000"/>
     </CActorModel>
     <CActorSound id="MindRavageLaunchSound" parent="SoundOneShot">
-        <On Terms="Abil.MindRavage.SourceCastStart" Send="Create"/>
         <Sound value="MindSplatterCastSound"/>
     </CActorSound>
     <CActorSound id="MindRavageExplosionSound" parent="SoundOneShot">
@@ -11437,7 +11433,7 @@
     <CActorModel id="HighTemplarPsiStormModel">
         <On Terms="Effect.PsionicTempestCreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.PsionicTempestCreatePersistent.Stop" Send="AnimBracketStop BSD"/>
-        <Scale value="2.200000"/>
+        <Scale value="1.200000"/>
     </CActorModel>
     <CActorAction id="HighTemplarPsiStormShieldHitter">
         <On Terms="Effect.PsionicTempestDamage.Start" Send="Create"/>
@@ -11671,21 +11667,6 @@
         <SoundArray index="ClickError" value="SgtStallans_ClickError"/>
         <SoundArray index="Highlight" value="SgtStallans_Highlight"/>
     </CActorUnit>
-    <!--    <CActorModel id="PhaseShiftImpact" parent="ModelAnimationStyleOneShot">-->
-    <!--        <On Terms="Effect.PhaseShift.Start; At Target" Send="Create"/>-->
-    <!--        <Host Subject="_Selectable"/>-->
-    <!--        <HostSiteOps Ops="SOpAttachCenter"/>-->
-    <!--    </CActorModel>-->
-    <!--    <CActorSound id="PhaseShiftFinishsound" parent="SoundOneShot">-->
-    <!--        <Sound value="HighTemplar_PhaseShiftDeath"/>-->
-    <!--        <On Terms="Behavior.Ethereal.Off" Send="Create"/>-->
-    <!--    </CActorSound>-->
-    <!--    <CActorRange id="PhaseShiftRange" parent="RangeAbil" abil="PhaseShift"/> -->
-    <!-- Psi Storm                                                                               -->
-    <CActorSplat id="PsiStormCursorSplat">
-        <On Terms="Abil.PsionicTempest.Cursor" Send="Create"/>
-        <Scale value="3.330000"/>
-    </CActorSplat>
     <CActorUnit id="RoadFlare" parent="GenericUnitBase" unitName="RoadFlare">
         <EditorCategories value=""/>
         <Model value="Crate"/>
@@ -12460,13 +12441,13 @@
         <Model value="MindBlastImpact"/>
         <Scale value="3.000000"/>
     </CActorModel>
-    <CActorSplat id="MindRavageCursor" parent="TerranCursorSplat" abil="MindBlast">
+    <CActorSplat id="PsionicTempestCursor" parent="TerranCursorSplat" abil="PsionicTempest">
         <Flags index="SuppressSaveLoad" value="0"/>
         <AcceptedHostedPropTransfers index="BaseModelScale" value="0"/>
         <AcceptedHostedPropTransfers index="Scale" value="0"/>
         <AcceptedHostedPropTransfers index="TeamColor" value="0"/>
         <AcceptedHostedPropTransfers index="TintColor" value="0"/>
-        <On index="0" Terms="Abil.MindRavage.Cursor" Send="Create"/>
+        <Model value="ProtossAOECursorSplat"/>
     </CActorSplat>
     <!--                                                                                         -->
     <!-- Perdition Turret ...................................................................... -->

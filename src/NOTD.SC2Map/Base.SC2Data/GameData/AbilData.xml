@@ -683,11 +683,17 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="MonofilamentTrapLevel1"/>
         <Effect value="MonofilamentTrapLevel2"/>
+        <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
-        </Cost>
-        <Cost>
-            <Vital index="Energy" value="25"/>
+            <Charge>
+                <CountMax value="8"/>
+                <CountStart value="3"/>
+                <CountUse value="1"/>
+                <Location value="Unit"/>
+                <TimeStart value="25"/>
+                <TimeUse value="25"/>
+            </Charge>
+            <Cooldown TimeUse="0.5"/>
         </Cost>
         <Range value="6"/>
         <CursorEffect value="MonofilamentTrapSearchLevel1"/>
@@ -822,6 +828,8 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="SalineIVLevel2Set"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="BestUnit" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -830,6 +838,8 @@
         </Cost>
         <AINotifyEffect value="SalineIV"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SalineIVMini"/>
+        <AutoCastFilters value="Visible;Neutral,Enemy"/>
+        <AutoCastValidatorArray value="LifeLTHalf"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="SatchelDeployment">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1248,7 +1258,7 @@
             <Vital index="Energy" value="15"/>
             <Charge>
                 <CountMax value="5"/>
-                <CountStart value="3"/>
+                <CountStart value="5"/>
                 <CountUse value="1"/>
                 <Location value="Unit"/>
                 <TimeUse value="25"/>
@@ -2220,8 +2230,8 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="TheHorrorLaunch"/>
         <Cost>
-            <Vital index="Energy" value="30"/>
-            <Cooldown TimeUse="30"/>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="25"/>
         </Cost>
         <Range value="12"/>
         <PrepTime value="0"/>
@@ -3383,19 +3393,20 @@
         <AutoCastRange value="1"/>
         <AcquirePriority value="0"/>
     </CAbilEffectInstant>
-    <CAbilEffectTarget id="PsionicTempest">
+    <CAbilEffectTarget id="Absolution">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <Effect index="0" value="PsionicTempestCreatePersistent"/>
-        <Cost>
-            <Vital index="Energy" value="15"/>
-            <Charge Link="Abil/PsiShock"/>
-            <Cooldown Link="Abil/PsiShock"/>
-        </Cost>
-        <Range value="18"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="PsionicTempest"/>
+        <Effect index="0" value="AbsolutionCreatePersistent"/>
         <Flags index="AllowMovement" value="1"/>
         <Flags index="ReExecutable" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Charge Link="Abil/PsiShock"/>
+            <Cooldown Link="Abil/PsiShock" TimeUse="45"/>
+        </Cost>
+        <Range value="10"/>
+        <CursorEffect value="AbsolutionSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Absolution"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="RoadFlare">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3416,8 +3427,6 @@
     </CAbilEffectInstant>
     <CAbilBehavior id="RavagingPhantom">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <BehaviorArray value="RavagingPhantomLevel1"/>
-        <BehaviorArray value="RavagingPhantomLevel2"/>
         <BehaviorArray value="RavagingPhantomLevel1Tempest"/>
         <BehaviorArray value="RavagingPhantomLevel2Tempest"/>
     </CAbilBehavior>
@@ -3641,23 +3650,18 @@
         <ShowProgressArray index="Prep" value="1"/>
         <ProgressButtonArray index="Prep" value="MindMeld"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="MindRavage">
+    <CAbilEffectTarget id="PsionicTempest">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <Effect index="0" value="MindRavageLevel1Search"/>
-        <Effect value="MindRavageLevel2Search"/>
-        <Effect value="MindRavageLevel3Search"/>
-        <Cost>
-            <Vital index="Energy" value="20"/>
-            <Cooldown TimeUse="3"/>
-        </Cost>
-        <AutoCastFilters value="-;-"/>
-        <CursorEffect value="MindRavageLevel1Search"/>
-        <AINotifyEffect value=""/>
-        <LevelButtonTooltip value="Level 2 Mind Ravage"/>
-        <LevelButtonTooltip value="Level 3 Mind Ravage"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="MindRavage"/>
-        <Range value="25"/>
+        <Effect index="0" value="PsionicTempestCreatePersistent"/>
         <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="2"/>
+        </Cost>
+        <Range value="18"/>
+        <AutoCastFilters value="-;-"/>
+        <CursorEffect value="PsionicTempestSearch"/>
+        <AINotifyEffect value=""/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PsionicTempest"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Overdrive">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3694,7 +3698,7 @@
         <InfoArray index="Learn1" Abil="ForcePush">
             <Button DefaultButtonFace="ForcePush"/>
         </InfoArray>
-        <InfoArray index="Learn2" Abil="MindRavage">
+        <InfoArray index="Learn2" Abil="PsionicTempest">
             <Button DefaultButtonFace="MindRavage"/>
         </InfoArray>
         <InfoArray index="Learn3" Abil="RavagingPhantom">
@@ -3703,7 +3707,7 @@
         <InfoArray index="Learn4" Abil="Foresight">
             <Button DefaultButtonFace="ForesightLevel1"/>
         </InfoArray>
-        <InfoArray index="Learn5" Abil="PsionicTempest">
+        <InfoArray index="Learn5" Abil="Absolution">
             <Button DefaultButtonFace="PsionicTempest"/>
         </InfoArray>
         <InfoArray index="Learn6" Abil="Blackout">

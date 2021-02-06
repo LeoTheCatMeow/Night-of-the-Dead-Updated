@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CUpgrade id="AbsolutionBonus">
+        <EffectArray Reference="Effect,PsionicTempestSearch,AreaArray[0].Radius" Value="2"/>
+        <EffectArray Reference="Actor,HighTemplarPsiStormModel,Scale" Value="0.800000"/>
+    </CUpgrade>
     <CUpgrade id="AntiVenomUpgrade">
         <EffectArray Operation="Set" Reference="Effect,AntiVenom,VitalArray[Life].Change" Value="30"/>
         <EffectArray Operation="Set" Reference="Effect,AntiVenomRemoveVenom,Count" Value="3"/>
-        <EffectArray Operation="Set" Reference="Button,AntiVenom,Tooltip" Value="Button/Tooltip/AntiVenom"/>
         <EditorCategories value="Race:Terran"/>
     </CUpgrade>
     <CUpgrade id="AssaultJumpLevel2">

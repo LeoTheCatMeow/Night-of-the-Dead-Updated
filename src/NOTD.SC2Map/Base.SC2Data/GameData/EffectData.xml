@@ -91,6 +91,11 @@
     <CEffectEnumArea id="330mmBarrageCannonsSearch">
         <SearchFilters value="Ground;Self,Player,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="AbsolutionApplySpellBuff">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AbsolutionSpellBuff"/>
+    </CEffectApplyBehavior>
     <CEffectCreatePersistent id="AcidicDeathCreatePersistent">
         <EditorCategories value=""/>
         <PeriodCount value="12"/>
@@ -125,6 +130,35 @@
         <EditorCategories value=""/>
         <Behavior value="AcidicToxin"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AbsolutionApply">
+        <EditorCategories value=""/>
+        <Behavior value="Absolution"/>
+    </CEffectApplyBehavior>
+    <CEffectModifyPlayer id="AbsolutionBonusOff">
+        <Upgrades Upgrade="AbsolutionBonus" Count="-1"/>
+    </CEffectModifyPlayer>
+    <CEffectModifyPlayer id="AbsolutionBonusOn">
+        <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
+    </CEffectModifyPlayer>
+    <CEffectApplyBehavior id="TheHorrorApplyMadness">
+        <ValidatorArray index="0" value="TargetisNotEnemyBoss"/>
+        <EditorCategories value=""/>
+        <Behavior value="Madness"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="TheHorrorDamage">
+        <EditorCategories value=""/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoVitalAbsorbShields" value="1"/>
+        <Amount value="1"/>
+        <VitalFractionMax index="Life" value="0.005"/>
+        <Death value="Disintegrate"/>
+    </CEffectDamage>
+    <CEffectIssueOrder id="IssueStop">
+        <EditorCategories value="Race:Terran"/>
+        <Abil value="stop"/>
+    </CEffectIssueOrder>
     <CEffectApplyBehavior id="Level3Detection5">
         <EditorCategories value=""/>
         <Behavior value="Detector5"/>
@@ -160,6 +194,23 @@
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="8"/>
     </CEffectEnumArea>
+    <CEffectCreatePersistent id="AbsolutionCreatePersistent">
+        <EditorCategories value=""/>
+        <InitialEffect value="AbsolutionApplySpellBuff"/>
+        <PeriodCount value="30"/>
+        <PeriodicEffectArray value="AbsolutionSearch"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="AbsolutionSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Ground;RawResource,HarvestableResource,Missile,Item,Dead,Hallucination"/>
+        <AreaArray Radius="3.5" Effect="AbsolutionApply"/>
+    </CEffectEnumArea>
+    <CEffectSet id="PsionicTempestPersistentSet">
+        <EditorCategories value=""/>
+        <EffectArray value="PsionicTempestSearch"/>
+        <EffectArray value="PsionicTempestEnergyDrain"/>
+    </CEffectSet>
     <CEffectEnumArea id="SentinelMineLimit">
         <EditorCategories value=""/>
         <SearchFilters value="Mechanical;Self,Ally,Neutral,Enemy,Structure,Heroic,Dead"/>
@@ -190,6 +241,17 @@
         <WhichUnit Value="Source"/>
         <Behavior value="FieldProbeLimit"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="TheHorrorDamageHeroic">
+        <EditorCategories value=""/>
+        <AttributeFactor index="MapBoss" value="-0.2"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoVitalAbsorbShields" value="1"/>
+        <Amount value="1"/>
+        <VitalFractionMax index="Life" value="0.001"/>
+        <Death value="Disintegrate"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="TowerLimitApply">
         <EditorCategories value=""/>
         <WhichUnit Value="Source"/>
@@ -2022,26 +2084,26 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <ImpactUnitValidator value="TargetIsNotEnemy"/>
-        <Amount value="25"/>
+        <Amount value="22.5"/>
     </CEffectDamage>
     <CEffectDamage id="MonofilamentTrapDamageAlliesLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <ImpactUnitValidator value="TargetIsNotEnemy"/>
-        <Amount value="50"/>
+        <Amount value="45"/>
     </CEffectDamage>
     <CEffectDamage id="MonofilamentTrapDamageEnemiesLevel1">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <ImpactUnitValidator value="TargetIsEnemy"/>
-        <Amount value="50"/>
+        <Amount value="75"/>
         <Flags index="Notification" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="MonofilamentTrapDamageEnemiesLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <ImpactUnitValidator value="TargetIsEnemy"/>
-        <Amount value="100"/>
+        <Amount value="150"/>
         <Flags index="Notification" value="1"/>
     </CEffectDamage>
     <CEffectEnumArea id="MonofilamentTrapSearchLevel1">
@@ -4398,6 +4460,8 @@
         <EditorCategories value=""/>
         <SearchFilters value="-;Self,Ally,Neutral,Enemy"/>
         <AreaArray Radius="300" Effect="MarchoftheMachinesApply"/>
+        <ValidatorArray value="NotCrowbarEquipped"/>
+        <ValidatorArray value="NotBarretEquipped"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="HEFRoundsApply">
         <EditorCategories value=""/>
@@ -5932,6 +5996,8 @@
         <SearchFilters value="-;Self,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
         <AreaArray Radius="5" Effect="MarchoftheMachinesIssueAttack"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <ValidatorArray value="NotCrowbarEquipped"/>
+        <ValidatorArray value="NotBarretEquipped"/>
     </CEffectEnumArea>
     <CEffectSet id="MarchoftheMachinesSet">
         <EditorCategories value=""/>
@@ -9950,7 +10016,7 @@
     <CEffectModifyUnit id="PsionicTempestEnergyDrain">
         <EditorCategories value=""/>
         <VitalArray index="Energy">
-            <Change value="-1.25"/>
+            <Change value="-1"/>
         </VitalArray>
         <ImpactUnit Value="Caster"/>
     </CEffectModifyUnit>
@@ -10982,23 +11048,23 @@
         <EditorCategories value=""/>
         <Flags index="Channeled" value="1"/>
         <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodCount value="100"/>
+        <PeriodCount value="10"/>
         <PeriodicPeriodArray value="0.25"/>
-        <PeriodicEffectArray value="PsionicTempestSearch"/>
-        <PeriodicEffectArray value="PsionicTempestEnergyDrain"/>
+        <PeriodicEffectArray value="PsionicTempestPersistentSet"/>
         <PeriodicValidator value="CasterHasEnergy"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="PsionicTempestDamage">
         <EditorCategories value=""/>
-        <Amount value="25"/>
+        <Amount value="7.5"/>
         <Death value="Electrocute"/>
-        <AttributeBonus index="Massive" value="25"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
+        <ValidatorArray value="ValidTempestTarget"/>
+        <AttributeFactor index="Massive" value="0.5"/>
     </CEffectDamage>
     <CEffectEnumArea id="PsionicTempestSearch">
         <EditorCategories value=""/>
         <SearchFilters value="-;RawResource,HarvestableResource,Missile,Item,Dead,Hallucination,Invulnerable,Summoned"/>
-        <AreaArray Radius="5" Effect="PsionicTempestSet"/>
+        <AreaArray Radius="3" Effect="PsionicTempestSet"/>
     </CEffectEnumArea>
     <CEffectSet id="PsionicTempestSet">
         <EditorCategories value=""/>

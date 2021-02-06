@@ -91,6 +91,30 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Absolution">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-invulnerabilityshield.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.55"/>
+        <Modification AttackSpeedMultiplier="1.5"/>
+        <DamageResponse ModifyFraction="0">
+            <ValidatorArray value="TargetHasNotAbsolution"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AbsolutionSpellBuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Period value="14.9"/>
+        <PeriodCount value="1"/>
+        <InitialEffect value="AbsolutionBonusOn"/>
+        <PeriodicEffect value="AbsolutionBonusOff"/>
+        <ExpireEffect value="IssueStop"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="3"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AcidicBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <InitialEffect value="AcidicApplyBonusCloud"/>
@@ -221,6 +245,8 @@
             <RequireEffectArray value="VolatileInjectionLevel1Damage"/>
             <RequireEffectArray value="VolatileInjectionLevel2Damage"/>
             <RequireEffectArray value="MoreDoTsDamage"/>
+            <RequireEffectArray value="TheHorrorDamage"/>
+            <RequireEffectArray value="TheHorrorDamageHeroic"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -235,7 +261,6 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <BuffFlags index="RefreshStack" value="1"/>
         <MaxStackCount value="5"/>
         <Duration value="10"/>
         <Period value="0.25"/>
@@ -252,7 +277,6 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets/Textures/btn-ability-terran-jetpack-color.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <BuffFlags index="RefreshStack" value="1"/>
         <MaxStackCount value="5"/>
         <Duration value="10"/>
         <Period value="0.5"/>
@@ -835,7 +859,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <DamageResponse Handled="CIAmmoApplySet" Location="Attacker">
             <ExcludeEffectArray value="ArmageddonDamage"/>
-            <ExcludeEffectArray value="VultureSpiderMinesDamage"/>
+            <ExcludeEffectArray value="WidowMineExplodeSplash"/>
             <ExcludeEffectArray value="ArmageddonRadiationDamage"/>
             <ExcludeEffectArray value="SatchelLevel1Damage"/>
             <ExcludeEffectArray value="SatchelLevel2Damage"/>
@@ -856,8 +880,11 @@
             <ExcludeEffectArray value="L3GrenadeExplosion"/>
             <ExcludeEffectArray value="LaserRifleDamage"/>
             <ExcludeEffectArray value="ArmorMeltDamage"/>
-            <ExcludeEffectArray value="ExplodingBarrelLargeExplosion"/>
             <ExcludeEffectArray value="StingerMK3Damage"/>
+            <ExcludeEffectArray value="SatchelLevel1AftershockDamage"/>
+            <ExcludeEffectArray value="SatchelLevel2AftershockDamage"/>
+            <ExcludeEffectArray value="ArmageddonDamageAftershock"/>
+            <ExcludeEffectArray value="CominginHotDamage"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -3294,7 +3321,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="3.6"/>
-        <Modification MoveSpeedMultiplier="0.75">
+        <Modification MoveSpeedMultiplier="0.7">
             <DeathResponse>
                 <Cost>
                     <Charge Link="Behavior/BringThemDownLevel1"/>
@@ -3312,7 +3339,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-terran-psidisruption.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="4.1"/>
-        <Modification MoveSpeedMultiplier="0.65">
+        <Modification MoveSpeedMultiplier="0.55">
             <DeathResponse>
                 <Cost>
                     <Charge Link="Behavior/BringThemDownLevel1"/>
@@ -3431,6 +3458,9 @@
         <Modification SightBonus="-32">
             <AbilClassDisableArray index="CAbilAttack" value="1"/>
         </Modification>
+        <Period value="0.1"/>
+        <PeriodicEffect value="TheHorrorDamage"/>
+        <ExpireEffect value="TheHorrorApplyMadness"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="TheHorrorHeroic">
         <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
@@ -3439,6 +3469,9 @@
         <Modification SightBonus="-32">
             <AbilClassDisableArray index="CAbilAttack" value="1"/>
         </Modification>
+        <Period value="0.1"/>
+        <PeriodicEffect value="TheHorrorDamageHeroic"/>
+        <ExpireEffect value="TheHorrorApplyMadness"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VRL772Buff">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-oraclepulsarcannonon.dds"/>
@@ -3961,10 +3994,10 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="BallisticsLevel1"/>
         <Modification WeaponRange="1">
-            <DamageDealtFraction index="Spell" value="0.12"/>
-            <DamageDealtFraction index="Melee" value="0.12"/>
-            <DamageDealtFraction index="Ranged" value="0.12"/>
-            <DamageDealtFraction index="Splash" value="0.12"/>
+            <DamageDealtFraction index="Spell" value="0.18"/>
+            <DamageDealtFraction index="Melee" value="0.18"/>
+            <DamageDealtFraction index="Ranged" value="0.18"/>
+            <DamageDealtFraction index="Splash" value="0.18"/>
         </Modification>
         <Period value="0.1"/>
         <PeriodCount value="1"/>
@@ -3987,10 +4020,10 @@
         <PeriodCount value="1"/>
         <PeriodicEffect value="BallisticsRemoveSet"/>
         <Modification WeaponRange="2">
-            <DamageDealtFraction index="Spell" value="0.24"/>
-            <DamageDealtFraction index="Melee" value="0.24"/>
-            <DamageDealtFraction index="Ranged" value="0.24"/>
-            <DamageDealtFraction index="Splash" value="0.24"/>
+            <DamageDealtFraction index="Spell" value="0.36"/>
+            <DamageDealtFraction index="Melee" value="0.36"/>
+            <DamageDealtFraction index="Ranged" value="0.36"/>
+            <DamageDealtFraction index="Splash" value="0.36"/>
         </Modification>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
@@ -4254,10 +4287,10 @@
         <InfoIcon value="Assets/Textures/btn-upgrade-terran-moebiusreactor.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <RemoveValidatorArray value="UnithasMorethan2Energy"/>
-        <Period value="1.5"/>
+        <Period value="3"/>
         <InitialEffect value="MarchoftheMachinesSet"/>
         <PeriodicEffect value="MarchoftheMachinesSet"/>
-        <Modification MoveSpeedMultiplier="0.75" AttackSpeedMultiplier="0.75" LifeArmorMultiplier="4">
+        <Modification AttackSpeedMultiplier="0.75" LifeArmorMultiplier="4">
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
@@ -7100,21 +7133,24 @@
         <Requirements value="ForesightLevel1"/>
         <Period value="1"/>
         <PeriodicEffect value="ForesightLevel1SearchArea"/>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ForesightLevel1Debuff">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ocularimplants.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.1"/>
-        <Modification MoveSpeedMultiplier="0.88" AttackSpeedMultiplier="0.88"/>
+        <Modification MoveSpeedMultiplier="0.88" AttackSpeedMultiplier="0.88">
+            <DamageTakenFraction index="Spell" value="0.25"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ForesightLevel2Debuff">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ocularimplants.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.1"/>
-        <Modification MoveSpeedMultiplier="0.76" AttackSpeedMultiplier="0.76"/>
+        <Modification MoveSpeedMultiplier="0.76" AttackSpeedMultiplier="0.76">
+            <DamageTakenFraction index="Spell" value="0.5"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ForesightLevel2">
         <Alignment value="Positive"/>
@@ -7123,7 +7159,6 @@
         <Requirements value="ForesightLevel2"/>
         <Period value="1"/>
         <PeriodicEffect value="ForesightLevel2Set"/>
-        <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MentalProjection">
         <InfoFlags index="Hidden" value="1"/>

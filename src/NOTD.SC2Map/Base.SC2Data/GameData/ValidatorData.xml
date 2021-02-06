@@ -362,6 +362,14 @@
         <Compare value="Eq"/>
         <LaunchLocation Value="CasterUnit"/>
     </CValidatorLocationEnumArea>
+    <CValidatorUnitCompareBehaviorCount id="NotBarretEquipped">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BarretEquipped"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="NotCrowbarEquipped">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="CrowbarNoReload"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerCompareRace id="NotZombiePlayer">
         <WhichPlayer Value="Caster"/>
         <Compare value="NE"/>
@@ -967,6 +975,18 @@
         <Value value="100"/>
         <Vital value="Energy"/>
     </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareBehaviorCount id="TargetHasNotAbsolution">
+        <Behavior value="Absolution"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasAbsolution">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="Absolution"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargethasAbsolution">
+        <Compare value="GT"/>
+        <Behavior value="Absolution"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="TargetNotinLockOn">
         <Behavior value="MasterMarksmanLockOn"/>
     </CValidatorUnitCompareBehaviorCount>
@@ -1015,6 +1035,10 @@
     <CValidatorUnitCompareBehaviorCount id="TargethasnotLaserDesignatorLevel1">
         <Behavior value="LaserDesignatorLevel1"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="ValidTempestTarget">
+        <CombineArray value="TargetisAbsolutionAlly"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
     <CValidatorUnitType id="TargetisAgron">
         <Value value="Ultralisk"/>
     </CValidatorUnitType>
@@ -1535,6 +1559,11 @@
     <CValidatorCombine id="ValidFlamethrowerMK3Target">
         <CombineArray value="HasHeliumIgniterLevel3"/>
         <CombineArray value="IsGroundUnit"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="TargetisAbsolutionAlly">
+        <Type value="And"/>
+        <CombineArray value="TargetIsAllyorPlayer"/>
+        <CombineArray value="TargethasAbsolution"/>
     </CValidatorCombine>
     <CValidatorCombine id="ValidVenomTarget">
         <CombineArray value="HasChemicalSynthesisLevel1"/>

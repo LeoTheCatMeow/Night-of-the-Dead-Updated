@@ -15640,6 +15640,15 @@ void gf_LevelUpTalentPsiOps (int lp_itemNo, unit lp_triggUnit, int lp_triggPlaye
         }
     }
 
+    if ((lp_itemNo == 2)) {
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
+            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestDamage", "Amount", lp_triggPlayer, "10");
+        }
+        else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 3)) {
+            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestDamage", "Amount", lp_triggPlayer, "12.5");
+        }
+    }
+
     if ((lp_itemNo == 7)) {
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 1)) {
             UnitIssueOrder(lp_triggUnit, Order(AbilityCommand("LearnPsiOps", 10)), c_orderQueueAddToFront);
@@ -20289,9 +20298,6 @@ bool gt_FriendlyFireOrder_Func (bool testConds, bool runActions) {
     }
     else if (auto668601B0_val == AbilityCommand("ForcePush", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, (libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "ForcePushSearch", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny) + 0.25)), 0);
-    }
-    else if (auto668601B0_val == AbilityCommand("PsionicTempest", 0)) {
-        lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "PsionicTempestSearch", "AreaArray[" + IntToString(0) + "].Radius", c_playerAny)), 0);
     }
     else if (auto668601B0_val == AbilityCommand("FireMission", 0)) {
         lv_victimsFriendlyFire = UnitGroupFilterRegion(gv_marines, RegionCircle(lv_targPoint, (libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "FireMissionLevel1CreatePersistent", "RevealRadius", c_playerAny) - 0.25)), 0);
@@ -42291,7 +42297,7 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
     int auto07AED26A_i;
     int autoBA297442_n;
     int autoBA297442_i;
-    const int autoA7387585_n = 150;
+    const int autoA7387585_n = 100;
     int autoA7387585_i;
 
     // Conditions

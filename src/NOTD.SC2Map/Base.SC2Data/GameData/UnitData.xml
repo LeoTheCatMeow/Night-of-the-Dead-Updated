@@ -913,7 +913,6 @@
         <AbilArray Link="ChemicalExtraction"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="ChemicalPlatingAuraLevel1"/>
@@ -1168,7 +1167,6 @@
         <AbilArray Link="Sap"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <AbilArray Link="MakeExplosives"/>
         <BehaviorArray Link="Basic_Hero"/>
@@ -1641,7 +1639,6 @@
         <AbilArray Link="L3LaunchGrenade"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="MasterMarksman"/>
@@ -1727,7 +1724,20 @@
         <ShieldRegenRate value="1.75"/>
         <Speed value="2.586"/>
         <Sight value="9.5"/>
-        <AbilArray Link="SurgicalLaser"/>
+        <AbilArray index="3" Link="InventoryMedic"/>
+        <AbilArray index="4" Link="LearnMedic"/>
+        <AbilArray index="5" Link="TeamLocation"/>
+        <AbilArray index="6" Link="Reload"/>
+        <AbilArray index="7" Link="DropMagazine"/>
+        <AbilArray index="8" Link="GhostHoldFire"/>
+        <AbilArray index="9" Link="GhostWeaponsFree"/>
+        <AbilArray index="10" Link="FibrinBandage"/>
+        <AbilArray index="11" Link="CombatKnife"/>
+        <AbilArray index="12" Link="L3LaunchGrenade"/>
+        <AbilArray index="13" Link="Talents"/>
+        <AbilArray index="14" Link="CurrentAmmo"/>
+        <AbilArray index="15" Link="CurrentMagazine"/>
+        <AbilArray index="16" Link="SurgicalLaser"/>
         <AbilArray Link="NanoShield"/>
         <AbilArray Link="NanoWeave"/>
         <AbilArray Link="Restoration"/>
@@ -1947,7 +1957,20 @@
         <Speed value="2.4765"/>
         <SpeedMultiplierCreep value="0.8"/>
         <TurningRate value="574.9804"/>
-        <AbilArray Link="XM35GrenadeLauncher"/>
+        <AbilArray index="3" Link="InventoryRifleman"/>
+        <AbilArray index="4" Link="LearnRifleman"/>
+        <AbilArray index="5" Link="TeamLocation"/>
+        <AbilArray index="6" Link="Reload"/>
+        <AbilArray index="7" Link="DropMagazine"/>
+        <AbilArray index="8" Link="GhostHoldFire"/>
+        <AbilArray index="9" Link="GhostWeaponsFree"/>
+        <AbilArray index="10" Link="FibrinBandage"/>
+        <AbilArray index="11" Link="CombatKnife"/>
+        <AbilArray index="12" Link="L3LaunchGrenade"/>
+        <AbilArray index="13" Link="Talents"/>
+        <AbilArray index="14" Link="CurrentAmmo"/>
+        <AbilArray index="15" Link="CurrentMagazine"/>
+        <AbilArray index="16" Link="XM35GrenadeLauncher"/>
         <AbilArray Link="SonicTrap"/>
         <AbilArray Link="PrecisionShot"/>
         <AbilArray Link="FocusedFire"/>
@@ -2127,7 +2150,6 @@
         <AbilArray Link="L3LaunchGrenade"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="MassDesignate"/>
         <AbilArray Link="Execute"/>
         <AbilArray Link="StealthMatrix"/>
@@ -2481,7 +2503,6 @@
         <AbilArray Link="Sprint2"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="KittenBeacon"/>
@@ -2712,7 +2733,6 @@
         <AbilArray Link="BuildTechnician"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="CriticalStrikeDealer"/>
@@ -3065,7 +3085,6 @@
         <AbilArray Link="L3LaunchGrenade"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="DefensivePlatingLevel1"/>
@@ -6528,7 +6547,6 @@
         <AbilArray Link="L3LaunchGrenade"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="Helium3IgniterLevel1"/>
@@ -7122,7 +7140,7 @@
             <LayoutButtons>
                 <Face value="MarineActions"/>
                 <Type value="Submenu"/>
-                <AbilCmd value="PsionicTempest,Execute"/>
+                <AbilCmd value="Absolution,255"/>
                 <SubmenuCardId value="2"/>
                 <Row value="1"/>
                 <Column value="4"/>
@@ -8429,6 +8447,7 @@
         <DamageTakenXP value="1"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
         <AbilArray Link="InventoryPsiOps"/>
         <AbilArray Link="Sprint"/>
         <AbilArray Link="Reload"/>
@@ -8437,10 +8456,10 @@
         <AbilArray Link="DropMagazine"/>
         <AbilArray Link="LearnPsiOps"/>
         <AbilArray Link="MindLink"/>
-        <AbilArray Link="MindRavage"/>
+        <AbilArray Link="PsionicTempest"/>
         <AbilArray Link="MentalProjection"/>
         <AbilArray Link="Foresight"/>
-        <AbilArray Link="PsionicTempest"/>
+        <AbilArray Link="Absolution"/>
         <AbilArray Link="Talents"/>
         <AbilArray Link="Blackout"/>
         <AbilArray Link="ForcePush"/>
@@ -8454,7 +8473,6 @@
         <AbilArray Link="L3LaunchGrenade"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>
         <BehaviorArray Link="GhostEnergyUserRadar"/>
@@ -8476,14 +8494,14 @@
             <LayoutButtons Face="Reload" Type="AbilCmd" AbilCmd="Reload,Execute" Row="0" Column="2"/>
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MindLink" Type="AbilCmd" AbilCmd="MindLink,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="MindRavage" Type="AbilCmd" AbilCmd="MindRavage,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="Absolution" Type="AbilCmd" AbilCmd="Absolution,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="MentalProjection" Type="AbilCmd" AbilCmd="MentalProjection,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="PsionicTempest" Type="AbilCmd" AbilCmd="PsionicTempest,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons>
                 <Face value="MarineActions"/>
                 <Type value="Submenu"/>
-                <AbilCmd value="PsionicTempest,Execute"/>
+                <AbilCmd value="Absolution,255"/>
                 <SubmenuCardId value="2"/>
                 <Row value="1"/>
                 <Column value="4"/>
@@ -10907,7 +10925,6 @@
         <AbilArray Link="Overdrive"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="QuickUseItem"/>
         <AbilArray Link="RemoteSelfDestruct"/>
         <BehaviorArray Link="Basic_Hero"/>
@@ -11692,7 +11709,6 @@
         <AbilArray Link="L3LaunchGrenade"/>
         <AbilArray Link="CurrentAmmo"/>
         <AbilArray Link="CurrentMagazine"/>
-        <AbilArray Link="BlockInventoryTransfer"/>
         <AbilArray Link="MonofilamentTrap"/>
         <AbilArray Link="QuickUseItem"/>
         <BehaviorArray Link="Basic_Hero"/>

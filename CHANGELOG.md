@@ -12,6 +12,19 @@
 - Added the improved limit system for Crawler Drones, Field Probes, Disruption Towers, and Sonic Traps (1 gets destroyed instead of all). 
 - Replaced the faith animation with a new one (the current one looks too similar to an explosion).
 - Added a cursor indicator for Pathfinder's No Quarter.
+- Shortened the wait time between wave 10-11 in Survival Mode from 300 seconds to 200 seconds (real time).
+- Technician - March of the Machine attack interference interval increased from 1.5s to 3s (less interference).
+- Technician - March of the Machine attack interference will no longer happen if the weapon cannot friendly fire.
+- Technician - March of the Machine move speed penalty removed.
+- Technician - Ballistics damage bonus improved from 12%/24% to 18%/36%.
+- Psi Ops - Mind Ravage replaced by Psionic Tempest, with stats lowered to fit as a T1 ability. 
+- Psi Ops - Foresight now also amplifies spell damage taken in addition to the slow.
+- Psi Ops - Psionic Tempest T3 has been reworked into Absolution, offering a barrier for the team and empowers Psi Ops.
+- Commando - Bring Them Down slow improved from 15%/25%/35% to 15%/30%/45%.
+- Commando - Monofilament Trap damage increased from 50/100 to 75/150, ally damage unchanged.
+- Commando - Monofilament Trap no longer uses energy. It instead uses charges that recharge over time.
+- Commando - The Horror cost and cooldown slightly reduced. Now deals % HP damage over time, reduced against Heroic.
+- Units that manage to survive The Horror will be driven mad. Bosses are unaffected.
 
 2021-1-28
 [ReduxGelum]
@@ -36,7 +49,7 @@
 - Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
 - Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
 - Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
-- Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks, refreshable.
+- Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks.
 - Pathfinder - No Quarter cooldown reduced from 45 to 30, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
 - Pathfinder - Shoot To Maim energy cost per shot removed.
 - Agrons that guard nydus worms in EC are now spawned right next to the worms, making them less likely to block off zombies.

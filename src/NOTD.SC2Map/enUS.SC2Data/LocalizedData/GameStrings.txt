@@ -1,4 +1,5 @@
-﻿Abil/Name/Adrenaline=Adrenaline
+﻿Abil/Name/Absolution=Absolution
+Abil/Name/Adrenaline=Adrenaline
 Abil/Name/AirStrike=Air Strike
 Abil/Name/AmmoFeedDummy=Ammo Feed (Dummy)
 Abil/Name/AntiVenom=Anti-Venom
@@ -175,7 +176,6 @@ Abil/Name/MindBlast=Nano-Shock
 Abil/Name/MindLink=Mind-Link
 Abil/Name/MindLinkCancel=Mind-Link (Cancel)
 Abil/Name/MindMeld=Mind Meld
-Abil/Name/MindRavage=Mind Ravage
 Abil/Name/MobileInfantry=Mobile Infantry
 Abil/Name/MobileInfantryImproveEquipment=Mobile Infantry Improve Equipment
 Abil/Name/MonofilamentTrap=Monofilament Trap
@@ -417,6 +417,7 @@ Attribute007/Value002/Name=Disabled
 Barret/MMRifle Equipped=M45 Marksman Rifle or Barret M112 Equipped
 Behavior/Name/AMRounds=AM Rounds
 Behavior/Name/APAmmo=<c val="80FF80">AP Ammo</c>
+Behavior/Name/Absolution=Absolution
 Behavior/Name/Acidic=Acidic
 Behavior/Name/AcidicBoss=Acidic (Boss)
 Behavior/Name/AcidicToxin=Acidic Toxin
@@ -707,6 +708,8 @@ Behavior/Name/QuickAimLevel1=Quick Aim Level 1
 Behavior/Name/QuickAimLevel2=Quick Aim Level 2
 Behavior/Name/QuickAimLevel3=Quick Aim Level 3
 Behavior/Name/Rampage=Rampage
+Behavior/Name/RavagingPhantomLevel1=Ravaging Phantom (Level 1)
+Behavior/Name/RavagingPhantomLevel2=Ravaging Phantom (Level 2)
 Behavior/Name/Recoil=Recoil
 Behavior/Name/ReflexesLevel1=Reflexes (Level 1)
 Behavior/Name/ReflexesLevel2=Reflexes (Level 2)
@@ -827,6 +830,7 @@ Behavior/Name/X1BotVeterancy=X-1 Bot Veterancy
 Behavior/Name/ZEffect=Z Effect
 Behavior/Tooltip/AMRounds=The Black Dog is using AM (Anti-Matter) Rounds. Deals significant damage to a single target. Stuns non-boss units for 1 second and slows bosses by 35% for 1 second.
 Behavior/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/><n/>Attack Modifier: -1 armor (Stacks 3x)<n/>Damage Modifier +7% (Stacks 3x)
+Behavior/Tooltip/Absolution=Unit gains +50% attack speed and receives no damage from sources outside the barrier.
 Behavior/Tooltip/Acidic=Unit gains the following features:<n/>+100 flat and 50% health. <n/>Applies a stack of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Leaves a cloud of toxin upon death that continues to apply the debuff.</c>
 Behavior/Tooltip/AcidicBoss=Unit gains the following features:<n/>+5% health. <n/><d ref="Behavior,AcidicBoss,DamageResponse.Chance * 100"/>% chance to apply 1 stack of toxin on attackers that reduces damage and health regeneration, stacking up to 30 times.<n/><c val="FFFF00">Toxin clouds form periodically at attackers and upon death that continue to apply the debuff.</c>
 Behavior/Tooltip/AcidicToxin=Unit is suffering from acidic toxin, <d ref="Behavior,AcidicToxin,Modification.VitalRegenArray[0]" precision="2"/> health per second and have damage reduced by 0.5% for 6 seconds.
@@ -867,8 +871,8 @@ Behavior/Tooltip/BoomHeadshotLevel1Heroic=-15% movespeed and -2 armor for 1 seco
 Behavior/Tooltip/BoomHeadshotLevel2=Attacks by Engineer/Guardian stuns non-Heroics (slows Heroics by 30%)  for and cause -4 armor for 2 seconds. Attack modifier lasts for 7 seconds.
 Behavior/Tooltip/BoomHeadshotLevel2Heroic=-30% movespeed and -4 armor for 2 seconds.
 Behavior/Tooltip/BringThemDownLevel1Slow=Unit is slowed by 15% for 3 seconds. 
-Behavior/Tooltip/BringThemDownLevel2Slow=Unit is slowed by 25% for 3.5 seconds. 
-Behavior/Tooltip/BringThemDownLevel3Slow=Unit is slowed by 35% for 4 seconds. 
+Behavior/Tooltip/BringThemDownLevel2Slow=Unit is slowed by 30% for 3.5 seconds. 
+Behavior/Tooltip/BringThemDownLevel3Slow=Unit is slowed by 45% for 4 seconds. 
 Behavior/Tooltip/BurnHEAmmo=Unit is under effect of HE ammo.
 Behavior/Tooltip/CIAmmo2=Targets lose 7 health over 2 seconds (Stackable) and take 35% bonus damage from chemical for 5 seconds, applied by non-fire sources only.
 Behavior/Tooltip/ChargeStunLevel1=Unit is stunned for 2 seconds.
@@ -890,8 +894,8 @@ Behavior/Tooltip/CohesionLevel2=Unit gains +2 armor and +0.4 health regeneration
 Behavior/Tooltip/CombatHardenedLevel2=Passive: +40% HP & energy regen rate. 
 Behavior/Tooltip/CombatKnife=Unit slowed by 70% for 2 secs
 Behavior/Tooltip/CombatMobilityAugment=Increases movespeed by 10%
-Behavior/Tooltip/CominginHotDOTLevel1=Unit is burning for 18 HP/s.
-Behavior/Tooltip/CominginHotDOTLevel2=Unit is burning for 36 HP/s.
+Behavior/Tooltip/CominginHotDOTLevel1=Unit is burning for 16 HP/s.
+Behavior/Tooltip/CominginHotDOTLevel2=Unit is burning for 32 HP/s.
 Behavior/Tooltip/ComplianceMatrix=Unit is under permanent control of Compliance Matrix. +2 armor and has reduced attack speed.
 Behavior/Tooltip/ConcentratedFireLevel1=+50% attack speed and +1 sight range. -5% movespeed. +5% Critical Strike chance if talent is learnt. Lasts for 7 seconds
 Behavior/Tooltip/ConcentratedFireLevel2=+100% attack speed and +2 sight range. -5% movespeed. +10% Critical Strike chance if talent is learnt. Lasts for 7 seconds
@@ -936,9 +940,9 @@ Behavior/Tooltip/FloodlightsSlowLevel3=Slowed by 15%.
 Behavior/Tooltip/ForcePushStun=Unit is stunned for 2 seconds.
 Behavior/Tooltip/ForcePushStunBoss=Unit is stunned for 1 second.
 Behavior/Tooltip/ForesightLevel1=Enemies in 9 radius of Psi Ops have -12% movespeed and attack speed reduction.
-Behavior/Tooltip/ForesightLevel1Debuff=Unit attack and movement speed reduced by -12%
+Behavior/Tooltip/ForesightLevel1Debuff=Unit move & attack speed reduced by 12% and takes +25% spell damage.
 Behavior/Tooltip/ForesightLevel2=Enemies in 9 radius of Psi Ops have -24% movespeed and attack speed reduction.
-Behavior/Tooltip/ForesightLevel2Debuff=Unit attack and movement speed reduced by -24%
+Behavior/Tooltip/ForesightLevel2Debuff=Unit move & attack speed reduced by 24% and takes +50% spell damage.
 Behavior/Tooltip/Frenzy100=+100% movespeed
 Behavior/Tooltip/Frenzy2=The Queen is in Frenzy. +30% attack damage and speed. +80% move speed.<n/><n/>She also becomes more vulnerable to attacks.
 Behavior/Tooltip/Frenzy3=+20% movespeed
@@ -1001,7 +1005,7 @@ Behavior/Tooltip/Magazine=Magazines provide rounds for your weapons.
 Behavior/Tooltip/MaimedLevel1=Unit movement and attack speed is slowed by 5% per stack. Stacks up to 3 times.
 Behavior/Tooltip/MaimedLevel2=Unit movement and attack speed is slowed by 7.5% per stack. Stacks up to 3 times.
 Behavior/Tooltip/MaimedLevel3=Unit movement and attack speed is slowed by 10% per stack. Stacks up to 4 times.
-Behavior/Tooltip/MarchoftheMachines=+300% armor & health and +100% damage. -25% attack speed and movespeed.
+Behavior/Tooltip/MarchoftheMachines=+300% armor & health and +100% damage. -25% attack speed.
 Behavior/Tooltip/MarkofthePredator=You have chosen to rise beyond death. You are a warrior in the truest sense.
 Behavior/Tooltip/MarkofthePredator2=You have chosen to rise beyond death. You are a warrior in the truest sense.
 Behavior/Tooltip/MasterMarksman=Marksman periodically locks onto the unit he last attacked. Marksman abilities deal 30% more damage and refund 10 energy + 1 stack of concentration against a locked target. Requires Marksman Rifle or Barrett equipped.
@@ -1060,6 +1064,8 @@ Behavior/Tooltip/QuickAimLevel1=+200% attack speed for 3 secs
 Behavior/Tooltip/QuickAimLevel2=+300% attack speed for 3 secs
 Behavior/Tooltip/QuickAimLevel3=+400% attack speed for 3 secs
 Behavior/Tooltip/Rampage=Rampage. +100% attack speed. +40% move speed.
+Behavior/Tooltip/RavagingPhantomLevel1=
+Behavior/Tooltip/RavagingPhantomLevel2=
 Behavior/Tooltip/Recoil=Marine is slowed by 40% from Barrett M112's forceful recoil.
 Behavior/Tooltip/ReflexesLevel1=15% chance to dodge attacks. +5% movespeed.
 Behavior/Tooltip/ReflexesLevel2=30% chance to dodge attacks. +10% movespeed.
@@ -1149,8 +1155,8 @@ Behavior/Tooltip/TauntTemplate=Forces enemies in 10 radius to attack Assault for
 Behavior/Tooltip/TauntedLevel1=Taunted to attack Assault. Damage dealt lowered by 10%.
 Behavior/Tooltip/TauntedLevel2=Taunted to attack Assault. Damage dealt lowered by 20%.
 Behavior/Tooltip/TauntedLevel3=Taunted to attack Assault. Damage dealt lowered by 30%.
-Behavior/Tooltip/TheHorror=Target is blinded and has attacks disabled for 10 seconds.
-Behavior/Tooltip/TheHorrorHeroic=Target is blinded and has attacks disabled for 10 seconds.
+Behavior/Tooltip/TheHorror=Target is blinded and has attacks disabled for 10 seconds. Gradually losing life.
+Behavior/Tooltip/TheHorrorHeroic=Target is blinded and has attacks disabled for 10 seconds. Gradually losing life.
 Behavior/Tooltip/ThermalSight=Detects invisible units in 9 radius.
 Behavior/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains <d ref="Behavior,TimetoDie,Modification.ShieldArmorMultiplier"/>x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
 Behavior/Tooltip/TimetoDieStun=Unit is stunned for 1 sec.
@@ -1176,6 +1182,7 @@ Behavior/Tooltip/WraithCorrosiveAcid=<c val="80FF80">Wraith Corrosive Acid</c><n
 Behavior/Tooltip/ZEffect=Immobilized for 15 seconds. You cannot move at all, not even turn. Your squad must protect you.
 Burst Fire Level 3=Deals 150 damage to units in a forward arc (6 range). Deals 40% extra damage to Light units. Affects air units too. 
 Button/Name/APAmmo=<c val="80FF80">AP Ammo</c>
+Button/Name/Absolution=Absolution
 Button/Name/Adrenaline=Adrenaline
 Button/Name/AirStrike=Air Strike
 Button/Name/AmmoBox=Ammo Box
@@ -1544,13 +1551,14 @@ Button/Name/Zeratul=Zeratul
 Button/Name/ZeratulBlink2=Blink Copy
 Button/Name/ZerglingPet=Zergling
 Button/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/>Produced by United Arms Heavy Industries, this ammunition can punch through the hardiest of armor.<n/><n/>Attack Modifier: <c val="FFFFFF">-1 armor (Stacks 3x)</c><n/>Damage Modfier: <c val="FFFFFF">+7% (Stacks 3x)</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"Know that you are a UGC Marine. And know that means no defense can stop you. Not steel plate or concrete bunker. Your round will always find the enemy's heart. "
+Button/Tooltip/Absolution=Establishes a psionic barrier (3.5 radius) in the target area for 15 seconds. Ground units within the barrier gain +50% attack speed and are immune to any damage coming from sources outside the barrier.<n/><n/>While Absolution is active, Psi Ops unseals her true power, gaining +300% spell damage and increasing Psionic Tempest's radius to 5. 
 Button/Tooltip/Adrenaline=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Button/Tooltip/AirStrike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 75 damage. Stuns units for 3 seconds.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue. "
 Button/Tooltip/AirStrikeBombers=Tactical-strike aircraft.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AmmoBox=<c val="FFFF00">Ammo Box</c><n/>Stores magazines that provide rounds for your weapons. Higher magazine capacity frees up your inventory.<n/><n/>Credits: <c val="FFFFFF">35</c>
 Button/Tooltip/AmmoFeedLevel1=Increases maximum rounds carried to 80.
 Button/Tooltip/AmmoFeedLevel2=Increases maximum rounds carried to 120.
-Button/Tooltip/AntiVenom=<c val="FFFF00">Anti-Venom</c><n/>Removes 3 stacks of venom and restores 30 HP.
+Button/Tooltip/AntiVenom=<c val="FFFF00">Anti-Venom</c><n/>Removes <d ref="Effect,AntiVenomRemoveVenom,Count"/> stack(s) of venom and restores <d ref="Effect,AntiVenomRemoveVenom,Count * 10"/> HP.
 Button/Tooltip/AntiVenom2=<c val="FFFF00">Anti-Venom</c><n/>Cures venom and restores 10 HP.<n/><n/>Credits: <c val="FFFFFF">10</c>
 Button/Tooltip/AnticipationLevel1=7 radius aura. Deals +15% extra damage when target is more than 9 distance away.
 Button/Tooltip/AnticipationLevel2=7 radius aura. Deals +30% extra damage when target is more than 9 distance away.
@@ -1696,7 +1704,7 @@ Button/Tooltip/FMJAmmo=<c val="80FF80">Full Metal Jacket Ammo</c><n/>The jacket 
 Button/Tooltip/Faith=HP reduced by 50% and burns shields completely. Deals 777 damage to all units in 7 radius, and stuns them for 7 seconds. Heals allies for 35 HP. Flamethrower gains 10 armor for 10 seconds. Also removes 3 stacks of Open Wounds and Venom from Flamethrower.
 Button/Tooltip/FastFive=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 1 -- Shots do 10% additional damage
 Button/Tooltip/FibrinBandage=Uses Fibrin Bandage in inventory to instantly heal 50 HP on target unit.
-Button/Tooltip/FieldNexus=Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all non-boss air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).
+Button/Tooltip/FieldNexus=Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>1) Sigma: Burns all air units in 8 radius.<n/>2) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>3) Passive Aura: All allies with shields in 9 radius gain Static Shield (+1 shield armor and deals 25 damage to attackers).
 Button/Tooltip/FieldProbe=Creates a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.
 Button/Tooltip/FieldRetrofit=<c val="FFFF00">Field Retrofit</c><n/>Cures Short Circuit. The materials required render the Maintenance Drone inoperative.
 Button/Tooltip/FireMission=Artillery strike that deals 50 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
@@ -1805,7 +1813,7 @@ Button/Tooltip/MaintenanceDroneMK1=Technician releases a retooled aerial repair 
 Button/Tooltip/MaintenanceDroneMK2=Technician releases a retooled aerial repair drone to scout for him. Lasts 20 seconds.
 Button/Tooltip/MaintenanceDroneMK3=Technician releases a retooled aerial repair drone to scout for him. Lasts 20 seconds.
 Button/Tooltip/MakeExplosives=Creates 2 explosive charges that are used by Demolitions' explosive abilities. Can carry up to 20 explosives.
-Button/Tooltip/MarchoftheMachine=Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out... Technician gains +300% armor & health and +100% damage. -25% attack speed and movespeed. Will attack allies if not managed. No effect on Shiva damage.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c>
+Button/Tooltip/MarchoftheMachine=Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out... Technician gains +300% armor & health and +100% damage, but -25% attack speed. Will attack allies if not managed. Weapons with a smart targeting system or a straightforward smashing pattern seem to function as normal.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c>
 Button/Tooltip/MarineActions=Displays a list of Marine actions.
 Button/Tooltip/MarkofPredator=You have chosen to rise beyond death. You are a warrior in the truest sense.<n/><n/>Additional upgrades are unlocked as you level up:<n/>Lv2 - Ocular Implant upgrade<n/>Lv3 - Detection upgrade<n/>Lv4 - C2 Armor upgrade<n/>Lv5 - Backstab ability<n/>Lv6 - C4 Armor upgrade<n/>Lv7 - Pirahna Missiles<n/>Lv8 - C6 Armor upgrade<n/>Lv9 - Radar passive<n/>Lv10 - Blink ability<n/>Lv11 - Cloak Field passive<n/>Lv12 - Increased size and increased Lighting Field radius <n/><n/>Life, Shield, Energy, and Damage receive minor improvements with each level.
 Button/Tooltip/Marksman=The Marksman is a specialist at bringing down high-priority targets and long-range combat.
@@ -1828,7 +1836,7 @@ Button/Tooltip/MobileInfantryFlamethrower=General-purpose infantry.<n/><n/><c va
 Button/Tooltip/MobileInfantryMarksman=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/MobileInfantryRifleman=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/MonofilamentCartridge=Stuns units in a straight line for 1 second and deals 45 damage. <n/><n/><c val="FF0000">Allies take 35% damage.</c>
-Button/Tooltip/MonofilamentTrap=Deals 50  damage and applies Cripple and Open Wound in a radius of 2 when units pass within a radius of 1 of the trap. Half damage to allies. Cripple is not applied to enemy heroic units.<n/><n/><c val="FF0000">Warning: Deals 50% friendly fire damage, can be activated by allies.</c>
+Button/Tooltip/MonofilamentTrap=Deals <d ref="Effect,MonofilamentTrapDamageEnemiesLevel1,Amount"/> damage and applies Cripple and Open Wound in a radius of 2 when units pass within a radius of 1 of the trap. Cripple is not applied to enemy Heroic.<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, can be activated by allies.</c>
 Button/Tooltip/MotionSensorLevel1=Enemies in 25 radius are highlighted in minimap. Also pings invi/burrowed units but does not reveal them.
 Button/Tooltip/MotionSensorLevel2=Enemies in 40 radius are highlighted in minimap. Also pings invi/burrowed units but does not reveal them.
 Button/Tooltip/MoveHoldPosition2=Orders selected units to stay where they are and attack enemies that are within range. Units will neither chase down enemies nor move to engage.
@@ -1876,7 +1884,7 @@ Button/Tooltip/PredatorPet=An advanced recon robot used by UGC since 2074. Can r
 Button/Tooltip/Protect=Drone moves at incredible speed (7 ms) to target location, shields a Marine in danger and stuns all units around at 3 radius for 2 seconds. 
 Button/Tooltip/PsiOps=The Psi Ops is a trained agent of the UGC's Special Warfare Academy.
 Button/Tooltip/PsiOpsMentalProjection=
-Button/Tooltip/PsionicTempest=Channeled. Radiates psionic storms to target location (5 radius) until energy is depleted. Deals 85 damage/sec and consumes 5 energy per second.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
+Button/Tooltip/PsionicTempest=Radiates psionic storms to target location (3.5 radius), dealing <d ref="Effect,PsionicTempestDamage,Amount * 4"/> damage/sec and depleting <d ref="Effect,PsionicTempestEnergyDrain,VitalArray.Change * (-4)"/> energy per second. Channeled. Massive units take +50% damage.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage. Does not affect allies under absolution.</c>
 Button/Tooltip/Purple=Changes Marine color to <c val="800080">Purple</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/QuickAim=+200% attack speed for 3 secs
 Button/Tooltip/QuickUse=Use/Equip the first item in your inventory immediately. Only applies to weapons, medkits, and bandages.
@@ -1997,7 +2005,7 @@ Button/Tooltip/TeamLocation=Pings location of all teammates for 5 seconds.
 Button/Tooltip/TeamLocation2=Pings location of all teammates for 5 seconds.
 Button/Tooltip/Technician=Armed in an extremely powerful exosuit, the technician can pulverize anything in its way.
 Button/Tooltip/TerraTron=Credits: <c val="71B8FF">5000</c>
-Button/Tooltip/TheHorror=The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds.<n/><n/><c val="FF0000">Warning: Can blind allies in target area</c><n/><n/>"You want to see something real scary?"
+Button/Tooltip/TheHorror=The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds. Affected units lose 5% max HP per second, reduced against Heroic. Those that manage to survive The Horror are driven mad. Does not apply madness to Enemy Heroic.<n/><n/><c val="FF0000">Warning: Can harm allies in the target area.</c><n/><n/>"You want to see something real scary?"
 Button/Tooltip/ThermalSight=<c val="FFFF00">Thermal Sight</c><n/>Used by Special Forces. Detects invisible units in 9 radius.<n/><n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c><n/><n/>"I spy with my little eye."
 Button/Tooltip/ThrowGravityGun=Throw target towards point.
 Button/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains 8x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
@@ -2076,6 +2084,20 @@ DocInfo/PatchNote011=- Flamthrower's Vengeance and Pet's Cloak Field can now be 
 DocInfo/PatchNote012=- Added the improved limit system for Crawler Drones, Field Probes, Disruption Towers, and Sonic Traps (1 gets destroyed instead of all). 
 DocInfo/PatchNote013=- Replaced the faith animation with a new one (the current one looks too similar to an explosion).
 DocInfo/PatchNote014=- Added a cursor indicator for Pathfinder's No Quarter.
+DocInfo/PatchNote015=- Shortened the wait time between wave 10-11 in Survival Mode from 300 seconds to 200 seconds (real time).
+DocInfo/PatchNote016=- Technician - March of the Machine attack interference interval increased from 1.5s to 3s (less interference).
+DocInfo/PatchNote017=- Technician - March of the Machine attack interference will no longer happen if the weapon cannot friendly fire.
+DocInfo/PatchNote018=- Technician - March of the Machine move speed penalty removed.
+DocInfo/PatchNote019=- Technician - Ballistics damage bonus improved from 12%/24% to 18%/36%.
+DocInfo/PatchNote020=- Psi Ops - Mind Ravage replaced by Psionic Tempest, with stats lowered to fit as a T1 ability. 
+DocInfo/PatchNote021=- Psi Ops - Foresight now also amplifies spell damage taken in addition to the slow.
+DocInfo/PatchNote022=- Psi Ops - Psionic Tempest T3 has been reworked into Absolution, offering a barrier for the team and empowers Psi Ops.
+DocInfo/PatchNote023=- Commando - Bring Them Down slow improved from 15%/25%/35% to 15%/30%/45%.
+DocInfo/PatchNote024=- Commando - Monofilament Trap damage increased from 50/100 to 75/150, ally damage unchanged.
+DocInfo/PatchNote025=- Commando - Monofilament Trap no longer uses energy. It instead uses charges that recharge over time.
+DocInfo/PatchNote026=- Commando - The Horror cost and cooldown slightly reduced. Now deals % HP damage over time, reduced against Heroic.
+DocInfo/PatchNote027=- Units that manage to survive The Horror will be driven mad. Enemy Heroics are unaffected.
+DocInfo/PatchNote028=- Fixed some minor tooltip and visual effect errors.
 DocInfo/PatchNote690=[ReduxGelum]
 DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
 DocInfo/PatchNote692=- Enabled transient for faith ability.
@@ -2098,7 +2120,7 @@ DocInfo/PatchNote708=- Forward Observer's marksman minis can now cast Veteran's 
 DocInfo/PatchNote709=- Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
 DocInfo/PatchNote710=- Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
 DocInfo/PatchNote711=- Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
-DocInfo/PatchNote712=- Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks, refreshable.
+DocInfo/PatchNote712=- Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks.
 DocInfo/PatchNote713=- Pathfinder - No Quarter cooldown reduced from 45 to 30, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
@@ -2115,6 +2137,12 @@ Effect/Name/AMRoundsApply=AM Rounds Apply
 Effect/Name/AMRoundsRemoveHEF=AM Rounds (Remove HE-F)
 Effect/Name/AMRoundsSet=AM Rounds Set
 Effect/Name/APAmmoApplyArmorDebuff=AP Ammo Apply Armor Debuff
+Effect/Name/AbsolutionApply=Absolution (Apply)
+Effect/Name/AbsolutionApplySpellBuff=Absolution (Apply Spell Buff)
+Effect/Name/AbsolutionBonusOff=Absolution Bonus Off
+Effect/Name/AbsolutionBonusOn=Absolution Bonus On
+Effect/Name/AbsolutionCreatePersistent=Absolution (Create Persistent)
+Effect/Name/AbsolutionSearch=Absolution (Search)
 Effect/Name/AccelerationNightmare=Acceleration (Nightmare)
 Effect/Name/AccelerationVet=Acceleration (Vet)
 Effect/Name/AcidMissileDamage=Acid Missile (Damage)
@@ -2927,6 +2955,7 @@ Effect/Name/IonCannonIssue=Ion Cannon Issue
 Effect/Name/IonCannonPersistentDummy=Ion Cannon Persistent Dummy
 Effect/Name/IssueChew=Issue Chew
 Effect/Name/IssueMoveOrder=Issue Move Order
+Effect/Name/IssueStop=Issue Stop
 Effect/Name/IssueTurnOrder=Issue Turn Order
 Effect/Name/ItsMeAgainDamage=It's Me Again! (Damage)
 Effect/Name/ItsMeAgainDamageApplyBehaviorLevel1=Its Me Again! Damage Apply Behavior Level 1
@@ -3341,6 +3370,7 @@ Effect/Name/PsionicTempestApplyBehavior=Psionic Tempest (Apply Behavior)
 Effect/Name/PsionicTempestCreatePersistent=Psionic Tempest (Create Persistent)
 Effect/Name/PsionicTempestDamage=Psionic Tempest (Damage)
 Effect/Name/PsionicTempestEnergyDrain=Psionic Tempest (Energy Drain)
+Effect/Name/PsionicTempestPersistentSet=Psionic Tempest (Persistent Set)
 Effect/Name/PsionicTempestSearch=Psionic Tempest (Search)
 Effect/Name/PsionicTempestSet=Psionic Tempest (Set)
 Effect/Name/PunisherGrenades=Punisher Grenades
@@ -3756,6 +3786,9 @@ Effect/Name/TauntLevel3SearchIssueAttack=Taunt Level 3 (Search - Issue Attack)
 Effect/Name/TauntLevel3SearchIssueStop=Taunt Level 3 (Search - Issue Stop)
 Effect/Name/TauntLevel3Set=Taunt Level 3 (Set)
 Effect/Name/TheHorrorApply=The Horror Apply
+Effect/Name/TheHorrorApplyMadness=The Horror Apply Madness
+Effect/Name/TheHorrorDamage=The Horror (Damage)
+Effect/Name/TheHorrorDamageHeroic=The Horror (Damage Heroic)
 Effect/Name/TheHorrorHeroicApply=The Horror (Heroic) Apply
 Effect/Name/TheHorrorLaunch=The Horror Launch
 Effect/Name/TheHorrorSearch=The Horror Search
@@ -4016,7 +4049,7 @@ Mission/ApolloText=Investigate the outbreak in Apollo Mining Colony
 Mission/ApolloTitle=Night of the Dead
 Monofilament Cartridge Level 2=Stuns units in a straight line for 2 seconds and deals 90 damage. <n/><n/><c val="FF0000">Allies take 35% damage.</c>
 Monofilament Cartridge Level 3=Stuns units in a straight line for 3 seconds and deals 180 damage.<n/><n/><c val="FF0000">Allies take 35% damage.</c>
-MonofilamentTrapLevel2=Deals 100 damage and applies Cripple and Open Wound in a radius of 3 when units pass within a radius of 1.5 of the trap. Half damage to allies. Cripple is not applied to enemy heroic units.<n/><n/><c val="FF0000">Warning: Deals 50% friendly fire damage, can be activated by allies.</c>
+MonofilamentTrapLevel2=Deals <d ref="Effect,MonofilamentTrapDamageEnemiesLevel2,Amount"/> damage and applies Cripple and Open Wound in a radius of 3 when units pass within a radius of 1.5 of the trap. Cripple is not applied to Enemy Heroic.<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, can be activated by allies.</c>
 NOTDLoadingHint1=Press Z to sprint
 NOTDLoadingHint2=Press T to manually reload below 15 rounds
 One Shot, One Kill Level 2=Deals 600 damage to target unit. <n/><n/>+30% damage with Barrett equipped, Procs Concentration.
@@ -6076,6 +6109,7 @@ UnitKillRank/Predator7=Saviour of Apollo
 UnitKillRank/Predator8=Master of the Universe
 UnitKillRank/PsiOpsMentalProjection=Mental Projection
 UnitKillRank/Zeratul2=Dark Prelate
+Upgrade/Name/AbsolutionBonus=Absolution Bonus
 Upgrade/Name/AntiVenomUpgrade=Anti-Venom Upgrade
 Upgrade/Name/AnticipationLevel2=Anticipation Level 2
 Upgrade/Name/AssaultJumpLevel1=Assault Jump Level 1
@@ -6644,11 +6678,11 @@ UserData/TalentTrees/Commando_Talent Tootips_001=<s val="AchievementFrameName">A
 UserData/TalentTrees/Commando_Talent Tootips_002=<s val="AchievementFrameName">Borrowed Time</s><n/>Commando gains 50 energy at the cost of life.<n/>Level 1 - Eats 80 HP<n/>Level 2 - Eats 40 HP<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Commando_Talent Tootips_003=<s val="AchievementFrameName">Weapons Expertise<n/>(Passive)</s><n/>Commando gains increased damage with any weapon. Gains increased damaged during Surgical Strike. <n/>Level 1 - +10% damage. +5% damage during Surgical Strike.<n/>Level 2 - +20% damage. +10% damage during Surgical Strike.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Commando_Talent Tootips_004=<s val="AchievementFrameName">Tactical Nuke</s><n/>Launches a 9 radius nuke that does 1200 damage. 90 range.<n/><n/><c val="FF0000">Warning: Nukes can deal lethal friendly fire. Use with caution.</c><n/><n/>"Bright lights...and then, everything's over."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Commando_Talent Tootips_005=<s val="AchievementFrameName">Bring Them Down <n/>(Passive)<n/></s>The Commando directs his fire and the fire of his teammates to make enemies stumble and fall into one another when they are slain while under the effect of his abilities. Does not stack.<n/>Level 1 - Slows enemies in 1.5 radius by 15% for 3 seconds<n/>Level 2 - Slows enemies in 1.5 radius by 25% for 3.5 seconds<n/>Level 3 - Slows enemies in 1.5 radius by 35% for 4 seconds<n/><n/>"A soldier who stumbles brings down his comrades with him."
+UserData/TalentTrees/Commando_Talent Tootips_005=<s val="AchievementFrameName">Bring Them Down <n/>(Passive)<n/></s>Commando directs his fire and the fire of his teammates to make enemies stumble and fall into one another when they are slain while under the effect of his abilities. Does not stack.<n/>Level 1 - Slows enemies in 1.5 radius by 15% for 3 seconds<n/>Level 2 - Slows enemies in 1.5 radius by 30% for 3.5 seconds<n/>Level 3 - Slows enemies in 1.5 radius by 45% for 4 seconds<n/><n/>"A soldier who stumbles brings down his comrades with him."
 UserData/TalentTrees/Commando_Talent Tootips_006=<s val="AchievementFrameName">Heightened Senses</s><n/>Enemies in a radius takes 25% more damage. Reveals invisible units. Lasts 15 seconds.<n/>Level 1 - 12 radius<n/>Level 2 - 18 radius<n/>Level 3 - 24 radius<n/><n/>"My spider sense is tingling..."
 UserData/TalentTrees/Commando_Talent Tootips_007=<s val="AchievementFrameName">Gravity Grenade<n/></s>The Mk1 Gravity Grenade is a device created by retooling White Mesa's Gravity Gun's core technology into a handheld form. It was designed to dislodge enemies from entrenched positions, but found to be also useful for nonlethal crowd control. It drags all units within an area to it for a short duration, clustering them together. Massive units are not dragged, but slowed by 50%.<n/><n/>Level 1 -- Affects units within a radius of 3 for 4 seconds<n/>Level 2 -- Affects units within a radius of 4 for 6 seconds<n/><n/><c val="FF0000">Warning: Gravity suction affects allies</c><n/><n/>"Hope you sons of bitches love each other, 'cause it's huggin' time!"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">Monofilament Trap</s><n/>Monofilament traps are dastardly effective against friend and foe alike. The mechanism is comprised of a node covered in reactive camouflage loaded of bands of monofilaments that, when activated via proximity sensor, are ejected at high velocities in a radial pattern. Once placed, the trap will take 2 seconds to arm and then disappear from view, lasting for 5 minutes or 8 activations. Monofilament Traps can be activated by and deal 50% damage to allies. Cripple does not effect bosses. 3 second delay between trap activations.<n/><n/>Level 1 - Deals 50 damage and applies Cripple and Open Wound in a radius of 2 when units pass within a radius of 1<n/>Level 2 - Deals 100 damage and applies Cripple and Open Wound in a radius of 3 when units pass within a radius of 1.5<n/><n/>"While designed for being placed at entrances, it's significantly less welcoming than a doormat." ~ Dr. Maxwell, Senior design lead of weapons technology, giving a seminar on proper use of Monofilament Traps<n/><n/><c val="FF0000">Warning: Deals 50% friendly fire damage, can be activited by allies.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">The Horror</s><n/>The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds.<n/><n/><c val="FF0000">Warning: Can blind allies in target area</c><n/><n/>"You want to see something real scary?"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">Monofilament Trap</s><n/>Monofilament traps are dastardly effective against friend and foe alike. The mechanism is comprised of a node covered in reactive camouflage loaded of bands of monofilaments that, when activated via proximity sensor, are ejected at high velocities in a radial pattern. Once placed, the trap will take 2 seconds to arm and then disappear from view, lasting for 5 minutes or 8 activations. 3 seconds minimum delay between trap activations. Starts with 3 charges and holds up to 8. Does not Cripple Enemy Heroic.<n/><n/>Level 1 - Deals <d ref="Effect,MonofilamentTrapDamageEnemiesLevel1,Amount"/> damage and applies Cripple and Open Wound in a radius of 2 when units pass within a radius of 1<n/>Level 2 - Deals <d ref="Effect,MonofilamentTrapDamageEnemiesLevel2,Amount"/> damage and applies Cripple and Open Wound in a radius of 3 when units pass within a radius of 1.5<n/><n/>"While designed for being placed at entrances, it's significantly less welcoming than a doormat." ~ Dr. Maxwell, Senior design lead of weapons technology, giving a seminar on proper use of Monofilament Traps<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, can be activited by allies.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">The Horror</s><n/>The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds. Affected units lose 5% max HP per second, reduced against Heroic. Those that manage to survive The Horror are driven mad. Does not apply madness to Enemy Heroic.<n/><n/><c val="FF0000">Warning: Can harm allies in the target area.</c><n/><n/>"You want to see something real scary?"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">Explosives</s>
 UserData/TalentTrees/Demolitions_Headers_001=<s val="HelpPanelListBoxItemTitle">Fortitude</s>
 UserData/TalentTrees/Demolitions_Talent Tootips=<s val="AchievementFrameName">Sentinel Mine</s><n/>Plants a sentinel mine that oversees a 5 radius area, firing mini missiles at incoming hostiles. Can fire once every 4 seconds, dealing damage in a small area. Holds 7 missiles and self-destructs when depleted.<n/>Level 1 - 60 damage.<n/>Level 2 - 90 damage.<n/>Level 3 - 120 damage.<n/><n/>Costs 2 explosive charges and may deploy up to 7 on the battlefield.<n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised.</c>
@@ -6667,7 +6701,7 @@ UserData/TalentTrees/Engineer_Talent Tootips=<s val="AchievementFrameName">Field
 UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">Plasma Discharge</s><n/>Primes a Plasma Detonator that deals damage in 4 radius after 3.5 seconds. Affected units lose armor and movespeed for 7 seconds. Reduced impact on allies. Each level also decreases Energy cost.<n/>Level 1 - 30 damage, -2 armor, -30% movespeed.<n/>Level 2 - 60 damage, -4 armor, -45% movespeed.<n/>Level 3 - 90 damage, -6 armor, -60% movespeed.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. <n/>Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c><n/>Level 1 - 12 damage every 1.2 seconds. Affects 8 units.<n/>Level 2 - 18 damage every 1.2 seconds. Affects 16 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Grants bonus max energy and +0.35 energy regeneration to allies in 9 radius. <n/>Also improves Engineer's shield repair speed.<n/>Level 1 - +10 energy, 12 per second shield repair.<n/>Level 2 - +20 energy, 17 per second shield repair.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>   i) Sigma: Burns all air units in 8 radius.<n/>   ii) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>   iii) Passive Aura: All Field Probes in 10 radius gain Static Shield (deals 25 damage to units that attack probes).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>1) Sigma: Burns all air units in 8 radius.<n/>2) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>3) Passive Aura: All allies with shields in 9 radius gain Static Shield (+1 shield armor and deals 25 damage to attackers).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 12 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 18 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 24 damage per attack. (Ignore armor)
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">It's Me Again!<n/>(Passive)</s><n/>Each subsequent attack on same target deals extra damage.<n/>Level 1 - +7% damage<n/>Level 2 - +14% damage<n/>Level 3 - +21% damage<n/><n/>Stacks up to 5 times.
 UserData/TalentTrees/Engineer_Talent Tootips_007=<s val="AchievementFrameName">Boom! Headshot</s><n/>Attacks by Engineer/Guardian disorients enemies, reduces armor. Each level also increases attack speed by +10% when active.<n/>Level 1 - Stuns non-Heroics (slows Heroics by 15%) and -2 armor for 1 second. Attack modifier lasts 5 seconds.<n/>Level 2 - Stuns non-Heroics (slows Heroics by 30%) and -4 armor for 2 seconds. Attack modifier lasts 7 seconds.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6730,16 +6764,16 @@ UserData/TalentTrees/Pathfinder_Talent Tootips_003=<s val="AchievementFrameName"
 UserData/TalentTrees/Pathfinder_Talent Tootips_004=<s val="AchievementFrameName">Invaders Must Die (Passive)</s><n/>Back into the groove of using his honed abilities instead of sitting around and waiting for deployment, the Pathfinder unlocks once more his full potential and returns to his previous height of skill. Upgrades Trick Shot, Fast Five, Handgun Expertise and Shoot to Maim by 1 level.<n/>Trick Shot Level 4 -- Attacks bounce 4 times<n/>Fast Five Level 4 -- Shots do 40% additional damage<n/>Handgun Expertise Level 3 -- Increases range by 9, Damage by 18, and increases armor penetration by 1.5<n/>Shoot to Maim Level 3 - +30% damage, each Maim stack slows by 10%, maximum stack of 4<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_005=<s val="AchievementFrameName">Assault Jump</s><n/>Utilizing his jetpack, the Pathfinder takes to the skies and slams down on enemies, dealing a heavy damage. However, the jetpack overheats quickly, and the Pathfinder is limited in the amount of jumps that he can make in a period of time. Completing a jump kicks up a great deal of dust, almost completely cloaking the Pathfinder from sight for a short time. Each level also increases Shield Armor by 1.<n/>Level 1 -- 150 damage, AOE 3, grants 80% evasion for 1 second<n/>Level 2 -- 300 damage, AOE 3.5, grants 85% evasion for 1.5 seconds<n/>Level 3 -- 450 damage, AOE 4, grants 90% evasion for 2 seconds<n/><n/><c val="FF0000">Does not travel if there are no units in target area.</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_006=<s val="AchievementFrameName">Full Throttle<n/>(Passive)</s><n/>The Pathfinder engages the afterburner and surges forward with a great burst of speed. Upgrades the base Sprint ability. Removes collision when active.<n/>Level 1 -- +70% movespeed.<n/>Level 2 -- +105% movespeed.<n/>Level 3 -- +140% movespeed.
-UserData/TalentTrees/Pathfinder_Talent Tootips_007=<s val="AchievementFrameName">Coming in Hot<n/>(Passive)</s><n/>The Pathfinder opens the throttle wider for jumps, increasing the damage that he does with Assault Jumps and setting enemies ablaze upon landing, temporarily disorienting them<n/>Level 1 -- Assault Jump deals 25 additional damage, slows attack/movespeed by 30% for 3 seconds, and applies a stacking burning DOT.<n/>Level 2 -- Assault Jump deals 50 additional damage, slows attack/movespeed by 60% for 3 seconds, and applies a stacking burning DOT.<n/><n/>Burning DOT: 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks, refreshable.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Pathfinder_Talent Tootips_007=<s val="AchievementFrameName">Coming in Hot<n/>(Passive)</s><n/>The Pathfinder opens the throttle wider for jumps, increasing the damage that he does with Assault Jumps and setting enemies ablaze upon landing, temporarily disorienting them<n/>Level 1 -- Assault Jump deals 25 additional damage, slows attack/movespeed by 30% for 3 seconds, and applies a stacking burning DOT.<n/>Level 2 -- Assault Jump deals 50 additional damage, slows attack/movespeed by 60% for 3 seconds, and applies a stacking burning DOT.<n/><n/>Burning DOT: 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_008=<s val="AchievementFrameName">Improved Coolant Lines<n/>(Passive)</s><n/>The Pathfinder upgrades his jetpack with an improved coolant distribution system, increasing its overall performance and allowing him to make jumps more often.<n/>Level 1 -- Assault Jumps are produced 7.5 seconds faster, energy regen is increased by .35/sec<n/>Level 2 -- Assault Jumps are produced 15 seconds faster, energy regen is increased by .7/sec<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Pathfinder_Talent Tootips_009=<s val="AchievementFrameName">No Quarter</s><n/>The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability and immediately readies an Assault Jump. Deals triple damage to Heroic.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 5 seconds.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Psi Ops_Headers=<s val="HelpPanelListBoxItemTitle">Telepathy</s>
 UserData/TalentTrees/Psi Ops_Headers_001=<s val="HelpPanelListBoxItemTitle">Mind Mastery</s>
 UserData/TalentTrees/Psi Ops_Talent Tootips=<s val="AchievementFrameName">Force Push</s><n/>Knocks targets in 3 radius of target area back. Allied units then gain Sprint while enemies are stunned for 2 seconds.<n/>Level 1 - 3 distance knockback<n/>Level 2 - 5 distance knockback<n/>Level 3 - 7 distance knockback<n/><n/>Effect is halved on Bosses.
-UserData/TalentTrees/Psi Ops_Talent Tootips_001=<s val="AchievementFrameName">Mind Ravage</s><n/>Deals damage in 3 radius to target area. +300% damage to stunned units.<n/>Level 1 - 20 damage<n/>Level 2 - 40 damage<n/>Level 3 - 80 damage<n/><n/>"My business is killing" - codename Reaper
-UserData/TalentTrees/Psi Ops_Talent Tootips_002=<s val="AchievementFrameName">Ravaging Phantom<n/>(Passive)</s><n/>When the Psi Ops kills with Mind Ravage or Psionic Tempest, there is a chance her victims will rise as a Phantom of itself for 10 seconds. Does not affect structures.<n/>Level 1 - 40% chance on Mind Ravage. 25% chance on Psionic Tempest.<n/>Level 2 - 80% chance on Mind Ravage. 50% chance on Psionic Tempest.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Psi Ops_Talent Tootips_003=<s val="AchievementFrameName">Foresight<n/>(Passive)</s><n/>A 9 radius aura around Psi-Ops that causes movespeed and attack speed debuffs to enemies.<n/>Level 1 - 12% move & attack speed debuff<n/>Level 2 - 24% move & attack speed debuff<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Psi Ops_Talent Tootips_004=<s val="AchievementFrameName">Psionic Tempest</s><n/>Radiates psionic storms to target location (5 radius) until energy is depleted. Deals 85 damage/sec and consumes 5 energy per second. +100% damage to Massive.<n/><n/><c val="0080FF">Channeled</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Psi Ops_Talent Tootips_001=<s val="AchievementFrameName">Psionic Tempest</s><n/>Radiates psionic storms to target location (3 radius), dealing damage and depleting 4 energy per second. Channeled. Massive units take +50% damage.<n/>Level 1 - 30 damage per second<n/>Level 2 - 40 damage per second<n/>Level 3 - 50 damage per second<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage. Does not affect allies under Absolution.</c><n/><n/>"My business is killing" - codename Reaper
+UserData/TalentTrees/Psi Ops_Talent Tootips_002=<s val="AchievementFrameName">Ravaging Phantom<n/>(Passive)</s><n/>When Psi Ops kills with Psionic Tempest, there is a chance that her victims will rise as a Phantom of itself for 10 seconds. Does not affect structures.<n/>Level 1 - 25% chance. <n/>Level 2 - 50% chance.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Psi Ops_Talent Tootips_003=<s val="AchievementFrameName">Foresight<n/>(Passive)</s><n/>Enemies in a 9 radius aura around Psi-Ops have slowed move & attack speed and take increased spell damage.<n/>Level 1 - 12% move & attack speed, +25% spell damage taken.<n/>Level 2 - 24% move & attack speed, +50% spell damage taken.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Psi Ops_Talent Tootips_004=<s val="AchievementFrameName">Absolution</s><n/>Establishes a psionic barrier (3.5 radius) in the target area for 15 seconds. Ground units within the barrier gain +50% attack speed and are immune to any damage coming from sources outside the barrier.<n/><n/>While Absolution is active, Psi Ops unseals her true power, gaining +300% spell damage and increasing Psionic Tempest's radius to 5. <n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Psi Ops_Talent Tootips_005=<s val="AchievementFrameName">Blackout</s><n/>Toggled. Attacks Blind targets and have a chance to turn non-Hero targets into an uncontrollable ally for 5 seconds. 2 Energy per attack.<n/>Level 1 - 2% chance to convert<n/>Level 2 - 5% chance to convert<n/>Level 3 - 10% chance to convert
 UserData/TalentTrees/Psi Ops_Talent Tootips_006=<s val="AchievementFrameName">Mind-Link</s><n/>Single Target. Damage taken split evenly between Mind-Linked units. Shared vision. Less damage taken.<n/>Level 1 - Up to 1 Marine. -15% damage taken.<n/>Level 2 - Up to 2 Marines. -30% damage taken.<n/>Level 3 - Up to 3 Marines. -45% damage taken.<n/><n/>"You've been a bad boy."
 UserData/TalentTrees/Psi Ops_Talent Tootips_007=<s val="AchievementFrameName">Mental Projection</s><n/>Creates Hallucinations that last 15 seconds. Hallucinations deal full damage and are equipped with a General Purpose Rifle.<n/>Level 1 - 1 Hallucination<n/>Level 2 - 2 Hallucinations<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6779,8 +6813,8 @@ UserData/TalentTrees/Technician_Talent Tootips_004=<s val="AchievementFrameName"
 UserData/TalentTrees/Technician_Talent Tootips_005=<s val="AchievementFrameName">Nanosteel Net</s><n/>Fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies near the target are slowed by its thrashing attempts to escape.<n/>Level 1 -  3 second duration, 20% slow in 1 radius.<n/>Level 2 -  4 second duration, 25% slow in 1 radius.<n/>Level 3 -  5 second duration, 30% slow in 1 radius.
 UserData/TalentTrees/Technician_Talent Tootips_006=<s val="AchievementFrameName">Nanites Upgrade</s><n/>Not only for medical purposes, the Technician utilizes nanites in the upkeep of weaponry and for minor repairs. They are not limited to the Technician's exosuit, and will repair things around him in a small area.<n/>Level 1 - +2 HP Regen to self. +1 HP regen to non-biological allies in 0.5 radius.<n/>Level 2 - +4 HP Regen to self. +2 HP regen to non-biological allies in 1 radius.<n/>Level 3 - +6 HP Regen to self. +3 HP regen to non-biological allies in 1.5 radius.
 UserData/TalentTrees/Technician_Talent Tootips_007=<s val="AchievementFrameName">Crawler Drone</s><n/>Technician sacrifices some of the plating of his exosuit and a healthy amount of nanites to create a Crawler Drone, search and rescue drones retooled with kinetic catapults that they use to launch debris at enemy targets. Maximum of 10.<n/>Level 1 - Crawler Drones have 60 health and deal 7 damage.<n/>Level 2 - Crawler Drones have 120 health and deal 14 damage.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Technician_Talent Tootips_008=<s val="AchievementFrameName">Ballistics</s><n/>Technician's modifications to the exosuit reduce recoil and increase stability, allowing an increase in expected damage and range of any weapons he equips.<n/>Level 1 - +12% weapon damage and +1 range<n/>Level 2 - +24% weapon damage and +2 range<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Technician_Talent Tootips_009=<s val="AchievementFrameName">March of the Machines</s><n/>Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out...Technician gains +300% armor & health and +100% damage. -25% attack speed and movespeed. Will attack allies if not managed.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c><n/><n/>"You have 20 seconds to comply..."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Technician_Talent Tootips_008=<s val="AchievementFrameName">Ballistics</s><n/>Technician's modifications to the exosuit reduce recoil and increase stability, allowing an increase in expected damage and range of any weapons he equips.<n/>Level 1 - +18% weapon damage and +1 range<n/>Level 2 - +36% weapon damage and +2 range<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Technician_Talent Tootips_009=<s val="AchievementFrameName">March of the Machines</s><n/>Putting the exosuit into overdrive and autopilot, the exosuit achieves a state of efficiency not achievable if human interaction were included. The auto-targeting system, however, is the result of on-the-fly modification by the Technician, and there are still some bugs to work out...Technician gains +300% armor & health and +100% damage, but -25% attack speed. Will attack allies if not managed. Weapons with a smart targeting system or a straightforward smashing pattern seem to function as normal.<n/><n/><c val="FF0000">Warning: Technician can seriously wound friendlies when talent is active. Pay very close attention!</c><n/><n/>"You have 20 seconds to comply..."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TeamKillTexts/Death Texts_Death Text= </c><c val="F4D72B">has been accidentally slaughtered by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_001= </c><c val="F4D72B">has been sacrificed to the Gods by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_002= </c><c val="F4D72B">has been murdered by </c><c val="FF0000">
