@@ -15642,10 +15642,12 @@ void gf_LevelUpTalentPsiOps (int lp_itemNo, unit lp_triggUnit, int lp_triggPlaye
 
     if ((lp_itemNo == 2)) {
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
-            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestDamage", "Amount", lp_triggPlayer, "10");
+            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestDamage", "Amount", lp_triggPlayer, "11.25");
+            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestFriendlyDamage", "Amount", lp_triggPlayer, "5.625");
         }
         else if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 3)) {
-            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestDamage", "Amount", lp_triggPlayer, "12.5");
+            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestDamage", "Amount", lp_triggPlayer, "15");
+            CatalogFieldValueSet(c_gameCatalogEffect, "PsionicTempestFriendlyDamage", "Amount", lp_triggPlayer, "7.5");
         }
     }
 

@@ -141,6 +141,10 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="SlowRoast"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasNotAbsolutionSpellBuff">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AbsolutionSpellBuff"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="FrenzyLevel12">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -978,10 +982,10 @@
     <CValidatorUnitCompareBehaviorCount id="TargetHasNotAbsolution">
         <Behavior value="Absolution"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="CasterhasAbsolution">
+    <CValidatorUnitCompareBehaviorCount id="CasterhasAbsolutionSpellBuff">
         <WhichUnit Value="Caster"/>
         <Compare value="GT"/>
-        <Behavior value="Absolution"/>
+        <Behavior value="AbsolutionSpellBuff"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="TargethasAbsolution">
         <Compare value="GT"/>

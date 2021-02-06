@@ -431,7 +431,7 @@
 - Surveillance flare duration increased to 120s, cooldown increased to 90s. Range matches artillery skills. Allowing a maximum of 2 charges.
 - Fire Mission lv2 damage changed from 75(+25 vs armored) to 75(+25 vs armored/massive).
 - Fire Mission lv3 damage changed from 75(+25/50 vs armored/massive) to 75(+25/75 vs armored/massive).
-- Napalm Barrage burn maximum stacks reduced from 6 to 4, slow reduced from 40% to 30%.
+- Napalm Barrage burn maximum stacks reduced from 6 to 5, slow reduced from 40% to 30%.
 - Disabled the camera shake for shell impact.
 - Icon update for Forward Observer.
 

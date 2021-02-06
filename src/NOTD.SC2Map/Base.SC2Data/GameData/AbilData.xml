@@ -685,15 +685,14 @@
         <Effect value="MonofilamentTrapLevel2"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
+            <Vital index="Energy" value="15"/>
             <Charge>
                 <CountMax value="8"/>
-                <CountStart value="3"/>
+                <CountStart value="8"/>
                 <CountUse value="1"/>
                 <Location value="Unit"/>
-                <TimeStart value="25"/>
-                <TimeUse value="25"/>
+                <TimeUse value="8"/>
             </Charge>
-            <Cooldown TimeUse="0.5"/>
         </Cost>
         <Range value="6"/>
         <CursorEffect value="MonofilamentTrapSearchLevel1"/>
@@ -3652,12 +3651,12 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="PsionicTempest">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <Effect index="0" value="PsionicTempestCreatePersistent"/>
+        <Effect index="0" value="PsionicTempestPersistentSet"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="2"/>
+            <Cooldown TimeUse="8"/>
         </Cost>
-        <Range value="18"/>
+        <Range value="12"/>
         <AutoCastFilters value="-;-"/>
         <CursorEffect value="PsionicTempestSearch"/>
         <AINotifyEffect value=""/>

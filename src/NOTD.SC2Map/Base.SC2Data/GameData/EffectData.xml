@@ -140,6 +140,24 @@
     <CEffectModifyPlayer id="AbsolutionBonusOn">
         <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
     </CEffectModifyPlayer>
+    <CEffectCreatePersistent id="PsionicTempestCreatePersistentAbsolution">
+        <ValidatorArray value="CasterhasAbsolutionSpellBuff"/>
+        <EditorCategories value=""/>
+        <Flags index="Channeled" value="1"/>
+        <Flags index="PersistUntilDestroyed" value="1"/>
+        <PeriodCount value="32"/>
+        <PeriodicValidator value="CasterHasEnergy"/>
+        <PeriodicEffectArray value="PsionicTempestSearch"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="PsionicTempestFriendlyDamage">
+        <ValidatorArray value="TargetIsAllyorPlayer"/>
+        <ValidatorArray value="TargetHasNotAbsolution"/>
+        <EditorCategories value=""/>
+        <Amount value="3.75"/>
+        <Death value="Electrocute"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="TheHorrorApplyMadness">
         <ValidatorArray index="0" value="TargetisNotEnemyBoss"/>
         <EditorCategories value=""/>
@@ -209,8 +227,9 @@
     </CEffectEnumArea>
     <CEffectSet id="PsionicTempestPersistentSet">
         <EditorCategories value=""/>
-        <EffectArray value="PsionicTempestSearch"/>
-        <EffectArray value="PsionicTempestEnergyDrain"/>
+        <EffectArray value="PsionicTempestCreatePersistent"/>
+        <EffectArray value="PsionicTempestCreatePersistentAbsolution"/>
+        <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectEnumArea id="SentinelMineLimit">
         <EditorCategories value=""/>
@@ -883,7 +902,7 @@
     <CEffectDamage id="InfernoDamage3">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="10"/>
+        <Amount value="8"/>
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
@@ -3704,19 +3723,22 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,Buried,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.5" Effect="BringThemDownApplyLevel1"/>
+        <AreaArray Radius="2" Effect="BringThemDownApplyLevel1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="BringThemDownSearchSlowLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,Buried,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.5" Effect="BringThemDownApplyLevel2"/>
+        <AreaArray Radius="2" Effect="BringThemDownApplyLevel2"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="BringThemDownSearchSlowLevel3">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,Buried,UnderConstruction,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.5" Effect="BringThemDownApplyLevel3"/>
+        <AreaArray Radius="2" Effect="BringThemDownApplyLevel3"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ChargeApplyHeightLevel2">
         <ValidatorArray index="0" value="HasChargeHeight"/>
@@ -11047,19 +11069,18 @@
     </CEffectApplyBehavior>
     <CEffectCreatePersistent id="PsionicTempestCreatePersistent">
         <EditorCategories value=""/>
-        <Flags index="Channeled" value="1"/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodCount value="10"/>
+        <PeriodCount value="32"/>
         <PeriodicPeriodArray value="0.25"/>
-        <PeriodicEffectArray value="PsionicTempestPersistentSet"/>
+        <PeriodicEffectArray value="PsionicTempestSearch"/>
         <PeriodicValidator value="CasterHasEnergy"/>
+        <ValidatorArray value="CasterhasNotAbsolutionSpellBuff"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="PsionicTempestDamage">
         <EditorCategories value=""/>
         <Amount value="7.5"/>
         <Death value="Electrocute"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <ValidatorArray value="ValidTempestTarget"/>
+        <ValidatorArray value="EnemyTarget"/>
         <AttributeFactor index="Massive" value="0.5"/>
     </CEffectDamage>
     <CEffectEnumArea id="PsionicTempestSearch">
@@ -11071,6 +11092,7 @@
         <EditorCategories value=""/>
         <EffectArray value="PsionicTempestApplyBehavior"/>
         <EffectArray value="PsionicTempestDamage"/>
+        <EffectArray value="PsionicTempestFriendlyDamage"/>
     </CEffectSet>
     <CEffectRemoveBehavior id="RepairRemoveShortCircuit">
         <ValidatorArray index="0" value="SalineIVRemoveVenomTargetFilters"/>

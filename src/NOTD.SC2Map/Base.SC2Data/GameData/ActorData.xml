@@ -11430,7 +11430,7 @@
     </CActorSound>
     <CActorModel id="HighTemplarPsiStormImpact">
         <On Terms="Behavior.PsionicTempest.On" Send="Create"/>
-        <On Terms="Behavior.PsionicTempest" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.PsionicTempest.Off" Send="AnimBracketStop BSD"/>
     </CActorModel>
     <CActorSound id="HighTemplarPsiStormLaunchSound">
         <On Terms="Abil.PsionicTempest.SourceCastStart" Send="Create"/>
@@ -11438,16 +11438,23 @@
     <CActorModel id="HighTemplarPsiStormModel">
         <On Terms="Effect.PsionicTempestCreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.PsionicTempestCreatePersistent.Stop" Send="AnimBracketStop BSD"/>
-        <Scale value="1.200000"/>
+        <On Terms="Effect.PsionicTempestCreatePersistentAbsolution.Start" Send="Create"/>
+        <On Terms="Effect.PsionicTempestCreatePersistentAbsolution.Stop" Send="AnimBracketStop BSD"/>
+        <Scale value="1.400000"/>
     </CActorModel>
     <CActorAction id="HighTemplarPsiStormShieldHitter">
         <On Terms="Effect.PsionicTempestDamage.Start" Send="Create"/>
         <On Terms="Effect.PsionicTempestDamage.Start" Send="ActionDamage"/>
         <On Terms="Effect.PsionicTempestDamage.Stop" Send="Destroy"/>
+        <On Terms="Effect.PsionicTempestFriendlyDamage.Start" Send="Create"/>
+        <On Terms="Effect.PsionicTempestFriendlyDamage.Start" Send="ActionDamage"/>
+        <On Terms="Effect.PsionicTempestFriendlyDamage.Start" Send="Destroy"/>
     </CActorAction>
     <CActorSound id="HighTemplarPsiStormSound">
         <On Terms="Effect.PsionicTempestCreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.PsionicTempestCreatePersistent.Stop" Send="Destroy"/>
+        <On Terms="Effect.PsionicTempestCreatePersistentAbsolution.Start" Send="Create"/>
+        <On Terms="Effect.PsionicTempestCreatePersistentAbsolution.Stop" Send="Destroy"/>
     </CActorSound>
     <CActorUnit id="Charlie" parent="GenericUnitBase" unitName="Charlie">
         <Macros value="ZergBurrowMobileAnimMacro"/>
