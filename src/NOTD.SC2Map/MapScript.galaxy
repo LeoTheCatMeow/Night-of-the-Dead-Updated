@@ -11082,6 +11082,7 @@ bool auto_gf_ECNydusSpawn_TriggerFunc (bool testConds, bool runActions) {
         Wait(0.1, c_timeGame);
         libNtve_gf_UnitCreateFacingPoint(1, "Ultralisk", 0, 14, RegionGetCenter(gv_nydusNetwork[lv_nydusSpawnAreas[lv_localIntA]]), RegionRandomPoint(RegionPlayableMap()));
         UnitGroupAdd(gv_nydusWormAgronGroup, UnitLastCreated());
+        UnitBehaviorAdd(UnitLastCreated(), "CritterWanderLeashShort", UnitLastCreated(), 1);
         AIAttackWaveAddEscortUnit(14, UnitLastCreated(), lv_lastcreatedworm, 3.0, 270.0);
         PingCreate(PlayerGroupActive(), "PingObjective", RegionGetCenter(gv_nydusNetwork[lv_nydusSpawnAreas[lv_localIntA]]), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 300.0);
         gv_nydusPings[lv_localIntA] = PingLastCreated();
