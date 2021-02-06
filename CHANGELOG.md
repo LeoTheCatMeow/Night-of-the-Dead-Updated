@@ -1,7 +1,7 @@
 # Current Changes & Bugfixes Tracklist
 2021-2-6
 [ReduxGelum]
- - Added critter wander leash behavior to agrons guarding EC worms to prevent enemies getting stuck
+ - Added critter wander leash behavior to agrons guarding EC worms to prevent enemies getting stuck.
 
 2021-2-3
 [LeoTheCat]
