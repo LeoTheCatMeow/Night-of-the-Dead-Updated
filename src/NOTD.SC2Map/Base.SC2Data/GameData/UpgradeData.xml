@@ -3,7 +3,7 @@
     <CUpgrade id="AbsolutionBonus">
         <EffectArray Reference="Effect,PsionicTempestSearch,AreaArray[0].Radius" Value="2"/>
         <EffectArray Reference="Actor,HighTemplarPsiStormModel,Scale" Value="0.800000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,PsionicTempest,Cost[0].Cooldown.TimeUse" Value="8"/>
+        <EffectArray Operation="Subtract" Reference="Abil,PsionicTempest,Cost[0].Cooldown.TimeUse" Value="5.000000"/>
     </CUpgrade>
     <CUpgrade id="AntiVenomUpgrade">
         <EffectArray Operation="Set" Reference="Effect,AntiVenom,VitalArray[Life].Change" Value="30"/>

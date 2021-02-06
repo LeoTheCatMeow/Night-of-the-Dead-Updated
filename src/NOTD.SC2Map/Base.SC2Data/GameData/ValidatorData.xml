@@ -9,6 +9,16 @@
     <CValidatorLocationPathable id="BuildPathing">
         <Types index="Building" value="0"/>
     </CValidatorLocationPathable>
+    <CValidatorCombine id="CanCastBasicTempest">
+        <Type value="And"/>
+        <CombineArray value="CasterhasNotAbsolutionSpellBuff"/>
+        <CombineArray value="CasterHasEnergy"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="CanCastTrueTempest">
+        <Type value="And"/>
+        <CombineArray value="CasterhasAbsolutionSpellBuff"/>
+        <CombineArray value="CasterHasEnergy"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareVital id="CasterDegensHP">
         <Compare value="GT"/>
         <WhichUnit Value="Caster"/>

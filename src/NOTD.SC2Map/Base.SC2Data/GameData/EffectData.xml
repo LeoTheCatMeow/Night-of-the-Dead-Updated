@@ -145,9 +145,9 @@
         <EditorCategories value=""/>
         <Flags index="Channeled" value="1"/>
         <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodCount value="32"/>
-        <PeriodicValidator value="CasterHasEnergy"/>
-        <PeriodicEffectArray value="PsionicTempestSearch"/>
+        <PeriodCount value="20"/>
+        <PeriodicValidator value="CanCastTrueTempest"/>
+        <PeriodicEffectArray value="PsionicTempestPeriodicSet"/>
         <PeriodicPeriodArray value="0.25"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="PsionicTempestFriendlyDamage">
@@ -158,6 +158,11 @@
         <Death value="Electrocute"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
+    <CEffectSet id="PsionicTempestPeriodicSet">
+        <EditorCategories value=""/>
+        <EffectArray value="PsionicTempestEnergyDrain"/>
+        <EffectArray value="PsionicTempestSearch"/>
+    </CEffectSet>
     <CEffectApplyBehavior id="TheHorrorApplyMadness">
         <ValidatorArray index="0" value="TargetisNotEnemyBoss"/>
         <EditorCategories value=""/>
@@ -11069,10 +11074,10 @@
     </CEffectApplyBehavior>
     <CEffectCreatePersistent id="PsionicTempestCreatePersistent">
         <EditorCategories value=""/>
-        <PeriodCount value="32"/>
+        <PeriodCount value="20"/>
         <PeriodicPeriodArray value="0.25"/>
-        <PeriodicEffectArray value="PsionicTempestSearch"/>
-        <PeriodicValidator value="CasterHasEnergy"/>
+        <PeriodicEffectArray value="PsionicTempestPeriodicSet"/>
+        <PeriodicValidator value="CanCastBasicTempest"/>
         <ValidatorArray value="CasterhasNotAbsolutionSpellBuff"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="PsionicTempestDamage">
@@ -11081,7 +11086,7 @@
         <Death value="Electrocute"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
         <ValidatorArray value="EnemyTarget"/>
-        <AttributeFactor index="Massive" value="0.5"/>
+        <AttributeFactor index="Massive" value="0.75"/>
     </CEffectDamage>
     <CEffectEnumArea id="PsionicTempestSearch">
         <EditorCategories value=""/>
