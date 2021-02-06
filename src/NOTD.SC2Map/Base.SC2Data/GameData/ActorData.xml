@@ -143,6 +143,11 @@
         <On Terms="Effect.AbsolutionCreatePersistent.Stop" Send="Destroy"/>
         <Scale value="0.780000"/>
     </CActorModel>
+    <CActorSound id="AbsolutionSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.AbsolutionCreatePersistent.Start" Send="Create"/>
+        <Sound value="Core_SpinDown"/>
+    </CActorSound>
     <CActorAction id="AcidAttack" parent="GenericAttack" effectAttack="" effectImpact="AcidMissileDamage" effectLaunch="AcidMissileMissile">
         <On index="0" Terms="Effect.AcidMissileDamage.Start; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
         <On index="3" Terms="Effect.AcidMissileDamage.Start; FromEffectTreeDescendant" Send="ActionDamagePhysics"/>
@@ -11441,7 +11446,7 @@
         <On Terms="Effect.PsionicTempestDamage.Stop" Send="Destroy"/>
     </CActorAction>
     <CActorSound id="HighTemplarPsiStormSound">
-        <On Terms="Effect.PsionicTempestSearch.Start" Send="Create"/>
+        <On Terms="Effect.PsionicTempestCreatePersistent.Start" Send="Create"/>
         <On Terms="Effect.PsionicTempestCreatePersistent.Stop" Send="Destroy"/>
     </CActorSound>
     <CActorUnit id="Charlie" parent="GenericUnitBase" unitName="Charlie">
