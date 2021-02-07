@@ -990,7 +990,7 @@
         <Vital value="Energy"/>
     </CValidatorUnitCompareVital>
     <CValidatorUnitCompareBehaviorCount id="TargetHasNotAbsolution">
-        <Behavior value="Absolution"/>
+        <Behavior value="AbsolutionInvulnerability"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="CasterhasAbsolutionSpellBuff">
         <WhichUnit Value="Caster"/>
@@ -999,7 +999,7 @@
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="TargethasAbsolution">
         <Compare value="GT"/>
-        <Behavior value="Absolution"/>
+        <Behavior value="AbsolutionInvulnerability"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="TargetNotinLockOn">
         <Behavior value="MasterMarksmanLockOn"/>

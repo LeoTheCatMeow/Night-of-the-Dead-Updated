@@ -685,14 +685,10 @@
         <Effect value="MonofilamentTrapLevel2"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
+            <Vital index="Energy" value="25"/>
+        </Cost>
+        <Cost>
             <Vital index="Energy" value="15"/>
-            <Charge>
-                <CountMax value="8"/>
-                <CountStart value="8"/>
-                <CountUse value="1"/>
-                <Location value="Unit"/>
-                <TimeUse value="8"/>
-            </Charge>
         </Cost>
         <Range value="6"/>
         <CursorEffect value="MonofilamentTrapSearchLevel1"/>
@@ -1517,7 +1513,6 @@
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Flags index="AllowMovement" value="1"/>
         <Flags index="AutoCast" value="1"/>
-        <Flags index="BestUnit" value="0"/>
         <Flags index="NoDeceleration" value="1"/>
         <Cost>
             <Vital index="Energy" value="24"/>
@@ -1603,9 +1598,11 @@
             </Charge>
             <Cooldown Link="Abil/PlasmaCutterOvercharge" TimeUse="5"/>
         </Cost>
-        <TargetFilters value="-;Self,Player,Ally,Structure,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
+        <TargetFilters value="-;Self,Player,Ally,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
         <Range value="3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PlasmaCutterOverchargeLevel2"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="Smart" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="PlasmaCutterOvercharge3">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1619,9 +1616,11 @@
             </Charge>
             <Cooldown Link="Abil/PlasmaCutterOvercharge" TimeUse="5"/>
         </Cost>
-        <TargetFilters value="-;Self,Player,Ally,Structure,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
+        <TargetFilters value="-;Self,Player,Ally,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
         <Range value="3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PlasmaCutterOverchargeLevel3"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="Smart" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="ScorchedEarth">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2108,9 +2107,11 @@
             <Charge CountMax="5" CountStart="5" CountUse="1"/>
             <Cooldown TimeUse="5"/>
         </Cost>
-        <TargetFilters value="-;Self,Player,Ally,Structure,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
+        <TargetFilters value="-;Self,Player,Ally,RawResource,HarvestableResource,Item,Dead,Hidden,Invulnerable"/>
         <Range value="3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PlasmaCutterOverchargeLevel1"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="Smart" value="1"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="Floodlights">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3401,7 +3402,7 @@
         <Cost>
             <Vital index="Energy" value="30"/>
             <Charge Link="Abil/PsiShock"/>
-            <Cooldown Link="Abil/PsiShock" TimeUse="45"/>
+            <Cooldown Link="Abil/PsiShock" TimeUse="40"/>
         </Cost>
         <Range value="10"/>
         <CursorEffect value="AbsolutionSearch"/>

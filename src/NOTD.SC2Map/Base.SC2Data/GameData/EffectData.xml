@@ -132,7 +132,7 @@
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AbsolutionApply">
         <EditorCategories value=""/>
-        <Behavior value="Absolution"/>
+        <Behavior value="AbsolutionInvulnerability"/>
     </CEffectApplyBehavior>
     <CEffectModifyPlayer id="AbsolutionBonusOff">
         <Upgrades Upgrade="AbsolutionBonus" Count="-1"/>
@@ -154,7 +154,7 @@
         <ValidatorArray value="TargetIsAllyorPlayer"/>
         <ValidatorArray value="TargetHasNotAbsolution"/>
         <EditorCategories value=""/>
-        <Amount value="3.75"/>
+        <Amount value="2.5"/>
         <Death value="Electrocute"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -178,11 +178,6 @@
         <VitalFractionMax index="Life" value="0.005"/>
         <Death value="Disintegrate"/>
     </CEffectDamage>
-    <CEffectIssueOrder id="IssueStop">
-        <EditorCategories value="Race:Terran"/>
-        <Abil value="stop"/>
-        <ValidatorArray value="NotMoving"/>
-    </CEffectIssueOrder>
     <CEffectApplyBehavior id="Level3Detection5">
         <EditorCategories value=""/>
         <Behavior value="Detector5"/>
@@ -907,7 +902,7 @@
     <CEffectDamage id="InfernoDamage3">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="8"/>
+        <Amount value="5"/>
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
@@ -1271,7 +1266,7 @@
         <ArmorReduction value="0.5"/>
         <Kind value="Spell"/>
         <KindSplash value="Splash"/>
-        <Amount value="10"/>
+        <Amount value="5"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectEnumArea id="WidowMineExplodeSplashSearch">
@@ -4775,13 +4770,13 @@
     <CEffectDamage id="PlasmaCutterOverchargeLevel2Damage">
         <EditorCategories value=""/>
         <Kind value="Melee"/>
-        <Amount value="200"/>
+        <Amount value="250"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="PlasmaCutterOverchargeLevel3Damage">
         <EditorCategories value=""/>
         <Kind value="Melee"/>
-        <Amount value="250"/>
+        <Amount value="300"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectSet id="PlasmaCutterOverchargeLevel2Set">
@@ -6149,7 +6144,7 @@
     <CEffectDamage id="PlasmaCutterOverchargeLevel1Damage">
         <EditorCategories value=""/>
         <Kind value="Melee"/>
-        <Amount value="150"/>
+        <Amount value="200"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="FloodlightsLevel1Reveal">
@@ -11082,7 +11077,7 @@
     </CEffectCreatePersistent>
     <CEffectDamage id="PsionicTempestDamage">
         <EditorCategories value=""/>
-        <Amount value="7.5"/>
+        <Amount value="5"/>
         <Death value="Electrocute"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
         <ValidatorArray value="EnemyTarget"/>

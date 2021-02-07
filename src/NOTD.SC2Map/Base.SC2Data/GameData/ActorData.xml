@@ -5275,7 +5275,6 @@
         <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
         <DeathCustoms ModelLink="WidowMineBurrowDeath" Name="Variation0"/>
         <DeathCustoms ModelLink="Invisible" Name="Variation1"/>
-        <PlacementModel value="SpiderMinePlacement"/>
         <PortraitModel value="WidowMinePortrait"/>
         <TerrainSquibs>
             <MovementDistance value="0.150000,0.150000"/>
@@ -5302,6 +5301,10 @@
         <StatusBarFlags index="Life" value="0"/>
         <StatusBarFlags index="Energy" value="0"/>
     </CActorUnit>
+    <CActorRange id="WidowMineAttackRange">
+        <On Terms="SelectionLocalUpdate.SentinelMine.Start" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.SentinelMine.Stop" Send="Destroy"/>
+    </CActorRange>
     <CActorUnit id="X1GuardianLevel1" parent="GenericUnitStandard" unitName="X1GuardianLevel1">
         <Macros value="UnloadDropAnim"/>
         <Macros value=""/>

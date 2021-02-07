@@ -91,7 +91,7 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
-    <CBehaviorBuff id="Absolution">
+    <CBehaviorBuff id="AbsolutionInvulnerability">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-invulnerabilityshield.dds"/>
         <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -103,7 +103,8 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="AbsolutionSpellBuff">
-        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-invulnerabilityshield.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="15"/>
         <Period value="14.9"/>
@@ -113,7 +114,6 @@
         <Modification>
             <DamageDealtFraction index="Spell" value="1.5"/>
         </Modification>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-invulnerabilityshield.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AcidicBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
