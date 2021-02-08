@@ -1625,18 +1625,15 @@
         <Behavior value="BoomHeadshotLevel2"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="BoomHeadshotX1SearchLevel1">
-        <ValidatorArray value="BoomHeadshotX1SearchLevel1TargetFilters"/>
         <EditorCategories value=""/>
-        <SearchFilters value="Armored,Mechanical;Ally,Neutral,Enemy"/>
+        <SearchFilters value="Armored,Mechanical;Self,Ally,Neutral,Enemy,Structure"/>
         <AreaArray Radius="500" Effect="BoomHeadshotX1Level1"/>
-        <MinCount value="1"/>
         <MaxCount value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="BoomHeadshotX1SearchLevel2">
-        <ValidatorArray value="BoomHeadshotX1SearchLevel1TargetFilters"/>
         <EditorCategories value=""/>
         <Marker Link="Effect/BoomHeadshotX1SearchLevel1"/>
-        <SearchFilters value="Armored,Mechanical;Ally,Neutral,Enemy"/>
+        <SearchFilters value="Armored,Mechanical;Self,Ally,Neutral,Enemy,Structure"/>
         <AreaArray MaxCount="1" Radius="500" Effect="BoomHeadshotX1Level2"/>
         <MaxCount value="1"/>
     </CEffectEnumArea>

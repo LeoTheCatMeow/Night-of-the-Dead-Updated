@@ -20,17 +20,27 @@
 - Technician - March of the Machine attack interference will no longer happen if the weapon cannot friendly fire.
 - Technician - March of the Machine move speed penalty removed.
 - Technician - Ballistics damage bonus improved from 12%/24% to 18%/36%.
+- Technician - Crawler Drone move speed improved from 2 to 2.25, matching Technician's base speed.
 - Technician - Maintenance Drone Plasma Cutter damage improved from 150/200/250 to 200/250/300, now allowed to target structures.
 - Technician - Maintenance Drone Plasma Cutter now allows movement during casting and can be used via smart command (right click).
+- Technician - Maintenance Drone Field Retrofit now allows movement during casting and can be used via smart command (right click).
 - Psi Ops - Mind Ravage replaced by Psionic Tempest, with stats lowered to fit as a T1 ability. 
 - Psi Ops - Foresight now also amplifies spell damage taken in addition to the slow.
-- Psi Ops - Psionic Tempest T3 has been reworked into Absolution, offering a barrier for the team and empowers Psi Ops.
+- Psi Ops - Psionic Tempest T3 has been reworked into Absolution, offering a barrier for the team and empowers Psi Ops for 15 seconds.
 - Commando - Bring Them Down slow improved from 15%/25%/35% to 15%/30%/45%, radius improved from 1.5 to 2 + target unit radius.
 - Commando - Monofilament Trap damage increased from 50/100 to 75/150, ally damage unchanged.
 - Commando - Monofilament Trap energy cost at level 2 reduced from 25 to 15.
 - Commando - The Horror cost and cooldown slightly reduced. Now deals % HP damage over time, reduced against Heroic.
 - Units that manage to survive The Horror will be driven mad. Enemy Heroics are unaffected.
 - Fixed some minor tooltip and visual effect errors.
+- Enemies with Elite Mutation now reward double XP to the killer, does not affect shared XP due to current design limitations.
+- Fixed an bug with Combat Engineer where Boom! Headshot affects Disruption Towers.
+- Engineer - X1 Guardian Bot Targeting Computer can now be auto-cast, energy cost reduced from 10 to 5.
+- Engineer - X1 Guardian Bot move speed increased from 2.2 to 2.42, matching Engineer's base speed.
+- Engineer - X1 Guardian Bot damage increase per level improved from 5% to 10%.
+- Engineer - Improved the timing window on Synergy so that it may proc more consistenty.
+- Rifleman - Weapon Proficiency no longer increases Focus Fire cooldown as the ability does not auto-recast when the buff is on.
+- Forward Observer - Base shield increased from 20 to 25.
 
 2021-1-28
 [ReduxGelum]

@@ -44688,9 +44688,6 @@ bool gt_Synergy_Func (bool testConds, bool runActions) {
     int lv_synergyLevel;
 
     // Automatic Variable Declarations
-    const int autoE77BADAD_n = 10;
-    int autoE77BADAD_i;
-
     // Variable Initialization
     lv_localSourceUnit = EventUnitDamageSourceUnit();
     lv_localTargetUnit = EventUnit();
@@ -44705,6 +44702,10 @@ bool gt_Synergy_Func (bool testConds, bool runActions) {
     // Conditions
     if (testConds) {
         if (!(UnitIsAlive(lv_localTargetUnit))) {
+            return false;
+        }
+
+        if (!(UnitIsAlive(lv_localSourceUnit))) {
             return false;
         }
 
@@ -44730,25 +44731,21 @@ bool gt_Synergy_Func (bool testConds, bool runActions) {
         lv_synergyDamage = (lv_damage * (lv_damageFactor * IntToFixed(lv_synergyLevel)));
         CatalogFieldValueSet(c_gameCatalogEffect, "SynergyDamage", "Amount", lv_ownerofSynergySourceUnit, FixedToString(lv_synergyDamage, c_fixedPrecisionAny));
         PlayerCreateEffectUnit(lv_ownerofSynergySourceUnit, "SynergyDamage", lv_localTargetUnit);
-        Wait(1.0, c_timeGame);
         TextTagCreate(((StringExternal("Param/Value/D7D37A75") + FixedToText(lv_synergyDamage, 0)) + StringExternal("Param/Value/1FBBBF5D")), 20, UnitGetPosition(lv_localSourceUnit), 1.5, true, true, PlayerGroupActive());
         lv_synergyTextTag = TextTagLastCreated();
         TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(9.80, 9.80, 100.00));
         TextTagAttachToUnit(lv_synergyTextTag, lv_localSourceUnit, lv_synergyTextHeightOffset);
-        for (autoE77BADAD_i = 1; autoE77BADAD_i <= autoE77BADAD_n; autoE77BADAD_i += 1) {
-            Wait(0.1, c_timeGame);
-            lv_synergyTextHeightOffset += 0.1;
-            TextTagAttachToUnit(lv_synergyTextTag, lv_localSourceUnit, lv_synergyTextHeightOffset);
-        }
+        TextTagSetVelocity(lv_synergyTextTag, 0.5, 90.0);
+        Wait(1.0, c_timeGame);
         TextTagDestroy(lv_synergyTextTag);
     }
 
     gv_synergyTargetUnit[lv_ownerofSynergySourceUnit] = lv_localTargetUnit;
     if ((lv_classofSynergySourceUnit == "Engineer")) {
-        TimerStart(gv_synergyTimerEngineer[lv_ownerofSynergySourceUnit], 2.0, false, c_timeGame);
+        TimerStart(gv_synergyTimerEngineer[lv_ownerofSynergySourceUnit], 4.0, false, c_timeGame);
     }
     else {
-        TimerStart(gv_synergyTimerGuardian[lv_ownerofSynergySourceUnit], 2.0, false, c_timeGame);
+        TimerStart(gv_synergyTimerGuardian[lv_ownerofSynergySourceUnit], 4.0, false, c_timeGame);
     }
     return true;
 }

@@ -995,7 +995,7 @@
         <LifeRegenRate value="1"/>
         <ShieldArmor value="1"/>
         <ShieldRegenRate value="0.1015"/>
-        <Speed value="2"/>
+        <Speed value="2.25"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
         <Sight value="10"/>
@@ -1058,7 +1058,7 @@
         <LifeRegenRate value="1"/>
         <ShieldArmor value="1"/>
         <ShieldRegenRate value="0.1015"/>
-        <Speed value="2"/>
+        <Speed value="2.25"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
         <Sight value="10"/>
@@ -1196,7 +1196,7 @@
             <LayoutButtons Face="Armageddon" Type="AbilCmd" AbilCmd="Armageddon,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="Look" Type="AbilCmd" AbilCmd="Look,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="ImYourFather" Type="AbilCmd" AbilCmd="ImYourFather,On" Row="1" Column="3"/>
-            <LayoutButtons Face="Cancel22" Type="AbilCmd" AbilCmd="ImYourFather,Off" Row="1" Column="3"/>
+            <LayoutButtons Face="ImYourFatherPlaceholder" Type="AbilCmd" AbilCmd="ImYourFather,Off" Row="1" Column="3"/>
             <LayoutButtons Face="TimetoDie" Type="AbilCmd" AbilCmd="TimetoDie,On" Row="1" Column="0"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
         </CardLayouts>
@@ -1658,7 +1658,7 @@
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="Sprint,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Stealth" Type="AbilCmd" AbilCmd="Stealth,On" Row="1" Column="2"/>
-            <LayoutButtons Face="Cancel2222" Type="AbilCmd" AbilCmd="Stealth,Off" Row="1" Column="2"/>
+            <LayoutButtons Face="StealthPlaceholder" Type="AbilCmd" AbilCmd="Stealth,Off" Row="1" Column="2"/>
             <LayoutButtons Face="L3GrenadeLauncher" Type="AbilCmd" AbilCmd="L3LaunchGrenade,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="1"/>
             <LayoutButtons Face="Reload" Type="AbilCmd" AbilCmd="Reload,Execute" Row="0" Column="2"/>
@@ -3115,7 +3115,7 @@
                 <Column value="4"/>
             </LayoutButtons>
             <LayoutButtons Face="Taunt2" Type="AbilCmd" AbilCmd="Taunt2,On" Row="2" Column="1"/>
-            <LayoutButtons Face="Cancel222" Type="AbilCmd" AbilCmd="Taunt2,Off" Row="2" Column="1"/>
+            <LayoutButtons Face="TauntPlaceholder" Type="AbilCmd" AbilCmd="Taunt2,Off" Row="2" Column="1"/>
             <LayoutButtons Face="Talents" Type="AbilCmd" AbilCmd="Talents,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="BloodFrenzy" Type="AbilCmd" AbilCmd="BloodFrenzy,On" Row="1" Column="0"/>
             <LayoutButtons Face="CombatKnife" Type="AbilCmd" AbilCmd="CombatKnife,Execute" Row="0" Column="3"/>
@@ -3355,12 +3355,12 @@
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
         <EnergyStart value="40"/>
         <EnergyMax value="75"/>
-        <EnergyRegenRate value="0.254"/>
+        <EnergyRegenRate value="0.3515"/>
         <ShieldsStart value="5"/>
         <ShieldsMax value="10"/>
         <ShieldRegenRate value="1"/>
         <ShieldArmorName value="Unit/LifeArmorName/TerranInfantryArmor"/>
-        <Speed value="2.3007"/>
+        <Speed value="2.4218"/>
         <Acceleration value="1000"/>
         <Deceleration value="12"/>
         <LateralAcceleration value="115.1875"/>
@@ -3400,6 +3400,7 @@
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="TargetingComputer" Type="AbilCmd" AbilCmd="TargetingComputer,On" Row="2" Column="1"/>
+            <LayoutButtons Face="TargetingComputerPlaceholder" Type="AbilCmd" AbilCmd="TargetingComputer,Off" Row="2" Column="1"/>
             <LayoutButtons Face="Overdrive" Type="AbilCmd" AbilCmd="Overdrive,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="X1GuardianUpgrade" Type="AbilCmd" AbilCmd="X1UpgradeLevel2,Execute" Row="2" Column="3"/>
         </CardLayouts>
@@ -9761,8 +9762,8 @@
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
         <EnergyStart value="40"/>
         <EnergyMax value="75"/>
-        <EnergyRegenRate value="0.254"/>
-        <Speed value="2.1992"/>
+        <EnergyRegenRate value="0.3515"/>
+        <Speed value="2.4218"/>
         <Acceleration value="1000"/>
         <Deceleration value="12"/>
         <LateralAcceleration value="115.1875"/>
@@ -9796,6 +9797,7 @@
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="TargetingComputer" Type="AbilCmd" AbilCmd="TargetingComputer,On" Row="2" Column="1"/>
+            <LayoutButtons Face="TargetingComputerPlaceholder" Type="AbilCmd" AbilCmd="TargetingComputer,Off" Row="2" Column="1"/>
             <LayoutButtons Face="Overdrive" Type="AbilCmd" AbilCmd="Overdrive,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="X1GuardianUpgrade" Type="AbilCmd" AbilCmd="X1UpgradeLevel1,Execute" Row="2" Column="3"/>
         </CardLayouts>
@@ -9840,8 +9842,8 @@
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
         <EnergyStart value="40"/>
         <EnergyMax value="75"/>
-        <EnergyRegenRate value="0.254"/>
-        <Speed value="2.3984"/>
+        <EnergyRegenRate value="0.3515"/>
+        <Speed value="2.4218"/>
         <Acceleration value="1000"/>
         <Deceleration value="12"/>
         <LateralAcceleration value="115.1875"/>
@@ -9874,6 +9876,7 @@
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="TargetingComputer" Type="AbilCmd" AbilCmd="TargetingComputer,On" Row="2" Column="1"/>
+            <LayoutButtons Face="TargetingComputerPlaceholder" Type="AbilCmd" AbilCmd="TargetingComputer,Off" Row="2" Column="1"/>
             <LayoutButtons Face="Overdrive" Type="AbilCmd" AbilCmd="Overdrive,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <InnerRadius value="0.4375"/>
@@ -10587,8 +10590,8 @@
         <EnergyStart value="160"/>
         <EnergyMax value="160"/>
         <EnergyRegenRate value="0.6992"/>
-        <ShieldsStart value="20"/>
-        <ShieldsMax value="20"/>
+        <ShieldsStart value="25"/>
+        <ShieldsMax value="25"/>
         <ShieldArmorName value="Unit/LifeArmorName/TerranInfantryArmor"/>
         <Speed value="2.4765"/>
         <SpeedMultiplierCreep value="0.7"/>
@@ -10962,6 +10965,7 @@
             <LayoutButtons Face="DisruptionTowerLevel13" Type="AbilCmd" AbilCmd="BuildEngineer,Build1" Row="1" Column="0"/>
             <LayoutButtons Face="FieldNexus" Type="AbilCmd" AbilCmd="FieldNexus,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="BoomHeadshot" Type="AbilCmd" AbilCmd="BoomHeadshot,On" Row="1" Column="2"/>
+            <LayoutButtons Face="BoomHeadshotPlaceholder" Type="AbilCmd" AbilCmd="BoomHeadshot,Off" Row="1" Column="2"/>
             <LayoutButtons Face="X1Guardian" Type="AbilCmd" AbilCmd="X1Guardian,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="RemoteSelfDestruct" Type="AbilCmd" AbilCmd="RemoteSelfDestruct,Execute" Row="2" Column="2"/>
         </CardLayouts>

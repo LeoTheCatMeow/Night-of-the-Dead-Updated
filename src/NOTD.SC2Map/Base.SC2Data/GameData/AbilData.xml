@@ -169,6 +169,9 @@
         <CmdButtonArray index="On" DefaultButtonFace="BoomHeadshot">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="BoomHeadshotPlaceholder">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
         <Cost>
             <Vital index="Energy" value="20"/>
             <Cooldown TimeUse="12"/>
@@ -942,9 +945,12 @@
             <Cooldown Link="Abil/AntiVenom" TimeUse="3"/>
         </Cost>
         <TargetFilters value="Ground,Biological,Visible;Enemy,Air,Structure,Missile,Destructible,Item,Dead,Hidden"/>
-        <Range value="2.5"/>
+        <Range value="3"/>
         <AutoCastAcquireLevel value="Defensive"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="FieldRetrofit"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="Smart" value="1"/>
+        <SmartValidatorArray value="TargethasShortCircuit"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="Anticipation">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2271,15 +2277,18 @@
         <CmdButtonArray index="On" DefaultButtonFace="TargetingComputer">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="TargetingComputerPlaceholder">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="10"/>
+            <Vital index="Energy" value="5"/>
             <Charge Link="Abil/Turbo"/>
             <Cooldown Link="Abil/Turbo" TimeUse="10"/>
         </Cost>
         <BehaviorArray value="TargetingComputer"/>
-        <AutoCastValidatorArray value="CasterNotTargetingComputer"/>
     </CAbilBehavior>
     <CAbilMorph id="UnburrowBroodmother">
         <AbilSetId value="BrwU"/>
@@ -3668,6 +3677,9 @@
         <AutoCastFilters value="-;Player,Ally,Enemy"/>
         <AINotifyEffect value=""/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Overdrive" Requirements="Overdrive"/>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="OverdrivePlaceholder">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
         <Cost>
             <Vital index="Energy" value="20"/>
             <Cooldown Location="Player" TimeUse="45"/>
@@ -3915,7 +3927,7 @@
     <CAbilBehavior id="ImYourFather">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="ImYourFather"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Cancel22">
+        <CmdButtonArray index="Off" DefaultButtonFace="ImYourFatherPlaceholder">
             <Flags index="IgnoreUser" value="1"/>
         </CmdButtonArray>
         <Flags index="AutoCast" value="1"/>
@@ -4823,7 +4835,7 @@
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Cancel2222">
+        <CmdButtonArray index="Off" DefaultButtonFace="StealthPlaceholder">
             <Flags index="IgnoreUser" value="1"/>
         </CmdButtonArray>
     </CAbilBehavior>
@@ -5007,7 +5019,7 @@
     <CAbilBehavior id="Taunt2">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <CmdButtonArray index="On" DefaultButtonFace="Taunt2"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Cancel222">
+        <CmdButtonArray index="Off" DefaultButtonFace="TauntPlaceholder">
             <Flags index="IgnoreUser" value="1"/>
         </CmdButtonArray>
         <Flags index="AutoCast" value="1"/>

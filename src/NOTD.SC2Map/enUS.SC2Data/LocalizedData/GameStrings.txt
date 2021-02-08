@@ -868,9 +868,9 @@ Behavior/Tooltip/BloodFrenzyLevel2=Assault gains +40% damage. Critical Strikes s
 Behavior/Tooltip/BloodFrenzySlow=30% movement and attack speed reduction for 1 second.
 Behavior/Tooltip/BloodPact=Apoptosis takes additional damage from attackers with an Open Wound.
 Behavior/Tooltip/Bloodlust=Increases Rifleman attack speed & damage by 50% for 10 seconds. Reduces base armor to 0 during Bloodlust.
-Behavior/Tooltip/BoomHeadshotLevel1=Attacks by Engineer/Guardian stuns non-Heroics (slows Heroics by 15%)  for and cause -2 armor for 1 second. Attack modifier lasts for 5 seconds.
+Behavior/Tooltip/BoomHeadshotLevel1=+10% Attack Speed. Attacks by Engineer/Guardian stuns non-Heroics (slows Heroics by 15%)  for and cause -2 armor for 1 second. Attack modifier lasts for 5 seconds.
 Behavior/Tooltip/BoomHeadshotLevel1Heroic=-15% movespeed and -2 armor for 1 second.
-Behavior/Tooltip/BoomHeadshotLevel2=Attacks by Engineer/Guardian stuns non-Heroics (slows Heroics by 30%)  for and cause -4 armor for 2 seconds. Attack modifier lasts for 7 seconds.
+Behavior/Tooltip/BoomHeadshotLevel2=+20% Attack Speed. Attacks by Engineer/Guardian stuns non-Heroics (slows Heroics by 30%)  for and cause -4 armor for 2 seconds. Attack modifier lasts for 7 seconds.
 Behavior/Tooltip/BoomHeadshotLevel2Heroic=-30% movespeed and -4 armor for 2 seconds.
 Behavior/Tooltip/BringThemDownLevel1Slow=Unit is slowed by 15% for 3 seconds. 
 Behavior/Tooltip/BringThemDownLevel2Slow=Unit is slowed by 30% for 3.5 seconds. 
@@ -1217,6 +1217,7 @@ Button/Name/BloodFrenzy=Blood Frenzy
 Button/Name/Bloodlust=Bloodlust
 Button/Name/Blue=Blue
 Button/Name/BoomHeadshot=Boom! Headshot
+Button/Name/BoomHeadshotPlaceholder=Boom! Headshot
 Button/Name/BorrowedTime=Borrowed Time
 Button/Name/BringThemDown=Bring Them Down
 Button/Name/Brown=Brown
@@ -1228,9 +1229,6 @@ Button/Name/C4Armor=C4 Armor
 Button/Name/C6Armor=<c val="00FFFF">C6 Armor</c>
 Button/Name/CIAmmo=<c val="80FF80">CI Ammo</c>
 Button/Name/Cancel2=Cancel
-Button/Name/Cancel22=I'm Your Father
-Button/Name/Cancel222=Taunt
-Button/Name/Cancel2222=Stealth
 Button/Name/CancelMarchoftheMachine=Cancel March of the Machine
 Button/Name/CancelMindLink=Cancel (Mind-Link)
 Button/Name/Chaingun=<c val="972FFF">XM814 Heavy Machine Gun</c>
@@ -1336,6 +1334,7 @@ Button/Name/HybridProtoss=Hybrid Protoss
 Button/Name/HybridZerg=Hybrid Zerg
 Button/Name/Hydralisk2=Hydralisk
 Button/Name/ImYourFather=I'm Your Father
+Button/Name/ImYourFatherPlaceholder=I'm Your Father
 Button/Name/ImprovedCoolantLines=Improved Coolant Lines
 Button/Name/InboundSickness=Inbound Sickness
 Button/Name/Inception=Inception
@@ -1412,6 +1411,7 @@ Button/Name/OpenCockpit=Open Cockpit
 Button/Name/Orange=Orange
 Button/Name/OrbitalLaser=Orbital Laser
 Button/Name/Overdrive=Overdrive
+Button/Name/OverdrivePlaceholder=Overdrive
 Button/Name/P45GaussPistol=P-45 Gauss Pistol
 Button/Name/Penance=Penance
 Button/Name/Penetration=Penetrate
@@ -1497,6 +1497,7 @@ Button/Name/Stealth2=Stealth
 Button/Name/Stealth22=Stealth Copy
 Button/Name/StealthMatrixActivate=Stealth Matrix Activate
 Button/Name/StealthMatrixDeactivate=Stealth Matrix Deactivate
+Button/Name/StealthPlaceholder=Stealth
 Button/Name/StingerMK3=<c val="972FFF">Stinger MK-3</c>
 Button/Name/SupplyStation=Supply Station
 Button/Name/SupplyStationLevel1=Supply Station (Level 1)
@@ -1514,8 +1515,10 @@ Button/Name/TacticalNuke=Tactical Nuke
 Button/Name/Talents=Talents
 Button/Name/TargetingArray=Targeting Array
 Button/Name/TargetingComputer=Targeting Computer
+Button/Name/TargetingComputerPlaceholder=Targeting Computer
 Button/Name/Tassadar=Tassadar
 Button/Name/Taunt2=Taunt
+Button/Name/TauntPlaceholder=Taunt
 Button/Name/TaurenSpaceMarine=Tauren Space Marine
 Button/Name/Teal=Teal
 Button/Name/TeamLocation=Team Location
@@ -1594,6 +1597,7 @@ Button/Tooltip/Blue=Changes Marine color to <c val="0000FF">Blue</c> for all gam
 Button/Tooltip/Bob=
 Button/Tooltip/Bob2=
 Button/Tooltip/BoomHeadshot=Attacks by Engineer/Guardian stuns non-Heroics (slows Heroics by 15%)  for and cause -2 armor for 1 second. Attack modifier lasts for 5 seconds.
+Button/Tooltip/BoomHeadshotPlaceholder=Boom! Headshot is active.
 Button/Tooltip/BorrowedTime=Eats 80 HP, gains 50 energy.
 Button/Tooltip/BrainBug=BRAINSSSS!!
 Button/Tooltip/BrainBug2=BRAINSSSS!!
@@ -1607,9 +1611,6 @@ Button/Tooltip/C4Armor=<c val="FFFF00">C4 Armor</c><n/>A series of interlocking 
 Button/Tooltip/C6Armor=<c val="00FFFF">C6 Armor</c><n/>A heavy armor that consists of a thick chestplate, gauntlets, boots, and attachable plates for the legs and upper arms. Extremely effective at dampening impact damage and blunt trauma, but does little to protect joints, leaving the wearer vulnerable to cuts and scrapes in the non-armored areas.<n/><n/>Adds 6 armor.<n/><n/>Weight: <c val="FFFFFF">22</c><n/><n/>"Does this make me look fat?"
 Button/Tooltip/CIAmmo=<c val="80FF80">Chemical Infused Ammo</c><n/>Produced by Rancor Corporations, this specially made chemical infused ammunition often leaves its victims in horrifying conditions. <n/><n/>Attack Modifier: <c val="FFFFFF">-7hp/2s (Stackable) <n/>Targets take 35% bonus damage from Chemical for 5 seconds</c><n/><c val="FFFF00">Applied by non-fire effects only</c><n/>Maximum Stack: <c val="FFFFFF">1</c></n>Weight: <c val="FFFFFF">3</c></n>Credit: <c val="FFFFFF">50</c><n/><n/>"Careful, this can melt your face off."
 Button/Tooltip/Cancel2=Return to previous menu
-Button/Tooltip/Cancel22=I'm Your Father is active.
-Button/Tooltip/Cancel222=Taunt is active.
-Button/Tooltip/Cancel2222=Stealth is active.
 Button/Tooltip/CancelMarchoftheMachine=Cancels overdrive mode and returns to regular state.
 Button/Tooltip/CancelMindLink=Cancel Mind-Link.
 Button/Tooltip/CellularStructure=
@@ -1708,7 +1709,7 @@ Button/Tooltip/FastFive=Using superior reflexes and skill, the Pathfinder fires 
 Button/Tooltip/FibrinBandage=Uses Fibrin Bandage in inventory to instantly heal 50 HP on target unit.
 Button/Tooltip/FieldNexus=Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>1) Sigma: Burns all air units in 8 radius.<n/>2) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>3) Passive Aura: All allies with shields in 9 radius gain Static Shield (+1 shield armor and deals 25 damage to attackers).
 Button/Tooltip/FieldProbe=Creates a 150 HP (50 Shields) mobile probe with the following weaponry: <n/>1) Shock Beam - 50% chance to apply -30% ms on target for 5 seconds <n/>2) Penetrate Missiles - Applies -1 armor on target for 8 seconds. Stacks up to 8 times.
-Button/Tooltip/FieldRetrofit=<c val="FFFF00">Field Retrofit</c><n/>Cures Short Circuit. The materials required render the Maintenance Drone inoperative.
+Button/Tooltip/FieldRetrofit=<c val="FFFF00">Field Retrofit</c><n/>Cures Short Circuit. The materials required render the Maintenance Drone inoperative.<n/><n/><c val="FFFF00">Right Click on an ally with Short Circuit to smart cast this ability.</c>
 Button/Tooltip/FireMission=Artillery strike that deals 50 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/FireVulnerability=Targets in 5 radius take 50% more damage from explosives. Lasts for 10 seconds.
 Button/Tooltip/Flamethrower2=Specialized anti-infantry attacker.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -1754,6 +1755,7 @@ Button/Tooltip/HybridProtoss=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/HybridZerg=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Hydralisk2=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/ImYourFather=Provokes all enemies in 7 radius to attack demo for 4 sec. Taunted units deal 15% less damage.
+Button/Tooltip/ImYourFatherPlaceholder=I'm Your Father is active.
 Button/Tooltip/Immortal2=A zombie with rapidly regenerating cells that help it survive many lethal wounds.
 Button/Tooltip/Immortal22=A zombie with rapidly regenerating cells that help it survive many lethal wounds.
 Button/Tooltip/ImprovedCoolantLines=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability. Deals triple damage to bosses.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 4 seconds.
@@ -1864,6 +1866,7 @@ Button/Tooltip/OracleCloakField=Toggle pet Cloak Field.
 Button/Tooltip/Orange=Changes Marine color to <c val="FF8000">Orange</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/OrbitalLaser=
 Button/Tooltip/Overdrive=X-1 Guardian activates its devastating twin plasma turrets. Lasts 20 seconds.
+Button/Tooltip/OverdrivePlaceholder=Overdrive is active.
 Button/Tooltip/P45GaussPistol=<c val="FFFF00">P-45 Gauss Pistol</c><n/>A low-recoil close combat pistol suitable for most security encounters.<n/><n/>Base Range: <c val="FFFFFF">6</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">1 second</c><n/>Equip: <c val="FFFFFF">0.3 seconds</c><n/>Weight: <c val="FFFFFF">3</c><n/>Adaptive: <c val="FFFFFF">1.5</c><n/>Flag: <c val="FFFFFF">Ranged, Physical</c><n/><n/>"Step away from my sidearm, Private!" - Capt. Lockwood
 Button/Tooltip/Parasite=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
 Button/Tooltip/Parasite2=A small, quick moving creature that often escapes notice and can puncture the armor of unsuspecting targets, injecting them with its lethal venom.
@@ -1875,9 +1878,9 @@ Button/Tooltip/PersonnelArcReactor=<c val="80FF80">Arc Reactor</c><n/>Increases 
 Button/Tooltip/PfcBrooks=Private Fist Class Brooks<n/>Apollo Security<n/>Clerance Level: 2<n/>Service date: 2102
 Button/Tooltip/Pink=Changes Marine color to <c val="FF80FF">Pink</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/PipedreamsEmporium=Trains Mercenary units.
-Button/Tooltip/PlasmaCutterOverchargeLevel1=Deals 200 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.
-Button/Tooltip/PlasmaCutterOverchargeLevel2=Deals 250 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.
-Button/Tooltip/PlasmaCutterOverchargeLevel3=Deals 300 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.
+Button/Tooltip/PlasmaCutterOverchargeLevel1=Deals 200 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.<n/><n/><c val="FFFF00">Right Click on an enemy to smart cast this ability.</c>
+Button/Tooltip/PlasmaCutterOverchargeLevel2=Deals 250 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.<n/><n/><c val="FFFF00">Right Click on an enemy to smart cast this ability.</c>
+Button/Tooltip/PlasmaCutterOverchargeLevel3=Deals 300 damage to a single target, but can only be done 5 times. On the 5th use, the Surveillance Drone will be destroyed, as the frame cannot handle discharging the additional energy that it was not designed to withstand.<n/><n/><c val="FFFF00">Right Click on an enemy to smart cast this ability.</c>
 Button/Tooltip/PlasmaDetonator=
 Button/Tooltip/PlasmaDischarge=Primes a Plasma Detonator that deals 30 damage in 4 radius after 3.5 seconds. Affected units lose 2 armor & are slowed by 30% for 7 seconds.<n/><n/><c val="FF0000">Warning: Deals 25% friendly fire damage.</c>
 Button/Tooltip/PrecisionShot=Deals 75 damage to target unit and slows movement by 30% for 5 seconds. 
@@ -1978,6 +1981,7 @@ Button/Tooltip/Stealth2=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/Stealth22=Activates a cloaking field that lasts 8 seconds.
 Button/Tooltip/StealthMatrixActivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
 Button/Tooltip/StealthMatrixDeactivate=The Stealth Matrix is an energy grid within the Recon's suit that can maintain the cloaking effect from Escape while active.
+Button/Tooltip/StealthPlaceholder=Stealth is active.
 Button/Tooltip/Stim=Gains 50% attack speed and 30% move speed for 15 seconds.
 Button/Tooltip/StingerMK3=<c val="972FFF">Stinger MK-3</c><n/>Rocket Launcher that does significant splash damage. Use with extreme caution.<n/>Consumes 10 rounds per shot. <n/><c val="FF0000">Deals 25% friendly fire dmg.</c><n/><n/>Base Range: <c val="FFFFFF">20</c><n/>Splash: <c val="FFFFFF">5</c><n/>Reload: <c val="FFFFFF">6 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">25</c><n/>Credits: <c val="FFFFFF">325</c><n/>Adaptive: <c val="FFFFFF">0</c><n/>Flag: <c val="FFFFFF">Ranged, Fire, Splash</c><n/><n/>"Say hello to my little friend" - Lt. Lee
 Button/Tooltip/Strangler=An air creature that is capable of choking and incapacitating its targets
@@ -1998,9 +2002,11 @@ Button/Tooltip/TacticalNuke=Launches a 9 radius nuke that does 1200 damage. 90 r
 Button/Tooltip/Talents=Unlock new abilities in your Talent Tree. Each Marine has 2 unique talent trees.<n/><n/><c val="F4D72B">You gain 1 Talent Point every time your Marine levels up.</c>
 Button/Tooltip/TargetingArray=The Technician deploys an array that assists the nearby marines by updating their personal heads up displays with tactical information and highlighting enemy weak points, increasing damage by 20%. Lasts for 10 seconds.
 Button/Tooltip/TargetingComputer=+25% attack speed for 10 seconds.
+Button/Tooltip/TargetingComputerPlaceholder=Targeting Computer is active.
 Button/Tooltip/Tartarus=A deadly creature that spawns volatile mutations.
 Button/Tooltip/Tassadar=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Taunt2=Forces enemies in 8 radius to attack you for 5 seconds. Taunted units deal 10% less damage.
+Button/Tooltip/TauntPlaceholder=Taunt is active.
 Button/Tooltip/TaurenSpaceMarine=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/Teal=Changes Marine color to <c val="00FFFF">Teal</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/TeamLocation=Pings location of all teammates for 5 seconds.
@@ -2094,17 +2100,27 @@ DocInfo/PatchNote019=- Technician - March of the Machine attack interference int
 DocInfo/PatchNote020=- Technician - March of the Machine attack interference will no longer happen if the weapon cannot friendly fire.
 DocInfo/PatchNote021=- Technician - March of the Machine move speed penalty removed.
 DocInfo/PatchNote022=- Technician - Ballistics damage bonus improved from 12%/24% to 18%/36%.
-DocInfo/PatchNote023=- Technician - Maintenance Drone Plasma Cutter damage improved from 150/200/250 to 200/250/300, now allowed to target structures.
-DocInfo/PatchNote024=- Technician - Maintenance Drone Plasma Cutter now allows movement during casting and can be used via smart command (right click).
-DocInfo/PatchNote025=- Psi Ops - Mind Ravage replaced by Psionic Tempest, with stats lowered to fit as a T1 ability. 
-DocInfo/PatchNote026=- Psi Ops - Foresight now also amplifies spell damage taken in addition to the slow.
-DocInfo/PatchNote027=- Psi Ops - Psionic Tempest T3 has been reworked into Absolution, offering a barrier for the team and empowers Psi Ops.
-DocInfo/PatchNote028=- Commando - Bring Them Down slow improved from 15%/25%/35% to 15%/30%/45%, radius improved from 1.5 to 2 + target unit radius.
-DocInfo/PatchNote029=- Commando - Monofilament Trap damage increased from 50/100 to 75/150, ally damage unchanged.
-DocInfo/PatchNote030=- Commando - Monofilament Trap energy cost at level 2 reduced from 25 to 15.
-DocInfo/PatchNote031=- Commando - The Horror cost and cooldown slightly reduced. Now deals % HP damage over time, reduced against Heroic.
-DocInfo/PatchNote032=- Units that manage to survive The Horror will be driven mad. Enemy Heroics are unaffected.
-DocInfo/PatchNote033=- Fixed some minor tooltip and visual effect errors.
+DocInfo/PatchNote023=- Technician - Crawler Drone move speed improved from 2 to 2.25, matching Technician's base speed.
+DocInfo/PatchNote024=- Technician - Maintenance Drone Plasma Cutter damage improved from 150/200/250 to 200/250/300, now allowed to target structures.
+DocInfo/PatchNote025=- Technician - Maintenance Drone Plasma Cutter now allows movement during casting and can be used via smart command (right click).
+DocInfo/PatchNote026=- Technician - Maintenance Drone Field Retrofit now allows movement during casting and can be used via smart command (right click).
+DocInfo/PatchNote027=- Psi Ops - Mind Ravage replaced by Psionic Tempest, with stats lowered to fit as a T1 ability. 
+DocInfo/PatchNote028=- Psi Ops - Foresight now also amplifies spell damage taken in addition to the slow.
+DocInfo/PatchNote029=- Psi Ops - Psionic Tempest T3 has been reworked into Absolution, offering a barrier for the team and empowers Psi Ops for 15 seconds.
+DocInfo/PatchNote030=- Commando - Bring Them Down slow improved from 15%/25%/35% to 15%/30%/45%, radius improved from 1.5 to 2 + target unit radius.
+DocInfo/PatchNote031=- Commando - Monofilament Trap damage increased from 50/100 to 75/150, ally damage unchanged.
+DocInfo/PatchNote032=- Commando - Monofilament Trap energy cost at level 2 reduced from 25 to 15.
+DocInfo/PatchNote033=- Commando - The Horror cost and cooldown slightly reduced. Now deals % HP damage over time, reduced against Heroic.
+DocInfo/PatchNote034=- Units that manage to survive The Horror will be driven mad. Enemy Heroics are unaffected.
+DocInfo/PatchNote035=- Fixed some minor tooltip and visual effect errors.
+DocInfo/PatchNote036=- Enemies with Elite Mutation now reward double XP to the killer, does not affect shared XP due to current design limitations.
+DocInfo/PatchNote037=- Fixed an bug with Combat Engineer where Boom! Headshot affects Disruption Towers.
+DocInfo/PatchNote038=- Engineer - X1 Guardian Bot Targeting Computer can now be auto-cast, energy cost reduced from 10 to 5.
+DocInfo/PatchNote039=- Engineer - X1 Guardian Bot move speed increased from 2.2 to 2.42, matching Engineer's base speed.
+DocInfo/PatchNote040=- Engineer - X1 Guardian Bot damage increase per level improved from 5% to 10%.
+DocInfo/PatchNote041=- Engineer - Improved the timing window on Synergy so that it may proc more consistenty.
+DocInfo/PatchNote042=- Rifleman - Weapon Proficiency no longer increases Focus Fire cooldown as the ability does not auto-recast when the buff is on.
+DocInfo/PatchNote043=- Forward Observer - Base shield increased from 20 to 25.
 DocInfo/PatchNote690=[ReduxGelum]
 DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
 DocInfo/PatchNote692=- Enabled transient for faith ability.
@@ -6804,7 +6820,7 @@ UserData/TalentTrees/Rifleman_Headers=<s val="HelpPanelListBoxItemTitle">Combat<
 UserData/TalentTrees/Rifleman_Headers_001=<s val="HelpPanelListBoxItemTitle">Survival</s>
 UserData/TalentTrees/Rifleman_Talent Tootips=<s val="AchievementFrameName">Critical Strike <n/>(Passive)</s><n/>Grants a chance for effects flagged as Ranged, Melee, or Splash to deal extra damage.<n/>Level 1 - 15% chance to deal 2x damage<n/>Level 2 - 30% chance to deal 2x damage<n/>Level 3 - 45% chance to deal 2x damage<n/><n/>"My axe just goes Crit!" - Yohan, Ilterendi
 UserData/TalentTrees/Rifleman_Talent Tootips_001=<s val="AchievementFrameName">Fire Up (Passive)</s><n/>The Rifleman gets fired up, upgrading Focus Fire and applying bonuses to Grenades while under the effect of Focus Fire. Each level increases the energy cost of Focus Fire by 1.<n/>Level 1 - +<d ref="3 * 1" precision ="2"/>% damage and +<d ref="15 * 1" precision ="2"/>% attack speed. Increases radius of Grenade by <d ref="0.5 * 1" precision ="2"/><n/>Level 2 - +<d ref="3 * 2" precision ="2"/>% damage and +<d ref="15 * 2" precision ="2"/>% attack speed. Increases radius of Grenade by <d ref="0.5 * 2" precision ="2"/><n/>Level 3 - +<d ref="3 * 3" precision ="2"/>% damage and +<d ref="15 * 3" precision ="2"/>% attack speed. Increases radius of Grenade by <d ref="0.5 * 3" precision ="2"/><n/><n/>"Good aim is over-rated" - Private Brandon
-UserData/TalentTrees/Rifleman_Talent Tootips_002=<s val="AchievementFrameName">Weapons Proficiency<n/>(Passive)</s><n/>Reload time reduced<n/>Level 1 - 17.5% reduced reload time. Focus Fire duration and cooldown increased by 1 second.<n/>Level 2 - 35% reduced reload time. Focus Fire duration and cooldown increased by 2 seconds.<n/><n/>"It's how you use it that matters" - Dr. Ng<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Rifleman_Talent Tootips_002=<s val="AchievementFrameName">Weapons Proficiency<n/>(Passive)</s><n/>Reload time reduced<n/>Level 1 - 17.5% reduced reload time. Focus Fire duration increased by 1 second.<n/>Level 2 - 35% reduced reload time. Focus Fire duration increased by 2 seconds.<n/><n/>"It's how you use it that matters" - Dr. Ng<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_003=<s val="AchievementFrameName">XM-35 Grenade Launcher</s><n/>Deals damage in 3 radius. Deals +33% damage vs Light.  Gains larger AoE while Focus Fire is active.<n/>Level 1 - 75 damage.  Gains 3 damage per level of the Rifleman.<n/>Level 2 - 150 damage.  Gains 6 damage per level of the Rifleman.<n/><n/>"When the pin is pulled, Mr. Grenade is not our friend." - UGC Marine Corps<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_004=<s val="AchievementFrameName">Bloodlust</s><n/>The carnage the Rifleman unleashes triggers a martial trance, sending him into a state of heightened reflexes and combat fervor, granting him +50% attack speed and damage for 10 seconds. Reduces base armor to 0 during Bloodlust.<n/><n/>"Today is a good day for someone else to die." - Kogan the Butcher<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_005=<s val="AchievementFrameName">Saline IV</s><n/>Heals Rifleman and 1 other most wounded ally marine in 3 radius. Each level reduces cooldown and energy cost slightly.<n/>Level 1 - 20 HP<n/>Level 2 - 40 HP. Removes 1 Stack of Venom.<n/>Level 3 - 60 HP. Removes 1 Stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.<n/><n/>"I laugh in the face of danger" - Sgt. Zohar

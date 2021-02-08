@@ -45,19 +45,38 @@
         <Universal value="1"/>
         <SimpleDisplayText value="SimpleDisplay/Attack2"/>
     </CButton>
-    <CButton id="Cancel22">
+    <CButton id="BoomHeadshotPlaceholder">
+        <Icon value="Assets\Textures\btn-ability-mengsk-battlecruiser-decksights.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="ImYourFatherPlaceholder">
         <Icon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <AlertIcon value="Assets\Textures\btn-command-cancel.dds"/>
         <HotkeyAlias value=""/>
         <HidesForSimpleText value="0"/>
     </CButton>
-    <CButton id="Cancel222">
+    <CButton id="OverdrivePlaceholder">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-carrier-solarbeam.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="X1Guardian"/>
+        <Universal value="1"/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="TargetingComputerPlaceholder">
+        <Icon value="Assets\Textures\btn-tips-laserdrillantiair.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="X1Guardian"/>
+        <Universal value="1"/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="TauntPlaceholder">
         <Icon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
         <AlertIcon value="Assets\Textures\btn-command-cancel.dds"/>
         <HotkeyAlias value=""/>
         <HidesForSimpleText value="0"/>
     </CButton>
-    <CButton id="Cancel2222">
+    <CButton id="StealthPlaceholder">
         <Icon value="Assets\Textures\btn-ability-zeratul-darktemplar-blink.dds"/>
         <AlertIcon value="Assets\Textures\btn-command-cancel.dds"/>
         <HotkeyAlias value=""/>

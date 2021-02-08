@@ -119,7 +119,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <InitialEffect value="AcidicApplyBonusCloud"/>
         <FinalEffect value="AcidicDeathSet"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
         </Modification>
         <DamageResponse Handled="AcidicToxinApplyBoss">
@@ -155,7 +155,7 @@
         <Period value="1"/>
         <InitialEffect value="AtrociousApplyBonusRegen"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
@@ -167,7 +167,7 @@
         <Period value="1"/>
         <InitialEffect value="AtrociousApplyBonusRegen"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.25"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
             <VitalRegenArray index="Life" value="15"/>
@@ -189,7 +189,7 @@
     <CBehaviorBuff id="Acidic">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <FinalEffect value="AcidicDeathSet"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <VitalMaxArray index="Life" value="100"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
         </Modification>
@@ -461,7 +461,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="HardenedBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification AttackSpeedMultiplier="1.1">
+        <Modification AttackSpeedMultiplier="1.1" XPMultiplier="2">
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.15"/>
         </Modification>
         <DamageResponse ModifyFraction="0.7">
@@ -555,7 +555,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification AttackSpeedMultiplier="0.5">
+        <Modification AttackSpeedMultiplier="0.5" XPMultiplier="2">
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
@@ -597,7 +597,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Hardened">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification AttackSpeedMultiplier="1.1">
+        <Modification AttackSpeedMultiplier="1.1" XPMultiplier="2">
             <StateFlags index="UnitAttrOnHeroic" value="1"/>
             <VitalMaxArray index="Life" value="125"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
@@ -643,7 +643,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="MonstrousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification AttackSpeedMultiplier="0.7">
+        <Modification AttackSpeedMultiplier="0.7" XPMultiplier="2">
             <DamageDealtFraction index="Melee" value="0.3"/>
             <DamageDealtFraction index="Ranged" value="0.3"/>
             <DamageDealtFraction index="Splash" value="0.3"/>
@@ -675,7 +675,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Period value="3"/>
         <PeriodicEffect value="ScorchingSearch"/>
-        <Modification MoveSpeedMultiplier="1.1">
+        <Modification MoveSpeedMultiplier="1.1" XPMultiplier="2">
             <StateFlags index="UnitAttrOnHeroic" value="1"/>
             <VitalMaxArray index="Life" value="125"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.5"/>
@@ -747,7 +747,7 @@
     <CBehaviorBuff id="Atrocious">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxArray index="Life" value="100"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
@@ -762,7 +762,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Period value="2"/>
         <PeriodicEffect value="ScorchingSearch"/>
-        <Modification MoveSpeedMultiplier="1.1">
+        <Modification MoveSpeedMultiplier="1.1" XPMultiplier="2">
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.15"/>
         </Modification>
         <DamageResponse ModifyFraction="0.7">
@@ -801,7 +801,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Shadowed">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <StateFlags index="Cloak" value="1"/>
             <StateFlags index="Benign" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
@@ -921,7 +921,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ShadowedBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification>
+        <Modification XPMultiplier="2">
             <StateFlags index="Cloak" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <DamageTakenFraction index="Spell" value="-0.5"/>
@@ -4675,90 +4675,82 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <VeterancyLevelArray MinVeterancyXP="300">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="350">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="400">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="450">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="500">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="550">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="600">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="650">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="700">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="750">
             <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
-            </Modification>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="800">
-            <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.05"/>
-                <DamageDealtFraction index="Melee" value="0.05"/>
-                <DamageDealtFraction index="Ranged" value="0.05"/>
-                <DamageDealtFraction index="Splash" value="0.05"/>
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
     </CBehaviorVeterancy>
@@ -6186,11 +6178,6 @@
     </CBehaviorBuff>
     <CBehaviorVeterancy id="DroneVeterancy" parent="PetVeterancy">
         <Name value="Behavior/Name/DroneVeterancy"/>
-        <Tooltip value="Behavior/Tooltip/DroneVeterancy"/>
-        <Cost>
-            <Charge Link="Behavior/DroneVeterancy"/>
-            <Cooldown Link="Behavior/DroneVeterancy"/>
-        </Cost>
         <VeterancyLevelArray index="0">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
@@ -6371,13 +6358,6 @@
                 <DamageDealtUnscaled index="Melee" value="0"/>
                 <DamageDealtUnscaled index="Ranged" value="0"/>
                 <DamageDealtUnscaled index="Splash" value="0"/>
-            </Modification>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="5000">
-            <Modification>
-                <VitalMaxFractionArray index="Life" value="0.0898"/>
-                <VitalMaxFractionArray index="Shields" value="6.9895"/>
-                <VitalMaxFractionArray index="Energy" value="0.314"/>
             </Modification>
         </VeterancyLevelArray>
         <ShareFilters index="Kills" value="-;Ally,Neutral,Enemy,Hallucination"/>
