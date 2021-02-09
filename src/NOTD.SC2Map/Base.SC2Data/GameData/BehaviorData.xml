@@ -2804,6 +2804,8 @@
     <CBehaviorBuff id="TimetoDie">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <BehaviorCategories index="User12" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Duration value="10"/>
         <Period value="3.3"/>
@@ -2815,8 +2817,6 @@
             <DamageDealtFraction index="Ranged" value="1"/>
             <DamageDealtFraction index="Splash" value="1"/>
         </Modification>
-        <BehaviorCategories index="User1" value="1"/>
-        <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="TowerLimit">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4775,10 +4775,13 @@
         <Alignment value="Positive"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationLevel1">
+        <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <RemoveValidatorArray value="UnitdoesnothaveAnticipationLevel2"/>
         <MaxStackCountPerCaster value="10"/>
+        <Duration value="1.5"/>
         <Modification>
             <DeathResponse>
                 <Cost>
@@ -4786,9 +4789,6 @@
                 </Cost>
             </DeathResponse>
         </Modification>
-        <Alignment value="Positive"/>
-        <BehaviorCategories index="User1" value="1"/>
-        <Duration value="1.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationAuraLevel2">
         <InfoFlags index="Hidden" value="1"/>
@@ -4803,15 +4803,15 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AnticipationLevel2">
+        <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="10"/>
-        <Alignment value="Positive"/>
+        <Duration value="1.5"/>
         <Modification>
             <BehaviorLinkDisableArray value="AnticipationLevel1"/>
         </Modification>
-        <BehaviorCategories index="User1" value="1"/>
-        <Duration value="1.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ArmorDebuffAPAmmo">
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-impalerrounds.dds"/>
@@ -6365,7 +6365,7 @@
     <CBehaviorBuff id="FrenzyBuffLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="30"/>
-        <Modification MoveSpeedMultiplier="1.01" AttackSpeedMultiplier="1.01">
+        <Modification MoveSpeedMultiplier="1.01" AttackSpeedMultiplier="1.02">
             <DamageDealtFraction index="Spell" value="0.02"/>
             <DamageDealtFraction index="Melee" value="0.02"/>
             <DamageDealtFraction index="Ranged" value="0.02"/>
@@ -6380,7 +6380,7 @@
     <CBehaviorBuff id="FrenzyBuffLevel2">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="30"/>
-        <Modification MoveSpeedMultiplier="1.02" AttackSpeedMultiplier="1.02">
+        <Modification MoveSpeedMultiplier="1.02" AttackSpeedMultiplier="1.04">
             <DamageDealtFraction index="Spell" value="0.04"/>
             <DamageDealtFraction index="Melee" value="0.04"/>
             <DamageDealtFraction index="Ranged" value="0.04"/>
@@ -8412,6 +8412,7 @@
         <InfoIcon value="Assets\Textures\btn-unit-terran-ghost.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="MasterMarksman"/>
+        <DisableValidatorArray value="SniperRifleEquipped"/>
         <DamageResponse Handled="MasterMarksmanApplyLockOn" Location="Attacker">
             <Kind index="Spell" value="0"/>
             <Kind index="Melee" value="0"/>
@@ -8421,7 +8422,6 @@
             <RequireEffectArray value="BarrettM112"/>
             <Chance value="1"/>
         </DamageResponse>
-        <DisableValidatorArray value="SniperRifleEquipped"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MasterMarksmanLockOnDelay">
         <Alignment value="Negative"/>

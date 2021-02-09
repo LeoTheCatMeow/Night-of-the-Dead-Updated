@@ -87,12 +87,12 @@
         <Flags index="DropOnDeath" value="1"/>
         <Class value="Weapons"/>
         <EquipWeaponArray Link="Chaingun"/>
+        <Effect value=""/>
         <EffectCost>
             <Charge Link=""/>
             <Cooldown Link=""/>
         </EffectCost>
         <EffectFlags index="Transient" value="1"/>
-        <Effect value=""/>
     </CItemEffectInstant>
     <CItemEffectInstant id="CombatMobilityAugment">
         <Flags index="DropOnDeath" value="1"/>
@@ -192,12 +192,12 @@
         <Class value="Enhancements"/>
         <CarryBehaviorArray value=""/>
         <EquipBehaviorArray value="HighCapacityClip"/>
+        <Effect value=""/>
         <EffectCost>
             <Charge Link=""/>
             <Cooldown Link=""/>
         </EffectCost>
         <EffectFlags index="Transient" value="1"/>
-        <Effect value=""/>
     </CItemEffectInstant>
     <CItemEffectInstant id="KineticArmor">
         <Flags index="DropOnDeath" value="1"/>

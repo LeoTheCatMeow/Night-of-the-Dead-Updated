@@ -130,6 +130,38 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="QuickUse"/>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
+    <CAbilEffectTarget id="RaynorSnipe">
+        <Effect value="MonofilamentCartridgeCreatePersistentLevel2"/>
+        <Effect value="MonofilamentCartridgeCreatePersistentLevel3"/>
+        <Cost index="0">
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <TargetFilters value="-;Self,Missile,Item,Dead,Invulnerable"/>
+        <PrepTime value="0.15"/>
+        <PrepTime value="0.15"/>
+        <PrepTime value="0.15"/>
+        <CastIntroTime index="0" value="0"/>
+        <CastIntroTime value="0"/>
+        <CastIntroTime value="0"/>
+        <CastOutroTime value="0.2"/>
+        <CastOutroTime value="0.2"/>
+        <CastOutroTime value="0.2"/>
+        <FinishTime index="0" value="0"/>
+        <FinishTime value="0"/>
+        <FinishTime value="0"/>
+        <CancelableArray index="Prep" value="1"/>
+        <CancelableArray index="Cast" value="1"/>
+        <CancelableArray index="Channel" value="1"/>
+        <CancelableArray index="Finish" value="1"/>
+        <UninterruptibleArray index="Prep" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <CursorEffect value="MonofilamentCartridgeSearchAreaLevel2"/>
+        <CursorEffect value="MonofilamentCartridgeSearchAreaLevel3"/>
+        <LevelButtonTooltip value="Monofilament Cartridge Level 2"/>
+        <LevelButtonTooltip value="Monofilament Cartridge Level 3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="MonofilamentCartridge"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="Reinforce">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Cost>
@@ -1461,12 +1493,12 @@
     <CAbilBehavior id="TimetoDie">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <CmdButtonArray index="On" DefaultButtonFace="TimetoDie"/>
+        <Flags index="Toggle" value="1"/>
         <Cost>
             <Vital index="Energy" value="25"/>
             <Cooldown TimeUse="15"/>
         </Cost>
         <BehaviorArray value="TimetoDie"/>
-        <Flags index="Toggle" value="1"/>
     </CAbilBehavior>
     <CAbilMorph id="UnburrowBeastling">
         <AbilSetId value="BrwU"/>
@@ -3036,17 +3068,17 @@
         <Effect index="0" value="QuickAimApply"/>
         <Effect value="QuickAimApply2"/>
         <Effect value="QuickAimApply3"/>
-        <Cost>
-            <Vital index="Energy" value="25"/>
-            <Cooldown TimeUse="5"/>
-        </Cost>
-        <CmdButtonArray index="Execute" DefaultButtonFace="QuickAim"/>
         <Flags index="AllowMovement" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
         <LevelButtonTooltip value="Behavior/Tooltip/QuickAimLevel2"/>
         <LevelButtonTooltip value="Behavior/Tooltip/QuickAimLevel3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="QuickAim"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Rampage">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3552,7 +3584,7 @@
         <InfoArray index="Learn1" Abil="VultureSpiderMines">
             <Button DefaultButtonFace="SpiderMine"/>
         </InfoArray>
-        <InfoArray index="Learn2" Abil="BuildMines">
+        <InfoArray index="Learn2">
             <Button DefaultButtonFace="MakeExplosives"/>
         </InfoArray>
         <InfoArray index="Learn3" Abil="Satchel">
@@ -3664,7 +3696,8 @@
         <Effect index="0" value="PsionicTempestPersistentSet"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Cooldown TimeUse="5"/>
+            <Vital index="Energy" value="1"/>
+            <Cooldown TimeUse="8"/>
         </Cost>
         <Range value="12"/>
         <AutoCastFilters value="-;-"/>
@@ -3946,8 +3979,8 @@
     </CAbilBehavior>
     <CAbilBehavior id="MasterMarksman">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <BehaviorArray value="MasterMarksman"/>
         <CmdButtonArray index="On" Requirements="MarksmanRifleEquipped"/>
+        <BehaviorArray value="MasterMarksman"/>
     </CAbilBehavior>
     <CAbilInventory id="InventoryEngineer" parent="InventoryTemplate" EquipmentBag="EquipmentEngineer" SlotCount="4">
         <Name value="Abil/Name/InventoryEngineer"/>
@@ -4824,6 +4857,13 @@
     </CAbilBehavior>
     <CAbilBehavior id="Stealth">
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="StealthPlaceholder">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
         <Cost>
             <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="11"/>
@@ -4831,13 +4871,6 @@
         <BehaviorArray value="StealthLevel1"/>
         <BehaviorArray value="StealthLevel2"/>
         <LevelButtonOnTooltip value="Level 2 Stealth"/>
-        <Flags index="AutoCast" value="1"/>
-        <Flags index="Toggle" value="1"/>
-        <Flags index="Transient" value="1"/>
-        <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="StealthPlaceholder">
-            <Flags index="IgnoreUser" value="1"/>
-        </CmdButtonArray>
     </CAbilBehavior>
     <CAbilEffectInstant id="ConcentratedFire">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4877,38 +4910,6 @@
         <Flags index="RequireTargetVision" value="0"/>
         <AutoCastFilters value="-;Player,Ally"/>
         <FinishTime index="0" value="0.7"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="RaynorSnipe">
-        <Cost index="0">
-            <Vital index="Energy" value="20"/>
-            <Cooldown TimeUse="3"/>
-        </Cost>
-        <Effect value="MonofilamentCartridgeCreatePersistentLevel2"/>
-        <Effect value="MonofilamentCartridgeCreatePersistentLevel3"/>
-        <CursorEffect value="MonofilamentCartridgeSearchAreaLevel2"/>
-        <CursorEffect value="MonofilamentCartridgeSearchAreaLevel3"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="MonofilamentCartridge"/>
-        <LevelButtonTooltip value="Monofilament Cartridge Level 2"/>
-        <LevelButtonTooltip value="Monofilament Cartridge Level 3"/>
-        <PrepTime value="0.15"/>
-        <PrepTime value="0.15"/>
-        <PrepTime value="0.15"/>
-        <CastIntroTime index="0" value="0"/>
-        <CastIntroTime value="0"/>
-        <CastIntroTime value="0"/>
-        <CastOutroTime value="0.2"/>
-        <CastOutroTime value="0.2"/>
-        <CastOutroTime value="0.2"/>
-        <FinishTime index="0" value="0"/>
-        <FinishTime value="0"/>
-        <FinishTime value="0"/>
-        <UninterruptibleArray index="Prep" value="1"/>
-        <UninterruptibleArray index="Channel" value="1"/>
-        <TargetFilters value="-;Self,Missile,Item,Dead,Invulnerable"/>
-        <CancelableArray index="Prep" value="1"/>
-        <CancelableArray index="Cast" value="1"/>
-        <CancelableArray index="Channel" value="1"/>
-        <CancelableArray index="Finish" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Reload">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
