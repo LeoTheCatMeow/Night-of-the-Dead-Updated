@@ -2132,6 +2132,8 @@ void gf_ExpeditionaryAward (int lp_medalNumber);
 void gf_SilverStarAward (int lp_medalNumber);
 void gf_NavyCrossAward (int lp_medalNumber);
 void gf_SpeedBonusXP ();
+void gf_OutbreakBonusXP ();
+void gf_EliteMutationBonusXP ();
 void gf_GameOverInit ();
 void gf_EndGameUINOTD ();
 void gf_EndGameUISetNOTD ();
@@ -16507,6 +16509,42 @@ void gf_SpeedBonusXP () {
     gf_AwardPlayerXPNOTD(lv_speedXP);
     TextExpressionSetToken("Param/Expression/8261F9D4", "A", IntToText(lv_speedXP));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, TextExpressionAssemble("Param/Expression/8261F9D4"));
+}
+
+void gf_OutbreakBonusXP () {
+    // Variable Declarations
+    int lv_xp;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((gv_outbreakActivated == true)) {
+        lv_xp = libNtve_gf_DifficultyValueInt(20, 40, 60, 0);
+        gf_AwardPlayerXPNOTD(lv_xp);
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(80, 160, 240, 0));
+        TextExpressionSetToken("Param/Expression/713D1F7E", "A", IntToText(lv_xp));
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/713D1F7E"));
+        SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
+    }
+}
+
+void gf_EliteMutationBonusXP () {
+    // Variable Declarations
+    int lv_xp;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((gv_eliteMutationActivated == true)) {
+        lv_xp = libNtve_gf_DifficultyValueInt(20, 40, 60, 0);
+        gf_AwardPlayerXPNOTD(lv_xp);
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(80, 160, 240, 0));
+        TextExpressionSetToken("Param/Expression/D9838420", "A", IntToText(lv_xp));
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/D9838420"));
+        SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
+    }
 }
 
 trigger auto_gf_GameOverInit_Trigger = null;
@@ -46338,6 +46376,9 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
     }
 
+    gf_OutbreakBonusXP();
+    gf_EliteMutationBonusXP();
+    Wait(1.75, c_timeReal);
     UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
     return true;
 }

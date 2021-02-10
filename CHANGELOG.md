@@ -1,5 +1,9 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-2-10
+[ReduxGelum]
+ - Added oubreak and elite mutation victory bonus xp and credits
+
 2021-2-6
 [ReduxGelum]
  - Added critter wander leash behavior to agrons guarding EC worms to prevent enemies getting stuck.
