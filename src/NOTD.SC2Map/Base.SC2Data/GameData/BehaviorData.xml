@@ -200,16 +200,20 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="InfernoPeriodic">
         <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1.2"/>
-        <Period value="0.1"/>
-        <PeriodCount value="1"/>
-        <PeriodicEffect value="InfernoDamage2"/>
+        <Duration value="3"/>
         <DamageResponse Fatal="1" Handled="FrenzyApplyBuffSet">
+            <Kind index="Melee" value="0"/>
+            <Kind index="Ranged" value="0"/>
+            <Kind index="Splash" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <ExcludeEffectArray value="BurstFireDamageLevel1"/>
             <ExcludeEffectArray value="BurstFireDamageLevel2"/>
             <ExcludeEffectArray value="BurstFireDamageLevel3"/>
-            <Chance value="0.4"/>
+            <ExcludeEffectArray value="BURNDamageLevel1"/>
+            <ExcludeEffectArray value="BURNDamageLevel2"/>
+            <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalSynthesis">
@@ -873,7 +877,6 @@
             <ExcludeEffectArray value="BurstFireDamageLevel2"/>
             <ExcludeEffectArray value="BurstFireDamageLevel3"/>
             <ExcludeEffectArray value="InfernoDamage"/>
-            <ExcludeEffectArray value="InfernoDamage2"/>
             <ExcludeEffectArray value="ThermalLancesMU"/>
             <ExcludeEffectArray value="SigmaDamage"/>
             <ExcludeEffectArray value="NukeDamage"/>
@@ -5813,7 +5816,7 @@
     <CBehaviorBuff id="InfernoTarget">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
-        <Duration value="10"/>
+        <Duration value="3"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight1">
@@ -6422,8 +6425,8 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-infernalpreigniter.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="10"/>
-        <MaxStackCountPerCaster value="10"/>
+        <MaxStackCount value="15"/>
+        <MaxStackCountPerCaster value="15"/>
         <Duration value="3"/>
         <Period value="1"/>
         <PeriodCount value="2"/>
@@ -6472,17 +6475,15 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
+        <Duration value="3"/>
         <DisplayDuration index="Self" value="1"/>
         <DisplayDuration index="Ally" value="1"/>
         <DisplayDuration index="Neutral" value="1"/>
         <DisplayDuration index="Enemy" value="1"/>
-        <ExpireEffect value="InfernoDamageSet"/>
         <FinalEffect value="InfernoDamageSet"/>
-        <Period value="1"/>
+        <Period value="0.5"/>
         <PeriodicEffect value="InfernoPeriodicSearch"/>
         <Modification MoveSpeedMultiplier="0.5"/>
-        <PeriodCount value="4"/>
         <InitialEffect value="InfernoPeriodicSearch"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MercAirDropC">
@@ -6584,9 +6585,8 @@
         <MaxStackCountPerCaster value="1"/>
         <Duration value="10"/>
         <Period value="1"/>
-        <InitialEffect value="NapalmBarrageDamage"/>
         <PeriodicEffect value="NapalmBarrageDamage"/>
-        <Modification MoveSpeedMultiplier="0.7"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NapalmAnimationDummy">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -7573,7 +7573,6 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
-            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -7885,7 +7884,6 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
-            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -7922,7 +7920,6 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
-            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>

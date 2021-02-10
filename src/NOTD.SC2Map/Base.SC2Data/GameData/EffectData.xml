@@ -140,6 +140,18 @@
     <CEffectModifyPlayer id="AbsolutionBonusOn">
         <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
     </CEffectModifyPlayer>
+    <CEffectEnumArea id="InfernoSearchEnemy">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <AreaArray Radius="3" Effect="InfernoDamage"/>
+        <SearchFlags index="OffsetAreaByAngle" value="0"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="InfernoSearchFriendly">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <AreaArray Radius="3" Effect="InfernoDamage3"/>
+        <SearchFlags index="OffsetAreaByAngle" value="0"/>
+    </CEffectEnumArea>
     <CEffectCreatePersistent id="PsionicTempestCreatePersistentAbsolution">
         <ValidatorArray value="CasterhasAbsolutionSpellBuff"/>
         <EditorCategories value=""/>
@@ -892,20 +904,17 @@
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage">
         <EditorCategories value=""/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Amount value="150"/>
+        <AttributeBonus index="Armored" value="120"/>
+        <Amount value="300"/>
         <Death value="Fire"/>
-        <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AttributeBonus index="Armored" value="60"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage3">
         <EditorCategories value=""/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Amount value="5"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Amount value="15"/>
         <Death value="Fire"/>
-        <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="InfernoRemove">
         <EditorCategories value=""/>
@@ -922,30 +931,19 @@
         <EditorCategories value=""/>
         <Behavior value="InfernoChainTarget"/>
     </CEffectApplyBehavior>
-    <CEffectDamage id="InfernoDamage2">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Amount value="10"/>
-        <Death value="Fire"/>
-        <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <SearchFlags index="ExtendByUnitRadius" value="1"/>
-        <AttributeBonus index="Armored" value="4"/>
-    </CEffectDamage>
     <CEffectEnumArea id="InfernoSearchTargetChain">
         <EditorCategories value=""/>
         <Chance value="0.4"/>
-        <SearchFilters value="Biological;Player,Ally,Neutral,Structure,Heroic,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Invulnerable"/>
-        <AreaArray Radius="5" Effect="InfernoApply"/>
+        <SearchFilters value="Biological;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
+        <AreaArray Radius="6" Effect="InfernoApply"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
         <MaxCount value="6"/>
     </CEffectEnumArea>
     <CEffectSet id="InfernoDamageSet">
         <EditorCategories value=""/>
         <EffectArray value="InfernoSearchTargetChain"/>
-        <EffectArray value="InfernoDamage"/>
-        <EffectArray value="InfernoDamage3"/>
-        <TargetLocationType value="UnitOrPoint"/>
+        <EffectArray value="InfernoSearchEnemy"/>
+        <EffectArray value="InfernoSearchFriendly"/>
     </CEffectSet>
     <CEffectEnumArea id="InfernoPeriodicSearch">
         <EditorCategories value=""/>
@@ -9381,7 +9379,7 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="Helium3IgniterBurnDamage">
         <EditorCategories value=""/>
-        <Amount value="3.3332"/>
+        <Amount value="3.333"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>

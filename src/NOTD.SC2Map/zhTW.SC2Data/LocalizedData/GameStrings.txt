@@ -1992,7 +1992,7 @@ Button/Tooltip/Inception=你周圍的空間暫時變得緩慢，你可以自由�
 Button/Tooltip/IncompleteIvax=重型攻擊機甲，可以使用250毫米突擊炮。<n/><n/><c val="#ColorAttackInfo">可攻擊地面與飛行的單位。</c>
 Button/Tooltip/InfantrySpecializationLevel1=允許移動步兵技能使火焰兵著陸，你可以在分菜單自定義落隊。
 Button/Tooltip/InfantrySpecializationLevel2=允許移動步兵技能使狙擊手著陸，你可以在分菜單自定義落隊。
-Button/Tooltip/Inferno=向前面孤形範圍(最大距離12)發射一些燃燒彈，燃燒最早遇到的6個單位，燃燒彈擊中的單位托會從內部開始燃燒，期間受到50點傷害，並在5秒後爆炸，對它們3範圍以內的敵人造成150點傷害(護甲敵人額外受到40%傷害)，爆炸后有40%幾率濺射到目標周圍敵人，產生連鎖反應。<n/><n/><c val="FFFF00">注意：會造成輕度友軍傷害
+Button/Tooltip/Inferno=向前面孤形範圍(最大距離12)發射一些燃燒彈，燃燒最早遇到的6個單位，造成50%的減速。燃燒彈擊中的單位托會從內部開始燃燒並在3秒後爆炸，對它們3範圍以內的敵人造成300點傷害(護甲敵人額外受到40%傷害)，爆炸后有40%幾率濺射到目標周圍敵人，產生連鎖反應。<n/><n/><c val="FFFF00">注意：會造成輕度友軍傷害，突發火焰可以提前觸發爆炸。
 Button/Tooltip/InfestedAbomination=一只能夠遠程攻擊的恐怖生物。
 Button/Tooltip/InfestedCocoon=殭屍繭，你應該在它孵化成殭屍前摧毀它。
 Button/Tooltip/InfestedColonistShip=一艘已被感染的殖民船，可能被用為一個巨大的殭屍巢兼溫床。
@@ -2060,6 +2060,7 @@ Button/Tooltip/MindLink=單目標技能，允許你跟最多1位英雄士兵分�
 Button/Tooltip/MindRavage=對目標區域3範圍的敵人造成20點傷害，對昏迷的單位可造成+300%的傷害。
 Button/Tooltip/Minion=
 Button/Tooltip/Minion2=
+Button/Tooltip/MobileInfantry=1個步兵降落到目標地區以支援你。<n/><n/>限制1個移動步兵。
 Button/Tooltip/MobileInfantryFlamethrower=一般用途的步兵。<n/><n/><c val="#ColorAttackInfo">可攻擊地面的單位。</c>
 Button/Tooltip/MobileInfantryMarksman=一般用途的步兵。<n/><n/><c val="#ColorAttackInfo">可攻擊地面與飛行的單位。</c>
 Button/Tooltip/MobileInfantryRifleman=一般用途的步兵。<n/><n/><c val="#ColorAttackInfo">可攻擊地面與飛行的單位。</c>
@@ -2076,7 +2077,7 @@ Button/Tooltip/NanoShield=重新充滿目標的能量護盾，並加強30點護�
 Button/Tooltip/NanoStrength=增加目標單位的傷害力與移動速度+10%，持續<d ref="Behavior,NanoHasteLevel1,Duration[0]"/>秒。
 Button/Tooltip/NanoWeave=每秒回血5點，持續15秒。
 Button/Tooltip/NanosteelNet=技術員對敵人目標發射一張強韌的網並纏住它，飛行目標會被拖到地面暫時被視為一個地面單位，在目標1範圍以內的敵人的敵人也會被它企圖逃脫的行動變得20%緩慢，持續3秒。
-Button/Tooltip/NapalmBarrage=可對5範圍區域裡目標造成每秒40點傷害力的火砲攻擊，5秒彈幕時間。
+Button/Tooltip/NapalmBarrage=可對5範圍區域裡目標造成每秒40點傷害與10%減速的火砲攻擊，持續10秒，可叠加5次，5秒彈幕時間。
 Button/Tooltip/Nazara=納扎爾
 Button/Tooltip/NoQuarter=探索者衝上雲霄，並以無與倫比力量衝撞下來，造成大量的傷害。如果探索者直接在敵人的頭上降落，他的"緊急救世主"系統將會激活，使他暫時無懈可擊並且立即恢復1次突擊跳躍。信仰的飛躍對Boss可造成三倍的傷害。<n/><n/>在2範圍內造成1,000點傷害，4範圍內造成800點傷害，6範圍內造成600點傷害，8範圍內造成400點傷害，如果有最少一個敵得到1,000點傷害的話，探索者暫時變得無懈可擊，持續5秒。
 Button/Tooltip/NydusCanal=
@@ -2320,6 +2321,22 @@ DocInfo/PatchNote034=-- 如果玩家1和2等待太久,遊戲會在30秒以後自
 DocInfo/PatchNote035=- 修正了一些關於保存遊戲按鈕在電影顯示的問題(Miracle)
 DocInfo/PatchNote036=- 修正了一些在屬性界面字體顯示的問題,要進一步測試(Miracle)
 DocInfo/PatchNote037=- 修正了一些關於新商店系統的問題(Miracle)
+DocInfo/PatchNote044=[LeoTheCat]
+DocInfo/PatchNote045=- Updated translations of most core gameplay elements (items, talents) for Traditional Chinese.
+DocInfo/PatchNote046=- Flamethrower - Smite damage against Heroic increased from 1.8%/3.6%/5.4% to 4%/8%/12%.
+DocInfo/PatchNote047=- Flamethrower - Smite damage against real Bosses increased from 1.8%/3.6%/5.4% to 2%/4%/6%.
+DocInfo/PatchNote048=- Flamethrower - Smite damage is no longer affected by bonus damage dealt (such as Penance, Frenzy, HP ammo etc).
+DocInfo/PatchNote049=- Flamethrower - Smite damage is still affected by bonus damage taken (such as Heightened Senses, VRL-777 etc).
+DocInfo/PatchNote050=  (Note: This would make smite consistent with other % HP based effects in game, namely OSOK's % HP damage.)
+DocInfo/PatchNote051=- Flamethrower - Frenzy attack speed bonus improved from 1%/2% a stack to 2%/4% a stack, matching the damage bonus.
+DocInfo/PatchNote052=- Flamethrower - Inferno initial 50 damage over time removed, explosion delay reduced to 3s. frenzy stack chance improved from 40% to 50%.
+DocInfo/PatchNote053=- Flamethrower - Fixed a bug where Inferno is doing way more damage than the tooltip suggests (the damage is registering multiple times).
+DocInfo/PatchNote054=- Flamethrower - Increased Inferno damage from 150 to 250 to compensate for the bugfix. (250 is still lower than the bugged damage).
+DocInfo/PatchNote055=- Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
+DocInfo/PatchNote056=- Fixed idle Ghouls spawned from EC start.
+DocInfo/PatchNote057=- Fixed some errors with death messages, added some new death messages.
+DocInfo/PatchNote058=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
+DocInfo/PatchNote059=
 DocInfo/PatchNote073=- 增加了一些阿爾法連(B線)的普通殭屍量
 DocInfo/PatchNote074=- 腐蝕酸液最多堆疊層次從5增加到10
 DocInfo/Screenshot01=僱用你的機智殺死Boss
@@ -2404,7 +2421,7 @@ Level 2 Mental Projection=創造2個靈能特戰兵的實體幻覺，持續15秒
 Level 2 Mind Ravage=對目標區域3範圍的敵人造成40點傷害，對昏迷的單位可造成+300%的傷害。
 Level 2 Mind-Link=單目標技能，允許你跟最多2位英雄士兵分享視野，所有受心靈鏈接的士兵會共同承擔傷害，總傷害量削減30%。
 Level 2 Mindblast=創造一股集中的爆炸能量用來擊暈在目標區域附近的敵人1.5秒，並對它們造成40點傷害。
-Level 2 Mobile Infantry=1個步兵降落到目標地區以支援你，每個活著的移動步兵會降低前線觀察員22%能量恢復速度。<n/><n/>限制2個移動步兵。
+Level 2 Mobile Infantry=1個步兵降落到目標地區以支援你。<n/><n/>限制2個移動步兵。
 Level 2 My Little Friend=鮑勃失去100點血值使寄生蟲誕生，它擁有150點血值並可造成30點的傷害力。
 Level 2 Nano Shield=重新充滿目標的能量護盾，並加強60點護盾值和2點護盾護甲，持續20秒。
 Level 2 NanoHasteLevel 2 NanoStrength=目標單位獲得額外15%的傷害力和移動速度，持續<d ref="Behavior,NanoHasteLevel2,Duration[0]"/>秒。
@@ -2456,7 +2473,7 @@ Level 3 Laser Designator=降低目標5點護甲以及把目標顯示給所有士
 Level 3 Mind Ravage=對目標區域3範圍的敵人造成80點傷害，對昏迷的單位可造成+300%的傷害。
 Level 3 Mind-Link=單目標技能，允許你跟最多3位英雄士兵分享視野，所有受心靈鏈接的士兵會共同承擔傷害，總傷害量削減45%。
 Level 3 Mindblast=創造一股集中的爆炸能量用來擊暈在目標區域附近的敵人2.25秒，並對它們造成80點傷害。
-Level 3 Mobile Infantry=1個步兵降落到目標地區以支援你，每個活著的移動步兵會降低前線觀察員22%能量恢復速度。<n/><n/>限制1個移動步兵
+Level 3 Mobile Infantry=1個步兵降落到目標地區以支援你。<n/><n/>限制3個移動步兵。
 Level 3 NanoHasteLevel 3 NanoStrength=目標單位獲得額外20%的傷害力和移動速度，持續<d ref="Behavior,NanoHasteLevel1,Duration[0]"/>秒。
 Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 NanoStrength2Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 BattlefieldIntelligence=目標單位獲得額外20%的傷害力和移動速度，持續<d ref="Behavior,NanoHasteLevel1,Duration[0]"/>秒。
 Level 3 Nanosteel Net=技術員對敵人目標發射一張強韌的網並纏住它，飛行目標會被拖到地面暫時被視為一個地面單位，在目標1範圍以內的敵人的敵人也會被它企圖逃脫的行動變得30%緩慢，持續5秒。
@@ -4806,8 +4823,8 @@ UserData/TalentTrees/Flamethrower_Headers_001=<s val="HelpPanelListBoxItemTitle"
 UserData/TalentTrees/Flamethrower_Talent Tootips=<s val="AchievementFrameName">氦-3點火器 (被動技能)</s><n/>增加MK-3火焰噴射器攻擊距離與傷害。<n/>1級 - 攻擊距離+1，傷害+10%<n/>2級 - 攻擊距離+2，傷害+20%<n/>3級 - 攻擊距離+3，傷害+30%，發射使目標3秒內承受10點額外傷害的等離子火焰。允許火焰噴射器對空攻擊。
 UserData/TalentTrees/Flamethrower_Talent Tootips_001=<s val="AchievementFrameName">突發火焰</s><n/>對前面弧線的敵人單位造成傷害，輕甲單位承受額外40%的傷害，必須裝備MK-3火焰噴射器才能使用。<n/>1級 - 50點傷害力<n/>2級 - 100點傷害力<n/>3級 - 150點傷害力<n/><n/>有效範圍6，對飛行單位同樣有效。
 UserData/TalentTrees/Flamethrower_Talent Tootips_002=<s val="AchievementFrameName">燃燒!</s><n/>火焰兵集中一股持續的火焰用來燒烤單一目標，對其的傷害逐漸增加，同時不斷獲得狂亂層數，必須裝備MK-3火焰噴射器才能使用。<n/>1級 - 每0.6秒+25點持續傷害，獲得一層狂亂。<n/>2級 - 每0.3秒+25點持續傷害，獲得一層狂亂。<n/><n/>最多每秒200點持續傷害。<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Flamethrower_Talent Tootips_003=<s val="AchievementFrameName">狂亂 (被動技能)</s><n/>火焰兵每次使用突發火焰或燃燒!殺一個敵人會得到額外的攻擊/移動速度與傷害力。另外每次使用地獄火殺一個敵人會有30%機會得到1層狂亂效果。效果持續30秒，最多可以堆疊30次。<n/>1級 - +1%攻擊/移動速度與+2%點傷害力<n/>2級 - +2%攻擊/移動速度與+4%點傷害力<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">地獄火</s><n/>向前面孤形範圍(最大距離12)發射一些燃燒彈，燃燒最早遇到的6個單位，燃燒彈擊中的單位托會從內部開始燃燒，期間受到50點傷害，並在5秒後爆炸，對它們3範圍以內的敵人造成150點傷害(護甲敵人額外受到40%傷害)，爆炸后有40%幾率濺射到目標周圍敵人，產生連鎖反應。<n/><n/><c val="FFFF00">注意：會造成輕度友軍傷害</c><n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_003=<s val="AchievementFrameName">狂亂 (被動技能)</s><n/>火焰兵每次使用突發火焰或者地獄火消滅一個敵人會得到額外的攻擊/移動速度與傷害力。效果持續30秒，最多可以叠加30次。<n/>1級 - +1%攻擊/移動速度與+2%點傷害力<n/>2級 - +2%攻擊/移動速度與+4%點傷害力<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">地獄火</s><n/>向前面孤形範圍(最大距離12)發射一些燃燒彈，燃燒最早遇到的6個單位，造成50%的減速。燃燒彈擊中的單位托會從內部開始燃燒並在3秒後爆炸，對它們3範圍以內的敵人造成300點傷害(護甲敵人額外受到40%傷害)，爆炸后有40%幾率濺射到目標周圍敵人，產生連鎖反應。<n/><n/><c val="FFFF00">注意：會造成輕度友軍傷害，突發火焰可以提前觸發爆炸。</c><n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Flamethrower_Talent Tootips_005=<s val="AchievementFrameName">重擊</s><n/>對3範圍以內的敵人造成基於它們目前血值的傷害，同時減低它們的移動速度，持續4秒，對英雄單位造成40%傷害，對Boss單位造成20%傷害。<n/>1級 - 減少目標當前血量的10%，移動速度-18%<n/>2級 - 減少目標當前血量的20%，移動速度-36%<n/>3級 - 減少目標當前血量的30%，移動速度-54%
 UserData/TalentTrees/Flamethrower_Talent Tootips_006=<s val="AchievementFrameName">報復 (被動技能)</s><n/>有機會使攻擊者被擊暈2秒。<n/>1級 - 15%機會<n/>2級 - 30%機會<n/>3級 - 45%機會<n/><n/>"對於企圖毒害和消滅我兄弟的人們，我會以巨大的仇恨與憤怒打垮你們，我報復你們的時候，你們就會知道我是天主。" - 以西結25:17
 UserData/TalentTrees/Flamethrower_Talent Tootips_007=<s val="AchievementFrameName">正義</s><n/>重擊每次對一個敵人造成傷害，火焰兵就會得到+1點護甲。<n/>1級 - 持續8秒<n/>2級 - 持續16秒<n/><n/>"我會追随陰暗之路，惡人的路徑，和充滿詛咒的足跡，但我毫不害怕，因為對於那些被拋棄的人們來說，我象徵着一種堅定的精神。"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
@@ -4819,8 +4836,8 @@ UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameNam
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">新月科技 (被動技能)</s><n/>提升前綫觀察員所有火力支援技能的效率和穩定性。<n/>1級 - 轟擊延遲時間減少1.5秒。<n/>2級 - 可儲存2波空襲。<n/>3級 - 降低轟擊技能的冷卻與能量消耗。<n/><n/>"不，它們不會看到這個來臨。" - 馬爾科姆上尉
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">震波彈幕</s><n/>可擊暈5範圍區域裡目標的火砲攻擊。<n/>1級 - 每個砲彈擊暈目標並減少護甲2點(不叠加)，持續3秒。<n/>2級 - 每個砲彈擊暈目標並減少護甲4點(不叠加)，持續5秒。<n/><n/>5秒彈幕時間，對英雄目標的效果減半。<n/><n/>"幾個字: 砲彈休克，聽上去簡直就像槍砲聲一樣。" - 卡林上士<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">空襲</s><n/>3部幽靈戰機將飛過並在7範圍的區域投18枚炸彈，每個炸彈可造成一定的傷害，使所有受影響的單位昏迷3秒。<n/>1級 - 每個炸彈可造成75點傷害力<n/>2級 - 每個炸彈可造成150點傷害力<n/><n/>"簡直是晴天霹雳的。"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">汽油彈</s><n/>可燒傷5範圍區域裡目標的火砲攻擊，每個砲彈可在10秒內造成每秒40點的傷害，最高叠加5次，5秒彈幕時間，被汽油彈燃燒的單位減速30%，大型單位會承受50%的額外傷害。<n/><n/>"給予一個人火，他就能保持溫暖一夜，點燃一個人，他的餘生都會溫暖。" - 普拉切特中士<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">移動步兵</s><n/>召喚一個步兵從天而降，默認是步槍兵，每個活著的移動步兵會降低前線觀察員22%能量恢復速度，每次升級本技能會增加你可控制的移動步兵數量。<n/>1級 - 限制1個移動步兵<n/>2級 - 限制2個移動步兵<n/>3級 - 限制3個移動步兵<n/><n/>你總共有9個可用的移動步兵，當他們都死掉，你就不能召喚更多的移動步兵。<n/><n/>"我不知道需要多少士兵才能殺了你們，但我知道我會派出多少人。" - 布來克中尉
+UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">汽油彈</s><n/>可燒傷5範圍區域裡目標的火砲攻擊，每個砲彈造成每秒40點的傷害並減速10%，持續10秒，最高叠加5次，5秒彈幕時間，大型單位會承受50%的額外傷害。<n/><n/>"給予一個人火，他就能保持溫暖一夜，點燃一個人，他的餘生都會溫暖。" - 普拉切特中士<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">移動步兵</s><n/>召喚一個步兵從天而降，默認是步槍兵，每次升級本技能會增加你可控制的移動步兵數量。<n/>1級 - 限制1個移動步兵<n/>2級 - 限制2個移動步兵<n/>3級 - 限制3個移動步兵<n/><n/>你總共有9個可用的移動步兵，當他們都死掉，你就不能召喚更多的移動步兵。<n/><n/>"我不知道需要多少士兵才能殺了你們，但我知道我會派出多少人。" - 布來克中尉
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">改良裝備</s><n/>加強移動步兵的血值，移動速度和傷害力。<n/>1級 - +10%點血值，+5%移動速度和傷害力。<n/>2級 - +20%點血值，+10%移動速度和傷害力。<n/>3級 - +30%點血值，+15%移動速度和傷害力。
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">火焰兵專精 (被動技能)</s><n/>召喚的移動步兵獲得使用火焰兵裝備的許可，裝備時間為3秒。<n/><n/>1級 - 允許移動步兵使用火焰兵裝備。<n/>2級 - 火焰兵的MK-2火焰噴射器火焰寬度增加0.15點，他們的護甲增加3點，並得到慢烤技能。<n/><n/>"在錯誤的地點利用適當的人選可以改變一切。" - 克拉恩中士<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">狙擊手專精 (被動技能)</s><n/>召喚的移動步兵獲得使用狙擊手裝備的許可，裝備時間為3秒。<n/><n/>1級 - 允許移動步兵使用狙擊手裝備<n/>2級 - 狙擊手得到老將的集中力技能，給予一個單位+15%傷害與+4視野範圍。<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
@@ -4914,6 +4931,8 @@ UserData/TeamKillTexts/Death Texts_Death Text_001= </c><c val="F4D72B">被殺害
 UserData/TeamKillTexts/Death Texts_Death Text_002= </c><c val="F4D72B">被殘忍地殺害，殺人犯為</c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_003= </c><c val="F4D72B">被隊友出賣，背叛者為</c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_004= </c><c val="F4D72B">最終都沒得到愛情的回報，其暗戀目標為</c><c val="FF0000">
+UserData/TeamKillTexts/Death Texts_Death Text_005= </c><c val="F4D72B">早已歸於塵埃，都是因爲 </c><c val="FF0000">
+UserData/TeamKillTexts/Death Texts_Death Text_006= </c><c val="F4D72B">從來就不該信任 </c><c val="FF0000">
 UserData/TestFunShit/Stupid_Blah=Blah Blah<n/>
 UserData/WeaponModData/Damage_Arrow Tooltip=5%傷害力
 UserData/WeaponModData/Damage_Name=傷害力

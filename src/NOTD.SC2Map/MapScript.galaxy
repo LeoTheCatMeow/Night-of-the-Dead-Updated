@@ -2551,7 +2551,6 @@ trigger gt_AirstrikeKills;
 trigger gt_FireMission;
 trigger gt_ShockwaveBarrage;
 trigger gt_NapalmBarrage;
-trigger gt_NapalmKills;
 trigger gt_MobileInfantry;
 trigger gt_SurveillanceFlares;
 trigger gt_GunshipBuddy;
@@ -6910,32 +6909,27 @@ bool auto_gf_DeathDisplay_TriggerFunc (bool testConds, bool runActions) {
 
     // Implementation
     if ((((UnitGetOwner(libNtve_gf_KillingUnit()) >= 13) && (UnitGetOwner(libNtve_gf_KillingUnit()) <= 14)) == true)) {
-        if ((UnitTypeTestAttribute(UnitGetType(lp_killer), c_unitAttributeHeroic) == true)) {
-            UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + (StringExternal("Param/Value/ADA92E45") + (UnitTypeGetName(UnitGetType(libNtve_gf_KillingUnit())) + StringExternal("Param/Value/7DFE6CBB")))));
+        while ((lv_index <= UserDataInstanceCount("DeathTexts")) && (UnitGetType(lp_killer) != UserDataGetUnit("DeathTexts", UserDataInstance("DeathTexts", lv_index), "Killer", 1))) {
+            lv_index += 1;
+        }
+        if ((lv_index <= UserDataInstanceCount("DeathTexts"))) {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + UserDataGetText("DeathTexts", UserDataInstance("DeathTexts", lv_index), "Death Message", 1)));
         }
         else {
-            while ((lv_index <= UserDataInstanceCount("DeathTexts")) && (UnitGetType(lp_killer) != UserDataGetUnit("DeathTexts", UserDataInstance("DeathTexts", lv_index), "Killer", 1))) {
-                lv_index += 1;
-            }
-            if ((lv_index <= UserDataInstanceCount("DeathTexts"))) {
-                UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + UserDataGetText("DeathTexts", UserDataInstance("DeathTexts", lv_index), "Death Message", 1)));
-            }
-            else {
-                TextExpressionSetToken("Param/Expression/1B9D6FE5", "A", lv_baseMessage);
-                TextExpressionSetToken("Param/Expression/1B9D6FE5", "B", StringExternal("Param/Value/42DA9A5D"));
-                TextExpressionSetToken("Param/Expression/1B9D6FE5", "C", UnitTypeGetName(UnitGetType(lp_killer)));
-                UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/1B9D6FE5"));
-            }
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + (StringExternal("Param/Value/ADA92E45") + (UnitTypeGetName(UnitGetType(libNtve_gf_KillingUnit())) + StringExternal("Param/Value/7DFE6CBB")))));
         }
     }
-    else if ((lp_killer != null) && (PlayerGroupCount(gv_victimAttackers[lp_playerNumber]) == 0) && (PlayerGroupCount(gv_victimTKers[lp_playerNumber]) == 0)) {
+    else if ((UnitGetOwner(lp_killer) == lp_playerNumber)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + StringExternal("Param/Value/0EC88977")));
     }
-    else if (((lp_damageEffect == "StingerMK3DamageAllies") || (lp_damageEffect == "StingerMK3Damage") || (lp_damageEffect == "HellfireMissleDamageEnemies") || (lp_damageEffect == "SatchelLevel1Damage") || (lp_damageEffect == "SatchelLevel2Damage") || (lp_damageEffect == "VultureSpiderMinesDamage") || (lp_damageEffect == "ArmageddonDamageFriendly") || (lp_damageEffect == "PlasmaDischargeDamageAllies") || (lp_damageEffect == "NukeDamage") || (lp_damageEffect == "Damage") || (lp_damageEffect == "GunshipSupportGaussCannonDamageAlly") || (lp_damageEffect == "InboundSicknessDamageFriendlyLevel1") || (lp_damageEffect == "InboundSicknessDamageFriendlyLevel2") || (lp_damageEffect == "ScorchedEarthDamage") || (lp_damageEffect == "InfernoDamage3"))) {
+    else if (((lp_damageEffect == "StingerMK3DamageAllies") || (lp_damageEffect == "L3GrenadeExplosionAlly") || (lp_damageEffect == "HellfireMissleDamageEnemies") || (lp_damageEffect == "SatchelLevel1Damage") || (lp_damageEffect == "SatchelLevel2Damage") || (lp_damageEffect == "ArmageddonDamageFriendly") || (lp_damageEffect == "PlasmaDischargeDamageAllies") || (lp_damageEffect == "NukeDamage") || (lp_damageEffect == "FireMissionLevel3DamageVar1") || (lp_damageEffect == "FireMissionLevel3DamageVar2") || (lp_damageEffect == "FireMissionLevel3DamageVar3") || (lp_damageEffect == "Damage") || (lp_damageEffect == "GunshipSupportGaussCannonDamageAlly") || (lp_damageEffect == "ScorchedEarthDamage") || (lp_damageEffect == "InfernoDamage3") || (lp_damageEffect == "WidowMineExplodeDamageFriendly"))) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + StringExternal("Param/Value/4BBC15E6")));
     }
-    else if (true) {
+    else if (((lp_damageEffect == "Shotgun") || (lp_damageEffect == "LaserRifleDamage") || (lp_damageEffect == "XM814HeavyMachineGun") || (lp_damageEffect == "C10CanisterRifle") || (lp_damageEffect == "P38ScytheGuassPistol") || (lp_damageEffect == "M5PulseRifle") || (lp_damageEffect == "GuassRifle") || (lp_damageEffect == "UA420AssaultRifle") || (lp_damageEffect == "MP9A2SubMachineGun"))) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + StringExternal("Param/Value/3331F97F")));
+    }
+    else if (true) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (lv_baseMessage + StringExternal("Param/Value/F45938CF")));
     }
     return true;
 }
@@ -20704,7 +20698,7 @@ bool gt_TeamKillOLD_Func (bool testConds, bool runActions) {
     gf_UpdateKarma(libNtve_gf_KillingPlayer(), -5);
     gv_playerIsBad[libNtve_gf_KillingPlayer()] = true;
     gv_victimOfTK[lv_pNumber] = true;
-    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/B9E90EBB") + (PlayerName(lv_pNumber) + UserDataGetText("TeamKillTexts", "Death Texts", "Death Text", RandomInt(1, 5)))) + (PlayerName(libNtve_gf_KillingPlayer()) + StringExternal("Param/Value/C31F7BC3"))));
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((StringExternal("Param/Value/B9E90EBB") + (PlayerName(lv_pNumber) + UserDataGetText("TeamKillTexts", "Death Texts", "Death Text", RandomInt(1, 7)))) + (PlayerName(libNtve_gf_KillingPlayer()) + StringExternal("Param/Value/C31F7BC3"))));
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 100.0, 0.0);
     libNtve_gf_AttachModelToUnit(libNtve_gf_KillingUnit(), "BriefingUnitSelectRedSmall", "Ref_Center");
     lv_localActorA = libNtve_gf_ActorLastCreated();
@@ -24930,7 +24924,6 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
     while (true) {
         auto45403E42_var = PlayerGroupNextPlayer(auto45403E42_g, auto45403E42_var);
         if (auto45403E42_var < 0) { break; }
-        TriggerDebugOutput(1, IntToText(auto45403E42_var), true);
         VisExploreArea(auto45403E42_var, RegionFromId(14), true, true);
         VisRevealArea(auto45403E42_var, RegionCircle(RegionGetCenter(RegionFromId(14)), 15.0), 60.0, true);
         CameraApplyInfo(auto45403E42_var, CameraInfoFromId(2457), 0.0, -1, 10, true);
@@ -25022,19 +25015,14 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
         Wait(RandomFixed(4.0, 7.5), c_timeReal);
     }
 
-    AIAttackWaveSetTargetUnitGroup(14, gv_marines);
-    if ((RandomInt(0, 1) == 1)) {
+    if ((RandomInt(1, 1) == 1)) {
         auto4EB69062_n = (gv_spawnFactor * 9);
         for (auto4EB69062_i = 1; auto4EB69062_i <= auto4EB69062_n; auto4EB69062_i += 1) {
             libNtve_gf_UnitCreateFacingPoint(libNtve_gf_DifficultyValueInt(gv_spawnFactor, gv_spawnFactor, gv_spawnFactor, gv_spawnFactor), "ZerglingBurrowed", 0, 14, RegionRandomPoint(lv_eCSpawnSector[lv_eCSpawnDirection]), RegionRandomPoint(RegionFromId(45)));
             UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
-            AIAttackWaveUseGroup(14, UnitLastCreatedGroup());
-            if ((gv_nightmare == true)) {
-                AIAttackWaveAddWaypoint(14, PointWithOffsetPolar(UnitGroupCenterOfGroup(gv_marines), 17.0, libNtve_gf_RandomAngle()), false);
-            }
-
-            Wait(RandomFixed(0.2, 1.1), c_timeGame);
-            AIAttackWaveSend(14, 0, false);
+            UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
+            UnitGroupIssueOrder(gv_zombieWave, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), c_orderQueueReplace);
+            Wait(0.5, c_timeGame);
         }
     }
     else if ((RandomInt(0, 1) == 1) && (gv_isVeteranSquad == true)) {
@@ -25042,18 +25030,14 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
         for (auto7630FAAF_i = 1; auto7630FAAF_i <= auto7630FAAF_n; auto7630FAAF_i += 1) {
             libNtve_gf_UnitCreateFacingPoint(1, "RoachBurrowed", 0, 14, RegionRandomPoint(lv_eCSpawnSector[lv_eCSpawnDirection]), RegionRandomPoint(RegionFromId(45)));
             UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowRoachUp", 0)), c_orderQueueReplace);
-            AIAttackWaveUseGroup(14, UnitLastCreatedGroup());
-            AIAttackWaveSend(14, 0, false);
-            AIAttackWaveSetTargetEscort(14, libNtve_gf_ConvertUnitToUnitGroup(UnitLastCreated()), 0);
-            Wait(RandomFixed(0.1, 1.0), c_timeGame);
+            UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
+            UnitGroupIssueOrder(gv_zombieWave, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), c_orderQueueReplace);
+            Wait(0.5, c_timeGame);
             libNtve_gf_UnitCreateFacingPoint(gv_spawnFactor, "ZerglingBurrowed", 0, 14, RegionRandomPoint(lv_eCSpawnSector[lv_eCSpawnDirection]), RegionRandomPoint(RegionFromId(45)));
             UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
-            AIAttackWaveUseGroup(14, UnitLastCreatedGroup());
-            if ((gv_nightmare == true)) {
-                AIAttackWaveAddWaypoint(14, PointWithOffsetPolar(UnitGroupCenterOfGroup(gv_marines), 17.0, libNtve_gf_RandomAngle()), false);
-            }
-
-            AIAttackWaveSend(14, 0, false);
+            UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
+            UnitGroupIssueOrder(gv_zombieWave, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), c_orderQueueReplace);
+            Wait(0.5, c_timeGame);
         }
     }
     else if (true) {
@@ -45425,6 +45409,7 @@ bool gt_NapalmBarrage_Func (bool testConds, bool runActions) {
     for (auto89C324DD_i = 1; auto89C324DD_i <= auto89C324DD_n; auto89C324DD_i += 1) {
         lv_randomPoint = RegionRandomPoint(RegionCircle(EventUnitTargetPoint(), gv_shellDispersionRadius[lv_forwardObserverOwner]));
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "NapalmFire", c_unitCreateIgnorePlacement, lv_forwardObserverOwner, lv_randomPoint);
+        UnitCreateEffectUnit(EventUnit(), "KillsToCaster", UnitLastCreated());
         Wait(lv_barrageTimeInterval, c_timeGame);
     }
     return true;
@@ -45434,27 +45419,6 @@ bool gt_NapalmBarrage_Func (bool testConds, bool runActions) {
 void gt_NapalmBarrage_Init () {
     gt_NapalmBarrage = TriggerCreate("gt_NapalmBarrage_Func");
     TriggerAddEventUnitAbility(gt_NapalmBarrage, null, AbilityCommand("NapalmBarrage", 0), c_unitAbilStageComplete, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Napalm Kills
-//--------------------------------------------------------------------------------------------------
-bool gt_NapalmKills_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitSetPropertyFixed(gv_marineHero[EventUnitDamageSourcePlayer()], c_unitPropKills, (libNtve_gf_UnitGetPropertyKills(gv_marineHero[EventUnitDamageSourcePlayer()], c_unitPropCurrent) + 1));
-    UnitCreateEffectUnit(EventUnit(), "SharedExperienceSearchSet", gv_marineHero[EventUnitDamageSourcePlayer()]);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_NapalmKills_Init () {
-    gt_NapalmKills = TriggerCreate("gt_NapalmKills_Func");
-    TriggerAddEventUnitDamaged(gt_NapalmKills, null, c_unitDamageTypeAny, c_unitDamageFatal, "NapalmBarrageDamage");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -47057,7 +47021,6 @@ void InitTriggers () {
     gt_FireMission_Init();
     gt_ShockwaveBarrage_Init();
     gt_NapalmBarrage_Init();
-    gt_NapalmKills_Init();
     gt_MobileInfantry_Init();
     gt_SurveillanceFlares_Init();
     gt_GunshipBuddy_Init();

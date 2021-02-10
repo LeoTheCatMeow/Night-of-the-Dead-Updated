@@ -953,8 +953,9 @@
         <On Terms="Signal.*.DestroySplat" Target="RaynorSnipeSplat" Send="Destroy"/>
         <On Terms="Effect.Tier1Skin.Start" Send="ModelSwap MarksmanSkin1"/>
         <On Terms="Effect.Tier2Skin.Start" Send="ModelSwap MarksmanSkin2"/>
-        <On Terms="Effect.Default.Start" Send="ModelSwap Ghost"/>
         <On Terms="Effect.Tier3Skin.Start" Send="ModelSwap MarksmanSkin3"/>
+        <On Terms="Effect.Default.Start" Send="ModelSwap Ghost"/>
+        <On Terms="Effect.Default.Start" Send="TextureSelectById MercrauderDiffuse"/>
         <Model value="Ghost"/>
         <EventDataFootprint index="0" Actor="UnitFootprint" Model="GhostLaserLinesFootprint"/>
         <BuildModel value="Ghost"/>
@@ -8621,7 +8622,7 @@
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="$Death 0 2.500000 2.500000"/>
         <On index="1" Terms="AnimDone; AnimName Death" Send="Destroy"/>
-        <On index="2" Terms="Effect.InfernoDamage.Start; At Effect" Send="Create"/>
+        <On index="2" Terms="Effect.InfernoDamageSet.Start; At Effect" Send="Create"/>
         <Model value="InfernoGroundImpact"/>
         <ModelFlags index="AllowHitTest" value="0"/>
     </CActorModel>
@@ -10459,7 +10460,7 @@
     <CActorSound id="InfernoBlastSound">
         <EditorCategories value=""/>
         <On Terms="SoundDone" Send="Destroy"/>
-        <On Terms="Effect.InfernoDamage.Start" Send="Create"/>
+        <On Terms="Effect.InfernoDamageSet.Start" Send="Create"/>
         <On Terms="Effect.SigmaSearch.Start" Send="Create"/>
         <Sound value="ShellImpact"/>
     </CActorSound>

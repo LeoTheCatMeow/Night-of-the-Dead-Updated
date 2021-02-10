@@ -771,6 +771,174 @@
                 <Field Id="Killer"/>
             </Unit>
         </Instances>
+        <Instances Id="Tartarus">
+            <Text Text="UserData/DeathTexts/Tartarus_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Tartarus">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Eos">
+            <Text Text="UserData/DeathTexts/Eos_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Eos">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Seeker">
+            <Text Text="UserData/DeathTexts/Seeker_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Seeker">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Titan">
+            <Text Text="UserData/DeathTexts/Titan_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Titan">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Brain Bug">
+            <Text Text="UserData/DeathTexts/Brain Bug_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="BrainBug">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="IVAX">
+            <Text Text="UserData/DeathTexts/IVAX_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Ivax">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Cronus">
+            <Text Text="UserData/DeathTexts/Cronus_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Cronus">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Demeter">
+            <Text Text="UserData/DeathTexts/Demeter_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Demeter">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Perses">
+            <Text Text="UserData/DeathTexts/Perses_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Perses">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Gargoyle">
+            <Text Text="UserData/DeathTexts/Gargoyle_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Mutalisk">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Wraith">
+            <Text Text="UserData/DeathTexts/Wraith_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Wraith2">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Hulk">
+            <Text Text="UserData/DeathTexts/Hulk_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Hulk">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Immortal">
+            <Text Text="UserData/DeathTexts/Immortal_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Immortal2">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Erebos">
+            <Text Text="UserData/DeathTexts/Erebos_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Erebos">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Deimos">
+            <Text Text="UserData/DeathTexts/Deimos_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Deimos">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Nazara">
+            <Text Text="UserData/DeathTexts/Nazara_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Nazara">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Apoptosis">
+            <Text Text="UserData/DeathTexts/Apoptosis_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Apoptosis">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Athena">
+            <Text Text="UserData/DeathTexts/Athena_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Athena">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Stalker">
+            <Text Text="UserData/DeathTexts/Stalker_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Stalker2">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Devourer">
+            <Text Text="UserData/DeathTexts/Devourer_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Devourer">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Hades">
+            <Text Text="UserData/DeathTexts/Hades_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Hades">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
     </CUser>
     <CUser id="EndGameUI">
         <Fields Id="Item Titles" Type="Text" Count="8"/>
@@ -6507,7 +6675,7 @@
         </Instances>
     </CUser>
     <CUser id="TeamKillTexts">
-        <Fields Id="Death Text" Type="Text" Count="5"/>
+        <Fields Id="Death Text" Type="Text" Count="7"/>
         <Instances Id="[Default]"/>
         <Instances Id="Death Texts">
             <Text Text="UserData/TeamKillTexts/Death Texts_Death Text">
@@ -6524,6 +6692,12 @@
             </Text>
             <Text Text="UserData/TeamKillTexts/Death Texts_Death Text_004">
                 <Field Id="Death Text" Index="4"/>
+            </Text>
+            <Text Text="UserData/TeamKillTexts/Death Texts_Death Text_005">
+                <Field Id="Death Text" Index="5"/>
+            </Text>
+            <Text Text="UserData/TeamKillTexts/Death Texts_Death Text_006">
+                <Field Id="Death Text" Index="6"/>
             </Text>
         </Instances>
     </CUser>

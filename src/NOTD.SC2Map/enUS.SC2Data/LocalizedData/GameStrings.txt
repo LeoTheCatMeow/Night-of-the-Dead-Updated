@@ -988,7 +988,7 @@ Behavior/Tooltip/InboundSicknessDebuffLevel1=Unit is stunned.
 Behavior/Tooltip/InboundSicknessDebuffLevel2=Unit is stunned.
 Behavior/Tooltip/Inception=The universe around you pauses. You are free to act for 15 seconds. Combat damage increased by +150% (does not affect Shiva), faster regeneration, and can detect nearby cloaked units.
 Behavior/Tooltip/Infection=Unit is infected is slowly turning into a zombie.
-Behavior/Tooltip/Inferno=Unit is burned from within and will explode in 5 seconds dealing 150 damage in 3 radius.
+Behavior/Tooltip/Inferno=Unit is burned from within and will explode in 3 seconds dealing 300 damage in 3 radius.
 Behavior/Tooltip/Intimidation=-1 Life & Shield Armor for 4 seconds. Stacks up to 5 times.
 Behavior/Tooltip/IronHand=Iron Hand protocol activated. +100% attack speed for 5 seconds. Will suffer from Overheating subsequently.
 Behavior/Tooltip/ItsMeAgainLevel1=Each subsequent attack on same unit deals 7% additional damage. Stacks up to 5 times.
@@ -1042,7 +1042,7 @@ Behavior/Tooltip/NanosteelNetSlowLevel1=Unit is slowed by 20%.
 Behavior/Tooltip/NanosteelNetSlowLevel2=Unit is slowed by 25%.
 Behavior/Tooltip/NanosteelNetSlowLevel3=Unit is slowed by 30%.
 Behavior/Tooltip/NanosteelNetSlowTemplate=Unit is slowed by 20%.
-Behavior/Tooltip/Napalm2=Burning in Napalm. Unit takes damage over time and moves 30% slower.
+Behavior/Tooltip/Napalm2=Burning in Napalm. Unit takes damage over time and moves 10% slower.
 Behavior/Tooltip/NegativePolarity=Deals 35 per sec to anyone with Positive Polarity. Damage amplification to 200% to allies with Negative Polarity in 3 radius. 
 Behavior/Tooltip/NeuralParasite=This unit is being immobilized by a Hugger.
 Behavior/Tooltip/NoQuarterInvulnerable=Pathfinder is invulnerable for 5 seconds. 
@@ -1766,7 +1766,7 @@ Button/Tooltip/Inception=The universe around you slows down. You are free to act
 Button/Tooltip/IncompleteIvax=Heavy assault mech. Can use 250mm Strike Cannons.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/InfantrySpecializationLevel1=Allows Mobile Infantry to land Flamethrowers. You can customize your drop team in a sub-menu.
 Button/Tooltip/InfantrySpecializationLevel2=Allows Mobile Infantry to land Snipers. You can customize your drop team in a sub-menu.
-Button/Tooltip/Inferno=Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing <d ref="Effect,InfernoDamage,Amount"/> damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville
+Button/Tooltip/Inferno=Fires incendiary pallets in a forward arc that burns into and slows (50%) the first 6 units it encounters (12 max range). Units with incendiary pallets will begin burning from within and explode after 3 seconds, dealing <d ref="Effect,InfernoDamage,Amount"/> damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville
 Button/Tooltip/InfestedAbomination=An abomination that is capable of ranged attacks.
 Button/Tooltip/InfestedCocoon=Zombie cocoon. Destroy it before it can hatch.
 Button/Tooltip/InfestedColonistShip=Colony Ship that has been Infested. Likely used as a massive nest and breeding ground.
@@ -1835,7 +1835,7 @@ Button/Tooltip/MindLink=Single Target. Allows you to share vision with up to 1 M
 Button/Tooltip/MindRavage=Deals 20 damage in 3 radius to target area. +300% damage to stunned units.
 Button/Tooltip/Minion=
 Button/Tooltip/Minion2=
-Button/Tooltip/MobileInfantry=1 Marine lands at target location to support you. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%.<n/><n/>Maximum of 1 Marine.
+Button/Tooltip/MobileInfantry=1 Marine lands at target location to support you.<n/><n/>Maximum of 1 Marine.
 Button/Tooltip/MobileInfantryFlamethrower=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/MobileInfantryMarksman=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/MobileInfantryRifleman=General-purpose infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
@@ -1854,7 +1854,7 @@ Button/Tooltip/NanoShield=Regenerates shields temporarily. Increases max shields
 Button/Tooltip/NanoStrength=Increases target unit's attack damage and movespeed by 10% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Button/Tooltip/NanoWeave=Level 1 - Heals 5 HP/sec on target unit for 15 seconds.
 Button/Tooltip/NanosteelNet=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 20% by its thrashing attempts to escape. Lasts 3 seconds.
-Button/Tooltip/NapalmBarrage=An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec for 10 seconds, stacking up to 5 times. 5 sec barrage time. Deals 50% more damage vs Massive. Units burnt in Napalm move 30% slower.<n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
+Button/Tooltip/NapalmBarrage=An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec and applies a 10% slow for 10 seconds, stacking up to 5 times. 5 sec barrage time. Deals 50% more damage vs Massive. <n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c>
 Button/Tooltip/Nazara=
 Button/Tooltip/NoQuarter=The Pathfinder ascends high into the sky, and comes slamming down with unparalleled force, dealing massive amounts of damage. If the Pathfinder lands directly on top of a foe, his Emergency Savior System activates, granting him brief invulnerability and immediately readies an Assault Jump. Deals triple damage to Heroic.<n/><n/>Deals 1,000 damage within a radius of 2, 800 damage within a radius of 4, 600 damage within a radius of 6, 400 damage within a radius of 8. If an enemy is struck with the 1,000 damage marker, the Pathfinder becomes invulnerable for 5 seconds.
 Button/Tooltip/NydusCanal=
@@ -2129,7 +2129,18 @@ DocInfo/PatchNote048=- Flamethrower - Smite damage is no longer affected by bonu
 DocInfo/PatchNote049=- Flamethrower - Smite damage is still affected by bonus damage taken (such as Heightened Senses, VRL-777 etc).
 DocInfo/PatchNote050=  (Note: This would make smite consistent with other % HP based effects in game, namely OSOK's % HP damage.)
 DocInfo/PatchNote051=- Flamethrower - Frenzy attack speed bonus improved from 1%/2% a stack to 2%/4% a stack, matching the damage bonus.
-DocInfo/PatchNote052=
+DocInfo/PatchNote052=- Flamethrower - Inferno initial 50 damage over time removed, explosion delay reduced to 3s. now always grants frenzy stacks.
+DocInfo/PatchNote053=- Flamethrower - Fixed a bug where Inferno is doing way more damage than the tooltip suggests (the damage is registering multiple times).
+DocInfo/PatchNote054=- Flamethrower - Increased Inferno damage from 150 to 300 to compensate the bugfix. (300 is still lower than the bugged damage).
+DocInfo/PatchNote055=- Flamethrower - Updated Helium Igniter Lv3's tooltip to clarify the bonus damage over time effect.
+DocInfo/PatchNote056=- Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
+DocInfo/PatchNote057=- Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
+DocInfo/PatchNote058=- Fixed a tooltip error regarding Foward Observer's Mobile Infantry: Each infantry DOES NOT reduce FO's energy regeneration.
+DocInfo/PatchNote059=- Fixed a bug causing Forward Observer to get Open Wound more easily. 
+DocInfo/PatchNote060=- Fixed idle Ghouls spawned from EC start.
+DocInfo/PatchNote061=- Fixed some errors with death messages, added some new death messages.
+DocInfo/PatchNote062=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
+DocInfo/PatchNote063=
 DocInfo/PatchNote690=[ReduxGelum]
 DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
 DocInfo/PatchNote692=- Enabled transient for faith ability.
@@ -2960,7 +2971,6 @@ Effect/Name/InfernoApplyChainTarget=Inferno (Apply Chain Target)
 Effect/Name/InfernoApplyPeriodic=Inferno Apply Periodic
 Effect/Name/InfernoApplyTarget=Inferno (Apply Target)
 Effect/Name/InfernoDamage=Inferno (Damage)
-Effect/Name/InfernoDamage2=Inferno (Damage Periodic)
 Effect/Name/InfernoDamage3=Inferno (Damage Friendly)
 Effect/Name/InfernoDamageSet=Inferno (Damage Set)
 Effect/Name/InfernoLaunchMissile=Inferno (Launch Missile)
@@ -2972,6 +2982,8 @@ Effect/Name/InfernoPersistentSearch4=Inferno (Persistent Search 4)
 Effect/Name/InfernoPersistentSearch5=Inferno (Persistent Search 5)
 Effect/Name/InfernoRemove=Inferno Remove
 Effect/Name/InfernoSearchApplyTarget=Inferno (Search Apply Target)
+Effect/Name/InfernoSearchEnemy=Inferno (Search Enemy)
+Effect/Name/InfernoSearchFriendly=Inferno (Search Friendly)
 Effect/Name/InfernoSearchTarget=Inferno (Search Target)
 Effect/Name/InfernoSearchTargetChain=Inferno (Search Target - Chain)
 Effect/Name/InfernoSearchTargetPersistent=Inferno (Search Target Persistent)
@@ -3990,7 +4002,7 @@ Level 2 Mental Projection=Creates 2 Hallucinations of Psi Ops. Lasts 15 seconds.
 Level 2 Mind Ravage=Deals 40 damage in 3 radius to target area. +300% damage to stunned units.
 Level 2 Mind-Link=Single Target. Allows you to share vision with up to 2 Marines. Damage taken will be split evenly between Mind-Linked Marine and Psi Ops. 30% less damage taken.
 Level 2 Mindblast=Creates a focused blast of energy that stuns 1.5 seconds and deals 40 damage to all enemies in the target area.
-Level 2 Mobile Infantry=1 Marine lands at target location to support you. Each active Infantry unit reduces the Forward Observer’s energy regeneration by 22%.<n/><n/>Maximum of 2 Marines.
+Level 2 Mobile Infantry=1 Marine lands at target location to support you.<n/><n/>Maximum of 2 Marines.
 Level 2 My Little Friends=Bob loses 100 HP to spawn a pet parasite. Parasite has 150 HP and deals 30 dmg.
 Level 2 Nano Shield=Regenerates shields temporarily. Increases max shields by 60 and shield armor by 2. Lasts for 20 seconds.
 Level 2 NanoHasteLevel 2 NanoStrength=Increases target unit's attack damage and movespeed by 15% for <d ref="Behavior,NanoHasteLevel2,Duration[0]"/> seconds.
@@ -4043,7 +4055,7 @@ Level 3 Laser Designator=Reduces armor of target unit by 5 and reveals target to
 Level 3 Mind Ravage=Deals 80 damage in 3 radius to target area. +300% damage to stunned units.
 Level 3 Mind-Link=Single Target. Allows you to share vision with up to 3 Marines. Damage taken will be split evenly between Mind-Linked Marine and Psi Ops. 45% less damage taken.
 Level 3 Mindblast=Creates a focused blast of energy that stuns 2.25 seconds and deals 80 damage to all enemies in the target area.
-Level 3 Mobile Infantry=1 Marine lands at target location to support you. Each active Infantry unit reduces the Forward Observer’s energy regeneration by 22%.<n/><n/>Maximum of 3 Marines.
+Level 3 Mobile Infantry=1 Marine lands at target location to support you.<n/><n/>Maximum of 3 Marines.
 Level 3 NanoHasteLevel 3 NanoStrength=Increases target unit's attack damage and movespeed by 20% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 NanoStrength2Level 3 NanoHasteLevel 3 NanoStrengthLevel 3 NanoHasteLevel 3 BattlefieldIntelligence=Increases target unit's attack damage and movespeed by 20% for <d ref="Behavior,NanoHasteLevel1,Duration[0]"/> seconds.
 Level 3 Nanosteel Net=Technician fires a strong net at a target area, snaring its target. Air units are dragged down, able to be fired upon as if they were ground targets. Enemies in a radius of 1 are slowed 30% by its thrashing attempts to escape. Lasts 5 seconds.
@@ -4093,7 +4105,6 @@ Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~ 
 Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/0972D6BC=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
 Param/Expression/142E3EDE=Wave ~A~
-Param/Expression/1B9D6FE5=~A~~B~~C~
 Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="0080FF">~B~</c>.
 Param/Expression/1E570E34=Ammo Box (~A~)
 Param/Expression/20BD633D=Designate ~A~
@@ -4437,7 +4448,7 @@ Param/Value/32D3A5EF=It doesn't look heavily armored. Our sniper rifles or flame
 Param/Value/32F3AC3C=+1 XP for Performance Bonus
 Param/Value/331FE52D=Go easy on the firing. We need to disorient it.
 Param/Value/332DEA9D=Evasive maneuvers! Knife 'em!
-Param/Value/3331F97F=has succumbed to serious injuries.
+Param/Value/3331F97F=has been gunned down like a roadkill.
 Param/Value/333C00A9=<s val="BriefingHanText">   Balancing/Testers<n/>   HunterIZ, gruvious, Reaper, Yorick, FlintLckwood, Peerawatz, NiteShade, Ghost</s>
 Param/Value/335ED149=Nail all those Agrons down.
 Param/Value/338A4C58=We brought down that machine, but looks like we've got more ahead of us.
@@ -4539,7 +4550,6 @@ Param/Value/42BB33F1=Gather with the Marines. We'll cover you.
 Param/Value/42C54EE7=Survival is paramount. Zero human awareness is necessary pre-condition for sustained self-preservation.
 Param/Value/42D8E5E5=<s val="GlueButton"><c val="F4D72B">They locked me up because I knew. Because I saw those exact monsters in a UGC lab at Cuba 4 months ago.</c></s>
 Param/Value/42D8E88F=Find a way into the Research Lab
-Param/Value/42DA9A5D=has been killed by 
 Param/Value/42F6F864=</c>
 Param/Value/43DD0D71=We'll need thermals on - spotting enemies rapidly approaching.
 Param/Value/44525CC2=<s val="InfoPaneHeroRank">Allowed 2 random class selections.</s>
@@ -5189,7 +5199,7 @@ Param/Value/AD36FA0F=Requirements not met
 Param/Value/AD49B184=<s val="GlueButton">
 Param/Value/AD6DE3C6=Our lines have been compromised! Broken arrow.
 Param/Value/AD923496=You're Short Circuited. An Engineer can repair your suit.
-Param/Value/ADA92E45=has been decimated by <c val="FF0000">
+Param/Value/ADA92E45=has been killed by <c val="FF0000">
 Param/Value/ADEF0862=+1 XP for Performance Bonus
 Param/Value/AE9A22A2=<s val="GlueButton"><c val="FF8080">Friendly Fire!</c></s>
 Param/Value/AEC7D830=All options considered. Neutralization logical choice.
@@ -5634,6 +5644,7 @@ Param/Value/F3EDB9C3=I'll bring your squad in for quarantine and run some diagno
 Param/Value/F3EEFA64=<s val="BriefingHanText">Gunship Disengaged</s>
 Param/Value/F3FA7E20=Activate IVAX
 Param/Value/F403A291=I can't believe this. Is there a right choice?
+Param/Value/F45938CF=has succumbed to serious injuries.
 Param/Value/F4D87224=Situation looks bad. We're airdropping supplies to your sector.
 Param/Value/F4FD9381=We have civilians sheltering in the underground shelters. You'll be murdering hundreds of people if you do that.
 Param/Value/F504C243=</c></s>
@@ -6339,13 +6350,34 @@ UserData/CommunicationTowerCompletionMessages/Completion_Message_001=The transmi
 UserData/CommunicationTowerCompletionMessages/Completion_Message_002=The transmissions suggest that UGC knew about this outbreak from its inception. They failed to contain its spread and decided to bring us boots here.
 UserData/CustomNames/ArcanePariah_Name=My Little Marksman
 UserData/DeathTexts/Agron_Death Message=has been eviscerated by a <c val="FF0000">Agron</c>.
+UserData/DeathTexts/Apoptosis_Death Message=has fallen before the <c val="FF0000">Blood Lord
+UserData/DeathTexts/Athena_Death Message=has been sliced and diced by <c val="FF0000">Athena
 UserData/DeathTexts/Baneling_Death Message=has been reduced to slag by a <c val="FF0000">Baneling</c>.
 UserData/DeathTexts/Beastling_Death Message=has been reduced to slag by a <c val="FF0000">Beastling</c>.<n/>
 UserData/DeathTexts/Black Ops_Death Message=has been assassinated by <c val="FF0000">Black Ops</c>.
+UserData/DeathTexts/Brain Bug_Death Message=has become one with the <c val="FF0000">Brain Bug
+UserData/DeathTexts/Cronus_Death Message=was unable to escape the wrath of  <c val="FF0000">Cronus
+UserData/DeathTexts/Deimos_Death Message=has been gunned down by <c val="FF0000">Deimos
+UserData/DeathTexts/Demeter_Death Message=has been pierced by the tentacles of <c val="FF0000">Demeter
+UserData/DeathTexts/Devourer_Death Message=has been devoured by a <c val="FF0000">Devourer
+UserData/DeathTexts/Eos_Death Message=has been decapitated by <c val="FF0000">Eos
+UserData/DeathTexts/Erebos_Death Message=has been decimated by <c val="FF0000">Erebos
+UserData/DeathTexts/Gargoyle_Death Message=has been torn into pieaces by a <c val="FF0000">Gargoyle
 UserData/DeathTexts/Ghoul_Death Message=has been taken down by a voracious <c val="FF0000">Ghoul</c>.
+UserData/DeathTexts/Hades_Death Message=has been sent down to the seventh hell by <c val="FF0000">Hades
+UserData/DeathTexts/Hulk_Death Message=has been overwhelmed by a <c val="FF0000">Hulk
+UserData/DeathTexts/IVAX_Death Message=has been blown into another realm by <c val="FF0000">IVAX
+UserData/DeathTexts/Immortal_Death Message=has been mortally wounded by an <c val="FF0000">Immortal.
 UserData/DeathTexts/Infested Marine_Death Message=has been gunned down by an <c val="FF0000">Infested Marine</c>.
+UserData/DeathTexts/Nazara_Death Message=has been evaporated by <c val="FF0000">Nazara
+UserData/DeathTexts/Perses_Death Message=has met their end at <c val="FF0000">Perses
+UserData/DeathTexts/Seeker_Death Message=wasn't fast enough to outrun the <c val="FF0000">Seeker
 UserData/DeathTexts/Seth_Death Message=has been vaporized by <c val="FF0000">Seth</c>.
 UserData/DeathTexts/Slasher_Death Message=has been eviscerated by a <c val="FF0000">Slasher</c>.
+UserData/DeathTexts/Stalker_Death Message=has been sliced and diced by a <c val="FF0000">Stalker
+UserData/DeathTexts/Tartarus_Death Message=has been made a new one by <c val="FF0000">Tartarus
+UserData/DeathTexts/Titan_Death Message=has been slapped into a pile of flesh by a <c val="FF0000">Titan
+UserData/DeathTexts/Wraith_Death Message=has been torn into pieces by a <c val="FF0000">Wraith
 UserData/DeathTexts/Zombie Level 1_Death Message=has been eaten alive by a <c val="FF0000">Zombie</c>.
 UserData/DeathTexts/Zombie Level 2_Death Message=has been eaten alive by a <c val="FF0000">Zombie</c>.
 UserData/DeathTexts/[Default]_Death Message=has been killed by a <c val="FF0000">
@@ -6743,11 +6775,11 @@ UserData/TalentTrees/Engineer_Talent Tootips_008=<s val="AchievementFrameName">S
 UserData/TalentTrees/Engineer_Talent Tootips_009=<s val="AchievementFrameName">Overdrive</s><n/>X-1 Guardian activates its devastating twin plasma turrets. Lasts 20 seconds.<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Flamethrower_Headers=<s val="HelpPanelListBoxItemTitle">Pyro</s>
 UserData/TalentTrees/Flamethrower_Headers_001=<s val="HelpPanelListBoxItemTitle">Order</s>
-UserData/TalentTrees/Flamethrower_Talent Tootips=<s val="AchievementFrameName">Helium-3 Igniter<n/>(Passive)</s><n/>Increase range of flamer and damage.<n/>Level 1 - +1 range and +10% damage<n/>Level 2 - +2 range and +20% damage<n/>Level 3 - +3 range and +30% damage. Fires plasma flame that burns targets for +10 dmg over 3 seconds. Can target air.
+UserData/TalentTrees/Flamethrower_Talent Tootips=<s val="AchievementFrameName">Helium-3 Igniter<n/>(Passive)</s><n/>Increase range of flamer and damage.<n/>Level 1 - +1 range and +10% damage<n/>Level 2 - +2 range and +20% damage<n/>Level 3 - +3 range and +30% damage. Fires plasma flame that burns targets for +10 dmg over 3 seconds, 15 stacks max. Can target air.
 UserData/TalentTrees/Flamethrower_Talent Tootips_001=<s val="AchievementFrameName">Burst Fire</s><n/>Deals damage to units in a forward arc. Deals 40% extra damage to Light units. Must have Flamethrower weapon equipped.<n/>Level 1 - 50 damage<n/>Level 2 - 100 damage<n/>Level 3 - 150 damage<n/><n/>6 range. Affects air units too.
 UserData/TalentTrees/Flamethrower_Talent Tootips_002=<s val="AchievementFrameName">BURN!</s><n/>The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 1 - +20 DPS/tick, 0.6s/tick. <n/>Level 2 - +20 DPS/tick, 0.3s/tick. <n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled. BURN! damage caps out at a maximum of 200 DPS.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Flamethrower_Talent Tootips_003=<s val="AchievementFrameName">Frenzy<n/>(Passive)</s><n/>Flamethrower gains increased attack/move speed and damage for each unit killed by Burst Fire and Inferno (40% chance for Inferno). Lasts for 30 seconds. Max stack of 30.<n/>Level 1 - +1% move speed and +2% damage/attack speed.<n/>Level 2 - +2% move speed and +4% damage/attack speed.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">Inferno</s><n/>Fires incendiary pallets in a forward arc that burns into the first 6 units it encounters (12 max range). Units burning with incendiary pallets are slowed by 50% while dealing 50 damage to their surroundings over 5 seconds. Affected units then explode, dealing <d ref="Effect,InfernoDamage,Amount"/> damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_003=<s val="AchievementFrameName">Frenzy<n/>(Passive)</s><n/>Flamethrower gains increased attack/move speed and damage for each unit killed by Burst Fire and Inferno. Lasts for 30 seconds. Max stack of 30.<n/>Level 1 - +1% move speed and +2% damage/attack speed.<n/>Level 2 - +2% move speed and +4% damage/attack speed.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Flamethrower_Talent Tootips_004=<s val="AchievementFrameName">Inferno</s><n/>Fires incendiary pallets in a forward arc that burns into and slows (50%) the first 6 units it encounters (12 max range). Units with incendiary pallets will begin burning from within and explode after 3 seconds, dealing <d ref="Effect,InfernoDamage,Amount"/> damage to all units in 3 radius. Armored units take 40% more damage. Each explosion has a 40% chance to spread Inferno again to nearby Biological units, potentially causing a chain reaction. <n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised. Explosions can be prematurely triggered with Burst Fire.</c><n/><n/>"When the Saracens came to attack him, they threw Greek fire onto the barrier... the Turks did not wait for the fire to burn itself out, but rushed upon the Templars among the scorching flames." - Jean de Joinville<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Flamethrower_Talent Tootips_005=<s val="AchievementFrameName">Smite</s><n/>Deals damage based on current HP and movespeed reduction to enemies in 3 radius of target area for 4 seconds. Smite damage is reduced to 40% against Heroic and 20% against Bosses.<n/>Level 1 - 10% of current HP and -18% movespeed<n/>Level 2 - 20% of current HP and -36% movespeed<n/>Level 3 - 30% of current HP and -54% movespeed
 UserData/TalentTrees/Flamethrower_Talent Tootips_006=<s val="AchievementFrameName">Vengeance<n/>(Passive)</s><n/>Chance for attackers to be stunned for 2 seconds. <n/>Level 1 - 15% chance<n/>Level 2 - 30% chance<n/>Level 3 - 45% chance<n/><n/>"And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the LORD when I lay my vengeance upon thee." - Ezekiel 25:17
 UserData/TalentTrees/Flamethrower_Talent Tootips_007=<s val="AchievementFrameName">Righteousness</s><n/>+1 armor for each unit damaged by Smite.<n/>Level 1 - Lasts 8 secs<n/>Level 2 - Lasts 16 secs<n/><n/>"I shall walk down the road of shadow, the path of the wicked, the trail of damnation but I fear not for I stand as an unfaltering beacon to the lost for all those who have been cast down."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6759,8 +6791,8 @@ UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameNam
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 5 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec for 10 seconds, stacking up to 5 times. 5 sec barrage time. Deals 50% more damage vs Massive. Units burnt in Napalm move 30% slower. <n/><n/><c val="FFFF00">Napalm kills reward no direct experience to Forward Observer. (Still provide shared experience to the team)</c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each active Infantry unit reduces the Forward Observer's energy regeneration by 22%. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
+UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec and applies a 10% slow for 10 seconds, stacking up to 5 times. 5 sec barrage time. Deals 50% more damage vs Massive. </c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +3 armor for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which grants a biological unit +15% damage and +4 sight range.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
@@ -6854,6 +6886,8 @@ UserData/TeamKillTexts/Death Texts_Death Text_001= </c><c val="F4D72B">has been 
 UserData/TeamKillTexts/Death Texts_Death Text_002= </c><c val="F4D72B">has been murdered by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_003= </c><c val="F4D72B">has been betrayed by </c><c val="FF0000">
 UserData/TeamKillTexts/Death Texts_Death Text_004= </c><c val="F4D72B">is not getting any love from </c><c val="FF0000">
+UserData/TeamKillTexts/Death Texts_Death Text_005= </c><c val="F4D72B">is six feet under thanks to </c><c val="FF0000">
+UserData/TeamKillTexts/Death Texts_Death Text_006= </c><c val="F4D72B">shouldn't have trusted </c><c val="FF0000">
 UserData/WeaponModData/Damage_Arrow_Tooltip=5% Damage
 UserData/WeaponModData/Damage_Name=Damage
 UserData/WeaponModData/Damage_Tooltip_Text=<c val="FFFF00">Damage</c><n/>Modifies weapon damage (+/-5%)

@@ -1,5 +1,26 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-2-9
+[LeoTheCat]
+- Updated translations of most core gameplay elements (items, talents) for Traditional Chinese.
+- Flamethrower - Smite damage against Heroic increased from 1.8%/3.6%/5.4% to 4%/8%/12%.
+- Flamethrower - Smite damage against real Bosses increased from 1.8%/3.6%/5.4% to 2%/4%/6%.
+- Flamethrower - Smite damage is no longer affected by bonus damage dealt (such as Penance, Frenzy, HP ammo etc).
+- Flamethrower - Smite damage is still affected by bonus damage taken (such as Heightened Senses, VRL-777 etc).
+  (Note: This would make smite consistent with other % HP based effects in game, namely OSOK's % HP damage.)
+- Flamethrower - Frenzy attack speed bonus improved from 1%/2% a stack to 2%/4% a stack, matching the damage bonus.
+- Flamethrower - Inferno initial 50 damage over time removed, explosion delay reduced to 3s. now always grants frenzy stacks.
+- Flamethrower - Fixed a bug where Inferno is doing way more damage than the tooltip suggests (the damage is registering multiple times).
+- Flamethrower - Increased Inferno damage from 150 to 300 to compensate the bugfix. (300 is still lower than the bugged damage).
+- Flamethrower - Updated Helium Igniter Lv3's tooltip to clarify the bonus damage over time effect.
+- Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
+- Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
+- Fixed a tooltip error regarding Foward Observer's Mobile Infantry: Each infantry DOES NOT reduce FO's energy regeneration.
+- Fixed a bug causing Forward Observer to get Open Wound more easily. 
+- Fixed idle Ghouls spawned from EC start.
+- Fixed some errors with death messages, added some new death messages.
+- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
+
 2021-2-6
 [ReduxGelum]
  - Added critter wander leash behavior to agrons guarding EC worms to prevent enemies getting stuck.
