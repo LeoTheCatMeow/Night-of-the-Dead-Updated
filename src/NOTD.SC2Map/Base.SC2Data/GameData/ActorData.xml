@@ -224,6 +224,11 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Scale value="1.700000"/>
     </CActorModel>
+    <CActorAction id="HailstormMissileVolley" effectImpact="ImpactSet">
+        <On index="1" Terms="Effect.ImpactSet.Start; FromEffectTreeDescendant"/>
+        <On index="2" Terms="Effect.ImpactSet.Stop; FromEffectTreeDescendant"/>
+        <ImpactMap index="None" Model="WidowMineAttackImpact"/>
+    </CActorAction>
     <CActorAction id="HardenedEnergySpark" parent="GenericAttack" effectAttack="HardenedEnergySparkModifyUnit">
         <LaunchAttachQuery Methods="AMFilterCenter"/>
         <LaunchAssets Sound="Probe_AttackLaunch"/>
@@ -345,6 +350,11 @@
         <EditorCategories value=""/>
         <On index="0" Terms="Abil.SupplyStation.Cursor" Send="Create"/>
     </CActorSplat>
+    <CActorSound id="TargetLockOnSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MissileTargetLock.On" Send="Create"/>
+        <Sound value="Raven_HunterSeekerLaunch"/>
+    </CActorSound>
     <CActorRange id="VRLRange" parent="RangeAbil" abil="VRL772"/>
     <CActorModel id="SurgicalStrikeEffect" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -355,6 +365,8 @@
         <On Terms="Behavior.SurgicalStrikeLevel3.On" Send="Create"/>
         <On Terms="Behavior.SurgicalStrikeLevel3.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetTintColor {255,0,0 2.000000}"/>
+        <On Terms="Behavior.SlowRoast.On" Send="Create"/>
+        <On Terms="Behavior.SlowRoast.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Scale value="0.800000,0.800000,0.600000"/>
@@ -8604,7 +8616,6 @@
         <On Terms="Effect.FireMissionLevel3DamageVar1.Start" Send="Create"/>
         <On Terms="Effect.FireMissionLevel3DamageVar2.Start" Send="Create"/>
         <On Terms="Effect.FireMissionLevel3DamageVar3.Start" Send="Create"/>
-        <On Terms="Effect.Damage.Start" Send="Create"/>
         <On Terms="Effect.ScorchedEarthSearch.Start" Send="Create"/>
         <HostSiteOps Ops="LowerBy375"/>
         <Model value="FireMissionGroundImpactLevel1"/>
@@ -10713,26 +10724,22 @@
     </CActorUnit>
     <CActorModel id="Impact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On index="1" Terms="Effect.ImpactSet.Start" Send="Create"/>
-        <On index="2" Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
-        <On Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
         <HostSiteOps Ops="LowerBy375"/>
         <Model value="330mmBarrageCannonsImpact"/>
         <Scale value="1.500000"/>
     </CActorModel>
     <CActorModel id="ImpactMarker" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
-        <On index="1" Terms="Effect.DummySearch2.Impact; ValidatePlayer IsNotRealism" Send="Create"/>
+        <On index="1" Terms="Behavior.MissileTargetLock.On" Send="Create"/>
         <On index="2" Terms="ActorOrphan" Send="Destroy"/>
         <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
-        <On Terms="Effect.ImpactSet.Start" Send="AnimBracketStop BSD"/>
-        <Host Subject=""/>
-        <HostSiteOps Ops="LowerBy375"/>
+        <On Terms="Behavior.MissileTargetLock.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="LaserDrillTargetingUI"/>
     </CActorModel>
     <CActorSound id="ImpactSound" parent="SoundOneShot">
         <EditorCategories value=""/>
-        <On Terms="Effect.ImpactSet.Start" Send="Create"/>
         <Sound value="Battlecruiser_YamatoAttackImpact"/>
     </CActorSound>
     <CActorSiteOpLocalOffset id="LowerBy375">

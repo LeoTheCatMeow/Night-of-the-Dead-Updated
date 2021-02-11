@@ -1049,6 +1049,9 @@
     <CValidatorUnitCompareBehaviorCount id="TargethasnotLaserDesignatorLevel1">
         <Behavior value="LaserDesignatorLevel1"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetnotLocked">
+        <Behavior value="MissileTargetLock"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="ValidTempestTarget">
         <CombineArray value="TargetisAbsolutionAlly"/>
         <Negate value="1"/>

@@ -140,6 +140,37 @@
     <CEffectModifyPlayer id="AbsolutionBonusOn">
         <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
     </CEffectModifyPlayer>
+    <CEffectDamage id="DevastatorMissilesDamage">
+        <AttributeBonus index="Massive" value="0"/>
+        <ArmorReduction value="0"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectDamage id="HailstormMissilePodsDamage">
+        <Kind value="Spell"/>
+        <Amount value="75"/>
+        <AreaArray index="0" Fraction="0.3"/>
+        <!--        <AreaArray Radius="0.5" Fraction="0.75"/> -->
+        <SearchFilters value="Ground;Missile,Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="HailstormMissilePodsLaunchMissile">
+        <ValidatorArray index="0" removed="1"/>
+        <ImpactEffect value="ImpactSet"/>
+    </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="MissileApplyTargetLock">
+        <ValidatorArray index="0" value="TargetnotLocked"/>
+        <EditorCategories value=""/>
+        <Behavior value="MissileTargetLock"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="MissileSearchEnemy">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/DummySearch"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Dead,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="PrioritizeTargetWithoutLock"/>
+        </TargetSorts>
+        <AreaArray Radius="5" Effect="MissileSet"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
     <CEffectEnumArea id="InfernoSearchEnemy">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
@@ -152,6 +183,11 @@
         <AreaArray Radius="3" Effect="InfernoDamage3"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
     </CEffectEnumArea>
+    <CEffectSet id="MissileSet">
+        <EditorCategories value=""/>
+        <EffectArray value="HailstormMissilePodsLaunchMissile"/>
+        <EffectArray value="MissileApplyTargetLock"/>
+    </CEffectSet>
     <CEffectCreatePersistent id="PsionicTempestCreatePersistentAbsolution">
         <ValidatorArray value="CasterhasAbsolutionSpellBuff"/>
         <EditorCategories value=""/>
@@ -862,11 +898,11 @@
     <CEffectDamage id="Damage2">
         <EditorCategories value=""/>
         <LaunchLocation Value="CasterUnit"/>
-        <Amount value="75"/>
+        <ArmorReduction value="0.5"/>
+        <Amount value="10"/>
         <Death value="Impact"/>
         <AreaArray Radius="1.5" Fraction="1"/>
-        <AreaArray Radius="3" Fraction="0.66"/>
-        <AreaArray Radius="4.5" Fraction="0.33"/>
+        <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="ArtillerySearchAreaDummy">
@@ -2622,11 +2658,9 @@
     <CEffectDamage id="Damage">
         <EditorCategories value=""/>
         <LaunchLocation Value="CasterUnit"/>
-        <Amount value="75"/>
+        <Amount value="60"/>
         <Death value="Impact"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
-        <AreaArray Radius="3" Fraction="0.66"/>
-        <AreaArray Radius="4.5" Fraction="0.33"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="DeimosShockRifle">
@@ -7968,9 +8002,6 @@
     <CEffectEnumArea id="FungalGrowthSearch">
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
-    <CEffectLaunchMissile id="HailstormMissilePodsLaunchMissile">
-        <ValidatorArray index="0" removed="1"/>
-    </CEffectLaunchMissile>
     <CEffectSet id="Helium3AcquiredSet">
         <EditorCategories value=""/>
         <EffectArray value="Helium3ApplyBehavior"/>
@@ -9075,8 +9106,7 @@
         <WhichLocation Value="SourcePoint"/>
         <OffsetVectorEndLocation Value="SourcePoint"/>
         <PeriodCount value="2"/>
-        <PeriodicEffectArray value="LaunchMissile"/>
-        <PeriodicEffectArray value="DummySearch2"/>
+        <PeriodicEffectArray value="MissileSearchEnemy"/>
         <PeriodicOffsetArray value="1,-10,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -9086,8 +9116,7 @@
         <WhichLocation Value="SourcePoint"/>
         <OffsetVectorEndLocation Value="SourcePoint"/>
         <PeriodCount value="2"/>
-        <PeriodicEffectArray value="LaunchMissile2"/>
-        <PeriodicEffectArray value="DummySearch2"/>
+        <PeriodicEffectArray value="MissileSearchEnemy"/>
         <PeriodicOffsetArray value="-1,-10,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -9097,8 +9126,7 @@
         <WhichLocation Value="SourcePoint"/>
         <OffsetVectorEndLocation Value="SourcePoint"/>
         <PeriodCount value="2"/>
-        <PeriodicEffectArray value="LaunchMissile3"/>
-        <PeriodicEffectArray value="DummySearch2"/>
+        <PeriodicEffectArray value="MissileSearchEnemy"/>
         <PeriodicOffsetArray value="-0.5,-10,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -9108,8 +9136,7 @@
         <WhichLocation Value="SourcePoint"/>
         <OffsetVectorEndLocation Value="SourcePoint"/>
         <PeriodCount value="2"/>
-        <PeriodicEffectArray value="LaunchMissile4"/>
-        <PeriodicEffectArray value="DummySearch2"/>
+        <PeriodicEffectArray value="MissileSearchEnemy"/>
         <PeriodicOffsetArray value="0.5,-10,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -9119,8 +9146,7 @@
         <WhichLocation Value="SourcePoint"/>
         <OffsetVectorEndLocation Value="SourcePoint"/>
         <PeriodCount value="2"/>
-        <PeriodicEffectArray value="LaunchMissile"/>
-        <PeriodicEffectArray value="DummySearch2"/>
+        <PeriodicEffectArray value="MissileSearchEnemy"/>
         <PeriodicOffsetArray value="-1.5,-10,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -9130,8 +9156,7 @@
         <WhichLocation Value="SourcePoint"/>
         <OffsetVectorEndLocation Value="SourcePoint"/>
         <PeriodCount value="2"/>
-        <PeriodicEffectArray value="LaunchMissile"/>
-        <PeriodicEffectArray value="DummySearch2"/>
+        <PeriodicEffectArray value="MissileSearchEnemy"/>
         <PeriodicOffsetArray value="1.5,-10,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -9343,10 +9368,6 @@
         <EditorCategories value=""/>
         <AreaArray Radius="10"/>
     </CEffectEnumArea>
-    <CEffectEnumArea id="DummySearch2">
-        <EditorCategories value=""/>
-        <Marker Link="Effect/DummySearch"/>
-    </CEffectEnumArea>
     <CEffectEnumArea id="AirStrikeSearchStun">
         <EditorCategories value=""/>
         <Marker Link="Effect/DummySearch"/>
@@ -9406,10 +9427,11 @@
     </CEffectDamage>
     <CEffectSet id="ImpactSet">
         <EditorCategories value=""/>
+        <EffectArray value="ShockwaveBarrageApplyLevel1"/>
+        <EffectArray value="ShockwaveBarrageApplyLevel12"/>
         <EffectArray value="Damage"/>
         <EffectArray value="Damage2"/>
-        <EffectArray value="AirStrikeSearchStun"/>
-        <TargetLocationType value="Point"/>
+        <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
     <CEffectCreatePersistent id="InfernalFlameThrowerCP">
         <PeriodCount value="30"/>

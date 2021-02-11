@@ -427,7 +427,7 @@ Behavior/Name/AdrenalineLevel2=Adrenaline (Level 2)
 Behavior/Name/AdrenalineLevel3=Adrenaline (Level 3)
 Behavior/Name/AdvancedMutation=Advanced Mutation
 Behavior/Name/AilmentTemplate=Ailment Template
-Behavior/Name/AirStrikeReleaseMissile=Air Strike Release Missile
+Behavior/Name/AirStrikeReleaseMissile=Air Strike Release Missile 0
 Behavior/Name/AirStrikeReleaseMissile1=Air Strike Release Missile 1
 Behavior/Name/AirStrikeReleaseMissile2=Air Strike Release Missile 2
 Behavior/Name/AirStrikeReleaseMissile3=Air Strike Release Missile 3
@@ -1096,10 +1096,10 @@ Behavior/Tooltip/ShellMode=Unit channels all energy into vital support systems. 
 Behavior/Tooltip/ShivaChemicalWastelandSlow=Unit is slowed 25% and takes 25 damage/sec. Burn baby, burn!
 Behavior/Tooltip/Shock=Unit suffers -30% movespeed for 5 seconds.
 Behavior/Tooltip/Shocked=Unit is slowed by 60%.
-Behavior/Tooltip/ShockwaveBarrageStunLevel1=Unit is stunned and receives -2 armor for 3 seconds.
-Behavior/Tooltip/ShockwaveBarrageStunLevel12=Unit is stunned and receives -2 armor for 1.5 seconds.
-Behavior/Tooltip/ShockwaveBarrageStunLevel2=Unit is stunned and receives -4 armor for 5 seconds.
-Behavior/Tooltip/ShockwaveBarrageStunLevel22=Unit is stunned and receives -4 armor for 2.5 seconds.
+Behavior/Tooltip/ShockwaveBarrageStunLevel1=Unit is stunned and takes + 15% damage for 3 seconds.
+Behavior/Tooltip/ShockwaveBarrageStunLevel12=Unit is stunned and takes +15% damage for 1.5 seconds.
+Behavior/Tooltip/ShockwaveBarrageStunLevel2=Unit is stunned and takes +30% damage for 5 seconds.
+Behavior/Tooltip/ShockwaveBarrageStunLevel22=Unit is stunned and takes +30% damage for 2.5 seconds.
 Behavior/Tooltip/ShootToMaimLevel1=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%. Maximum stack of 3.
 Behavior/Tooltip/ShootToMaimLevel2=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 2 - +20% damage, each Maim stack slows by 7.5%. Maximum stack of 3.
 Behavior/Tooltip/ShootToMaimLevel3=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 3 - +30% damage, each Maim stack slows by 10%. Maximum stack of 4.
@@ -1108,7 +1108,7 @@ Behavior/Tooltip/Shriek=The Queen lets out a horrific shriek which stuns target 
 Behavior/Tooltip/ShrinkerLevel1=Unit movement speed increased by 30% and attack damage decreased by the same amount.
 Behavior/Tooltip/ShrinkerLevel2=Unit movement speed increased by 60% and attack damage decreased by the same amount.
 Behavior/Tooltip/ShrinkerLevel3=Unit movement speed increased by 90% and attack damage decreased by the same amount.
-Behavior/Tooltip/SlowRoast=Gains +3 Armor for 10 seconds. During this time, units attacked have movement and attack speed reduced by 10% for 5 seconds. Stacks up to 3 times.
+Behavior/Tooltip/SlowRoast=Gains +5 Armor and 3 life regeneration for 30 seconds. During this time, units attacked have movement and attack speed reduced by 10% for 5 seconds. Stacks up to 3 times.
 Behavior/Tooltip/SlowRoastEnemyEffect=This unit is being roasted. Slowed attack and movement speed.
 Behavior/Tooltip/SmiteLevel1=Unit is slowed by 18%.
 Behavior/Tooltip/SmiteLevel2=Unit is slowed by 36%.
@@ -1175,7 +1175,7 @@ Behavior/Tooltip/Venom=Unit is feeling feeling weak, losing 0.4 hp per second an
 Behavior/Tooltip/VenomEnergyTransferLevel1=Unit is losing 0.5 health per second but gains 0.1 energy regeneration. Can stack up to 4 times. Can be cured by Anti-Venom.
 Behavior/Tooltip/VenomEnergyTransferLevel2=Unit is losing 0.5 health per second but gains 0.2 energy regeneration. Can stack up to 4 times. Can be cured by Anti-Venom.
 Behavior/Tooltip/VenomousExplosion=Unit will explode in 5 secs, dealing 200 dmg to all units around 4 radius except self. 
-Behavior/Tooltip/VeteransFocus=+4 Sight Range and +15% attack damage for 30 seconds.
+Behavior/Tooltip/VeteransFocus=+4 Sight Range and +30% attack damage for 30 seconds.
 Behavior/Tooltip/ViscousDischarge2=Banelings cover their targets with a viscous discharge, slowing their movement speed for 1.5 seconds.
 Behavior/Tooltip/VolatileInjectionLevel1=Unit gains 30 HP but takes 10% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 75 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
 Behavior/Tooltip/VolatileInjectionLevel2=Unit gains 60 HP but takes 20% more damage for 10 seconds. When the effect expires or when the unit dies, it explodes and deals 150 damage in 4 radius (procs on enemy only). Stacks up to 2 times.
@@ -1558,7 +1558,7 @@ Button/Name/ZerglingPet=Zergling
 Button/Tooltip/APAmmo=<c val="80FF80">Armor Piercing Ammo</c><n/>Produced by United Arms Heavy Industries, this ammunition can punch through the hardiest of armor.<n/><n/>Attack Modifier: <c val="FFFFFF">-1 armor (Stacks 3x)</c><n/>Damage Modfier: <c val="FFFFFF">+7% (Stacks 3x)</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"Know that you are a UGC Marine. And know that means no defense can stop you. Not steel plate or concrete bunker. Your round will always find the enemy's heart. "
 Button/Tooltip/Absolution=Establishes a psionic barrier (3.5 radius) in the target area for 15 seconds. Ground units within the barrier gain +50% attack speed and are immune to any damage coming from sources outside the barrier.<n/><n/>While Absolution is active, Psi Ops unseals her true power, gaining +<d ref="Behavior,AbsolutionSpellBuff,Modification.DamageDealtFraction[0] * 100"/>% spell damage and increasing Psionic Tempest's radius to 5. Psionic Tempest becomes channeled.  
 Button/Tooltip/Adrenaline=Each attack grants +2% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
-Button/Tooltip/AirStrike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 75 damage. Stuns units for 3 seconds.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue. "
+Button/Tooltip/AirStrike=3 Wraiths will fly by and launch up to 36 missiles locked onto random enemies in a 7 radius area. Each missile damages and applies Level 1 Shockwave stun to the primary target and splashes in a small area.<n/>Level 1 - Each missile deals 60 damage<n/><n/><c val="FFFF00">Has minor friendly fire potential, caution advised.</c>
 Button/Tooltip/AirStrikeBombers=Tactical-strike aircraft.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AmmoBox=<c val="FFFF00">Ammo Box</c><n/>Stores magazines that provide rounds for your weapons. Higher magazine capacity frees up your inventory.<n/><n/>Credits: <c val="FFFFFF">35</c>
 Button/Tooltip/AmmoFeedLevel1=Increases maximum rounds carried to 80.
@@ -1948,7 +1948,7 @@ Button/Tooltip/Shatter=Deals 150 damage to target unit. Deals 2x damage to bosse
 Button/Tooltip/ShellMode=Unit gains +10 Armor and slight HP regeneration. Attack speed reduced to 20%. 
 Button/Tooltip/Shiva=<c val="972FFF">Shiva</c><n/>The highly-classified Shiva Launcher is capable of destroying almost everything in its path in a 30 radius. No human will survive this. <n/><n/><c val="FF0000">Use with extreme caution</c><n/><n/>Equip: <c val="FFFFFF">3 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/><n/>"Eats Tac Nukes for breakfast" - Shiva Commercial
 Button/Tooltip/Shock=Swap to Shock Beam:<n/>50% chance to apply -30% movespeed on target for 5 seconds.
-Button/Tooltip/ShockwaveBarrage=Artillery strike that stuns targets in 5 radius area. Each Shell stuns and reduces 2 armor for 3 secs (not-stackable). Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
+Button/Tooltip/ShockwaveBarrage=Artillery strike that stuns and renders targets more vulnerable to damage in a 5 radius area.<n/>Level 1 - Each Shell stuns for 3 seconds, 15% damage vulnerability.<n/><n/>5 second barrage time. Stun duration on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
 Button/Tooltip/ShootGravityGun=Shoots Gravity Gun.
 Button/Tooltip/ShoottoMaim=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 1 - +10% damage, each Maim stack slows by 5%, maximum stack of 3
 Button/Tooltip/ShoottoMaimTurnOff=Cancel Shoot to Maim.
@@ -1958,7 +1958,7 @@ Button/Tooltip/Sigma=Burns all air units in 8 radius. Deals 50 damage per second
 Button/Tooltip/Slasher=A lethal viral strain of zombie. Origins unknown.
 Button/Tooltip/Slasher2=A lethal viral strain of zombie. Origins unknown.
 Button/Tooltip/Slither=A quick creature that is highly resilient to damage. Has a highly venomous bite.
-Button/Tooltip/SlowRoast=Gains +3 Armor for 10 seconds. During this time, units attacked have movement and attack speed reduced by 10% for 5 seconds. Stacks up to 3 times.
+Button/Tooltip/SlowRoast=Gains +5 Armor and 3 life regeneration for 30 seconds. During this time, units attacked have movement and attack speed reduced by 10% for 5 seconds. Stacks up to 3 times.
 Button/Tooltip/Smite=Deals 10% current HP damage & 18% movespeed reduction for 4 seconds in 3 radius of target area. Less effective on Bosses.
 Button/Tooltip/SniperRifle=<c val="FFFF00">M45 Marksman Rifle</c><n/>A semi-automatic and highly accurate rifle that is suitable for mid-range combat. Effective against light units.<n/><n/>Base Range: <c val="FFFFFF">17</c><n/>Splash: <c val="FFFFFF">None</c><n/>Reload: <c val="FFFFFF">4 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Adaptive: <c val="FFFFFF">0.2</c><n/>Flag: <c val="FFFFFF">Ranged, Physical</c><n/>Credits: <c val="FFFFFF">50</c><n/><n/>"The only thing I feel when I kill is the recoil from my rifle" - Unknown Sniper
 Button/Tooltip/SonicTrapLevel1=Creates an invulnerable beacon. When nearby enemies are detected, illuminates surrounding area (gives team vision). Non-Massive enemies in 5 radius are pushed back slightly and stunned for 0.3 seconds. Massive/Heroic units are slowed. 7 Charges on each trap.<n/><n/><c val="FFFF00">Limit of 5 active Sonic Traps.</c>
@@ -2029,7 +2029,7 @@ Button/Tooltip/VengeanceLevel1=15% chance for attackers to be stunned for 2 seco
 Button/Tooltip/VengeanceLevel2=30% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VengeanceLevel3=45% chance for attackers to be stunned for 2 seconds.
 Button/Tooltip/VengeanceOn=Toggle Vengeance.
-Button/Tooltip/VeteransFocus=Grants a biological unit +4 Sight Range and +15% attack damage for 30 seconds.
+Button/Tooltip/VeteransFocus=Grants a biological unit +4 Sight Range and +30% attack damage for 30 seconds.
 Button/Tooltip/Violet=Changes Marine color to <c val="8000FF">Violet</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/VolatileInjection=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 1 - 30 HP, +10% damage taken, 75 damage explosion.
 Button/Tooltip/WallofFire=Creates a wall of fire with 8 width that lasts for 40 seconds. Deals 45 damage/sec to any unit that passes through it.Reduces affected unit movespeed by 30%.<n/><n/>Units affected by Fire Vulnerability take more damage.<n/><n/>"If you can't kill it, blow it, you can't blow it, then burn it over, it's just that simple."
@@ -2139,11 +2139,18 @@ DocInfo/PatchNote058=- Flamethrower - Updated Helium Igniter Lv3's tooltip to cl
 DocInfo/PatchNote059=- Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
 DocInfo/PatchNote060=- Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
 DocInfo/PatchNote061=- Fixed a tooltip error regarding Foward Observer's Mobile Infantry: Each infantry DOES NOT reduce FO's energy regeneration.
-DocInfo/PatchNote062=- Fixed a bug causing Forward Observer to get Open Wound more easily. 
-DocInfo/PatchNote063=- Fixed idle Ghouls spawned from EC start.
-DocInfo/PatchNote064=- Fixed some errors with death messages, added some new death messages.
-DocInfo/PatchNote065=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
-DocInfo/PatchNote066=
+DocInfo/PatchNote062=- Forward Observer - Slow Roast now grants +5 armor and +3 life regeneration, duration/cooldown increased to 30, cost increased to 35.
+DocInfo/PatchNote063=- Forward Observer - Veteran's Focus damage bonus increased from 15% to 30%.
+DocInfo/PatchNote064=- Forward Observer - Shockwave Barrage now also makes targets 15%/30% more vulnerable to damage.
+DocInfo/PatchNote065=- Forward Observer - Airstrike now launches 36 missiles that lock onto enemies with less friendly fire potential. Damage reduced to 60/120.
+DocInfo/PatchNote066=- Forward Observer - Lunar Technologies (passive) Level 2 changed from double airstrike to reduced airstrike cooldown and energy cost. 
+DocInfo/PatchNote067=- Forward Observer - Level 3 Fire Mission is now considered explosive and may be amplified by fire vulnerability effects.
+DocInfo/PatchNote068=- Fixed a bug causing Forward Observer to get Open Wound more easily. 
+DocInfo/PatchNote069=- Fixed idle Ghouls spawned from EC start.
+DocInfo/PatchNote070=- Fixed some errors with death messages, added some new death messages.
+DocInfo/PatchNote071=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
+DocInfo/PatchNote072=- Nazara clones in Elite Mutation will no longer have mutations.
+DocInfo/PatchNote073=
 DocInfo/PatchNote690=[ReduxGelum]
 DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
 DocInfo/PatchNote692=- Enabled transient for faith ability.
@@ -2396,8 +2403,8 @@ Effect/Name/CIAmmoApplyDOT=CI Ammo Apply DOT
 Effect/Name/CIAmmoApplyDebuff=CI Ammo Apply Debuff
 Effect/Name/CIAmmoApplySet=CI Ammo Apply (Set)
 Effect/Name/CannonSwapDelay=Cannon Swap Delay
-Effect/Name/CastMissile=Cast Missile
-Effect/Name/CastMissile1=Cast Missile -1
+Effect/Name/CastMissile=Cast Missile 0
+Effect/Name/CastMissile1=Cast Missile 1
 Effect/Name/CastMissile2=Cast Missile 2
 Effect/Name/CastMissile3=Cast Missile 3
 Effect/Name/CastMissile4=Cast Missile 4
@@ -2539,8 +2546,8 @@ Effect/Name/CronusInitialAnticlockwise=Cronus Initial Anticlockwise
 Effect/Name/CronusNightmareBeamPersistent=Cronus Nightmare Beam Persistent
 Effect/Name/Crowbar=Crowbar
 Effect/Name/CrowbarSearchDamage=Crowbar Search Damage
-Effect/Name/Damage=Missle Damage
-Effect/Name/Damage2=Missle Damage (Ally)
+Effect/Name/Damage=Missile Damage
+Effect/Name/Damage2=Missile Damage (Ally)
 Effect/Name/Default=Default Skin
 Effect/Name/DefensivePlatingRemoveAilmentSetLevel1=Defensive Plating Remove Ailment (Set) Level 1
 Effect/Name/DefensivePlatingRemoveAilmentSetLevel2=Defensive Plating Remove Ailment (Set) Level 2
@@ -2589,7 +2596,6 @@ Effect/Name/DroneCreateUnit=Drone (Create Unit)
 Effect/Name/DropMagazine=Drop Magazine
 Effect/Name/DummyAttackSearch=Dummy Attack Search
 Effect/Name/DummySearch=Dummy Search
-Effect/Name/DummySearch2=Dummy Search 2
 Effect/Name/EnergyBatteryApplyBehavior=Energy Battery (Apply Behavior) Level 1
 Effect/Name/EnergyBatteryApplyBehavior2=Energy Battery (Apply Behavior) Level 2
 Effect/Name/EnergyBatteryLevel1Search=Energy Battery Level 1 (Search)
@@ -3172,6 +3178,9 @@ Effect/Name/MiningCampInfectingApplication=Mining Camp Infecting Application
 Effect/Name/MiningCampInfection=Mining Camp Infection
 Effect/Name/MiningCampInfectionSet=Mining Camp Infection Set
 Effect/Name/MiningCampInfectionSpawn=Mining Camp Infection Spawn
+Effect/Name/MissileApplyTargetLock=Missile Apply Target Lock
+Effect/Name/MissileSearchEnemy=Missile Search Enemy
+Effect/Name/MissileSet=Missile Set
 Effect/Name/MissleSwapDelay=Missle Swap Delay
 Effect/Name/MobileInfantryCreateInfantry=Mobile Infantry Create Infantry
 Effect/Name/MobileInfantryCreateUnit=Mobile Infantry Create Pod
@@ -3939,7 +3948,7 @@ Fast Five Level 3=Using superior reflexes and skill, the Pathfinder fires off fi
 Fast Five Level 4=Using superior reflexes and skill, the Pathfinder fires off five shots within a tenth of a second. Requires P-45 Gauss Pistol.<n/><n/>Level 4 -- Shots do 40% additional damage
 Field Probe Level 2=Build 2 Field Probes.
 Fire Mission Level 2=Artillery strike that deals 75 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
-Fire Mission Level 3=Artillery strike that deals 100 damage per shell (each shell has 2.5 radius) in a 5 radius area. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Fire Mission Level 3=Artillery strike that deals 100 damage per shell (each shell has 2.5 radius) in a 5 radius area. Explosive, can be amplified by fire vulnerability. 5 sec barrage time. Deals 50% more damage vs Massive.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 First=Test
 Flamer Equipped=Flamethrower Mk-3 Equipped
 Focused Fire Level 2=Increases attack damage by 25% and sight range by 3. Reduces attack speed by 18%. Targets are slowed by 5%. Lasts for 5 seconds.
@@ -3966,7 +3975,7 @@ Level 1 Repair=Repairs shields/mechanical at rate of 1 per sec.
 Level 2=Injects an unstable chemical compound into the target, provides healing but increases damage taken. When the target dies or when the effect expires after 10 seconds, it releases an explosion that deals damage in 4 radius (procs on enemy only). Deals 2x damage to Massive. Stacks up to 2 times. <n/>Level 2 - 60HP, +20% damage taken, 150 damage explosion.
 Level 2 - Cloak=Cloaks Recon. He will be invisible to most units. Able to detect invisible units up to 12 radius. 0.85 energy consumed per second.<n/><n/>"To be unseen to the world, to be a mere afterthought, to be a spectre itself"
 Level 2 Adrenaline=Each attack grants +4% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
-Level 2 Air Strike=3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing 150 damage. Stuns units for 3 seconds.<n/><n/>"Like a bolt out of the blue. "
+Level 2 Air Strike=3 Wraiths will fly by and launch up to 36 missiles locked onto random enemies in a 7 radius area. Each missile damages and applies Level 1 Shockwave stun to the primary target and splashes in a small area.<n/>Level 2 - Each missile deals 120 damage<n/><n/><c val="FFFF00">Has minor friendly fire potential, caution advised.</c>
 Level 2 BURN!=The Flamethrower channels a continuous stream of fire on a single target, dealing increasing damage over time. Damage persists for 3.5 seconds after channeling stops. Must have Flamethrower equipped.<n/>Level 2 - +20 DPS/tick, 0.3s/tick. <n/><n/>Flamethrower gains Frenzy for each tick BURN! is channeled. BURN! damage caps out at a maximum of 200 DPS.
 Level 2 Bite=Target loses100 HP, Bob gains 40 HP. Target is stunned for 3 seconds. You can..MUST...not bite allies.
 Level 2 Blackout=Toggled. All attacks Blind targets. Each attack costs 2 Energy. 5% chance to turn non-Hero target into uncontrollable allied units for 5 seconds.
@@ -4022,7 +4031,7 @@ Level 2 Satchel=Plants a timed explosive that detonates in 3 seconds, dealing 28
 Level 2 Sensor Tower=Reveals enemy units in 25 radius. Stationary and can only build 3 at a time.
 Level 2 Shadowstep=Allows Marksman to move very quickly (+300% movespeed) for 2 seconds. Allies in 2 radius are affected by Shadow Pulse (+75% movespeed for 3 seconds).
 Level 2 Shatter=Deals 300 damage to target unit. Deals 2x damage to bosses. If unit is stunned, gain 70 HP.
-Level 2 Shockwave Barrage=Artillery strike that stuns targets in 5 radius area. Each Shell stuns and reduces 4 armor for 6 secs (not-stackable). Effect on Bosses is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
+Level 2 Shockwave Barrage=Artillery strike that stuns and renders targets more vulnerable to damage in a 5 radius area.<n/>Level 2 - Each Shell stuns for 5 seconds, 30% damage vulnerability.<n/><n/>5 second barrage time. Stun duration on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c>
 Level 2 Shoot To Maim=The Pathfinder uses precise aim in his attacks to cripple enemy targets, but in doing so, he no longer aims to ricochet his shots.<n/><n/>Level 2 - +20% damage, each Maim stack slows by 7.5%, maximum stack of 3
 Level 2 Shrinker=The Chemical Expert shoots a special energy beam that reduces the size of target unit (including allies), reducing it's threat level, increasing it's speed by 60% and reduces it's attack damage by the same amount. Lasts for 20 seconds, does not work on enemy Heroic.
 Level 2 SmiteLevel 2 SmiteRangeLevel 2 SmiteLevel 2 Smite=Deals 20% current HP damage & 36% movespeed reduction for 4 seconds in 3 radius of target area. Less effective on Bosses.
@@ -6363,22 +6372,27 @@ UserData/DeathTexts/Black Ops_Death Message=has been assassinated by <c val="FF0
 UserData/DeathTexts/Brain Bug_Death Message=has become one with the <c val="FF0000">Brain Bug
 UserData/DeathTexts/Cronus_Death Message=was unable to escape the wrath of  <c val="FF0000">Cronus
 UserData/DeathTexts/Deimos_Death Message=has been gunned down by <c val="FF0000">Deimos
-UserData/DeathTexts/Demeter_Death Message=has been pierced by the tentacles of <c val="FF0000">Demeter
+UserData/DeathTexts/Demeter_Death Message=has been poked into Swiss cheese by <c val="FF0000">Demeter
 UserData/DeathTexts/Devourer_Death Message=has been devoured by a <c val="FF0000">Devourer
 UserData/DeathTexts/Eos_Death Message=has been decapitated by <c val="FF0000">Eos
 UserData/DeathTexts/Erebos_Death Message=has been decimated by <c val="FF0000">Erebos
 UserData/DeathTexts/Gargoyle_Death Message=has been torn into pieaces by a <c val="FF0000">Gargoyle
 UserData/DeathTexts/Ghoul_Death Message=has been taken down by a voracious <c val="FF0000">Ghoul</c>.
+UserData/DeathTexts/Gunship_Death Message=has been blown to smithereens.
 UserData/DeathTexts/Hades_Death Message=has been sent down to the seventh hell by <c val="FF0000">Hades
 UserData/DeathTexts/Hulk_Death Message=has been overwhelmed by a <c val="FF0000">Hulk
 UserData/DeathTexts/IVAX_Death Message=has been blown into another realm by <c val="FF0000">IVAX
 UserData/DeathTexts/Immortal_Death Message=has been mortally wounded by an <c val="FF0000">Immortal.
 UserData/DeathTexts/Infested Marine_Death Message=has been gunned down by an <c val="FF0000">Infested Marine</c>.
-UserData/DeathTexts/Nazara_Death Message=has been evaporated by <c val="FF0000">Nazara
+UserData/DeathTexts/Nazara_Death Message=has been vaporized by <c val="FF0000">Nazara
+UserData/DeathTexts/Orbital Laser_Death Message=has been burnt to a crisp by <c val="FF0000">Orbital Laser
+UserData/DeathTexts/Parasite No Charge_Death Message=has been licked to death by a <c val="FF0000">Parasite
+UserData/DeathTexts/Parasite_Death Message=has been licked to death by a <c val="FF0000">Parasite
 UserData/DeathTexts/Perses_Death Message=has met their end at <c val="FF0000">Perses
 UserData/DeathTexts/Seeker_Death Message=wasn't fast enough to outrun the <c val="FF0000">Seeker
 UserData/DeathTexts/Seth_Death Message=has been vaporized by <c val="FF0000">Seth</c>.
 UserData/DeathTexts/Slasher_Death Message=has been eviscerated by a <c val="FF0000">Slasher</c>.
+UserData/DeathTexts/Slither_Death Message=has been licked to death by a <c val="FF0000">Slither
 UserData/DeathTexts/Stalker_Death Message=has been sliced and diced by a <c val="FF0000">Stalker
 UserData/DeathTexts/Tartarus_Death Message=has been made a new one by <c val="FF0000">Tartarus
 UserData/DeathTexts/Titan_Death Message=has been slapped into a pile of flesh by a <c val="FF0000">Titan
@@ -6792,15 +6806,15 @@ UserData/TalentTrees/Flamethrower_Talent Tootips_008=<s val="AchievementFrameNam
 UserData/TalentTrees/Flamethrower_Talent Tootips_009=<s val="AchievementFrameName">Faith</s><n/>HP reduced by 50% and burns shields completely. Deals 777 damage to all units in 7 radius, and stuns them for 7 seconds. Heals allies for 35 HP. Flamethrower gains 10 armor for 10 seconds. Also removes 3 stacks of Open Wounds and Venom from Flamethrower.<n/><n/>"I find your lack of faith disturbing."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle">Fire Support</s>
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
-UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals 50% more damage vs massive units.<n/>Level 1 - 50 damage per shell.<n/>Level 2 - 75 damage per shell.<n/>Level 3 - 100 damage per shell.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FFFF00">Type "-dp 1/2/3" to control shell dispersion, default is "-dp 1" at 5 radius.</c><n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
-UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Lower the energy cost of Airstrike by 10, allowing up to 2 charges.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
-UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns targets in 5 radius area. <n/>Level 1 - Each Shell stuns and reduces 2 armor for 3 seconds (not-stackable).<n/>Level 2 - Each Shell stuns and reduces 4 armor for 5 seconds (not-stackable).<n/><n/>5 second barrage time. Effect on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch 18 bombs in a 7 radius area, each dealing damage. Stuns units for 3 seconds.<n/>Level 1 - Each bomb deals 75 damage<n/>Level 2 - Each bomb deals 150 damage<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals 50% more damage vs massive units.<n/>Level 1 - 50 damage per shell.<n/>Level 2 - 75 damage per shell.<n/>Level 3 - 100 damage per shell. Explosive, can be amplified by fire vulnerability.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FFFF00">Type "-dp 1/2/3" to control shell dispersion, default is "-dp 1" at 5 radius.</c><n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
+UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Reduces the cooldown and energy cost of Airstrike by 10.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
+UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns and renders targets more vulnerable to damage in a 5 radius area.<n/>Level 1 - Each Shell stuns for 3 seconds, 15% damage vulnerability.<n/>Level 2 - Each Shell stuns for 5 seconds, 30% damage vulnerability.<n/><n/>5 second barrage time. Stun duration on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch up to 36 missiles locked onto random enemies in a 7 radius area. Each missile damages and applies Level 1 Shockwave stun to the primary target and splashes in a small area.<n/>Level 1 - Each missile deals 60 damage<n/>Level 2 - Each missile deals 120 damage<n/><n/><c val="FFFF00">Has minor friendly fire potential, caution advised.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec and applies a 10% slow for 10 seconds, stacking up to 5 times. 5 sec barrage time. Deals 50% more damage vs Massive. </c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">Mobile Infantry</s><n/>Calls down an infantry unit. Defaults to Marine. Each level increases the limit of Mobile Infantry you can have on the field.<n/>Level 1 - 1 Marine limit<n/>Level 2 - 2 Marine limit<n/>Level 3 - 3 Marine limit<n/><n/>Mobile Infantry has a reserve of 9 units. Once all 9 Marines are expended, you can no longer call down Mobile Infantry.<n/><n/>"I don't know how many men it's gonna take to kill you, but I do know how many I'm gonna use." - Lt Black
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
-UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +3 armor for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which grants a biological unit +15% damage and +4 sight range.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +5 armor and 3 life regeneration for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which grants a biological unit +30% damage and +4 sight range for 30 seconds.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_009=<s val="AchievementFrameName">TX-179 Asgard</s><n/>Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. The Asgard has following weapon:<n/>- Gauss Cannon: Deals 80 damage across 1.5 radius. +200% damage vs. Armored. <n/>(Right-Click to Attack)<n/><n/>Type '-gbuddy X' to assign a living player as your Gunship buddy. You will follow this player when Gunship is active. When you use your own number, you will remain stationary when Gunship is active. Press M anytime to deactive the Gunship.<n/><n/><c val="FF0000">Warning: Can deal friendly fire to allies</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Marksman_Headers=<s val="HelpPanelListBoxItemTitle">Assassination</s>
 UserData/TalentTrees/Marksman_Headers_001=<s val="HelpPanelListBoxItemTitle">Subtlety</s>

@@ -939,6 +939,46 @@
                 <Field Id="Killer"/>
             </Unit>
         </Instances>
+        <Instances Id="Orbital Laser">
+            <Text Text="UserData/DeathTexts/Orbital Laser_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="IonCannon">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Parasite">
+            <Text Text="UserData/DeathTexts/Parasite_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Parasite">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Parasite No Charge">
+            <Text Text="UserData/DeathTexts/Parasite No Charge_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Parasite2">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Slither">
+            <Text Text="UserData/DeathTexts/Slither_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Slither">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Gunship">
+            <Text Text="UserData/DeathTexts/Gunship_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="Gunship">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
     </CUser>
     <CUser id="EndGameUI">
         <Fields Id="Item Titles" Type="Text" Count="8"/>

@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CTargetSortBehaviorCount id="PrioritizeTargetWithoutLock">
+        <WhichUnit Value="Target"/>
+        <Behavior value="MissileTargetLock"/>
+    </CTargetSortBehaviorCount>
     <CTargetSortDistance id="TSDistanceToTarget">
         <Descending value="1"/>
     </CTargetSortDistance>

@@ -2,7 +2,7 @@
 
 2021-2-10
 [ReduxGelum]
- - Added oubreak and elite mutation victory bonus xp and credits
+ - Added oubreak and elite mutation victory bonus xp and credits.
 
 [LeoTheCat]
 - Updated translations of most core gameplay elements (items, talents) for Traditional Chinese.
@@ -19,10 +19,17 @@
 - Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
 - Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
 - Fixed a tooltip error regarding Foward Observer's Mobile Infantry: Each infantry DOES NOT reduce FO's energy regeneration.
+- Forward Observer - Slow Roast now grants +5 armor and +3 life regeneration, duration/cooldown increased to 30, cost increased to 35.
+- Forward Observer - Veteran's Focus damage bonus increased from 15% to 30%.
+- Forward Observer - Shockwave Barrage now also makes targets 15%/30% more vulnerable to damage.
+- Forward Observer - Airstrike now launches 36 missiles that lock onto enemies with less friendly fire potential. Damage reduced to 60/120.
+- Forward Observer - Lunar Technologies (passive) Level 2 changed from double airstrike to reduced airstrike cooldown and energy cost. 
+- Forward Observer - Level 3 Fire Mission is now considered explosive and may be amplified by fire vulnerability effects.
 - Fixed a bug causing Forward Observer to get Open Wound more easily. 
 - Fixed idle Ghouls spawned from EC start.
 - Fixed some errors with death messages, added some new death messages.
 - Fixed Marksman Model having the wrong texture after swaping back from a skin change.
+- Nazara clones in Elite Mutation will no longer have mutations.
 
 2021-2-6
 [ReduxGelum]

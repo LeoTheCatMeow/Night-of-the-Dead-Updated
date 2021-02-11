@@ -15719,7 +15719,8 @@ void gf_LevelUpTalentForwardObserver (int lp_itemNo, unit lp_triggUnit, int lp_t
 
     if ((lp_itemNo == 4)) {
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
-            CatalogFieldValueSet(c_gameCatalogEffect, "Damage", "Amount", lp_triggPlayer, FixedToString(150.0, c_fixedPrecisionAny));
+            CatalogFieldValueSet(c_gameCatalogEffect, "Damage", "Amount", lp_triggPlayer, FixedToString(120.0, c_fixedPrecisionAny));
+            CatalogFieldValueSet(c_gameCatalogEffect, "Damage2", "Amount", lp_triggPlayer, FixedToString(20.0, c_fixedPrecisionAny));
         }
 
     }
@@ -17066,6 +17067,12 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(gt_STBoss2SpawnNazara, false, false);
     return true;
 }
 
@@ -22693,6 +22700,12 @@ bool gt_EliteMutationBoss_Func (bool testConds, bool runActions) {
     }
     if ((gv_storyline == 3) && (UnitGetType(EventUnit()) == "Tartarus") && (RandomInt(0, 2) != 1)) {
         return true;
+    }
+    if ((gv_storyline == 3) && (UnitGetType(EventUnit()) == "Nazara")) {
+        Wait(0.2, c_timeGame);
+        if ((EventUnit() != gv_nazara)) {
+            return true;
+        }
     }
     lv_eliteMutationType = RandomInt(1, gv_mutationTrend[6]);
     if ((lv_eliteMutationType <= gv_mutationTrend[1])) {

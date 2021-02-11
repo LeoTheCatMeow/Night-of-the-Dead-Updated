@@ -933,9 +933,9 @@
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="12"/>
+            <Vital index="Energy" value="35"/>
             <Charge Link="Abil/Medpack"/>
-            <Cooldown Link="Abil/SuppressiveFire" TimeUse="10"/>
+            <Cooldown Link="Abil/SuppressiveFire" TimeUse="30"/>
         </Cost>
         <RefundFraction Charge="0" Cooldown="0"/>
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
@@ -1553,7 +1553,7 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Cost>
-            <Vital index="Energy" value="24"/>
+            <Vital index="Energy" value="25"/>
             <Charge Link="Abil/Medpack"/>
             <Cooldown Link="Abil/SuppressiveFire" TimeUse="30"/>
         </Cost>

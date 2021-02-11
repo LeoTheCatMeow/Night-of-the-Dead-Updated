@@ -557,6 +557,11 @@
         </DamageResponse>
         <ExpireEffect value="MasterMarksmanApplyLockOnDelay"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="MissileTargetLock">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.5"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Monstrous">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="0.5" XPMultiplier="2">
@@ -888,6 +893,10 @@
             <ExcludeEffectArray value="SatchelLevel2AftershockDamage"/>
             <ExcludeEffectArray value="ArmageddonDamageAftershock"/>
             <ExcludeEffectArray value="CominginHotDamage"/>
+            <ExcludeEffectArray value="Damage"/>
+            <ExcludeEffectArray value="FireMissionLevel3DamageVar1"/>
+            <ExcludeEffectArray value="FireMissionLevel3DamageVar2"/>
+            <ExcludeEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -2895,10 +2904,11 @@
         <InfoIcon value="Assets\Textures\btn-ability-zerg-yagdra-firewave.dds"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <MaxStackCountPerCaster value="1"/>
-        <Duration value="10"/>
-        <Period value="10"/>
+        <Duration value="30"/>
+        <Period value="30"/>
         <Modification>
-            <LifeArmorBonus value="3"/>
+            <LifeArmorBonus value="5"/>
+            <VitalRegenArray index="Life" value="2"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="HarvesterofSorrowTarget">
@@ -3072,10 +3082,10 @@
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="30"/>
         <Modification SightBonus="4">
-            <DamageDealtFraction index="Spell" value="0.15"/>
-            <DamageDealtFraction index="Melee" value="0.15"/>
-            <DamageDealtFraction index="Ranged" value="0.15"/>
-            <DamageDealtFraction index="Splash" value="0.15"/>
+            <DamageDealtFraction index="Spell" value="0.3"/>
+            <DamageDealtFraction index="Melee" value="0.3"/>
+            <DamageDealtFraction index="Ranged" value="0.3"/>
+            <DamageDealtFraction index="Splash" value="0.3"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
         <InitialEffect value="BattlefieldIntelligenceDummy"/>
@@ -6794,7 +6804,10 @@
         <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
             <StateFlags index="Stun" value="1"/>
-            <LifeArmorBonus value="-2"/>
+            <DamageTakenFraction index="Spell" value="0.15"/>
+            <DamageTakenFraction index="Melee" value="0.15"/>
+            <DamageTakenFraction index="Ranged" value="0.15"/>
+            <DamageTakenFraction index="Splash" value="0.15"/>
             <AbilClassEnableArray index="CAbilInventory" value="1"/>
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
@@ -6806,10 +6819,13 @@
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.5"/>
-        <Modification SightMaximum="1">
+        <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
             <StateFlags index="Stun" value="1"/>
-            <LifeArmorBonus value="-2"/>
+            <DamageTakenFraction index="Spell" value="0.15"/>
+            <DamageTakenFraction index="Melee" value="0.15"/>
+            <DamageTakenFraction index="Ranged" value="0.15"/>
+            <DamageTakenFraction index="Splash" value="0.15"/>
             <AbilClassEnableArray index="CAbilInventory" value="1"/>
             <AbilClassEnableArray index="CAbilLearn" value="1"/>
             <AbilClassEnableArray index="CAbilResearch" value="1"/>
@@ -6825,10 +6841,10 @@
             <ModifyFlags index="DisableAbils" value="1"/>
             <ModifyFlags index="SuppressMoving" value="1"/>
             <StateFlags index="Stun" value="1"/>
-            <LifeArmorBonus value="-4"/>
-            <AbilClassEnableArray index="CAbilInventory" value="1"/>
-            <AbilClassEnableArray index="CAbilLearn" value="1"/>
-            <AbilClassEnableArray index="CAbilResearch" value="1"/>
+            <DamageTakenFraction index="Spell" value="0.3"/>
+            <DamageTakenFraction index="Melee" value="0.3"/>
+            <DamageTakenFraction index="Ranged" value="0.3"/>
+            <DamageTakenFraction index="Splash" value="0.3"/>
         </Modification>
         <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
@@ -6863,14 +6879,14 @@
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-ripwavemissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="2.5"/>
-        <Modification SightMaximum="1">
+        <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
             <ModifyFlags index="SuppressMoving" value="1"/>
             <StateFlags index="Stun" value="1"/>
-            <LifeArmorBonus value="-4"/>
-            <AbilClassEnableArray index="CAbilInventory" value="1"/>
-            <AbilClassEnableArray index="CAbilLearn" value="1"/>
-            <AbilClassEnableArray index="CAbilResearch" value="1"/>
+            <DamageTakenFraction index="Spell" value="0.3"/>
+            <DamageTakenFraction index="Melee" value="0.3"/>
+            <DamageTakenFraction index="Ranged" value="0.3"/>
+            <DamageTakenFraction index="Splash" value="0.3"/>
         </Modification>
         <BehaviorCategories index="User12" value="1"/>
     </CBehaviorBuff>
@@ -7584,6 +7600,10 @@
             <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
             <RequireEffectArray value="ArmageddonDamageAftershock"/>
             <RequireEffectArray value="CominginHotDamage"/>
+            <RequireEffectArray value="Damage"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -7895,6 +7915,10 @@
             <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
             <RequireEffectArray value="ArmageddonDamageAftershock"/>
             <RequireEffectArray value="CominginHotDamage"/>
+            <RequireEffectArray value="Damage"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
         <Alignment value="Negative"/>
@@ -7931,6 +7955,10 @@
             <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
             <RequireEffectArray value="ArmageddonDamageAftershock"/>
             <RequireEffectArray value="CominginHotDamage"/>
+            <RequireEffectArray value="Damage"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-fireroach-increasefiredamage.dds"/>
