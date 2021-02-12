@@ -211,6 +211,39 @@
         <EffectArray value="PsionicTempestEnergyDrain"/>
         <EffectArray value="PsionicTempestSearch"/>
     </CEffectSet>
+    <CEffectDamage id="SmiteDamageLevel1Boss">
+        <ValidatorArray value="UnitisMapBoss"/>
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SmiteDamageLevel1"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <VitalFractionCurrent index="Life" value="0.02"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="SmiteDamageLevel2Boss">
+        <ValidatorArray value="UnitisMapBoss"/>
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SmiteDamageLevel1"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <VitalFractionCurrent index="Life" value="0.04"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="SmiteDamageLevel3Boss">
+        <ValidatorArray value="UnitisMapBoss"/>
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SmiteDamageLevel1"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <VitalFractionCurrent index="Life" value="0.06"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="TheHorrorApplyMadness">
         <ValidatorArray index="0" value="TargetisNotEnemyBoss"/>
         <EditorCategories value=""/>
@@ -311,13 +344,12 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="TheHorrorDamageHeroic">
         <EditorCategories value=""/>
-        <AttributeFactor index="MapBoss" value="-0.5"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
         <Flags index="NoVitalAbsorbShields" value="1"/>
         <Amount value="1"/>
-        <VitalFractionMax index="Life" value="0.002"/>
+        <VitalFractionMax index="Life" value="0.001"/>
         <Death value="Disintegrate"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="TowerLimitApply">
@@ -10253,17 +10285,17 @@
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
     </CEffectDamage>
-    <CEffectDamage id="SmiteDamageLevel1Boss">
+    <CEffectDamage id="SmiteDamageLevel1Heroic">
         <ValidatorArray value="UnitisHeroic"/>
+        <ValidatorArray value="UnitisnotMapBoss"/>
         <EditorCategories value=""/>
         <Marker Link="Effect/SmiteDamageLevel1"/>
-        <VitalFractionCurrent index="Life" value="0.04"/>
-        <Death value="Fire"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <AttributeFactor index="MapBoss" value="-0.5"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <VitalFractionCurrent index="Life" value="0.04"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="SmiteDamageLevel2">
         <EditorCategories value=""/>
@@ -10276,17 +10308,17 @@
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
     </CEffectDamage>
-    <CEffectDamage id="SmiteDamageLevel2Boss">
+    <CEffectDamage id="SmiteDamageLevel2Heroic">
         <ValidatorArray value="UnitisHeroic"/>
+        <ValidatorArray value="UnitisnotMapBoss"/>
         <EditorCategories value=""/>
         <Marker Link="Effect/SmiteDamageLevel1"/>
-        <VitalFractionCurrent index="Life" value="0.08"/>
-        <Death value="Fire"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <AttributeFactor index="MapBoss" value="-0.5"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <VitalFractionCurrent index="Life" value="0.08"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="SmiteDamageLevel3">
         <EditorCategories value=""/>
@@ -10299,17 +10331,17 @@
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
     </CEffectDamage>
-    <CEffectDamage id="SmiteDamageLevel3Boss">
+    <CEffectDamage id="SmiteDamageLevel3Heroic">
         <ValidatorArray value="UnitisHeroic"/>
+        <ValidatorArray value="UnitisnotMapBoss"/>
         <EditorCategories value=""/>
         <Marker Link="Effect/SmiteDamageLevel1"/>
-        <VitalFractionCurrent index="Life" value="0.12"/>
-        <Death value="Fire"/>
-        <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <AttributeFactor index="MapBoss" value="-0.5"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
         <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <VitalFractionCurrent index="Life" value="0.12"/>
+        <Death value="Fire"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="SmiteSearchLevel1">
         <EditorCategories value=""/>
@@ -10335,6 +10367,7 @@
         <EditorCategories value=""/>
         <EffectArray value="SmiteApplyLevel1"/>
         <EffectArray value="SmiteDamageLevel1"/>
+        <EffectArray value="SmiteDamageLevel1Heroic"/>
         <EffectArray value="SmiteDamageLevel1Boss"/>
     </CEffectSet>
     <CEffectSet id="SmiteSetLevel2">
@@ -10342,6 +10375,7 @@
         <Marker Link="Effect/SmiteSetLevel1"/>
         <EffectArray value="SmiteApplyLevel2"/>
         <EffectArray value="SmiteDamageLevel2"/>
+        <EffectArray value="SmiteDamageLevel2Heroic"/>
         <EffectArray value="SmiteDamageLevel2Boss"/>
     </CEffectSet>
     <CEffectSet id="SmiteSetLevel3">
@@ -10349,6 +10383,7 @@
         <Marker Link="Effect/SmiteSetLevel1"/>
         <EffectArray value="SmiteApplyLevel3"/>
         <EffectArray value="SmiteDamageLevel3"/>
+        <EffectArray value="SmiteDamageLevel3Heroic"/>
         <EffectArray value="SmiteDamageLevel3Boss"/>
     </CEffectSet>
     <CEffectSet id="ForcePushSet">

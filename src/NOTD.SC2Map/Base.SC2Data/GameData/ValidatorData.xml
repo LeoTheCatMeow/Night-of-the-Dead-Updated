@@ -1052,6 +1052,12 @@
     <CValidatorUnitCompareBehaviorCount id="TargetnotLocked">
         <Behavior value="MissileTargetLock"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitFilters id="UnitisMapBoss">
+        <Filters value="MapBoss;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="UnitisnotMapBoss">
+        <Filters value="-;MapBoss"/>
+    </CValidatorUnitFilters>
     <CValidatorCombine id="ValidTempestTarget">
         <CombineArray value="TargetisAbsolutionAlly"/>
         <Negate value="1"/>
