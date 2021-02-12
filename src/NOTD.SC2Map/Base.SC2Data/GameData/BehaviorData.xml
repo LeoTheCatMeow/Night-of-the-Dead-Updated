@@ -827,6 +827,13 @@
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorAttribute id="ShieldArmor">
+        <Face value="ProtossShieldsLevel3"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-shieldslevel3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MinPoints value="-255"/>
+    </CBehaviorAttribute>
     <CBehaviorBuff id="SuppressRegularXPSharing">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>

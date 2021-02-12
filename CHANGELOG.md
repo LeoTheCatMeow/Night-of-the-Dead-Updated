@@ -14,7 +14,6 @@
 - Flamethrower - Frenzy attack speed bonus improved from 1%/2% a stack to 2%/4% a stack, matching the damage bonus.
 - Flamethrower - Inferno initial 50 damage over time removed, explosion delay reduced to 3s. now always grants frenzy stacks.
 - Flamethrower - Fixed a bug where Inferno is doing way more damage than the tooltip suggests (the damage is registering multiple times).
-- Flamethrower - Increased Inferno damage from 150 to 300 to compensate for the bugfix. (300 is still lower than the bugged damage).
 - Flamethrower - Updated Helium Igniter Lv3's tooltip to clarify the bonus damage over time effect.
 - Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
 - Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
@@ -30,6 +29,7 @@
 - Fixed some errors with death messages, added some new death messages.
 - Fixed Marksman Model having the wrong texture after swaping back from a skin change.
 - Nazara clones in Elite Mutation will no longer have mutations.
+- Added back the shield armor tooltip (now it is located to the right of the weapon damage UI).
 
 2021-2-6
 [ReduxGelum]

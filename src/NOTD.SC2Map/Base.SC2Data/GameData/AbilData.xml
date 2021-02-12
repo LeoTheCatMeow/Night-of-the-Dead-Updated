@@ -34,6 +34,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="Initial"/>
         <Effect value="Initial"/>
+        <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="45"/>
             <Charge Link="Abil/Ability"/>
@@ -42,9 +43,8 @@
         <Range value="30"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <CursorEffect value="DummySearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AirStrike"/>
         <LevelButtonTooltip value="Level 2 Air Strike"/>
-        <Flags index="RequireTargetVision" value="0"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AirStrike"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Adrenaline">
         <EditorCategories value="AbilityorEffectType:Units"/>

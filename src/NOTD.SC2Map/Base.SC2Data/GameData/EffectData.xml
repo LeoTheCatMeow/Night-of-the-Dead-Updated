@@ -936,12 +936,11 @@
         <AreaArray Radius="1.5" Fraction="0.6"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
-        <ArmorReduction value="0.85"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage">
         <EditorCategories value=""/>
-        <AttributeBonus index="Armored" value="120"/>
-        <Amount value="300"/>
+        <AttributeBonus index="Armored" value="60"/>
+        <Amount value="150"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage3">
@@ -971,9 +970,9 @@
         <EditorCategories value=""/>
         <Chance value="0.4"/>
         <SearchFilters value="Biological;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
-        <AreaArray Radius="6" Effect="InfernoApply"/>
+        <AreaArray Radius="5" Effect="InfernoApply"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
-        <MaxCount value="6"/>
+        <MaxCount value="4"/>
     </CEffectEnumArea>
     <CEffectSet id="InfernoDamageSet">
         <EditorCategories value=""/>
@@ -8304,7 +8303,6 @@
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
-        <ArmorReduction value="0.85"/>
     </CEffectDamage>
     <CEffectDamage id="Crowbar">
         <EditorCategories value="Race:Terran"/>
@@ -9367,6 +9365,7 @@
     <CEffectEnumArea id="DummySearch">
         <EditorCategories value=""/>
         <AreaArray Radius="10"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Dead,Invulnerable"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AirStrikeSearchStun">
         <EditorCategories value=""/>

@@ -6571,6 +6571,7 @@ bool auto_gf_BehaviorUpdate_TriggerFunc (bool testConds, bool runActions) {
         for ( ; autoC5617623_var <= autoC5617623_ae; autoC5617623_var += 1 ) {
             if ((gv_behaviorTrackerDialog[autoC5617623_var] != c_invalidDialogId)) {
                 lv_pickedMarine = autoC5617623_var;
+                UnitSetAttributePoint(gv_marineHero[autoC5617623_var], "ShieldArmor", true, UnitGetPropertyInt(gv_marineHero[autoC5617623_var], c_unitPropShieldArmor, c_unitPropCurrent));
                 autoE93C7F2A_var = 1;
                 for ( ; autoE93C7F2A_var <= autoE93C7F2A_ae; autoE93C7F2A_var += 1 ) {
                     if ((gv_marineBehaviors[lv_pickedMarine][autoE93C7F2A_var] != null)) {
@@ -14356,11 +14357,15 @@ bool auto_gf_StatsModDamage_TriggerFunc (bool testConds, bool runActions) {
     auto873916D6_var = 0;
     for ( ; auto873916D6_var <= auto873916D6_ae; auto873916D6_var += 1 ) {
         CatalogFieldValueModify(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "Amount", lp_modOwner, CatalogFieldValueGet(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "Amount", 10), c_upgradeOperationSet);
-        CatalogFieldValueModify(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "Amount", lp_modOwner, FixedToString(gf_CalculateModBonusDamage(lv_effectiveModLevel, lv_damage), 2), c_upgradeOperationMultiply);
+        lv_damage = StringToFixed(CatalogFieldValueGet(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "Amount", 10));
+        lv_damage *= gf_CalculateModBonusDamage(lv_effectiveModLevel, lv_damage);
+        CatalogFieldValueModify(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "Amount", lp_modOwner, FixedToString(lv_damage, 1), c_upgradeOperationSet);
         lv_iLocal = 0;
         for ( ; ( (autoADBAFCF5_ai >= 0 && lv_iLocal <= autoADBAFCF5_ae) || (autoADBAFCF5_ai < 0 && lv_iLocal >= autoADBAFCF5_ae) ) ; lv_iLocal += autoADBAFCF5_ai ) {
             CatalogFieldValueModify(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "AttributeBonus[" + IntToString(lv_iLocal) + "]", lp_modOwner, CatalogFieldValueGet(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "AttributeBonus[" + IntToString(lv_iLocal) + "]", 10), c_upgradeOperationSet);
-            CatalogFieldValueModify(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "AttributeBonus[" + IntToString(lv_iLocal) + "]", lp_modOwner, FixedToString(gf_CalculateModBonusDamage(lv_effectiveModLevel, lv_damage), 2), c_upgradeOperationMultiply);
+            lv_damage = StringToFixed(CatalogFieldValueGet(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "AttributeBonus[" + IntToString(lv_iLocal) + "]", 10));
+            lv_damage *= gf_CalculateModBonusDamage(lv_effectiveModLevel, lv_damage);
+            CatalogFieldValueModify(c_gameCatalogEffect, lv_dataDamageName[auto873916D6_var], "AttributeBonus[" + IntToString(lv_iLocal) + "]", lp_modOwner, FixedToString(lv_damage, 1), c_upgradeOperationSet);
         }
     }
     lv_damage = StringToFixed(CatalogFieldValueGet(c_gameCatalogEffect, "InfernalFlameThrower", "Amount", 10));
@@ -14387,10 +14392,10 @@ fixed gf_CalculateModBonusDamage (int lp_damageModLevel, fixed lp_damage) {
 
     // Automatic Variable Declarations
     // Variable Initialization
-    lv_damageBonusPercentage = 5.0;
+    lv_damageBonusPercentage = 0.05;
 
     // Implementation
-    lv_damageIncrement = (1.0 + ((lp_damageModLevel * lv_damageBonusPercentage) / 100.0));
+    lv_damageIncrement = (1.0 + (lp_damageModLevel * lv_damageBonusPercentage));
     return lv_damageIncrement;
 }
 
@@ -15375,7 +15380,7 @@ void gf_ArtilleryCamaraShake (point lp_impactPoint) {
 void gf_ArtilleryStart (int lp_artillaryType, color lp_pingColor, point lp_targetPoint, unit lp_forwardObserver, int lp_player, fixed lp_revealRadius) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetDialogItemText(gv_shellCounter[0][lp_player], IntToText(FixedToInt(UnitAbilityChargeInfo(lp_forwardObserver, AbilityCommand("FireMission", 0), c_unitAbilChargeCountLeft))), gv_shellDialogObservers[lp_player]);
+    libNtve_gf_SetDialogItemText(gv_shellCounter[0][lp_player], IntToText(FixedToInt(UnitAbilityChargeInfo(lp_forwardObserver, AbilityCommand("FireMission", 0), c_unitAbilChargeCountLeft))), PlayerGroupAll());
     gf_ForwardObserverLaunchSound(lp_player, lp_targetPoint, lp_artillaryType);
     gf_ForwardObserverShellFlightSound(lp_player, lp_targetPoint, lp_artillaryType);
     libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingWarning", lp_targetPoint, lp_pingColor, gv_barrageTime[lp_player], 270.0);
@@ -17067,12 +17072,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(gt_STBoss2SpawnNazara, false, false);
     return true;
 }
 
@@ -23222,7 +23221,7 @@ bool gt_AFKCheck_Func (bool testConds, bool runActions) {
         lv_index = autoF1F743B0_var;
         if ((libNtve_gf_UnitGetPropertyKills(gv_marineHero[lv_index], c_unitPropCurrent) < 12) && (UnitIsAlive(gv_marineHero[lv_index]) == true) && (gv_storyline != 3) && (gv_wave >= 2)) {
             gf_UpdateKarma(lv_index, -5);
-            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (PlayerName(autoF1F743B0_var) + StringExternal("Param/Value/4DD907D3")));
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaChat, (PlayerName(autoF1F743B0_var) + StringExternal("Param/Value/4DD907D3")));
         }
 
     }

@@ -737,6 +737,7 @@ Behavior/Name/ShadowedSilence=Shadowed Silence
 Behavior/Name/ShadowstepLevel1=Shadowstep (Level 1)
 Behavior/Name/ShadowstepLevel2=Shadowstep (Level 2)
 Behavior/Name/ShellMode=Shell Mode
+Behavior/Name/ShieldArmor=S.Armor
 Behavior/Name/ShivaChemicalWastelandSlow=Shiva Chemical Wasteland
 Behavior/Name/Shock=Shock
 Behavior/Name/Shocked=Shocked
@@ -1093,6 +1094,7 @@ Behavior/Tooltip/ShadowedSilence=Unit is suppressed for 2 seconds.
 Behavior/Tooltip/ShadowstepLevel1=Marksman moves at +150% speed.
 Behavior/Tooltip/ShadowstepLevel2=Marksman moves at +300% speed.
 Behavior/Tooltip/ShellMode=Unit channels all energy into vital support systems. Gains +10 Armor, +2 HP regeneration and +0.5 energy regeneration. Attack speed reduced to 20%. 
+Behavior/Tooltip/ShieldArmor=Shield Armor
 Behavior/Tooltip/ShivaChemicalWastelandSlow=Unit is slowed 25% and takes 25 damage/sec. Burn baby, burn!
 Behavior/Tooltip/Shock=Unit suffers -30% movespeed for 5 seconds.
 Behavior/Tooltip/Shocked=Unit is slowed by 60%.
@@ -2134,22 +2136,22 @@ DocInfo/PatchNote053=  (Note: This would make smite consistent with other % HP b
 DocInfo/PatchNote054=- Flamethrower - Frenzy attack speed bonus improved from 1%/2% a stack to 2%/4% a stack, matching the damage bonus.
 DocInfo/PatchNote055=- Flamethrower - Inferno initial 50 damage over time removed, explosion delay reduced to 3s. now always grants frenzy stacks.
 DocInfo/PatchNote056=- Flamethrower - Fixed a bug where Inferno is doing way more damage than the tooltip suggests (the damage is registering multiple times).
-DocInfo/PatchNote057=- Flamethrower - Increased Inferno damage from 150 to 300 to compensate for the bugfix. (300 is still lower than the bugged damage).
-DocInfo/PatchNote058=- Flamethrower - Updated Helium Igniter Lv3's tooltip to clarify the bonus damage over time effect.
-DocInfo/PatchNote059=- Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
-DocInfo/PatchNote060=- Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
-DocInfo/PatchNote061=- Fixed a tooltip error regarding Foward Observer's Mobile Infantry: Each infantry DOES NOT reduce FO's energy regeneration.
-DocInfo/PatchNote062=- Forward Observer - Slow Roast now grants +5 armor and +3 life regeneration, duration/cooldown increased to 30, cost increased to 35.
-DocInfo/PatchNote063=- Forward Observer - Veteran's Focus damage bonus increased from 15% to 30%.
-DocInfo/PatchNote064=- Forward Observer - Shockwave Barrage now also makes targets 15%/30% more vulnerable to damage.
-DocInfo/PatchNote065=- Forward Observer - Airstrike now launches 36 missiles that lock onto enemies with less friendly fire potential. Damage reduced to 60/120.
-DocInfo/PatchNote066=- Forward Observer - Lunar Technologies (passive) Level 2 changed from double airstrike to reduced airstrike cooldown and energy cost. 
-DocInfo/PatchNote067=- Forward Observer - Level 3 Fire Mission is now considered explosive and may be amplified by fire vulnerability effects.
-DocInfo/PatchNote068=- Fixed a bug causing Forward Observer to get Open Wound more easily. 
-DocInfo/PatchNote069=- Fixed idle Ghouls spawned from EC start.
-DocInfo/PatchNote070=- Fixed some errors with death messages, added some new death messages.
-DocInfo/PatchNote071=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
-DocInfo/PatchNote072=- Nazara clones in Elite Mutation will no longer have mutations.
+DocInfo/PatchNote057=- Flamethrower - Updated Helium Igniter Lv3's tooltip to clarify the bonus damage over time effect.
+DocInfo/PatchNote058=- Rifleman - Saline IV cooldown adjusted from 15/13/11 to 17/16/15.
+DocInfo/PatchNote059=- Forward Observer - Napalm Barrage now does grant XP normally. Slow reduced from 30% to 10% (can still stack up to 5 times).
+DocInfo/PatchNote060=- Fixed a tooltip error regarding Foward Observer's Mobile Infantry: Each infantry DOES NOT reduce FO's energy regeneration.
+DocInfo/PatchNote061=- Forward Observer - Slow Roast now grants +5 armor and +3 life regeneration, duration/cooldown increased to 30, cost increased to 35.
+DocInfo/PatchNote062=- Forward Observer - Veteran's Focus damage bonus increased from 15% to 30%.
+DocInfo/PatchNote063=- Forward Observer - Shockwave Barrage now also makes targets 15%/30% more vulnerable to damage.
+DocInfo/PatchNote064=- Forward Observer - Airstrike now launches 36 missiles that lock onto enemies with less friendly fire potential. Damage reduced to 60/120.
+DocInfo/PatchNote065=- Forward Observer - Lunar Technologies (passive) Level 2 changed from double airstrike to reduced airstrike cooldown and energy cost. 
+DocInfo/PatchNote066=- Forward Observer - Level 3 Fire Mission is now considered explosive and may be amplified by fire vulnerability effects.
+DocInfo/PatchNote067=- Fixed a bug causing Forward Observer to get Open Wound more easily. 
+DocInfo/PatchNote068=- Fixed idle Ghouls spawned from EC start.
+DocInfo/PatchNote069=- Fixed some errors with death messages, added some new death messages.
+DocInfo/PatchNote070=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
+DocInfo/PatchNote071=- Nazara clones in Elite Mutation will no longer have mutations.
+DocInfo/PatchNote072=- Added back the shield armor tooltip (now it is located to the right of the weapon damage UI).
 DocInfo/PatchNote073=
 DocInfo/PatchNote690=[ReduxGelum]
 DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
@@ -4620,7 +4622,7 @@ Param/Value/4D701111=+
 Param/Value/4DA6AE6B=The compliance field is de-stabilizing. One more Nexus and we'll shut them down.
 Param/Value/4DA754D2=Swap Location
 Param/Value/4DC830E5=<s val="GlueButtonSmall">Survival: 
-Param/Value/4DD907D3=has been AFK. 5 Karma deducted.
+Param/Value/4DD907D3= has been AFK. 5 Karma deducted.
 Param/Value/4DF03C45=(You are currently piloting a Thor...)
 Param/Value/4E6B4398=<s val="GlueButton"><c val="F4D72B">Deimos has destroyed all our Devastators!</c></s>
 Param/Value/4E725D1E=I know all about 'em. Put a bullet in them - they die!
@@ -6023,7 +6025,6 @@ Unit/Name/MedpackHighlightTooltip=Medkit
 Unit/Name/Menoetes=Menoetes
 Unit/Name/Minion=Minion
 Unit/Name/Minion2=Minion
-Unit/Name/MissleRevealDummy=MissleRevealDummy
 Unit/Name/MobileInfantryFlamethrower=Mobile Infantry
 Unit/Name/MobileInfantryMarksman=Mobile Infantry
 Unit/Name/MobileInfantryRifleman=Mobile Infantry
@@ -6771,7 +6772,7 @@ UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">T
 UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">Explosives</s>
 UserData/TalentTrees/Demolitions_Headers_001=<s val="HelpPanelListBoxItemTitle">Fortitude</s>
 UserData/TalentTrees/Demolitions_Talent Tootips=<s val="AchievementFrameName">Sentinel Mine</s><n/>Plants a sentinel mine that oversees a 5 radius area, firing mini missiles at incoming hostiles. Can fire once every 4 seconds, dealing damage in a small area. Holds 7 missiles and self-destructs when depleted.<n/>Level 1 - 60 damage.<n/>Level 2 - 90 damage.<n/>Level 3 - 120 damage.<n/><n/>Costs 2 explosive charges and may deploy up to 7 on the battlefield.<n/><n/><c val="FFFF00">Deals minor friendly fire damage, caution advised.</c>
-UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName">Explosive Aftershock<n/>(Passive)</s><n/>Demolitions' explosives - Sentinel Mine/Satchel/Armageddon have a 100%/40%/25% chance to trigger additional aftershocks within their targets, dealing an additional fraction of the original damage in a 1/3/4 radius area. Effective against enemies in clusters.<n/>Level 1 - 10% aftershock damage.<n/>Level 2 - 20% aftershock damage.<n/>Level 3 - 30% aftershock damage.
+UserData/TalentTrees/Demolitions_Talent Tootips_001=<s val="AchievementFrameName">Explosive Aftershock<n/>(Passive)</s><n/>Demolitions' explosives - Sentinel Mine/Satchel/Armageddon have a 100%/40%/25% chance respectively to trigger additional aftershocks within their targets, dealing an additional fraction of the original damage in a 1/3/4 radius area respectively. Effective against enemies in clusters.<n/>Level 1 - 10% aftershock damage.<n/>Level 2 - 20% aftershock damage.<n/>Level 3 - 30% aftershock damage.
 UserData/TalentTrees/Demolitions_Talent Tootips_002=<s val="AchievementFrameName">Satchel</s> <n/>Plants a timed explosive that detonates in 3 seconds, dealing damage in 4 radius. Deals 2x damage to massive units & structures, and reduced damage to Heroic.<n/>Level 1 - 140 damage<n/>Level 2 - 280 damage<n/><n/>Costs 1 explosive charge per use. <n/><c val="FF0000">Explosion deals 35% friendly fire damage.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_003=<s val="AchievementFrameName">Fire Vulnerability</s><n/>Targets in 5 radius takes more damage from explosives. Lasts 10 seconds.<n/>Level 1 - +50% damage<n/>Level 2 - +100% damage<n/><n/>"Come on baby, light my fire" - Jim Morrison<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Talent Tootips_004=<s val="AchievementFrameName">Armageddon</s><n/>Demolitions places an Armageddon charge. <n/><n/>When primed via remote detonation, takes 4 seconds to arm. During the 4 seconds to arming, the charge sends tremors through the ground which briefly stuns all ground units within 5 radius. When the charge explodes it deals 550 damage (2x damage vs. Massive). The blast blows to the epicenter and with such force it forces up magma which lasts for 20 seconds in 5 radius and deals 45 damage per second.<n/><n/>Costs 3 explosive charges and may deploy up to 3 on the battlefield. <n/><c val="FF0000">Explosion deals 20% friendly fire damage.</c><n/><n/>"This place ain't big enough for the two of us, that is why I am splitting it." - Sergeant "5 Fingers" Woodchipper<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
@@ -6807,7 +6808,7 @@ UserData/TalentTrees/Flamethrower_Talent Tootips_009=<s val="AchievementFrameNam
 UserData/TalentTrees/Forward Observer_Headers=<s val="HelpPanelListBoxItemTitle">Fire Support</s>
 UserData/TalentTrees/Forward Observer_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobile Infantry</s>
 UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameName">Fire Mission</s> <n/>Artillery strike in a 5 radius area. Deals 50% more damage vs massive units.<n/>Level 1 - 50 damage per shell.<n/>Level 2 - 75 damage per shell.<n/>Level 3 - 100 damage per shell. Explosive, can be amplified by fire vulnerability.<n/><n/>Each shell has 2.5 radius. 5 second barrage time.<n/><n/><c val="FFFF00">Type "-dp 1/2/3" to control shell dispersion, default is "-dp 1" at 5 radius.</c><n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c><n/><n/>"Unleash Hell on my mark. Mark!" - Captain Meri
-UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Reduces the cooldown and energy cost of Airstrike by 10.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and lower the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
+UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">Lunar Technologies (Passive)</s><n/>Improves the efficiency and reliability of fire support skills.<n/>Level 1 - Reduces barrage call down delay by 1.5 seconds.<n/>Level 2 - Reduces the cooldown and energy cost of Airstrike by 10.<n/>Level 3 - Reduces the cooldown of Shockwave and Napalm Barrage by 1 second and the energy cost of Fire Mission and Napalm Barrage by 3.<n/><n/>"No. They're not going to see this coming" - Cpt. Malcom
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">Shockwave Barrage</s><n/>Artillery strike that stuns and renders targets more vulnerable to damage in a 5 radius area.<n/>Level 1 - Each Shell stuns for 3 seconds, 15% damage vulnerability.<n/>Level 2 - Each Shell stuns for 5 seconds, 30% damage vulnerability.<n/><n/>5 second barrage time. Stun duration on Heroic is halved.<n/><n/><c val="FF0000">Warning: Also affects allies.</c><n/><n/>"Two syllables. Shell Shock. Almost sounds like the guns themselves." - SSgt Carlin<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">Air Strike</s><n/>3 Wraiths will fly by and launch up to 36 missiles locked onto random enemies in a 7 radius area. Each missile damages and applies Level 1 Shockwave stun to the primary target and splashes in a small area.<n/>Level 1 - Each missile deals 60 damage<n/>Level 2 - Each missile deals 120 damage<n/><n/><c val="FFFF00">Has minor friendly fire potential, caution advised.</c><n/><n/>"Like a bolt out of the blue."<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">Napalm Barrage</s><n/>An artillery strike that burns targets across 5 radius of area. Each shell deals 40 damage/sec and applies a 10% slow for 10 seconds, stacking up to 5 times. 5 sec barrage time. Deals 50% more damage vs Massive. </c><n/><n/><c val="FF0000">Warning: Deals full friendly fire damage.</c><n/><n/>"Give a man a fire and he will be warm for a night. Set a man on fire and he will be warm for the rest of his life." - Sgt. Pratchett<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
