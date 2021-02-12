@@ -1344,10 +1344,10 @@ void InitGlobals () {
     gv_traitsAwardPerClassPoint.lv_medic = "0 0 1 1 0 0 0";
     gv_traitsAwardPerClassPoint.lv_assaultFlamerTech = "1 0 0 0 0 0 1";
     gv_traitsAwardPerClassPoint.lv_recon = "0 0 1 0 1 0 0";
-    gv_traitsAwardPerClassPoint.lv_marksman = "0 2 0 0 2 1 0";
+    gv_traitsAwardPerClassPoint.lv_marksman = "0 1 0 0 1 1 0";
     gv_traitsAwardPerClassPoint.lv_demoPFChem = "1 0 1 0 0 1 0";
     gv_traitsAwardPerClassPoint.lv_engineerFO = "0 0 2 1 0 1 0";
-    gv_traitsAwardPerClassPoint.lv_commandoPO = "0 2 1 0 0 2 1";
+    gv_traitsAwardPerClassPoint.lv_commandoPO = "0 2 1 1 0 2 1";
     for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
         gv_playerTraitsString[init_i] = "0 0 0 0 0 0 0";
     }
