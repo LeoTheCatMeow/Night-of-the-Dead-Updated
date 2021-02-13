@@ -22255,7 +22255,7 @@ bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
         libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
     }
 
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare == true) && !(UnitHasBehavior2(EventUnit(), "LaserDesignatorLevel3"))) {
         auto0B0DA9E5_n = gv_spawnFactor;
         for (auto0B0DA9E5_i = 1; auto0B0DA9E5_i <= auto0B0DA9E5_n; auto0B0DA9E5_i += 1) {
             UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
