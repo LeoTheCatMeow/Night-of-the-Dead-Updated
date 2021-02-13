@@ -1532,6 +1532,7 @@ Button/Name/ThrowGravityGun=Throw (Gravity Gun)
 Button/Name/TimetoDie=Time to Die
 Button/Name/TrickShot=Trick Shot
 Button/Name/Turbo=Turbo
+Button/Name/TurboPlaceholder=Turbo (Placeholder)
 Button/Name/UA420AssaultRifle=<c val="F2D737">UA420 Assault Rifle</c>
 Button/Name/VRL772=VRL-772
 Button/Name/VengeanceLevel1=Vengeance (Level 1)
@@ -2023,6 +2024,7 @@ Button/Tooltip/Titan=An enormously tough zombie.
 Button/Tooltip/TitanBurrowed=An enormously tough zombie.
 Button/Tooltip/TruckSemiUnit=Property of Apollo Mining Industries
 Button/Tooltip/Turbo=35% increased movespeed for 5 seconds.
+Button/Tooltip/TurboPlaceholder=Unit is in Turbo.
 Button/Tooltip/TychusChaingun=The Assault is a heavy duty offensive and defensive unit.
 Button/Tooltip/UA420AssaultRifle=<c val="F2D737">UA420 Assault Rifle</c><n/>Slower firing than the UA General Purpose Rifle but packs a bigger punch. Also penetrates deeper into armor.<n/><n/>Base Range: <c val="FFFFFF">15</c><n/>Splash: <c val="FFFFFF">1.25</c><n/>Reload: <c val="FFFFFF">2.8 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">10</c><n/>Adaptive: <c val="FFFFFF">0.5</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/>Credits: <c val="FFFFFF">200</c><n/><n/>"This is my UA420 Assault Rifle, there are many like it but this one is mine." - Pvt. Benson
 Button/Tooltip/UGCDropship=Customized Dropship used for mission insertions.
@@ -2080,9 +2082,9 @@ DocInfo/HowToPlayBasic01=Find ammo, weapons and other supplies
 DocInfo/HowToPlayBasic02=Complete mission objectives
 DocInfo/HowToPlayWinning00=Work together as a team to survive the zombie onslaught
 DocInfo/Name=Night of the Dead (Updated)
-DocInfo/PatchNote001=- Pathfinder - Shoot To Maim energy cost per shot removed.
-DocInfo/PatchNote002=- Agrons that guard nydus worms in EC are now spawned right next to the worms, making them less likely to block off zombies.
-DocInfo/PatchNote003=- Players now have more time to rescue the civillians in EC before too many of them get infected.
+DocInfo/PatchNote001=- Added more coloring for Monstrous and Atrocious Elite Mutation so it is easier to tell them from regular zombies.
+DocInfo/PatchNote002=- Fixed Turbo auto-cast not working properly.
+DocInfo/PatchNote003=- Slightly increased Forward Obersever's Airstrike friendy fire radius (from 1.5 to 2) so that it is not completely idiot proof.
 DocInfo/PatchNote004=[ReduxGelum]
 DocInfo/PatchNote005= - Added critter wander leash behavior to agrons guarding EC worms to prevent enemies getting stuck.
 DocInfo/PatchNote006=
@@ -2155,30 +2157,8 @@ DocInfo/PatchNote072=- Fixed some errors with death messages, added some new dea
 DocInfo/PatchNote073=- Fixed Marksman Model having the wrong texture after swaping back from a skin change.
 DocInfo/PatchNote074=- Nazara clones in Elite Mutation will no longer have mutations.
 DocInfo/PatchNote075=- Added back the shield armor tooltip (now it is located to the right of the weapon damage UI).
-DocInfo/PatchNote690=[ReduxGelum]
-DocInfo/PatchNote691=- Changed faith effect model to differentiate from smite.
-DocInfo/PatchNote692=- Enabled transient for faith ability.
-DocInfo/PatchNote693=
-DocInfo/PatchNote694=[LeoTheCat]
-DocInfo/PatchNote695=- Reworked Demo's Spider Mine into Sentinel Mine (Widow Mine). Can fire missiles up to 7 times when deployed, max 7 on the battelfield.
-DocInfo/PatchNote696=- Renamed Make Mines to Make Explosives. It is now an innate ability that is learned when leveling up Sentinel Mine.
-DocInfo/PatchNote697=- Demo's explosive abilities consume charges from Make Explosives.
-DocInfo/PatchNote698=- Replaced Make Mines with a new passive talent - Explosive Aftershock, allowing Demo to specialize against large enemy clusters.
-DocInfo/PatchNote699=- When exceeding the number limit, Sentinel Mine/Armageddon will no longer all get destroyed. Instead the farthest one will be destroyed.
-DocInfo/PatchNote700=- Demo's Satchel now activates within 3 seconds instead of 5 seconds.
-DocInfo/PatchNote701=- Demo's Armageddon tremors now mini stuns instead of slows.
-DocInfo/PatchNote702=- Rifleman - Saline IV now also affects 1 other most wounded ally marine in 3 radius.
-DocInfo/PatchNote703=- Simplified Forward Observer's Fire Mission damage to 50/75/100 + 50% vs Massive.
-DocInfo/PatchNote704=- Simplified Forward Observer's Napalm Barrage damage to 40 + 50% Massive.
-DocInfo/PatchNote705=- Units stunned by Forward Observer's Shockwave Barrage will have the stun visual effect properly displayed.
-DocInfo/PatchNote706=- Forward Observer's Artillery tree now starts with 1700 shells in Nightmare mode but 1500 in easier modes.
-DocInfo/PatchNote707=- Forward Observer's rifleman minis have their stimpack replaced by Level 2 Saline IV, with a much longer cooldown and higher energy cost.
-DocInfo/PatchNote708=- Forward Observer's marksman minis can now cast Veteran's Focus on other bio units. Duration and energy cost increased.
-DocInfo/PatchNote709=- Lowered Strangler's base health from 125 to 120 (so that shatter can one shot them at 250% hp scaling).
-DocInfo/PatchNote710=- Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
-DocInfo/PatchNote711=- Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
-DocInfo/PatchNote712=- Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks.
-DocInfo/PatchNote713=- Pathfinder - No Quarter cooldown reduced from 45 to 30, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
+DocInfo/PatchNote076=[LeoTheCat]
+DocInfo/PatchNote077=- Increased the push priority on Guardian of the Beta so he can't be body blocked.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -6889,7 +6869,7 @@ UserData/TalentTrees/Rifleman_Talent Tootips_001=<s val="AchievementFrameName">F
 UserData/TalentTrees/Rifleman_Talent Tootips_002=<s val="AchievementFrameName">Weapons Proficiency<n/>(Passive)</s><n/>Reload time reduced<n/>Level 1 - 17.5% reduced reload time. Focus Fire duration increased by 1 second.<n/>Level 2 - 35% reduced reload time. Focus Fire duration increased by 2 seconds.<n/><n/>"It's how you use it that matters" - Dr. Ng<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_003=<s val="AchievementFrameName">XM-35 Grenade Launcher</s><n/>Deals damage in 3 radius. Deals +33% damage vs Light.  Gains larger AoE while Focus Fire is active.<n/>Level 1 - 75 damage.  Gains 3 damage per level of the Rifleman.<n/>Level 2 - 150 damage.  Gains 6 damage per level of the Rifleman.<n/><n/>"When the pin is pulled, Mr. Grenade is not our friend." - UGC Marine Corps<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_004=<s val="AchievementFrameName">Bloodlust</s><n/>The carnage the Rifleman unleashes triggers a martial trance, sending him into a state of heightened reflexes and combat fervor, granting him +50% attack speed and damage for 10 seconds. Reduces base armor to 0 during Bloodlust.<n/><n/>"Today is a good day for someone else to die." - Kogan the Butcher<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Rifleman_Talent Tootips_005=<s val="AchievementFrameName">Saline IV</s><n/>Heals Rifleman and 1 other most wounded ally marine in 3 radius. Each level reduces cooldown and energy cost slightly.<n/>Level 1 - 20 HP<n/>Level 2 - 40 HP. Removes 1 Stack of Venom.<n/>Level 3 - 60 HP. Removes 1 Stack of Venom and Open Wounds. Also heals Cripple when Repulse is active.<n/><n/>"I laugh in the face of danger" - Sgt. Zohar
+UserData/TalentTrees/Rifleman_Talent Tootips_005=<s val="AchievementFrameName">Saline IV</s><n/>Heals Rifleman and 1 other most wounded ally marine in 3 radius. Each level reduces cooldown and energy cost slightly.<n/>Level 1 - 20 HP<n/>Level 2 - 40 HP. Removes 1 Stack of Venom.<n/>Level 3 - 60 HP. Removes 1 Stack of Venom and Open Wounds. Also heals self Cripple when Repulse is active.<n/><n/>"I laugh in the face of danger" - Sgt. Zohar
 UserData/TalentTrees/Rifleman_Talent Tootips_006=<s val="AchievementFrameName">Crippling Fire<n/>(Passive)</s><n/>The Rifleman aims to slow the advance of enemy targets during Focus Fire, hitting their joints and ligaments. Produces additional effects when used with Precision Shot.<n/>Level 1 - Applies 15% movement speed slow and 5% attack speed slow for 1 second. Precision Shot stuns for 0.5 seconds.<n/>Level 2 - Applies 20% movement speed slow and 10% attack speed slow for 1 second. Precision Shot stuns for 1 seconds.<n/>Level 3 - Applies 25% movement speed slow and 15% attack speed slow to enemies for 1 second. Precision Shot stuns for 1.5 seconds.<n/><n/>"God is not on the side of battalions, but on the side that shoots best."
 UserData/TalentTrees/Rifleman_Talent Tootips_007=<s val="AchievementFrameName">Sonic Trap</s><n/>Creates a beacon with 7 charges. When enemies come within 3 radius, Sonic Trap activates and illuminates surrounding area, losing a charge. Normal enemies in range are pushed back and stunned and Massive and Heroic units are slowed 4 seconds. 5 second interval pulses. Limit of 5 active Sonic Traps.<n/>Level 1 - Normal enemies are pushed back 5 distance and stunned for 0.3 seconds. Massive units slowed 25%, Heroic slowed 12%.<n/>Level 2 - Normal enemies are pushed back 5 distance and stunned for 1.2 seconds. Massive units slowed 50%, Heroic slowed 24%. <n/><n/>"Stay away"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Rifleman_Talent Tootips_008=<s val="AchievementFrameName">Precision Shot</s><n/>Deals damage to target unit and slows movement for 5 seconds. Stuns target if Focus Fire is active. Deals +67% damage to massive units.<n/>Level 1 - 75 damage, -30% movespeed<n/>Level 2 - 150 damage, -60% movespeed<n/><n/>"10 Credits says I can hit that can from here." - Pfc. Randy<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>

@@ -113,7 +113,7 @@
             <cliffDoodad name="TerrainObjectBraxisAlphaZergHoleLarge1" pos="103.000000 221.000000 0.000000 " rot="0"/>
             <cliffDoodad name="TerrainObjectBraxisAlphaZergHoleLarge1" pos="75.000000 227.000000 0.000000 " rot="0"/>
         </cliffDoodadList>
-        <vertData quantizeBias="9.093184e+00" quantizeScale="5.021353e-04" standardHeight="8.000000e+00" name="t3HeightMap"/>
+        <vertData quantizeBias="9.093433e+00" quantizeScale="5.021353e-04" standardHeight="8.000000e+00" name="t3HeightMap"/>
         <masks name="t3TextureMasks"/>
         <textureSetList num="8">
             <textureSet i="0" name="MeinhoffEx1"/>
@@ -1217,7 +1217,7 @@
             <blockTextureSet i="1022" tileSet="0"/>
             <blockTextureSet i="1023" tileSet="0"/>
         </blockTextureSetList>
-        <cliffCellList num="16384" numOccupied="8158">
+        <cliffCellList num="16384" numOccupied="8160">
             <cc i="0" f="0" cid="1" cvar="1"/>
             <cc i="1" f="0" cid="1" cvar="1"/>
             <cc i="2" f="0" cid="1" cvar="2"/>
@@ -1227,11 +1227,15 @@
             <cc i="6" f="0" cid="1" cvar="0"/>
             <cc i="7" f="0" cid="1" cvar="2"/>
             <cc i="8" f="1" cid="1" cvar="1"/>
-            <cc i="15" f="1" cid="0" cvar="1"/>
-            <cc i="16" f="1" cid="0" cvar="2"/>
-            <cc i="28" f="1" cid="0" cvar="2"/>
-            <cc i="29" f="1" cid="0" cvar="3"/>
-            <cc i="30" f="1" cid="0" cvar="2"/>
+            <cc i="15" f="1" cid="0" cvar="2"/>
+            <cc i="16" f="1" cid="0" cvar="3"/>
+            <cc i="18" f="0" cid="1" cvar="0"/>
+            <cc i="22" f="0" cid="1" cvar="0"/>
+            <cc i="24" f="0" cid="1" cvar="0"/>
+            <cc i="26" f="0" cid="1" cvar="0"/>
+            <cc i="28" f="1" cid="0" cvar="1"/>
+            <cc i="29" f="1" cid="0" cvar="1"/>
+            <cc i="30" f="1" cid="0" cvar="1"/>
             <cc i="37" f="0" cid="3" cvar="0"/>
             <cc i="39" f="0" cid="3" cvar="0"/>
             <cc i="40" f="1" cid="0" cvar="1"/>
@@ -1261,8 +1265,9 @@
             <cc i="135" f="1" cid="1" cvar="3"/>
             <cc i="136" f="1" cid="1" cvar="3"/>
             <cc i="141" f="0" cid="3" cvar="0"/>
-            <cc i="144" f="1" cid="0" cvar="0"/>
-            <cc i="145" f="1" cid="0" cvar="2"/>
+            <cc i="144" f="1" cid="0" cvar="3"/>
+            <cc i="145" f="1" cid="0" cvar="0"/>
+            <cc i="147" f="0" cid="1" cvar="0"/>
             <cc i="155" f="1" cid="0" cvar="0"/>
             <cc i="156" f="1" cid="0" cvar="0"/>
             <cc i="167" f="1" cid="0" cvar="3"/>
@@ -1292,11 +1297,11 @@
             <cc i="263" f="0" cid="1" cvar="2"/>
             <cc i="264" f="0" cid="1" cvar="0"/>
             <cc i="270" f="0" cid="3" cvar="0"/>
-            <cc i="273" f="1" cid="0" cvar="3"/>
-            <cc i="277" f="1" cid="0" cvar="3"/>
+            <cc i="273" f="1" cid="0" cvar="1"/>
+            <cc i="277" f="1" cid="0" cvar="2"/>
             <cc i="278" f="2" cid="0" cvar="0"/>
             <cc i="279" f="2" cid="0" cvar="1"/>
-            <cc i="280" f="1" cid="0" cvar="0"/>
+            <cc i="280" f="1" cid="0" cvar="3"/>
             <cc i="281" f="1" cid="0" cvar="2"/>
             <cc i="282" f="2" cid="0" cvar="2"/>
             <cc i="283" f="2" cid="0" cvar="0"/>
@@ -1331,15 +1336,15 @@
             <cc i="389" f="0" cid="1" cvar="0"/>
             <cc i="390" f="0" cid="1" cvar="0"/>
             <cc i="391" f="0" cid="1" cvar="0"/>
-            <cc i="401" f="1" cid="0" cvar="3"/>
-            <cc i="402" f="1" cid="0" cvar="0"/>
-            <cc i="403" f="1" cid="0" cvar="2"/>
-            <cc i="404" f="1" cid="0" cvar="3"/>
-            <cc i="405" f="1" cid="0" cvar="2"/>
+            <cc i="401" f="1" cid="0" cvar="2"/>
+            <cc i="402" f="1" cid="0" cvar="2"/>
+            <cc i="403" f="1" cid="0" cvar="0"/>
+            <cc i="404" f="1" cid="0" cvar="0"/>
+            <cc i="405" f="1" cid="0" cvar="1"/>
             <cc i="406" f="2" cid="0" cvar="0"/>
             <cc i="407" f="2" cid="0" cvar="0"/>
-            <cc i="408" f="1" cid="0" cvar="2"/>
-            <cc i="409" f="1" cid="0" cvar="3"/>
+            <cc i="408" f="1" cid="0" cvar="1"/>
+            <cc i="409" f="1" cid="0" cvar="0"/>
             <cc i="410" f="2" cid="0" cvar="0"/>
             <cc i="411" f="2" cid="0" cvar="0"/>
             <cc i="420" f="0" cid="3" cvar="0"/>
@@ -1371,7 +1376,6 @@
             <cc i="514" f="0" cid="1" cvar="0"/>
             <cc i="515" f="0" cid="1" cvar="0"/>
             <cc i="531" f="0" cid="1" cvar="0"/>
-            <cc i="532" f="0" cid="1" cvar="0"/>
             <cc i="533" f="0" cid="1" cvar="0"/>
             <cc i="548" f="0" cid="3" cvar="0"/>
             <cc i="549" f="0" cid="3" cvar="0"/>
@@ -1401,7 +1405,6 @@
             <cc i="660" f="0" cid="1" cvar="1"/>
             <cc i="661" f="0" cid="1" cvar="0"/>
             <cc i="662" f="0" cid="1" cvar="0"/>
-            <cc i="663" f="0" cid="1" cvar="0"/>
             <cc i="676" f="0" cid="3" cvar="0"/>
             <cc i="677" f="0" cid="3" cvar="0"/>
             <cc i="678" f="1" cid="0" cvar="1"/>
@@ -1684,7 +1687,7 @@
             <cc i="1754" f="2" cid="0" cvar="0"/>
             <cc i="1755" f="2" cid="0" cvar="1"/>
             <cc i="1756" f="2" cid="0" cvar="0"/>
-            <cc i="1761" f="1" cid="3" cvar="3"/>
+            <cc i="1761" f="1" cid="3" cvar="1"/>
             <cc i="1762" f="1" cid="3" cvar="3"/>
             <cc i="1765" f="1" cid="0" cvar="3"/>
             <cc i="1767" f="1" cid="0" cvar="2"/>
@@ -1723,7 +1726,7 @@
             <cc i="1884" f="2" cid="0" cvar="0"/>
             <cc i="1887" f="0" cid="3" cvar="0"/>
             <cc i="1888" f="0" cid="3" cvar="0"/>
-            <cc i="1889" f="1" cid="3" cvar="1"/>
+            <cc i="1889" f="1" cid="3" cvar="3"/>
             <cc i="1890" f="0" cid="3" cvar="0"/>
             <cc i="1891" f="0" cid="3" cvar="0"/>
             <cc i="1892" f="1" cid="0" cvar="0"/>
@@ -1769,9 +1772,9 @@
             <cc i="2010" f="2" cid="0" cvar="0"/>
             <cc i="2011" f="2" cid="0" cvar="0"/>
             <cc i="2012" f="2" cid="0" cvar="0"/>
-            <cc i="2016" f="1" cid="3" cvar="1"/>
-            <cc i="2017" f="1" cid="3" cvar="2"/>
-            <cc i="2019" f="1" cid="0" cvar="1"/>
+            <cc i="2016" f="1" cid="0" cvar="1"/>
+            <cc i="2017" f="1" cid="3" cvar="1"/>
+            <cc i="2019" f="1" cid="0" cvar="3"/>
             <cc i="2020" f="1" cid="0" cvar="1"/>
             <cc i="2021" f="0" cid="3" cvar="0"/>
             <cc i="2022" f="0" cid="3" cvar="0"/>
@@ -1830,8 +1833,7 @@
             <cc i="2125" f="1" cid="1" cvar="2"/>
             <cc i="2126" f="1" cid="1" cvar="3"/>
             <cc i="2144" f="1" cid="0" cvar="3"/>
-            <cc i="2145" f="0" cid="3" cvar="0"/>
-            <cc i="2147" f="1" cid="0" cvar="0"/>
+            <cc i="2147" f="1" cid="0" cvar="1"/>
             <cc i="2153" f="1" cid="0" cvar="2"/>
             <cc i="2154" f="1" cid="0" cvar="0"/>
             <cc i="2155" f="1" cid="3" cvar="3"/>
@@ -1850,10 +1852,10 @@
             <cc i="2208" f="1" cid="0" cvar="1"/>
             <cc i="2209" f="1" cid="3" cvar="2"/>
             <cc i="2210" f="0" cid="3" cvar="0"/>
-            <cc i="2272" f="1" cid="0" cvar="1"/>
-            <cc i="2273" f="1" cid="0" cvar="3"/>
-            <cc i="2275" f="1" cid="0" cvar="2"/>
-            <cc i="2276" f="1" cid="0" cvar="3"/>
+            <cc i="2272" f="1" cid="0" cvar="0"/>
+            <cc i="2273" f="1" cid="0" cvar="2"/>
+            <cc i="2275" f="1" cid="0" cvar="0"/>
+            <cc i="2276" f="1" cid="0" cvar="2"/>
             <cc i="2277" f="0" cid="3" cvar="0"/>
             <cc i="2278" f="0" cid="3" cvar="0"/>
             <cc i="2281" f="1" cid="0" cvar="3"/>
@@ -1894,10 +1896,10 @@
             <cc i="2360" f="1" cid="0" cvar="1"/>
             <cc i="2361" f="1" cid="0" cvar="2"/>
             <cc i="2400" f="0" cid="3" cvar="0"/>
-            <cc i="2401" f="1" cid="3" cvar="2"/>
+            <cc i="2401" f="1" cid="0" cvar="2"/>
             <cc i="2402" f="0" cid="3" cvar="0"/>
             <cc i="2403" f="0" cid="3" cvar="0"/>
-            <cc i="2404" f="1" cid="3" cvar="2"/>
+            <cc i="2404" f="1" cid="3" cvar="3"/>
             <cc i="2405" f="0" cid="3" cvar="0"/>
             <cc i="2406" f="0" cid="3" cvar="0"/>
             <cc i="2407" f="0" cid="3" cvar="0"/>
@@ -1933,10 +1935,10 @@
             <cc i="2509" f="4" cid="0" cvar="0"/>
             <cc i="2510" f="4" cid="0" cvar="0"/>
             <cc i="2528" f="0" cid="3" cvar="0"/>
-            <cc i="2529" f="1" cid="3" cvar="1"/>
-            <cc i="2530" f="1" cid="3" cvar="0"/>
+            <cc i="2529" f="1" cid="0" cvar="1"/>
+            <cc i="2530" f="1" cid="0" cvar="1"/>
             <cc i="2531" f="0" cid="3" cvar="0"/>
-            <cc i="2532" f="1" cid="3" cvar="1"/>
+            <cc i="2532" f="1" cid="3" cvar="2"/>
             <cc i="2533" f="1" cid="3" cvar="0"/>
             <cc i="2534" f="1" cid="3" cvar="1"/>
             <cc i="2535" f="0" cid="3" cvar="0"/>
@@ -1977,7 +1979,7 @@
             <cc i="2649" f="0" cid="3" cvar="0"/>
             <cc i="2656" f="0" cid="3" cvar="0"/>
             <cc i="2657" f="0" cid="3" cvar="0"/>
-            <cc i="2658" f="1" cid="3" cvar="3"/>
+            <cc i="2658" f="1" cid="0" cvar="0"/>
             <cc i="2662" f="1" cid="0" cvar="3"/>
             <cc i="2665" f="1" cid="0" cvar="1"/>
             <cc i="2667" f="1" cid="0" cvar="1"/>
@@ -2022,7 +2024,7 @@
             <cc i="2784" f="0" cid="3" cvar="0"/>
             <cc i="2785" f="0" cid="3" cvar="0"/>
             <cc i="2786" f="1" cid="0" cvar="3"/>
-            <cc i="2787" f="1" cid="0" cvar="2"/>
+            <cc i="2787" f="1" cid="0" cvar="0"/>
             <cc i="2790" f="1" cid="0" cvar="0"/>
             <cc i="2791" f="1" cid="0" cvar="3"/>
             <cc i="2792" f="1" cid="0" cvar="2"/>
@@ -2135,7 +2137,7 @@
             <cc i="3035" f="1" cid="0" cvar="1"/>
             <cc i="3040" f="0" cid="3" cvar="0"/>
             <cc i="3041" f="0" cid="3" cvar="0"/>
-            <cc i="3043" f="1" cid="0" cvar="1"/>
+            <cc i="3043" f="1" cid="0" cvar="2"/>
             <cc i="3044" f="1" cid="0" cvar="1"/>
             <cc i="3045" f="2" cid="0" cvar="1"/>
             <cc i="3046" f="2" cid="0" cvar="0"/>
@@ -5999,9 +6001,9 @@
             <cc i="9828" f="0" cid="1" cvar="3"/>
             <cc i="9829" f="0" cid="1" cvar="0"/>
             <cc i="9830" f="0" cid="1" cvar="0"/>
-            <cc i="9831" f="1" cid="1" cvar="2"/>
+            <cc i="9831" f="1" cid="1" cvar="0"/>
             <cc i="9832" f="1" cid="1" cvar="0"/>
-            <cc i="9833" f="1" cid="1" cvar="3"/>
+            <cc i="9833" f="1" cid="1" cvar="2"/>
             <cc i="9851" f="1" cid="0" cvar="1"/>
             <cc i="9852" f="1" cid="0" cvar="2"/>
             <cc i="9868" f="0" cid="1" cvar="0"/>
@@ -6085,9 +6087,9 @@
             <cc i="9955" f="0" cid="3" cvar="2"/>
             <cc i="9956" f="0" cid="3" cvar="2"/>
             <cc i="9957" f="0" cid="1" cvar="2"/>
-            <cc i="9958" f="1" cid="1" cvar="3"/>
-            <cc i="9959" f="1" cid="1" cvar="0"/>
-            <cc i="9960" f="1" cid="1" cvar="3"/>
+            <cc i="9958" f="1" cid="1" cvar="0"/>
+            <cc i="9959" f="1" cid="2" cvar="0"/>
+            <cc i="9960" f="1" cid="1" cvar="0"/>
             <cc i="9980" f="1" cid="0" cvar="3"/>
             <cc i="9981" f="1" cid="0" cvar="1"/>
             <cc i="9997" f="0" cid="1" cvar="0"/>
@@ -6171,8 +6173,8 @@
             <cc i="10083" f="0" cid="3" cvar="2"/>
             <cc i="10084" f="0" cid="3" cvar="2"/>
             <cc i="10085" f="0" cid="1" cvar="2"/>
-            <cc i="10086" f="1" cid="1" cvar="2"/>
-            <cc i="10087" f="1" cid="1" cvar="3"/>
+            <cc i="10086" f="1" cid="1" cvar="3"/>
+            <cc i="10087" f="1" cid="2" cvar="3"/>
             <cc i="10089" f="0" cid="3" cvar="0"/>
             <cc i="10090" f="0" cid="3" cvar="0"/>
             <cc i="10109" f="1" cid="0" cvar="3"/>
@@ -6251,8 +6253,8 @@
             <cc i="10211" f="0" cid="3" cvar="1"/>
             <cc i="10212" f="0" cid="3" cvar="2"/>
             <cc i="10213" f="0" cid="1" cvar="3"/>
-            <cc i="10214" f="1" cid="1" cvar="3"/>
-            <cc i="10215" f="1" cid="1" cvar="0"/>
+            <cc i="10214" f="1" cid="1" cvar="0"/>
+            <cc i="10215" f="1" cid="1" cvar="1"/>
             <cc i="10217" f="0" cid="3" cvar="0"/>
             <cc i="10218" f="0" cid="3" cvar="0"/>
             <cc i="10268" f="1" cid="2" cvar="0"/>
@@ -6329,8 +6331,8 @@
             <cc i="10339" f="0" cid="1" cvar="0"/>
             <cc i="10340" f="0" cid="1" cvar="0"/>
             <cc i="10341" f="0" cid="1" cvar="3"/>
-            <cc i="10342" f="1" cid="1" cvar="2"/>
-            <cc i="10343" f="1" cid="1" cvar="1"/>
+            <cc i="10342" f="1" cid="1" cvar="1"/>
+            <cc i="10343" f="1" cid="1" cvar="0"/>
             <cc i="10345" f="0" cid="3" cvar="0"/>
             <cc i="10346" f="0" cid="3" cvar="0"/>
             <cc i="10394" f="0" cid="1" cvar="0"/>

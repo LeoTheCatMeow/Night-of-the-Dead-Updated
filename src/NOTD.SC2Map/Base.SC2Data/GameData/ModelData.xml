@@ -6,6 +6,94 @@
     <CModel id="AcidicDeathPuddle">
         <Model value="Assets\Effects\Zerg\MiasmaliskPoisonCloud\MiasmaliskPoisonCloud.m3"/>
     </CModel>
+    <CModel id="AgronAlternative" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Ultralisk_CollectionSkin_Webby\Ultralisk_CollectionSkin_Webby.m3"/>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.160000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.040000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.160000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,A"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.020000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,A"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.190000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="UltraliskHeadAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.350000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,01"/>
+            <Name value="UltraliskHeadAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.450000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh13"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <SelectionRadius value="1.176200"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh13"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh13"/>
+    </CModel>
     <CModel id="AiurOvermindIntestines">
         <Occlusion value="Hide"/>
     </CModel>

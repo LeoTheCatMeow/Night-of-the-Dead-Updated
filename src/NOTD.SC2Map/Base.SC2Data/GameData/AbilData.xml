@@ -5055,6 +5055,9 @@
         <CmdButtonArray index="On" DefaultButtonFace="Turbo">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="TurboPlaceholder">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
         <Cost>
             <Vital index="Energy" value="10"/>
             <Cooldown TimeUse="8"/>
@@ -5063,7 +5066,6 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
-        <AutoCastValidatorArray value="CasterNotTurbo"/>
     </CAbilBehavior>
     <CAbilEffectTarget id="VolatileInjection">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>

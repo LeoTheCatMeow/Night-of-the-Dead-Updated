@@ -391,7 +391,7 @@
         <On Terms="Behavior.Shadowed.On" Send="Create"/>
         <On Terms="Behavior.Shadowed.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Target="::Host" Send="SetOpacity 0.700000"/>
-        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor {0,0,0 3.000000}"/>
         <On Terms="Behavior.ShadowedBoss.On" Send="Create"/>
         <On Terms="Behavior.ShadowedBoss.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
@@ -561,6 +561,8 @@
         <On Terms="Behavior.AtrociousBoss.Off" Send="Destroy"/>
         <On Terms="Behavior.AtrociousHeroic.On" Send="Create"/>
         <On Terms="Behavior.AtrociousHeroic.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor {242,213,121 2.000000} {241,209,112 2.000000}"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor {255,255,162 2.000000}"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
@@ -1395,6 +1397,7 @@
         <On Terms="Behavior.Monstrous.Off" Send="Destroy"/>
         <On Terms="Behavior.MonstrousBoss.On" Send="Create"/>
         <On Terms="Behavior.MonstrousBoss.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 64,0,128 64,0,128"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>
         <Host Subject="_Unit"/>

@@ -1284,6 +1284,7 @@
             <LayoutButtons Face="ComplianceMatrix" Type="AbilCmd" AbilCmd="ComplianceMatrix,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="StaticShieldAura" Type="Passive" Row="2" Column="2"/>
             <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="0" Column="4"/>
+            <LayoutButtons Face="TurboPlaceholder" Type="AbilCmd" AbilCmd="Turbo,Off" Row="0" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.35"/>
@@ -3405,6 +3406,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="2"/>
             <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="0" Column="4"/>
+            <LayoutButtons Face="TurboPlaceholder" Type="AbilCmd" AbilCmd="Turbo,Off" Row="0" Column="4"/>
             <LayoutButtons Face="ShellMode" Type="AbilCmd" AbilCmd="ShellMode,On" Row="2" Column="2"/>
             <LayoutButtons Face="DeShell" Type="AbilCmd" AbilCmd="ShellMode,Off" Row="2" Column="2"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
@@ -8729,6 +8731,7 @@
                 <Column value="0"/>
             </LayoutButtons>
             <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="0" Column="4"/>
+            <LayoutButtons Face="TurboPlaceholder" Type="AbilCmd" AbilCmd="Turbo,Off" Row="0" Column="4"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Protect" Type="AbilCmd" AbilCmd="Protect,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
@@ -9182,7 +9185,10 @@
         <EnergyRegenRate value="1"/>
         <AbilArray Link="Turbo"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="Turbo" Row="2" Column="4"/>
+            <LayoutButtons index="5" AbilCmd="255,255"/>
+            <LayoutButtons index="6" AbilCmd="255,255"/>
+            <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="2" Column="4"/>
+            <LayoutButtons Face="TurboPlaceholder" Type="AbilCmd" AbilCmd="Turbo,Off" Row="2" Column="4"/>
         </CardLayouts>
         <ShieldsStart value="75"/>
         <ShieldsMax value="75"/>
@@ -9804,6 +9810,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="2"/>
             <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="0" Column="4"/>
+            <LayoutButtons Face="TurboPlaceholder" Type="AbilCmd" AbilCmd="Turbo,Off" Row="0" Column="4"/>
             <LayoutButtons Face="ShellMode" Type="AbilCmd" AbilCmd="ShellMode,On" Row="2" Column="2"/>
             <LayoutButtons Face="DeShell" Type="AbilCmd" AbilCmd="ShellMode,Off" Row="2" Column="2"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
@@ -9883,6 +9890,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="2"/>
             <LayoutButtons Face="Turbo" Type="AbilCmd" AbilCmd="Turbo,On" Row="0" Column="4"/>
+            <LayoutButtons Face="TurboPlaceholder" Type="AbilCmd" AbilCmd="Turbo,Off" Row="0" Column="4"/>
             <LayoutButtons Face="ShellMode" Type="AbilCmd" AbilCmd="ShellMode,On" Row="2" Column="2"/>
             <LayoutButtons Face="DeShell" Type="AbilCmd" AbilCmd="ShellMode,Off" Row="2" Column="2"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="2" Column="4"/>
@@ -11888,6 +11896,7 @@
         <TurningRate value="174.9023"/>
         <Mover value="Stalker"/>
         <WeaponArray index="0" Link="GuardianBlades"/>
+        <PushPriority value="15"/>
     </CUnit>
     <CUnit id="Zergling">
         <Food value="0"/>

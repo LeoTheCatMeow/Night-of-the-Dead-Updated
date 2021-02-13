@@ -145,13 +145,6 @@
         <ArmorReduction value="0"/>
         <Amount value="75"/>
     </CEffectDamage>
-    <CEffectDamage id="HailstormMissilePodsDamage">
-        <Kind value="Spell"/>
-        <Amount value="75"/>
-        <AreaArray index="0" Fraction="0.3"/>
-        <!--        <AreaArray Radius="0.5" Fraction="0.75"/> -->
-        <SearchFilters value="Ground;Missile,Item,Dead,Invulnerable"/>
-    </CEffectDamage>
     <CEffectLaunchMissile id="HailstormMissilePodsLaunchMissile">
         <ValidatorArray index="0" removed="1"/>
         <ImpactEffect value="ImpactSet"/>
@@ -933,7 +926,7 @@
         <ArmorReduction value="0.5"/>
         <Amount value="10"/>
         <Death value="Impact"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
@@ -2691,7 +2684,7 @@
         <LaunchLocation Value="CasterUnit"/>
         <Amount value="60"/>
         <Death value="Impact"/>
-        <AreaArray Radius="2.25" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="DeimosShockRifle">
