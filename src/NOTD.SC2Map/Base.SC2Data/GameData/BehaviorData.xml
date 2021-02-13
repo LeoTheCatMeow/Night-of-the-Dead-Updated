@@ -674,6 +674,16 @@
             <ModifyFlags index="Reveal" value="1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorVisionBonusLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification SightBonus="1.5" DetectBonus="1.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorVisionBonusLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification SightBonus="1.5" DetectBonus="1.5"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="PlayerUnit">
         <BehaviorFlags index="Permanent" value="1"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -8426,9 +8436,7 @@
         <InfoIcon value="Assets\Textures\sm_hml_heartbeat_diff.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="HeartbeatSensorLevel1"/>
-        <Period value="0.5"/>
         <Modification Radar="25" RadarFilters="-;Self,Structure,RawResource,HarvestableResource,Destructible,Item,UnderConstruction,Dead"/>
-        <PeriodicEffect value="MotionSensorSearchSetLevel1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MotionSensorLevel2">
         <Alignment value="Positive"/>
@@ -8436,8 +8444,6 @@
         <InfoIcon value="Assets\Textures\sm_hml_heartbeat_diff.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="HeartbeatSensorLevel2"/>
-        <Period value="0.5"/>
-        <PeriodicEffect value="MotionSensorSearchSetLevel2"/>
         <Modification Radar="40" RadarFilters="-;Self,Structure,RawResource,HarvestableResource,Destructible,Item,UnderConstruction,Dead"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MasterMarksman">
@@ -8473,7 +8479,6 @@
         <Modification SightMaximum="15">
             <ModifyFlags index="Detected" value="1"/>
             <StateFlags index="SuppressCloak" value="1"/>
-            <LifeArmorBonus value="-1"/>
         </Modification>
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLeve3"/>
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLevel2"/>
@@ -8488,11 +8493,24 @@
         <Modification SightMaximum="15">
             <ModifyFlags index="Detected" value="1"/>
             <StateFlags index="SuppressCloak" value="1"/>
-            <LifeArmorBonus value="-3"/>
         </Modification>
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLeve3"/>
         <RemoveValidatorArray value="TargetIsVisible"/>
         <BehaviorCategories index="User12" value="1"/>
+        <DamageResponse ModifyFraction="1.15">
+            <RequireEffectArray value="NukeDamage"/>
+            <RequireEffectArray value="FireMissionLevel1DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel1DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel1DamageVar3"/>
+            <RequireEffectArray value="FireMissionLevel2DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel2DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel2DamageVar3"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
+            <RequireEffectArray value="ScorchedEarthDamage"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="LaserDesignatorLevel3">
         <Alignment value="Negative"/>
@@ -8502,10 +8520,24 @@
         <Modification SightMaximum="15">
             <ModifyFlags index="Detected" value="1"/>
             <StateFlags index="SuppressCloak" value="1"/>
-            <LifeArmorBonus value="-5"/>
         </Modification>
         <RemoveValidatorArray value="TargetIsVisible"/>
         <BehaviorCategories index="User12" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <DamageResponse ModifyFraction="1.15">
+            <RequireEffectArray value="NukeDamage"/>
+            <RequireEffectArray value="FireMissionLevel1DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel1DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel1DamageVar3"/>
+            <RequireEffectArray value="FireMissionLevel2DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel2DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel2DamageVar3"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
+            <RequireEffectArray value="ScorchedEarthDamage"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="GunshipDesignator">
         <Alignment value="Negative"/>

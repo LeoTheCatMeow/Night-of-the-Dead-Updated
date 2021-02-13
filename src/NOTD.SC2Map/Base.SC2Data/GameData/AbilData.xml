@@ -571,8 +571,6 @@
         <ValidatedArray index="Channel" value="0"/>
         <ValidatedArray index="Finish" value="1"/>
         <AINotifyEffect value=""/>
-        <LevelButtonTooltip value="Level 2 Laser Designator"/>
-        <LevelButtonTooltip value="Level 3 Laser Designator"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="LaserDesignator"/>
     </CAbilEffectTarget>
     <CAbilLearn id="LearnCommando">
@@ -4801,7 +4799,7 @@
         <LevelButtonOnTooltip value="Level 2 Shadowstep"/>
         <LevelButtonOnTooltip value="Level 3 Shadowstep"/>
         <Cost>
-            <Vital index="Energy" value="20"/>
+            <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="7"/>
         </Cost>
         <Flags index="Toggle" value="1"/>

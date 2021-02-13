@@ -1,5 +1,18 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-2-13
+[LeoTheCat]
+- Increased the push priority on Guardian of the Beta so he can't be body blocked.
+- Added more coloring for Monstrous and Atrocious Elite Mutation so it is easier to tell them from regular zombies.
+- Fixed Turbo auto-cast not working properly.
+- Slightly increased Forward Obersever's Airstrike friendy fire radius (from 1.5 to 2) so that it is not completely idiot proof.
+- Marksman - Shadowstep energy cost reduced from 20 to 15.
+- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/27/36.
+- Recon - Laser Designator no longer grants -armor.
+- Recon - Laser Designator Level 2 now provides guidance for Fire Mission, Tactical Nuke, and Scorched Earth, +15% damage for them.
+- Recon - Laser Designator Level 3 now pinpoints the target's weak spot, preventing any after death revive or spawns.
+- Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
+
 2021-2-10
 [ThunderRazor]
 - Made some number adjustments to Class Traits (for early class unlock).

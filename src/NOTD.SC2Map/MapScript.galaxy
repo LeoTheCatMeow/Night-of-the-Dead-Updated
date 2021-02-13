@@ -15476,6 +15476,13 @@ void gf_LevelUpTalentMarksman (int lp_itemNo, unit lp_triggUnit, int lp_triggPla
 
 void gf_LevelUpTalentRecon (int lp_itemNo, unit lp_triggUnit, int lp_triggPlayer) {
     // Automatic Variable Declarations
+    unitgroup auto02F45F23_g;
+    int auto02F45F23_u;
+    unit auto02F45F23_var;
+    unitgroup auto23194835_g;
+    int auto23194835_u;
+    unit auto23194835_var;
+
     // Implementation
     if ((lp_itemNo == 1)) {
         TechTreeUpgradeAddLevel(lp_triggPlayer, "SurveillanceFlare", 1);
@@ -15483,6 +15490,29 @@ void gf_LevelUpTalentRecon (int lp_itemNo, unit lp_triggUnit, int lp_triggPlayer
 
     if ((lp_itemNo == 2)) {
         TechTreeAbilityAllow(lp_triggPlayer, AbilityCommand("MassDesignate", 0), true);
+    }
+
+    if ((lp_itemNo == 3)) {
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 1)) {
+            auto02F45F23_g = gv_marines;
+            auto02F45F23_u = UnitGroupCount(auto02F45F23_g, c_unitCountAll);
+            for (;; auto02F45F23_u -= 1) {
+                auto02F45F23_var = UnitGroupUnitFromEnd(auto02F45F23_g, auto02F45F23_u);
+                if (auto02F45F23_var == null) { break; }
+                UnitBehaviorAddPlayer(auto02F45F23_var, "MotionSensorVisionBonusLevel1", lp_triggPlayer, 1);
+            }
+        }
+
+        if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
+            auto23194835_g = gv_marines;
+            auto23194835_u = UnitGroupCount(auto23194835_g, c_unitCountAll);
+            for (;; auto23194835_u -= 1) {
+                auto23194835_var = UnitGroupUnitFromEnd(auto23194835_g, auto23194835_u);
+                if (auto23194835_var == null) { break; }
+                UnitBehaviorAddPlayer(auto23194835_var, "MotionSensorVisionBonusLevel2", lp_triggPlayer, 1);
+            }
+        }
+
     }
 
     if ((lp_itemNo == 7)) {
@@ -22079,6 +22109,10 @@ bool gt_ImmortalRevive_Func (bool testConds, bool runActions) {
         if (!((EventUnitDamageEffect() != "NapalmBarrageDamage"))) {
             return false;
         }
+
+        if (!(!(UnitHasBehavior2(EventUnit(), "LaserDesignatorLevel3")))) {
+            return false;
+        }
     }
 
     // Actions
@@ -22117,6 +22151,10 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
+        if (!(!(UnitHasBehavior2(lv_deadUnit, "LaserDesignatorLevel3")))) {
+            return false;
+        }
+
         if (!(((UnitGetType(lv_deadUnit) == "Devourer") || (UnitGetType(lv_deadUnit) == "ZombieLevel1") || (UnitGetType(lv_deadUnit) == "ZombieLevel2") || (UnitGetType(lv_deadUnit) == "Seeker") || (UnitGetType(lv_deadUnit) == "Hulk") || (UnitGetType(lv_deadUnit) == "InfestorTerran") || (UnitGetType(lv_deadUnit) == "Ultralisk") || (UnitGetType(lv_deadUnit) == "Infestor2") || (UnitGetType(lv_deadUnit) == "Titan")))) {
             return false;
         }
