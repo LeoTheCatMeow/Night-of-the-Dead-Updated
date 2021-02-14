@@ -12,6 +12,7 @@
 - Recon - Laser Designator reveal radius improved from 2 to 2/3/4, energy cost increased from 5 to 8.
 - Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
 - Assault - Concentrated Fire cooldown is made to match its buff duration to avoid any confusion.
+- Assault - Reduced Concentrated Fire energy cost from 12 to 10.
 
 2021-2-10
 [ThunderRazor]

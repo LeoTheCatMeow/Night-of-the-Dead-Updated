@@ -15646,7 +15646,7 @@
         <On Terms="Effect.LaserDesignatorRevealLevel2.Start" Send="Create"/>
         <On Terms="Effect.LaserDesignatorRevealLevel2.Stop" Send="Destroy"/>
         <On Terms="Effect.LaserDesignatorRevealLevel3.Start" Send="Create"/>
-        <On Terms="Effect.LaserDesignatorRevealLevel3.Stop" Send="Create"/>
+        <On Terms="Effect.LaserDesignatorRevealLevel3.Stop" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="LaserDesignator"/>
