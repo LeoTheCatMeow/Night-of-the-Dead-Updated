@@ -536,6 +536,29 @@
         <PeriodCount value="1"/>
         <PeriodicEffect value="FrenzyApplyBuffSet"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignateAttackSpeedBuffLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.5"/>
+        <Modification AttackSpeedMultiplier="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignateAttackSpeedBuffLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.5"/>
+        <Modification AttackSpeedMultiplier="1.1">
+            <BehaviorLinkDisableArray value="LaserDesignateAttackSpeedBuffLevel1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignateAttackSpeedBuffLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.5"/>
+        <Modification AttackSpeedMultiplier="1.15">
+            <BehaviorLinkDisableArray value="LaserDesignateAttackSpeedBuffLevel2"/>
+            <BehaviorLinkDisableArray value="LaserDesignateAttackSpeedBuffLevel1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="MasterMarksmanLockOn">
         <Alignment value="Negative"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -8484,6 +8507,13 @@
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLevel2"/>
         <RemoveValidatorArray value="TargetIsVisible"/>
         <BehaviorCategories index="User12" value="1"/>
+        <DamageResponse Handled="LaserDesignatorApplyAllyBuffLevel1">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+            <Kind index="NoProc" value="0"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="LaserDesignatorLevel2">
         <Alignment value="Negative"/>
@@ -8497,18 +8527,11 @@
         <RemoveValidatorArray value="TargethasnotLaserDesignatorLeve3"/>
         <RemoveValidatorArray value="TargetIsVisible"/>
         <BehaviorCategories index="User12" value="1"/>
-        <DamageResponse ModifyFraction="1.15">
-            <RequireEffectArray value="NukeDamage"/>
-            <RequireEffectArray value="FireMissionLevel1DamageVar1"/>
-            <RequireEffectArray value="FireMissionLevel1DamageVar2"/>
-            <RequireEffectArray value="FireMissionLevel1DamageVar3"/>
-            <RequireEffectArray value="FireMissionLevel2DamageVar1"/>
-            <RequireEffectArray value="FireMissionLevel2DamageVar2"/>
-            <RequireEffectArray value="FireMissionLevel2DamageVar3"/>
-            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
-            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
-            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
-            <RequireEffectArray value="ScorchedEarthDamage"/>
+        <DamageResponse Handled="LaserDesignatorApplyAllyBuffLevel2">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -8523,19 +8546,11 @@
         </Modification>
         <RemoveValidatorArray value="TargetIsVisible"/>
         <BehaviorCategories index="User12" value="1"/>
-        <BehaviorFlags index="Permanent" value="1"/>
-        <DamageResponse ModifyFraction="1.15">
-            <RequireEffectArray value="NukeDamage"/>
-            <RequireEffectArray value="FireMissionLevel1DamageVar1"/>
-            <RequireEffectArray value="FireMissionLevel1DamageVar2"/>
-            <RequireEffectArray value="FireMissionLevel1DamageVar3"/>
-            <RequireEffectArray value="FireMissionLevel2DamageVar1"/>
-            <RequireEffectArray value="FireMissionLevel2DamageVar2"/>
-            <RequireEffectArray value="FireMissionLevel2DamageVar3"/>
-            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
-            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
-            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
-            <RequireEffectArray value="ScorchedEarthDamage"/>
+        <DamageResponse Handled="LaserDesignatorApplyAllyBuffLevel3">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>

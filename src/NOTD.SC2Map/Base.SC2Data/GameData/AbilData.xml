@@ -559,7 +559,7 @@
         <Effect value="LaserDesignatorLevel2ApplyBehavior"/>
         <Effect value="LaserDesignatorLevel3ApplyBehavior"/>
         <Cost>
-            <Vital index="Energy" value="5"/>
+            <Vital index="Energy" value="8"/>
         </Cost>
         <TargetFilters value="Visible;Self,Player,Ally,Missile,Dead"/>
         <Range value="24"/>
@@ -572,6 +572,8 @@
         <ValidatedArray index="Finish" value="1"/>
         <AINotifyEffect value=""/>
         <CmdButtonArray index="Execute" DefaultButtonFace="LaserDesignator"/>
+        <LevelButtonTooltip value="Button/Tooltip/LaserDesignatorLevel2"/>
+        <LevelButtonTooltip value="Button/Tooltip/LaserDesignatorLevel3"/>
     </CAbilEffectTarget>
     <CAbilLearn id="LearnCommando">
         <Alignment value="Positive"/>

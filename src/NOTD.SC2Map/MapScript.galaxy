@@ -22109,10 +22109,6 @@ bool gt_ImmortalRevive_Func (bool testConds, bool runActions) {
         if (!((EventUnitDamageEffect() != "NapalmBarrageDamage"))) {
             return false;
         }
-
-        if (!(!(UnitHasBehavior2(EventUnit(), "LaserDesignatorLevel3")))) {
-            return false;
-        }
     }
 
     // Actions
@@ -22151,10 +22147,6 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(!(UnitHasBehavior2(lv_deadUnit, "LaserDesignatorLevel3")))) {
-            return false;
-        }
-
         if (!(((UnitGetType(lv_deadUnit) == "Devourer") || (UnitGetType(lv_deadUnit) == "ZombieLevel1") || (UnitGetType(lv_deadUnit) == "ZombieLevel2") || (UnitGetType(lv_deadUnit) == "Seeker") || (UnitGetType(lv_deadUnit) == "Hulk") || (UnitGetType(lv_deadUnit) == "InfestorTerran") || (UnitGetType(lv_deadUnit) == "Ultralisk") || (UnitGetType(lv_deadUnit) == "Infestor2") || (UnitGetType(lv_deadUnit) == "Titan")))) {
             return false;
         }
@@ -22255,7 +22247,7 @@ bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
         libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
     }
 
-    if ((gv_nightmare == true) && !(UnitHasBehavior2(EventUnit(), "LaserDesignatorLevel3"))) {
+    if ((gv_nightmare == true)) {
         auto0B0DA9E5_n = gv_spawnFactor;
         for (auto0B0DA9E5_i = 1; auto0B0DA9E5_i <= auto0B0DA9E5_n; auto0B0DA9E5_i += 1) {
             UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
@@ -44525,7 +44517,15 @@ bool gt_LaserDesignator_Func (bool testConds, bool runActions) {
         SoundPlay(SoundLink("TUIWarningPing", -1), PlayerGroupAll(), 100.0, 0.0);
     }
 
-    PlayerCreateEffectUnit(0, "LaserDesignatorReveal", lv_designatedUnit);
+    if ((EventUnitBehavior() == "LaserDesignatorLevel1")) {
+        PlayerCreateEffectUnit(0, "LaserDesignatorRevealLevel1", lv_designatedUnit);
+    }
+    else if ((EventUnitBehavior() == "LaserDesignatorLevel2")) {
+        PlayerCreateEffectUnit(0, "LaserDesignatorRevealLevel2", lv_designatedUnit);
+    }
+    else if ((EventUnitBehavior() == "LaserDesignatorLevel3")) {
+        PlayerCreateEffectUnit(0, "LaserDesignatorRevealLevel3", lv_designatedUnit);
+    }
     while (!((libNtve_gf_UnitIsHidden(lv_designatedUnit) || !(UnitIsAlive(lv_designatedUnit)) || (TimerGetRemaining(lv_lDDuration) <= 0.0)))) {
         Wait(0.5, c_timeGame);
     }

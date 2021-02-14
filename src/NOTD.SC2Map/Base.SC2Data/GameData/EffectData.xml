@@ -149,6 +149,40 @@
         <ValidatorArray index="0" removed="1"/>
         <ImpactEffect value="ImpactSet"/>
     </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="LaserDesignatorApplyAllyBuffLevel1">
+        <EditorCategories value=""/>
+        <Behavior value="LaserDesignateAttackSpeedBuffLevel1"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="LaserDesignatorApplyAllyBuffLevel2">
+        <EditorCategories value=""/>
+        <Behavior value="LaserDesignateAttackSpeedBuffLevel2"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="LaserDesignatorApplyAllyBuffLevel3">
+        <EditorCategories value=""/>
+        <Behavior value="LaserDesignateAttackSpeedBuffLevel3"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="LaserDesignatorRevealLevel2">
+        <ValidatorArray value="LaserDesignatorSet"/>
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="60"/>
+        <PeriodicValidator value="LaserDesignatorSet"/>
+        <PeriodicPeriodArray value="1"/>
+        <RevealRadius value="3"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="LoS" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="LaserDesignatorRevealLevel3">
+        <ValidatorArray value="LaserDesignatorSet"/>
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="60"/>
+        <PeriodicValidator value="LaserDesignatorSet"/>
+        <PeriodicPeriodArray value="1"/>
+        <RevealRadius value="4"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="LoS" value="1"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="MissileApplyTargetLock">
         <ValidatorArray index="0" value="TargetnotLocked"/>
         <EditorCategories value=""/>
@@ -3599,16 +3633,16 @@
         <EffectArray value="IVAXPlasmaCannons"/>
         <EffectArray value="PlasmaCannonKnockbackPersistant"/>
     </CEffectSet>
-    <CEffectCreatePersistent id="LaserDesignatorReveal">
+    <CEffectCreatePersistent id="LaserDesignatorRevealLevel1">
+        <ValidatorArray value="LaserDesignatorSet"/>
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
         <PeriodCount value="60"/>
+        <PeriodicValidator value="LaserDesignatorSet"/>
         <PeriodicPeriodArray value="1"/>
         <RevealRadius value="2"/>
         <RevealFlags index="Unfog" value="1"/>
         <RevealFlags index="LoS" value="1"/>
-        <PeriodicValidator value="LaserDesignatorSet"/>
-        <ValidatorArray value="LaserDesignatorSet"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="LifeDamage">
         <EditorCategories value=""/>

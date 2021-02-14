@@ -979,6 +979,14 @@
                 <Field Id="Killer"/>
             </Unit>
         </Instances>
+        <Instances Id="GOTB">
+            <Text Text="UserData/DeathTexts/GOTB_Death Message">
+                <Field Id="Death Message"/>
+            </Text>
+            <Unit Unit="GuardianoftheBeta">
+                <Field Id="Killer"/>
+            </Unit>
+        </Instances>
     </CUser>
     <CUser id="EndGameUI">
         <Fields Id="Item Titles" Type="Text" Count="8"/>

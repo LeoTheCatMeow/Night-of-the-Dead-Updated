@@ -12665,8 +12665,9 @@
     <CActorModel id="Helium3IgniterDamage" parent="ModelAnimationStyleContinuous">
         <Inherits index="Visibility" value="1"/>
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
-        <On Terms="Effect.Helium3IgniterBurnDamage.Start; At Target" Send="Create"/>
         <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.Helium3Igniter.On" Send="Create"/>
+        <On Terms="Behavior.Helium3Igniter.Off" Send="Destroy"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="WallofFireDamage"/>
@@ -15640,8 +15641,8 @@
     <CActorModel id="LaserDesignatorTarget" parent="ModelAnimationStyleContinuous">
         <Inherits index="Visibility" value="1"/>
         <FogVisibility value="Visible"/>
-        <On Terms="Effect.LaserDesignatorReveal.Start" Send="Create"/>
-        <On Terms="Effect.LaserDesignatorReveal.Stop" Send="Destroy"/>
+        <On Terms="Effect.LaserDesignatorRevealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.LaserDesignatorRevealLevel1.Stop" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Model value="LaserDesignator"/>

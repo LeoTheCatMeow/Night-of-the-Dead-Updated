@@ -1797,7 +1797,9 @@ Button/Tooltip/Kittens=Since the Great Rat Plague of 2028, kittens have been a m
 Button/Tooltip/L3GrenadeLauncher=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets. <n/>If no contact is made, the grenade will plant itself in the ground for a while.<n/>Consumes 5 rounds per shot.<n/><c val="FF0000">Deals 35% friendly fire damage.</c><n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Adaptive: <c val="FFFFFF">0</c><n/>Flag: <c val="FFFFFF">Ranged, Fire, Splash</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
 Button/Tooltip/L3GrenadeLauncher2=<c val="972FFF">L3 Grenade Launcher</c><n/>Launches high explosive grenades that detonate on contact with targets.<n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">2.75</c><n/>Reload: <c val="FFFFFF">5 seconds</c><n/>Equip:<c val="FFFFFF"> 2.2 seconds</c><n/>Weight: <c val="FFFFFF">12</c><n/>Credits: <c val="FFFFFF">325</c><n/><n/>"Demolition is my Mission!" - Nick Nitro
 Button/Tooltip/LargeZombieCocoon=Genetically modified cocoon.
-Button/Tooltip/LaserDesignator=Designates the target and reveals it to all Marines. Lasts for 60 sec.
+Button/Tooltip/LaserDesignator=Designates the target and reveals it to all Marines. Ranged weapons gain 5% attack speed against the designated target. 2 reveal radius. Lasts for 60 sec.
+Button/Tooltip/LaserDesignatorLevel2=Designates the target and reveals it to all Marines. Ranged weapons gain 10% attack speed against the designated target. 3 reveal radius. Lasts for 60 sec.
+Button/Tooltip/LaserDesignatorLevel3=Designates the target and reveals it to all Marines. Ranged weapons gain 15% attack speed against the designated target. 4 reveal radius. Lasts for 60 sec.
 Button/Tooltip/LaserDrillDrone=Basic worker unit. Can gather resources, build Terran structures, and repair.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/LaserRifle=<c val="F2D737">AER13 Laser Rifle</c><n/>The latest advances in combat-certified laser technology are found in this weapon. Deals searing damage to units with thick armor.<n/>Each shot deals bonus damage equal to the target's base armor.<n/><n/>Base Range: <c val="FFFFFF">12</c><n/>Splash: <c val="FFFFFF">0.1</c><n/>Reload: <c val="FFFFFF">3.3 seconds</c><n/>Equip: <c val="FFFFFF">2.2 seconds</c><n/>Weight: <c val="FFFFFF">20</c><n/>Adaptive: <c val="FFFFFF">0</c><n/>Flag: <c val="FFFFFF">Ranged, Fire, Splash</c><n/><n/>"Patent pending" - BAE Systems
 Button/Tooltip/Lelantos=Flying heavy-assault unit. Shoots Broodlings at its target. A Broodling is a small creature that can attack ground units.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -2161,10 +2163,9 @@ DocInfo/PatchNote076=[LeoTheCat]
 DocInfo/PatchNote077=- Increased the push priority on Guardian of the Beta so he can't be body blocked.
 DocInfo/PatchNote078=- Marksman - Shadowstep energy cost reduced from 20 to 15.
 DocInfo/PatchNote079=- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/27/36.
-DocInfo/PatchNote080=- Recon - Laser Designator no longer grants -armor.
-DocInfo/PatchNote081=- Recon - Laser Designator Level 2 now provides guidance for Fire Mission, Tactical Nuke, and Scorched Earth, +15% damage for them.
-DocInfo/PatchNote082=- Recon - Laser Designator Level 3 now pinpoints the target's weak spot, preventing any after death revive or spawns.
-DocInfo/PatchNote083=- Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
+DocInfo/PatchNote080=- Recon - Laser Designator no longer grants -armor, it instead grants 5%/10%/15% increased ranged attack speed to the designated target.
+DocInfo/PatchNote081=- Recon - Laser Designator reveal radius improved from 2 to 2/3/4, energy cost increased from 5 to 8.
+DocInfo/PatchNote082=- Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -3036,10 +3037,15 @@ Effect/Name/L3GrenadeExplosion=L3 Grenade Explosion
 Effect/Name/L3GrenadeExplosionAlly=L3 Grenade Explosion Ally
 Effect/Name/L3GrenadeExplosionDummy=L3 Grenade Explosion Dummy
 Effect/Name/L3GrenadeExplosionSet=L3 Grenade Explosion Set
+Effect/Name/LaserDesignatorApplyAllyBuffLevel1=Laser Designator Apply Ally Buff (Level 1)
+Effect/Name/LaserDesignatorApplyAllyBuffLevel2=Laser Designator Apply Ally Buff (Level 2)
+Effect/Name/LaserDesignatorApplyAllyBuffLevel3=Laser Designator Apply Ally Buff (Level 3)
 Effect/Name/LaserDesignatorLevel1ApplyBehavior=Laser Designator Level 1 (Apply Behavior)
 Effect/Name/LaserDesignatorLevel2ApplyBehavior=Laser Designator Level 2 (Apply Behavior)
 Effect/Name/LaserDesignatorLevel3ApplyBehavior=Laser Designator Level 3 (Apply Behavior)
-Effect/Name/LaserDesignatorReveal=Laser Designator Reveal
+Effect/Name/LaserDesignatorRevealLevel1=Laser Designator Reveal (Level 1)
+Effect/Name/LaserDesignatorRevealLevel2=Laser Designator Reveal (Level 2)
+Effect/Name/LaserDesignatorRevealLevel3=Laser Designator Reveal (Level 3)
 Effect/Name/LaserDroneDamage=Laser Drone Damage
 Effect/Name/LaserImmobilize=Laser Immobilize
 Effect/Name/LaserImmobilizeRemove=Laser Immobilize Remove
@@ -6368,6 +6374,7 @@ UserData/DeathTexts/Demeter_Death Message=has been poked into Swiss cheese by <c
 UserData/DeathTexts/Devourer_Death Message=has been devoured by a <c val="FF0000">Devourer
 UserData/DeathTexts/Eos_Death Message=has been decapitated by <c val="FF0000">Eos
 UserData/DeathTexts/Erebos_Death Message=has been decimated by <c val="FF0000">Erebos
+UserData/DeathTexts/GOTB_Death Message=has met the judgement of <c val="FF0000">Guardian of the Beta
 UserData/DeathTexts/Gargoyle_Death Message=has been torn into pieaces by a <c val="FF0000">Gargoyle
 UserData/DeathTexts/Ghoul_Death Message=has been taken down by a voracious <c val="FF0000">Ghoul</c>.
 UserData/DeathTexts/Gunship_Death Message=has been blown to smithereens.
@@ -6859,7 +6866,7 @@ UserData/TalentTrees/Psi Ops_Talent Tootips_009=<s val="AchievementFrameName">In
 UserData/TalentTrees/Recon_Headers=<s val="HelpPanelListBoxItemTitle">Surveillance</s>
 UserData/TalentTrees/Recon_Headers_001=<s val="HelpPanelListBoxItemTitle">Mobility</s>
 UserData/TalentTrees/Recon_Talent Tootips=<s val="AchievementFrameName">Surveillance Flare</s><n/>The Recon tailors his flares to be more suited for surveillance of an area.<n/>Level 1 - Increases Flare duration by 2 and reveal radius by 3<n/>Level 2 - Increases Flare duration by 4 and reveal radius by 6<n/>Level 3 - Increases Flare duration by 6 and reveal radius by 9
-UserData/TalentTrees/Recon_Talent Tootips_001=<s val="AchievementFrameName">Laser Designator</s><n/>Designates the target and reveals it to all Marines. Lasts for 60 sec.<n/>Level 1 - Enables Laser Designator<n/>Level 2 - Allows Laser Designator to provide target guidance for long range bombardments (Tactical Nuke, Fire Mission, Scorched Earth), increasing their damage by 15%.<n/>Level 3 - Allows Laser Designator to pinpoint a target's weak spot, preventing any death spawns and revives upon its death (Does not affect Bosses).
+UserData/TalentTrees/Recon_Talent Tootips_001=<s val="AchievementFrameName">Laser Designator</s><n/>Designates the target and reveals it to all Marines. Ranged weapons aim quicker and thus attack faster against designated targets. Lasts for 60 sec.<n/>Level 1 - 5% increased attack speed, 2 reveal radius.<n/>Level 2 - 10% increased attack speed, 3 reveal radius.<n/>Level 3 - 15% increased attack speed, 4 reveal radius.
 UserData/TalentTrees/Recon_Talent Tootips_002=<s val="AchievementFrameName">Motion Sensor<n/>(Passive)</s><n/>Enemies in radius are revealed in minimap. Pings invisible & burrowed units but does not reveal them. Grants all teammates on the map increased vision and detection (Does not stack).<n/>Level 1 - 25 radius, +1.5 vision/detection.<n/>Level 2 - 40 radius, +3 vision/detection.<n/><n/>"If it moves, kill it." - Corporal Hicks<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Recon_Talent Tootips_003=<s val="AchievementFrameName">Supply Station</s><n/>Creates a Supply Station that replenishes Marines in a 2 radius. Lasts for 25 seconds.<n/>Level 1 - Replenishes 1 round, HP and energy per second<n/>Level 2 - Replenishes 2 rounds, HP and energy per second<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Recon_Talent Tootips_004=<s val="AchievementFrameName">Reaper MK-13</s><n/>Multi-purpose battlefield drone with the following abilities:<n/>- Protect<n/>- Detect Invisible<n/>- 2 Inventory Slots<n/>- Hellfire Missle<n/><n/>"I'd like you to meet a dear and personal friend of mine. He is always watching over you"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>

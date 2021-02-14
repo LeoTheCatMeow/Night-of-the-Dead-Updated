@@ -2020,7 +2020,9 @@ Button/Tooltip/Kittens=由於2028年的大鼠瘟疫，小貓在每一個殖民�
 Button/Tooltip/L3GrenadeLauncher=<c val="972FFF">L3榴彈炮</c><n/>可發射極具爆炸性的觸發性榴彈，每發消耗5點彈藥。<n/><c val="FF0000">35% 友軍傷害。</c><n/><n/>基礎射程: <c val="FFFFFF">13</c><n/>擴散範圍: <c val="FFFFFF">2.75</c><n/>裝彈時間: <c val="FFFFFF">5秒</c><n/>裝備時間: <c val="FFFFFF">2.2秒</c><n/>重量: <c val="FFFFFF">12</c><n/>護甲影響: <c val="FFFFFF">0</c><n/>費用: <c val="FFFFFF">325</c><n/><n/>"搞破壞是我的使命!" - 尼克.乃籌
 Button/Tooltip/L3GrenadeLauncher2=<c val="972FFF">L3榴彈炮</c><n/>可發射極具爆炸性的觸發性榴彈。<n/><c val="FF0000">友軍傷害：35%</c><n/>基本攻擊距離: <c val="FFFFFF">13</c><n/>擴散範圍: <c val="FFFFFF">2.75</c><n/>裝彈時間: <c val="FFFFFF">5秒</c><n/>裝備時間: <c val="FFFFFF">2.2秒</c><n/>重量: <c val="FFFFFF">12</c><n/>護甲影響: <c val="FFFFFF">0</c><n/>費用: <c val="FFFFFF">325</c> <n/><n/>"搞破壞是我的使命!" - 尼克.乃籌
 Button/Tooltip/LargeZombieCocoon=受基因改造的殭屍繭.
-Button/Tooltip/LaserDesignator=把目標顯示給所有士兵，持續60秒。
+Button/Tooltip/LaserDesignator=指示目標，遠程武器對目標攻速提升5%，2顯示半徑，持續60秒。
+Button/Tooltip/LaserDesignatorLevel2=指示目標，遠程武器對目標攻速提升10%，3顯示半徑，持續60秒。
+Button/Tooltip/LaserDesignatorLevel3=指示目標，遠程武器對目標攻速提升15%，4顯示半徑，持續60秒。.
 Button/Tooltip/LaserDrillDrone=
 Button/Tooltip/LaserRifle=<c val="F2D737">AER13激光步槍</c><n/>這武器擁有現在最先進為戰鬥用途的激光技術，可對於厚裝甲的單位造成可觀的傷害。<n/>每發造成等同於目標基礎護甲的額外火系傷害。<n/><n/>基礎射程: <c val="FFFFFF">12</c><n/>擴散範圍: <c val="FFFFFF">0.1</c><n/>裝彈時間: <c val="FFFFFF">3.3秒</c><n/>裝備時間: <c val="FFFFFF">2.2秒</c><n/>重量: <c val="FFFFFF">20</c><n/>護甲影響: <c val="FFFFFF">0</c><n/><n/>"正在申請專利" - BAE系統公司
 Button/Tooltip/Lelantos=重型攻擊單位，對目標噴出寄生蟲作為攻擊，寄生蟲是一隻可攻擊地面的單位的生物。<n/><n/><c val="#ColorAttackInfo">可攻擊地面的單位。</c>
@@ -4893,7 +4895,7 @@ UserData/TalentTrees/Psi Ops_Talent Tootips_009=<s val="AchievementFrameName">�
 UserData/TalentTrees/Recon_Headers=<s val="HelpPanelListBoxItemTitle">監控人員</s>
 UserData/TalentTrees/Recon_Headers_001=<s val="HelpPanelListBoxItemTitle">機動步兵</s>
 UserData/TalentTrees/Recon_Talent Tootips=<s val="AchievementFrameName">照明彈升級 (被動技能)</s><n/>偵察兵把他的信號彈改良，使它更適合於區域監測。<n/>1級 - 增加信號彈持續時間2秒以及有效範圍3<n/>2級 - 增加信號彈持續時間4秒以及有效範圍6<n/>3級 - 增加信號彈持續時間6秒以及有效範圍9
-UserData/TalentTrees/Recon_Talent Tootips_001=<s val="AchievementFrameName">激光指示器</s><n/>把目標顯示給所有士兵，持續60秒。<n/>1級 - 解鎖激光指示器<n/>2級 - 激光指示器可以爲遠程轟擊武器進行制導(戰術核彈，火炮任務，焦土政策)，傷害增加15%。<n/>3級 - 激光指示器可以精準指示目標要害，避免目標死後重生或分裂，對Boss無效。
+UserData/TalentTrees/Recon_Talent Tootips_001=<s val="AchievementFrameName">激光指示器</s><n/>把目標顯示給所有士兵，遠程武器可以更快瞄準因此獲得額外攻速，持續60秒。<n/>1級 - +5%攻速，2顯示半徑。<n/>2級 - +10%攻速，3顯示半徑。<n/>3級 - +15%攻速，4顯示半徑。
 UserData/TalentTrees/Recon_Talent Tootips_002=<s val="AchievementFrameName">移動感應器 (被動技能)</s><n/>在有效范圍的敵人會顯示在地圖上，會指示隱形和埋伏單位人的位置，但不會顯示它們。地圖上所有隊友獲得額外視野與偵測距離。<n/>1級 - 有效範圍25，+1.5視野與偵測距離。<n/>2級 - 有效範圍40，+3視野與偵測距離.<n/><n/>"如果它移动，杀了它。" - 希克斯下士<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Recon_Talent Tootips_003=<s val="AchievementFrameName">補給站</s><n/>製造一部臨時的補給站，向2范圍內的士兵供應彈藥，醫療和能量，持續25秒。<n/>1級 - 每秒補充1彈藥，1生命值和1能量值<n/>2級 - 每秒補充2彈藥，2生命值和2能量值<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Recon_Talent Tootips_004=<s val="AchievementFrameName">"死神"MK-13</s><n/>多功能戰場用無人機，它擁有這些技能: <n/>- 保護<n/>- 檢測隱形<n/>- 2個物品欄<n/>- "地獄火"導彈<n/><n/>"我想讓你見見我一位親愛與私人的朋友，他會一直守護著你。"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
