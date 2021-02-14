@@ -11,6 +11,7 @@
 - Recon - Laser Designator no longer grants -armor, it instead grants 5%/10%/15% increased ranged attack speed to the designated target.
 - Recon - Laser Designator reveal radius improved from 2 to 2/3/4, energy cost increased from 5 to 8.
 - Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
+- Assault - Concentrated Fire cooldown is made to match its buff duration to avoid any confusion.
 
 2021-2-10
 [ThunderRazor]
