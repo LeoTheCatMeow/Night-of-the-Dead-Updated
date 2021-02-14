@@ -3943,7 +3943,6 @@
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="FocusedFire"/>
         <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
-        <AutoCastValidatorArray value="CasterNotFocusedFire"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="GhostCloak">
         <Cost index="0">
@@ -4884,7 +4883,7 @@
         <Cost>
             <Vital index="Energy" value="12"/>
             <Charge Link="Abil/Medpack"/>
-            <Cooldown Link="Abil/SuppressiveFire" TimeUse="5"/>
+            <Cooldown Link="Abil/SuppressiveFire" TimeUse="7"/>
         </Cost>
         <RefundFraction Charge="0" Cooldown="0"/>
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
@@ -4894,7 +4893,6 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="ConcentratedFire"/>
         <LevelButtonTooltip value="Suppresive Fire Level 2"/>
         <LevelButtonTooltip value="Suppresive Fire Level 3"/>
-        <AutoCastValidatorArray value="CasterNotConcentratedFireCombine"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="MindBlast">
         <Cost index="0">

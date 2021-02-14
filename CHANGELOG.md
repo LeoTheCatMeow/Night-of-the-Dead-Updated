@@ -85,7 +85,6 @@
 - Engineer - X1 Guardian Bot move speed increased from 2.2 to 2.42, matching Engineer's base speed.
 - Engineer - X1 Guardian Bot damage increase per level improved from 5% to 10%.
 - Engineer - Improved the timing window on Synergy so that it may proc more consistenty.
-- Rifleman - Weapon Proficiency no longer increases Focus Fire cooldown as the ability does not auto-recast when the buff is on.
 - Forward Observer - Base shield increased from 20 to 25.
 
 2021-1-28

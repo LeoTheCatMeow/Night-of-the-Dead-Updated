@@ -413,6 +413,7 @@
     <CUpgrade id="WeaponProficiency">
         <Alert value=""/>
         <EffectArray Reference="Behavior,FocusedFire,Duration[0]" Value="1.000000"/>
+        <EffectArray Reference="Abil,FocusedFire,Cost[0].Cooldown.TimeUse" Value="1.000000"/>
         <EditorCategories value="UpgradeType:Talents"/>
         <AffectedUnitArray value="Rifleman"/>
         <MaxLevel value="2"/>

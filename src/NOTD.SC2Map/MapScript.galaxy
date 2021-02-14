@@ -14374,14 +14374,14 @@ bool auto_gf_StatsModDamage_TriggerFunc (bool testConds, bool runActions) {
     }
 
     lv_damage *= gf_CalculateModBonusDamage(lv_effectiveModLevel, lv_damage);
-    CatalogFieldValueSet(c_gameCatalogEffect, "InfernalFlameThrower", "Amount", lp_modOwner, FixedToString(lv_damage, 2));
+    CatalogFieldValueSet(c_gameCatalogEffect, "InfernalFlameThrower", "Amount", lp_modOwner, FixedToString(lv_damage, 1));
     lv_damage = StringToFixed(CatalogFieldValueGet(c_gameCatalogEffect, "P38ScytheGuassPistol", "Amount", 10));
     if ((UnitGetType(gv_marineHero[lp_modOwner]) == "Pathfinder")) {
         lv_damage += (TechTreeUpgradeCount(lp_modOwner, "HandgunProficiency", c_techCountQueuedOrBetter) * 6);
     }
 
     lv_damage *= gf_CalculateModBonusDamage(lv_effectiveModLevel, lv_damage);
-    CatalogFieldValueSet(c_gameCatalogEffect, "P38ScytheGuassPistol", "Amount", lp_modOwner, FixedToString(lv_damage, 2));
+    CatalogFieldValueSet(c_gameCatalogEffect, "P38ScytheGuassPistol", "Amount", lp_modOwner, FixedToString(lv_damage, 1));
     return true;
 }
 
