@@ -366,6 +366,7 @@ Attribute001/Value014/Name=PO
 Attribute001/Value015/Desc=Full random requires 10000xp
 Attribute001/Value015/Name=Random
 Attribute001/Value016/Name=Fill
+Attribute002/Desc=Defines the availability of medkits and bandages
 Attribute002/Name=Navy Cross
 Attribute002/Value001/Desc=Game will start with Navy Cross, all Medkits/Bandages will be removed.
 Attribute002/Value001/Name=Navy Cross Enabled
@@ -402,7 +403,7 @@ Attribute005/Value008/Name=NMSurv
 Attribute005/Value009/Name=NMSec
 Attribute005/Value010/Name=AnyNM
 Attribute006/Name=Spawn Factor
-Attribute006/Value001/Desc=Standard Spawn Factor.
+Attribute006/Value001/Desc=Standard Spawn Factor
 Attribute006/Value001/Name=Standard
 Attribute006/Value002/Desc=+1 SF and 10% HP Scaling
 Attribute006/Value002/Name=Elevated
@@ -4116,9 +4117,12 @@ Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~P
 Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
 Param/Expression/05D1FF35=Defend ~A~
 Param/Expression/0972D6BC=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
+Param/Expression/12668883=<s val="GlueButtonSmall">Security Team: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/142E3EDE=Wave ~A~
+Param/Expression/17F31179=<s val="GlueButtonSmall">Alpha Company: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="0080FF">~B~</c>.
 Param/Expression/1E570E34=Ammo Box (~A~)
+Param/Expression/207EADA5=<s val="GlueButtonSmall">Normal: <c val="71E100">~A~</c></s>
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
@@ -4141,15 +4145,20 @@ Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/8261F9D4=+~A~ XP for Speed Bonus
 Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to retreat!
+Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">Wins</c> (<c val="49ABF3">Speed</c>) (<c val="E10000">NM</c>) (<c val="F1D845">NM Speed</c>)</s>
 Param/Expression/A5DC8985=Attack ~A~
 Param/Expression/A91F7F6B=~A~~B~~C~
 Param/Expression/ABAE731B=~A~/~B~
+Param/Expression/C6F9A88B=<s val="GlueButtonSmall">Easy Company: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack!
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
 Param/Expression/D9838420=+~A~ XP for Elite Mutation Bonus
+Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FF9562">OB</c>) (<c val="BB48FF">Die Hard</c>)</s>
+Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>)</s>
 Param/Expression/EFDB5152=~A~: ~B~
+Param/Expression/F405B274=<s val="GlueButtonSmall">Nightmare: <c val="71E100">~A~</c> (<c val="FF9562">~B~</c>) (<c val="BB48FF">~C~</c>)</s>
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
 Param/Expression/FEC5EBF1=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Value/004D086A=<s val="GlueButton">Infestor
@@ -4217,7 +4226,6 @@ Param/Value/0B49A8C2=Did we get it?
 Param/Value/0BA97876= (
 Param/Value/0BB1CCCF=<s val="GlueButton"><c val="F4D72B">Don't you... recognize me... Lt. Sheng?</c></s>
 Param/Value/0BC8506B=-1
-Param/Value/0BFEF73E=<s val="GlueButtonSmall">Alpha Company: 
 Param/Value/0BFFA1DA=We've received your upload. Some of the data is disturbing, our tech team is going through it.
 Param/Value/0C10B1B5=<s val="GlueButtonSmall">Assault/Flamer/Tech: 
 Param/Value/0C2F5667=We should investigate the airlock when the squad is ready. I'm picking up multiple heat signatures there.
@@ -4231,7 +4239,6 @@ Param/Value/0D3A884E=Solid copy.
 Param/Value/0D570AB4=</c>
 Param/Value/0D7605AA=Head back to the Starport. We need to clear the way for more companies to arrive.
 Param/Value/0D7CAB5F=Couldn't have done it without you, doc. What next?
-Param/Value/0D90E221= (<c val="F20000">
 Param/Value/0D94F306=+2 XP for Performance Bonus
 Param/Value/0DA72546=Polarity Shift in <c val="FF0000">5 secs</c>...
 Param/Value/0E20D898=Stay with your teammates
@@ -4239,7 +4246,6 @@ Param/Value/0E2788A5=More incoming. Stay close to the IVAX unit.
 Param/Value/0E448BB6=Stay frosty. The creatures are coming from multiple vectors.
 Param/Value/0E5A2850=Scientist
 Param/Value/0E5EDA3D=    
-Param/Value/0EB0EFBD=<s val="GlueButtonSmall">Wins - 
 Param/Value/0EC7DFD6=</s> 
 Param/Value/0EC88977=has committed suicide.
 Param/Value/0ED9301E=+1 XP for Performance Bonus
@@ -4278,7 +4284,6 @@ Param/Value/14E935D9=Watch your ammo counters. Cover each other during reloads.
 Param/Value/14EFB092=I've run the simulations here. Moving to the next terminal.
 Param/Value/1503C7F6=<s val="BriefingHanText">(Weapons online...)</s>
 Param/Value/154EAE13=<s val="InfoPaneHeroRank">(Survive the airlock battle before saving the civilians...)</s>
-Param/Value/159F8057=<s val="GlueButtonSmall">Easy Company: 
 Param/Value/15B7932E=Marine: <c val="F4D72B">It's loaded with eggs. Get your flamethrowers ready.</c></s>
 Param/Value/15CA627E=
 Param/Value/15EEEFDB=Type '-karmabite' if you have been TKed intentionally. You have 15 secs to do this.
@@ -4470,7 +4475,6 @@ Param/Value/3395507F=<s val="ABChoiceButtonText"><c val="FF4040">
 Param/Value/3399C292=<c val="CCCCCC">Equipment Closed</c>
 Param/Value/339DA5E3=+20 XP for Victory Bonus
 Param/Value/33B6A5BE=Field Marshal, I don't think it's a good idea to ask them to destroy the facility. Earth will be in an energy crisis without Apollo.
-Param/Value/33E4DF99=</c>)
 Param/Value/3445B423=Perses is in a weakened state when charging up.
 Param/Value/344A57E7=<s val="GlueButton"><c val="F4D72B">Unlocking Bio-Dome B. Aerial zombies, cover your six.</c>
 Param/Value/34A0856D=Who the - ...some survivors must have picked up our transmissions. You can't save them. Most of them are probably infected.
@@ -4554,9 +4558,7 @@ Param/Value/41199A23= vote kicked by
 Param/Value/414A1DEB=</c></s>
 Param/Value/417765C1=Inventory Visible
 Param/Value/41AFE9EF=<s val="BriefingHanText">   Story/Concepts<n/>   Richard Lim (XaVi)</s>
-Param/Value/41CCC9EC= (<c val="F20000">
 Param/Value/4201B763=<s val="InfoPaneHeroRank">Supplies delivered into battlefield..</s>
-Param/Value/42465C0C= (<c val="F20000">
 Param/Value/427249E1=
 Param/Value/42731D11=<c val="0080FF">.</c>
 Param/Value/42B99D02=Marine: <c val="F4D72B">Or restart those power generators. That'll give us access to all gates.</c>
@@ -4606,7 +4608,6 @@ Param/Value/4BBC15E6=has been blown to smithereens.
 Param/Value/4BE4FA98=We're Alpha Company. You'll be safe with us.
 Param/Value/4C162120=<s val="BriefingHanText">(Skilled specialists required to access terminals...)</s>
 Param/Value/4C3994F3=Bring survivors from Nakagawa Bay to Delta-1
-Param/Value/4C486936=</c>) (<c val="49ABF3">
 Param/Value/4C6356CF=Bring your team and seal those containers. They need to be sealed at the same time or you'll alert the zombies.
 Param/Value/4CA79992=It doesn't end here. We'll find a way into Apollo.
 Param/Value/4CAAE689=
@@ -4619,7 +4620,6 @@ Param/Value/4D3BD96A=We're airdropping more supplies into your sector.
 Param/Value/4D701111=+
 Param/Value/4DA6AE6B=The compliance field is de-stabilizing. One more Nexus and we'll shut them down.
 Param/Value/4DA754D2=Swap Location
-Param/Value/4DC830E5=<s val="GlueButtonSmall">Survival: 
 Param/Value/4DD907D3= has been AFK. 5 Karma deducted.
 Param/Value/4DF03C45=(You are currently piloting a Thor...)
 Param/Value/4E6B4398=<s val="GlueButton"><c val="F4D72B">Deimos has destroyed all our Devastators!</c></s>
@@ -4641,9 +4641,7 @@ Param/Value/4FEFEA27=We've received a distress beacon inside Central Square Towe
 Param/Value/4FF55ACA=
 Param/Value/5002828A=Marines, we're survivors from Apollo onboard the Delta 1 transport ship docked in the Airlock.
 Param/Value/50147A2B=<c val="FF0000">-2 Rating</c> for mission delay
-Param/Value/5026006B=</c>) (<c val="49ABF3">
 Param/Value/50673B96=This is Alpha Company. Mission was successful, requesting immediate evac.
-Param/Value/50700109=</c>)
 Param/Value/507094E5=(The Queen lets out a horrific shriek..)
 Param/Value/50837EF6=We need to find out what the doctor knows.
 Param/Value/50F2D583=Some of us tried to hide in here. But the zombies found us. They always do.
@@ -4668,7 +4666,6 @@ Param/Value/53A7DF55=Marine: <c val="F4D72B">We've a few options. We can break i
 Param/Value/53B8381E=I've been putting my head around it. I have a feeling all this is connected with the doctor who landed a few days ago.
 Param/Value/53C88C67= is now your Gunship buddy.</s>
 Param/Value/541BADD6=+3 XP for Mission Bonus. 40 civilians rescued.
-Param/Value/541F9CD8=</c>) (<c val="49ABF3">
 Param/Value/5421D241=<s val="InfoPaneHeroRank">Item cleared: <c val="FFFF00">
 Param/Value/543109A7=Secure Security Cams (2/5)
 Param/Value/543B39F1=Check Delta-1 for survivors before it's too late!
@@ -4687,7 +4684,6 @@ Param/Value/56673624=Enable/Disable Detailed Behavior Bar
 Param/Value/567C561B=<s val="InfoPaneHeroRank">Not eligible for Distinguished Service Medal</s>
 Param/Value/56A0DE58=
 Param/Value/56A9AA5D=The doctor has betrayed the team and escaped. Alpha Company must find him.
-Param/Value/56AE5BF6=</c>)
 Param/Value/56E0E208=Kill all zombies from Bio-Dome A
 Param/Value/571BB748=+2 XP for Performance Bonus
 Param/Value/575E2C34=Secure Security Cams (
@@ -4915,7 +4911,6 @@ Param/Value/7DFDE347=<s val="BriefingHanText">Directive: Lockdown Apollo</s>
 Param/Value/7DFE6CBB=</c>.
 Param/Value/7E0D8EF6=Detailed Behavior Bar Hidden
 Param/Value/7E2DE1DC=Gentlemen, choose your course of action..
-Param/Value/7E413997=<s val="GlueButtonSmall">Security Team: 
 Param/Value/7EBDCF5E=Enter the Colony Airlock
 Param/Value/7ED7EB38=We've got bigger problems on our hands, mate.
 Param/Value/7F3B5C2C=We're bringing you out.
@@ -5041,7 +5036,6 @@ Param/Value/9263B5DE=+3 XP for Performance Bonus
 Param/Value/926F0D30=</s>
 Param/Value/9279BE21=We're wasting ammunition. Destroy that Dome.
 Param/Value/92A2458A=Survive the incoming attack
-Param/Value/92E41DAB=</c>) (<c val="F1D845">
 Param/Value/934DF626=<s val="InfoPaneHeroRank">Hell Mode</s>
 Param/Value/935AB2A0=Unknown Voice 1
 Param/Value/9362870B=<s val="BriefingHanText">Delta-2 Transport Vessel</s>
@@ -5322,7 +5316,6 @@ Param/Value/C0EF7F9B=Something's not right. I saw a few Nexuses earlier. Let's b
 Param/Value/C0F5E603=<s val="GlueButtonSmall">Demo/PF/Chem: 
 Param/Value/C15230BC=Their numbers are dwindling. We've got through this.
 Param/Value/C16ADD41=Don't get hit! Tartarus will tear you a new one.
-Param/Value/C17E81A3=</c>) (<c val="F1D845">
 Param/Value/C21BD67D=<c val="0080FF">Saving Biometric ID for </c>
 Param/Value/C226EB8D=Retrieve Weapons & Ammo from Armory
 Param/Value/C22C6D9F=Bring the civilians to the Containment Facility east of here.
@@ -5407,7 +5400,6 @@ Param/Value/CE2186ED=Danger! Move away from the Queen.
 Param/Value/CE2E2FF6=Locate Dr. Bergmann
 Param/Value/CE3756CA=
 Param/Value/CEEBC8A4=<s val="BriefingHanText">(Dr. Tanaka is badly injured!)</s>
-Param/Value/CEF00F43= (<c val="E10000">NM</c>) (<c val="49ABF3">Speed</c>) (<c val="F1D845">NM Speed</c>)
 Param/Value/CF0DC1C1=Nothing.
 Param/Value/CF0F64B0=We caught an Infestor yesterday. It's chained up at our base. We've come close to understanding these zombies before we were attacked.
 Param/Value/CF63E660=40 hours after outbreak
@@ -5544,7 +5536,6 @@ Param/Value/E1A199CA=<s val="InfoPaneHeroRank">Command Failed</s></n>All random 
 Param/Value/E1B2888D=Secure Security Cams (0/5)
 Param/Value/E20694FA=<s val="InfoPaneHeroRank">Not eligible for Distinguished Service Medal</s>
 Param/Value/E25FCAD9=Military EVAC is underway. Stay safe and watch out for danger until rescue arrives.
-Param/Value/E298D78F= (<c val="E10000">
 Param/Value/E2C16EBA=Rendezvous with Corpsmen at Armory
 Param/Value/E2C4B148=Priyanka
 Param/Value/E2D10094=Destroy Compliance Nexuses (
@@ -5571,7 +5562,6 @@ Param/Value/E665DAFA=<s val="InfoPaneUnitInfo">Total Enemies:
 Param/Value/E69CF360=...posthumously
 Param/Value/E6AD569D=Kill all zombies from Bio-Dome D
 Param/Value/E6C62A41=Night of the Dead
-Param/Value/E6C7544B=</c>) (<c val="F1D845">
 Param/Value/E6F00E7C=Those air bogeys are coming your way now.
 Param/Value/E6FB466C=
 Param/Value/E7B331C2=Ensure your team is ready before activating mission Hexes.
@@ -5609,7 +5599,6 @@ Param/Value/EBF29E00=</c> <c val="F5D62B">for outstanding behavior.</c><n/>Limit
 Param/Value/EC3FECA5=(You notice a Compliance Implant at Tanaka's neck...)
 Param/Value/EC412052=A Blueberry Production
 Param/Value/EC43E9CC=</s>
-Param/Value/EC54227A=</c>)
 Param/Value/EC680438=Buying failed
 Param/Value/EC6EB324=Phantom 6, we've got colonists on board Delta-1 and need evac.
 Param/Value/EC783BDB=+3 XP for Seth Kill
@@ -5635,10 +5624,8 @@ Param/Value/EF4B1F62=+10 XP for Nightmare Bonus
 Param/Value/EF8ECD2F=<s val="InfoPaneHeroRank">- Decrypting transmission -</c></s>
 Param/Value/EFBE02D4=Ogilvy
 Param/Value/F01780C4=Rounds
-Param/Value/F0B80E2D=</c>)
 Param/Value/F0CC8C89=Picking up a heavy life form. We should stay away from it.
 Param/Value/F11D8AEC=<s val="GlueButtonSmall">Commando/Psi Ops: 
-Param/Value/F124FE3F=</c>)
 Param/Value/F14CDB28=I've got a bad feeling about the Doctor.
 Param/Value/F2219781=<c val="FF0000">Out of Ammo</c>
 Param/Value/F22F3EB3=If there are any, they'd probably be in underground chambers or the containment center.
