@@ -98,6 +98,10 @@
         <Effect value="AutoTurret"/>
         <TargetFilters value="Ground,Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
     </CWeaponLegacy>
+    <!--For displaying reload, equip, and weight-->
+    <CWeaponLegacy id="DummyWeapon">
+        <EditorCategories value=""/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="HydraliskMelee">
         <Period value="0.5"/>
         <TargetFilters value="Ground,Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>

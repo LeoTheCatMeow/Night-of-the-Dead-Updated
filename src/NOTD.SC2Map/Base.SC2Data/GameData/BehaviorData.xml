@@ -6024,7 +6024,7 @@
                 <VitalMaxFractionArray index="Energy" value="0.121"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="550">
+        <VeterancyLevelArray MinVeterancyXP="550" LevelGainEffect="AddBackstab">
             <Modification>
                 <DamageDealtUnscaled index="Spell" value="0.5"/>
                 <DamageDealtUnscaled index="Melee" value="0.5"/>
@@ -6295,7 +6295,7 @@
                 </DeathResponse>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray index="4" LevelGainEffect="AddBackstab">
+        <VeterancyLevelArray index="4">
             <Modification>
                 <DamageDealtFraction index="Melee" value="0.1"/>
                 <DamageDealtFraction index="Ranged" value="0.1"/>

@@ -1,11 +1,16 @@
 # Current Changes & Bugfixes Tracklist
 
 2021-2-13
+[ThunderRazor]
+- Added win tracking for Elite Mutation and Outbreak mode.
+
 [LeoTheCat]
 - Increased the push priority on Guardian of the Beta so he can't be body blocked.
 - Added more coloring for Monstrous and Atrocious Elite Mutation so it is easier to tell them from regular zombies.
 - Fixed Turbo auto-cast not working properly.
-- Slightly increased Forward Obersever's Airstrike friendy fire radius (from 1.5 to 2) so that it is not completely idiot proof.
+- Slightly increased Forward Observer's Airstrike friendy fire radius (from 1.5 to 2) so that it is not completely idiot proof.
+- Fixed a bug where Airstrike is doing more damage than what the tooltip states.
+- Forward Observer's shell count display now properly updates for other players too.
 - Marksman - Shadowstep energy cost reduced from 20 to 15.
 - Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/27/36.
 - Recon - Laser Designator no longer grants -armor, it instead grants 5%/10%/15% increased ranged attack speed to the designated target.
@@ -13,6 +18,9 @@
 - Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
 - Assault - Concentrated Fire cooldown is made to match its buff duration to avoid any confusion.
 - Assault - Reduced Concentrated Fire energy cost from 12 to 10.
+- Fixed pet backstab not working.
+- Hades now has a 50% chance to kill each mind controlled zombie when the fight starts instead of always.
+- Added tooltips that reflect weapon mod's influence on splash and reload. (Does not yet reflect talent or passive ability influences)
 
 2021-2-10
 [ThunderRazor]

@@ -561,7 +561,7 @@
         <On Terms="Behavior.AtrociousBoss.Off" Send="Destroy"/>
         <On Terms="Behavior.AtrociousHeroic.On" Send="Create"/>
         <On Terms="Behavior.AtrociousHeroic.Off" Send="Destroy"/>
-        <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor {242,213,121 2.000000} {241,209,112 2.000000}"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 242,213,121 241,209,112"/>
         <On Terms="ActorCreation" Target="::Host" Send="SetTintColor {255,255,162 2.000000}"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>

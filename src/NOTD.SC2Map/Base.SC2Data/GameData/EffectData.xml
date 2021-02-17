@@ -957,7 +957,6 @@
     <CEffectDamage id="Damage2">
         <EditorCategories value=""/>
         <LaunchLocation Value="CasterUnit"/>
-        <ArmorReduction value="0.5"/>
         <Amount value="10"/>
         <Death value="Impact"/>
         <AreaArray Radius="2" Fraction="1"/>
@@ -2720,6 +2719,7 @@
         <Death value="Impact"/>
         <AreaArray Radius="2" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="DeimosShockRifle">
         <EditorCategories value=""/>
