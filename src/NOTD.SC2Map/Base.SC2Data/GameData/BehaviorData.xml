@@ -2722,10 +2722,9 @@
             <ExcludeEffectArray value="ExecuteHeroicMassiveDamage"/>
             <ExcludeEffectArray value="ExecuteNormalTargets"/>
             <ExcludeEffectArray value="CombatKnifeDamage"/>
-            <ExcludeEffectArray value="CombatKnifeSearch"/>
-            <ExcludeEffectArray value="CombatKnifeDamageSet"/>
-            <ExcludeEffectArray value="CombatKnifeApplySlow"/>
             <ExcludeEffectArray value="Backstab"/>
+            <ExcludeEffectArray value="StingerMK3DamageAllies"/>
+            <ExcludeEffectArray value="StingerMK3Damage"/>
             <Chance value="1"/>
         </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
@@ -2743,10 +2742,9 @@
             <ExcludeEffectArray value="ExecuteHeroicMassiveDamage"/>
             <ExcludeEffectArray value="ExecuteNormalTargets"/>
             <ExcludeEffectArray value="CombatKnifeDamage"/>
-            <ExcludeEffectArray value="CombatKnifeSearch"/>
-            <ExcludeEffectArray value="CombatKnifeDamageSet"/>
-            <ExcludeEffectArray value="CombatKnifeApplySlow"/>
             <ExcludeEffectArray value="Backstab"/>
+            <ExcludeEffectArray value="StingerMK3DamageAllies"/>
+            <ExcludeEffectArray value="StingerMK3Damage"/>
             <Chance value="1"/>
         </DamageResponse>
         <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-permanentcloak.dds"/>
@@ -4726,7 +4724,7 @@
     </CBehaviorBuff>
     <CBehaviorVeterancy id="X1BotVeterancy">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <VeterancyLevelArray MinVeterancyXP="300">
+        <VeterancyLevelArray MinVeterancyXP="100">
             <Modification MoveSpeedMultiplier="1.025">
                 <DamageDealtFraction index="Spell" value="0.1"/>
                 <DamageDealtFraction index="Melee" value="0.1"/>
@@ -4734,7 +4732,15 @@
                 <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="350">
+        <VeterancyLevelArray MinVeterancyXP="200">
+            <Modification MoveSpeedMultiplier="1.025">
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="300">
             <Modification MoveSpeedMultiplier="1.025">
                 <DamageDealtFraction index="Spell" value="0.1"/>
                 <DamageDealtFraction index="Melee" value="0.1"/>
@@ -4750,23 +4756,7 @@
                 <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="450">
-            <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.1"/>
-                <DamageDealtFraction index="Melee" value="0.1"/>
-                <DamageDealtFraction index="Ranged" value="0.1"/>
-                <DamageDealtFraction index="Splash" value="0.1"/>
-            </Modification>
-        </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="500">
-            <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.1"/>
-                <DamageDealtFraction index="Melee" value="0.1"/>
-                <DamageDealtFraction index="Ranged" value="0.1"/>
-                <DamageDealtFraction index="Splash" value="0.1"/>
-            </Modification>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="550">
             <Modification MoveSpeedMultiplier="1.025">
                 <DamageDealtFraction index="Spell" value="0.1"/>
                 <DamageDealtFraction index="Melee" value="0.1"/>
@@ -4782,14 +4772,6 @@
                 <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="650">
-            <Modification MoveSpeedMultiplier="1.025">
-                <DamageDealtFraction index="Spell" value="0.1"/>
-                <DamageDealtFraction index="Melee" value="0.1"/>
-                <DamageDealtFraction index="Ranged" value="0.1"/>
-                <DamageDealtFraction index="Splash" value="0.1"/>
-            </Modification>
-        </VeterancyLevelArray>
         <VeterancyLevelArray MinVeterancyXP="700">
             <Modification MoveSpeedMultiplier="1.025">
                 <DamageDealtFraction index="Spell" value="0.1"/>
@@ -4798,7 +4780,23 @@
                 <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="750">
+        <VeterancyLevelArray MinVeterancyXP="800">
+            <Modification MoveSpeedMultiplier="1.025">
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="900">
+            <Modification MoveSpeedMultiplier="1.025">
+                <DamageDealtFraction index="Spell" value="0.1"/>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="1000">
             <Modification MoveSpeedMultiplier="1.025">
                 <DamageDealtFraction index="Spell" value="0.1"/>
                 <DamageDealtFraction index="Melee" value="0.1"/>
@@ -6411,6 +6409,13 @@
                 <DamageDealtUnscaled index="Melee" value="0"/>
                 <DamageDealtUnscaled index="Ranged" value="0"/>
                 <DamageDealtUnscaled index="Splash" value="0"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="12">
+            <Modification>
+                <DamageDealtFraction index="Melee" value="0.1"/>
+                <DamageDealtFraction index="Ranged" value="0.1"/>
+                <DamageDealtFraction index="Splash" value="0.1"/>
             </Modification>
         </VeterancyLevelArray>
         <ShareFilters index="Kills" value="-;Ally,Neutral,Enemy,Hallucination"/>

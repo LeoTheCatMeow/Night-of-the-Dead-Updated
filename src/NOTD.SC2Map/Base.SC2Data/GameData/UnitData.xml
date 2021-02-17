@@ -3360,6 +3360,7 @@
         <Collide index="Ground" value="1"/>
         <Attributes index="Armored" value="1"/>
         <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Heroic" value="1"/>
         <LifeStart value="150"/>
         <LifeMax value="150"/>
         <LifeArmor value="1"/>
@@ -3394,7 +3395,6 @@
         <AbilArray Link="Overdrive"/>
         <AbilArray Link="X1UpgradeLevel2"/>
         <BehaviorArray Link="X1BotVeterancy"/>
-        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="X1Holdfire"/>
         <BehaviorArray Link="X1GuardianLimit"/>
         <TurretArray value="Diamondback"/>
@@ -8677,6 +8677,7 @@
         <Collide index="Flying" value="1"/>
         <Attributes index="Light" value="1"/>
         <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Heroic" value="1"/>
         <LifeStart value="200"/>
         <LifeMax value="200"/>
         <LifeArmor value="3"/>
@@ -8715,7 +8716,6 @@
         <BehaviorArray Link="Detector2"/>
         <BehaviorArray Link="DroneVeterancy"/>
         <BehaviorArray Link="Flashlight"/>
-        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="ReaperMK13Limit"/>
         <WeaponArray Link="AutoTurret"/>
         <CardLayouts>
@@ -9774,6 +9774,7 @@
         <Collide index="Ground" value="1"/>
         <Attributes index="Armored" value="1"/>
         <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Heroic" value="1"/>
         <LifeStart value="100"/>
         <LifeMax value="100"/>
         <LifeArmor value="1"/>
@@ -9839,7 +9840,6 @@
         <TurretArray value="Diamondback"/>
         <ShieldArmorName value="Unit/LifeArmorName/TerranInfantryArmor"/>
         <BehaviorArray Link="X1BotVeterancy"/>
-        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="X1Holdfire"/>
         <BehaviorArray Link="X1GuardianLimit"/>
         <HotkeyCategory value="Hotkey/Minis"/>
@@ -9855,6 +9855,7 @@
         <Collide index="Ground" value="1"/>
         <Attributes index="Armored" value="1"/>
         <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Heroic" value="1"/>
         <LifeStart value="225"/>
         <LifeMax value="225"/>
         <LifeArmor value="1"/>
@@ -9916,7 +9917,6 @@
         <Radius value="0.3125"/>
         <SeparationRadius value="0.3"/>
         <BehaviorArray Link="X1BotVeterancy"/>
-        <BehaviorArray Link="SuppressRegularXPSharing"/>
         <BehaviorArray Link="X1Holdfire"/>
         <BehaviorArray Link="X1GuardianLimit"/>
         <HotkeyAlias value="X1GuardianLevel1"/>

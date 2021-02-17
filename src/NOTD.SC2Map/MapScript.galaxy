@@ -6808,6 +6808,10 @@ void gf_ShowHideMarineDialog (bool lp_showHideOption, int lp_dialogOwner, player
         DialogSetVisible(gv_shellDialog[lp_dialogOwner], lp_playerstoHideFrom, lp_showHideOption);
     }
 
+    if ((gv_demeritVisibilityBtn != c_invalidDialogControlId)) {
+        DialogControlSetVisible(gv_demeritVisibilityBtn, lp_playerstoHideFrom, lp_showHideOption);
+    }
+
 }
 
 void gf_HideAllDialogsForPlayer (int lp_player) {
@@ -28702,6 +28706,9 @@ void gt_BroodMotherAmbush_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_Boss2Spawn_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    unitgroup auto44FF6D3F_g;
+    int auto44FF6D3F_u;
+    unit auto44FF6D3F_var;
     unitgroup auto0329D2FD_g;
     int auto0329D2FD_u;
     unit auto0329D2FD_var;
@@ -28745,8 +28752,25 @@ bool gt_Boss2Spawn_Func (bool testConds, bool runActions) {
         }
     }
     else {
-        Wait(2.0, c_timeReal);
-        TriggerExecute(gt_Boss2ErebosCinematic, true, true);
+        if ((gv_isVeteranSquad == true)) {
+            libNtve_gf_UnitCreateFacingPoint(1, "Erebos", 0, 14, RegionRandomPoint(RegionFromId(37)), RegionGetCenter(RegionFromId(11)));
+            gv_erebos1 = UnitLastCreated();
+            UnitIssueOrder(UnitFromId(620), Order(AbilityCommand("SecurityGateStraightHorizontalBFLowered", 0)), c_orderQueueReplace);
+            auto44FF6D3F_g = UnitGroup(null, 10, RegionFromId(11), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
+            auto44FF6D3F_u = UnitGroupCount(auto44FF6D3F_g, c_unitCountAll);
+            for (;; auto44FF6D3F_u -= 1) {
+                auto44FF6D3F_var = UnitGroupUnitFromEnd(auto44FF6D3F_g, auto44FF6D3F_u);
+                if (auto44FF6D3F_var == null) { break; }
+                if ((UnitGetType(auto44FF6D3F_var) == "PathingBlocker1x1")) {
+                    UnitRemove(auto44FF6D3F_var);
+                }
+
+            }
+        }
+        else {
+            Wait(2.0, c_timeReal);
+            TriggerExecute(gt_Boss2ErebosCinematic, true, true);
+        }
     }
     if (((gv_alivePlayers >= 5) && (gv_alivePlayers <= 8))) {
         if ((gv_isVeteranSquad == true)) {
