@@ -219,6 +219,7 @@
         <BehaviorArray value="BoomHeadshotLevel1"/>
         <BehaviorArray value="BoomHeadshotLevel2"/>
         <LevelButtonOnTooltip value="Behavior/Tooltip/BoomHeadshotLevel2"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="BestUnit" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
@@ -4881,7 +4882,7 @@
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="10"/>
+            <Vital index="Energy" value="12"/>
             <Charge Link="Abil/Medpack"/>
             <Cooldown Link="Abil/SuppressiveFire" TimeUse="7"/>
         </Cost>
