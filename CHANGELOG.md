@@ -11,16 +11,16 @@
 - Recon - Laser Designator reveal radius improved from 2 to 2/3/4, energy cost increased from 5 to 8.
 - Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
 - Recon - Renamed Motion Sensor to Battlefield Radar to better reflect its current effect on the team.
+- Assault - Reduced Concentrated Fire energy cost from 12 to 10.
 - Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/27/36.
 - Engineer's X1 Bot and Recon's Reaper Drone are now marked Heroic - thus they receive xp shared from the team (7 radius).
-- Engineer's X1 Bot and Reaper Drone no longer take full xp from their own kills, those are instead evenly split among nearby teammates.
+- Engineer - X1 Bot and Reaper Drone no longer take full xp from their own kills, those are instead evenly split among nearby teammates.
 - Engineer - Adjusted the level progression of the X1 Bot so that it is initially easier to level up, but harder at later levels.
 - Forward Observer - Slightly increased Airstrike friendy fire radius (from 1.5 to 2) so that it is not completely idiot proof.
 
 <Gameplay Changes>
 - Increased the push priority on Guardian of the Beta so he can't be body blocked.
 - Hades now has a 50% chance to kill each mind controlled zombie when the fight starts instead of always killing all zombies.
-- Added an attribute to all player marines - "Marine". Only used by Sync Module currently and does not affect anything else.
 
 <Qol Changes>
 - Added more coloring for Monstrous and Atrocious Elite Mutation so it is easier to tell them from regular zombies.
@@ -28,15 +28,12 @@
 - Added tooltips that reflect weapon mod's influence on splash and reload. (Does not yet reflect talent or passive ability influences).
 - Concentrated Fire and Focus Fire cooldowns are made to match their buff durations to avoid any confusion.
 - Erebos Cinematic will no longer play for normal/nightmare games.
-- Engineer's X1 Bot now properly grows up in size if upgraded.
-- Replaced Engineer's Reinforce icon with a new, colored one as the previous one collided with Sync Module.
-
+ 
 <Bugfixes>
 - Fixed a bug where Forward Observer's Airstrike is doing more damage than what the tooltip states.
 - Fixed a bug where Recon's self cloak may be deactivated due to delayed damage.
 - Fixed Turbo auto-cast not working properly.
 - Fixed pet backstab not working.
-- Corrected the credit cost tooltips on CI Ammo and Sync Module.
 
 2021-2-10
 [ThunderRazor]
