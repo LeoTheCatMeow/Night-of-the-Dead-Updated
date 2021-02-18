@@ -847,7 +847,7 @@
     <CEffectSet id="SpawnSpiderMineSet">
         <EffectArray index="1" removed="1"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="SyncModuleApplyBuffMarine">
+    <CEffectApplyBehavior id="SyncModuleApplyBuff">
         <Behavior value="SynchronizationModule"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="SyncModuleApplyBuff2">
@@ -855,7 +855,7 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="SyncModuleBuffSearchArea">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,User1,Worker,RawResource,HarvestableResource,Missile,Item,Buried,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Heroic,Worker,RawResource,HarvestableResource,Missile,Item,Buried,UnderConstruction,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="8" Effect="SyncModuleApplyBuff2"/>
     </CEffectEnumArea>
     <CEffectDamage id="CriticalDamage">
@@ -1237,14 +1237,14 @@
         <AreaArray Radius="9" Effect="ShadowedSilenceFieldApply"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
-    <CEffectEnumArea id="SyncModuleBuffSearchAreaMarine">
+    <CEffectEnumArea id="SyncModuleBuffSearchAreaHeroic">
         <EditorCategories value=""/>
-        <SearchFilters value="Heroic,User1;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
-        <AreaArray Radius="8" Effect="SyncModuleApplyBuffMarine"/>
+        <SearchFilters value="Heroic;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
+        <AreaArray Radius="8" Effect="SyncModuleApplyBuff"/>
     </CEffectEnumArea>
     <CEffectSet id="SyncModuleSearchSet">
         <EditorCategories value=""/>
-        <EffectArray value="SyncModuleBuffSearchAreaMarine"/>
+        <EffectArray value="SyncModuleBuffSearchAreaHeroic"/>
         <EffectArray value="SyncModuleBuffSearchArea"/>
     </CEffectSet>
     <CEffectModifyUnit id="Tier1Skin">
@@ -11852,7 +11852,7 @@
         <Marker Link="Effect/Repair"/>
         <DrainVital value="Energy"/>
         <DrainVitalCostFactor value="0.1"/>
-        <RechargeVitalRate value="7"/>
+        <RechargeVitalRate value="5"/>
     </CEffectCreateHealer>
     <CEffectCreateUnit id="DisruptionTowerLevel1CreateUnit">
         <EditorCategories value="Race:Terran"/>

@@ -5330,8 +5330,6 @@
         <On Terms="ActorCreation" Send="AnimPlay BSD Run PlayForever"/>
         <On Terms="ActorCreation" Send="SetTeamColor 255,0,0 255,0,0"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
-        <On Terms="Abil.X1UpgradeLevel2.Start" Send="SetScale 0.800000"/>
-        <On Terms="Abil.X1UpgradeLevel1.Start" Send="SetScale 0.700000"/>
         <DeathArray index="Normal" ModelLink="DiamondbackDeath" SoundLink="Diamondback_Explode"/>
         <PortraitModel value="ARESPortrait"/>
         <BarOffset value="40"/>
@@ -5380,7 +5378,6 @@
         <On Terms="ActorCreation" Send="AnimPlay BSD Run PlayForever"/>
         <On Terms="ActorCreation" Send="SetTeamColor 255,0,0 255,0,0"/>
         <On Terms="Behavior.RavagingPhantomControl.Create" Send="SetOpacity 0.500000"/>
-        <On Terms="Abil.X1UpgradeLevel2.Start" Send="SetScale 0.800000"/>
         <Model value="X1"/>
         <Scale value="0.700000"/>
         <BuildModel value="X1"/>
