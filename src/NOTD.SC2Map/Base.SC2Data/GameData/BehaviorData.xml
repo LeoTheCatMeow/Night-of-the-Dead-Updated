@@ -198,6 +198,12 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorAttribute id="CP">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-sentry-eclipseprotocol.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxPoints value="999"/>
+    </CBehaviorAttribute>
     <CBehaviorBuff id="InfernoPeriodic">
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
@@ -1254,14 +1260,6 @@
         <Birth value="Footprint5x5CreepSourceStart"/>
         <Grown value="Footprint5x5CreepSourceGrown"/>
     </CBehaviorCreepSource>
-    <CBehaviorBuff id="ClassPointsBonus">
-        <InfoIcon value="Assets\Textures\btn-ability-zeratul-sentry-eclipseprotocol.dds"/>
-        <BehaviorCategories index="Permanent" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <BuffFlags index="Countdown" value="0"/>
-        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
-        <MaxStackCount value="1000"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="WidowMineAnimationController">
         <DisplayDuration index="Self" value="0"/>
         <DisplayDuration index="Ally" value="0"/>
@@ -5526,6 +5524,7 @@
         <RemoveValidatorArray value="UnitisnotHeroic"/>
         <Player Value="Caster"/>
         <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="0.85" Food="5">
+            <StateFlags index="Summoned" value="1"/>
             <LifeArmorBonus value="2"/>
             <VitalRegenArray index="Life" value="1"/>
         </Modification>

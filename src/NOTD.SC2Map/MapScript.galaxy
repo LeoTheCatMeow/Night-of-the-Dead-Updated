@@ -4891,7 +4891,7 @@ void gf_StartingBonuses (int lp_playerIndex) {
 
     // Implementation
     lv_classPoints = gf_GetClassCP(lp_playerIndex, UnitGetType(gv_marineHero[lp_playerIndex]));
-    libNtve_gf_SetBehaviorCount(gv_marineHero[lp_playerIndex], "ClassPointsBonus", gv_marineHero[lp_playerIndex], MinI(1000, lv_classPoints));
+    UnitSetAttributePoint(gv_marineHero[lp_playerIndex], "CP", true, MinI(999, lv_classPoints));
     if ((lv_classPoints >= 10)) {
         SoundPlay(SoundLink(UserDataGetSound("Classes", gv_playerClass[lp_playerIndex], "Class CP Sound", 1), c_soundIndexAny), PlayerGroupActive(), 100.0, 0.0);
         UnitSetPropertyFixed(gv_marineHero[lp_playerIndex], c_unitPropLevel, 2.0);
