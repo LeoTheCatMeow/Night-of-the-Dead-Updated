@@ -836,6 +836,7 @@ bool[9] gv_spectated;
 bool gv_navyCrossMode;
 int gv_noRandoms;
 int gv_maxRandom;
+bool gv_glassCannonActivated;
 bool gv_outbreakActivated;
 bool gv_eliteMutationActivated;
 bool gv_trainingActivated;
@@ -2192,6 +2193,7 @@ trigger gt_DanceCheer;
 trigger gt_MaxRandom;
 trigger gt_DisableRandomButton;
 trigger gt_NightmareHellMode;
+trigger gt_GlassCannonCommand;
 trigger gt_OutbreakCommand;
 trigger gt_EliteMutationCommand;
 trigger gt_TrainingCommand;
@@ -3522,11 +3524,17 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
         gf_NOTDBanlist();
     }
 
-    Wait(30.0, c_timeReal);
+    Wait(5.0, c_timeReal);
+    if ((gv_totalPlayers < 3)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/E91DA1DF"));
+        TriggerEnable(gt_GlassCannonCommand, true);
+    }
+    Wait(25.0, c_timeReal);
     TriggerEnable(gt_NightmareHellMode, false);
     TriggerEnable(gt_OutbreakCommand, false);
     TriggerEnable(gt_EliteMutationCommand, false);
     TriggerEnable(gt_TrainingCommand, false);
+    TriggerEnable(gt_GlassCannonCommand, false);
     return true;
 }
 
@@ -5643,23 +5651,26 @@ void gf_DisplaySquadInformation () {
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + (UserDataGetText("SquadInformation", "Squad XP", "Information", 1) + IntToText(gv_squadXP))) + gv_endStyling));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + (StringExternal("Param/Value/DF2DC1DE") + IntToText(gv_scaledXP))) + gv_endStyling));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
-    if ((gv_currentGameMode == ge_GameModes_Hell)) {
-        TextExpressionSetToken("Param/Expression/81A0B422", "A", gv_infoPanelHeroRank);
-        TextExpressionSetToken("Param/Expression/81A0B422", "B", gv_difficulty);
-        TextExpressionSetToken("Param/Expression/81A0B422", "C", gv_endStyling);
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/81A0B422"));
-    }
     if ((gv_outbreakActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/3EC532D7")) + gv_endStyling));
     }
     if ((gv_eliteMutationActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/723F181B")) + gv_endStyling));
     }
+    if (gv_glassCannonActivated) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/EFD575E9")) + gv_endStyling));
+    }
     if ((gv_navyCrossFailed == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/A0E38EFB"));
     }
     if ((gv_distinguishedServiceMedalFailed == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/E20694FA"));
+    }
+    if ((gv_currentGameMode == ge_GameModes_Hell)) {
+        TextExpressionSetToken("Param/Expression/81A0B422", "A", gv_infoPanelHeroRank);
+        TextExpressionSetToken("Param/Expression/81A0B422", "B", gv_difficulty);
+        TextExpressionSetToken("Param/Expression/81A0B422", "C", gv_endStyling);
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/81A0B422"));
     }
 }
 
@@ -18318,7 +18329,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
         UnitInventoryCreate(gv_marineHero[lv_selectingPlayer], "OccularImplants");
     }
 
-    if (gv_hell) {
+    if ((gv_hell || gv_glassCannonActivated)) {
         libNtve_gf_ChangeUnitDamage(gv_marineHero[lv_selectingPlayer], libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Mega2);
         libNtve_gf_ChangeUnitDamage(gv_marineHero[lv_selectingPlayer], libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_Mega2);
     }
@@ -19319,6 +19330,57 @@ void gt_NightmareHellMode_Init () {
     TriggerAddEventChatMessage(gt_NightmareHellMode, 2, "-nm", true);
     TriggerAddEventChatMessage(gt_NightmareHellMode, 1, "-hell", true);
     TriggerAddEventChatMessage(gt_NightmareHellMode, 2, "-hell", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GlassCannon Command
+//--------------------------------------------------------------------------------------------------
+bool gt_GlassCannonCommand_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_a;
+
+    // Automatic Variable Declarations
+    unitgroup auto2505E95D_g;
+    int auto2505E95D_u;
+    unit auto2505E95D_var;
+
+    // Variable Initialization
+    lv_a = StringCase(EventChatMessage(false), false);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((lv_a == "y")) {
+        gv_glassCannonActivated = true;
+        SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 75.0, 0.0);
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/492B833D"));
+        auto2505E95D_g = gv_marines;
+        auto2505E95D_u = UnitGroupCount(auto2505E95D_g, c_unitCountAll);
+        for (;; auto2505E95D_u -= 1) {
+            auto2505E95D_var = UnitGroupUnitFromEnd(auto2505E95D_g, auto2505E95D_u);
+            if (auto2505E95D_var == null) { break; }
+            libNtve_gf_ChangeUnitDamage(auto2505E95D_var, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Mega2);
+            libNtve_gf_ChangeUnitDamage(auto2505E95D_var, libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_Mega2);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_GlassCannonCommand_Init () {
+    gt_GlassCannonCommand = TriggerCreate("gt_GlassCannonCommand_Func");
+    TriggerEnable(gt_GlassCannonCommand, false);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 1, "y", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 1, "Y", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 2, "y", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 2, "Y", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 1, "n", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 1, "N", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 2, "n", true);
+    TriggerAddEventChatMessage(gt_GlassCannonCommand, 2, "N", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -46801,6 +46863,7 @@ void InitTriggers () {
     gt_MaxRandom_Init();
     gt_DisableRandomButton_Init();
     gt_NightmareHellMode_Init();
+    gt_GlassCannonCommand_Init();
     gt_OutbreakCommand_Init();
     gt_EliteMutationCommand_Init();
     gt_TrainingCommand_Init();
