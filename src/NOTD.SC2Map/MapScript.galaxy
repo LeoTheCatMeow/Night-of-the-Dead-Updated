@@ -16410,7 +16410,7 @@ void gf_MedalofHonorAward (int lp_medalNumber) {
     int auto7EE366EF_var;
 
     // Implementation
-    if (gv_nightmare && ((gv_totalPlayers == gv_alivePlayers) || gv_mOHAwardException) && (gv_totalPlayers >= 3)) {
+    if (gv_nightmare && ((gv_totalPlayers == gv_alivePlayers) || gv_mOHAwardException) && (gv_totalPlayers >= 2)) {
         TextExpressionSetToken("Param/Expression/4D6170D4", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/4D6170D4"));
         gf_UnifiedAwards(25, 0.0, 300, 1, 2);
@@ -46441,13 +46441,6 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_merit = (PlayerGroupCount(gv_meritedNominee) == 1);
-
-    // Conditions
-    if (testConds) {
-        if (!((gv_totalPlayers > 1))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
