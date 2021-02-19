@@ -18768,7 +18768,7 @@ bool gt_WinsCheck_Func (bool testConds, bool runActions) {
     TextExpressionSetToken("Param/Expression/E6D26B07", "B", IntToText(gv_survivalWinNM[lv_playerIndex]));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/E6D26B07"));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/E3956D74"));
-    TextExpressionSetToken("Param/Expression/207EADA5", "A", IntToText(gv_nMWinEM[lv_playerIndex]));
+    TextExpressionSetToken("Param/Expression/207EADA5", "A", IntToText(gv_winEM[lv_playerIndex]));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/207EADA5"));
     TextExpressionSetToken("Param/Expression/F405B274", "A", IntToText(gv_nMWinEM[lv_playerIndex]));
     TextExpressionSetToken("Param/Expression/F405B274", "B", IntToText(gv_nMWinOB[lv_playerIndex]));
