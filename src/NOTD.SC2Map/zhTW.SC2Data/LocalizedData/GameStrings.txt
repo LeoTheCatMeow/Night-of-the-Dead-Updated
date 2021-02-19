@@ -2252,7 +2252,7 @@ Button/Tooltip/WeaponsProficiency2=裝彈時間減少了50%。傷害力提高14%
 Button/Tooltip/White=把你士兵每次出場的顏色換成<c val="FFFFFF">白色</c>。<n/><n/>費用: <c val="71B8FF">5000</c><n/>需要<c val="FFFF00">5000經驗值</c>才能購買
 Button/Tooltip/Wraith2=一個致命的和無形的飛行突變生物。
 Button/Tooltip/X1Armor=試驗裝甲，使用時會使你隱身7秒。
-Button/Tooltip/X1Guardian=製造一部100血值的地面戰鬥機器人，每次攻擊有12點傷害力 (1.3攻擊間隔)。
+Button/Tooltip/X1Guardian=製造一部100血值的地面戰鬥機器人，每次攻擊有18點傷害力 (1.2攻擊間隔)。
 Button/Tooltip/X1GuardianLevel1=
 Button/Tooltip/X1GuardianLevel2=
 Button/Tooltip/X1GuardianLevel3=
@@ -2455,7 +2455,7 @@ Level 2 Surveillance Drone=技術員釋放一部經過改良，有100點血值�
 Level 2 Surveillance Flares=照明彈 - 發出3個火炬從懸停的支援飛機隨機攤開目標區域15範圍的地方。
 Level 2 Targeting Array=技術員部署一個可以通過更新士兵個人頭盔的戰術信息顯示，並突出敵人的弱點，以協助士兵的陣列，增加40%的傷害，持續10秒。
 Level 2 Taunt=短時間內迫使在範圍8以裡的敵人攻擊你6秒，所有被挑釁的敵人的傷害力降低20%。
-Level 2 X-1 Guardian=製造一部150血值的地面戰鬥機器人，每次攻擊有18點傷害力 (1.3攻擊間隔)。
+Level 2 X-1 Guardian=製造一部150血值的地面戰鬥機器人，每次攻擊有25點傷害力 (1.2攻擊間隔)。
 Level 3 Adrenaline=每次攻擊會增加6%攻擊速度，攻擊速度加成最多30層，持續20秒。<n/><n/>"我即将过载我的激进抑制!"
 Level 3 Bite=目標失去150點血值，鮑勃回血60點，目標被擊暈3秒，你可以...必須...不能咬隊友。
 Level 3 Blackout=可開關技能，所有攻擊會使目標暫時失明，每次攻擊消耗2點能量值，10%機會使非英雄目標轉化成不能控制的盟軍，持續5秒。
@@ -2490,7 +2490,7 @@ Level 3 Surgical Strike=增加傷害力150%，持續15秒，15秒恢復狀態時
 Level 3 Surveillance Drone=技術員釋放一部經過改良，有150點血值和10視野範圍的空中維修無人機為他偵察敵人，可以檢測到隱身的敵人並能治愈短路狀態。
 Level 3 Surveillance Flares=照明彈 - 發出5個火炬從懸停的支援飛機隨機攤開目標區域15範圍的地方。
 Level 3 Taunt=短時間內迫使在範圍10以裡的敵人攻擊你7秒，所有被挑釁的敵人的傷害力降低30%。
-Level 3 X-1 Guardian=製造一部225血值的地面戰鬥機器人，每次攻擊有24點傷害力並能穿透目標的護甲 (1.3攻擊間隔)。
+Level 3 X-1 Guardian=製造一部225血值的地面戰鬥機器人，每次攻擊有32點傷害力並能穿透目標的護甲 (1.2攻擊間隔)。
 LoadingScreen/Tip=所有關於NOTD官方版的更新信息能在補丁說明那裡找到。
 MapInfo/Player00/Name=中立
 MapInfo/Player01/Name=陸戰隊員1
@@ -4815,7 +4815,7 @@ UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">�
 UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">干擾塔</s><n/>對在9範圍以內的可見敵人造成傷害，大型與英雄單位會受到更多的傷害。範圍内友軍受到的遠程傷害-5。工程師一定要在干擾塔5範圍以內否則干擾塔不能殺掉敵人。<n/>1級 - 每1.2秒12點傷害力，可同時影響8個單位。<n/>2級 - 每1.2秒18點傷害力，可同時影響16個單位。<n/><n/>最多可以同時擁有2座塔。<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">能量電池升級 (被動技能)</s><n/>獲得9半徑的能量電池光環，給予隊友額外能量上限以及+0.35每秒能量恢復速度。<n/>同時也加强工程師修復護盾的速度。<n/>1級 - +10能量上限，12每秒修復速度。<n/>2級 - +20能量上限，17每秒修復速度。<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">戰場通訊機器人</s><n/>製造一部移動通訊機器人使所有隊友得到共享視線，它擁有這些額外技能: <n/>1) 西格瑪: 使所有在8範圍的飛行單位燃燒。<n/>2) 遵從系統: 永久控制目標非英雄單位。<n/>3) 被動光環: 所有在9範圍内有護盾的友軍得到靜電屏蔽 (+1護盾護甲，對所有攻擊者造成25點傷害)。<n/><n/>"正採取直接控制。" - 納扎爾<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X-1 "守護者"</s><n/>製造一部地面戰鬥機器人。<n/>1級 - 100血值，18點傷害力。<n/>2級 - 150血值，27點傷害力。<n/>3級 - 225血值，36點傷害力並穿透目標的護甲。
+UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X-1 "守護者"</s><n/>製造一部地面戰鬥機器人。<n/>1級 - 100血值，18點傷害力。<n/>2級 - 150血值，25點傷害力。<n/>3級 - 225血值，32點傷害力並穿透目標的護甲。
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">嘿，又是我!(被動技能)</s><n/>每次連續攻擊同一個目標會造成額外傷害。<n/>1級 - 傷害力+5%<n/>2級 - 傷害力+10%<n/>3級 - 傷害力+15%<n/><n/>額外傷害可提高到5層。
 UserData/TalentTrees/Engineer_Talent Tootips_007=<s val="AchievementFrameName">轟!爆頭</s><n/>工程師和 X-1 "守護者" 機器人的攻擊使敵人受到迷惑，並降低它們的護甲，在轟!爆頭狀態下，每一級有10%攻擊速度加成。<n/>1級 - 擊暈非英雄目標1秒(英雄目標減速15%)，同時失去2護甲。轟!爆頭狀態持續5秒。<n/>2級 - 擊暈非英雄目標2秒(英雄目標減速30%)，同時失去4護甲。轟!爆頭狀態持續7秒。<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Engineer_Talent Tootips_008=<s val="AchievementFrameName">協同效應 (被動技能)</s><n/>每當 X-1 "守護者" 機器人和工程師攻擊同樣的目標，他們會造成額外傷害。<n/>1級 - 傷害力+20%<n/>2級 - 傷害力+40%<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>

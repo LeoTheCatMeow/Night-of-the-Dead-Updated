@@ -6,6 +6,7 @@
 
 [LeoTheCat]
 - Moved the unlock text on mission select to the left so that chat is easier to read.
+- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
 
 2021-2-13
 [ThunderRazor]
@@ -18,7 +19,7 @@
 - Recon - Laser Designator reveal radius improved from 2 to 2/3/4, energy cost increased from 5 to 8.
 - Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
 - Recon - Renamed Motion Sensor to Battlefield Radar to better reflect its current effect on the team.
-- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/27/36.
+- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/25/32.
 - Engineer's X1 Bot and Recon's Reaper Drone are now Heroic - and thus receive xp shared from the team (7 radius).
 - Additionally, X1 Bot and Reaper Drone no longer take full xp from their own kills, those are instead evenly split among nearby teammates.
 - Engineer - Adjusted the level progression of the X1 Bot so that it is initially easier to level up, but harder at later levels.

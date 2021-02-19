@@ -1730,7 +1730,7 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="X1GuardianLimit">
         <EditorCategories value=""/>
-        <SearchFilters value="Armored,Mechanical;Ally,Neutral,Enemy,Psionic,Structure,Heroic,Dead"/>
+        <SearchFilters value="Armored,Mechanical,Summoned;Ally,Neutral,Enemy,Psionic,Structure,Dead"/>
         <ExcludeArray Value="Source"/>
         <AreaArray Radius="500" Effect="SuicideOther"/>
         <ValidatorArray value="NotZombiePlayer"/>
@@ -10891,10 +10891,10 @@
     <CEffectDamage id="X1EvisceratorBeamLevel2" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
         <Kind value="Ranged"/>
-        <Amount value="27"/>
+        <Amount value="25"/>
         <Death value="Electrocute"/>
         <ArmorReduction value="0.5"/>
-        <AttributeBonus index="Massive" value="13.5"/>
+        <AttributeBonus index="Massive" value="12.5"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
         <AreaArray Radius="1" Fraction="1"/>
         <KindSplash value="Splash"/>
@@ -10902,11 +10902,11 @@
     </CEffectDamage>
     <CEffectDamage id="X1EvisceratorBeamLevel3" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
-        <AttributeBonus index="Massive" value="18"/>
+        <AttributeBonus index="Massive" value="16"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="36"/>
+        <Amount value="32"/>
         <Death value="Electrocute"/>
         <AreaArray Radius="1" Fraction="1"/>
         <ExcludeArray Value="Target"/>
@@ -11769,7 +11769,7 @@
     </CEffectModifyUnit>
     <CEffectEnumArea id="ReaperMK13Limit">
         <EditorCategories value=""/>
-        <SearchFilters value="Light,Mechanical;Ally,Neutral,Enemy,Heroic,Dead"/>
+        <SearchFilters value="Light,Mechanical,Summoned;Ally,Neutral,Enemy,Dead"/>
         <ExcludeArray Value="Source"/>
         <AreaArray Radius="500" Effect="SuicideOther"/>
     </CEffectEnumArea>

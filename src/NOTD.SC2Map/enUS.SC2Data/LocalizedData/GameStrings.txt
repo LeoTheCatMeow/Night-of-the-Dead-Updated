@@ -2048,7 +2048,7 @@ Button/Tooltip/White=Changes Marine color to <c val="FFFFFF">White</c> for all g
 Button/Tooltip/WidowMineBioSplash=Fires mini missiles that deal <c val="FFFF00"><d ref="Effect,WidowMineExplodeSplash,Amount"/></c> damage to incoming hostiles in a small area.
 Button/Tooltip/Wraith2=A deadly and invisible air mutation. Capable of inflicting Corossive Acid on targets.
 Button/Tooltip/X1Armor=Experimental armor. 7 sec cloak when used
-Button/Tooltip/X1Guardian=Summons a 100 HP battle bot. Deals 12 damage per attack (1.3 attack speed). 
+Button/Tooltip/X1Guardian=Summons a 100 HP battle bot. Deals 18 damage per attack (1.2 attack speed). 
 Button/Tooltip/X1GuardianLevel1=
 Button/Tooltip/X1GuardianLevel2=
 Button/Tooltip/X1GuardianLevel3=
@@ -2101,7 +2101,8 @@ DocInfo/PatchNote013=- Fixed recruit/normal Elite Mutation wins not displaying c
 DocInfo/PatchNote014=
 DocInfo/PatchNote015=[LeoTheCat]
 DocInfo/PatchNote016=- Moved the unlock text on mission select to the left so that chat is easier to read.
-DocInfo/PatchNote043=- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/27/36.
+DocInfo/PatchNote017=- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
+DocInfo/PatchNote043=- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/25/32.
 DocInfo/PatchNote076=[ThunderRazor]
 DocInfo/PatchNote077=- Added win tracking for Elite Mutation and Outbreak mode.
 DocInfo/PatchNote078=- Marksman - Shadowstep energy cost reduced from 20 to 15.
@@ -4008,7 +4009,7 @@ Level 2 Surveillance Drone=Technician releases a retooled aerial repair drone wi
 Level 2 Surveillance Flares=Surveillance Flares - Fires 3 flares from a hovering support plane spread out randomly around target area of 15 radius.
 Level 2 Targeting Array=The Technician deploys an array that assists the nearby marines by updating their personal heads up displays with tactical information and highlighting enemy weak points, increasing damage by 40%. Lasts for 10 seconds.
 Level 2 Taunt=Forces enemies in 8 radius to attack you for 6 seconds. Taunted units deal 20% less damage.
-Level 2 X-1 Guardian=Summons a 150 HP battle bot. Deals 18 damage per attack (1.3 attack speed). 
+Level 2 X-1 Guardian=Summons a 150 HP battle bot. Deals 25 damage per attack (1.2 attack speed). 
 Level 3 Adrenaline=Each attack grants +6% attack speed. Stacks up to 30 times. Last 20 seconds.<n/><n/>"I'm about to overload my aggression inhibitors!"
 Level 3 Bite=Target loses 150 HP, Bob gains 60 HP. Target is stunned for 3 seconds. You can..MUST...not bite allies.
 Level 3 Blackout=Toggled. All attacks Blind targets. Each attack costs 2 Energy. 10% chance to turn non-Hero target into uncontrollable allied units for 5 seconds.
@@ -4043,7 +4044,7 @@ Level 3 Surgical Strike=Increase attack damage by 150% for 15 sec. 15 sec recove
 Level 3 Surveillance Drone=Technician releases a retooled aerial repair drone with 150 HP and 10 sight radius to scout for him. Detects invisible and can cure Short Circuit.
 Level 3 Surveillance Flares=Surveillance Flares - Fires 5 flares from a hovering support plane spread out randomly around target area of 15 radius.
 Level 3 Taunt=Forces enemies in 8 radius to attack you for 7 seconds. Taunted units deal 30% less damage.
-Level 3 X-1 Guardian=Summons a 225 HP battle bot. Deals 24 damage per attack (1.3 attack speed). Attacks penetrate armor.
+Level 3 X-1 Guardian=Summons a 225 HP battle bot. Deals 32 damage per attack (1.2 attack speed). Attacks penetrate armor.
 LoadingScreen/Tip=Type "/join Night of the Dead" in any channel to join the chat and find more players.
 MapInfo/Player00/Name=Neutral
 MapInfo/Player01/Name=Marine 1
@@ -6736,7 +6737,7 @@ UserData/TalentTrees/Engineer_Talent Tootips_001=<s val="AchievementFrameName">P
 UserData/TalentTrees/Engineer_Talent Tootips_002=<s val="AchievementFrameName">Disruption Tower</s><n/>Deals damage to visible enemies in 9 radius. Massive/Heroic units receive more damage. <n/>Engineer must be within 5 radius of Disruption Tower for it to kill enemies.<n/><c val="FFFF00">Allies within the radius take 5 less ranged damage.</c><n/>Level 1 - 12 damage every 1.2 seconds. Affects 8 units.<n/>Level 2 - 18 damage every 1.2 seconds. Affects 16 units.<n/><n/>Can only build 2 at a time.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_003=<s val="AchievementFrameName">Energy Battery<n/>(Passive)</s><n/>Grants bonus max energy and +0.35 energy regeneration to allies in 9 radius. <n/>Also improves Engineer's shield repair speed.<n/>Level 1 - +10 energy, 12 per second shield repair.<n/>Level 2 - +20 energy, 17 per second shield repair.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_004=<s val="AchievementFrameName">Field Nexus</s><n/>Creates a mobile Nexus unit that grants shared vision to allies. Abilities: <n/>1) Sigma: Burns all air units in 8 radius.<n/>2) Compliance Matrix: Gains permanent control of target non-hero unit.<n/>3) Passive Aura: All allies with shields in 9 radius gain Static Shield (+1 shield armor and deals 25 damage to attackers).<n/><n/>"Assuming direct control" - Nazara<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
-UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 18 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 27 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 36 damage per attack. (Ignore armor)
+UserData/TalentTrees/Engineer_Talent Tootips_005=<s val="AchievementFrameName">X1 Guardian</s><n/>Builds a land-based mechanical combat bot.<n/>Level 1 - 100 HP. 18 damage per attack. (-1/armor)<n/>Level 2 - 150 HP. 25 damage per attack. (-0.5/armor)<n/>Level 3 - 225 HP. 32 damage per attack. (Ignore armor)
 UserData/TalentTrees/Engineer_Talent Tootips_006=<s val="AchievementFrameName">It's Me Again!<n/>(Passive)</s><n/>Each subsequent attack on same target deals extra damage.<n/>Level 1 - +7% damage<n/>Level 2 - +14% damage<n/>Level 3 - +21% damage<n/><n/>Stacks up to 5 times.
 UserData/TalentTrees/Engineer_Talent Tootips_007=<s val="AchievementFrameName">Boom! Headshot</s><n/>Attacks by Engineer/Guardian disorients enemies, reduces armor. Each level also increases attack speed by +10% when active.<n/>Level 1 - Stuns non-Heroics (slows Heroics by 15%) and -2 armor for 1 second. Attack modifier lasts 5 seconds.<n/>Level 2 - Stuns non-Heroics (slows Heroics by 30%) and -4 armor for 2 seconds. Attack modifier lasts 7 seconds.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Engineer_Talent Tootips_008=<s val="AchievementFrameName">Synergy<n/>(Passive)</s><n/>When Guardian and Engineer attack same target, deals more damage. <n/>Level 1 - +20% damage<n/>Level 2 - +40% damage<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
