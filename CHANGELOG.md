@@ -1,5 +1,12 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-2-18
+[ThunderRazor]
+- Fixed recruit/normal Elite Mutation wins not displaying correctly.
+
+[LeoTheCat]
+- Moved the unlock text on mission select to the left so that chat is easier to read.
+
 2021-2-13
 [ThunderRazor]
 - Added win tracking for Elite Mutation and Outbreak mode.

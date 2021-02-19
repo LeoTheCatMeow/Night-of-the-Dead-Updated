@@ -96,7 +96,7 @@
 
         <Frame type="Label" name="AlphaCompanyUnlock">
             <Anchor side="Top" relative="$parent/AlphaCompanyButton" pos="Min" offset="40"/>
-            <Anchor side="Right" relative="$parent/AlphaCompanyButton" pos="Max" offset="25"/>
+            <Anchor side="Left" relative="$parent/AlphaCompanyButton" pos="Min" offset="45"/>
             <Color val="0,255,0"/>
             <Text val="Scaled XP &gt; 1000xp requirement met."/>
             <Height val="250"/>
@@ -139,7 +139,7 @@
 
         <Frame type="Label" name="ApolloSecurityUnlock">
             <Anchor side="Top" relative="$parent/ApolloSecurityButton" pos="Min" offset="40"/>
-            <Anchor side="Right" relative="$parent/ApolloSecurityButton" pos="Max" offset="25"/>
+            <Anchor side="Left" relative="$parent/ApolloSecurityButton" pos="Min" offset="45"/>
             <Color val="0,255,0"/>
             <Text val="Scaled XP &gt; 3000xp requirement met."/>
             <Height val="250"/>
