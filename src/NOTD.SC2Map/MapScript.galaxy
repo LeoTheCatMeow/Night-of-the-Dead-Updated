@@ -20977,7 +20977,7 @@ bool gt_TeamKillOLD_Func (bool testConds, bool runActions) {
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 100.0, 0.0);
     libNtve_gf_AttachModelToUnit(libNtve_gf_KillingUnit(), "BriefingUnitSelectRedSmall", "Ref_Center");
     lv_localActorA = libNtve_gf_ActorLastCreated();
-    if (!(gv_hell) && (gv_playerIsBad[lv_pNumber] == false)) {
+    if (!(gv_hell) && !(gv_glassCannonActivated) && (gv_playerIsBad[lv_pNumber] == false)) {
         UIDisplayMessage(PlayerGroupSingle(lv_pNumber), c_messageAreaSubtitle, StringExternal("Param/Value/15EEEFDB"));
         gv_tKedPlayer = lv_pNumber;
         gv_griefingPlayer = libNtve_gf_KillingPlayer();
