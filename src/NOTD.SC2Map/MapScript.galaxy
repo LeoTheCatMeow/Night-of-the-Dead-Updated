@@ -8497,7 +8497,7 @@ bool auto_gf_ZombieAIWorldEvents_TriggerFunc (bool testConds, bool runActions) {
         for (;; auto8B3226D9_u -= 1) {
             auto8B3226D9_var = UnitGroupUnitFromEnd(auto8B3226D9_g, auto8B3226D9_u);
             if (auto8B3226D9_var == null) { break; }
-            if (((UnitHasBehavior(auto8B3226D9_var, "TauntLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel3") == true) || (UnitHasBehavior(auto8B3226D9_var, "LookAttack") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel3") == true) || (UnitHasBehavior(auto8B3226D9_var, "ComplianceMatrix") == true) || (((UnitGetOwner(auto8B3226D9_var) >= 1) && (UnitGetOwner(auto8B3226D9_var) <= 8)) == true))) {
+            if (((UnitHasBehavior(auto8B3226D9_var, "TauntLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel3") == true) || (UnitHasBehavior(auto8B3226D9_var, "LookAttack") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel3") == true) || (((UnitGetOwner(auto8B3226D9_var) >= 1) && (UnitGetOwner(auto8B3226D9_var) <= 8)) == true) || !(UnitIsAlive(auto8B3226D9_var)))) {
             }
             else {
                 if (((UnitGetType(auto8B3226D9_var) == "InfestedAbominationBurrowed") || (UnitGetType(auto8B3226D9_var) == "RoachBurrowed") || (UnitGetType(auto8B3226D9_var) == "Devourer2") || (UnitGetType(auto8B3226D9_var) == "Slasher2") || (UnitGetType(auto8B3226D9_var) == "ZerglingBurrowed") || (UnitGetType(auto8B3226D9_var) == "Hugger2") || (UnitGetType(auto8B3226D9_var) == "Perses"))) {
@@ -25199,7 +25199,7 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
         Wait(RandomFixed(4.0, 7.5), c_timeReal);
     }
 
-    if ((RandomInt(1, 1) == 1)) {
+    if ((RandomInt(0, 1) == 1)) {
         auto4EB69062_n = (gv_spawnFactor * 9);
         for (auto4EB69062_i = 1; auto4EB69062_i <= auto4EB69062_n; auto4EB69062_i += 1) {
             libNtve_gf_UnitCreateFacingPoint(libNtve_gf_DifficultyValueInt(gv_spawnFactor, gv_spawnFactor, gv_spawnFactor, gv_spawnFactor), "ZerglingBurrowed", 0, 14, RegionRandomPoint(lv_eCSpawnSector[lv_eCSpawnDirection]), RegionRandomPoint(RegionFromId(45)));
@@ -25847,12 +25847,10 @@ bool gt_W2EnterMilitaryBase_Func (bool testConds, bool runActions) {
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_secTeamAMarines, c_unitCountAlive), StringExternal("Param/Value/06C9BF47"));
     SoundPlay(SoundLink("SensorTower_MorphToTower", -1), PlayerGroupActive(), 80.0, 0.0);
     UnitBehaviorAdd(gv_sensorTower[0], "SensorTowerRadar", gv_sensorTower[0], 1);
-    libNtve_gf_MakeUnitInvulnerable(gv_sensorTower[0], false);
     UnitSetTeamColorIndex(gv_sensorTower[0], 6);
     gf_TipNOTD(1000, StringExternal("Param/Value/7CDB0760"));
     Wait(0.5, c_timeReal);
     UnitBehaviorAdd(gv_sensorTower[1], "SensorTowerRadar", gv_sensorTower[1], 1);
-    libNtve_gf_MakeUnitInvulnerable(gv_sensorTower[1], false);
     UnitSetTeamColorIndex(gv_sensorTower[1], 6);
     TipAlertPanelClear(PlayerGroupAll());
     ObjectiveCreate(StringExternal("Param/Value/CC5FA379"), StringExternal("Param/Value/8423EF3A"), c_objectiveStateActive, true);

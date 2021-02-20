@@ -2106,6 +2106,7 @@ DocInfo/PatchNote018=- Moved the unlock text on mission select to the left so th
 DocInfo/PatchNote019=- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
 DocInfo/PatchNote020=- Fixed unreadable texts and broken hotkeys for languages other than English.
 DocInfo/PatchNote021=- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mixture of English and TC texts.
+DocInfo/PatchNote022=- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
 DocInfo/PatchNote043=- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/25/32.
 DocInfo/PatchNote076=[ThunderRazor]
 DocInfo/PatchNote077=- Added win tracking for Elite Mutation and Outbreak mode.
@@ -6389,7 +6390,7 @@ UserData/Medals/Lifesaving Medal_Name=Lifesaving Medal
 UserData/Medals/Lifesaving Medal_Requirement Tooltip=Requirements:<n/>- Win as Medic (10x)
 UserData/Medals/Medal of Honor_Display Name=<s val="HeaderExtendedTemplate">Medal of Honor</s>
 UserData/Medals/Medal of Honor_Name=Medal of Honor
-UserData/Medals/Medal of Honor_Requirement Tooltip=Requirements:<n/>- Win Nightmare 50 times with entire team alive (minimum 3 players)
+UserData/Medals/Medal of Honor_Requirement Tooltip=Requirements:<n/>- Win Nightmare 50 times with entire team alive (minimum 2 players)
 UserData/Medals/Navy Cross_Display Name=<s val="HeaderExtendedTemplate">Navy Cross</s>
 UserData/Medals/Navy Cross_Name=Navy Cross
 UserData/Medals/Navy Cross_Requirement Tooltip=Requirements:<n/>- Win with entire team (minimum 3 players) not using a single Medkit/Bandage. (10x)
