@@ -7642,10 +7642,10 @@
         <LifeRegenRate value="1"/>
         <Attributes index="Massive" value="1"/>
         <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="NeverThink" value="1"/>
         <KillXP value="1"/>
         <Sight value="1"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
-        <BehaviorArray Link="DifficultyScalingHP"/>
         <Collide index="Burrow" value="0"/>
         <Collide index="Ground" value="0"/>
         <Collide index="Structure" value="0"/>
@@ -8882,6 +8882,10 @@
         <Collide index="Structure" value="0"/>
         <Collide index="Small" value="0"/>
         <Footprint value=""/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
     </CUnit>
     <CUnit id="FMJAmmo" parent="ITEM">
         <DeathRevealRadius value="2"/>

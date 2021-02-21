@@ -713,6 +713,15 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification SightBonus="1.5" DetectBonus="1.5"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="PausedNoCollision">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.1"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="PlayerUnit">
         <BehaviorFlags index="Permanent" value="1"/>
         <InfoFlags index="Hidden" value="1"/>

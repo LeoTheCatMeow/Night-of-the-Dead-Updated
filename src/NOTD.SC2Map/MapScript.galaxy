@@ -664,7 +664,7 @@ unitgroup gv_rewardedGroup;
 unit gv_priyanka;
 unitgroup gv_blackOps;
 unitgroup gv_zombieWave;
-unitgroup gv_zombieWaveSpecial;
+unitgroup gv_zombieWavePaused;
 unitgroup gv_mineSiteMobs;
 unitgroup gv_brainBugs;
 unit gv_madMaxTruck;
@@ -1212,7 +1212,7 @@ void InitGlobals () {
     gv_rewardedGroup = UnitGroupEmpty();
     gv_blackOps = UnitGroupEmpty();
     gv_zombieWave = UnitGroupEmpty();
-    gv_zombieWaveSpecial = UnitGroupEmpty();
+    gv_zombieWavePaused = UnitGroupEmpty();
     gv_mineSiteMobs = UnitGroupEmpty();
     gv_brainBugs = UnitGroupEmpty();
     gv_madMaxTruck = UnitFromId(337);
@@ -8560,7 +8560,7 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
     // Variable Declarations
     bool lv_pauseFarAwayUnits;
     int lv_pauseDistance;
-    int lv_pausedUnitCount;
+    point lv_marineCenter;
 
     // Automatic Variable Declarations
     unitgroup auto47DD8193_g;
@@ -8575,40 +8575,37 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
 
     // Implementation
     while ((gv_gameOver == false)) {
-        if ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) >= 600)) {
+        lv_marineCenter = UnitGroupCenterOfGroup(gv_marines);
+        if ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) >= 500)) {
             lv_pauseFarAwayUnits = true;
-            auto47DD8193_g = gv_zombieWave;
+            auto47DD8193_g = UnitGroupFilter(null, 14, gv_zombieWave, UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto47DD8193_u = UnitGroupCount(auto47DD8193_g, c_unitCountAll);
             for (;; auto47DD8193_u -= 1) {
                 auto47DD8193_var = UnitGroupUnitFromEnd(auto47DD8193_g, auto47DD8193_u);
                 if (auto47DD8193_var == null) { break; }
-                if (((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - lv_pausedUnitCount) > 600) && (libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), UnitGroupCenterOfGroup(gv_marines)) > lv_pauseDistance) && ((libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 1) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 2) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 3) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 4) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 5) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 6) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 7) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 8) == false))) {
-                    UnitBehaviorAddPlayer(auto47DD8193_var, "SuppressCollision", 14, 1);
-                    lv_pausedUnitCount += 1;
-                    Wait(0.07, c_timeReal);
+                if ((libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive)) > 500) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), lv_marineCenter) > lv_pauseDistance) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 9) == false)) {
+                    UnitBehaviorAddPlayer(auto47DD8193_var, "PausedNoCollision", 14, 1);
                     UnitSetState(auto47DD8193_var, c_unitStatePaused, true);
+                    UnitGroupAdd(gv_zombieWavePaused, auto47DD8193_var);
                 }
-                else if ((libNtve_gf_UnitIsPaused(auto47DD8193_var) == true) && (((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - lv_pausedUnitCount) < 600) || (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), UnitGroupCenterOfGroup(gv_marines)) <= lv_pauseDistance) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 1) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 2) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 3) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 4) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 5) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 6) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 7) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 8) == true))) {
+                else if ((libNtve_gf_UnitIsPaused(auto47DD8193_var) == true) && (((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive)) < 500) || (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), lv_marineCenter) <= lv_pauseDistance) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 9) == true))) {
                     UnitSetState(auto47DD8193_var, c_unitStatePaused, false);
-                    Wait(0.07, c_timeReal);
-                    UnitBehaviorRemovePlayer(auto47DD8193_var, "SuppressCollision", 14, c_unitBehaviorCountAll);
-                    lv_pausedUnitCount -= 1;
+                    UnitGroupRemove(gv_zombieWavePaused, auto47DD8193_var);
                 }
             }
         }
-        if ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) < 600) && (lv_pauseFarAwayUnits == true)) {
+        if ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) < 500) && (lv_pauseFarAwayUnits == true)) {
             lv_pauseFarAwayUnits = false;
-            lv_pausedUnitCount = 0;
-            auto0A37FF19_g = gv_zombieWave;
+            auto0A37FF19_g = gv_zombieWavePaused;
             auto0A37FF19_u = UnitGroupCount(auto0A37FF19_g, c_unitCountAll);
             for (;; auto0A37FF19_u -= 1) {
                 auto0A37FF19_var = UnitGroupUnitFromEnd(auto0A37FF19_g, auto0A37FF19_u);
                 if (auto0A37FF19_var == null) { break; }
                 UnitSetState(auto0A37FF19_var, c_unitStatePaused, false);
-                UnitBehaviorRemovePlayer(auto0A37FF19_var, "SuppressCollision", 14, c_unitBehaviorCountAll);
             }
+            UnitGroupClear(gv_zombieWavePaused);
         }
-        lv_pauseDistance = MinI(45, (90 - ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - 600) / 20)));
+        lv_pauseDistance = MinI(40, (90 - ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - 500) / 20)));
         Wait(1.0, c_timeReal);
     }
     return true;
@@ -18890,14 +18887,12 @@ bool gt_MobsCheck_Func (bool testConds, bool runActions) {
     int lv_enemy;
     int lv_wave;
     int lv_other;
+    int lv_paused;
     unit lv_unit;
     unitgroup lv_idleghouls;
     int lv_idleghoul;
 
     // Automatic Variable Declarations
-    unitgroup autoA3EE2AF0_g;
-    int autoA3EE2AF0_u;
-
     // Variable Initialization
     lv_trigPlayer = EventPlayer();
     lv_enemies = UnitGroupAlliance(EventPlayer(), c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
@@ -18912,21 +18907,11 @@ bool gt_MobsCheck_Func (bool testConds, bool runActions) {
     lv_enemy = UnitGroupCount(lv_enemies, c_unitCountAlive);
     lv_wave = UnitGroupCount(gv_zombieWave, c_unitCountAlive);
     lv_other = (lv_enemy - lv_wave);
+    lv_paused = UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/E665DAFA") + IntToText(lv_enemy) + StringExternal("Param/Value/F9898AF4")));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/D85DE6FB") + IntToText(lv_wave) + StringExternal("Param/Value/66ADF1DD")));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/E319356D") + IntToText(lv_other) + StringExternal("Param/Value/EC43E9CC")));
-    if (((PlayerHandle(lv_trigPlayer) == "1-S2-1-417524") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-431521") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-1143628") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-3388720") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-11533459") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-1246603") || !(GameIsOnline()))) {
-        autoA3EE2AF0_g = lv_enemies;
-        autoA3EE2AF0_u = UnitGroupCount(autoA3EE2AF0_g, c_unitCountAll);
-        for (;; autoA3EE2AF0_u -= 1) {
-            lv_unit = UnitGroupUnitFromEnd(autoA3EE2AF0_g, autoA3EE2AF0_u);
-            if (lv_unit == null) { break; }
-            if (!(UnitGroupHasUnit(gv_zombieWave, lv_unit)) && !(UnitGroupHasUnit(gv_infestors, lv_unit)) && !(UnitGroupHasUnit(gv_mineSiteMobs, lv_unit)) && !(UnitGroupHasUnit(gv_initialHuggers, lv_unit)) && !(UnitGroupHasUnit(gv_brainBugs, lv_unit)) && !(UnitGroupHasUnit(gv_blackOps, lv_unit)) && !(UnitGroupHasUnit(gv_blackOpsDroneTeam, lv_unit)) && !(UnitGroupHasUnit(gv_truckAttackers, lv_unit)) && !(UnitGroupHasUnit(gv_survivalNydusGroup, lv_unit)) && !(UnitGroupHasUnit(gv_sTTeam2HarassZombies, lv_unit)) && !(UnitGroupHasUnit(gv_nydusWormSpineGroup, lv_unit)) && !(UnitGroupHasUnit(gv_nydusWormGroup, lv_unit)) && !(UnitGroupHasUnit(gv_nydusWormAgronGroup, lv_unit)) && !(UnitGroupHasUnit(gv_nazaraImages, lv_unit)) && !(UnitGroupHasUnit(gv_mineShaftMobs, lv_unit)) && !(UnitGroupHasUnit(gv_laserDrones, lv_unit)) && !(UnitGroupHasUnit(gv_infectedCivilians, lv_unit)) && !(UnitGroupHasUnit(gv_ghostCompany, lv_unit)) && !(UnitGroupHasUnit(gv_complianceNexusGroup, lv_unit)) && !(libNtve_gf_UnitIsInvulnerable(lv_unit)) && (lv_unit != gv_boss) && (lv_unit != gv_finalBoss) && (lv_unit != gv_gOTB)) {
-                MinimapPing(PlayerGroupSingle(lv_trigPlayer), UnitGetPosition(lv_unit), 5.0, Color(100.00, 0.00, 0.00));
-                PingSetUnit(PingLastCreated(), lv_unit);
-            }
-        }
-    }
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/3609D9DC") + IntToText(lv_paused) + StringExternal("Param/Value/5A5D6E2D")));
     Wait(7.0, c_timeReal);
     TriggerEnable(TriggerGetCurrent(), true);
     return true;

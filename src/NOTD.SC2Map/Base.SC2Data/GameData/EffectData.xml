@@ -5059,6 +5059,8 @@
         <PeriodicOffsetArray value="0.6,-0.6,0"/>
         <PeriodicPeriodArray value="0.05"/>
         <HeightMap value="Ground"/>
+        <RevealRadius value="5"/>
+        <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="ScorchedEarthPersistent">
         <EditorCategories value="Race:Terran"/>
@@ -11125,6 +11127,8 @@
         <AINotifyFlags index="HurtFriend" value="1"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
         <Alert value="TacticalNuke"/>
+        <RevealRadius value="10"/>
+        <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectCreateUnit id="NukeCreateRevealDummy">
         <WhichLocation Value="TargetPoint"/>

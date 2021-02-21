@@ -686,6 +686,7 @@ Behavior/Name/NoQuarterInvulnerable=No Quarter - Invulnerable
 Behavior/Name/OpenWound=Open Wound
 Behavior/Name/Overdrive=Overdrive
 Behavior/Name/Overheating=Overheating
+Behavior/Name/PausedNoCollision=Paused No Collision
 Behavior/Name/PenalLegion=Penal Legion
 Behavior/Name/PenanceLevel1=Penance (Level 1)
 Behavior/Name/PenanceLevel2=Penance (Level 2)
@@ -2108,6 +2109,9 @@ DocInfo/PatchNote020=- Fixed a bug where multiple X1 Bots and Reaper Drones can 
 DocInfo/PatchNote021=- Fixed unreadable texts and broken hotkeys for languages other than English.
 DocInfo/PatchNote022=- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mixture of English and TC texts.
 DocInfo/PatchNote023=- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
+DocInfo/PatchNote024=- Game will now pause non-Boss zombies that are out of vision when zombie wave grows larger than 500 to avoid severe FPS drop.
+DocInfo/PatchNote025=- Paused zombies will resume when zombie waves becomes smaller, or if approached/revealed by marines.
+DocInfo/PatchNote026=- Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
 DocInfo/PatchNote043=- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/25/32.
 DocInfo/PatchNote076=[ThunderRazor]
 DocInfo/PatchNote077=- Added win tracking for Elite Mutation and Outbreak mode.
@@ -4463,6 +4467,7 @@ Param/Value/35B64B6A=EVAC is almost here. If we light a flare near our position,
 Param/Value/35E13D08=We have a team of Corpsmen stationed at the armory. Let's get to them.
 Param/Value/35E6A69A=Try to work things out before resorting to vote kick!
 Param/Value/35FA14D2=Doctor
+Param/Value/3609D9DC=<s val="InfoPaneUnitInfo">Paused Mobs: 
 Param/Value/360E1356=Redemption
 Param/Value/362A024D=<c val="0080FF">
 Param/Value/36552B48=<s val="GlueButton"><c val="F4D72B">Nobody will believe you.</c>
@@ -4668,6 +4673,7 @@ Param/Value/59BA14F5=Select Storyline
 Param/Value/59E24A84=(You've awakened a fearsome Brain Bug!)
 Param/Value/5A362BF5=%</s>
 Param/Value/5A3D82DA=Shop too far, disabling.
+Param/Value/5A5D6E2D=</s>
 Param/Value/5AA04D5B=/60)</c>
 Param/Value/5AC82CF0=Chapter 2
 Param/Value/5B1491B3=Use Anti-Air weapons for Dome B

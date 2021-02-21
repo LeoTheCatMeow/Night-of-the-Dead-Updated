@@ -11,7 +11,11 @@
 - Moved the unlock text on mission select to the left so that chat is easier to read.
 - Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
 - Fixed unreadable texts and broken hotkeys for languages other than English.
-- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mix
+- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mixture of English and TC texts.
+- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
+- Game will now pause non-Boss zombies that are out of vision when zombie wave grows larger than 500 to avoid severe FPS drop.
+- Paused zombies will resume when zombie waves becomes smaller, or if approached/revealed by marines.
+- Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
 
 2021-2-13
 [ThunderRazor]
