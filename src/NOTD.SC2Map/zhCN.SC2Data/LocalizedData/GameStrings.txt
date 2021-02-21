@@ -2121,25 +2121,34 @@ NOTDLoadingHint1=Z鍵可以使你暫時疾跑
 NOTDLoadingHint2=T鍵可以使你低於15顆彈藥是手動填彈
 One Shot, One Kill Level 2=對單一目標造成600點傷害。<n/><n/>裝備巴雷特M112會造成30%額外傷害。
 One Shot, One Kill Level 3=立即殺掉非英雄單位，對英雄目標造成800點加上1.2%血量傷害。<n/><n/>使用巴雷特M112會造成30%額外基本傷害和額外0.3%血量傷害，百分比血量傷害需要一層聚精會神。
+Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 標記 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/142E3EDE=第~A~波
 Param/Expression/1B9D6FE5=~A~~B~~C~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
+Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要攻擊 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要攻擊 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要防守 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8=得到~A~獎勵</s>
+Param/Expression/4CE48FDE=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要防守！
 Param/Expression/4D6170D4=<s val="CommandTargetPrompt_Prot">(得到~A~獎勵...)</s>
 Param/Expression/4EEAFF4E=~A~<n/>
 Param/Expression/4FB8FD67=~A~<n/>
+Param/Expression/50E65A76=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 建議移動！
+Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>新手玩家: ~C~</s>
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/749F018B=生存(第~A~/40波)
 Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/8261F9D4=快速地完成任務，+~A~額外經驗值
+Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 建議撤退！
 Param/Expression/95E959B7=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/9A873C53=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/A91F7F6B=~A~~B~~C~
 Param/Expression/ABAE731B=~A~/~B~
 Param/Expression/CB96C272=~A~ : ~B~
 Param/Expression/D329FBDC=~A~
+Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要攻擊！
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(剩下~A~隻感染蟲...)</s>
@@ -3820,6 +3829,7 @@ Unit/Name/C4Armor=C4裝甲
 Unit/Name/C4ArmorHighlightTooltip=C4裝甲
 Unit/Name/C6Armor=<c val="00FFFF">C6裝甲</c>
 Unit/Name/C6ArmorHighlightTooltip=<c val="00FFFF">C6裝甲</c>
+Unit/Name/CIAmmoHighlightTooltip=<c val="80FF80">CI 彈藥</c>
 Unit/Name/CellularStructure=細胞結構
 Unit/Name/Cerberus=刻耳柏洛斯
 Unit/Name/Chaingun=<c val="972FFF">XM814重機槍</c>
@@ -4043,6 +4053,8 @@ Unit/Name/Strangler=扼殺者
 Unit/Name/SupplyStationLevel1=補給站 (1級)
 Unit/Name/SupplyStationLevel2=補給站 (2級)
 Unit/Name/SurveillanceFlare=照明彈
+Unit/Name/SynchronizationModule=<c val="80FF80">Synchronization Module</c>
+Unit/Name/SynchronizationModuleHighlightTooltip=<c val="80FF80">同步組件</c>
 Unit/Name/T65Sentinel=T65 Sentinel
 Unit/Name/TargetingArray=定位陣列
 Unit/Name/Tartarus=塔塔羅斯

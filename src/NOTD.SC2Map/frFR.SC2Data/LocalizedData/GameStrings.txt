@@ -686,6 +686,7 @@ Behavior/Name/NoQuarterInvulnerable=No Quarter - Invulnerable
 Behavior/Name/OpenWound=Open Wound
 Behavior/Name/Overdrive=Overdrive
 Behavior/Name/Overheating=Overheating
+Behavior/Name/PausedNoCollision=Paused No Collision
 Behavior/Name/PenalLegion=Penal Legion
 Behavior/Name/PenanceLevel1=Penance (Level 1)
 Behavior/Name/PenanceLevel2=Penance (Level 2)
@@ -2098,10 +2099,19 @@ DocInfo/PatchNote010=- Fixed pet backstab not working.
 DocInfo/PatchNote011=- Fixed price tooltips on CI Ammo and Sync Module.
 DocInfo/PatchNote012=[ThunderRazor]
 DocInfo/PatchNote013=- Fixed recruit/normal Elite Mutation wins not displaying correctly.
-DocInfo/PatchNote014=
-DocInfo/PatchNote015=[LeoTheCat]
-DocInfo/PatchNote016=- Moved the unlock text on mission select to the left so that chat is easier to read.
-DocInfo/PatchNote017=- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
+DocInfo/PatchNote014=- Enabled win update/rewards for solo players and lowered the requirement for Medal of Honor to at least 2 players instead of 3.
+DocInfo/PatchNote015=- Added a "Glass Cannon" option for solo and duo players, taking and dealing extra damage.
+DocInfo/PatchNote016=- Improved zombie AI to better handle situations when there are large number of enemies on the map.
+DocInfo/PatchNote017=
+DocInfo/PatchNote018=[LeoTheCat]
+DocInfo/PatchNote019=- Moved the unlock text on mission select to the left so that chat is easier to read.
+DocInfo/PatchNote020=- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
+DocInfo/PatchNote021=- Fixed unreadable texts and broken hotkeys for languages other than English.
+DocInfo/PatchNote022=- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mixture of English and TC texts.
+DocInfo/PatchNote023=- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
+DocInfo/PatchNote024=- Game will now pause non-Boss zombies that are out of vision when zombie wave grows larger than 500 to avoid severe FPS drop.
+DocInfo/PatchNote025=- Paused zombies will resume when zombie waves becomes smaller, or if approached/revealed by marines.
+DocInfo/PatchNote026=- Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
 DocInfo/PatchNote043=- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/25/32.
 DocInfo/PatchNote076=[ThunderRazor]
 DocInfo/PatchNote077=- Added win tracking for Elite Mutation and Outbreak mode.
@@ -4121,7 +4131,7 @@ Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ 
 Param/Expression/D9838420=+~A~ XP for Elite Mutation Bonus
 Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
 Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>)</s>
-Param/Expression/E91DA1DF=<s val="GlueButtonSmall"><c val="FFCE09">Glass Cannon Mode is Available</c><n/><c val="FFFF">- Marines <c val="80FF80">deal</c> +200% damage<n/>- Marines <c val="FF8080">take</c> +200% damage<n/>   Activate now? (<c val="80FF80">Y</c>/<c val="FF8080">N</c>)</s></c>
+Param/Expression/E91DA1DF=<s val="GlueButtonSmall"><c val="FFCE09">Glass Cannon Mode is Available</c><n/><c val="FFFF">- Marines <c val="80FF80">deal</c> +200% damage<n/>- Marines <c val="FF8080">take</c> +200% damage<n/>Activate now? (<c val="80FF80">Y</c>/<c val="FF8080">N</c>)</s></c>
 Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/F405B274=<s val="GlueButtonSmall">Nightmare: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
@@ -4161,7 +4171,6 @@ Param/Value/05BF5D82=Roger. Grab the ammo and we're Oscar Mike.
 Param/Value/05C9C370=Head to Central Square. We should set up an EVAC point for any survivors.
 Param/Value/060BE9EA=Talents Available: 
 Param/Value/062A9941=+2 XP for Mission Bonus
-Param/Value/064FA406=</s>
 Param/Value/06563FD7=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/069FDC3C=The power generators are scattered across Apollo.
 Param/Value/06A43C14=Keep the Sec Team unit alive for more fire power
@@ -4458,6 +4467,7 @@ Param/Value/35B64B6A=EVAC is almost here. If we light a flare near our position,
 Param/Value/35E13D08=We have a team of Corpsmen stationed at the armory. Let's get to them.
 Param/Value/35E6A69A=Try to work things out before resorting to vote kick!
 Param/Value/35FA14D2=Doctor
+Param/Value/3609D9DC=<s val="InfoPaneUnitInfo">Paused Mobs: 
 Param/Value/360E1356=Redemption
 Param/Value/362A024D=<c val="0080FF">
 Param/Value/36552B48=<s val="GlueButton"><c val="F4D72B">Nobody will believe you.</c>
@@ -4663,6 +4673,7 @@ Param/Value/59BA14F5=Select Storyline
 Param/Value/59E24A84=(You've awakened a fearsome Brain Bug!)
 Param/Value/5A362BF5=%</s>
 Param/Value/5A3D82DA=Shop too far, disabling.
+Param/Value/5A5D6E2D=</s>
 Param/Value/5AA04D5B=/60)</c>
 Param/Value/5AC82CF0=Chapter 2
 Param/Value/5B1491B3=Use Anti-Air weapons for Dome B
@@ -5452,7 +5463,6 @@ Param/Value/DBA28A6B=We have something on short-range sensors...
 Param/Value/DBA62FE1=</c></s>
 Param/Value/DBC40CC5=</s>
 Param/Value/DBEAB2D3=Everyone's dead...massacred by those zombies.
-Param/Value/DBEB88A7=<s val="InfoPaneUnitInfo">Idle Ghouls: 
 Param/Value/DC7154EE=<s val="GlueButton">Deimos
 Param/Value/DC7774F5=You have my gratitude for killing him. He was...beyond redemption.
 Param/Value/DC9BD39A=
