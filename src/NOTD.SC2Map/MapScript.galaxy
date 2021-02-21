@@ -21176,10 +21176,10 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     if ((gv_alivePlayers == 2)) {
         SoundPlay(SoundLink("TValerian02ADominionMarine600039", -1), PlayerGroupActive(), 100.0, 0.0);
     }
-    if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 5) && (gv_spawnFactor > 1)) {
+    if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 5) && (gv_spawnFactor > 1) && (gv_sFOption != "0003")) {
         gv_spawnFactor -= 1;
     }
-    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 3) && (gv_spawnFactor > 1)) {
+    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 3) && (gv_spawnFactor > 1) && (gv_sFOption != "0003")) {
         gv_spawnFactor -= 1;
     }
     return true;
