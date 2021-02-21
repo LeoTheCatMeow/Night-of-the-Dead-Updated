@@ -664,6 +664,8 @@ unitgroup gv_rewardedGroup;
 unit gv_priyanka;
 unitgroup gv_blackOps;
 unitgroup gv_zombieWave;
+unitgroup gv_zombieWave2;
+unitgroup gv_mineSiteMobs;
 unitgroup gv_brainBugs;
 unit gv_madMaxTruck;
 unit gv_charlie;
@@ -744,6 +746,7 @@ int gv_globalIntA;
 int gv_wave;
 unit gv_finalBoss;
 unit gv_boss;
+unit gv_gOTB;
 unit gv_infestedParrot;
 string[2] gv_civPool;
 unit gv_dropship;
@@ -1209,6 +1212,8 @@ void InitGlobals () {
     gv_rewardedGroup = UnitGroupEmpty();
     gv_blackOps = UnitGroupEmpty();
     gv_zombieWave = UnitGroupEmpty();
+    gv_zombieWave2 = UnitGroupEmpty();
+    gv_mineSiteMobs = UnitGroupEmpty();
     gv_brainBugs = UnitGroupEmpty();
     gv_madMaxTruck = UnitFromId(337);
     gv_complianceNexusGroup = UnitGroupEmpty();
@@ -2259,6 +2264,7 @@ trigger gt_EliteMutationBoss;
 trigger gt_EliteMutationChanceRotation;
 trigger gt_Barrels;
 trigger gt_BarrelKills;
+trigger gt_ZombieIdle;
 trigger gt_GateEnterAirlockMainGateOuter;
 trigger gt_GateEnterAirlockMainGateInner;
 trigger gt_NavyCrossCheck;
@@ -3526,7 +3532,7 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
 
     Wait(5.0, c_timeReal);
     if ((gv_totalPlayers < 3)) {
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/E91DA1DF"));
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/E91DA1DF"));
         TriggerEnable(gt_GlassCannonCommand, true);
     }
     Wait(25.0, c_timeReal);
@@ -8251,9 +8257,9 @@ bool auto_gf_SmartSpawnNOTD_TriggerFunc (bool testConds, bool runActions) {
 
     UnitCreate(1, lp_spawningUnit, 0, 14, lv_unitSpawnPoint, libNtve_gf_RandomAngle());
     lv_spawnUnit = UnitLastCreated();
-    UnitGroupAdd(gv_zombieWave, lv_spawnUnit);
     Wait(0.25, c_timeGame);
     UnitIssueOrder(lv_spawnUnit, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
+    UnitGroupAdd(gv_zombieWave, lv_spawnUnit);
     return true;
 }
 
@@ -8310,29 +8316,26 @@ bool auto_gf_SmartSpawnWithBehaviorNOTD_TriggerFunc (bool testConds, bool runAct
     if ((lp_behaviorC != null)) {
         UnitBehaviorAddPlayer(lv_spawnUnit, lp_behaviorC, 14, 1);
     }
-    UnitGroupAdd(gv_zombieWave, lv_spawnUnit);
     Wait(0.25, c_timeGame);
     UnitIssueOrder(lv_spawnUnit, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
+    UnitGroupAdd(gv_zombieWave, lv_spawnUnit);
     return true;
 }
 
 void gf_WaveSpawnAroundMarines (string lp_spawningUnit, fixed lp_spawnRange, int lp_spawnAmount) {
     // Variable Declarations
     point lv_unitSpawnPoint;
-    unitgroup lv_spawnUnit;
+    unitgroup lv_spawnUnits;
     int lv_attempts;
 
     // Automatic Variable Declarations
     unitgroup auto92FE8244_g;
     int auto92FE8244_u;
     unit auto92FE8244_var;
-    unitgroup auto015698B0_g;
-    int auto015698B0_u;
-    unit auto015698B0_var;
 
     // Variable Initialization
     lv_unitSpawnPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), lp_spawnRange));
-    lv_spawnUnit = UnitGroupEmpty();
+    lv_spawnUnits = UnitGroupEmpty();
 
     // Implementation
     if ((UnitGroupCount(gv_marines, c_unitCountAlive) == 0)) {
@@ -8351,17 +8354,9 @@ void gf_WaveSpawnAroundMarines (string lp_spawningUnit, fixed lp_spawnRange, int
     }
     UnitCreate(lp_spawnAmount, lp_spawningUnit, 0, 14, lv_unitSpawnPoint, libNtve_gf_RandomAngle());
     Wait(0.1, c_timeGame);
-    lv_spawnUnit = UnitLastCreatedGroup();
-    auto015698B0_g = lv_spawnUnit;
-    auto015698B0_u = UnitGroupCount(auto015698B0_g, c_unitCountAll);
-    for (;; auto015698B0_u -= 1) {
-        auto015698B0_var = UnitGroupUnitFromEnd(auto015698B0_g, auto015698B0_u);
-        if (auto015698B0_var == null) { break; }
-        UnitIssueOrder(auto015698B0_var, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
-    }
-    AISetGroupScriptControlled(lv_spawnUnit, false);
-    AISetGroupNotUsableInWaves(lv_spawnUnit, false);
-    AIAttackWaveUseGroup(14, lv_spawnUnit);
+    lv_spawnUnits = UnitLastCreatedGroup();
+    UnitGroupIssueOrder(lv_spawnUnits, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
+    UnitGroupAddUnitGroup(gv_zombieWave, lv_spawnUnits);
 }
 
 trigger auto_gf_WaveSpawnAtRegion_Trigger = null;
@@ -8388,17 +8383,13 @@ bool auto_gf_WaveSpawnAtRegion_TriggerFunc (bool testConds, bool runActions) {
 
     // Variable Declarations
     point lv_unitSpawnPoint;
-    unitgroup lv_spawnUnit;
+    unitgroup lv_spawnUnits;
     int lv_attempts;
 
     // Automatic Variable Declarations
-    unitgroup auto156A6AF1_g;
-    int auto156A6AF1_u;
-    unit auto156A6AF1_var;
-
     // Variable Initialization
     lv_unitSpawnPoint = RegionRandomPoint(lp_spawnRegion);
-    lv_spawnUnit = UnitGroupEmpty();
+    lv_spawnUnits = UnitGroupEmpty();
 
     // Implementation
     if ((UnitGroupCount(gv_marines, c_unitCountAlive) == 0)) {
@@ -8411,17 +8402,9 @@ bool auto_gf_WaveSpawnAtRegion_TriggerFunc (bool testConds, bool runActions) {
     }
     UnitCreate(lp_spawnAmount, lp_spawningUnit, 0, 14, lv_unitSpawnPoint, libNtve_gf_RandomAngle());
     Wait(0.1, c_timeGame);
-    lv_spawnUnit = UnitLastCreatedGroup();
-    auto156A6AF1_g = lv_spawnUnit;
-    auto156A6AF1_u = UnitGroupCount(auto156A6AF1_g, c_unitCountAll);
-    for (;; auto156A6AF1_u -= 1) {
-        auto156A6AF1_var = UnitGroupUnitFromEnd(auto156A6AF1_g, auto156A6AF1_u);
-        if (auto156A6AF1_var == null) { break; }
-        UnitIssueOrder(auto156A6AF1_var, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
-    }
-    AISetGroupScriptControlled(lv_spawnUnit, false);
-    AISetGroupNotUsableInWaves(lv_spawnUnit, false);
-    AIAttackWaveUseGroup(14, lv_spawnUnit);
+    lv_spawnUnits = UnitLastCreatedGroup();
+    UnitGroupIssueOrder(lv_spawnUnits, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
+    UnitGroupAddUnitGroup(gv_zombieWave, lv_spawnUnits);
     return true;
 }
 
@@ -8481,6 +8464,7 @@ void gf_ZombieAIWorldEvents () {
 bool auto_gf_ZombieAIWorldEvents_TriggerFunc (bool testConds, bool runActions) {
     // Variable Declarations
     region lv_localRegionA;
+    point lv_center;
 
     // Automatic Variable Declarations
     unitgroup auto8B3226D9_g;
@@ -8492,25 +8476,31 @@ bool auto_gf_ZombieAIWorldEvents_TriggerFunc (bool testConds, bool runActions) {
     // Implementation
     gf_GameState();
     while ((gv_gameOver == false)) {
-        auto8B3226D9_g = gv_zombieWave;
-        auto8B3226D9_u = UnitGroupCount(auto8B3226D9_g, c_unitCountAll);
-        for (;; auto8B3226D9_u -= 1) {
-            auto8B3226D9_var = UnitGroupUnitFromEnd(auto8B3226D9_g, auto8B3226D9_u);
-            if (auto8B3226D9_var == null) { break; }
-            if (((UnitHasBehavior(auto8B3226D9_var, "TauntLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel3") == true) || (UnitHasBehavior(auto8B3226D9_var, "LookAttack") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel3") == true) || (((UnitGetOwner(auto8B3226D9_var) >= 1) && (UnitGetOwner(auto8B3226D9_var) <= 8)) == true) || !(UnitIsAlive(auto8B3226D9_var)))) {
+        if ((UnitGroupCount(gv_marines, c_unitCountAlive) != 0)) {
+            if (((lv_center == null) || (DistanceBetweenPoints(lv_center, UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGroupCenterOfGroup(gv_marines)))) > 5.0))) {
+                lv_center = UnitGroupCenterOfGroup(gv_marines);
+                UnitGroupIssueOrder(UnitGroupFilter(null, c_playerAny, gv_zombieWave, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupClosestToPoint(gv_marines, lv_center))), c_orderQueueReplace);
             }
             else {
-                if (((UnitGetType(auto8B3226D9_var) == "InfestedAbominationBurrowed") || (UnitGetType(auto8B3226D9_var) == "RoachBurrowed") || (UnitGetType(auto8B3226D9_var) == "Devourer2") || (UnitGetType(auto8B3226D9_var) == "Slasher2") || (UnitGetType(auto8B3226D9_var) == "ZerglingBurrowed") || (UnitGetType(auto8B3226D9_var) == "Hugger2") || (UnitGetType(auto8B3226D9_var) == "Perses"))) {
-                    UnitIssueOrder(auto8B3226D9_var, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionCircle(UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), 5.0))), c_orderQueueReplace);
-                }
-                else if ((UnitGetType(auto8B3226D9_var) == "GuardianoftheBeta")) {
-                    gf_ZombieBossAIPathingGOTB(auto8B3226D9_var, AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), RandomFixed(20.0, 30.0));
-                }
-                else if (true) {
-                    UnitIssueOrder(auto8B3226D9_var, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), c_orderQueueReplace);
+                auto8B3226D9_g = UnitGroupFilterRegion(gv_zombieWave, RegionCircle(UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGroupCenterOfGroup(gv_marines))), 15.0), 0);
+                auto8B3226D9_u = UnitGroupCount(auto8B3226D9_g, c_unitCountAll);
+                for (;; auto8B3226D9_u -= 1) {
+                    auto8B3226D9_var = UnitGroupUnitFromEnd(auto8B3226D9_g, auto8B3226D9_u);
+                    if (auto8B3226D9_var == null) { break; }
+                    if (((UnitHasBehavior(auto8B3226D9_var, "TauntLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "TauntLevel3") == true) || (UnitHasBehavior(auto8B3226D9_var, "LookAttack") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel1") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel2") == true) || (UnitHasBehavior(auto8B3226D9_var, "ImYourFatherTauntedLevel3") == true) || (((UnitGetOwner(auto8B3226D9_var) >= 1) && (UnitGetOwner(auto8B3226D9_var) <= 8)) == true) || !(UnitIsAlive(auto8B3226D9_var)))) {
+                    }
+                    else if (((UnitGetType(auto8B3226D9_var) == "InfestedAbominationBurrowed") || (UnitGetType(auto8B3226D9_var) == "RoachBurrowed") || (UnitGetType(auto8B3226D9_var) == "Devourer2") || (UnitGetType(auto8B3226D9_var) == "Slasher2") || (UnitGetType(auto8B3226D9_var) == "ZerglingBurrowed") || (UnitGetType(auto8B3226D9_var) == "Hugger2") || (UnitGetType(auto8B3226D9_var) == "Perses"))) {
+                        UnitIssueOrder(auto8B3226D9_var, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionCircle(UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), 5.0))), c_orderQueueReplace);
+                    }
+                    else if (true) {
+                        UnitIssueOrder(auto8B3226D9_var, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), c_orderQueueReplace);
+                    }
+                    Wait(0.01, c_timeGame);
                 }
             }
-            Wait(0.01, c_timeGame);
+            if (UnitIsAlive(gv_gOTB) && !(UnitHasBehavior(gv_gOTB, "TauntedLevel1")) && !(UnitHasBehavior(gv_gOTB, "TauntedLevel2")) && !(UnitHasBehavior(gv_gOTB, "TauntedLevel3")) && !(UnitHasBehavior(gv_gOTB, "LookAttack")) && !(UnitHasBehavior(gv_gOTB, "ImYourFatherTauntedLevel1")) && !(UnitHasBehavior(gv_gOTB, "ImYourFatherTauntedLevel2")) && !(UnitHasBehavior(gv_gOTB, "ImYourFatherTauntedLevel3"))) {
+                gf_ZombieBossAIPathingGOTB(gv_gOTB, AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), RandomFixed(20.0, 30.0));
+            }
         }
         if ((RandomInt(0, 10) == 1) && (gv_wave > 1) && (gv_squadXP >= 75)) {
             if ((RandomInt(0, 1) == 1)) {
@@ -10552,12 +10542,13 @@ bool auto_gf_EpsilonMineMobs_TriggerFunc (bool testConds, bool runActions) {
             if ((RandomInt(0, 3) == 1)) {
                 libNtve_gf_UnitCreateFacingPoint((gv_spawnFactor + 1), "ZerglingBurrowed", 0, 14, RegionRandomPoint(RegionFromId(16)), RegionGetCenter(RegionFromId(1)));
                 UnitGroupIssueOrder(UnitGroup(null, 14, RegionFromId(16), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
+                UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
             }
             else {
                 libNtve_gf_UnitCreateFacingPoint((gv_spawnFactor + 1), "ZombieLevel12", 0, 14, RegionRandomPoint(RegionFromId(16)), RegionGetCenter(RegionFromId(1)));
                 UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
+                UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
             }
-            UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
             Wait(0.15, c_timeGame);
             UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingPoint(AbilityCommand("attack", 0), RegionGetCenter(RegionFromId(1))), c_orderQueueReplace);
         }
@@ -10889,7 +10880,6 @@ bool auto_gf_ECRecruitDropshipWaves_TriggerFunc (bool testConds, bool runActions
             }
             else {
                 gf_WaveSpawnAroundMarines("ZombieLevel22", 50.0, 1);
-                AIAttackWaveSend(14, 1, true);
             }
             Wait(0.2, c_timeReal);
         }
@@ -10900,13 +10890,11 @@ bool auto_gf_ECRecruitDropshipWaves_TriggerFunc (bool testConds, bool runActions
     for (auto66FB63A7_i = 1; auto66FB63A7_i <= auto66FB63A7_n; auto66FB63A7_i += 1) {
         if (((gv_alivePlayers > 4) && (RandomInt(0, 2) == 1))) {
             gf_WaveSpawnAroundMarines("UltraliskBurrowed", 100.0, 1);
-            AIAttackWaveSend(14, 1, true);
         }
         autoF2F14C47_n = gv_spawnFactor;
         for (autoF2F14C47_i = 1; autoF2F14C47_i <= autoF2F14C47_n; autoF2F14C47_i += 1) {
             if ((PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 120)) {
                 gf_WaveSpawnAroundMarines("InfestorTerran2", 100.0, 2);
-                AIAttackWaveSend(14, 1, true);
             }
 
             Wait(0.2, c_timeReal);
@@ -10920,12 +10908,10 @@ bool auto_gf_ECRecruitDropshipWaves_TriggerFunc (bool testConds, bool runActions
             for (autoC2C361F4_i = 1; autoC2C361F4_i <= autoC2C361F4_n; autoC2C361F4_i += 1) {
                 if ((RandomInt(0, 7) == 1)) {
                     gf_WaveSpawnAroundMarines("UltraliskBurrowed", 100.0, 1);
-                    AIAttackWaveSend(14, 1, true);
                 }
                 else {
                     for (auto8CBE833A_i = 1; auto8CBE833A_i <= auto8CBE833A_n; auto8CBE833A_i += 1) {
                         gf_WaveSpawnAroundMarines("ZombieLevel22", 59.0, 2);
-                        AIAttackWaveSend(14, 1, true);
                     }
                 }
             }
@@ -18850,8 +18836,8 @@ bool gt_MobsCheck_Func (bool testConds, bool runActions) {
     int lv_idleghoul;
 
     // Automatic Variable Declarations
-    unitgroup auto4556B135_g;
-    int auto4556B135_u;
+    unitgroup autoA3EE2AF0_g;
+    int autoA3EE2AF0_u;
 
     // Variable Initialization
     lv_trigPlayer = EventPlayer();
@@ -18871,19 +18857,15 @@ bool gt_MobsCheck_Func (bool testConds, bool runActions) {
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/D85DE6FB") + IntToText(lv_wave) + StringExternal("Param/Value/66ADF1DD")));
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/E319356D") + IntToText(lv_other) + StringExternal("Param/Value/EC43E9CC")));
     if (((PlayerHandle(lv_trigPlayer) == "1-S2-1-417524") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-431521") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-1143628") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-3388720") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-11533459") || (PlayerHandle(lv_trigPlayer) == "1-S2-1-1246603") || !(GameIsOnline()))) {
-        auto4556B135_g = UnitGroupFilter("Zergling", c_playerAny, lv_enemies, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-        auto4556B135_u = UnitGroupCount(auto4556B135_g, c_unitCountAll);
-        for (;; auto4556B135_u -= 1) {
-            lv_unit = UnitGroupUnitFromEnd(auto4556B135_g, auto4556B135_u);
+        autoA3EE2AF0_g = lv_enemies;
+        autoA3EE2AF0_u = UnitGroupCount(autoA3EE2AF0_g, c_unitCountAll);
+        for (;; autoA3EE2AF0_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoA3EE2AF0_g, autoA3EE2AF0_u);
             if (lv_unit == null) { break; }
-            if ((UnitGroupHasUnit(gv_zombieWave, lv_unit) == false) && (UnitOrderCount(lv_unit) == 0)) {
-                lv_idleghoul += 1;
-                UnitGroupAdd(lv_idleghouls, lv_unit);
+            if (!(UnitGroupHasUnit(gv_zombieWave, lv_unit)) && !(UnitGroupHasUnit(gv_infestors, lv_unit)) && !(UnitGroupHasUnit(gv_mineSiteMobs, lv_unit)) && !(UnitGroupHasUnit(gv_initialHuggers, lv_unit)) && !(UnitGroupHasUnit(gv_brainBugs, lv_unit)) && !(UnitGroupHasUnit(gv_blackOps, lv_unit)) && !(UnitGroupHasUnit(gv_blackOpsDroneTeam, lv_unit)) && !(UnitGroupHasUnit(gv_truckAttackers, lv_unit)) && !(UnitGroupHasUnit(gv_survivalNydusGroup, lv_unit)) && !(UnitGroupHasUnit(gv_sTTeam2HarassZombies, lv_unit)) && !(UnitGroupHasUnit(gv_nydusWormSpineGroup, lv_unit)) && !(UnitGroupHasUnit(gv_nydusWormGroup, lv_unit)) && !(UnitGroupHasUnit(gv_nydusWormAgronGroup, lv_unit)) && !(UnitGroupHasUnit(gv_nazaraImages, lv_unit)) && !(UnitGroupHasUnit(gv_mineShaftMobs, lv_unit)) && !(UnitGroupHasUnit(gv_laserDrones, lv_unit)) && !(UnitGroupHasUnit(gv_infectedCivilians, lv_unit)) && !(UnitGroupHasUnit(gv_ghostCompany, lv_unit)) && !(UnitGroupHasUnit(gv_complianceNexusGroup, lv_unit)) && !(libNtve_gf_UnitIsInvulnerable(lv_unit)) && (lv_unit != gv_boss) && (lv_unit != gv_finalBoss) && (lv_unit != gv_gOTB)) {
+                MinimapPing(PlayerGroupSingle(lv_trigPlayer), UnitGetPosition(lv_unit), 5.0, Color(100.00, 0.00, 0.00));
+                PingSetUnit(PingLastCreated(), lv_unit);
             }
-        }
-        UIDisplayMessage(PlayerGroupSingle(lv_trigPlayer), c_messageAreaDebug, (StringExternal("Param/Value/DBEB88A7") + IntToText(lv_idleghoul) + StringExternal("Param/Value/064FA406")));
-        if ((lv_idleghoul != 0)) {
-            MinimapPing(PlayerGroupSingle(lv_trigPlayer), UnitGroupCenterOfGroup(lv_idleghouls), 15.0, Color(100.00, 0.00, 0.00));
         }
     }
     Wait(7.0, c_timeReal);
@@ -21151,12 +21133,10 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     if ((gv_alivePlayers == 2)) {
         SoundPlay(SoundLink("TValerian02ADominionMarine600039", -1), PlayerGroupActive(), 100.0, 0.0);
     }
-    if ((gv_sFOption == "0003")) {
-    }
-    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - gv_alivePlayers) == 5) && (gv_spawnFactor > 1)) {
+    if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 5) && (gv_spawnFactor > 1)) {
         gv_spawnFactor -= 1;
     }
-    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - gv_alivePlayers) == 3) && (gv_spawnFactor > 1)) {
+    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 3) && (gv_spawnFactor > 1)) {
         gv_spawnFactor -= 1;
     }
     return true;
@@ -23084,6 +23064,36 @@ bool gt_BarrelKills_Func (bool testConds, bool runActions) {
 void gt_BarrelKills_Init () {
     gt_BarrelKills = TriggerCreate("gt_BarrelKills_Func");
     TriggerAddEventUnitDamaged(gt_BarrelKills, null, c_unitDamageTypeAny, c_unitDamageFatal, "ExplodingBarrelLargeExplosion");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zombie Idle
+//--------------------------------------------------------------------------------------------------
+bool gt_ZombieIdle_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(UnitGroupHasUnit(gv_zombieWave, EventUnit()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while (UnitIsAlive(EventUnit()) && (UnitOrderCount(EventUnit()) == 0)) {
+        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), c_orderQueueReplace);
+        Wait(2.0, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ZombieIdle_Init () {
+    gt_ZombieIdle = TriggerCreate("gt_ZombieIdle_Func");
+    TriggerAddEventUnitBecomesIdle(gt_ZombieIdle, null, true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -25278,6 +25288,7 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
         Wait(0.1, c_timeGame);
         libNtve_gf_UnitCreateFacingPoint(1, "ZombieLevel1", 0, 14, RegionRandomPoint(RegionFromId(1)), RegionRandomPoint(RegionFromId(1)));
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 1), RegionRandomPoint(RegionFromId(1))), c_orderQueueReplace);
+        UnitGroupAdd(gv_mineSiteMobs, UnitLastCreated());
     }
     Wait(0.1, c_timeReal);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/169FB0FE"));
@@ -25353,6 +25364,8 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
     UnitSetState(UnitFromId(2503), c_unitStateSelectable, false);
     Wait(3.0, c_timeReal);
     UnitRemove(UnitFromId(178));
+    UnitGroupAddUnitGroup(gv_zombieWave, gv_mineSiteMobs);
+    UnitGroupRemoveUnitGroup(gv_mineSiteMobs, gv_mineSiteMobs);
     return true;
 }
 
@@ -25932,8 +25945,8 @@ bool gt_W2EnterMilitaryBase_Func (bool testConds, bool runActions) {
         libNtve_gf_UnitCreateFacingPoint(gv_alivePlayers, "ZerglingBurrowed", 0, 14, RegionRandomPoint(gv_militaryBaseSpawn[RandomInt(1, 4)]), RegionGetCenter(RegionFromId(3)));
         UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
     }
-    UnitGroupIssueOrder(UnitGroup(null, 14, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
     UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
+    UnitGroupIssueOrder(UnitGroup(null, 14, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0), Order(AbilityCommand("BurrowUltraliskUp", 0)), c_orderQueueReplace);
     gf_TipNOTD(500, StringExternal("Param/Value/F8D7F114"));
     gf_MarineSpeechNOTD(gv_sgtStallans, StringExternal("Param/Value/5D6CA469"));
     for (auto87BA97D8_i = 1; auto87BA97D8_i <= auto87BA97D8_n; auto87BA97D8_i += 1) {
@@ -26604,16 +26617,14 @@ bool gt_KillCharlie_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     if ((gv_isVeteranSquad == true)) {
-        libNtve_gf_UnitCreateFacingPoint(1, "Beastling2", 0, 14, Point(46.5, 25.5), RegionRandomPoint(RegionFromId(204)));
+        libNtve_gf_UnitCreateFacingPoint(1, "Beastling", 0, 14, Point(46.5, 25.5), RegionRandomPoint(RegionFromId(204)));
         UnitBehaviorAdd(UnitLastCreated(), "SpeedBuff", UnitLastCreated(), 2);
-        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBeastling", 0)), c_orderQueueReplace);
         Wait(0.5, c_timeGame);
         UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), lv_attacker), c_orderQueueReplace);
     }
     else {
-        libNtve_gf_UnitCreateFacingPoint(1, "Devourer2", 0, 14, Point(46.5, 25.5), RegionRandomPoint(RegionFromId(204)));
+        libNtve_gf_UnitCreateFacingPoint(1, "Devourer", 0, 14, Point(46.5, 25.5), RegionRandomPoint(RegionFromId(204)));
         UnitBehaviorAdd(UnitLastCreated(), "SpeedBuff", UnitLastCreated(), 1);
-        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowDevourer", 0)), c_orderQueueReplace);
         Wait(0.5, c_timeGame);
         UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), lv_attacker), c_orderQueueReplace);
     }
@@ -31755,6 +31766,7 @@ bool gt_ECOPTIONALTruckDestroyed_Func (bool testConds, bool runActions) {
     TriggerEnable(gt_ECOPTIONALTruckEvacSuccessful, false);
     gf_StoryMessageNOTD(StringExternal("Param/Value/98AE5903"));
     SoundPlay(SoundLink("UI_TerranMissionFailed", -1), PlayerGroupAll(), 100.0, 0.0);
+    UnitGroupAddUnitGroup(gv_zombieWave, gv_truckAttackers);
     return true;
 }
 
@@ -31798,6 +31810,7 @@ bool gt_ECOPTIONALTruckEvacSuccessful_Func (bool testConds, bool runActions) {
 
     TriggerEnable(gt_ECOPTIONALTruckDestroyed, false);
     UnitRemove(gv_madMaxTruck);
+    UnitGroupAddUnitGroup(gv_zombieWave, gv_truckAttackers);
     return true;
 }
 
@@ -43329,13 +43342,13 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/39018B47"));
     Wait(5.0, c_timeReal);
     UnitCreate(1, "GuardianoftheBeta", 0, 13, RegionRandomPoint(gv_reinforcementSpawn[RandomInt(2, 6)]), libNtve_gf_RandomAngle());
-    UnitGroupAdd(gv_zombieWave, UnitLastCreated());
     if ((gv_nightmare == true)) {
         UnitBehaviorAdd(UnitLastCreated(), "PersonalCloakingFree", UnitLastCreated(), 1);
         UnitBehaviorAdd(UnitLastCreated(), "Frenzy35", UnitLastCreated(), 1);
     }
 
     gv_boss = UnitLastCreated();
+    gv_gOTB = gv_boss;
     gf_StartBossFight(gv_boss, ge_Ping_Disabled);
     SoundPlay(SoundLink("TZeratul04DarkVoice00020", -1), PlayerGroupAll(), 100.0, 0.0);
     auto8681F8A1_var = gv_indexBaseValue;
@@ -46920,6 +46933,7 @@ void InitTriggers () {
     gt_EliteMutationChanceRotation_Init();
     gt_Barrels_Init();
     gt_BarrelKills_Init();
+    gt_ZombieIdle_Init();
     gt_GateEnterAirlockMainGateOuter_Init();
     gt_GateEnterAirlockMainGateInner_Init();
     gt_NavyCrossCheck_Init();
