@@ -3516,7 +3516,6 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
         else {
             gv_spawnFactor += 2;
         }
-        gv_spawnFactor += 2;
         gv_difficultyHPScaling += 0.2;
     }
     gv_spawnFactor = MinI(gv_spawnFactor, 9);
