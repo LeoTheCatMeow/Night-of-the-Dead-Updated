@@ -8584,11 +8584,13 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
                 if (auto47DD8193_var == null) { break; }
                 if (((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - lv_pausedUnitCount) > 600) && (libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), UnitGroupCenterOfGroup(gv_marines)) > lv_pauseDistance) && ((libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 1) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 2) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 3) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 4) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 5) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 6) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 7) == false) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 8) == false))) {
                     UnitBehaviorAddPlayer(auto47DD8193_var, "SuppressCollision", 14, 1);
-                    UnitSetState(auto47DD8193_var, c_unitStatePaused, true);
                     lv_pausedUnitCount += 1;
+                    Wait(0.07, c_timeReal);
+                    UnitSetState(auto47DD8193_var, c_unitStatePaused, true);
                 }
                 else if ((libNtve_gf_UnitIsPaused(auto47DD8193_var) == true) && (((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - lv_pausedUnitCount) < 600) || (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), UnitGroupCenterOfGroup(gv_marines)) <= lv_pauseDistance) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 1) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 2) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 3) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 4) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 5) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 6) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 7) == true) || (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 8) == true))) {
                     UnitSetState(auto47DD8193_var, c_unitStatePaused, false);
+                    Wait(0.07, c_timeReal);
                     UnitBehaviorRemovePlayer(auto47DD8193_var, "SuppressCollision", 14, c_unitBehaviorCountAll);
                     lv_pausedUnitCount -= 1;
                 }
@@ -8596,6 +8598,7 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
         }
         if ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) < 600) && (lv_pauseFarAwayUnits == true)) {
             lv_pauseFarAwayUnits = false;
+            lv_pausedUnitCount = 0;
             auto0A37FF19_g = gv_zombieWave;
             auto0A37FF19_u = UnitGroupCount(auto0A37FF19_g, c_unitCountAll);
             for (;; auto0A37FF19_u -= 1) {
@@ -8603,7 +8606,6 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
                 if (auto0A37FF19_var == null) { break; }
                 UnitSetState(auto0A37FF19_var, c_unitStatePaused, false);
                 UnitBehaviorRemovePlayer(auto0A37FF19_var, "SuppressCollision", 14, c_unitBehaviorCountAll);
-                lv_pausedUnitCount -= 1;
             }
         }
         lv_pauseDistance = MinI(45, (90 - ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - 600) / 20)));
