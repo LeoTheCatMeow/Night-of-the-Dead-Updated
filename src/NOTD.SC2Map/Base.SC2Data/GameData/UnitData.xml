@@ -11940,7 +11940,7 @@
         <StationaryTurningRate value="399.9023"/>
         <TurningRate value="399.9023"/>
         <TacticalAI value=""/>
-        <BehaviorArray Link="SharedExperience"/>
+        <BehaviorArray index="0" Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
     </CUnit>
     <CUnit id="ZerglingBurrowed">
@@ -11959,7 +11959,7 @@
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
         </CardLayouts>
         <SubgroupPriority value="1"/>
-        <BehaviorArray Link="SharedExperience"/>
+        <BehaviorArray index="0" Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
     </CUnit>
 </Catalog>

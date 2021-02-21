@@ -5,12 +5,13 @@
 - Fixed recruit/normal Elite Mutation wins not displaying correctly.
 - Enabled win update/rewards for solo players and lowered the requirement for Medal of Honor to at least 2 players instead of 3.
 - Added a "Glass Cannon" option for solo and duo players, taking and dealing extra damage.
+- Improved zombie AI to better handle situations when there are large number of enemies on the map.
 
 [LeoTheCat]
 - Moved the unlock text on mission select to the left so that chat is easier to read.
 - Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
 - Fixed unreadable texts and broken hotkeys for languages other than English.
-- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mixture of English and TC texts.
+- For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mix
 
 2021-2-13
 [ThunderRazor]
