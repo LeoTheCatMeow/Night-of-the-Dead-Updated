@@ -8697,7 +8697,7 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
             for (;; auto47DD8193_u -= 1) {
                 auto47DD8193_var = UnitGroupUnitFromEnd(auto47DD8193_g, auto47DD8193_u);
                 if (auto47DD8193_var == null) { break; }
-                if ((UnitGetOwner(auto47DD8193_var) == 14) && (libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive)) > 500) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), lv_marineCenter) > lv_pauseDistance) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 9) == false)) {
+                if ((libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && (UnitGetOwner(auto47DD8193_var) == 14) && !(UnitTypeTestAttribute(UnitGetType(auto47DD8193_var), c_unitAttributeHeroic)) && ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive)) > 500) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), lv_marineCenter) > lv_pauseDistance) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 9) == false)) {
                     UnitBehaviorAddPlayer(auto47DD8193_var, "PausedNoCollision", 14, 1);
                     UnitSetState(auto47DD8193_var, c_unitStatePaused, true);
                     UnitGroupAdd(gv_zombieWavePaused, auto47DD8193_var);
