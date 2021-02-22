@@ -6767,35 +6767,35 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                             continue;
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Medic2")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.23);
-                        }
-                        else if ((UnitGetType(auto2B0F1007_var) == "Engineer")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.17);
-                        }
-                        else if ((UnitGetType(auto2B0F1007_var) == "Flamethrower3")) {
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.21);
                         }
-                        else if ((UnitGetType(auto2B0F1007_var) == "PsiOps")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.215);
-                        }
-                        else if ((UnitGetType(auto2B0F1007_var) == "ForwardObserver")) {
+                        else if ((UnitGetType(auto2B0F1007_var) == "Engineer")) {
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.15);
                         }
-                        else if ((UnitGetType(auto2B0F1007_var) == "Pathfinder")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.155);
-                        }
-                        else if ((UnitGetType(auto2B0F1007_var) == "Marksman")) {
+                        else if ((UnitGetType(auto2B0F1007_var) == "Flamethrower3")) {
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.185);
                         }
+                        else if ((UnitGetType(auto2B0F1007_var) == "PsiOps")) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.19);
+                        }
+                        else if ((UnitGetType(auto2B0F1007_var) == "ForwardObserver")) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.13);
+                        }
+                        else if ((UnitGetType(auto2B0F1007_var) == "Pathfinder")) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.135);
+                        }
+                        else if ((UnitGetType(auto2B0F1007_var) == "Marksman")) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.16);
+                        }
                         else if (true) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.165);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.14);
                         }
                     }
                     else if (UnitHasBehavior2(auto2B0F1007_var, "MarkofthePredator")) {
                         UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.35));
                     }
                     else if (true) {
-                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.165));
+                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.14));
                     }
                 }
                 auto6AFC529C_g = gv_reconExperienceGroup;
@@ -6803,7 +6803,7 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                 for (;; auto6AFC529C_u -= 1) {
                     auto6AFC529C_var = UnitGroupUnitFromEnd(auto6AFC529C_g, auto6AFC529C_u);
                     if (auto6AFC529C_var == null) { break; }
-                    gv_marineExperienceBonus[UnitGetOwner(auto6AFC529C_var)] += (lv_experienceDifference * 0.235);
+                    gv_marineExperienceBonus[UnitGetOwner(auto6AFC529C_var)] += (lv_experienceDifference * 0.215);
                 }
             }
             UnitXPAddXP(autoD5273590_var, null, gv_marineExperienceBonus[lv_unitOwner]);
@@ -8692,12 +8692,12 @@ bool auto_gf_ZombieWaveOptimization_TriggerFunc (bool testConds, bool runActions
         lv_marineCenter = UnitGroupCenterOfGroup(gv_marines);
         if ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) >= 500)) {
             lv_pauseFarAwayUnits = true;
-            auto47DD8193_g = UnitGroupFilter(null, 14, gv_zombieWave, UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto47DD8193_g = gv_zombieWave;
             auto47DD8193_u = UnitGroupCount(auto47DD8193_g, c_unitCountAll);
             for (;; auto47DD8193_u -= 1) {
                 auto47DD8193_var = UnitGroupUnitFromEnd(auto47DD8193_g, auto47DD8193_u);
                 if (auto47DD8193_var == null) { break; }
-                if ((libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive)) > 500) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), lv_marineCenter) > lv_pauseDistance) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 9) == false)) {
+                if ((UnitGetOwner(auto47DD8193_var) == 14) && (libNtve_gf_UnitIsPaused(auto47DD8193_var) == false) && ((UnitGroupCount(gv_zombieWave, c_unitCountAlive) - UnitGroupCount(gv_zombieWavePaused, c_unitCountAlive)) > 500) && (DistanceBetweenPoints(UnitGetPosition(auto47DD8193_var), lv_marineCenter) > lv_pauseDistance) && (libNtve_gf_UnitIsVisibleToPlayer(auto47DD8193_var, 9) == false)) {
                     UnitBehaviorAddPlayer(auto47DD8193_var, "PausedNoCollision", 14, 1);
                     UnitSetState(auto47DD8193_var, c_unitStatePaused, true);
                     UnitGroupAdd(gv_zombieWavePaused, auto47DD8193_var);
