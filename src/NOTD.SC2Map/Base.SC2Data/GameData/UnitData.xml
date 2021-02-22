@@ -7935,7 +7935,12 @@
     <CUnit id="DestructibleDebris4x4">
         <LifeStart value="385"/>
         <LifeMax value="385"/>
-        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="NoPortraitTalk" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
+        <FlagArray index="NeverThink" value="1"/>
         <LifeArmor value="0"/>
         <DefaultAcquireLevel value="Passive"/>
         <BehaviorArray Link="Benign"/>
@@ -7943,13 +7948,16 @@
     </CUnit>
     <CUnit id="DestructibleDebris4x42">
         <DeathRevealRadius value="3"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
         <FlagArray index="CreateVisible" value="1"/>
         <FlagArray index="Untooltipable" value="0"/>
-        <FlagArray index="Unselectable" value="1"/>
         <FlagArray index="UseLineOfSight" value="1"/>
         <FlagArray index="Destructible" value="1"/>
-        <FlagArray index="NoPortraitTalk" value="1"/>
+        <FlagArray index="ShowResources" value="0"/>
         <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
+        <FlagArray index="NeverThink" value="1"/>
         <FogVisibility value="Snapshot"/>
         <EditorFlags index="NeutralDefault" value="1"/>
         <PlaneArray index="Ground" value="1"/>

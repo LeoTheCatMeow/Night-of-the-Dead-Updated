@@ -2304,9 +2304,7 @@
     <CBehaviorBuff id="SharedExperience">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse Fatal="1" Handled="SharedExperienceSearchSet">
-            <Chance value="1"/>
-        </DamageResponse>
+        <DamageResponse Fatal="1" Handled="SharedExperienceSearchSet"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShortRangeWeapons">
         <Cost>
