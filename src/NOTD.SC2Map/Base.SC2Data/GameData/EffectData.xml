@@ -398,7 +398,7 @@
         <Chance value="0.25"/>
         <Death value="Fire"/>
         <AreaArray Radius="4" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectSet id="ArmageddonDamageSet">
         <EditorCategories value=""/>
@@ -480,7 +480,7 @@
         <Kind value="Splash"/>
         <Death value="Blast"/>
         <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1DamageSet">
         <EditorCategories value=""/>
@@ -502,7 +502,7 @@
         <Kind value="Splash"/>
         <Death value="Blast"/>
         <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="SatchelLevel1SearchFriendly">
         <EditorCategories value=""/>
@@ -12270,7 +12270,7 @@
         <Kind value="Splash"/>
         <Amount value="140"/>
         <Death value="Blast"/>
-        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AttributeBonus index="Massive" value="140"/>
         <AttributeBonus index="Structure" value="140"/>
     </CEffectDamage>
@@ -12292,6 +12292,7 @@
         <Death value="Blast"/>
         <AttributeBonus index="Massive" value="280"/>
         <AttributeBonus index="Structure" value="280"/>
+        <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1Set">
         <EditorCategories value=""/>

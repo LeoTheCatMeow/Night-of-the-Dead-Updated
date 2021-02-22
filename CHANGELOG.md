@@ -16,6 +16,8 @@
 - Game will now pause non-Boss zombies that are out of vision when zombie wave grows larger than 500 to avoid severe FPS drop.
 - Paused zombies will resume when zombie waves becomes smaller, or if approached/revealed by marines.
 - Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
+- Fixed a bug where Bio-Domes can be destroyed when invulnerable. 
+- Recreated the xp sharing system in trigger to have better performance while still functioning using the same logic. 
 
 2021-2-13
 [ThunderRazor]
