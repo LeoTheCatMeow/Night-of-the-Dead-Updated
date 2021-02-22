@@ -8478,12 +8478,12 @@ bool auto_gf_ZombieAIWorldEvents_TriggerFunc (bool testConds, bool runActions) {
     gf_ZombieWaveOptimization();
     while ((gv_gameOver == false)) {
         if ((UnitGroupCount(gv_marines, c_unitCountAlive) != 0)) {
-            auto7EE8AF46_g = UnitGroupFilter(null, 14, gv_zombieWave, UnitFilter(0, 0, 0, (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto7EE8AF46_g = gv_zombieWave;
             auto7EE8AF46_u = UnitGroupCount(auto7EE8AF46_g, c_unitCountAll);
             for (;; auto7EE8AF46_u -= 1) {
                 auto7EE8AF46_var = UnitGroupUnitFromEnd(auto7EE8AF46_g, auto7EE8AF46_u);
                 if (auto7EE8AF46_var == null) { break; }
-                if ((UnitOrderCount(auto7EE8AF46_var) == 0)) {
+                if ((UnitGetOwner(auto7EE8AF46_var) >= 13) && (UnitTypeTestAttribute(UnitGetType(auto7EE8AF46_var), c_unitAttributeHeroic) || ((UnitOrderCount(auto7EE8AF46_var) == 0) || (DistanceBetweenPoints(OrderGetTargetPoint(UnitOrder(auto7EE8AF46_var, 0)), UnitGroupCenterOfGroup(gv_marines)) > 5.0)))) {
                     if (((UnitGetType(auto7EE8AF46_var) == "InfestedAbominationBurrowed") || (UnitGetType(auto7EE8AF46_var) == "RoachBurrowed") || (UnitGetType(auto7EE8AF46_var) == "Devourer2") || (UnitGetType(auto7EE8AF46_var) == "Slasher2") || (UnitGetType(auto7EE8AF46_var) == "ZerglingBurrowed") || (UnitGetType(auto7EE8AF46_var) == "Hugger2") || (UnitGetType(auto7EE8AF46_var) == "Perses"))) {
                         UnitIssueOrder(auto7EE8AF46_var, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionCircle(UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), 5.0))), c_orderQueueReplace);
                     }
@@ -17216,6 +17216,12 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(gt_STBoss2SpawnNazara, false, false);
     return true;
 }
 
