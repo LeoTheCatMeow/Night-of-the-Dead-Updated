@@ -204,6 +204,14 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxPoints value="999"/>
     </CBehaviorAttribute>
+    <CBehaviorBuff id="CreepGivesVenom">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="IsHellMode"/>
+        <DisableValidatorArray value="OnCreep"/>
+        <Period value="3"/>
+        <PeriodicEffect value="VenomApplySelfCreep"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="InfernoPeriodic">
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>

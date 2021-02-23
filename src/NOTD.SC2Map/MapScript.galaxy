@@ -837,7 +837,7 @@ int[9] gv_spectatedDialog;
 int[9] gv_spectatedLabel;
 bool[9] gv_spectated;
 bool gv_navyCrossMode;
-int gv_noRandoms;
+int gv_randomsOption;
 int gv_maxRandom;
 bool gv_glassCannonActivated;
 bool gv_outbreakActivated;
@@ -2149,7 +2149,7 @@ void gf_UpdateTalentSystem (int lp_itemNo, int lp_triggPlayer);
 void gf_TalentTreeCreation (int lp_player);
 void gf_TalentButton (int lp_panel, int lp_player, int lp_talentNumber);
 bool gf_ExpedCheck ();
-void gf_WinUpdate (int lp_player, bool lp_nMSpeed, bool lp_speed);
+void gf_WinUpdate (int lp_player, bool lp_hellSpeed, bool lp_nMSpeed, bool lp_speed);
 void gf_VictoryBonusXP ();
 void gf_MedalofHonorAward (int lp_medalNumber);
 void gf_CombatActionAward (int lp_medalNumber);
@@ -2276,6 +2276,7 @@ trigger gt_GateEnterAirlockMainGateOuter;
 trigger gt_GateEnterAirlockMainGateInner;
 trigger gt_NavyCrossCheck;
 trigger gt_NightmareBonus;
+trigger gt_HellBonus;
 trigger gt_ChapterEndMedicRatingBonus;
 trigger gt_VetPubGameBonus;
 trigger gt_AFKCheck;
@@ -3759,6 +3760,10 @@ void gf_MapNightMemoryLoad (int lp_player) {
     gv_sTNMSpeed[lp_player] = gv_playerBankData[43][lp_player];
     gv_survivalWinNM[lp_player] = gv_playerBankData[44][lp_player];
     gv_bootCampComplete[lp_player] = gv_playerBankData[45][lp_player];
+    gv_winEM[lp_player] = gv_playerBankData[61][lp_player];
+    gv_nMWinEM[lp_player] = gv_playerBankData[62][lp_player];
+    gv_nMWinOB[lp_player] = gv_playerBankData[63][lp_player];
+    gv_nMWinEMOB[lp_player] = gv_playerBankData[64][lp_player];
     if ((gv_playerRating[lp_player] < 500)) {
         gv_playerRating[lp_player] = 1500;
     }
@@ -3883,7 +3888,7 @@ void gf_FinalizeStorylineSelection () {
         PlayerModifyPropertyInt(auto280742A1_var, c_playerPropVespene, c_playerPropOperSetTo, gv_storyline);
     }
     gf_ExecuteStorylineMods();
-    if ((gv_noRandoms == 3) && (gv_isVeteranSquad == true)) {
+    if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
         gf_AllRandomSelectionUI();
     }
     else if ((gv_storyline == 4)) {
@@ -4269,7 +4274,7 @@ bool auto_gf_ClassSelectionUI_TriggerFunc (bool testConds, bool runActions) {
         else {
             libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][8], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8), "Locked Text", 1), PlayerGroupAll());
         }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_noRandoms != 1)) {
+        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_randomsOption != 1)) {
             DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
             gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
             DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
@@ -4502,7 +4507,7 @@ void gf_RecruitClassSelectionUI () {
             DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][14], PlayerGroupAll(), false);
             libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][14], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 14), "Story Locked Text", 1), PlayerGroupAll());
         }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_noRandoms != 1)) {
+        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_randomsOption != 1)) {
             DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
             gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
             DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
@@ -4630,7 +4635,7 @@ void gf_SurvivalClassSelectionUI () {
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class14Label");
         gf_SetupClassSelection(lv_player, 14, DialogControlLastCreated());
         gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][14], gv_playerCP[lv_player].lv_demoPFChem);
-        if ((gv_noRandoms != 1)) {
+        if ((gv_randomsOption != 1)) {
             DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
             gv_classSelectionDialogItem[lv_player][15] = DialogControlLastCreated();
             DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
@@ -4985,16 +4990,18 @@ bool auto_gf_ClassLimitCheck_TriggerFunc (bool testConds, bool runActions) {
     lv_classCycle = 3;
 
     // Implementation
-    while ((lv_classCycle < 14)) {
-        if ((gv_classCount[lv_classCycle] > 2) && (gv_isVeteranSquad == true) && (gv_classLimitBroken == false)) {
-            gv_classLimitBroken = true;
-            gv_classLimitMultiplier = 0.6;
-            SoundPlay(SoundLink("TUIWarning", -1), PlayerGroupAll(), 125.0, 0.0);
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("Param/Value/0D23902A"));
-            lv_classCycle += 15;
-        }
+    if ((gv_randomsOption != 3)) {
+        while ((lv_classCycle < 14)) {
+            if ((gv_classCount[lv_classCycle] > 2) && (gv_isVeteranSquad == true) && (gv_classLimitBroken == false)) {
+                gv_classLimitBroken = true;
+                gv_classLimitMultiplier = 0.6;
+                SoundPlay(SoundLink("TUIWarning", -1), PlayerGroupAll(), 125.0, 0.0);
+                UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("Param/Value/0D23902A"));
+                lv_classCycle += 15;
+            }
 
-        lv_classCycle += 1;
+            lv_classCycle += 1;
+        }
     }
     return true;
 }
@@ -8843,7 +8850,7 @@ bool auto_gf_RandomBanetrain_TriggerFunc (bool testConds, bool runActions) {
     }
     autoB5287105_n = (gv_spawnFactor * 5);
     for (autoB5287105_i = 1; autoB5287105_i <= autoB5287105_n; autoB5287105_i += 1) {
-        if ((gv_nightmare == true) && (RandomInt(1, 10) == 1)) {
+        if ((gv_nightmare || gv_hell) && (RandomInt(1, 10) == 1)) {
             UnitCreate(1, "BanelingBurrowed", 0, 14, lv_spawnpoints[lv_index], libNtve_gf_RandomAngle());
             if (lv_index >= (lv_totalpoints - 1)) {
                 lv_index = 0;
@@ -8864,7 +8871,7 @@ bool auto_gf_RandomBanetrain_TriggerFunc (bool testConds, bool runActions) {
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBlindling", 0)), c_orderQueueReplace);
         }
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-        if ((gv_nightmare == true) && (RandomInt(1, 7) == 1)) {
+        if ((gv_nightmare || gv_hell) && (RandomInt(1, 7) == 1)) {
             UnitCreate(1, "ZerglingBurrowed", 0, 14, lv_spawnpoints[lv_index], libNtve_gf_RandomAngle());
             if (lv_index >= (lv_totalpoints - 1)) {
                 lv_index = 0;
@@ -8926,12 +8933,12 @@ bool auto_gf_SporelingWave_TriggerFunc (bool testConds, bool runActions) {
     for (;; autoC3DE40ED_u -= 1) {
         autoC3DE40ED_var = UnitGroupUnitFromEnd(autoC3DE40ED_g, autoC3DE40ED_u);
         if (autoC3DE40ED_var == null) { break; }
-        if ((gv_nightmare == true)) {
+        if ((gv_nightmare || gv_hell)) {
             libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreep", 0, 14, UnitGetPosition(autoC3DE40ED_var), RegionRandomPoint(RegionPlayableMap()));
             UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         }
 
-        if ((RandomInt(0, 1000) == 1) && (gv_nightmare == true)) {
+        if ((gv_nightmare || gv_hell) && (RandomInt(0, 1000) == 1)) {
             UnitCreate(1, "SpineCrawler", 0, 13, UnitGetPosition(autoC3DE40ED_var), libNtve_gf_RandomAngle());
             libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, UnitGetPosition(autoC3DE40ED_var));
         }
@@ -9153,7 +9160,7 @@ point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRan
 bool gf_CPDecayFactor () {
     // Automatic Variable Declarations
     // Implementation
-    if ((((gv_nightmare == true) && (RandomInt(1, 100) <= 10)) || ((gv_nightmare == false) && (gv_isVeteranSquad == true) && (RandomInt(1, 100) <= 10)) || ((gv_nightmare == false) && (gv_isVeteranSquad == false) && (RandomInt(1, 100) <= 10)))) {
+    if ((RandomInt(1, 100) <= 10)) {
         return true;
     }
     else {
@@ -10364,7 +10371,7 @@ bool auto_gf_MineBossSeth_TriggerFunc (bool testConds, bool runActions) {
                 }
 
             }
-            if ((gv_nightmare == true)) {
+            if ((gv_nightmare || gv_hell)) {
                 Wait(10.0, c_timeGame);
             }
             else {
@@ -16452,7 +16459,7 @@ bool gf_ExpedCheck () {
     }
 }
 
-void gf_WinUpdate (int lp_player, bool lp_nMSpeed, bool lp_speed) {
+void gf_WinUpdate (int lp_player, bool lp_hellSpeed, bool lp_nMSpeed, bool lp_speed) {
     // Automatic Variable Declarations
     // Implementation
     if (gv_survivalMode) {
@@ -17882,7 +17889,7 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
     }
     TriggerEnable(gt_InfestorKilled, true);
     TriggerEnable(gt_InfestorAmbientSpawns, true);
-    if (((gv_currentGameMode == ge_GameModes_Nightmare) || ((gv_isVeteranSquad == true) && (gv_squadRating >= 1600)))) {
+    if (((gv_currentGameMode == ge_GameModes_Nightmare) || (gv_currentGameMode == ge_GameModes_Hell) || ((gv_isVeteranSquad == true) && (gv_squadRating >= 1600)))) {
         TriggerEnable(gt_InfestorAI, true);
     }
 
@@ -18407,7 +18414,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     }
     else {
         if ((lv_usedDialogItem == gv_classSelectionDialogItem[lv_selectingPlayer][15])) {
-            gv_noRandoms = 2;
+            gv_randomsOption = 2;
             gv_maxRandom -= 1;
             if ((gv_maxRandom == 0) && (TriggerGetExecCount(TriggerGetCurrent()) < (gv_totalPlayers - 1))) {
                 TriggerExecute(gt_DisableRandomButton, false, false);
@@ -18490,7 +18497,9 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
         UnitInventoryCreate(gv_marineHero[lv_selectingPlayer], "OccularImplants");
     }
 
-    if ((gv_hell || gv_glassCannonActivated)) {
+    if (gv_hell) {
+    }
+    if (gv_glassCannonActivated) {
         libNtve_gf_ChangeUnitDamage(gv_marineHero[lv_selectingPlayer], libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Mega2);
         libNtve_gf_ChangeUnitDamage(gv_marineHero[lv_selectingPlayer], libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_Mega2);
     }
@@ -19121,14 +19130,14 @@ bool gt_NoRandoms_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_AllRandom, false);
-    if ((gv_noRandoms == 0)) {
-        gv_noRandoms = 1;
+    if ((gv_randomsOption == 0)) {
+        gv_randomsOption = 1;
         TriggerExecute(gt_DisableRandomButton, false, false);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/544D04BA"));
         SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
     }
     else {
-        gv_noRandoms = 2;
+        gv_randomsOption = 2;
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/F9A7E5EA"));
         SoundPlay(SoundLink("Alert_UniObjectiveFailed", -1), PlayerGroupAll(), 100.0, 0.0);
     }
@@ -19164,7 +19173,7 @@ bool gt_AllRandom_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_NoRandoms, false);
     if (((gv_storylineModOn[5] == true) || (DialogIsVisible(gv_storylineDialog, 1) == true))) {
-        gv_noRandoms = 3;
+        gv_randomsOption = 3;
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/E3E8800E"));
         SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
     }
@@ -19365,9 +19374,6 @@ bool gt_NightmareHellMode_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     playergroup autoFEB3A169_g;
     int autoFEB3A169_var;
-    unitgroup auto25E34E61_g;
-    int auto25E34E61_u;
-    unit auto25E34E61_var;
     playergroup autoD7B36D88_g;
     int autoD7B36D88_var;
 
@@ -19417,14 +19423,6 @@ bool gt_NightmareHellMode_Func (bool testConds, bool runActions) {
             autoFEB3A169_var = PlayerGroupNextPlayer(autoFEB3A169_g, autoFEB3A169_var);
             if (autoFEB3A169_var < 0) { break; }
             PlayerSetDifficulty(autoFEB3A169_var, 4);
-        }
-        auto25E34E61_g = gv_marines;
-        auto25E34E61_u = UnitGroupCount(auto25E34E61_g, c_unitCountAll);
-        for (;; auto25E34E61_u -= 1) {
-            auto25E34E61_var = UnitGroupUnitFromEnd(auto25E34E61_g, auto25E34E61_u);
-            if (auto25E34E61_var == null) { break; }
-            libNtve_gf_ChangeUnitDamage(auto25E34E61_var, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Mega2);
-            libNtve_gf_ChangeUnitDamage(auto25E34E61_var, libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_Mega2);
         }
     }
     else {
@@ -22520,7 +22518,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         }
 
     }
-    if (((gv_squadRating >= 1800) || (gv_nightmare == true)) && ((UnitGetType(lv_deadUnit) == "Ultralisk") || (UnitGetType(lv_deadUnit) == "Infestor2"))) {
+    if (((gv_squadRating >= 1800) || gv_nightmare || gv_hell) && ((UnitGetType(lv_deadUnit) == "Ultralisk") || (UnitGetType(lv_deadUnit) == "Infestor2"))) {
         Wait(RandomFixed(1.2, 3.0), c_timeReal);
         if ((gv_cinematicMode == false)) {
             libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
@@ -22529,7 +22527,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         }
 
     }
-    if (((gv_squadRating >= 1800) || (gv_nightmare == true)) && (UnitGetType(lv_deadUnit) == "Titan")) {
+    if (((gv_squadRating >= 1800) || gv_nightmare || gv_hell) && (UnitGetType(lv_deadUnit) == "Titan")) {
         Wait(RandomFixed(1.5, 4.0), c_timeReal);
         if ((gv_cinematicMode == false)) {
             libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Large, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
@@ -22585,11 +22583,11 @@ bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
     UnitGroupRemove(gv_infestors, EventUnit());
     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
     libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreepLarge", 0, 14, lv_localPointA, RegionRandomPoint(RegionPlayableMap()));
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
     }
 
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         auto0B0DA9E5_n = gv_spawnFactor;
         for (auto0B0DA9E5_i = 1; auto0B0DA9E5_i <= auto0B0DA9E5_n; auto0B0DA9E5_i += 1) {
             UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
@@ -22729,14 +22727,14 @@ bool gt_InfestorAI_Func (bool testConds, bool runActions) {
         gv_infestorAggroMode = true;
         Wait(3.0, c_timeReal);
         UnitSetTeamColorIndex(lv_aggroedInfestor, 6);
-        if (((gv_squadRating >= 1700) || (gv_nightmare == true))) {
+        if (((gv_squadRating >= 1700) || gv_nightmare || gv_hell)) {
             Wait(7.0, c_timeReal);
         }
         else {
             Wait(9.0, c_timeReal);
         }
         UnitSetTeamColorIndex(lv_aggroedInfestor, 5);
-        if (((gv_squadRating >= 1700) || (gv_nightmare == true))) {
+        if (((gv_squadRating >= 1700) || gv_nightmare || gv_hell)) {
             Wait(7.0, c_timeReal);
         }
         else {
@@ -22783,7 +22781,7 @@ bool gt_InfestorAI_Func (bool testConds, bool runActions) {
         }
         gv_infestorAggroMode = false;
     }
-    else if ((RandomInt(0, 5) == 1) && ((UnitGetPropertyFixed(lv_aggroedInfestor, c_unitPropLifePercent, c_unitPropCurrent) <= 30.0) || ((gv_nightmare == true) && (UnitGetPropertyFixed(lv_aggroedInfestor, c_unitPropLifePercent, c_unitPropCurrent) <= 55.0)))) {
+    else if ((RandomInt(0, 5) == 1) && ((UnitGetPropertyFixed(lv_aggroedInfestor, c_unitPropLifePercent, c_unitPropCurrent) <= 30.0) || ((gv_nightmare || gv_hell) && (UnitGetPropertyFixed(lv_aggroedInfestor, c_unitPropLifePercent, c_unitPropCurrent) <= 55.0)))) {
         UnitIssueOrder(lv_aggroedInfestor, Order(AbilityCommand("BurrowInfestor", 0)), c_orderQueueReplace);
         Wait(1.0, c_timeReal);
         UnitIssueOrder(lv_aggroedInfestor, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionPlayableMap())), c_orderQueueReplace);
@@ -23293,7 +23291,7 @@ bool gt_NightmareBonus_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_nightmare == true))) {
+        if (!(gv_nightmare)) {
             return false;
         }
     }
@@ -23337,6 +23335,62 @@ bool gt_NightmareBonus_Func (bool testConds, bool runActions) {
 void gt_NightmareBonus_Init () {
     gt_NightmareBonus = TriggerCreate("gt_NightmareBonus_Func");
     TriggerEnable(gt_NightmareBonus, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hell Bonus
+//--------------------------------------------------------------------------------------------------
+bool gt_HellBonus_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int autoE2015653_ae = gv_numberofPlayers;
+    int autoE2015653_var;
+
+    // Conditions
+    if (testConds) {
+        if (!(gv_hell)) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gf_AwardPlayerXPNOTD(10);
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/49F18508"));
+    SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
+    autoE2015653_var = gv_indexBaseValue;
+    for ( ; autoE2015653_var <= autoE2015653_ae; autoE2015653_var += 1 ) {
+        if ((PlayerStatus(autoE2015653_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[autoE2015653_var]) == true)) {
+            if ((gv_playerRating[autoE2015653_var] >= 1800)) {
+                gf_UpdateRating(autoE2015653_var, 1);
+            }
+            else if ((gv_playerRating[autoE2015653_var] >= 1700)) {
+                gf_UpdateRating(autoE2015653_var, 2);
+            }
+            else if ((gv_playerRating[autoE2015653_var] >= 1600)) {
+                gf_UpdateRating(autoE2015653_var, 2);
+            }
+            else if (true) {
+                gf_UpdateRating(autoE2015653_var, 3);
+            }
+            if ((gv_playerXP[autoE2015653_var] <= 2000)) {
+                gf_UpdateKarma(autoE2015653_var, 2);
+            }
+
+        }
+
+    }
+    Wait(5.0, c_timeReal);
+    UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_HellBonus_Init () {
+    gt_HellBonus = TriggerCreate("gt_HellBonus_Func");
+    TriggerEnable(gt_HellBonus, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -23623,7 +23677,7 @@ bool gt_SethReinforcements_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         lv_sCVCount += 1;
     }
 
@@ -23897,7 +23951,7 @@ bool gt_OM1EnterCommTower_Func (bool testConds, bool runActions) {
             UnitCreate(1, "ZombieLevel22", 0, 14, RegionRandomPoint(lv_commSpawn), libNtve_gf_RandomAngle());
             UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowZombieLevel2", 0)), c_orderQueueReplace);
             UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
-            if ((gv_nightmare == true)) {
+            if ((gv_nightmare || gv_hell)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
             }
 
@@ -23908,10 +23962,10 @@ bool gt_OM1EnterCommTower_Func (bool testConds, bool runActions) {
     for (autoE3374E1A_i = 1; autoE3374E1A_i <= autoE3374E1A_n; autoE3374E1A_i += 1) {
         auto38C311EA_n = (gv_spawnFactor * 2);
         for (auto38C311EA_i = 1; auto38C311EA_i <= auto38C311EA_n; auto38C311EA_i += 1) {
-            if ((gv_nightmare == true) && (RandomInt(0, 4) == 1)) {
+            if ((gv_nightmare || gv_hell) && (RandomInt(0, 4) == 1)) {
                 gf_SmartSpawnNOTD("InfestorTerran2", 20.0);
             }
-            else if ((gv_nightmare == true) && (RandomInt(0, 12) == 1)) {
+            else if ((gv_nightmare || gv_hell) && (RandomInt(0, 12) == 1)) {
                 UnitCreate(1, "HulkBurrowed", 0, 14, RegionRandomPoint(lv_commSpawn), libNtve_gf_RandomAngle());
                 UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHulk", 0)), c_orderQueueReplace);
             }
@@ -23926,7 +23980,7 @@ bool gt_OM1EnterCommTower_Func (bool testConds, bool runActions) {
             else if (true) {
                 UnitCreate(1, "ZerglingBurrowed", 0, 14, RegionRandomPoint(lv_commSpawn), libNtve_gf_RandomAngle());
                 UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowZerglingUp", 0)), c_orderQueueReplace);
-                if ((gv_nightmare == true)) {
+                if ((gv_nightmare || gv_hell)) {
                     UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
                 }
 
@@ -23939,10 +23993,10 @@ bool gt_OM1EnterCommTower_Func (bool testConds, bool runActions) {
     for (auto67C1BE5D_i = 1; auto67C1BE5D_i <= auto67C1BE5D_n; auto67C1BE5D_i += 1) {
         auto4FCE3618_n = gv_spawnFactor;
         for (auto4FCE3618_i = 1; auto4FCE3618_i <= auto4FCE3618_n; auto4FCE3618_i += 1) {
-            if ((gv_nightmare == true) && (RandomInt(0, 4) == 1)) {
+            if ((gv_nightmare || gv_hell) && (RandomInt(0, 4) == 1)) {
                 gf_SmartSpawnNOTD("InfestorTerran2", 20.0);
             }
-            else if ((gv_nightmare == true) && (RandomInt(0, 12) == 1)) {
+            else if ((gv_nightmare || gv_hell) && (RandomInt(0, 12) == 1)) {
                 UnitCreate(1, "HulkBurrowed", 0, 14, RegionRandomPoint(lv_commSpawn), libNtve_gf_RandomAngle());
                 UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowHulk", 0)), c_orderQueueReplace);
             }
@@ -24774,7 +24828,7 @@ bool gt_OM8EnterBridgeTerminal_Func (bool testConds, bool runActions) {
     if ((gv_isVeteranSquad == true)) {
         UnitIssueOrder(gv_bBQ, Order(AbilityCommand("UnburrowBrainBug", 0)), c_orderQueueReplace);
         libNtve_gf_ChangeUnitDamage(gv_bBQ, libNtve_ge_UnitDamageTakenDealt_Damage_Deal, libNtve_ge_UnitDamageChangeOption_Mega);
-        if ((gv_nightmare == true)) {
+        if ((gv_nightmare || gv_hell)) {
             UnitBehaviorAddPlayer(gv_bBQ, "Rampage", 14, 1);
         }
 
@@ -46516,6 +46570,7 @@ void gt_TalentTreeToggle_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
     // Variable Declarations
+    bool lv_hellSpeed;
     bool lv_nMSpeed;
     bool lv_speed;
     bool lv_merit;
@@ -46534,10 +46589,13 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
 
     UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
     if (((gv_isVeteranSquad && (gv_gameVictoryTime <= 3600.0)) || ((!(gv_isVeteranSquad)) && (gv_gameVictoryTime <= 3240.0)))) {
-        if (gv_nightmare) {
+        if (gv_hell) {
+            lv_hellSpeed = true;
+        }
+        else if (gv_nightmare) {
             lv_nMSpeed = true;
         }
-        else {
+        else if (true) {
             lv_speed = true;
         }
     }
@@ -46553,7 +46611,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
             if (lv_merit && (gv_totalMerits[auto41EF3FE7_var] >= gv_maxMerits) && (gv_totalDemerits[auto41EF3FE7_var] <= 0)) {
                 gf_UpdateKarma(auto41EF3FE7_var, 5);
             }
-            gf_WinUpdate(auto41EF3FE7_var, lv_nMSpeed, lv_speed);
+            gf_WinUpdate(auto41EF3FE7_var, lv_hellSpeed, lv_nMSpeed, lv_speed);
         }
 
     }
@@ -46589,7 +46647,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
         TriggerExecute(gt_ClassPointsUpdateVictoryOnly, true, false);
     }
 
-    if ((lv_nMSpeed || lv_speed)) {
+    if ((lv_hellSpeed || lv_nMSpeed || lv_speed)) {
         gf_SpeedBonusXP();
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
     }
@@ -46634,7 +46692,7 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
 
     auto4111D9D3_var = gv_indexBaseValue;
     for ( ; auto4111D9D3_var <= auto4111D9D3_ae; auto4111D9D3_var += 1 ) {
-        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && gv_playerRandom[auto4111D9D3_var] && (!(gv_nightmare))) {
+        if ((gv_playerXP[auto4111D9D3_var] >= 10000) && gv_playerRandom[auto4111D9D3_var] && (!(gv_nightmare || gv_hell))) {
             UIDisplayMessage(PlayerGroupSingle(auto4111D9D3_var), c_messageAreaDebug, StringExternal("Param/Value/FF26767E"));
             gf_UpdateKarma(auto4111D9D3_var, 1);
             continue;
@@ -47010,6 +47068,7 @@ void InitTriggers () {
     gt_GateEnterAirlockMainGateInner_Init();
     gt_NavyCrossCheck_Init();
     gt_NightmareBonus_Init();
+    gt_HellBonus_Init();
     gt_ChapterEndMedicRatingBonus_Init();
     gt_VetPubGameBonus_Init();
     gt_AFKCheck_Init();

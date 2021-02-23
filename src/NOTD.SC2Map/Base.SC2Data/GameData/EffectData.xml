@@ -1298,6 +1298,13 @@
         <BehaviorLink value="Cripple"/>
         <Count value="1"/>
     </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="VenomApplySelfCreep">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Chance value="0.1"/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="Venom"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="VolatileBurstU4" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
