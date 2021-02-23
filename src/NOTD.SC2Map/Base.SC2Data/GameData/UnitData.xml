@@ -242,7 +242,7 @@
         <Speed value="2.5"/>
         <CostResource index="Minerals" value="0"/>
         <CostResource index="Vespene" value="0"/>
-        <KillXP value="15"/>
+        <KillXP value="12"/>
         <AbilArray index="5" removed="1"/>
         <AbilArray index="6" removed="1"/>
         <BehaviorArray Link="SharedExperience"/>
@@ -364,7 +364,7 @@
         <EnergyMax value="200"/>
         <Acceleration value="1000"/>
         <FlagArray index="UseLineOfSight" value="1"/>
-        <KillXP value="20"/>
+        <KillXP value="18"/>
         <Attributes index="Biological" value="1"/>
         <Attributes index="Psionic" value="1"/>
         <BehaviorArray Link="SharedExperience"/>
@@ -1031,7 +1031,7 @@
         <Food value="-2"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="20"/>
+        <KillXP value="5"/>
         <CargoSize value="2"/>
         <ScoreMake value="100"/>
         <ScoreKill value="100"/>
@@ -1095,7 +1095,7 @@
         <Food value="-2"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="20"/>
+        <KillXP value="5"/>
         <CargoSize value="2"/>
         <ScoreMake value="100"/>
         <ScoreKill value="200"/>
@@ -3402,7 +3402,7 @@
         <CostResource index="Vespene" value="150"/>
         <RepairTime value="50"/>
         <AttackTargetPriority value="20"/>
-        <KillXP value="20"/>
+        <KillXP value="10"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
@@ -3680,6 +3680,7 @@
         <TurningRate value="349.9804"/>
         <TacticalAIThink value=""/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <KillXP value="15"/>
     </CUnit>
     <CUnit id="BrainBug2" parent="Baneling">
         <Name value="Unit/Name/BrainBug2"/>
@@ -4205,6 +4206,7 @@
         <EquipmentArray index="0" Weapon="VolatileBurstDummyBeastling"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
+        <KillXP value="15"/>
     </CUnit>
     <CUnit id="Devourer2">
         <DeathRevealRadius value="3"/>
@@ -4322,7 +4324,7 @@
         <AttackTargetPriority value="19"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="50"/>
+        <KillXP value="30"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
         <AbilArray Link="NeuralParasite"/>
@@ -6410,6 +6412,7 @@
         <BehaviorArray Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <Radius value="0.4375"/>
+        <KillXP value="15"/>
     </CUnit>
     <CUnit id="Gunship">
         <Race value="Terr"/>
@@ -7701,7 +7704,7 @@
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="35"/>
+        <KillXP value="30"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
         <AbilArray Link="UnburrowInfestor"/>
@@ -8299,6 +8302,7 @@
             <ChanceArray index="Anim" value="0"/>
             <ChanceArray index="Idle" value="0"/>
         </Fidget>
+        <KillXP value="100"/>
     </CUnit>
     <CUnit id="UGCDropship">
         <DeathRevealRadius value="3"/>
@@ -8360,6 +8364,7 @@
         <StationaryTurningRate value="199.8632"/>
         <TurningRate value="199.8632"/>
         <BehaviorArray index="0" removed="1"/>
+        <KillXP value="100"/>
     </CUnit>
     <CUnit id="Cerberus" parent="Critter">
         <Description value="Button/Tooltip/CritterCerberus"/>
@@ -9022,7 +9027,7 @@
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="30"/>
+        <KillXP value="25"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
@@ -9356,7 +9361,7 @@
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="35"/>
+        <KillXP value="30"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
         <AbilArray Link="BurrowInfestor"/>
@@ -9436,7 +9441,7 @@
         <AttackTargetPriority value="19"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="50"/>
+        <KillXP value="30"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
         <AbilArray Link="BurrowHugger"/>
@@ -9913,7 +9918,7 @@
         <CostResource index="Vespene" value="150"/>
         <RepairTime value="50"/>
         <AttackTargetPriority value="20"/>
-        <KillXP value="30"/>
+        <KillXP value="10"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
@@ -10886,7 +10891,7 @@
     <CUnit id="Mutalisk">
         <LifeArmor value="1"/>
         <Speed value="2.6992"/>
-        <KillXP value="15"/>
+        <KillXP value="12"/>
         <Height value="1.5"/>
         <VisionHeight value="3"/>
         <WeaponArray index="0" Link="GlaiveWurm3"/>
