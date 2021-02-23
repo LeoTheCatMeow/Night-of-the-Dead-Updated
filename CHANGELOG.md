@@ -18,6 +18,7 @@
 - Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
 - Fixed a bug where Bio-Domes can be destroyed when invulnerable. 
 - Fixed Technician's March of the Machine not draining the correct amount of energy.
+- Fixed Assault's Safeguard not using the correct animation.
 - Recreated the xp sharing system in trigger to have better performance while still functioning using the same logic. 
 
 2021-2-13

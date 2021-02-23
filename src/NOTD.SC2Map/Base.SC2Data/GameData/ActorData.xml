@@ -6828,7 +6828,7 @@
         <On Terms="AnimDone" Send="Destroy"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <Model value="ShieldAbsorbImmortalViz"/>
+        <Model value="Safeguard"/>
     </CActorModel>
     <CActorSound id="SafeguardImpactSound" parent="SoundOneShot">
         <On Terms="Behavior.SafeguardHidden.DamageHandled" Send="Create"/>
@@ -15906,13 +15906,6 @@
         <On Terms="Behavior.C1Armor.DamageHandled" Send="Create"/>
         <Sound value="Immortal_HardenedShieldImpact2"/>
     </CActorSound>
-    <CActorModel id="ShieldAbsorbImmortalViz2" parent="ModelAnimationStyleOneShot">
-        <Terms value="Cap 1"/>
-        <On Terms="Behavior.C1Armor.DamageHandled" Send="Create"/>
-        <On Terms="AnimDone" Send="Destroy"/>
-        <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachCenter"/>
-    </CActorModel>
     <CActorUnit id="SniperRifle" parent="GenericUnitBase" unitName="SniperRifle">
         <EditorCategories value=""/>
         <Model value="ColonistSupplyCrate"/>

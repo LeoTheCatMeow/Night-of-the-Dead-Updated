@@ -2122,8 +2122,12 @@ NOTDLoadingHint2=T鍵可以使你低於15顆彈藥是手動填彈
 One Shot, One Kill Level 2=對單一目標造成600點傷害。<n/><n/>裝備巴雷特M112會造成30%額外傷害。
 One Shot, One Kill Level 3=立即殺掉非英雄單位，對英雄目標造成800點加上1.2%血量傷害。<n/><n/>使用巴雷特M112會造成30%額外基本傷害和額外0.3%血量傷害，百分比血量傷害需要一層聚精會神。
 Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 標記 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">特徵<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
+Param/Expression/12668883=<s val="GlueButtonSmall">阿波羅安保隊: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/142E3EDE=第~A~波
+Param/Expression/17F31179=<s val="GlueButtonSmall">阿爾法小隊: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/1B9D6FE5=~A~~B~~C~
+Param/Expression/207EADA5=<s val="GlueButtonSmall">新兵/普通: <c val="71E100">~A~</c></s>
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要攻擊 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要攻擊 <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
@@ -2144,13 +2148,19 @@ Param/Expression/8261F9D4=快速地完成任務，+~A~額外經驗值
 Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 建議撤退！
 Param/Expression/95E959B7=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/9A873C53=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
+Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">勝利</c> (<c val="49ABF3">速通</c>) (<c val="E10000">噩夢</c>) (<c val="F1D845">噩夢速通</c>)</s>
 Param/Expression/A91F7F6B=~A~~B~~C~
 Param/Expression/ABAE731B=~A~/~B~
+Param/Expression/C6F9A88B=<s val="GlueButtonSmall">簡單小隊: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/CB96C272=~A~ : ~B~
 Param/Expression/D329FBDC=~A~
 Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> 想要攻擊！
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
+Param/Expression/E3956D74=<s val="GlueButtonSmall">特殊模式 - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
+Param/Expression/E6D26B07=<s val="GlueButtonSmall">生存模式: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>)</s>
+Param/Expression/E91DA1DF=<s val="GlueButtonSmall"><c val="FFCE09">玻璃大炮模式</c><n/><c val="FFFF">- Marines <c val="80FF80">deal</c> +200% damage<n/>- Marines <c val="FF8080">take</c> +200% damage<n/>是否開啓? (<c val="80FF80">Y</c>/<c val="FF8080">N</c>)</s></c>
+Param/Expression/F405B274=<s val="GlueButtonSmall">噩夢: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(剩下~A~隻感染蟲...)</s>
 Param/Expression/FEC5EBF1=<s val="InfoPaneHeroRank">(得到~A~獎勵...)</s>
 Param/Value/004D086A=<s val="GlueButton">Infestor
@@ -2842,7 +2852,7 @@ Param/Value/736406F9=We have the package. Life signs stable.
 Param/Value/7391DB71=<s val="InfoPaneHeroRank">+
 Param/Value/73B68D3A=You cannot proceed beyond Wave 20 at Recruit difficulty!
 Param/Value/73EA90C2=You lost dozens capturing Athena. All in vain.
-Param/Value/73EE1705=<s val="GlueButtonSmall">Class Points - 
+Param/Value/73EE1705=<s val="GlueButtonSmall">熟練度 - 
 Param/Value/747277A8=
 Param/Value/74B64B08=<n/><n/>
 Param/Value/7527BA88=Seal Bio-Domes (
