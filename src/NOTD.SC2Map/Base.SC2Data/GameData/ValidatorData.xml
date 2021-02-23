@@ -224,6 +224,10 @@
         <Value value="12"/>
         <Behavior value="PetVeterancy"/>
     </CValidatorUnitCompareVeterancyLevel>
+    <CValidatorPlayerCompareDifficulty id="IsHellMode">
+        <Compare value="Eq"/>
+        <Value value="4"/>
+    </CValidatorPlayerCompareDifficulty>
     <CValidatorUnitCompareBehaviorCount id="IsNotBleedingVisual">
         <Behavior value="OpenWoundVisual"/>
     </CValidatorUnitCompareBehaviorCount>
@@ -583,7 +587,6 @@
         <Value value="Hostile"/>
     </CValidatorPlayerCompareType>
     <CValidatorPlayerCompareDifficulty id="IsNightmare">
-        <Compare value="Eq"/>
         <Value value="3"/>
     </CValidatorPlayerCompareDifficulty>
     <CValidatorCombine id="IsNotApolloSecurity">
@@ -592,7 +595,7 @@
         <Negate value="1"/>
     </CValidatorCombine>
     <CValidatorPlayerCompareDifficulty id="IsNotNightmare">
-        <Compare value="NE"/>
+        <Compare value="LT"/>
         <Value value="3"/>
     </CValidatorPlayerCompareDifficulty>
     <CValidatorPlayerCompareDifficulty id="IsNormal">
