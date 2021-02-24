@@ -140,6 +140,11 @@
     <CEffectModifyPlayer id="AbsolutionBonusOn">
         <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
     </CEffectModifyPlayer>
+    <CEffectSet id="VenomandInfectionSet">
+        <EditorCategories value=""/>
+        <EffectArray value="VenomApplySelfChance"/>
+        <EffectArray value="InfectionApplySelfChance"/>
+    </CEffectSet>
     <CEffectDamage id="DevastatorMissilesDamage">
         <AttributeBonus index="Massive" value="0"/>
         <ArmorReduction value="0"/>
@@ -1298,12 +1303,19 @@
         <BehaviorLink value="Cripple"/>
         <Count value="1"/>
     </CEffectRemoveBehavior>
-    <CEffectApplyBehavior id="VenomApplySelfCreep">
+    <CEffectApplyBehavior id="VenomApplySelfChance">
         <ValidatorArray index="0" removed="1"/>
         <EditorCategories value=""/>
-        <Chance value="0.1"/>
+        <Chance value="0.2"/>
         <WhichUnit Value="Source"/>
         <Behavior value="Venom"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="InfectionApplySelfChance">
+        <ValidatorArray index="0" value="HasOpenWound"/>
+        <EditorCategories value=""/>
+        <Chance value="0.05"/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="Infection"/>
     </CEffectApplyBehavior>
     <CEffectDamage id="VolatileBurstU4" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>

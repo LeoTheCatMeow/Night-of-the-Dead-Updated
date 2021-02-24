@@ -673,6 +673,7 @@ unitgroup gv_complianceNexusGroup;
 unit gv_tartarusCocoon;
 unit gv_incompleteIVAX;
 unit[3] gv_sensorTower;
+unitgroup gv_infectedUnits;
 region[6] gv_militaryBaseSpawn;
 region[6] gv_mineSpawn;
 region[12] gv_nydusNetwork;
@@ -1220,6 +1221,7 @@ void InitGlobals () {
     gv_brainBugs = UnitGroupEmpty();
     gv_madMaxTruck = UnitFromId(337);
     gv_complianceNexusGroup = UnitGroupEmpty();
+    gv_infectedUnits = UnitGroupEmpty();
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_equipmentButton[init_i] = c_invalidDialogControlId;
     }
@@ -2270,6 +2272,8 @@ trigger gt_OutbreakSpawn;
 trigger gt_EliteMutation;
 trigger gt_EliteMutationBoss;
 trigger gt_EliteMutationChanceRotation;
+trigger gt_UnitGetsInfected;
+trigger gt_InfectionCleared;
 trigger gt_Barrels;
 trigger gt_BarrelKills;
 trigger gt_GateEnterAirlockMainGateOuter;
@@ -20284,14 +20288,17 @@ bool gt_ReceivesDamage_Func (bool testConds, bool runActions) {
                 UnitBehaviorAdd(lv_marine, "OpenWound", lv_attacker, 1);
                 gf_TipLocalNOTD(1000, lv_player, StringExternal("Param/Value/795CA19E"));
             }
-            else if (((RandomInt(0, 50) == 1) || (UnitGetType(lv_attacker) == "Parasite") || (UnitGetType(lv_attacker) == "Slither") || (((UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 50.0) || (gv_nightmare == true)) && (RandomInt(0, 10) == 1))) && (EventUnitDamageEffect() != "BlackOpsSniperRifle") && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && (UnitGetType(lv_marine) != "ChemicalExpert") && (gf_AilmentResistanceCheck(lv_marine) == false)) {
+            else if (((RandomInt(0, 50) == 1) || (UnitGetType(lv_attacker) == "Parasite") || (UnitGetType(lv_attacker) == "Slither") || (((UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 50.0) || gv_nightmare || gv_hell) && (RandomInt(0, 10) == 1))) && (EventUnitDamageEffect() != "BlackOpsSniperRifle") && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && (UnitGetType(lv_marine) != "ChemicalExpert") && (gf_AilmentResistanceCheck(lv_marine) == false)) {
                 UnitBehaviorAdd(lv_marine, "Venom", lv_attacker, 1);
+                if (gv_hell) {
+                    UnitCreateEffectUnit(lv_attacker, "InfectionApplySelfChance", lv_marine);
+                }
             }
-            else if ((((RandomInt(0, 65) == 1) && (gv_nightmare == true)) || ((RandomInt(0, 125) == 1) && (gv_nightmare == false))) && (UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 90.0) && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (gf_AilmentResistanceCheck(lv_marine) == false)) {
+            else if ((((RandomInt(0, 65) == 1) && (gv_nightmare || gv_hell)) || ((RandomInt(0, 125) == 1) && !(gv_nightmare) && !(gv_hell))) && (UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 90.0) && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (gf_AilmentResistanceCheck(lv_marine) == false)) {
                 UnitBehaviorAdd(lv_marine, "Blind", lv_attacker, 1);
                 gf_TipLocalNOTD(5000, lv_player, StringExternal("Param/Value/D60C7F98"));
             }
-            else if ((RandomInt(0, 125) == 1) && (UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 75.0) && (lv_damageReceived > 5.0) && ((gv_nightmare == true) || (gv_squadRating >= 1800)) && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (EventUnitDamageEffect() != "DiamondbackBeam") && (EventUnitDamageEffect() != "X1EvisceratorBeamLevel2") && (EventUnitDamageEffect() != "X1EvisceratorBeamLevel3") && (gf_AilmentResistanceCheck(lv_marine) == false)) {
+            else if ((RandomInt(0, 125) == 1) && (UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 75.0) && (lv_damageReceived > 5.0) && (gv_nightmare || gv_hell || (gv_squadRating >= 1800)) && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (EventUnitDamageEffect() != "DiamondbackBeam") && (EventUnitDamageEffect() != "X1EvisceratorBeamLevel2") && (EventUnitDamageEffect() != "X1EvisceratorBeamLevel3") && (gf_AilmentResistanceCheck(lv_marine) == false)) {
                 UnitBehaviorAdd(lv_marine, "Madness", lv_attacker, 1);
             }
         }
@@ -21192,6 +21199,7 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     unit lv_deadMarine;
     region lv_deathArea;
     point lv_randomPoint;
+    unitgroup lv_infectionSpawn;
 
     // Automatic Variable Declarations
     unitgroup autoE737FD6A_g;
@@ -21212,12 +21220,23 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     lv_pNumber = EventPlayer();
     lv_deadMarine = EventUnit();
     lv_deathArea = RegionCircle(UnitGetPosition(lv_deadMarine), 2.2);
+    lv_infectionSpawn = UnitGroupEmpty();
 
     // Actions
     if (!runActions) {
         return true;
     }
 
+    if (gv_hell && UnitGroupHasUnit(gv_infectedUnits, lv_deadMarine)) {
+        UnitGroupSelect(UnitGroupSelected(lv_pNumber), lv_pNumber, false);
+        UnitGroupSelect(UnitGroup("ZombieLevel1", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), lv_pNumber, true);
+        Wait(0.0625, c_timeGame);
+        if ((UnitGroupCount(UnitGroupSelected(lv_pNumber), c_unitCountAlive) == 1)) {
+            UnitGroupAdd(gv_zombieWave, UnitGroupUnit(UnitGroupSelected(lv_pNumber), 1));
+            UnitSetOwner(UnitGroupUnit(UnitGroupSelected(lv_pNumber), 1), 14, false);
+        }
+
+    }
     UnitGroupRemove(gv_marines, lv_deadMarine);
     autoE737FD6A_g = gv_kittens[lv_pNumber];
     autoE737FD6A_u = UnitGroupCount(autoE737FD6A_g, c_unitCountAll);
@@ -23091,6 +23110,65 @@ void gt_EliteMutationChanceRotation_Init () {
     gt_EliteMutationChanceRotation = TriggerCreate("gt_EliteMutationChanceRotation_Func");
     TriggerEnable(gt_EliteMutationChanceRotation, false);
     TriggerAddEventTimePeriodic(gt_EliteMutationChanceRotation, 300.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Gets Infected
+//--------------------------------------------------------------------------------------------------
+bool gt_UnitGetsInfected_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(gv_hell)) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupAdd(gv_infectedUnits, EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_UnitGetsInfected_Init () {
+    gt_UnitGetsInfected = TriggerCreate("gt_UnitGetsInfected_Func");
+    TriggerEnable(gt_UnitGetsInfected, false);
+    TriggerAddEventUnitBehaviorChange(gt_UnitGetsInfected, null, "Infection", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Infection Cleared
+//--------------------------------------------------------------------------------------------------
+bool gt_InfectionCleared_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(gv_hell)) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    if (UnitIsAlive(EventUnit())) {
+        UnitGroupRemove(gv_infectedUnits, EventUnit());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_InfectionCleared_Init () {
+    gt_InfectionCleared = TriggerCreate("gt_InfectionCleared_Func");
+    TriggerEnable(gt_InfectionCleared, false);
+    TriggerAddEventUnitBehaviorChange(gt_InfectionCleared, null, "Infection", c_unitBehaviorChangeDestroy);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -47062,6 +47140,8 @@ void InitTriggers () {
     gt_EliteMutation_Init();
     gt_EliteMutationBoss_Init();
     gt_EliteMutationChanceRotation_Init();
+    gt_UnitGetsInfected_Init();
+    gt_InfectionCleared_Init();
     gt_Barrels_Init();
     gt_BarrelKills_Init();
     gt_GateEnterAirlockMainGateOuter_Init();

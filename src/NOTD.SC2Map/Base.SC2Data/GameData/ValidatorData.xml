@@ -174,6 +174,9 @@
         <Value value="1"/>
         <Behavior value="ChemicalSynthesis"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="NoCombatMobility">
+        <Behavior value="CombatMobilityAugment"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="HasConcentrationLevel1">
         <Find value="1"/>
         <UnitSelectionNotRequired value="1"/>
