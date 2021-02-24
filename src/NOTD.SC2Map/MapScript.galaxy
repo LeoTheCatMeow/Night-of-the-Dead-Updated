@@ -6783,7 +6783,7 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.09);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "PsiOps")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.105);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.1);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "ForwardObserver")) {
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.06);
