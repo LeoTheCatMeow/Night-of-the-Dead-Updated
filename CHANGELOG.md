@@ -5,21 +5,28 @@
 - Fixed recruit/normal Elite Mutation wins not displaying correctly.
 - Enabled win update/rewards for solo players and lowered the requirement for Medal of Honor to at least 2 players instead of 3.
 - Added a "Glass Cannon" option for solo and duo players, taking and dealing extra damage.
-- Improved zombie AI to better handle situations when there are large number of enemies on the map.
+- Improved zombie AI to better handle situations when there is a large number of enemies on the map.
 
 [LeoTheCat]
-- Moved the unlock text on mission select to the left so that chat is easier to read.
-- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
-- Fixed unreadable texts and broken hotkeys for languages other than English.
+<Game Balancing>
+- Reverted Pyro Flamethrower's ability energy costs back to their OG values - 18, 10, 35.
+
+<Qol changes>
+- Updated more texts for Traditional/Simpfied Chinese.
 - For now, French will use English texts, Traditional Chinese and Simplified Chinese will have a mixture of English and TC texts.
-- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
+- Moved the unlock text on mission select to the left so that chat is easier to read.
 - Game will now pause non-Boss zombies that are out of vision when zombie wave grows larger than 500 to avoid severe FPS drop.
 - Paused zombies will resume when zombie waves becomes smaller, or if approached/revealed by marines.
 - Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
-- Fixed a bug where Bio-Domes can be destroyed when invulnerable. 
+- Recreated the xp sharing system in trigger to have better performance while still functioning using the same logic. 
+
+<Bugfixes>
+- Fixed unreadable texts and broken hotkeys for languages other than English.
+- Fixed a bug where multiple X1 Bots and Reaper Drones can be made.
+- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
+- Fixed a bug where invulnerable Bio-Domes can be destroyed by Demo's abilities.
 - Fixed Technician's March of the Machine not draining the correct amount of energy.
 - Fixed Assault's Safeguard not using the correct animation.
-- Recreated the xp sharing system in trigger to have better performance while still functioning using the same logic. 
 
 2021-2-13
 [ThunderRazor]
@@ -160,7 +167,7 @@
 - Improved the splash of UA420 Assault Rifle from 0.75 to 1.25.
 - Pathfinder - Assault Jump initial cooldown reduced from 30 to 25, No Quarter center hit now also rewards 1 Assault Jump Charge.
 - Pathfinder - Coming in Hot's DOT improved to 16/32 DPS for 10 seconds, 2x against Heroic. Max 5 stacks.
-- Pathfinder - No Quarter cooldown reduced from 45 to 30, energy cost reduced from 35 to 25, invulnerability duration increased from 4 to 5.
+- Pathfinder - No Quarter cooldown reduced from 45 to 30, energy cost reduced from 35 to 30, invulnerability duration increased from 4 to 5.
 - Pathfinder - Shoot To Maim energy cost per shot removed.
 - Agrons that guard nydus worms in EC are now spawned right next to the worms, making them less likely to block off zombies.
 - Players now have more time to rescue the civillians in EC before too many of them get infected.

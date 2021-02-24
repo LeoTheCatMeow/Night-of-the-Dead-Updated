@@ -1152,7 +1152,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="NoQuarterLaunch"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
+            <Vital index="Energy" value="30"/>
             <Cooldown Link="Abil/Charge2" TimeUse="30"/>
         </Cost>
         <Range value="12"/>
@@ -1170,7 +1170,7 @@
         <Effect index="0" value="BURNSetLevel1"/>
         <Effect value="BURNSetLevel2"/>
         <Cost>
-            <Vital index="Energy" value="15"/>
+            <Vital index="Energy" value="10"/>
             <Cooldown TimeUse="1"/>
         </Cost>
         <TargetFilters value="Visible;Self,Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
@@ -1665,7 +1665,7 @@
         <Effect index="0" value="ScorchedEarthPersistent"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="30"/>
+            <Vital index="Energy" value="35"/>
             <Cooldown TimeUse="15"/>
         </Cost>
         <Range value="30"/>
@@ -2874,7 +2874,7 @@
         <Effect value="BurstFirePersistentLevel2"/>
         <Effect value="BurstFirePersistentLevel3"/>
         <Cost>
-            <Vital index="Energy" value="15"/>
+            <Vital index="Energy" value="18"/>
         </Cost>
         <Range value="6"/>
         <PrepTime value="0.25"/>
@@ -2987,7 +2987,7 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="InfernoSet"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
+            <Vital index="Energy" value="35"/>
             <Cooldown TimeUse="25"/>
         </Cost>
         <Range value="12"/>
