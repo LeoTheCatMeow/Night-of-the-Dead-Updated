@@ -140,6 +140,20 @@
     <CEffectModifyPlayer id="AbsolutionBonusOn">
         <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
     </CEffectModifyPlayer>
+    <CEffectDamage id="ClawsInfected" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <ResponseFlags index="Flee" value="0"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="22"/>
+        <Death value="Eviscerate"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="InfectionApplySelf">
+        <ValidatorArray index="0" value="HasOpenWound"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="Infection"/>
+    </CEffectApplyBehavior>
     <CEffectSet id="VenomandInfectionSet">
         <EditorCategories value=""/>
         <EffectArray value="VenomApplySelfChance"/>
@@ -3005,7 +3019,6 @@
     </CEffectSet>
     <CEffectSet id="InfectedSet">
         <EditorCategories value="Race:Zerg"/>
-        <EffectArray value="InfectedSpawnZombie"/>
         <EffectArray value="Suicide"/>
     </CEffectSet>
     <CEffectCreateUnit id="InfectedSpawnZombie">

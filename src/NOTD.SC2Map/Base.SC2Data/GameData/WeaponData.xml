@@ -102,6 +102,21 @@
     <CWeaponLegacy id="DummyWeapon">
         <EditorCategories value=""/>
     </CWeaponLegacy>
+    <CWeaponLegacy id="HulkClawsInfectious">
+        <EditorCategories value="Race:Zerg"/>
+        <Options index="Melee" value="1"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level0.dds"/>
+        <DisplayEffect value="ClawsInfected"/>
+        <TargetFilters value="Ground,Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <MinScanRange value="15"/>
+        <Range value="0.11"/>
+        <Marker Link="Weapon/Claws"/>
+        <Cost>
+            <Cooldown Link="Weapon/Claws"/>
+        </Cost>
+        <Period value="0.696"/>
+        <Effect value="ClawsInfected"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="HydraliskMelee">
         <Period value="0.5"/>
         <TargetFilters value="Ground,Visible;Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
