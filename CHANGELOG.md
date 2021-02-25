@@ -9,7 +9,13 @@
 
 [LeoTheCat]
 <Game Balancing>
-- Reverted Pyro Flamethrower's ability energy costs back to their OG values - 18, 10, 35.
+- Reverted Pyro Flamethrower's ability energy costs back to their OG values - 18, 10, 35. 
+- Reverted Scorched Earth and No Quarter energy costs back to their OG values - 35.
+- Slightly lowered Stalker's radius (It was made too large in a previous update).
+- Lowered the cooldown of Absolution from 40 to 35.
+
+<New Feature>
+- Added a special border for players with 10 or more tiers of Medal of Honor.
 
 <Qol changes>
 - Updated more texts for Traditional/Simpfied Chinese.
@@ -27,6 +33,8 @@
 - Fixed a bug where invulnerable Bio-Domes can be destroyed by Demo's abilities.
 - Fixed Technician's March of the Machine not draining the correct amount of energy.
 - Fixed Assault's Safeguard not using the correct animation.
+- Fixed EC Recruit Dropship waves spawning too quickly.
+- Fixed predators gaining level 2 without 3 tiers of Bronze Star.
 
 2021-2-13
 [ThunderRazor]

@@ -2734,15 +2734,6 @@
             <VitalRegenArray index="Energy" value="-0.6992"/>
             <AbilClassDisableArray index="CAbilAttack" value="1"/>
         </Modification>
-        <DamageResponse Handled="RemoveStealthMatrixCloak" Location="Attacker">
-            <ExcludeEffectArray value="ExecuteHeroicMassiveDamage"/>
-            <ExcludeEffectArray value="ExecuteNormalTargets"/>
-            <ExcludeEffectArray value="CombatKnifeDamage"/>
-            <ExcludeEffectArray value="Backstab"/>
-            <ExcludeEffectArray value="StingerMK3DamageAllies"/>
-            <ExcludeEffectArray value="StingerMK3Damage"/>
-            <Chance value="1"/>
-        </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixSelfCloakLevel1">
@@ -2754,15 +2745,6 @@
             <VitalRegenArray index="Energy" value="-1"/>
             <AbilClassDisableArray index="CAbilAttack" value="1"/>
         </Modification>
-        <DamageResponse Handled="RemoveStealthMatrixCloak" Location="Attacker">
-            <ExcludeEffectArray value="ExecuteHeroicMassiveDamage"/>
-            <ExcludeEffectArray value="ExecuteNormalTargets"/>
-            <ExcludeEffectArray value="CombatKnifeDamage"/>
-            <ExcludeEffectArray value="Backstab"/>
-            <ExcludeEffectArray value="StingerMK3DamageAllies"/>
-            <ExcludeEffectArray value="StingerMK3Damage"/>
-            <Chance value="1"/>
-        </DamageResponse>
         <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-permanentcloak.dds"/>
         <BehaviorCategories index="User1" value="1"/>
     </CBehaviorBuff>
@@ -6655,7 +6637,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxStackCount value="5"/>
         <MaxStackCountPerCaster value="1"/>
-        <Duration value="6.65"/>
+        <Duration value="5"/>
         <Period value="1"/>
         <PeriodicEffect value="NapalmBarrageDamage"/>
         <Modification MoveSpeedMultiplier="0.9"/>
