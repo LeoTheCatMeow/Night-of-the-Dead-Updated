@@ -6774,16 +6774,16 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                             continue;
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Medic2")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.12);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.145);
                         }
-                        else if ((UnitGetType(auto2B0F1007_var) == "Engineer")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.075);
+                        else if (((UnitGetType(auto2B0F1007_var) == "Engineer") || (UnitGetType(auto2B0F1007_var) == "ChemicalExpert") || (UnitGetType(auto2B0F1007_var) == "DominionKillTeam"))) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.08);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Flamethrower3")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.09);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.115);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "PsiOps")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.1);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.125);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "ForwardObserver")) {
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.06);
@@ -6792,17 +6792,17 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.065);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Marksman")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.085);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.095);
                         }
                         else if (true) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.07);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.075);
                         }
                     }
                     else if (UnitHasBehavior2(auto2B0F1007_var, "MarkofthePredator")) {
-                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.2));
+                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.24));
                     }
                     else if (true) {
-                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.07));
+                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.075));
                     }
                 }
                 auto6AFC529C_g = gv_reconExperienceGroup;
@@ -6810,7 +6810,7 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                 for (;; auto6AFC529C_u -= 1) {
                     auto6AFC529C_var = UnitGroupUnitFromEnd(auto6AFC529C_g, auto6AFC529C_u);
                     if (auto6AFC529C_var == null) { break; }
-                    gv_marineExperienceBonus[UnitGetOwner(auto6AFC529C_var)] += (lv_experienceDifference * 0.13);
+                    gv_marineExperienceBonus[UnitGetOwner(auto6AFC529C_var)] += (lv_experienceDifference * 0.16);
                 }
             }
             UnitXPAddXP(autoD5273590_var, null, gv_marineExperienceBonus[lv_unitOwner]);
@@ -28523,7 +28523,7 @@ bool gt_ECHulkCounter_Func (bool testConds, bool runActions) {
     }
 
     gv_civHulks += IntToFixed(gv_spawnFactor);
-    Wait(5.0, c_timeReal);
+    Wait(3.0, c_timeReal);
     for (autoD77F1086_i = 1; autoD77F1086_i <= autoD77F1086_n; autoD77F1086_i += 1) {
         Wait(1.0, c_timeReal);
         if (gv_colonyShipRescue) {

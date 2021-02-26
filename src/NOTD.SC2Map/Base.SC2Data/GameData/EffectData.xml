@@ -3534,9 +3534,9 @@
         <Total value="Combine"/>
         <Amount value="35"/>
         <Death value="Blast"/>
-        <AreaArray Radius="1" Fraction="0.75"/>
-        <AreaArray Radius="2" Fraction="0.5"/>
-        <AreaArray Radius="4" Fraction="0.25"/>
+        <AreaArray Radius="1" Fraction="0.8"/>
+        <AreaArray Radius="2" Fraction="0.6"/>
+        <AreaArray Radius="4" Fraction="0.4"/>
         <SearchFilters value="-;Self,Player,Ally,Destructible,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="SlowRoastApplyBehavior">
@@ -8375,7 +8375,7 @@
         <Kind value="Ranged"/>
         <Amount value="14"/>
         <AreaArray Radius="0.9" Fraction="1"/>
-        <AreaArray Radius="1.8" Fraction="0.75"/>
+        <AreaArray Radius="1.8" Fraction="0.8"/>
         <ExcludeArray Value="Target"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
@@ -10658,8 +10658,8 @@
         <Total value="Combine"/>
         <Amount value="27"/>
         <AreaArray Radius="0.75" Fraction="1"/>
-        <AreaArray Radius="1.5" Fraction="0.9"/>
-        <AreaArray Radius="2.25" Fraction="0.8"/>
+        <AreaArray Radius="1.5" Fraction="0.8"/>
+        <AreaArray Radius="2.25" Fraction="0.6"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
         <Flags index="Impact" value="1"/>

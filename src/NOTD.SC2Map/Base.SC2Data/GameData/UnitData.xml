@@ -4207,7 +4207,7 @@
         <EquipmentArray index="0" Weapon="VolatileBurstDummyBeastling"/>
         <StationaryTurningRate value="299.8828"/>
         <TurningRate value="299.8828"/>
-        <KillXP value="15"/>
+        <KillXP value="17"/>
         <Radius value="0.4375"/>
     </CUnit>
     <CUnit id="Devourer2">
@@ -4243,7 +4243,7 @@
         <AttackTargetPriority value="19"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="20"/>
+        <KillXP value="17"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
         <AbilArray Link="UnburrowDevourer"/>
@@ -7525,7 +7525,7 @@
         <AttackTargetPriority value="19"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
-        <KillXP value="17"/>
+        <KillXP value="15"/>
         <AbilArray Link="BurrowDevourer"/>
         <WeaponArray index="0" Link="DevourerGround"/>
         <WeaponArray index="1" Link="DevourerClaws"/>
@@ -10932,6 +10932,7 @@
         <SelectAlias value="Wraith2"/>
         <SubgroupAlias value="Wraith2"/>
         <AIEvaluateAlias value="Wraith2"/>
+        <KillXP value="14"/>
     </CUnit>
     <CUnit id="Engineer">
         <DeathRevealRadius value="5"/>
@@ -11958,7 +11959,7 @@
     </CUnit>
     <CUnit id="Zergling">
         <Food value="0"/>
-        <KillXP value="1"/>
+        <KillXP value="2"/>
         <DeathRevealRadius value="0"/>
         <LifeStart value="32"/>
         <LifeMax value="32"/>
@@ -11979,7 +11980,7 @@
     <CUnit id="ZerglingBurrowed">
         <Sight value="15"/>
         <Food value="0"/>
-        <KillXP value="1"/>
+        <KillXP value="2"/>
         <DeathTime value="3"/>
         <DeathRevealRadius value="0"/>
         <LifeStart value="32"/>
