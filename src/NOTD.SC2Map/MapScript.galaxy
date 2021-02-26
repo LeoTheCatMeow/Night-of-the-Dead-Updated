@@ -27942,7 +27942,7 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
     point lv_civScatterPoint;
 
     // Automatic Variable Declarations
-    int auto0957BD16_n;
+    const int auto0957BD16_n = 30;
     int auto0957BD16_i;
     const int auto5B923CAA_n = 8;
     int auto5B923CAA_i;
@@ -28029,7 +28029,6 @@ bool gt_ECDelta1Transport_Func (bool testConds, bool runActions) {
         Wait(3.5, c_timeReal);
         UnitIssueOrder(gv_priyanka, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(gv_truckSelected)), c_orderQueueReplace);
         TriggerEnable(gt_ECEnterTruck, true);
-        auto0957BD16_n = (30 + (BoolToInt((gv_nightmare || gv_hell)) * 10));
         for (auto0957BD16_i = 1; auto0957BD16_i <= auto0957BD16_n; auto0957BD16_i += 1) {
             Wait(RandomFixed(0.1, 0.5), c_timeReal);
             libNtve_gf_UnitCreateFacingPoint(1, gv_civPool[RandomInt(0, 1)], 0, 9, RegionRandomPoint(RegionFromId(114)), UnitGetPosition(lv_localUnitA));
