@@ -214,6 +214,10 @@
         <PeriodicEffect value="VenomandInfectionSet"/>
         <Modification MoveSpeedMultiplier="0.7"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Infectious">
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="InfernoPeriodic">
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
@@ -2356,7 +2360,6 @@
             <VitalRegenArray index="Life" value="-0.3984"/>
         </Modification>
         <BehaviorCategories index="User1" value="1"/>
-        <DeathType value="Morph"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItsMeAgainDamageLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
