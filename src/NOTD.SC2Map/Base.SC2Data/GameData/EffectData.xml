@@ -3003,9 +3003,9 @@
         <EffectArray value="InceptionSearchPersistent"/>
         <EffectArray value="InceptionApplyBehaviorSelf"/>
     </CEffectSet>
+    <!--Spawn zombie has been removed for a more dynamic handling in triggers.-->
     <CEffectSet id="InfectedSet">
         <EditorCategories value="Race:Zerg"/>
-        <EffectArray value="InfectedSpawnZombie"/>
         <EffectArray value="Suicide"/>
     </CEffectSet>
     <CEffectCreateUnit id="InfectedSpawnZombie">
