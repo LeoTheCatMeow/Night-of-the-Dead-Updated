@@ -762,7 +762,7 @@
         </Modification>
         <DamageResponse ModifyFraction="0.25">
             <RequireEffectArray value="ArmageddonDamage"/>
-            <RequireEffectArray value="VultureSpiderMinesDamage"/>
+            <RequireEffectArray value="WidowMineExplodeSplash"/>
             <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
@@ -776,15 +776,21 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
-            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
             <RequireEffectArray value="L3GrenadeExplosion"/>
             <RequireEffectArray value="LaserRifleDamage"/>
             <RequireEffectArray value="ArmorMeltDamage"/>
-            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
             <RequireEffectArray value="StingerMK3Damage"/>
+            <RequireEffectArray value="SatchelLevel1AftershockDamage"/>
+            <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
+            <RequireEffectArray value="ArmageddonDamageAftershock"/>
+            <RequireEffectArray value="CominginHotDamage"/>
+            <RequireEffectArray value="Damage"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
         <DeathType value="Fire"/>
@@ -847,7 +853,7 @@
         </Modification>
         <DamageResponse ModifyFraction="0.7">
             <RequireEffectArray value="ArmageddonDamage"/>
-            <RequireEffectArray value="VultureSpiderMinesDamage"/>
+            <RequireEffectArray value="WidowMineExplodeSplash"/>
             <RequireEffectArray value="ArmageddonRadiationDamage"/>
             <RequireEffectArray value="SatchelLevel1Damage"/>
             <RequireEffectArray value="SatchelLevel2Damage"/>
@@ -861,15 +867,21 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
-            <RequireEffectArray value="InfernoDamage2"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
             <RequireEffectArray value="L3GrenadeExplosion"/>
             <RequireEffectArray value="LaserRifleDamage"/>
             <RequireEffectArray value="ArmorMeltDamage"/>
-            <RequireEffectArray value="ExplodingBarrelLargeExplosion"/>
             <RequireEffectArray value="StingerMK3Damage"/>
+            <RequireEffectArray value="SatchelLevel1AftershockDamage"/>
+            <RequireEffectArray value="SatchelLevel2AftershockDamage"/>
+            <RequireEffectArray value="ArmageddonDamageAftershock"/>
+            <RequireEffectArray value="CominginHotDamage"/>
+            <RequireEffectArray value="Damage"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar1"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar2"/>
+            <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -945,12 +957,6 @@
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <DamageResponse Handled="CIAmmoApplySet" Location="Attacker">
-            <ExcludeEffectArray value="ArmageddonDamage"/>
-            <ExcludeEffectArray value="WidowMineExplodeSplash"/>
-            <ExcludeEffectArray value="ArmageddonRadiationDamage"/>
-            <ExcludeEffectArray value="SatchelLevel1Damage"/>
-            <ExcludeEffectArray value="SatchelLevel2Damage"/>
-            <ExcludeEffectArray value="NapalmBarrageDamage"/>
             <ExcludeEffectArray value="InfernalFlameThrower"/>
             <ExcludeEffectArray value="FlameThrowerLevel2"/>
             <ExcludeEffectArray value="FlameThrowerLevel3"/>
@@ -960,18 +966,12 @@
             <ExcludeEffectArray value="BurstFireDamageLevel2"/>
             <ExcludeEffectArray value="BurstFireDamageLevel3"/>
             <ExcludeEffectArray value="InfernoDamage"/>
-            <ExcludeEffectArray value="ThermalLancesMU"/>
-            <ExcludeEffectArray value="SigmaDamage"/>
             <ExcludeEffectArray value="NukeDamage"/>
-            <ExcludeEffectArray value="L3GrenadeExplosion"/>
             <ExcludeEffectArray value="LaserRifleDamage"/>
             <ExcludeEffectArray value="ArmorMeltDamage"/>
+            <ExcludeEffectArray value="L3GrenadeExplosion"/>
             <ExcludeEffectArray value="StingerMK3Damage"/>
-            <ExcludeEffectArray value="SatchelLevel1AftershockDamage"/>
-            <ExcludeEffectArray value="SatchelLevel2AftershockDamage"/>
-            <ExcludeEffectArray value="ArmageddonDamageAftershock"/>
             <ExcludeEffectArray value="CominginHotDamage"/>
-            <ExcludeEffectArray value="Damage"/>
             <ExcludeEffectArray value="FireMissionLevel3DamageVar1"/>
             <ExcludeEffectArray value="FireMissionLevel3DamageVar2"/>
             <ExcludeEffectArray value="FireMissionLevel3DamageVar3"/>

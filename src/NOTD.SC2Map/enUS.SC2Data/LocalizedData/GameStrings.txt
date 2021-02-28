@@ -2008,7 +2008,7 @@ Button/Tooltip/SynchronizationModule=<c val="80FF80">Synchronization Module</c><
 Button/Tooltip/SynergyLevel1=When Guardian and Engineer attack the same target, deals 20% more damage. 
 Button/Tooltip/SynergyLevel2=When Guardian and Engineer attack the same target, deals 40% more damage. 
 Button/Tooltip/T65Sentinel=Remote UGC sensor drone used for deep infiltration missions.
-Button/Tooltip/TX179Asgard=Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. Asgard has following weapon:<n/><n/>1) Gauss Cannon: 80 damage with 1.5 radius. +200% damage vs. Armored targets. (Right-Click to Attack)<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
+Button/Tooltip/TX179Asgard=Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. Asgard has following weapon:<n/><n/>1) Gauss Cannon: 80 damage with 2.25 radius. +200% damage vs. Armored targets. (Right-Click to Attack)<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/TacticalNuke=Launches a 9 radius nuke that does 1200 damage. 90 range.<n/><n/><c val="FF0000">Warning: Deals friendly fire damage.</c>
 Button/Tooltip/Talents=Unlock new abilities in your Talent Tree. Each Marine has 2 unique talent trees.<n/><n/><c val="F4D72B">You gain 1 Talent Point every time your Marine levels up.</c>
 Button/Tooltip/TargetingArray=The Technician deploys an array that assists the nearby marines by updating their personal heads up displays with tactical information and highlighting enemy weak points, increasing damage by 20%. Lasts for 10 seconds.
@@ -2137,15 +2137,21 @@ DocInfo/PatchNote044=- Fixed Assault's Safeguard not using the correct animation
 DocInfo/PatchNote045=- Fixed EC Recruit Dropship waves spawning too quickly.
 DocInfo/PatchNote046=- Fixed predators gaining level 2 without 3 tiers of Bronze Star.
 DocInfo/PatchNote047=[LeoTheCat]
-DocInfo/PatchNote048=- Demo - Armageddon Bomb Radiation DPS improved from 45 to 60.
-DocInfo/PatchNote049=- Added a vertical behavior bar icon for predator's cloak field so that it is easier to tell whether it is on.
-DocInfo/PatchNote050=- FO minis now grant FO xp from their kills again (FO has a naturally low xp gain from shared xp).  
-DocInfo/PatchNote051=- FO should now properly share xp gained from mini kills with the team thanks to the reworked xp sharing system.
-DocInfo/PatchNote052=- Removed all FO minis tk penalty except for minor karma loss (Just in case FO steals too much direct kill xp from the carry via minis).
-DocInfo/PatchNote053=- Reduced FO Gunship cooldown from 200s to 180s, improved its splash from 1.5 to 2.25.
-DocInfo/PatchNote054=- More number adjustmenst to the reworked xp sharing system to more closely match how it was before.
-DocInfo/PatchNote055=- EC Chapter 3 Truck Escort may now be triggered as soon as Chapter 3 begins (the instruction will still appear later if not triggered).
-DocInfo/PatchNote056=- Added some more purple tint for monstrous mutation as it can still be hard to spot under certain conditions.
+DocInfo/PatchNote048=<Class Balancing>
+DocInfo/PatchNote049=- Demolitions - Armageddon Bomb Radiation DPS improved from 45 to 60.
+DocInfo/PatchNote050=- Forward Observer - Reduced Asgard Gunship cooldown from 200s to 180s, improved its splash from 1.5 to 2.25.
+DocInfo/PatchNote051=- Forward Observer - minis now grant FO xp from their kills again (FO has a naturally low xp gain from shared xp).  
+DocInfo/PatchNote052=- Forward Observer should now properly share xp gained from mini kills with the team thanks to the reworked xp sharing system.
+DocInfo/PatchNote053=- Removed all FO minis tk penalty except for minor karma loss (Just in case FO steals too much direct kill xp from the carry via minis).
+DocInfo/PatchNote054=
+DocInfo/PatchNote055=<Gameplay Changes>
+DocInfo/PatchNote056=- EC Chapter 3 Truck Escort may now be triggered as soon as Chapter 3 begins (the instruction will still appear later if not triggered).
+DocInfo/PatchNote057=- More number adjustments to the reworked xp sharing system to more closely match how it was before.
+DocInfo/PatchNote058=
+DocInfo/PatchNote059=<Qol Changes>
+DocInfo/PatchNote060=- Added a vertical behavior bar icon for predator's cloak field so that it is easier to tell whether it is on.
+DocInfo/PatchNote061=- Added some more purple tint for monstrous mutation as it can still be hard to spot under certain conditions.
+DocInfo/PatchNote062=- Improved Class Random so that it is less likely to get the same classes when picked at the same time.
 DocInfo/PatchNote076=[ThunderRazor]
 DocInfo/PatchNote077=- Added win tracking for Elite Mutation and Outbreak mode.
 DocInfo/PatchNote078=- Marksman - Shadowstep energy cost reduced from 20 to 15.
@@ -6816,7 +6822,7 @@ UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFram
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">Improved Equipment</s><n/>Upgrades the Infantry with more health, movespeed, and damage.<n/>Level 1 - +10% HP. +5% movespeed and damage.<n/>Level 2 - +20% HP. +10% movespeed and damage.<n/>Level 3 - +30% HP. +15% movespeed and damage.
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">Flamethrower Specialization<n/>(Passive)</s><n/>The call-down infantry gain access to Firebat equipment. Infantry are changed via the menu already in place and the re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Firebat equipment.<n/>Level 2 -- Flamethrowers gain Slow Roast, when activated, grants +5 armor and 3 life regeneration for 10 seconds. During this time, units attacked have movement and attack speed slowed by 10% for 5 seconds. Stacks up to 3 times. <n/><n/>"The right men in the wrong place can make all the difference." - Sgt. Clane<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_008=<s val="AchievementFrameName">Marksman Specialization (Passive)</s><n/>The call-down infantry gain access to Marksman equipment. The re-equip takes 3 seconds to complete.<n/><n/>Level 1 -- Allows Infantry to use Marksman equipment.<n/>Level 2 -- Marksmen gain Veteran's Focus which grants a biological unit +30% damage and +4 sight range for 30 seconds.<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_009=<s val="AchievementFrameName">TX-179 Asgard</s><n/>Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. The Asgard has following weapon:<n/>- Gauss Cannon: Deals 80 damage across 1.5 radius. +200% damage vs. Armored. <n/>(Right-Click to Attack)<n/><n/>Type '-gbuddy X' to assign a living player as your Gunship buddy. You will follow this player when Gunship is active. When you use your own number, you will remain stationary when Gunship is active. Press M anytime to deactive the Gunship.<n/><n/><c val="FF0000">Warning: Can deal friendly fire to allies</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_009=<s val="AchievementFrameName">TX-179 Asgard</s><n/>Pilot a gunship for 60 seconds and rain devastating damage into the battlefield. The Asgard has following weapon:<n/>- Gauss Cannon: Deals 80 damage across 2.25 radius. +200% damage vs. Armored. <n/>(Right-Click to Attack)<n/><n/>Type '-gbuddy X' to assign a living player as your Gunship buddy. You will follow this player when Gunship is active. When you use your own number, you will remain stationary when Gunship is active. Press M anytime to deactive the Gunship.<n/><n/><c val="FF0000">Warning: Can deal friendly fire to allies</c><n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Marksman_Headers=<s val="HelpPanelListBoxItemTitle">Assassination</s>
 UserData/TalentTrees/Marksman_Headers_001=<s val="HelpPanelListBoxItemTitle">Subtlety</s>
 UserData/TalentTrees/Marksman_Talent Tootips=<s val="AchievementFrameName">Concentration<n/>(Passive)</s><n/>When Marksman is not in combat, gains 1 concentration point every 2.5 seconds. Stacks up to 20 times. Each attack removes 1 concentration point and deal additional damage.<n/>Level 1 - +20% damage<n/>Level 2 - +40% damage<n/>Level 3 - +60% damage

@@ -2,15 +2,21 @@
 
 2021-2-27
 [LeoTheCat]
-- Demo - Armageddon Bomb Radiation DPS improved from 45 to 60.
-- Added a vertical behavior bar icon for predator's cloak field so that it is easier to tell whether it is on.
-- FO minis now grant FO xp from their kills again (FO has a naturally low xp gain from shared xp).  
-- FO should now properly share xp gained from mini kills with the team thanks to the reworked xp sharing system.
+<Class Balancing>
+- Demolitions - Armageddon Bomb Radiation DPS improved from 45 to 60.
+- Forward Observer - Reduced Asgard Gunship cooldown from 200s to 180s, improved its splash from 1.5 to 2.25.
+- Forward Observer - minis now grant FO xp from their kills again (FO has a naturally low xp gain from shared xp).  
+- Forward Observer should now properly share xp gained from mini kills with the team thanks to the reworked xp sharing system.
 - Removed all FO minis tk penalty except for minor karma loss (Just in case FO steals too much direct kill xp from the carry via minis).
-- Reduced FO Gunship cooldown from 200s to 180s, improved its splash from 1.5 to 2.25.
-- More number adjustmenst to the reworked xp sharing system to more closely match how it was before.
+
+<Gameplay Changes>
 - EC Chapter 3 Truck Escort may now be triggered as soon as Chapter 3 begins (the instruction will still appear later if not triggered).
+- More number adjustments to the reworked xp sharing system to more closely match how it was before.
+
+<Qol Changes>
+- Added a vertical behavior bar icon for predator's cloak field so that it is easier to tell whether it is on.
 - Added some more purple tint for monstrous mutation as it can still be hard to spot under certain conditions.
+- Improved Class Random so that it is less likely to get the same classes when picked at the same time.
 
 2021-2-18
 [ThunderRazor]
