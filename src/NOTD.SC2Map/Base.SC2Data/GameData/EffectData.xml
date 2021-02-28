@@ -2147,6 +2147,7 @@
         <WhichLocation Value="TargetPoint"/>
         <CreateFlags index="Placement" value="0"/>
         <SpawnUnit value="MobileInfantryRifleman"/>
+        <SpawnEffect value="KillsToCaster"/>
     </CEffectCreateUnit>
     <CEffectCreatePersistent id="MobileInfantryLevel12">
         <ValidatorArray value="MobileInfantryLanding"/>
@@ -3784,7 +3785,7 @@
         <ValidatorArray value="TargetIsNotEnemy"/>
         <EditorCategories value=""/>
         <ArmorReduction value="1"/>
-        <Amount value="25"/>
+        <Amount value="20"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -4342,7 +4343,7 @@
         <ValidatorArray value="EnemyTarget"/>
         <EditorCategories value=""/>
         <ArmorReduction value="1"/>
-        <Amount value="45"/>
+        <Amount value="60"/>
         <Death value="Fire"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
@@ -7997,11 +7998,9 @@
     </CEffectEnumArea>
     <CEffectDamage id="GunshipSupportGaussCannonDamageAlly">
         <EditorCategories value=""/>
-        <AttributeBonus index="Armored" value="10"/>
-        <AttributeBonus index="Massive" value="10"/>
         <Kind value="Splash"/>
         <Amount value="25"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
         <SearchFilters value="-;Neutral,Enemy,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AINotifyFlags index="HurtFriend" value="1"/>
         <ResponseFlags index="Flee" value="1"/>
@@ -8035,7 +8034,7 @@
         <AttributeBonus index="Armored" value="160"/>
         <Kind value="Splash"/>
         <Amount value="80"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="GunshipSupportGaussCannonDamageVar3">
@@ -8046,7 +8045,7 @@
         <AttributeBonus index="Armored" value="160"/>
         <Kind value="Splash"/>
         <Amount value="80"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="GunshipSupportGaussCannonDamageVar4">
@@ -8057,7 +8056,7 @@
         <AttributeBonus index="Armored" value="160"/>
         <Kind value="Splash"/>
         <Amount value="80"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="GunshipSupportGaussCannonDamageVar5">
@@ -8067,7 +8066,7 @@
         <ResponseFlags index="Flee" value="1"/>
         <Kind value="Splash"/>
         <Amount value="80"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Invulnerable"/>
         <AttributeBonus index="Armored" value="160"/>
     </CEffectDamage>
@@ -10911,10 +10910,10 @@
     <CEffectDamage id="X1EvisceratorBeamLevel2" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
         <Kind value="Ranged"/>
-        <Amount value="25"/>
+        <Amount value="24"/>
         <Death value="Electrocute"/>
         <ArmorReduction value="0.5"/>
-        <AttributeBonus index="Massive" value="12.5"/>
+        <AttributeBonus index="Massive" value="12"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
         <AreaArray Radius="1" Fraction="1"/>
         <KindSplash value="Splash"/>
@@ -10922,11 +10921,11 @@
     </CEffectDamage>
     <CEffectDamage id="X1EvisceratorBeamLevel3" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
-        <AttributeBonus index="Massive" value="16"/>
+        <AttributeBonus index="Massive" value="15"/>
         <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="32"/>
+        <Amount value="30"/>
         <Death value="Electrocute"/>
         <AreaArray Radius="1" Fraction="1"/>
         <ExcludeArray Value="Target"/>

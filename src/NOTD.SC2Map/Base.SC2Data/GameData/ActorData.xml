@@ -1398,6 +1398,7 @@
         <On Terms="Behavior.MonstrousBoss.On" Send="Create"/>
         <On Terms="Behavior.MonstrousBoss.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 64,0,128 64,0,128"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetTintColor {202,149,255 2.000000}"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>
         <Host Subject="_Unit"/>

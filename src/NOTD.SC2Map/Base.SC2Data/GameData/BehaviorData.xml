@@ -204,6 +204,15 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MaxPoints value="999"/>
     </CBehaviorAttribute>
+    <CBehaviorBuff id="CloakField">
+        <Alignment value="Neutral"/>
+        <InfoFlags index="Hidden" value="0"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-cloakfield-color.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CloakFieldEffect">
+        <Alignment value="Neutral"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-cloakfield-color.dds"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="CreepAilments">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -618,7 +627,7 @@
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
-        <Period value="4"/>
+        <Period value="5"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InfernoChainNapalm">
@@ -705,7 +714,7 @@
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
-        <Period value="4"/>
+        <Period value="5"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="M5PulseShock">
@@ -1863,6 +1872,7 @@
             <StateFlags index="Cloak" value="1"/>
         </Modification>
         <RemoveValidatorArray value="EscapeActive"/>
+        <InfoIcon value="Assets\Textures\btn-research-terran-orbitalstrikerally.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeLevel1">
         <Alignment value="Positive"/>
@@ -1928,6 +1938,7 @@
             <StateFlags index="Cloak" value="1"/>
         </Modification>
         <RemoveValidatorArray value="EscapeActive"/>
+        <InfoIcon value="Assets\Textures\btn-research-terran-orbitalstrikerally.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeLevel3">
         <Alignment value="Positive"/>
@@ -1955,6 +1966,7 @@
         <InitialEffect value="ExecuteNoCollsion"/>
         <RefreshEffect value="ExecuteNoCollsion"/>
         <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-research-terran-orbitalstrikerally.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ExecuteNoCollision">
         <InfoFlags index="Hidden" value="1"/>
@@ -1963,6 +1975,7 @@
         <Modification>
             <StateFlags index="SuppressCollision" value="1"/>
         </Modification>
+        <InfoIcon value="Assets\Textures\btn-research-terran-orbitalstrikerally.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ExperimentBehavior">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3286,10 +3299,8 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\wireframe-terran-nukepack.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="3"/>
-        <MaxStackCountPerCaster value="3"/>
         <Duration value="3"/>
-        <Modification MoveSpeedMultiplier="0.95"/>
+        <Modification MoveSpeedMultiplier="0.85"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BoomHeadshotLevel2Heroic">
         <Alignment value="Negative"/>

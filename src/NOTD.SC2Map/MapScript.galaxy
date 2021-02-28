@@ -982,6 +982,7 @@ int gv_queenBossPing;
 bool gv_tartarusBirth;
 unitgroup gv_truckAttackers;
 bool gv_truckEscortSuccessful;
+bool gv_truckEscortInstructed;
 unit gv_cronus;
 unit gv_iVAX;
 unit gv_perses;
@@ -6774,35 +6775,32 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                             continue;
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Medic2")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.145);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.165);
                         }
                         else if (((UnitGetType(auto2B0F1007_var) == "Engineer") || (UnitGetType(auto2B0F1007_var) == "ChemicalExpert") || (UnitGetType(auto2B0F1007_var) == "DominionKillTeam"))) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.08);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.09);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Flamethrower3")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.115);
-                        }
-                        else if ((UnitGetType(auto2B0F1007_var) == "PsiOps")) {
                             gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.125);
                         }
-                        else if ((UnitGetType(auto2B0F1007_var) == "ForwardObserver")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.06);
+                        else if ((UnitGetType(auto2B0F1007_var) == "PsiOps")) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.14);
                         }
-                        else if ((UnitGetType(auto2B0F1007_var) == "Pathfinder")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.065);
+                        else if (((UnitGetType(auto2B0F1007_var) == "Pathfinder") || (UnitGetType(auto2B0F1007_var) == "ForwardObserver"))) {
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.075);
                         }
                         else if ((UnitGetType(auto2B0F1007_var) == "Marksman")) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.095);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.105);
                         }
                         else if (true) {
-                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.075);
+                            gv_marineExperienceBonus[UnitGetOwner(auto2B0F1007_var)] += (lv_experienceDifference * 0.085);
                         }
                     }
                     else if (UnitHasBehavior2(auto2B0F1007_var, "MarkofthePredator")) {
                         UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.24));
                     }
                     else if (true) {
-                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.075));
+                        UnitXPAddXP(auto2B0F1007_var, null, (lv_experienceDifference * 0.085));
                     }
                 }
                 auto6AFC529C_g = gv_reconExperienceGroup;
@@ -6810,7 +6808,7 @@ bool auto_gf_MarineExperienceSharing_TriggerFunc (bool testConds, bool runAction
                 for (;; auto6AFC529C_u -= 1) {
                     auto6AFC529C_var = UnitGroupUnitFromEnd(auto6AFC529C_g, auto6AFC529C_u);
                     if (auto6AFC529C_var == null) { break; }
-                    gv_marineExperienceBonus[UnitGetOwner(auto6AFC529C_var)] += (lv_experienceDifference * 0.16);
+                    gv_marineExperienceBonus[UnitGetOwner(auto6AFC529C_var)] += (lv_experienceDifference * 0.175);
                 }
             }
             UnitXPAddXP(autoD5273590_var, null, gv_marineExperienceBonus[lv_unitOwner]);
@@ -31892,6 +31890,10 @@ bool gt_Chapter3Initialize_Func (bool testConds, bool runActions) {
     TriggerEnable(gt_QueenKilled, true);
     TriggerExecute(gt_ChapterEndMedicRatingBonus, true, false);
     TriggerExecute(gt_AutoSave, true, false);
+    if ((UnitIsAlive(gv_madMaxTruck) == true) && (gv_colonyShipRescueSuccessful == true)) {
+        TriggerEnable(gt_ECOPTIONALTruckEscortBegins, true);
+    }
+
     autoA8937DD5_g = UnitGroup("BlackOps", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     autoA8937DD5_u = UnitGroupCount(autoA8937DD5_g, c_unitCountAll);
     for (;; autoA8937DD5_u -= 1) {
@@ -31962,6 +31964,11 @@ bool gt_ECOPTIONALTruckEscortBegins_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_ECOPTIONALTruckDestroyed, true);
     TriggerEnable(gt_ECOPTIONALTruckEvacSuccessful, true);
+    if ((gv_truckEscortInstructed == false)) {
+        gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/F163BB3E"));
+        libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingObjective", UnitGetPosition(gv_madMaxTruck), ColorWithAlpha(0.00, 50.20, 100.00, 0.00), 30.0, 270.0);
+        gv_truckEscortInstructed = true;
+    }
     libNtve_gf_RescueUnit(gv_madMaxTruck, 9, false);
     UnitWeaponAdd(gv_madMaxTruck, "ColonistTransport", "ColonistTransport");
     gf_RadioNOTD(PlayerName(UnitGetOwner(EventUnit())), StringExternal("Param/Value/FE378CE9"));
@@ -32294,10 +32301,10 @@ bool gt_Wave15RandomMobs_Func (bool testConds, bool runActions) {
     }
     Wait(5.0, c_timeReal);
     gf_RadioNOTD(gv_characterCaptainLinh, StringExternal("Param/Value/7B981C01"));
-    if ((UnitIsAlive(gv_madMaxTruck) == true) && (gv_colonyShipRescueSuccessful == true)) {
+    if ((UnitIsAlive(gv_madMaxTruck) == true) && (gv_colonyShipRescueSuccessful == true) && (gv_truckEscortInstructed == false)) {
         gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/A1557A98"));
         libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingObjective", UnitGetPosition(gv_madMaxTruck), ColorWithAlpha(0.00, 50.20, 100.00, 0.00), 30.0, 270.0);
-        TriggerEnable(gt_ECOPTIONALTruckEscortBegins, true);
+        gv_truckEscortInstructed = true;
     }
 
     gf_TipNOTD(5000, StringExternal("Param/Value/4F3035D8"));
@@ -45594,14 +45601,10 @@ bool gt_MiniTKPenalty_Func (bool testConds, bool runActions) {
     }
     gv_miniDeathsFriendly += 1;
     if ((gv_miniDeathsFriendly < 4)) {
-        gf_UpdateRating(lv_index, -3);
         gf_UpdateKarma(lv_index, -1);
-        gv_playerXP[lv_index] -= 10;
     }
     else {
-        gf_UpdateRating(lv_index, -6);
         gf_UpdateKarma(lv_index, -2);
-        gv_playerXP[lv_index] -= 20;
     }
     PlayerScoreValueSetFromInt(lv_index, "PlayerXP", gv_playerXP[lv_index]);
     gf_Save(libNtve_gf_KillingPlayer(), gv_bankSize);

@@ -1,5 +1,17 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-2-27
+[LeoTheCat]
+- Demo - Armageddon Bomb Radiation DPS improved from 45 to 60.
+- Added a vertical behavior bar icon for predator's cloak field so that it is easier to tell whether it is on.
+- FO minis now grant FO xp from their kills again (FO has a naturally low xp gain from shared xp).  
+- FO should now properly share xp gained from mini kills with the team thanks to the reworked xp sharing system.
+- Removed all FO minis tk penalty except for minor karma loss (Just in case FO steals too much direct kill xp from the carry via minis).
+- Reduced FO Gunship cooldown from 200s to 180s, improved its splash from 1.5 to 2.25.
+- More number adjustmenst to the reworked xp sharing system to more closely match how it was before.
+- EC Chapter 3 Truck Escort may now be triggered as soon as Chapter 3 begins (the instruction will still appear later if not triggered).
+- Added some more purple tint for monstrous mutation as it can still be hard to spot under certain conditions.
+
 2021-2-18
 [ThunderRazor]
 - Fixed recruit/normal Elite Mutation wins not displaying correctly.
@@ -47,7 +59,7 @@
 - Recon - Laser Designator reveal radius improved from 2 to 2/3/4, energy cost increased from 5 to 8.
 - Recon - Motion Sensor no longer reduces enemy armor, now provides a global +1.5/+3 vison and detection buff to the team (Does not stack).
 - Recon - Renamed Motion Sensor to Battlefield Radar to better reflect its current effect on the team.
-- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/25/32.
+- Engineer - X1 Guardian regular weapon damage improved from 12/18/24 to 18/24/30.
 - Engineer's X1 Bot and Recon's Reaper Drone are now Heroic - and thus receive xp shared from the team (7 radius).
 - Additionally, X1 Bot and Reaper Drone no longer take full xp from their own kills, those are instead evenly split among nearby teammates.
 - Engineer - Adjusted the level progression of the X1 Bot so that it is initially easier to level up, but harder at later levels.
