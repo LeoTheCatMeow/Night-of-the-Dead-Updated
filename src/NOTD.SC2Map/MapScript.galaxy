@@ -3892,6 +3892,7 @@ void gf_FinalizeStorylineSelection () {
         PlayerModifyPropertyInt(auto280742A1_var, c_playerPropVespene, c_playerPropOperSetTo, gv_storyline);
     }
     gf_ExecuteStorylineMods();
+    gf_InitializePlayerRandomSequence();
     if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
         gf_AllRandomSelectionUI();
     }
@@ -5010,7 +5011,17 @@ bool auto_gf_ClassLimitCheck_TriggerFunc (bool testConds, bool runActions) {
     return true;
 }
 
+trigger auto_gf_InitializePlayerRandomSequence_Trigger = null;
+
 void gf_InitializePlayerRandomSequence () {
+    if (auto_gf_InitializePlayerRandomSequence_Trigger == null) {
+        auto_gf_InitializePlayerRandomSequence_Trigger = TriggerCreate("auto_gf_InitializePlayerRandomSequence_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_InitializePlayerRandomSequence_Trigger, false, false);
+}
+
+bool auto_gf_InitializePlayerRandomSequence_TriggerFunc (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     int auto79CAB446_ae;
     int auto79CAB446_var;
@@ -5023,6 +5034,7 @@ void gf_InitializePlayerRandomSequence () {
         Wait(0.2, c_timeGame);
     }
     gv_randomSequenceReady = true;
+    return true;
 }
 
 int gf_GetRandomRange (int lp_player) {
@@ -17721,7 +17733,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/67750AE9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
     TriggerExecute(gt_StorylineDialogCreation, true, false);
-    gf_InitializePlayerRandomSequence();
     if ((GameAttributeGameValue("3") == "0002")) {
         TriggerExecute(gt_NoRandoms, true, false);
     }
