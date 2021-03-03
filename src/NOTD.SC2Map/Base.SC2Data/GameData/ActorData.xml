@@ -2020,7 +2020,8 @@
         <Sharing value="PerEffectTree"/>
     </CActorModel>
     <CActorSplat id="InboundSicknessCursor" parent="TerranCursorSplat" abil="InboundSickness">
-        <Model value="ZergAOECursorSplat"/>
+        <Model value="ProtossAOECursorSplat"/>
+        <On Terms="ActorCreation" Send="SetTintColor {128,255,0 3.000000}"/>
     </CActorSplat>
     <CActorModel id="ContaminateGas" parent="ModelAnimationStyleContinuous">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart $BSD {} Stand {} OpeningPlayForever"/>

@@ -819,7 +819,6 @@ fixed gv_classLimitMultiplier;
 bool gv_classLimitBroken;
 int[15] gv_classCount;
 int[9] gv_playerRandomIndex;
-bool gv_randomSequenceReady;
 timer gv_pingRepeatPreventionTimer;
 gs_PingInfo gv_lastPingInfo;
 timer[17] gv_pingResetTimer;
@@ -3545,7 +3544,7 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
 
     Wait(5.0, c_timeReal);
     if ((gv_totalPlayers < 3)) {
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/E91DA1DF"));
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/E91DA1DF"));
         TriggerEnable(gt_GlassCannonCommand, true);
     }
     Wait(25.0, c_timeReal);
@@ -3850,19 +3849,19 @@ void gf_ExecuteStorylineMods () {
     // Automatic Variable Declarations
     // Implementation
     if ((gv_storylineModOn[1] == true)) {
-        TriggerExecute(gt_EliteMutationCommand, false, false);
+        TriggerExecute(gt_EliteMutationCommand, true, false);
     }
     if ((gv_storylineModOn[2] == true)) {
         gv_sFOption = "0003";
     }
     if ((gv_storylineModOn[3] == true)) {
-        TriggerExecute(gt_OutbreakCommand, false, false);
+        TriggerExecute(gt_OutbreakCommand, true, false);
     }
     if ((gv_storylineModOn[4] == true)) {
-        TriggerExecute(gt_NoRandoms, false, false);
+        TriggerExecute(gt_NoRandoms, true, false);
     }
     if ((gv_storylineModOn[5] == true)) {
-        TriggerExecute(gt_AllRandom, false, false);
+        TriggerExecute(gt_AllRandom, true, false);
     }
     if (((gv_storylineModOn[6] == true) || (GameAttributeGameValue("2") == "0001"))) {
         TriggerExecute(gt_NavyCross, true, false);
@@ -3892,7 +3891,12 @@ void gf_FinalizeStorylineSelection () {
         PlayerModifyPropertyInt(auto280742A1_var, c_playerPropVespene, c_playerPropOperSetTo, gv_storyline);
     }
     gf_ExecuteStorylineMods();
+    gf_SetDifficulty();
+    gf_MarineExperienceSharing();
+    gf_BehaviorUpdate();
     gf_InitializePlayerRandomSequence();
+    Wait((5.0 - (0.2 * PlayerGroupCount(gv_marineSquad))), c_timeGame);
+    UIClearMessages(gv_marineSquad, c_messageAreaAll);
     if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
         gf_AllRandomSelectionUI();
     }
@@ -3905,9 +3909,6 @@ void gf_FinalizeStorylineSelection () {
     else if (true) {
         gf_RecruitClassSelectionUI();
     }
-    gf_SetDifficulty();
-    gf_MarineExperienceSharing();
-    gf_BehaviorUpdate();
     if ((GameAttributeGameValue("4") == "0002")) {
         gv_noShopMode = true;
     }
@@ -5011,17 +5012,7 @@ bool auto_gf_ClassLimitCheck_TriggerFunc (bool testConds, bool runActions) {
     return true;
 }
 
-trigger auto_gf_InitializePlayerRandomSequence_Trigger = null;
-
 void gf_InitializePlayerRandomSequence () {
-    if (auto_gf_InitializePlayerRandomSequence_Trigger == null) {
-        auto_gf_InitializePlayerRandomSequence_Trigger = TriggerCreate("auto_gf_InitializePlayerRandomSequence_TriggerFunc");
-    }
-
-    TriggerExecute(auto_gf_InitializePlayerRandomSequence_Trigger, false, false);
-}
-
-bool auto_gf_InitializePlayerRandomSequence_TriggerFunc (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     int auto79CAB446_ae;
     int auto79CAB446_var;
@@ -5033,8 +5024,6 @@ bool auto_gf_InitializePlayerRandomSequence_TriggerFunc (bool testConds, bool ru
         gv_playerRandomIndex[auto79CAB446_var] = RandomInt(1, gf_GetRandomRange(auto79CAB446_var));
         Wait(0.2, c_timeGame);
     }
-    gv_randomSequenceReady = true;
-    return true;
 }
 
 int gf_GetRandomRange (int lp_player) {
@@ -18465,7 +18454,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
         gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
     }
     else {
-        if ((lv_usedDialogItem == gv_classSelectionDialogItem[lv_selectingPlayer][15]) && (gv_randomSequenceReady == true)) {
+        if ((lv_usedDialogItem == gv_classSelectionDialogItem[lv_selectingPlayer][15])) {
             gv_randomsOption = 2;
             gv_maxRandom -= 1;
             if ((gv_maxRandom == 0) && (TriggerGetExecCount(TriggerGetCurrent()) < (gv_totalPlayers - 1))) {
@@ -18486,9 +18475,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
             }
             gv_playerRandom[lv_selectingPlayer] = true;
         }
-        else {
-            return true;
-        }
+
     }
     UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), RegionRandomPoint(lv_spawnArea), 90.0);
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
@@ -19494,19 +19481,12 @@ bool gt_NightmareHellMode_Func (bool testConds, bool runActions) {
             PlayerSetDifficulty(autoD7B36D88_var, 3);
         }
     }
-    SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 75.0, 0.0);
-    if ((gv_sFOption == "0003")) {
-        gv_spawnFactor = 9;
-    }
-    else if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
-        gv_spawnFactor += 1;
-    }
-    gv_spawnFactor = MinI(gv_spawnFactor, 9);
     if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
         gf_UpdateModeSelectionUIs(gv_currentGameMode);
         UIShowCinematicText(PlayerGroupAll(), ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling), 0.1, 0.5, SoundLink("AC_UI_MouseOver01", -1));
     }
     else {
+        SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 75.0, 0.0);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_difficulty) + gv_endStyling));
         if ((gv_currentGameMode == ge_GameModes_Hell)) {
             TextExpressionSetToken("Param/Expression/876B094F", "A", gv_infoPanelHeroRank);
@@ -19514,6 +19494,22 @@ bool gt_NightmareHellMode_Func (bool testConds, bool runActions) {
             TextExpressionSetToken("Param/Expression/876B094F", "C", gv_endStyling);
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/876B094F"));
         }
+        if ((gv_sFOption == "0003")) {
+            gv_spawnFactor = 9;
+        }
+        else if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
+            gv_spawnFactor += 1;
+        }
+        gv_spawnFactor = MinI(gv_spawnFactor, 9);
+        if ((gv_totalPlayers >= 5)) {
+            gv_difficultyHPScaling += 0.3;
+        }
+        else {
+            gv_difficultyHPScaling += 0.2;
+        }
+        gv_difficultyHPScaling = MinF(gv_difficultyHPScaling, 1.5);
+        CatalogFieldValueSet(c_gameCatalogBehavior, "DifficultyScalingHP", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", 13, FixedToString(gv_difficultyHPScaling, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogBehavior, "DifficultyScalingHP", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", 14, FixedToString(gv_difficultyHPScaling, c_fixedPrecisionAny));
     }
     return true;
 }
@@ -19553,7 +19549,6 @@ bool gt_GlassCannonCommand_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     if ((lv_a == "y")) {
         gv_glassCannonActivated = true;
-        SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 75.0, 0.0);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/492B833D"));
         auto2505E95D_g = gv_marines;
         auto2505E95D_u = UnitGroupCount(auto2505E95D_g, c_unitCountAll);
@@ -19595,6 +19590,10 @@ bool gt_OutbreakCommand_Func (bool testConds, bool runActions) {
         if (!((gv_isVeteranSquad == true))) {
             return false;
         }
+
+        if (!((gv_outbreakActivated == false))) {
+            return false;
+        }
     }
 
     // Actions
@@ -19604,7 +19603,8 @@ bool gt_OutbreakCommand_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/DAA0ACEF"));
-    SoundPlayForPlayer(SoundLink("UI_TerranKlaxonAlert", -1), c_maxPlayers, PlayerGroupAll(), 75.0, 0.0);
+    SoundPlayForPlayer(SoundLink("ValerianRaynor00003", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+    SoundPlayForPlayer(SoundLink("ZLab02MusicEvent11_ZergLoose2", -1), c_maxPlayers, PlayerGroupAll(), 75.0, 0.0);
     gv_outbreakActivated = true;
     libNtve_gf_WaitForTimer(gv_gameTime, 240.0, true);
     TriggerEnable(gt_OutbreakSpawn, true);
@@ -19626,6 +19626,13 @@ void gt_OutbreakCommand_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_EliteMutationCommand_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_eliteMutationActivated == false))) {
+            return false;
+        }
+    }
+
     // Actions
     if (!runActions) {
         return true;
@@ -19633,7 +19640,7 @@ bool gt_EliteMutationCommand_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/136671CD"));
-    SoundPlayForPlayer(SoundLink("UI_TerranKlaxonAlert", -1), c_maxPlayers, PlayerGroupAll(), 75.0, 0.0);
+    SoundPlayForPlayer(SoundLink("GreaterSpire_What", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
     gv_eliteMutationActivated = true;
     TriggerExecute(gt_EliteMutationChanceRotation, false, false);
     libNtve_gf_WaitForTimer(gv_gameTime, 180.0, true);
