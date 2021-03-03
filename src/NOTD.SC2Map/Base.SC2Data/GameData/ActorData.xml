@@ -718,8 +718,8 @@
     </CActorRange>
     <CActorSplat id="ArmageddonCursor" parent="TerranCursorSplat" abil="Armageddon">
         <On Terms="Behavior.Armageddon.On" Send="Create"/>
-        <On Terms="UnitDeath.ArmageddonBomb" Send="Destroy"/>
         <On Terms="Behavior.Armageddon.On" Send="SetScale 6.000000"/>
+        <On Terms="Behavior.Armageddon.Off" Send="Destroy"/>
     </CActorSplat>
     <CActorModel id="ArmageddonBlast" parent="ModelAnimationStyleOneShot">
         <Inherits index="Visibility" value="1"/>

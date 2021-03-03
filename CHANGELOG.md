@@ -17,6 +17,13 @@
 - Added a vertical behavior bar icon for predator's cloak field so that it is easier to tell whether it is on.
 - Added some more purple tint for monstrous mutation as it can still be hard to spot under certain conditions.
 - Improved Class Random so that it is less likely to get the same classes when picked at the same time.
+- Replaced Inbound Sickness cursor effect with a different one to differentiate from Contaminate. 
+- Added some new activation sounds for EM/OB mode.
+
+<Bugfixes>
+- Fixed a bug where nightmare mode HP scaling does not apply when the mode is activated via the -nm command.
+- Fixed a bug where EM/OB trigger can be activated twice by using the commands and the UI buttons together.
+- Fixed Armageddon's radiation not granting any kill xp.
 
 2021-2-18
 [ThunderRazor]

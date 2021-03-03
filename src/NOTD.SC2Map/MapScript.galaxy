@@ -23019,6 +23019,10 @@ bool gt_EliteMutation_Func (bool testConds, bool runActions) {
         if (!((UnitGetType(EventUnit()) != "Slither"))) {
             return false;
         }
+
+        if (!((UnitGetType(EventUnit()) != "DemetersCocoon"))) {
+            return false;
+        }
     }
 
     // Actions

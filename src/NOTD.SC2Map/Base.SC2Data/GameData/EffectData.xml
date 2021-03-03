@@ -140,6 +140,10 @@
     <CEffectModifyPlayer id="AbsolutionBonusOn">
         <Upgrades Upgrade="AbsolutionBonus" Count="1"/>
     </CEffectModifyPlayer>
+    <CEffectApplyBehavior id="ArmageddonApplyHide">
+        <EditorCategories value=""/>
+        <Behavior value="ArmageddonHide"/>
+    </CEffectApplyBehavior>
     <CEffectSet id="VenomandInfectionSet">
         <EditorCategories value=""/>
         <EffectArray value="VenomApplySelfChance"/>
@@ -811,7 +815,7 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="ArmageddonBombLimitKill">
         <EditorCategories value=""/>
-        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Stasis,Dead,Hidden"/>
         <TargetSorts RequestCount="1">
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
@@ -4364,16 +4368,16 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="ArmageddonBombLimit">
         <EditorCategories value=""/>
-        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Dead"/>
+        <SearchFilters value="Mechanical,Structure;Self,Ally,Neutral,Enemy,Heroic,Stasis,Dead,Hidden"/>
         <AreaArray Radius="500" Effect="ArmageddonBombLimitApply"/>
         <MinCount value="3"/>
     </CEffectEnumArea>
     <CEffectSet id="ArmageddonSet">
         <EditorCategories value=""/>
-        <EffectArray value="Suicide"/>
         <EffectArray value="ArmageddonSearchDamageEnemy"/>
         <EffectArray value="ArmageddonSearchDamageFriendly"/>
         <EffectArray value="ArmageddonRadiationPersistent"/>
+        <EffectArray value="ArmageddonApplyHide"/>
     </CEffectSet>
     <CEffectEnumArea id="ArmageddonStunSearch">
         <EditorCategories value=""/>
@@ -12294,9 +12298,9 @@
     <CEffectSet id="SatchelLevel2Set">
         <EditorCategories value=""/>
         <Marker Link="Effect/SatchelLevel1Set"/>
-        <EffectArray value="Suicide"/>
         <EffectArray value="SatchelLevel2SearchEnemy"/>
         <EffectArray value="SatchelLevel2SearchFriendly"/>
+        <EffectArray value="Suicide"/>
     </CEffectSet>
     <CEffectDamage id="SatchelLevel2Damage">
         <EditorCategories value="Race:Terran"/>
@@ -12313,9 +12317,9 @@
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1Set">
         <EditorCategories value=""/>
-        <EffectArray value="Suicide"/>
         <EffectArray value="SatchelLevel1SearchEnemy"/>
         <EffectArray value="SatchelLevel1SearchFriendly"/>
+        <EffectArray value="Suicide"/>
     </CEffectSet>
     <CEffectCreatePersistent id="ScopeRadius1">
         <EditorCategories value=""/>

@@ -150,6 +150,18 @@
             </Cost>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ArmageddonHide">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="20"/>
+        <FinalEffect value="Suicide"/>
+        <Modification>
+            <StateFlags index="Stasis" value="1"/>
+            <StateFlags index="NoDraw" value="1"/>
+            <StateFlags index="Unselectable" value="1"/>
+            <StateFlags index="Untargetable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousHeroic">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Period value="1"/>
