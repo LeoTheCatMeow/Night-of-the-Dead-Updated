@@ -1,5 +1,13 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-3-15
+[LeoTheCat]
+- Fixed a bug where win check ("-w #") can be broken for the rest of the game when an invalid number is entered.
+- Fixed a bug where Devourers offer high ground vision for other zombies. Devourers shouldn't have high ground vision.
+- Taunts of the same kind but different levels no long stack. Different taunts can still stack (Demo + Assault).
+- Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
+- Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
+
 2021-2-27
 [LeoTheCat]
 <Class Balancing>

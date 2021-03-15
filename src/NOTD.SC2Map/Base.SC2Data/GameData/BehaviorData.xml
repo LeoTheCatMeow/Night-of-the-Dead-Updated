@@ -4271,6 +4271,7 @@
             <DamageDealtFraction index="Melee" value="-0.3"/>
             <DamageDealtFraction index="Ranged" value="-0.3"/>
             <DamageDealtFraction index="Splash" value="-0.3"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImYourFatherTauntedLevel3">
@@ -4284,6 +4285,8 @@
             <DamageDealtFraction index="Melee" value="-0.45"/>
             <DamageDealtFraction index="Ranged" value="-0.45"/>
             <DamageDealtFraction index="Splash" value="-0.45"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel1"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="DisableAttack">
@@ -8057,7 +8060,6 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="1.999"/>
-        <PeriodCount value="0"/>
         <Player Value="Target"/>
         <Modification>
             <DamageDealtFraction index="Spell" value="-0.15"/>
@@ -8464,6 +8466,7 @@
             <DamageDealtFraction index="Melee" value="-0.2"/>
             <DamageDealtFraction index="Ranged" value="-0.2"/>
             <DamageDealtFraction index="Splash" value="-0.2"/>
+            <BehaviorLinkDisableArray value="TauntedLevel1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntedLevel3">
@@ -8476,6 +8479,8 @@
             <DamageDealtFraction index="Melee" value="-0.3"/>
             <DamageDealtFraction index="Ranged" value="-0.3"/>
             <DamageDealtFraction index="Splash" value="-0.3"/>
+            <BehaviorLinkDisableArray value="TauntedLevel1"/>
+            <BehaviorLinkDisableArray value="TauntedLevel2"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ThermalSight" parent="Detector">

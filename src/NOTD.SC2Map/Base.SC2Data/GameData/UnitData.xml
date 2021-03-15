@@ -4241,8 +4241,6 @@
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="25"/>
         <AttackTargetPriority value="19"/>
-        <DamageDealtXP value="1"/>
-        <DamageTakenXP value="1"/>
         <KillXP value="17"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
@@ -7523,8 +7521,6 @@
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="25"/>
         <AttackTargetPriority value="19"/>
-        <DamageDealtXP value="1"/>
-        <DamageTakenXP value="1"/>
         <KillXP value="15"/>
         <AbilArray Link="BurrowDevourer"/>
         <WeaponArray index="0" Link="DevourerGround"/>
@@ -7565,6 +7561,7 @@
         <BehaviorArray Link="SharedExperience"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
         <Height value="0"/>
+        <VisionHeight value="0"/>
     </CUnit>
     <CUnit id="RoadFlare" parent="ITEM">
         <Race value="Terr"/>

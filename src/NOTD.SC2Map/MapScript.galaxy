@@ -18797,7 +18797,7 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/41199A23")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/3E1C1E17")));
             SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
             if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
-                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -5;
                 Wait(3.0, c_timeGame);
                 UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (gv_infoPanelHeroRank + StringExternal("Param/Value/35E6A69A") + gv_endStyling));
             }
@@ -18806,14 +18806,14 @@ bool gt_VoteKick_Func (bool testConds, bool runActions) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((((gv_infoPanelHeroRank + PlayerName(lv_voteKickTarget)) + StringExternal("Param/Value/9480FDAF")) + PlayerName(lv_votingPlayer)) + StringExternal("Param/Value/2399241B")));
             SoundPlay(SoundLink("UI_BnetCountdown", -1), PlayerGroupAll(), 100.0, 0.0);
             if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
-                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -5;
             }
         }
         else if ((gv_voteKick[lv_voteKickTarget].lv_danger == 3)) {
             gv_voteKick[lv_voteKickTarget].lv_kicked = true;
-            gf_UpdateKarma(lv_voteKickTarget, -30);
+            gf_UpdateKarma(lv_voteKickTarget, -25);
             if ((PlayerStatus(lv_voteKickTarget) == c_playerStatusActive)) {
-                gv_voteKickKarmaPenalty[lv_votingPlayer] = -10;
+                gv_voteKickKarmaPenalty[lv_votingPlayer] = -5;
             }
             auto8E7D9B7C_var = gv_indexBaseValue;
             for ( ; auto8E7D9B7C_var <= auto8E7D9B7C_ae; auto8E7D9B7C_var += 1 ) {
@@ -19051,6 +19051,17 @@ bool gt_WinsCheck_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_winsPlayer = StringToInt(StringSub(EventChatMessage(false), 4, 4));
     lv_playerIndex = lv_winsPlayer;
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_playerIndex >= 1))) {
+            return false;
+        }
+
+        if (!((lv_playerIndex <= 8))) {
+            return false;
+        }
+    }
 
     // Actions
     if (!runActions) {
@@ -22988,9 +22999,14 @@ void gt_InfestorAI_Init () {
 // Trigger: Outbreak Spawn
 //--------------------------------------------------------------------------------------------------
 bool gt_OutbreakSpawn_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_localOutbreakCounter;
+
     // Automatic Variable Declarations
     int auto98931652_n;
     int auto98931652_i;
+
+    // Variable Initialization
 
     // Conditions
     if (testConds) {
@@ -23010,7 +23026,13 @@ bool gt_OutbreakSpawn_Func (bool testConds, bool runActions) {
 
     gv_outbreakCounter = MinI((gv_outbreakCounter + 4), 400);
     Wait(RandomInt(0, 15), c_timeGame);
-    auto98931652_n = gv_outbreakCounter;
+    if (((gv_poisonGas == true) || ((gv_storyline == 3) && (UnitIsAlive(gv_finalBoss) == true)))) {
+        lv_localOutbreakCounter = (gv_outbreakCounter - 100);
+    }
+    else {
+        lv_localOutbreakCounter = gv_outbreakCounter;
+    }
+    auto98931652_n = lv_localOutbreakCounter;
     for (auto98931652_i = 1; auto98931652_i <= auto98931652_n; auto98931652_i += 1) {
         if ((RandomInt(1, 15) == 1)) {
             gf_SmartSpawnNOTD("Mutalisk", 40.0);
@@ -23028,10 +23050,10 @@ bool gt_OutbreakSpawn_Func (bool testConds, bool runActions) {
             gf_SmartSpawnNOTD("Slasher2", 40.0);
         }
         if ((RandomInt(1, 1000) == 1)) {
-            gf_SmartSpawnNOTD("TitanBurrowed", 40.0);
+            gf_SmartSpawnNOTD("TitanBurrowed", 50.0);
         }
         if ((RandomInt(1, 2000) == 1)) {
-            gf_SmartSpawnNOTD("Lelantos", 40.0);
+            gf_SmartSpawnNOTD("Lelantos", 50.0);
         }
     }
     return true;
@@ -41183,7 +41205,7 @@ bool gt_STC3aReactorCoreTerminalsReached_Func (bool testConds, bool runActions) 
         gf_RadioNOTD(gv_characterGeneralKoller, StringExternal("Param/Value/90136EEF"));
         while ((gv_wave < 16)) {
             Wait(5.0, c_timeReal);
-            if ((PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) > 400)) {
+            if ((PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) > 200)) {
                 continue;
             }
             auto14B8C848_n = (gv_spawnFactor * 2);
