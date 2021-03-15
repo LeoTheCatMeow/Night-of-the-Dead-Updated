@@ -1987,6 +1987,8 @@ void gf_RandomNydusPop ();
 point gf_RandomPointatGroundHeight (region lp_region, fixed lp_groundHeight);
 void gf_ZombieBossAIPathingGOTB (unit lp_unit, abilcmd lp_abilityCommand, point lp_target, fixed lp_searchRange);
 point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRange, int lp_searchPoints);
+void gf_GOTBRangeAttack (unit lp_boss, unit lp_target, bool lp_crossHairs, string lp_weapon, string lp_buff1, string lp_buff2);
+void gf_GOTBTeleportEMP (unit lp_boss);
 bool gf_CPDecayFactor ();
 void gf_MarineSpeechNOTD (unit lp_speechUnit, text lp_speech);
 void gf_SendTransmissionNOTD (unit lp_transmissionUnit, text lp_transmissionSender, text lp_transmissionContent, fixed lp_transmissionDuration);
@@ -2281,6 +2283,7 @@ trigger gt_Barrels;
 trigger gt_BarrelKills;
 trigger gt_GateEnterAirlockMainGateOuter;
 trigger gt_GateEnterAirlockMainGateInner;
+trigger gt_testgotb;
 trigger gt_NavyCrossCheck;
 trigger gt_NightmareBonus;
 trigger gt_HellBonus;
@@ -9172,6 +9175,93 @@ point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRan
     }
 
     return lv_bestpoint;
+}
+
+trigger auto_gf_GOTBRangeAttack_Trigger = null;
+unit auto_gf_GOTBRangeAttack_lp_boss;
+unit auto_gf_GOTBRangeAttack_lp_target;
+bool auto_gf_GOTBRangeAttack_lp_crossHairs;
+string auto_gf_GOTBRangeAttack_lp_weapon;
+string auto_gf_GOTBRangeAttack_lp_buff1;
+string auto_gf_GOTBRangeAttack_lp_buff2;
+
+void gf_GOTBRangeAttack (unit lp_boss, unit lp_target, bool lp_crossHairs, string lp_weapon, string lp_buff1, string lp_buff2) {
+    auto_gf_GOTBRangeAttack_lp_boss = lp_boss;
+    auto_gf_GOTBRangeAttack_lp_target = lp_target;
+    auto_gf_GOTBRangeAttack_lp_crossHairs = lp_crossHairs;
+    auto_gf_GOTBRangeAttack_lp_weapon = lp_weapon;
+    auto_gf_GOTBRangeAttack_lp_buff1 = lp_buff1;
+    auto_gf_GOTBRangeAttack_lp_buff2 = lp_buff2;
+
+    if (auto_gf_GOTBRangeAttack_Trigger == null) {
+        auto_gf_GOTBRangeAttack_Trigger = TriggerCreate("auto_gf_GOTBRangeAttack_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_GOTBRangeAttack_Trigger, false, false);
+}
+
+bool auto_gf_GOTBRangeAttack_TriggerFunc (bool testConds, bool runActions) {
+    unit lp_boss = auto_gf_GOTBRangeAttack_lp_boss;
+    unit lp_target = auto_gf_GOTBRangeAttack_lp_target;
+    bool lp_crossHairs = auto_gf_GOTBRangeAttack_lp_crossHairs;
+    string lp_weapon = auto_gf_GOTBRangeAttack_lp_weapon;
+    string lp_buff1 = auto_gf_GOTBRangeAttack_lp_buff1;
+    string lp_buff2 = auto_gf_GOTBRangeAttack_lp_buff2;
+
+    // Automatic Variable Declarations
+    return true;
+}
+
+trigger auto_gf_GOTBTeleportEMP_Trigger = null;
+unit auto_gf_GOTBTeleportEMP_lp_boss;
+
+void gf_GOTBTeleportEMP (unit lp_boss) {
+    auto_gf_GOTBTeleportEMP_lp_boss = lp_boss;
+
+    if (auto_gf_GOTBTeleportEMP_Trigger == null) {
+        auto_gf_GOTBTeleportEMP_Trigger = TriggerCreate("auto_gf_GOTBTeleportEMP_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_GOTBTeleportEMP_Trigger, false, false);
+}
+
+bool auto_gf_GOTBTeleportEMP_TriggerFunc (bool testConds, bool runActions) {
+    unit lp_boss = auto_gf_GOTBTeleportEMP_lp_boss;
+
+    // Automatic Variable Declarations
+    unitgroup autoA2114B44_g;
+    int autoA2114B44_u;
+    unit autoA2114B44_var;
+
+    // Implementation
+    if (UnitIsAlive(lp_boss) && !(gv_cinematicMode)) {
+        libNtve_gf_AttachActorToUnit(lp_boss, "PsionicShockwave", "Ref_Center");
+        libNtve_gf_MakeUnitInvulnerable(lp_boss, true);
+        UnitBehaviorRemoveCategory(lp_boss, c_unitBehaviorFlagStun);
+        UnitBehaviorRemoveCategory(lp_boss, c_unitBehaviorFlagSlow);
+        UnitSetPosition(lp_boss, PointWithOffsetPolar(UnitGetPosition(lp_boss), RandomFixed(5.0, 9.0), UnitGetFacing(lp_boss)), true);
+        UnitIssueOrder(lp_boss, OrderTargetingPoint(AbilityCommand("attack", 0), PointWithOffsetPolar(UnitGetPosition(lp_boss), RandomFixed(1.0, 4.0), UnitGetFacing(lp_boss))), c_orderQueueReplace);
+        Wait(0.125, c_timeGame);
+        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+    }
+    if (UnitIsAlive(lp_boss) && !(gv_cinematicMode)) {
+        libNtve_gf_AttachActorToUnit(lp_boss, "PsionicShockwave", "Ref_Center");
+        autoA2114B44_g = UnitGroupAlliance(UnitGetOwner(lp_boss), c_unitAllianceEnemy, RegionCircle(UnitGetPosition(lp_boss), 7.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoA2114B44_u = UnitGroupCount(autoA2114B44_g, c_unitCountAll);
+        for (;; autoA2114B44_u -= 1) {
+            autoA2114B44_var = UnitGroupUnitFromEnd(autoA2114B44_g, autoA2114B44_u);
+            if (autoA2114B44_var == null) { break; }
+            UnitSetPropertyFixed(autoA2114B44_var, c_unitPropEnergyPercent, 0.0);
+            UnitSetPropertyFixed(autoA2114B44_var, c_unitPropShieldsPercent, 0.0);
+            libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoA2114B44_var));
+        }
+        Wait(0.125, c_timeGame);
+        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+    }
+    if (UnitIsAlive(lp_boss)) {
+        libNtve_gf_MakeUnitInvulnerable(lp_boss, false);
+    }
+    return true;
 }
 
 bool gf_CPDecayFactor () {
@@ -23387,6 +23477,34 @@ void gt_GateEnterAirlockMainGateInner_Init () {
     gt_GateEnterAirlockMainGateInner = TriggerCreate("gt_GateEnterAirlockMainGateInner_Func");
     TriggerEnable(gt_GateEnterAirlockMainGateInner, false);
     TriggerAddEventUnitRegion(gt_GateEnterAirlockMainGateInner, null, RegionFromId(2), true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: test gotb
+//--------------------------------------------------------------------------------------------------
+bool gt_testgotb_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameIsTestMap(false) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gf_GOTBTeleportEMP(gv_marineHero[EventPlayer()]);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_testgotb_Init () {
+    gt_testgotb = TriggerCreate("gt_testgotb_Func");
+    TriggerEnable(gt_testgotb, false);
+    TriggerAddEventChatMessage(gt_testgotb, c_playerAny, "T", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -47258,6 +47376,7 @@ void InitTriggers () {
     gt_BarrelKills_Init();
     gt_GateEnterAirlockMainGateOuter_Init();
     gt_GateEnterAirlockMainGateInner_Init();
+    gt_testgotb_Init();
     gt_NavyCrossCheck_Init();
     gt_NightmareBonus_Init();
     gt_HellBonus_Init();
