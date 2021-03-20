@@ -2091,6 +2091,10 @@ DocInfo/HowToPlayBasic02=Complete mission objectives
 DocInfo/HowToPlayWinning00=Work together as a team to survive the zombie onslaught
 DocInfo/Name=Night of the Dead (Updated)
 DocInfo/PatchNote001=- Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
+DocInfo/PatchNote002=- Fixed an unintended phenomenon where infested civs in Sec turn into seekers. Now they will only turn into level 1 regular zombies.
+DocInfo/PatchNote003=- Fixing Forward Observer shell UI still not displaying the correct number of shells for other players to see (May still need more work).
+DocInfo/PatchNote004=- AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
+DocInfo/PatchNote005=- Fixed a bug where CP doesn't change when random in Normal mode (CP only doesn't change when random in Recruit with 10000+XP).
 DocInfo/PatchNote012=[ThunderRazor]
 DocInfo/PatchNote013=- Fixed recruit/normal Elite Mutation wins not displaying correctly.
 DocInfo/PatchNote014=- Enabled win update/rewards for solo players and lowered the requirement for Medal of Honor to at least 2 players instead of 3.
@@ -4306,7 +4310,7 @@ Param/Value/1A082645=Let's move to the LZ.
 Param/Value/1A6721DE=(Accessing communications log...)
 Param/Value/1A9B7959=Huddle close. Enemies are coming from several directions.
 Param/Value/1ADA3260=You've done well. We'll be back to re-take Apollo soon.
-Param/Value/1B47C56C=<n/>- Type '-level 9' to set hero level 9.
+Param/Value/1B47C56C=<n/>- Type '-level #' to set hero level #.
 Param/Value/1B4F39CB=Cohesion
 Param/Value/1B5403D2=<s val="GlueButton"><c val="F4D72B">It pains me to kill all these...people.</c></s>
 Param/Value/1BA21C68=<s val="BriefingHanText">(Seismic activity detected...)</s>
@@ -5526,7 +5530,6 @@ Param/Value/E13A28B5=Once we begin, there will be no turning back.
 Param/Value/E14D6B71=Take them out or your position will be overwhelmed.
 Param/Value/E1703520=I don't see any better options. Tell us what to do.
 Param/Value/E19DF915=+2 XP: Transmission Download Complete
-Param/Value/E1A199CA=<s val="InfoPaneHeroRank">Command Failed</s></n>All random requires enabling before selecting story.
 Param/Value/E1B2888D=Secure Security Cams (0/5)
 Param/Value/E20694FA=<s val="InfoPaneHeroRank">Not eligible for Distinguished Service Medal</s>
 Param/Value/E25FCAD9=Military EVAC is underway. Stay safe and watch out for danger until rescue arrives.

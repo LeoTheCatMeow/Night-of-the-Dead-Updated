@@ -7,6 +7,10 @@
 - Taunts of the same kind but different levels no long stack. Different taunts can still stack (Demo + Assault).
 - Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
 - Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
+- Fixed an unintended phenomenon where infested civs in Sec turn into seekers. Now they will only turn into level 1 regular zombies.
+- Fixing Forward Observer shell UI still not displaying the correct number of shells for other players to see (May still need more work).
+- AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
+- Fixed a bug where CP doesn't change when random in Normal mode (CP only doesn't change when random in Recruit with 10000+XP).
 
 2021-2-27
 [LeoTheCat]
