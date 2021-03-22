@@ -40,7 +40,7 @@ Nearby enemies in a 7 radius are pulled toward the unit every 5 seconds, if the 
 
 -Atrocious 
 +100 flat and +180% health
-+15 flat and +4% missing health regeneration per second
++5 flat and +4% missing health regeneration per second
 +50% damage taken from spells
 Nearby enemies in 3 radius (offset by unit radius) lose 15% attack and move speed
 Loses 0.8% missing health regeneration if stunned

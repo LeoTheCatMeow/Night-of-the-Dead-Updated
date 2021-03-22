@@ -908,7 +908,7 @@
     <CEffectEnumArea id="MonstrousPullSearch">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="CasterUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Massive,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="7" Effect="MonstrousPullForce"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -12758,7 +12758,6 @@
     </CEffectDamage>
     <CEffectDamage id="FlamethrowerMK2Damage" parent="InfernalFlameThrower">
         <Marker Link="Effect/FlamethrowerMK2Damage"/>
-        <Amount value="9"/>
         <ValidatorArray index="0" removed="1"/>
         <SearchFilters value="Ground;Item,Dead,Invulnerable"/>
     </CEffectDamage>

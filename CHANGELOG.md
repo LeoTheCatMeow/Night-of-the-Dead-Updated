@@ -2,15 +2,27 @@
 
 2021-3-15
 [LeoTheCat]
-- Fixed a bug where win check ("-w #") can be broken for the rest of the game when an invalid number is entered.
-- Fixed a bug where Devourers offer high ground vision for other zombies. Devourers shouldn't have high ground vision.
+<Gameplay changes>
 - Taunts of the same kind but different levels no long stack. Different taunts can still stack (Demo + Assault).
 - Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
 - Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
+- Elite Mutation trend is made more clear - only 3 types of mutation should be present at a time, and they switch every 5 minutes.
+- Elite Mutation boss mutation is made more even - each mutation has the same chance instead of a higher chance for Hardened/Scorching.
+- Reduced the flat regen for non-heroic Atrocious mutation from 15/s to 5/s, so that MCed minor zombies can't perma tank like an agron.
+- Monstrous Mutation pulling effect no longer affects massives.
+
+<Qol changes>
+- Assassination Marksman's mark will now appear more quickly instead of slowly fading in, giving players more time to react.
+- AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
+- Units under the direct control of Nazara will now visually appear large so that it is easier to tell them apart from regular zombies.
+
+<Bugfixes>
+- Fixed a bug where win check ("-w #") can be broken for the rest of the game when an invalid number is entered.
+- Fixed a bug where Devourers offer high ground vision for other zombies. Devourers shouldn't have high ground vision.
 - Fixed an unintended phenomenon where infested civs in Sec turn into seekers. Now they will only turn into level 1 regular zombies.
 - Fixing Forward Observer shell UI still not displaying the correct number of shells for other players to see (May still need more work).
-- AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
 - Fixed a bug where CP doesn't change when random in Normal mode (CP only doesn't change when random in Recruit with 10000+XP).
+- Fixed a rare bug where players can random into nothing if one of the players on the team fail to load in.
 
 2021-2-27
 [LeoTheCat]
@@ -60,7 +72,7 @@
 - Moved the unlock text on mission select to the left so that chat is easier to read.
 - Game will now pause non-Boss zombies that are out of vision when zombie wave grows larger than 500 to avoid severe FPS drop.
 - Paused zombies will resume when zombie waves becomes smaller, or if approached/revealed by marines.
-- Outbreak mode now has a 1000 zombie cap to prevent FPS dropping to unplayable levels.
+- Outbreak mode now has a 500 zombie cap to prevent FPS dropping to unplayable levels.
 - Recreated the xp sharing system in trigger to have better performance while still functioning using the same logic. 
 
 <Bugfixes>

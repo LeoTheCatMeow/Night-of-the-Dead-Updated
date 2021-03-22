@@ -172,7 +172,7 @@
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.1601"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.1406"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -184,13 +184,13 @@
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.039"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.0195"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBonusRegen">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DisableValidatorArray value="CasterUnitnotStunned"/>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.0781"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.1015"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousDebuff">
         <InfoFlags index="Hidden" value="1"/>
@@ -639,7 +639,7 @@
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
         </DamageResponse>
-        <Period value="5"/>
+        <Period value="7"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InfernoChainNapalm">
@@ -844,16 +844,17 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="Atrocious">
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <InitialEffect value="AtrociousApplyBonusRegen"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.5"/>
+            <DamageTakenFraction index="Melee" value="0.15"/>
             <VitalMaxArray index="Life" value="100"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
-            <VitalRegenArray index="Life" value="15"/>
+            <VitalRegenArray index="Life" value="5"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.3203"/>
-        <Period value="1"/>
-        <InitialEffect value="AtrociousApplyBonusRegen"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.3007"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ScorchingBoss">
         <Alignment value="Positive"/>
