@@ -144,6 +144,14 @@
         <EditorCategories value=""/>
         <Behavior value="ArmageddonHide"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AtrociousApplyBonusRegenHeroic">
+        <EditorCategories value=""/>
+        <Behavior value="AtrociousBonusRegenHeroic"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AtrociousApplyBonusRegenBoss">
+        <EditorCategories value=""/>
+        <Behavior value="AtrociousBonusRegenBoss"/>
+    </CEffectApplyBehavior>
     <CEffectSet id="VenomandInfectionSet">
         <EditorCategories value=""/>
         <EffectArray value="VenomApplySelfChance"/>
@@ -908,7 +916,7 @@
     <CEffectEnumArea id="MonstrousPullSearch">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="CasterUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Massive,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Massive,Structure,Missile,Stasis,Dead,Hidden,Invulnerable,MapBoss"/>
         <AreaArray Radius="7" Effect="MonstrousPullForce"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>

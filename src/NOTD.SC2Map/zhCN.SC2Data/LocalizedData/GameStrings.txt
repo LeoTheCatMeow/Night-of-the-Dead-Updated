@@ -731,6 +731,7 @@ Behavior/Tooltip/AnticipationLevel2=單位對9距離以外的敵人造成+30%額
 Behavior/Tooltip/ArmageddonAfterShock=單位正承受"世界末日" 炸彈餘震的傷害
 Behavior/Tooltip/ArmageddonSlow=單位減速15%，持續5秒，效果可堆疊最多3次.
 Behavior/Tooltip/ArmorDebuffAPAmmo=護甲-1點，持續5秒。
+Behavior/Tooltip/AtrociousHeroic=Unit gains the following features:<n/>+<d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 2.4% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is disabled when the unit is stunned or mind-controlled.</c><n/> 
 Behavior/Tooltip/BURNLevel1=單位被火焰兵的燃燒!技能燒烤。
 Behavior/Tooltip/BURNLevel2=單位被火焰兵的燃燒!技能燒烤。
 Behavior/Tooltip/Backstab=從目標的側邊或後面攻擊會造成50%額外傷害<n/><n/>"還有你嗎，布魯圖?" - 尤利烏斯.凱撒
@@ -1566,7 +1567,7 @@ Button/Tooltip/FuelCell=高密度電源。
 Button/Tooltip/FullThrottle=探索者啟動他的後燃器然後往前衝，把小型的敵人撞開。<n/><n/>1級 - 200%移動速度
 Button/Tooltip/GaussRifle=<c val="FFFF00">UA12式通用步槍</c><n/>UGC武器部門的在2083年開始被使用，被設計為所有已知行動環境都能使用的武器。<n/><n/>基礎射程: <c val="FFFFFF">13</c><n/>擴散範圍: <c val="FFFFFF">1.5</c><n/>裝彈時間: <c val="FFFFFF">1.5秒</c><n/>裝備時間: <c val="FFFFFF">2.2秒</c><n/>重量: <c val="FFFFFF">10</c><n/>護甲影響: <c val="FFFFFF">1.0</c><n/><n/>"如果它移動，我們可以殺死它。" - 佐伊列兵
 Button/Tooltip/GiveKarma=增加目標玩家的人品1點。
-Button/Tooltip/GravityGrenade=重力手榴彈<n/>重力手榴彈短時間會把有效範圍的所有單位拖到它的位置使受影響的單位聚集一起。大型單位拖不動，但會減速50%。<n/><n/>1級 - 影響3範圍內的單位4秒。<n/><n/><c val="FF0000">警告: 重力手榴彈的吸力會影響隊友</c><n/><n/>"希望你們這些龜兒子王八蛋彼此相愛對方，因為擁抱的時候到了!"
+Button/Tooltip/GravityGrenade=重力手榴彈<n/>重力手榴彈短時間會把有效範圍的所有單位拖到它的位置使受影響的單位聚集一起。<n/><n/>1級 - 影響3範圍內的單位4秒。<n/><n/><c val="FF0000">警告: 重力手榴彈的吸力會影響隊友</c><n/><n/>"希望你們這些龜兒子王八蛋彼此相愛對方，因為擁抱的時候到了!"
 Button/Tooltip/Green=把你士兵每次出場的顏色換成<c val="008040">綠色</c>。<n/><n/>費用: <c val="71B8FF">5000</c><n/>需要<c val="FFFF00">5000經驗值</c>才能購買
 Button/Tooltip/GuardianoftheBeta=工程師。
 Button/Tooltip/HEAmmo=<c val="80FF80">高爆彈藥</c><n/>UGC工程部門製造，這種彈藥利用可立刻燃燒目標的高爆彈頭。</c><n/>攻擊特效: <c val="FFFFFF">目標會承受額外50%的火系和爆炸性武器傷害，持續5秒。</c><n/>傷害加成: <c val="FFFFFF">+3% (可叠加3次)</c></n>重量: <c val="FFFFFF">3</c></n>費用: <c val="FFFFFF">50</c><n/><n/>"到你看到敵人從內至外燒死之前，你還沒有真正看到令人毛骨悚然的東西。"
@@ -4695,9 +4696,9 @@ UserData/TalentTrees/Assault_Talent Tootips_002=<s val="AchievementFrameName">�
 UserData/TalentTrees/Assault_Talent Tootips_003=<s val="AchievementFrameName">血性狂亂</s><n/>衝鋒步兵得到額外的攻擊傷害力，暴擊會減少目標移動與攻擊速度30%，持續1秒。血性狂亂狀態持續10秒。<n/>1級 - 傷害力+20%<n/>2級 - 傷害力+40%<n/><n/>"坐着，留下來，死!"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Assault_Talent Tootips_004=<s val="AchievementFrameName">悲傷的收穫者</s><n/>衝鋒步兵唱一首戰爭歌曲，以懷有仇恨的激情攻擊他的敵人並給它們帶來厄運。<n/><n/>衝鋒步兵得到額外的暴擊幾率，但移動速度削減10%，這狀態持續20秒。如果衝鋒步兵在集中火力狀態下成功暴擊敵人，它們的攻擊與移動速度就會削減30%，持續0.5秒。<n/><n/>"毆打的過程正式開始!"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">挑釁</s> <n/>短時間內迫使在有效范圍裡的敵人攻擊衝鋒步兵，被挑釁的敵人傷害力-。<n/>1級 - 有效範圍6，持續5秒，傷害力-10%。<n/>2級 - 有效範圍8，持續6秒，傷害力-20%。<n/>3級 - 有效範圍10，持續7秒，傷害力-30%。<n/><n/>"第一天出獄，我捲入了一場酒吧打架。殊不知我的對手是一位陸戰隊員。他說:“加入陸戰隊吧，我們需要像你這樣的人。”，因此我到了這裡。 - 布魯斯列兵
-UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">防護鋼板(被動技能)</s><n/>增加衝鋒步兵的護甲。<n/>1級 - 護甲+2點<n/>2級 - 護甲+3點<n/>3級 - 護甲+4點
+UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">防護鋼板(被動技能)</s><n/>增加衝鋒步兵的護甲與對負面效果的抗性。<n/>1級 - 護甲+2點，降低30%最高負面效果叠加層數。<n/>2級 - 護甲+3點，降低40%最高負面效果叠加層數<n/>3級 - 護甲+4點，降低50%最高負面效果叠加層數
 UserData/TalentTrees/Assault_Talent Tootips_007=<s val="AchievementFrameName">橫衝直撞</s><n/>衝鋒步兵向著目標點往前衝最遠15距離，擊退在路徑中的所有敵人，對所有受影響的敵人造成傷害並使它們暫時昏迷，大型單位會受到+50%額外傷害。<n/>1級 - 在路徑中的敵人受到50點傷害並昏迷2秒。<n/>1級 - 在路徑中的敵人受到100點傷害並昏迷4秒。<n/><n/>"帶著像紅色翅膀似的憤怒，他衝了出來。"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">團隊精神 (被動技能)</s> <n/>所有隊友在7範圍以內得到額外護甲 (這包括衝鋒步兵本人)。<n/>1級 - +1護甲<n/>2級 - 護甲+2點<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Assault_Talent Tootips_008=<s val="AchievementFrameName">團隊精神 (被動技能)</s> <n/>所有隊友在8範圍以內得到額外護甲以及0.4/秒生命恢復 (這包括衝鋒步兵本人)。<n/>1級 - 護甲+1點<n/>2級 - 護甲+2點<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Assault_Talent Tootips_009=<s val="AchievementFrameName">保護措施 (被動技能)</s><n/>衝鋒步兵每次受到攻擊會暫時得到+1護甲，每一點額外護甲持續5秒，最多可擁有+7護甲。<n/><n/>"即使是核彈也阻止不了你!" - 奧格威防禦工業<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Chemical Expert_Headers=<s val="HelpPanelListBoxItemTitle">荒蕪</s>
 UserData/TalentTrees/Chemical Expert_Headers_001=<s val="HelpPanelListBoxItemTitle">地面支援</s>
@@ -4720,7 +4721,7 @@ UserData/TalentTrees/Commando_Talent Tootips_003=<s val="AchievementFrameName">�
 UserData/TalentTrees/Commando_Talent Tootips_004=<s val="AchievementFrameName">戰術核彈</s><n/>突擊隊員發射一枚射程90距離，1200點傷害力，殺傷範圍9的核彈。<n/><n/><c val="FF0000">警告: 核彈可以對隊友造成致命的傷害，謹慎使用。</c><n/><n/>"明亮的燈光...然後，一切都結束了。"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Commando_Talent Tootips_005=<s val="AchievementFrameName">打倒他們 (被動技能)<n/></s>突擊隊員通過導引自己和隊友的火力使死去的敵人互相跌倒在對方，拖延敵人的前進，敵人的減速效果不會重疊。<n/>1級 - 2範圍以內的敵人減速15%，持續3秒。<n/>2級 - 2範圍以內的敵人減速30%，持續3.5秒。<n/>3級 - 2範圍以內的敵人減速45%，持續4秒。<n/><n/>"一個絆倒的士兵會連累他的戰友。"
 UserData/TalentTrees/Commando_Talent Tootips_006=<s val="AchievementFrameName">提高感官能力</s><n/>在一定範圍的敵人會承受25%額外傷害，隱藏的敵人會暫時失去隱蔽能力，持續15秒。<n/>1級 - 12範圍<n/>2級 - 18範圍<n/>3級 - 24範圍<n/><n/>"我有不詳的預感..."
-UserData/TalentTrees/Commando_Talent Tootips_007=<s val="AchievementFrameName">重力手榴彈<n/></s>MK1 重力手榴彈是一種基於"白色高地"重力炮核心技術改造的手持式裝置。設計它的目的是用來驅逐牢固陣地的敵人，但發現同樣可用於非致命人群控制。重力手榴彈短時間會把有效範圍的所有單位拖到它的位置使受影響的單位聚集一起。大型單位拖不動，但會減速50%。<n/><n/>1級 - 影響3範圍內的單位4秒<n/>2級 - 影響4範圍內的單位6秒<n/><n/><c val="FF0000">警告: 重力手榴彈的吸力會影響隊友</c><n/><n/>"希望你們這些龜兒子王八蛋彼此相愛對方，因為擁抱的時候到了!"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Commando_Talent Tootips_007=<s val="AchievementFrameName">重力手榴彈<n/></s>MK1 重力手榴彈是一種基於"白色高地"重力炮核心技術改造的手持式裝置。設計它的目的是用來驅逐牢固陣地的敵人，但發現同樣可用於非致命人群控制。重力手榴彈短時間會把有效範圍的所有單位拖到它的位置使受影響的單位聚集一起。<n/><n/>1級 - 影響3範圍內的單位4秒<n/>2級 - 影響4範圍內的單位6秒<n/><n/><c val="FF0000">警告: 重力手榴彈的吸力會影響隊友</c><n/><n/>"希望你們這些龜兒子王八蛋彼此相愛對方，因為擁抱的時候到了!"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">單絲陷阱</s><n/>單絲陷阱對敵人非常有效，但因為它對隊友也能造成傷害，所以有人覺得使用這工具的行為是卑鄙無恥的。這裝置的機制包括一個裝滿單絲線圈，塗有光學偽裝材料的核心和感應器。當感應器觸動陷阱時，內置的單絲線圈就會以放射狀形式高速彈出。單絲陷阱需要2秒裝備時間，然後它就會隱蔽，持續5分鐘或觸發8次，每次觸發有3秒的重啟時間。癱瘓狀態對Boss無效。<n/><n/>1級 - 消耗25能量。每當有單位在1範圍啟動陷阱，所有在2範圍的單位就會受到75點傷害，得到一層開放性傷口和癱瘓狀態。<n/>2級 - 消耗15能量。每當有單位在1.5範圍啟動陷阱，所有在3範圍的單位就會受到150點傷害，得到一層開放性傷口和癱瘓狀態。<n/><n/><c val="FF0000">警告: 隊友也可以觸發陷阱並受到30%的傷害。</c><n/><n/>"雖然它為設計為專門放置在入口的工具，但是跟一個門墊相比，它顯然不太受歡迎。" ~ 馬克斯韋爾博士，資深武器技術設計負責人，正在開一個關於單絲陷阱正確使用的研討會<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">"恐懼"</s><n/>KTH-22化學手榴彈，俗稱"恐懼"，是一種運用快速反應神經毒劑和迷幻劑用來恐嚇和迷惑受影響者的武器。最初被設計為輔助審問的工具，但是因為"恐懼"對受害者們產生激烈的副作用，所以在警察部隊裡禁止使用。"恐懼"不久之後被武器化，因為它成為戰爭的工具的潛能是不可否認的。<n/><n/>1級 - 所有在4範圍的單位暫時失明並失去戰鬥力10秒。期間每秒損失5%最大生命值(對英雄單位有減免)。在恐懼中存活下來的人會陷入瘋狂，對敵方英雄單位無效。<n/><n/><c val="FF0000">警告: 可傷害友軍。</c><n/><n/>"你想看些非常嚇人的東西吗?"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">爆破專家</s>

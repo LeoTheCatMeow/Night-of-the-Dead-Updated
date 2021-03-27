@@ -162,35 +162,46 @@
             <StateFlags index="Untargetable" value="1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AtrociousBonusRegenHeroic">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterUnitnotStunned"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.2382"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AtrociousBonusRegenBoss">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterUnitnotStunned"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.121"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousHeroic">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Period value="1"/>
-        <InitialEffect value="AtrociousApplyBonusRegen"/>
+        <InitialEffect value="AtrociousApplyBonusRegenHeroic"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.5"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.1406"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Period value="1"/>
-        <InitialEffect value="AtrociousApplyBonusRegen"/>
+        <InitialEffect value="AtrociousApplyBonusRegenBoss"/>
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.25"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.0195"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBonusRegen">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DisableValidatorArray value="CasterUnitnotStunned"/>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.1015"/>
+        <DisableValidatorArray value="NotSummonedUnit"/>
+        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.375"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousDebuff">
         <InfoFlags index="Hidden" value="1"/>
@@ -849,12 +860,10 @@
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.5"/>
-            <DamageTakenFraction index="Melee" value="0.15"/>
             <VitalMaxArray index="Life" value="100"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
-            <VitalRegenArray index="Life" value="5"/>
+            <VitalRegenArray index="Life" value="15"/>
         </Modification>
-        <VitalRegenVitalsRemain index="Life" AmountMissing="10" RegenModification="0.3007"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ScorchingBoss">
         <Alignment value="Positive"/>
@@ -5556,7 +5565,7 @@
         <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="0.85" Food="5">
             <StateFlags index="Summoned" value="1"/>
             <LifeArmorBonus value="2"/>
-            <VitalRegenArray index="Life" value="1"/>
+            <VitalRegenArray index="Life" value="5"/>
         </Modification>
         <MaxStackCountPerCaster value="1"/>
     </CBehaviorBuff>

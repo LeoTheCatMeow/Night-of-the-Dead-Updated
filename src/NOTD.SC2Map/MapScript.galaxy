@@ -3839,12 +3839,14 @@ void gf_UpdateModeSelectionUIs (int lp_mode) {
         libNtve_gf_SetDialogItemImage(gv_modeSelection[1], "Difficulty Buttons\\NOTDNormal2.dds", PlayerGroupAll());
         libNtve_gf_SetDialogItemImage(gv_modeSelection[2], "Difficulty Buttons\\NOTDNightmare2.dds", PlayerGroupAll());
         libNtve_gf_SetDialogItemImage(gv_modeSelection[3], "Difficulty Buttons\\NOTDHell2.dds", PlayerGroupAll());
-        DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), false);
-        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[3], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
-        gv_storylineModOn[3] = false;
     }
     if ((lp_mode != ge_GameModes_Recruit) && (gv_isVeteranSquad == true) && (gv_noNewbie == true)) {
         DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), true);
+    }
+    else {
+        DialogControlSetEnabled(gv_storylineModSelection[3], PlayerGroupAll(), false);
+        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[3], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
+        gv_storylineModOn[3] = false;
     }
 }
 
@@ -18157,12 +18159,17 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     }
     DialogSetVisible(gv_storylineModDialog, PlayerGroupAll(), true);
     DialogSetVisible(gv_storylineModDialog2, PlayerGroupAll(), true);
-    if ((gv_isVeteranSquad == true) && (gv_noNewbie == true)) {
-        DialogControlSetEnabled(gv_modeSelection[2], PlayerGroupAll(), true);
-        if (GameIsTestMap(false) && (gv_isHardVetSquad == true)) {
-            DialogControlSetEnabled(gv_modeSelection[3], PlayerGroupAll(), true);
+    if ((gv_isVeteranSquad == true)) {
+        if ((gv_noNewbie == true)) {
+            DialogControlSetEnabled(gv_modeSelection[2], PlayerGroupAll(), true);
+            gf_UpdateModeSelectionUIs(ge_GameModes_Normal);
+            if (GameIsTestMap(false) && (gv_isHardVetSquad == true)) {
+                DialogControlSetEnabled(gv_modeSelection[3], PlayerGroupAll(), true);
+            }
         }
-        gf_UpdateModeSelectionUIs(ge_GameModes_Normal);
+        else {
+            gf_UpdateModeSelectionUIs(ge_GameModes_Recruit);
+        }
     }
     else if ((gv_isVeteranSquad == false)) {
         if ((gv_noNewbie == false)) {
@@ -20424,7 +20431,7 @@ bool gt_ReceivesDamage_Func (bool testConds, bool runActions) {
 
         }
 
-        if (UnitIsAlive(lv_marine) && (EventUnitDamageEffect() != "FaithSelfDamage") && (EventUnitDamageEffect() != "WarbotBDamage") && !(UnitGroupHasUnit(gv_marines, lv_attacker)) && (EventUnitDamageEffect() != "NapalmBarrageDamage")) {
+        if (UnitIsAlive(lv_marine) && !(UnitGroupHasUnit(gv_marines, lv_attacker)) && (EventUnitDamageEffect() != "FaithSelfDamage") && (EventUnitDamageEffect() != "MindLinkDamage") && (EventUnitDamageEffect() != "NapalmBarrageDamage")) {
             if ((RandomInt(0, 90) == 1) && (UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 90.0) && ((gv_playerXP[lv_playerIndex] >= 1000) || gv_nightmare || gv_hell) && (lv_damageReceived > 10.0) && (EventUnitDamageEffect() != "BlackDogDamageAllies") && !(gf_AilmentResistanceCheck(lv_marine))) {
                 UnitBehaviorAdd(lv_marine, "ShortCircuit", lv_attacker, 1);
                 gf_TipLocalNOTD(5000, lv_player, StringExternal("Param/Value/AD923496"));
@@ -20437,7 +20444,7 @@ bool gt_ReceivesDamage_Func (bool testConds, bool runActions) {
                 UnitBehaviorAdd(lv_marine, "OpenWound", lv_attacker, 1);
                 gf_TipLocalNOTD(1000, lv_player, StringExternal("Param/Value/795CA19E"));
             }
-            else if (((RandomInt(0, 50) == 1) || (UnitGetType(lv_attacker) == "Parasite") || (UnitGetType(lv_attacker) == "Slither") || (((UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 50.0) || gv_nightmare || gv_hell) && (RandomInt(0, 10) == 1))) && (EventUnitDamageEffect() != "BlackOpsSniperRifle") && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "L3GrenadeExplosion") && (EventUnitDamageEffect() != "L3GrenadeExplosionDummy") && (EventUnitDamageEffect() != "IonCannonDamage") && (UnitGetType(lv_marine) != "ChemicalExpert") && !(gf_AilmentResistanceCheck(lv_marine))) {
+            else if (((RandomInt(0, 50) == 1) || (UnitGetType(lv_attacker) == "Parasite") || (UnitGetType(lv_attacker) == "Slither") || (((UnitGetPropertyFixed(lv_marine, c_unitPropLifePercent, c_unitPropCurrent) <= 50.0) || gv_nightmare || gv_hell) && (RandomInt(0, 10) == 1))) && (EventUnitDamageEffect() != "BlackOpsSniperRifle") && (EventUnitDamageEffect() != "BlackDogDamageAllies") && (EventUnitDamageEffect() != "L3GrenadeExplosionAlly") && (EventUnitDamageEffect() != "IonCannonDamage") && (UnitGetType(lv_marine) != "ChemicalExpert") && !(gf_AilmentResistanceCheck(lv_marine))) {
                 UnitBehaviorAdd(lv_marine, "Venom", lv_attacker, 1);
                 if (gv_hell) {
                     UnitCreateEffectUnit(lv_attacker, "InfectionApplySelfChance", lv_marine);

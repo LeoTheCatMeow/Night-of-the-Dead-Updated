@@ -3,18 +3,23 @@
 2021-3-15
 [LeoTheCat]
 <Gameplay changes>
-- Taunts of the same kind but different levels no long stack. Different taunts can still stack (Demo + Assault).
+- Taunts of the same kind but different levels no long stack damage reduction. Different taunts can still stack (Demo + Assault).
+- The interference caused by two taunts of the same kind still remain and can be still used to achieve semi-invulnerability.
 - Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
 - Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
 - Elite Mutation trend is made more clear - only 3 types of mutation should be present at a time, and they switch every 5 minutes.
 - Elite Mutation boss mutation is made more even - each mutation has the same chance instead of a higher chance for Hardened/Scorching.
-- Reduced the flat regen for non-heroic Atrocious mutation from 15/s to 5/s, so that MCed minor zombies can't perma tank like an agron.
-- Monstrous Mutation pulling effect no longer affects massives.
+- Monstrous Mutation pulling effect no longer affects massive units or bosses.
+- Atrocious Mutation's % regen will now be disabled when mind controlled by Engineer, the flat regen will remain.
+- Increased the flat life regen on the mind control buff from 1 to 5. (Mind controlled Atrocious units will thus have 15+5 = 20 flat regen).
+- Psi-Ops mental projection clones are now marked as summoned and can thus benefit more from Sync Module.
+- Mind link shared damage will no longer cause ailments.
 
 <Qol changes>
 - Assassination Marksman's mark will now appear more quickly instead of slowly fading in, giving players more time to react.
 - AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
 - Units under the direct control of Nazara will now visually appear large so that it is easier to tell them apart from regular zombies.
+- Some minor tooltip corrections.
 
 <Bugfixes>
 - Fixed a bug where win check ("-w #") can be broken for the rest of the game when an invalid number is entered.
@@ -23,6 +28,8 @@
 - Fixing Forward Observer shell UI still not displaying the correct number of shells for other players to see (May still need more work).
 - Fixed a bug where CP doesn't change when random in Normal mode (CP only doesn't change when random in Recruit with 10000+XP).
 - Fixed a rare bug where players can random into nothing if one of the players on the team fail to load in.
+- Fixed a bug where Outbreak button can be selected even though there's a new player on the team.
+- Fixed a bug where Forward Observer's Napalm and Shockwave Barrages are disabled when the shell count drops below 200.
 
 2021-2-27
 [LeoTheCat]

@@ -853,9 +853,9 @@ Behavior/Tooltip/ArmorDebuffAPAmmo=-1 armor for 5 seconds.
 Behavior/Tooltip/AssaultJumpEvasionLevel1=Unit gains 80% evasion for 1 second.
 Behavior/Tooltip/AssaultJumpEvasionLevel2=Unit gains 85% evasion for 2 seconds.
 Behavior/Tooltip/AssaultJumpEvasionLevel3=Unit gains 90% evasion for 3 seconds.
-Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+5 flat and 4% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
-Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+<d ref="Behavior,AtrociousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 1.2% missing health regeneration per second. <n/>+<d ref="Behavior,AtrociousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
-Behavior/Tooltip/AtrociousHeroic=Unit gains the following features:<n/>+<d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 2.4% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is greatly weakened when the unit is stunned.</c><n/> 
+Behavior/Tooltip/Atrocious=Unit gains the following features:<n/>+100 flat and <d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 4% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is disabled when the unit is stunned or mind-controlled.</c><n/> 
+Behavior/Tooltip/AtrociousBoss=Unit gains the following features:<n/>+<d ref="Behavior,AtrociousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 1.2% missing health regeneration per second. <n/>+<d ref="Behavior,AtrociousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%. <n/><c val="FFFF00">The % missing health regeneration is disabled when the unit is stunned or mind-controlled.</c><n/> 
+Behavior/Tooltip/AtrociousHeroic=Unit gains the following features:<n/>+<d ref="Behavior,Atrocious,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+15 flat and 2.4% missing health regeneration per second. <n/>+<d ref="Behavior,Atrocious,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells. <n/>Nearby enemies have their attack and move speed slowed by <d ref="100 - (Behavior,AtrociousDebuff,Modification.AttackSpeedMultiplier * 100)"/>%.<n/><c val="FFFF00">The % missing health regeneration is disabled when the unit is stunned or mind-controlled.</c><n/> 
 Behavior/Tooltip/BURNLevel1=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/BURNLevel2=Unit is being burned by Flamethrower's BURN! ability.
 Behavior/Tooltip/Backstab=Deals +50% damage when attacking targets from side or back<n/><n/>"Et Tu Brute" - Lujius Saecar
@@ -903,7 +903,7 @@ Behavior/Tooltip/CombatKnife=Unit slowed by 70% for 2 secs
 Behavior/Tooltip/CombatMobilityAugment=Increases movespeed by 10%
 Behavior/Tooltip/CominginHotDOTLevel1=Unit is burning for 16 HP/s.
 Behavior/Tooltip/CominginHotDOTLevel2=Unit is burning for 32 HP/s.
-Behavior/Tooltip/ComplianceMatrix=Unit is under permanent control of Compliance Matrix. +2 armor and has reduced attack speed.
+Behavior/Tooltip/ComplianceMatrix=Unit is under permanent control of Compliance Matrix. +2 armor, +5 life regeneration, but has reduced attack speed.
 Behavior/Tooltip/ConcentratedFireLevel1=+50% attack speed and +1 sight range. -5% movespeed. +5% Critical Strike chance if talent is learnt. Lasts for 7 seconds
 Behavior/Tooltip/ConcentratedFireLevel2=+100% attack speed and +2 sight range. -5% movespeed. +10% Critical Strike chance if talent is learnt. Lasts for 7 seconds
 Behavior/Tooltip/ConcentratedFireLevel3=+150% attack speed and +3 sight range. -5% movespeed. +15% Critical Strike chance if talent is learnt. Lasts for 7 seconds
@@ -1739,7 +1739,7 @@ Button/Tooltip/FuelCell=High density power source.
 Button/Tooltip/FullThrottle=The Pathfinder engages the afterburner and surges forward with a great burst of speed, knocking back lighter enemies in passing.<n/><n/>Level 1 -- 200% movespeed
 Button/Tooltip/GaussRifle=<c val="FFFF00">UA GPR-12</c><n/>The UGC Arms General Purpose Rifle was commissioned in 2083. Designed and field tested to work in all known operational environments.<n/><n/>Base Range: <c val="FFFFFF">13</c><n/>Splash: <c val="FFFFFF">1.5 <c val="FFFF00">(<d ref="Effect,GuassRifle,AreaArray[2].Radius - 1.5" precision="2"/>)</c></c><n/>Reload: <c val="FFFFFF">2.5s <c val="FFFF00">(<d ref="(Weapon,DummyWeapon,RateMultiplier-1)*2.5" precision="2"/>)</c></c><n/>Equip: <c val="FFFFFF">2.2s</c><n/>Weight: <c val="FFFFFF">10 </c></c><n/>Adaptive: <c val="FFFFFF">1.0</c><n/>Flag: <c val="FFFFFF">Ranged, Physical, Splash</c><n/><n/>"If it moves, we can kill it." - Private Zoe
 Button/Tooltip/GiveKarma=Increases target player's Karma by 1.
-Button/Tooltip/GravityGrenade=Gravity Grenade<n/>Drags all units within an area to it for a short duration, clustering them together. Massive units are not dragged, but slowed by 50%.<n/><n/>Level 1 -- Affects units within a radius of 3 for 4 seconds<n/><n/><c val="FF0000">Warning: Gravity suction affects allies</c><n/><n/>"Hope you sons of bitches love each other, 'cause it's huggin' time!"
+Button/Tooltip/GravityGrenade=Gravity Grenade<n/>Drags all units within an area to it for a short duration, clustering them together. <n/><n/>Level 1 -- Affects units within a radius of 3 for 4 seconds<n/><n/><c val="FF0000">Warning: Gravity suction affects allies</c><n/><n/>"Hope you sons of bitches love each other, 'cause it's huggin' time!"
 Button/Tooltip/Green=Changes Marine color to <c val="008040">Green</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/GuardianoftheBeta=The Engineer.
 Button/Tooltip/HEAmmo=<c val="80FF80">High Explosive Ammo</c><n/>Produced by UGC Engineering Corps. This ammunition makes use of a high yield head which burns targets on impact.<n/><n/>Damage Modifier: <c val="FFFFFF">+3% damage (Stacks 3x)</c><n/>Attack Modifier: <c val="FFFFFF">Target takes 50% bonus damage from Fire for 5 seconds</c></n>Weight: <c val="FFFFFF">3</c></n>Credits: <c val="FFFFFF">50</c><n/><n/>"You ain't seen gruesome until you've seen an enemy burn alive from the inside out."
@@ -2090,17 +2090,17 @@ DocInfo/HowToPlayBasic01=Find ammo, weapons and other supplies
 DocInfo/HowToPlayBasic02=Complete mission objectives
 DocInfo/HowToPlayWinning00=Work together as a team to survive the zombie onslaught
 DocInfo/Name=Night of the Dead (Updated)
-DocInfo/PatchNote001=- Elite Mutation trend is made more clear - only 3 types of mutation should be present at a time, and they switch every 5 minutes.
-DocInfo/PatchNote002=- Elite Mutation boss mutation is made more even - each mutation has the same chance instead of a higher chance for Hardened/Scorching.
-DocInfo/PatchNote003=- Reduced the flat regen for non-heroic Atrocious mutation from 15/s to 5/s, so that MCed minor zombies can't perma tank like an agron.
-DocInfo/PatchNote004=- Monstrous Mutation pulling effect no longer affects massive units.
-DocInfo/PatchNote005=
-DocInfo/PatchNote006=<Qol changes>
-DocInfo/PatchNote007=- Assassination Marksman's mark will now appear more quickly instead of slowly fading in, giving players more time to react.
-DocInfo/PatchNote008=- AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
-DocInfo/PatchNote009=- Units under the direct control of Nazara will now visually appear large so that it is easier to tell them apart from regular zombies.
-DocInfo/PatchNote010=
-DocInfo/PatchNote011=<Bugfixes>
+DocInfo/PatchNote001=- Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
+DocInfo/PatchNote002=- Elite Mutation trend is made more clear - only 3 types of mutation should be present at a time, and they switch every 5 minutes.
+DocInfo/PatchNote003=- Elite Mutation boss mutation is made more even - each mutation has the same chance instead of a higher chance for Hardened/Scorching.
+DocInfo/PatchNote004=- Monstrous Mutation pulling effect no longer affects massive units or bosses.
+DocInfo/PatchNote005=- Atrocious Mutation's % regen will now be disabled when mind controlled by Engineer, the flat regen will remain.
+DocInfo/PatchNote006=- Increased the flat life regen on the mind control buff from 1 to 5. (Mind controlled Atrocious units will thus have 15+5 = 20 flat regen).
+DocInfo/PatchNote007=- Psi-Ops mental projection clones are now marked as summoned and can thus benefit more from Sync Module.
+DocInfo/PatchNote008=- Mind link shared damage will no longer cause ailments.
+DocInfo/PatchNote009=
+DocInfo/PatchNote010=<Qol changes>
+DocInfo/PatchNote011=- Assassination Marksman's mark will now appear more quickly instead of slowly fading in, giving players more time to react.
 DocInfo/PatchNote012=[ThunderRazor]
 DocInfo/PatchNote013=- Fixed recruit/normal Elite Mutation wins not displaying correctly.
 DocInfo/PatchNote014=- Enabled win update/rewards for solo players and lowered the requirement for Medal of Honor to at least 2 players instead of 3.
@@ -2132,7 +2132,7 @@ DocInfo/PatchNote039=- Fixed a bug where multiple X1 Bots and Reaper Drones can 
 DocInfo/PatchNote040=- Fixed only Ghouls spawning at EC start. Now Zombies and Stalkers should spawn too.
 DocInfo/PatchNote041=- Fixed a bug where invulnerable Bio-Domes can be destroyed by Demo's abilities.
 DocInfo/PatchNote042=- Fixed Technician's March of the Machine not draining the correct amount of energy.
-DocInfo/PatchNote043=- Fixed a bug where win check ("-w #") can be broken for the rest of the game when an invalid number is entered.
+DocInfo/PatchNote043=- AR/NR/Max Random are now processed after mission selection to display more clearly & avoid any conflict with chat commands.
 DocInfo/PatchNote044=- Fixed Assault's Safeguard not using the correct animation.
 DocInfo/PatchNote045=- Fixed EC Recruit Dropship waves spawning too quickly.
 DocInfo/PatchNote046=- Fixed predators gaining level 2 without 3 tiers of Bronze Star.
@@ -2161,14 +2161,21 @@ DocInfo/PatchNote068=- Fixed a bug where EM/OB trigger can be activated twice by
 DocInfo/PatchNote069=- Fixed Armageddon's radiation not granting any kill xp.
 DocInfo/PatchNote070=[LeoTheCat]
 DocInfo/PatchNote071=<Gameplay changes>
-DocInfo/PatchNote072=- Taunts of the same kind but different levels no long stack. Different taunts can still stack (Demo + Assault).
-DocInfo/PatchNote073=- Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
-DocInfo/PatchNote074=- Reduced the karma cost to VK from -10 to -5, reduced the karma penalty of the kicked person from -30 to -25.
-DocInfo/PatchNote075=- Fixed a bug where Devourers offer high ground vision for other zombies. Devourers shouldn't have high ground vision.
-DocInfo/PatchNote076=- Fixed an unintended phenomenon where infested civs in Sec turn into seekers. Now they will only turn into level 1 regular zombies.
-DocInfo/PatchNote077=- Fixing Forward Observer shell UI still not displaying the correct number of shells for other players to see (May still need more work).
-DocInfo/PatchNote078=- Fixed a bug where CP doesn't change when random in Normal mode (CP only doesn't change when random in Recruit with 10000+XP).
-DocInfo/PatchNote079=- Fixed a rare bug where players can random into nothing if one of the players on the team fail to load in.
+DocInfo/PatchNote072=- Taunts of the same kind but different levels no long stack damage reduction. Different taunts can still stack (Demo + Assault).
+DocInfo/PatchNote073=- The interference caused by two taunts of the same kind still remain and can be still used to achieve semi-invulnerability.
+DocInfo/PatchNote074=- Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
+DocInfo/PatchNote075=- Units under the direct control of Nazara will now visually appear large so that it is easier to tell them apart from regular zombies.
+DocInfo/PatchNote076=- Some minor tooltip corrections.
+DocInfo/PatchNote077=
+DocInfo/PatchNote078=<Bugfixes>
+DocInfo/PatchNote079=- Fixed a bug where win check ("-w #") can be broken for the rest of the game when an invalid number is entered.
+DocInfo/PatchNote080=- Fixed a bug where Devourers offer high ground vision for other zombies. Devourers shouldn't have high ground vision.
+DocInfo/PatchNote081=- Fixed an unintended phenomenon where infested civs in Sec turn into seekers. Now they will only turn into level 1 regular zombies.
+DocInfo/PatchNote082=- Fixing Forward Observer shell UI still not displaying the correct number of shells for other players to see (May still need more work).
+DocInfo/PatchNote083=- Fixed a bug where CP doesn't change when random in Normal mode (CP only doesn't change when random in Recruit with 10000+XP).
+DocInfo/PatchNote084=- Fixed a rare bug where players can random into nothing if one of the players on the team fail to load in.
+DocInfo/PatchNote085=- Fixed a bug where Outbreak button can be selected even though there's a new player on the team.
+DocInfo/PatchNote086=- Fixed a bug where Forward Observer's Napalm and Shockwave Barrages are disabled when the shell count drops below 200.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2301,6 +2308,8 @@ Effect/Name/AssaultJumpLaunchLevel1=Assault Jump Launch Level 1
 Effect/Name/AssaultJumpLaunchLevel2=Assault Jump Launch Level 2
 Effect/Name/AssaultJumpLaunchLevel3=Assault Jump Launch Level 3
 Effect/Name/AtrociousApplyBonusRegen=Atrocious Apply Bonus Regen
+Effect/Name/AtrociousApplyBonusRegenBoss=Atrocious Apply Bonus Regen (Boss)
+Effect/Name/AtrociousApplyBonusRegenHeroic=Atrocious Apply Bonus Regen (Heroic)
 Effect/Name/AtrociousApplyDebuff=Atrocious Apply Debuff
 Effect/Name/AtrociousDebuffSearch=Atrocious Debuff Search Area
 Effect/Name/BURNApplyFrenzyBuff=BURN! Apply Frenzy Buff
@@ -6763,7 +6772,7 @@ UserData/TalentTrees/Commando_Talent Tootips_003=<s val="AchievementFrameName">W
 UserData/TalentTrees/Commando_Talent Tootips_004=<s val="AchievementFrameName">Tactical Nuke</s><n/>Launches a 9 radius nuke that does 1200 damage. 90 range.<n/><n/><c val="FF0000">Warning: Nukes can deal lethal friendly fire. Use with caution.</c><n/><n/>"Bright lights...and then, everything's over."<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Commando_Talent Tootips_005=<s val="AchievementFrameName">Bring Them Down <n/>(Passive)<n/></s>Commando directs his fire and the fire of his teammates to make enemies stumble and fall into one another when they are slain while under the effect of his abilities. Does not stack.<n/>Level 1 - Slows enemies in 2 radius by 15% for 3 seconds<n/>Level 2 - Slows enemies in 2 radius by 30% for 3.5 seconds<n/>Level 3 - Slows enemies in 2 radius by 45% for 4 seconds<n/><n/>"A soldier who stumbles brings down his comrades with him."
 UserData/TalentTrees/Commando_Talent Tootips_006=<s val="AchievementFrameName">Heightened Senses</s><n/>Enemies in a radius takes 25% more damage. Reveals invisible units. Lasts 15 seconds.<n/>Level 1 - 12 radius<n/>Level 2 - 18 radius<n/>Level 3 - 24 radius<n/><n/>"My spider sense is tingling..."
-UserData/TalentTrees/Commando_Talent Tootips_007=<s val="AchievementFrameName">Gravity Grenade<n/></s>The Mk1 Gravity Grenade is a device created by retooling White Mesa's Gravity Gun's core technology into a handheld form. It was designed to dislodge enemies from entrenched positions, but found to be also useful for nonlethal crowd control. It drags all units within an area to it for a short duration, clustering them together. Massive units are not dragged, but slowed by 50%.<n/><n/>Level 1 -- Affects units within a radius of 3 for 4 seconds<n/>Level 2 -- Affects units within a radius of 4 for 6 seconds<n/><n/><c val="FF0000">Warning: Gravity suction affects allies</c><n/><n/>"Hope you sons of bitches love each other, 'cause it's huggin' time!"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
+UserData/TalentTrees/Commando_Talent Tootips_007=<s val="AchievementFrameName">Gravity Grenade<n/></s>The Mk1 Gravity Grenade is a device created by retooling White Mesa's Gravity Gun's core technology into a handheld form. It was designed to dislodge enemies from entrenched positions, but found to be also useful for nonlethal crowd control. It drags all units within an area to it for a short duration, clustering them together.<n/><n/>Level 1 -- Affects units within a radius of 3 for 4 seconds<n/>Level 2 -- Affects units within a radius of 4 for 6 seconds<n/><n/><c val="FF0000">Warning: Gravity suction affects allies</c><n/><n/>"Hope you sons of bitches love each other, 'cause it's huggin' time!"<n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">Monofilament Trap</s><n/>Monofilament traps are dastardly effective against friend and foe alike. The mechanism is comprised of a node covered in reactive camouflage loaded of bands of monofilaments that, when activated via proximity sensor, are ejected at high velocities in a radial pattern. Once placed, the trap will take 2 seconds to arm and then disappear from view, lasting for 5 minutes or 8 activations. 3 seconds minimum delay between trap activations. Does not Cripple Enemy Heroic.<n/><n/>Level 1 - Costs 25 energy. Deals <d ref="Effect,MonofilamentTrapDamageEnemiesLevel1,Amount"/> damage and applies Cripple and Open Wound in a radius of 2 when units pass within a radius of 1<n/>Level 2 - Costs 15 energy. Deals <d ref="Effect,MonofilamentTrapDamageEnemiesLevel2,Amount"/> damage and applies Cripple and Open Wound in a radius of 3 when units pass within a radius of 1.5<n/><n/>"While designed for being placed at entrances, it's significantly less welcoming than a doormat." ~ Dr. Maxwell, Senior design lead of weapons technology, giving a seminar on proper use of Monofilament Traps<n/><n/><c val="FF0000">Warning: Deals 30% friendly fire damage, can be activited by allies.</c><n/><n/><c val="F4D72B">Tier 2 talents require 4 talent points in the tree to unlock</c>
 UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">The Horror</s><n/>The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds. Affected units lose 5% max HP per second, reduced against Heroic. Those that manage to survive The Horror are driven mad. Does not apply madness to Enemy Heroic.<n/><n/><c val="FF0000">Warning: Can harm allies in the target area.</c><n/><n/>"You want to see something real scary?"<n/><n/><c val="F4D72B">Tier 3 talents require 8 talent points in the tree to unlock</c>
 UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">Explosives</s>

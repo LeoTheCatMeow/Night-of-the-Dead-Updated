@@ -215,8 +215,12 @@
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="NightmareShellUpgrade">
-        <EffectArray Operation="Set" Reference="Abil,FireMission,Cost[0].Charge.CountMax" Value="1700"/>
         <EffectArray Operation="Set" Reference="Abil,FireMission,Cost[0].Charge.CountStart" Value="1700"/>
+        <EffectArray Operation="Set" Reference="Abil,NapalmBarrage,Cost[0].Charge.CountStart" Value="1700"/>
+        <EffectArray Operation="Set" Reference="Abil,FireMission,Cost[0].Charge.CountMax" Value="1700"/>
+        <EffectArray Operation="Set" Reference="Abil,ShockwaveBarrage,Cost[0].Charge.CountStart" Value="1700"/>
+        <EffectArray Operation="Set" Reference="Abil,ShockwaveBarrage,Cost[0].Charge.CountMax" Value="1700"/>
+        <EffectArray Operation="Set" Reference="Abil,NapalmBarrage,Cost[0].Charge.CountMax" Value="1700"/>
     </CUpgrade>
     <CUpgrade id="PerceptionCriticalStrike">
         <Alert value=""/>
