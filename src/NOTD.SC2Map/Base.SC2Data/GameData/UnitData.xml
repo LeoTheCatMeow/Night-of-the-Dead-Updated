@@ -1868,7 +1868,6 @@
         <FlagArray index="Untargetable" value="1"/>
         <FlagArray index="KillCredit" value="0"/>
         <FlagArray index="Invulnerable" value="1"/>
-        <FlagArray index="Cloaked" value="1"/>
         <Sight value="2"/>
         <AbilArray Link="MonofilamentTrapActivation"/>
         <BehaviorArray Link="MonofilamentTrapDuration"/>
@@ -1882,7 +1881,6 @@
         <FlagArray index="Untargetable" value="1"/>
         <FlagArray index="KillCredit" value="0"/>
         <FlagArray index="Invulnerable" value="1"/>
-        <FlagArray index="Cloaked" value="1"/>
         <Sight value="2"/>
         <AbilArray Link="MonofilamentTrapActivationLevel2"/>
         <BehaviorArray Link="MonofilamentTrapDuration"/>
@@ -9029,6 +9027,8 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
+        <AbilArray Link="Sprint"/>
+        <AbilArray Link="Stimpack"/>
         <BehaviorArray Link="OpenWoundChance"/>
         <WeaponArray Link="SniperRifleMini"/>
         <CardLayouts>
@@ -9039,6 +9039,7 @@
             <LayoutButtons Face="CloakOnGhost" Type="AbilCmd" AbilCmd="GhostCloak,On" Row="1" Column="0"/>
             <LayoutButtons Face="CloakOff" Type="AbilCmd" AbilCmd="GhostCloak,Off" Row="1" Column="1"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stim" Type="AbilCmd" AbilCmd="Stimpack,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.1875"/>
         <SeparationRadius value="0.2"/>
@@ -10023,7 +10024,6 @@
     </CUnit>
     <CUnit id="ZombieCreep">
         <Mob value="Campaign"/>
-        <FlagArray index="NoDraw" value="1"/>
         <FlagArray index="Unradarable" value="1"/>
         <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
@@ -10160,7 +10160,6 @@
     <CUnit id="ZombieCreepLarge">
         <Race value="Zerg"/>
         <Mob value="Campaign"/>
-        <FlagArray index="NoDraw" value="1"/>
         <FlagArray index="Unradarable" value="1"/>
         <PlaneArray index="Ground" value="1"/>
         <Attributes index="Light" value="1"/>
@@ -10468,6 +10467,7 @@
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="VeteransFocus" Type="AbilCmd" AbilCmd="VeteransFocus,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="Stim" Type="AbilCmd" AbilCmd="Stimpack,Execute" Row="2" Column="1"/>
         </CardLayouts>
         <ReviveInfoBase>
             <Charge Link="MobileInfantryMarksman/Revive"/>
@@ -10491,7 +10491,7 @@
         <AcquireLeashResetRadius value="-1"/>
         <HotkeyCategory value="Hotkey/Minis"/>
         <Attributes index="Summoned" value="1"/>
-        <Speed value="2.25"/>
+        <EnergyRegenRate value="0.75"/>
     </CUnit>
     <CUnit id="MobileInfantryRifleman" parent="Marine">
         <Name value="Unit/Name/MobileInfantryRifleman"/>
@@ -10519,13 +10519,14 @@
             <LayoutButtons Face="MarksmanGear" Type="AbilCmd" AbilCmd="MarksmanGear,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="Stim" Type="AbilCmd" AbilCmd="Stimpack,Execute" Row="2" Column="1"/>
         </CardLayouts>
         <ReviveInfoBase>
             <Charge Link="MobileInfantryRifleman/Revive"/>
             <Cooldown Link="MobileInfantryRifleman/Revive"/>
         </ReviveInfoBase>
-        <LifeStart value="130"/>
-        <LifeMax value="130"/>
+        <LifeStart value="135"/>
+        <LifeMax value="135"/>
         <SeparationRadius value="0.3125"/>
         <EnergyMax value="60"/>
         <BehaviorArray Link="OpenWoundChance"/>
@@ -10540,7 +10541,7 @@
         <AcquireLeashResetRadius value="-1"/>
         <HotkeyCategory value="Hotkey/Minis"/>
         <Attributes index="Summoned" value="1"/>
-        <Speed value="2.25"/>
+        <EnergyRegenRate value="0.75"/>
     </CUnit>
     <CUnit id="MobileInfantryFlamethrower" parent="Marine">
         <Name value="Unit/Name/MobileInfantryFlamethrower"/>
@@ -10562,6 +10563,7 @@
             <LayoutButtons Face="SpectreHoldFire" Type="AbilCmd" AbilCmd="SpectreHoldFire,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="SpectreWeaponsFree" Type="AbilCmd" AbilCmd="SpectreWeaponsFree,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="SlowRoast" Type="AbilCmd" AbilCmd="SlowRoast,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="Stim" Type="AbilCmd" AbilCmd="Stimpack,Execute" Row="2" Column="1"/>
         </CardLayouts>
         <TacticalAI value="MobileInfantryFlamethrower"/>
         <LeaderAlias value="MobileInfantryFlamethrower"/>
@@ -10573,10 +10575,9 @@
             <Charge Link="MobileInfantryFlamethrower/Revive"/>
             <Cooldown Link="MobileInfantryFlamethrower/Revive"/>
         </ReviveInfoBase>
-        <LifeStart value="165"/>
-        <LifeMax value="165"/>
+        <LifeStart value="185"/>
+        <LifeMax value="185"/>
         <LifeArmor value="3"/>
-        <Speed value="2.25"/>
         <WeaponArray index="0" Link="FlamethrowerMK2"/>
         <SeparationRadius value="0.3125"/>
         <EnergyMax value="60"/>
@@ -10592,6 +10593,7 @@
         <AcquireLeashResetRadius value="-1"/>
         <HotkeyCategory value="Hotkey/Minis"/>
         <Attributes index="Summoned" value="1"/>
+        <EnergyRegenRate value="0.75"/>
     </CUnit>
     <CUnit id="PfcBrooks" parent="Marine">
         <Name value="Unit/Name/PfcBrooks"/>
@@ -11639,7 +11641,7 @@
         <BehaviorArray Link="UltraliskOutOfCombat1"/>
         <BehaviorArray Link="Charging"/>
         <BehaviorArray Link="DetectorRange3"/>
-        <BehaviorArray Link="SpawnCreeponDeath"/>
+        <BehaviorArray Link="SpawnCreeponDeathHighChance"/>
         <BehaviorArray Link="SharedExperience"/>
         <VisionHeight value="1"/>
         <LifeRegenRate value="2"/>

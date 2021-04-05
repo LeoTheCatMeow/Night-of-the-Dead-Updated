@@ -819,6 +819,7 @@ fixed gv_classLimitMultiplier;
 bool gv_classLimitBroken;
 int[15] gv_classCount;
 int[9] gv_playerRandomIndex;
+int[15] gv_playerRandomIndexRepeats;
 timer gv_pingRepeatPreventionTimer;
 gs_PingInfo gv_lastPingInfo;
 timer[17] gv_pingResetTimer;
@@ -1387,6 +1388,9 @@ void InitGlobals () {
         }
     }
     gv_classLimitMultiplier = 1.0;
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_playerRandomIndex[init_i] = 1;
+    }
     gv_pingRepeatPreventionTimer = TimerCreate();
     gv_lastPingInfo.lv_pingtype = -1;
     for (init_i = 0; init_i <= 16; init_i += 1) {
@@ -3903,7 +3907,7 @@ void gf_FinalizeStorylineSelection () {
     gf_MarineExperienceSharing();
     gf_BehaviorUpdate();
     gf_InitializePlayerRandomSequence();
-    Wait(3.4, c_timeGame);
+    Wait(5.0, c_timeGame);
     UIClearMessages(gv_marineSquad, c_messageAreaAll);
     if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
         gf_AllRandomSelectionUI();
@@ -5020,17 +5024,38 @@ bool auto_gf_ClassLimitCheck_TriggerFunc (bool testConds, bool runActions) {
     return true;
 }
 
+trigger auto_gf_InitializePlayerRandomSequence_Trigger = null;
+
 void gf_InitializePlayerRandomSequence () {
+    if (auto_gf_InitializePlayerRandomSequence_Trigger == null) {
+        auto_gf_InitializePlayerRandomSequence_Trigger = TriggerCreate("auto_gf_InitializePlayerRandomSequence_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_InitializePlayerRandomSequence_Trigger, false, false);
+}
+
+bool auto_gf_InitializePlayerRandomSequence_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_randomIndex;
+
     // Automatic Variable Declarations
     const int auto79CAB446_ae = 8;
     int auto79CAB446_var;
 
+    // Variable Initialization
+
     // Implementation
     auto79CAB446_var = 1;
     for ( ; auto79CAB446_var <= auto79CAB446_ae; auto79CAB446_var += 1 ) {
-        gv_playerRandomIndex[auto79CAB446_var] = RandomInt(1, gf_GetRandomRange(auto79CAB446_var));
+        lv_randomIndex = RandomInt(1, gf_GetRandomRange(auto79CAB446_var));
+        while ((gv_playerRandomIndexRepeats[lv_randomIndex] >= 2) && (lv_randomIndex > 2)) {
+            lv_randomIndex = RandomInt(1, gf_GetRandomRange(auto79CAB446_var));
+        }
+        gv_playerRandomIndexRepeats[lv_randomIndex] += 1;
+        gv_playerRandomIndex[auto79CAB446_var] = lv_randomIndex;
         Wait(0.2, c_timeGame);
     }
+    return true;
 }
 
 int gf_GetRandomRange (int lp_player) {

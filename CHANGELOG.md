@@ -1,5 +1,20 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-4-4
+[LeoTheCat]
+- Added stimpack back to Foward Observer's minis as requested by some players for more micro potential.
+- Balanced the energy cost of minis abilities and their energy regen so that stimpack can't be perma-activated. 
+- Fixed some minor issues with the Flamethrower minis where the energy bar does not show up and Slow Roast gives less than +3hp regen.
+- Increased Forward Observer's Napalm slow per stack up from 10% to 18% as the previous nerf went too far. 
+- Commando's mono-filament traps (already invulnerable) will no longer cloak, allowing allies to see them more clearly. 
+- The random number sequence generated for randoming classes will now avoid having 2+ repeats resulting in XP and credit penalty.
+- This means that All Random mode should never result in penalty.
+- However it is still possible to have 2+ repeats if some classes are randomed and some are manually selected.
+- Fixed some incorrect talent descriptions in Chinese localization. 
+- Fixed a bug where certain enemies are not droping creep on death, or dropping them on the other side of the map for some reason.
+- Creeps are made visible and thus easier to target, since the above fix will add more creep into the game/increase difficulty.
+- Trying to solve an issue where Technician's black dog turret will ocassionally look like it is bleeding (may still need more fixes).
+
 2021-3-15
 [LeoTheCat]
 <Gameplay changes>

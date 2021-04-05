@@ -1553,7 +1553,6 @@
         <SoundArray index="Yes" value="Firebat_Yes"/>
         <SoundArray index="Attack" value="Firebat_Attack"/>
         <SoundArray index="Pissed" value="Firebat_Pissed"/>
-        <StatusBarFlags index="Energy" value="0"/>
         <UnitIcon value="Assets\Textures\btn-unit-terran-firebat.dds"/>
         <Wireframe>
             <Image value="Assets\Textures\Wireframe-Terran-firebat.dds"/>
@@ -13281,7 +13280,7 @@
     </CActorUnit>
     <CActorModel id="OpenWound" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.OpenWoundApplyBehaviorVisual.Start; At Target" Send="Create"/>
-        <Host Subject="_Unit"/>
+        <Host Subject="_Unit" Scope="Target"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Scale value="0.700000"/>
         <AutoScaleFactor value="1.000000"/>

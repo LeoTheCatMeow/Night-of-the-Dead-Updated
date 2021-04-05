@@ -939,6 +939,13 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MinPoints value="-255"/>
     </CBehaviorAttribute>
+    <CBehaviorBuff id="SpawnCreeponDeathHighChance">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Fatal="1" Handled="SpawnCreeponDeathPersistant">
+            <Chance value="0.12"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="SuppressRegularXPSharing">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2736,7 +2743,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DamageResponse Fatal="1" Handled="SpawnCreeponDeathPersistant">
-            <Chance value="0.25"/>
+            <Chance value="0.06"/>
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="SpawnCreeponDeathInstant">
@@ -2982,7 +2989,7 @@
         <Period value="30"/>
         <Modification>
             <LifeArmorBonus value="5"/>
-            <VitalRegenArray index="Life" value="2"/>
+            <VitalRegenArray index="Life" value="3"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="HarvesterofSorrowTarget">
@@ -6679,7 +6686,7 @@
         <Duration value="5"/>
         <Period value="1"/>
         <PeriodicEffect value="NapalmBarrageDamage"/>
-        <Modification MoveSpeedMultiplier="0.9"/>
+        <Modification MoveSpeedMultiplier="0.82"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NapalmAnimationDummy">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -9045,7 +9052,7 @@
     <CBehaviorBuff id="Stimpack">
         <Period value="15"/>
         <InitialEffect value="Stimpack"/>
-        <Modification MoveSpeedMultiplier="1.3"/>
+        <Modification MoveSpeedMultiplier="1.3" AttackSpeedMultiplier="1.3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ConcentratedFireLevel2">
         <Alignment value="Positive"/>

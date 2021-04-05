@@ -3561,15 +3561,16 @@
         <ValidatorArray value="SpawnCreeponDeathCheck"/>
         <EditorCategories value=""/>
         <SpawnUnit value="ZombieCreep"/>
-        <WhichLocation Value="OriginPoint"/>
+        <WhichLocation Value="CasterUnitOrPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
         <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="NormalizeSpawnOffset" value="0"/>
     </CEffectCreateUnit>
     <CEffectCreatePersistent id="SpawnCreeponDeathPersistant">
         <EditorCategories value=""/>
         <ExpireEffect value="SpawnCreeponDeath"/>
         <PeriodCount value="1"/>
         <PeriodicPeriodArray value="2"/>
-        <Chance value="0.25"/>
     </CEffectCreatePersistent>
     <CEffectCreateUnit id="SpawnSeeker">
         <EditorCategories value=""/>

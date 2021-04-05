@@ -1574,7 +1574,7 @@ Button/Tooltip/HEAmmo=<c val="80FF80">高爆彈藥</c><n/>UGC工程部門製造�
 Button/Tooltip/HPAmmo=<c val="80FF80">中空彈藥</c><n/>UGC彈道學部門製造，這種彈藥被設計為對於所有目標都可以造成重大損害。<n/>傷害加成: <c val="FFFFFF">+12%(可叠加3次)</c><n/>重量: <c val="FFFFF">3</c><n/>費用: <c val="FFFFFF">50</c> <n/><n/>"對付一個人類目標時只能使其致殘，對付其他的東西格殺勿論" - 布里安娜中尉
 Button/Tooltip/HadesTentacle=有高度感染性的觸手。
 Button/Tooltip/HammeroftheGods=技術員部署了一座"黑狗"反人員炮塔，"黑狗"配備了高爆碎片彈，對它攻擊的目標造成開放性傷口。<n/><n/>同時最多建造1座炮塔。
-Button/Tooltip/HarvesterofSorrow=衝鋒步兵得到額外20%暴擊幾率，但移動速度削減<d ref=" 100* (1 - Behavior,HarvesterofSorrow,Modification[0].MoveSpeedMultiplier[0])"/>%，持續<d ref="Behavior,HarvesterofSorrow,Duration[0]"/>秒。如果衝鋒步兵在集中火力狀態下成功暴擊敵人，它們的攻擊與移動速度就會削減<d ref="100 * ( 1 -Behavior,HarvesterofSorrowTarget,Modification[0].MoveSpeedMultiplier[0])"/>%，持續<d ref="Behavior,HarvesterofSorrowTarget,Duration[0]" precision="1"/>秒。
+Button/Tooltip/HarvesterofSorrow=衝鋒步兵得到額外25%暴擊幾率，但移動速度削減<d ref=" 100* (1 - Behavior,HarvesterofSorrow,Modification[0].MoveSpeedMultiplier[0])"/>%，持續<d ref="Behavior,HarvesterofSorrow,Duration[0]"/>秒。如果衝鋒步兵在集中火力狀態下成功暴擊敵人，它們的攻擊與移動速度就會削減<d ref="100 * ( 1 -Behavior,HarvesterofSorrowTarget,Modification[0].MoveSpeedMultiplier[0])"/>%，持續<d ref="Behavior,HarvesterofSorrowTarget,Duration[0]" precision="1"/>秒。
 Button/Tooltip/HeightenedSenses=在12範圍以內的敵人會發紅光並承受25%額外傷害，隱藏的敵人會暫時失去隱蔽能力，持續15秒。
 Button/Tooltip/Helium3Canister=<c val="972FFF">氦-3密封罐</c><n/>氦-3密封罐可以換成現金。換到的現金根據等級與所有的隊友分享，得到的現金到任務完成才會被儲存在你的帳號。
 Button/Tooltip/Helium3IgniterLevel1=MK-3火焰噴射器攻擊距離增加1點，傷害力增加+10%。
@@ -1689,7 +1689,7 @@ Button/Tooltip/NanoShield=重新充滿目標的能量護盾，並加強30點護�
 Button/Tooltip/NanoStrength=增加目標單位的傷害力與移動速度+10%，持續<d ref="Behavior,NanoHasteLevel1,Duration[0]"/>秒。
 Button/Tooltip/NanoWeave=每秒回血5點，持續15秒。
 Button/Tooltip/NanosteelNet=技術員對敵人目標發射一張強韌的網並纏住它，飛行目標會被拖到地面暫時被視為一個地面單位，在目標1範圍以內的敵人的敵人也會被它企圖逃脫的行動變得20%緩慢，持續3秒。
-Button/Tooltip/NapalmBarrage=可對5範圍區域裡目標造成每秒40點傷害與10%減速的火砲攻擊，持續10秒，可叠加5次，5秒彈幕時間。
+Button/Tooltip/NapalmBarrage=可對5範圍區域裡目標造成每秒40點傷害與18%減速的火砲攻擊，持續10秒，可叠加5次，5秒彈幕時間。
 Button/Tooltip/Nazara=納扎爾
 Button/Tooltip/NoQuarter=探索者衝上雲霄，並以無與倫比力量衝撞下來，造成大量的傷害。如果探索者直接在敵人的頭上降落，他的"緊急救世主"系統將會激活，使他暫時無懈可擊並且立即恢復1次突擊跳躍。信仰的飛躍對Boss可造成三倍的傷害。<n/><n/>在2範圍內造成1,000點傷害，4範圍內造成800點傷害，6範圍內造成600點傷害，8範圍內造成400點傷害，如果有最少一個敵得到1,000點傷害的話，探索者暫時變得無懈可擊，持續5秒。
 Button/Tooltip/NydusCanal=
@@ -1808,7 +1808,7 @@ Button/Tooltip/Stealth=狙擊手隱身6秒。
 Button/Tooltip/Stealth2=激活隱形領域，持續8秒。
 Button/Tooltip/StealthMatrixActivate=隱形矩陣是一個在偵察兵作戰服裡的能源電網，它可以持續逃生的隱身效果。
 Button/Tooltip/StealthMatrixDeactivate=隱形矩陣是一個在偵察兵作戰服裡的能源電網，它可以持續逃生的隱身效果。
-Button/Tooltip/Stim=士兵移動與攻擊速度提高20%，持續15秒。
+Button/Tooltip/Stim=士兵移動與攻擊速度提高30%，持續15秒。
 Button/Tooltip/StingerMK3=<c val="972FFF">"毒刺"MK-3</c><n/>可造成強大濺射傷害的火箭炮，每發消耗10點彈藥，使用時要特別小心。<n/><c val="FF0000">友軍傷害：25%</c><n/><n/>基礎射程: <c val="FFFFFF">20</c><n/>擴散範圍: <c val="FFFFFF">5</c><n/>裝彈時間: <c val="FFFFFF">6秒</c><n/>裝備時間: <c val="FFFFFF">2.2秒</c><n/>重量: <c val="FFFFFF">25</c><n/>護甲影響: <c val="FFFFFF">0</c><n/>費用: <c val="FFFFFF">325</c><n/><n/>"跟我的小朋友打招呼。" - 李中尉
 Button/Tooltip/Strangler=一隻飛行的生物，可以使目標窒息並喪失戰鬥能力。
 Button/Tooltip/SupplyStation=製造一個臨時的補給站，向2范圍內的士兵每秒供應1彈藥，1生命值和1能量值，持續25秒。
@@ -4691,10 +4691,10 @@ UserData/TalentTreeSkeleton/Tree 2 Tier 3 Talent 1_Text=0/1
 UserData/TalentTrees/Assault_Headers=<s val="HelpPanelListBoxItemTitle">重械兵</s>
 UserData/TalentTrees/Assault_Headers_001=<s val="HelpPanelListBoxItemTitle">守護者</s>
 UserData/TalentTrees/Assault_Talent Tootips=<s val="AchievementFrameName">集中火力</s><n/>衝鋒步兵得到額外的攻擊速度，暴擊幾率 (如果你學到暴擊技能)和提高視野範圍，減少移動速度5%，持續7秒。<n/>1級 - 攻擊速度 +50%，+5%暴擊幾率。<n/>2級 - 攻擊速度 +100%，+10%暴擊幾率。<n/>3級 - 攻擊速度 +150%，+15%暴擊幾率。<n/><n/>"我狙擊兵學校不及格。現在，我不需瞄準，我只需按住扳機和噴子彈。" - 曼寧一等兵
-UserData/TalentTrees/Assault_Talent Tootips_001=<s val="AchievementFrameName">暴擊(被動技能)</s><n/>1級 - 10%機會造成雙倍的傷害<n/>2級 - 20%機會造成雙倍的傷害<n/>3級 - 30%機會造成雙倍的傷害
+UserData/TalentTrees/Assault_Talent Tootips_001=<s val="AchievementFrameName">暴擊(被動技能)</s><n/>1級 - 15%機會造成雙倍的傷害<n/>2級 - 30%機會造成雙倍的傷害<n/>3級 - 45%機會造成雙倍的傷害
 UserData/TalentTrees/Assault_Talent Tootips_002=<s val="AchievementFrameName">彈藥帶(被動技能)</s><n/>1級 - 增加最大裝彈量到80，每次裝彈消耗2個彈匣。<n/>2級 - 增加最大裝彈量到120，每次裝彈消耗3個彈匣。<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Assault_Talent Tootips_003=<s val="AchievementFrameName">血性狂亂</s><n/>衝鋒步兵得到額外的攻擊傷害力，暴擊會減少目標移動與攻擊速度30%，持續1秒。血性狂亂狀態持續10秒。<n/>1級 - 傷害力+20%<n/>2級 - 傷害力+40%<n/><n/>"坐着，留下來，死!"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Assault_Talent Tootips_004=<s val="AchievementFrameName">悲傷的收穫者</s><n/>衝鋒步兵唱一首戰爭歌曲，以懷有仇恨的激情攻擊他的敵人並給它們帶來厄運。<n/><n/>衝鋒步兵得到額外的暴擊幾率，但移動速度削減10%，這狀態持續20秒。如果衝鋒步兵在集中火力狀態下成功暴擊敵人，它們的攻擊與移動速度就會削減30%，持續0.5秒。<n/><n/>"毆打的過程正式開始!"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Assault_Talent Tootips_004=<s val="AchievementFrameName">悲傷的收穫者</s><n/>衝鋒步兵唱一首戰爭歌曲，以懷有仇恨的激情攻擊他的敵人並給它們帶來厄運。<n/><n/>衝鋒步兵得到額外25%暴擊幾率，但移動速度削減10%，這狀態持續20秒。如果衝鋒步兵在集中火力狀態下成功暴擊敵人，它們的攻擊與移動速度就會削減30%，持續0.5秒。<n/><n/>"毆打的過程正式開始!"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Assault_Talent Tootips_005=<s val="AchievementFrameName">挑釁</s> <n/>短時間內迫使在有效范圍裡的敵人攻擊衝鋒步兵，被挑釁的敵人傷害力-。<n/>1級 - 有效範圍6，持續5秒，傷害力-10%。<n/>2級 - 有效範圍8，持續6秒，傷害力-20%。<n/>3級 - 有效範圍10，持續7秒，傷害力-30%。<n/><n/>"第一天出獄，我捲入了一場酒吧打架。殊不知我的對手是一位陸戰隊員。他說:“加入陸戰隊吧，我們需要像你這樣的人。”，因此我到了這裡。 - 布魯斯列兵
 UserData/TalentTrees/Assault_Talent Tootips_006=<s val="AchievementFrameName">防護鋼板(被動技能)</s><n/>增加衝鋒步兵的護甲與對負面效果的抗性。<n/>1級 - 護甲+2點，降低30%最高負面效果叠加層數。<n/>2級 - 護甲+3點，降低40%最高負面效果叠加層數<n/>3級 - 護甲+4點，降低50%最高負面效果叠加層數
 UserData/TalentTrees/Assault_Talent Tootips_007=<s val="AchievementFrameName">橫衝直撞</s><n/>衝鋒步兵向著目標點往前衝最遠15距離，擊退在路徑中的所有敵人，對所有受影響的敵人造成傷害並使它們暫時昏迷，大型單位會受到+50%額外傷害。<n/>1級 - 在路徑中的敵人受到50點傷害並昏迷2秒。<n/>1級 - 在路徑中的敵人受到100點傷害並昏迷4秒。<n/><n/>"帶著像紅色翅膀似的憤怒，他衝了出來。"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
@@ -4722,7 +4722,7 @@ UserData/TalentTrees/Commando_Talent Tootips_004=<s val="AchievementFrameName">�
 UserData/TalentTrees/Commando_Talent Tootips_005=<s val="AchievementFrameName">打倒他們 (被動技能)<n/></s>突擊隊員通過導引自己和隊友的火力使死去的敵人互相跌倒在對方，拖延敵人的前進，敵人的減速效果不會重疊。<n/>1級 - 2範圍以內的敵人減速15%，持續3秒。<n/>2級 - 2範圍以內的敵人減速30%，持續3.5秒。<n/>3級 - 2範圍以內的敵人減速45%，持續4秒。<n/><n/>"一個絆倒的士兵會連累他的戰友。"
 UserData/TalentTrees/Commando_Talent Tootips_006=<s val="AchievementFrameName">提高感官能力</s><n/>在一定範圍的敵人會承受25%額外傷害，隱藏的敵人會暫時失去隱蔽能力，持續15秒。<n/>1級 - 12範圍<n/>2級 - 18範圍<n/>3級 - 24範圍<n/><n/>"我有不詳的預感..."
 UserData/TalentTrees/Commando_Talent Tootips_007=<s val="AchievementFrameName">重力手榴彈<n/></s>MK1 重力手榴彈是一種基於"白色高地"重力炮核心技術改造的手持式裝置。設計它的目的是用來驅逐牢固陣地的敵人，但發現同樣可用於非致命人群控制。重力手榴彈短時間會把有效範圍的所有單位拖到它的位置使受影響的單位聚集一起。<n/><n/>1級 - 影響3範圍內的單位4秒<n/>2級 - 影響4範圍內的單位6秒<n/><n/><c val="FF0000">警告: 重力手榴彈的吸力會影響隊友</c><n/><n/>"希望你們這些龜兒子王八蛋彼此相愛對方，因為擁抱的時候到了!"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">單絲陷阱</s><n/>單絲陷阱對敵人非常有效，但因為它對隊友也能造成傷害，所以有人覺得使用這工具的行為是卑鄙無恥的。這裝置的機制包括一個裝滿單絲線圈，塗有光學偽裝材料的核心和感應器。當感應器觸動陷阱時，內置的單絲線圈就會以放射狀形式高速彈出。單絲陷阱需要2秒裝備時間，然後它就會隱蔽，持續5分鐘或觸發8次，每次觸發有3秒的重啟時間。癱瘓狀態對Boss無效。<n/><n/>1級 - 消耗25能量。每當有單位在1範圍啟動陷阱，所有在2範圍的單位就會受到75點傷害，得到一層開放性傷口和癱瘓狀態。<n/>2級 - 消耗15能量。每當有單位在1.5範圍啟動陷阱，所有在3範圍的單位就會受到150點傷害，得到一層開放性傷口和癱瘓狀態。<n/><n/><c val="FF0000">警告: 隊友也可以觸發陷阱並受到30%的傷害。</c><n/><n/>"雖然它為設計為專門放置在入口的工具，但是跟一個門墊相比，它顯然不太受歡迎。" ~ 馬克斯韋爾博士，資深武器技術設計負責人，正在開一個關於單絲陷阱正確使用的研討會<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Commando_Talent Tootips_008=<s val="AchievementFrameName">單絲陷阱</s><n/>單絲陷阱對敵人非常有效，但因為它對隊友也能造成傷害，所以有人覺得使用這工具的行為是卑鄙無恥的。這裝置的機制包括一個裝滿單絲線圈，塗有光學偽裝材料的核心和感應器。當感應器觸動陷阱時，內置的單絲線圈就會以放射狀形式高速彈出。單絲陷阱需要2秒裝備時間，持續5分鐘或觸發8次，每次觸發有3秒的重啟時間。癱瘓狀態對Boss無效。<n/><n/>1級 - 消耗25能量。每當有單位在1範圍啟動陷阱，所有在2範圍的單位就會受到75點傷害，得到一層開放性傷口和癱瘓狀態。<n/>2級 - 消耗15能量。每當有單位在1.5範圍啟動陷阱，所有在3範圍的單位就會受到150點傷害，得到一層開放性傷口和癱瘓狀態。<n/><n/><c val="FF0000">警告: 隊友也可以觸發陷阱並受到30%的傷害。</c><n/><n/>"雖然它為設計為專門放置在入口的工具，但是跟一個門墊相比，它顯然不太受歡迎。" ~ 馬克斯韋爾博士，資深武器技術設計負責人，正在開一個關於單絲陷阱正確使用的研討會<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Commando_Talent Tootips_009=<s val="AchievementFrameName">"恐懼"</s><n/>KTH-22化學手榴彈，俗稱"恐懼"，是一種運用快速反應神經毒劑和迷幻劑用來恐嚇和迷惑受影響者的武器。最初被設計為輔助審問的工具，但是因為"恐懼"對受害者們產生激烈的副作用，所以在警察部隊裡禁止使用。"恐懼"不久之後被武器化，因為它成為戰爭的工具的潛能是不可否認的。<n/><n/>1級 - 所有在4範圍的單位暫時失明並失去戰鬥力10秒。期間每秒損失5%最大生命值(對英雄單位有減免)。在恐懼中存活下來的人會陷入瘋狂，對敵方英雄單位無效。<n/><n/><c val="FF0000">警告: 可傷害友軍。</c><n/><n/>"你想看些非常嚇人的東西吗?"<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Demolitions_Headers=<s val="HelpPanelListBoxItemTitle">爆破專家</s>
 UserData/TalentTrees/Demolitions_Headers_001=<s val="HelpPanelListBoxItemTitle">堅韌不拔</s>
@@ -4766,7 +4766,7 @@ UserData/TalentTrees/Forward Observer_Talent Tootips=<s val="AchievementFrameNam
 UserData/TalentTrees/Forward Observer_Talent Tootips_001=<s val="AchievementFrameName">新月科技 (被動技能)</s><n/>提升前綫觀察員所有火力支援技能的效率和穩定性。<n/>1級 - 轟擊延遲時間減少1.5秒。<n/>2級 - 降低空襲的冷卻與能量消耗。<n/>3級 - 降低轟擊技能的冷卻與能量消耗。<n/><n/>"不，它們不會看到這個來臨。" - 馬爾科姆上尉
 UserData/TalentTrees/Forward Observer_Talent Tootips_002=<s val="AchievementFrameName">震波彈幕</s><n/>擊暈5範圍區域裡目標並使其受到的傷害增益。<n/>1級 - 每個砲彈造成3秒眩暈，+15%傷害增益。<n/>2級 - 每個砲彈造成5秒眩暈，+30%傷害增益。<n/><n/>5秒彈幕時間，眩暈時間對英雄目標的效果減半。<n/><n/>"幾個字: 砲彈休克，聽上去簡直就像槍砲聲一樣。" - 卡林上士<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_003=<s val="AchievementFrameName">空襲</s><n/>3部幽靈戰機將飛過並在7範圍的發射36枚導彈，鎖定隨機敵人，每個導彈造成小範圍濺射傷害並對主要目標造成1級的震波昏迷。<n/>1級 - 每個導彈可造成60點傷害力<n/>2級 - 每個導彈可造成120點傷害力<n/><n/><c val="FFFF00">注意：濺射會對友軍造成少量傷害</c><n/><n/>"簡直是晴天霹雳的。"<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
-UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">汽油彈</s><n/>可燒傷5範圍區域裡目標的火砲攻擊，每個砲彈造成每秒40點的傷害並減速10%，持續10秒，最高叠加5次，5秒彈幕時間，大型單位會承受50%的額外傷害。<n/><n/>"給予一個人火，他就能保持溫暖一夜，點燃一個人，他的餘生都會溫暖。" - 普拉切特中士<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
+UserData/TalentTrees/Forward Observer_Talent Tootips_004=<s val="AchievementFrameName">汽油彈</s><n/>可燒傷5範圍區域裡目標的火砲攻擊，每個砲彈造成每秒40點的傷害並減速18%，持續10秒，最高叠加5次，5秒彈幕時間，大型單位會承受50%的額外傷害。<n/><n/>"給予一個人火，他就能保持溫暖一夜，點燃一個人，他的餘生都會溫暖。" - 普拉切特中士<n/><n/><c val="F4D72B">第3層技能需要加最少8點在這技能樹中才能解鎖。</c>
 UserData/TalentTrees/Forward Observer_Talent Tootips_005=<s val="AchievementFrameName">移動步兵</s><n/>召喚一個步兵從天而降，默認是步槍兵，每次升級本技能會增加你可控制的移動步兵數量。<n/>1級 - 限制1個移動步兵<n/>2級 - 限制2個移動步兵<n/>3級 - 限制3個移動步兵<n/><n/>你總共有9個可用的移動步兵，當他們都死掉，你就不能召喚更多的移動步兵。<n/><n/>"我不知道需要多少士兵才能殺了你們，但我知道我會派出多少人。" - 布來克中尉
 UserData/TalentTrees/Forward Observer_Talent Tootips_006=<s val="AchievementFrameName">改良裝備</s><n/>加強移動步兵的血值，移動速度和傷害力。<n/>1級 - +10%點血值，+5%移動速度和傷害力。<n/>2級 - +20%點血值，+10%移動速度和傷害力。<n/>3級 - +30%點血值，+15%移動速度和傷害力。
 UserData/TalentTrees/Forward Observer_Talent Tootips_007=<s val="AchievementFrameName">火焰兵專精 (被動技能)</s><n/>召喚的移動步兵獲得使用火焰兵裝備的許可，裝備時間為3秒。<n/><n/>1級 - 允許移動步兵使用火焰兵裝備。<n/>2級 - 火焰兵得到慢烤技能，使他們的護甲增加5點，生命恢復增加3點，攻擊可以降低敵人的攻擊與移動速度，持續30秒。<n/><n/>"在錯誤的地點利用適當的人選可以改變一切。" - 克拉恩中士<n/><n/><c val="F4D72B">第2層技能需要加最少4點在這技能樹中才能解鎖。</c>
