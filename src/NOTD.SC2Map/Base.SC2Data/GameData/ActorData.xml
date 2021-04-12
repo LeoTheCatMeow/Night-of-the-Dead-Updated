@@ -11573,6 +11573,7 @@
         <SoundArray index="Click" value="MobileInfantryRifleman_Click"/>
         <SoundArray index="ClickError" value="MobileInfantryRifleman_ClickError"/>
         <SoundArray index="Highlight" value="MobileInfantryRifleman_Highlight"/>
+        <StatusBarFlags index="Energy" value="1"/>
     </CActorUnit>
     <CActorUnit id="PfcBrooks" parent="Marine" unitName="PfcBrooks">
         <On index="0" Terms="UnitBirth.PfcBrooks"/>
@@ -14496,6 +14497,8 @@
         <HeroIcon value="Assets\Textures\btn-building-zerg-creeptumor.dds"/>
         <StatusBarFlags index="Life" value="0"/>
         <UnitIcon value="Assets\Textures\btn-building-zerg-creeptumor.dds"/>
+        <DeathArray index="Normal" ModelLink="CreepTumorDeath" SoundLink="CreepTumor_Explode" VoiceLink="CreepTumorDeathVoice"/>
+        <DeathArray index="UnderConstruction" ModelLink="CreepTumorDeathUnderConstruction" SoundLink="CreepTumor_Explode"/>
     </CActorUnit>
     <CActorUnit id="Immortal2" parent="GenericBurrowerStandard" unitName="Immortal2">
         <Macros value="ZergBurrowStandardAnimMacro"/>
@@ -14560,6 +14563,8 @@
         <HighlightTooltip value="Unit/Name/ZombieCreepLarge"/>
         <StatusBarFlags index="Life" value="0"/>
         <UnitIcon value="Assets\Textures\btn-building-zerg-creeptumor.dds"/>
+        <DeathArray index="Normal" ModelLink="CreepTumorDeath" SoundLink="CreepTumor_Explode" VoiceLink="CreepTumorDeathVoice"/>
+        <DeathArray index="UnderConstruction" ModelLink="CreepTumorDeathUnderConstruction" SoundLink="CreepTumor_Explode"/>
     </CActorUnit>
     <CActorUnit id="ZombieLevel2" parent="GenericBurrowerStandard" unitName="ZombieLevel2">
         <Macros value="ZergBurrowStandardAnimMacro"/>
