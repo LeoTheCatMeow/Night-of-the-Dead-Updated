@@ -1,5 +1,13 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-4-24
+[LeoTheCat]
+- Fixed Pathfinder's Assault Jump range indicator not showing up correctly.
+- Fixed Forward Observer's Gunship shots not invulnerable and thus can be taken down by marines. 
+- Fixed Seth being able to continue attacking cloaked targets once the attack initiates.
+- Trying to fix a rare bug where Chem Expert's Penance fails to cast (may need further investigations).
+- Removed some cast delays on Chem Expert's abilities in hope to fix the above bug.
+
 2021-4-4
 [LeoTheCat]
 <Class Balancing>

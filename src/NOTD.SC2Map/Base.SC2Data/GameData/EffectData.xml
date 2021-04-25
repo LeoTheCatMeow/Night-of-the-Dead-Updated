@@ -152,6 +152,16 @@
         <EditorCategories value=""/>
         <Behavior value="AtrociousBonusRegenBoss"/>
     </CEffectApplyBehavior>
+    <CEffectLaunchMissile id="EnergyTransferLaunchLevel1">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="EnergyTransferApplyLevel1"/>
+        <AmmoUnit value="UltrasonicPulseWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="EnergyTransferLaunchLevel2">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="EnergyTransferApplyLevel2"/>
+        <AmmoUnit value="UltrasonicPulseWeapon"/>
+    </CEffectLaunchMissile>
     <CEffectSet id="VenomandInfectionSet">
         <EditorCategories value=""/>
         <EffectArray value="VenomApplySelfChance"/>

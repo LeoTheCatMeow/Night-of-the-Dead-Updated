@@ -995,9 +995,10 @@
         <Value value="100"/>
         <Vital value="Energy"/>
     </CValidatorUnitCompareVital>
-    <CValidatorUnitCompareBehaviorCount id="TargetHasNotAbsolution">
-        <Behavior value="AbsolutionInvulnerability"/>
-    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="TargetHasNotAbsolution">
+        <CombineArray value="TargethasAbsolution"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="CasterhasAbsolutionSpellBuff">
         <WhichUnit Value="Caster"/>
         <Compare value="GT"/>

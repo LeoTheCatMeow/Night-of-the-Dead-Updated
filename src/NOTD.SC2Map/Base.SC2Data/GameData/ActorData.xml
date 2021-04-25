@@ -759,8 +759,6 @@
     </CActorSound>
     <CActorRange id="AssaultJumpRange" parent="RangeAbil" abil="AssaultJump">
         <FogVisibility value="Visible"/>
-        <CliffLevelFlags index="Lower" value="0"/>
-        <CliffLevelFlags index="Equal" value="0"/>
     </CActorRange>
     <CActorAction id="LaserRifleAttack" parent="GenericAttack" effectAttack="LaserRifleDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
@@ -2158,56 +2156,33 @@
         <On Terms="Effect.ContaminatePersistentLevel2.Start" Send="SetScaleAbsolute 1.330000"/>
         <On Terms="Effect.ContaminatePersistentLevel3.Start" Send="SetScaleAbsolute 1.660000"/>
     </CActorModel>
-    <CActorBeamSimple id="ShrinkerBeamBeam" parent="GenericAttackBeam">
-        <On Terms="ActorCreation" Send="SetTintColor {57,249,82 4.000000}"/>
-        <Model value="ChainLightningBeam"/>
-    </CActorBeamSimple>
-    <CActorModel id="ShrinkerBeamImpact" parent="ModelAnimationStyleOneShot">
-        <Inherits index="Visibility" value="1"/>
-        <On Terms="ActorCreation" Send="SetOpacity 0.800000"/>
-        <On Terms="ActorCreation" Send="SetTintColor {77,255,51 4.000000}"/>
-        <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachCenter"/>
-        <Model value="SurgicalLaserBeamImpact"/>
-    </CActorModel>
-    <CActorAction id="ShrinkerLaunch" parent="GenericAttack" effectAttack="" effectImpact="ShrinkerApplyLevel1" effectLaunch="ShrinkerApplyLevel1">
-        <On index="0" Terms="Effect.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <On index="1" Terms="Effect.Bogus.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
-        <On index="2" Terms="Effect.Bogus.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <On index="4" Terms="Effect.ShrinkerApplyLevel2.Start; At Caster" Send="Create"/>
-        <On index="5" Terms="Effect.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.ShrinkerApplyLevel3.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.Bogus.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.EnergyTransferApplyLevel1.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.EnergyTransferApplyLevel2.Start; At Caster" Send="Create"/>
-        <LaunchSiteOps Ops="SOpAttachWeaponRight"/>
-        <LaunchAttachQuery Methods="AMFilterCenter"/>
-        <LaunchAssets Model="" Sound="SurgicalLaser"/>
-        <Beam value="ShrinkerBeamBeam"/>
-        <Missile value="ShrinkerBeamBeam"/>
-        <ImpactSiteOps Ops="SOpAttachHarnessStationary"/>
-        <ImpactMap index="None" Model="SurgicalLaserBeamImpact" Sound="" ModelReaction="GhostSnipeAttackImpactReaction"/>
-        <ImpactMap index="Dirt" Sound="GhostSnipeAttackImpactDirt" ModelReaction="GhostSnipeAttackImpactReactionDirt"/>
-        <ImpactMap index="Rock" Sound="GhostSnipeAttackImpactRock" ModelReaction="GhostSnipeAttackImpactReactionRock"/>
-        <ImpactMap index="Snow" Sound="GhostSnipeAttackImpactSnow" ModelReaction="GhostSnipeAttackImpactReactionSnow"/>
-        <ImpactMap index="Sand" Sound="GhostSnipeAttackImpactSand" ModelReaction="GhostSnipeAttackImpactReactionSand"/>
-        <ImpactMap index="Water" Sound="GhostSnipeAttackImpactWater" ModelReaction="GhostSnipeAttackImpactReactionWater"/>
-        <ImpactMap index="Flesh" Sound="GhostSnipeAttackImpactFlesh" ModelReaction="GhostSnipeAttackImpactReactionFlesh"/>
-        <ImpactMap index="LightArmor" Sound="GhostSnipeAttackImpactLightArmor" ModelReaction="GhostSnipeAttackImpactReactionLightArmor"/>
-        <ImpactMap index="Metal" Sound="GhostSnipeAttackImpactMetal" ModelReaction="GhostSnipeAttackImpactReactionMetal"/>
-        <ImpactMap index="Shield" Sound="GhostSnipeAttackImpactShield" ModelReaction="GhostSnipeAttackImpactReactionShield"/>
-        <DamageMap index="None" Model="GhostSnipeAttackDamage" Sound="GhostSnipeAttackDamage" ModelReaction="GhostSnipeAttackDamageReaction"/>
-        <DamageMap index="Dirt" Sound="GhostSnipeAttackDamageDirt" ModelReaction="GhostSnipeAttackDamageReactionDirt"/>
-        <DamageMap index="Rock" Sound="GhostSnipeAttackDamageRock" ModelReaction="GhostSnipeAttackDamageReactionRock"/>
-        <DamageMap index="Snow" Sound="GhostSnipeAttackDamageSnow" ModelReaction="GhostSnipeAttackDamageReactionSnow"/>
-        <DamageMap index="Sand" Sound="GhostSnipeAttackDamageSand" ModelReaction="GhostSnipeAttackDamageReactionSand"/>
-        <DamageMap index="Water" Sound="GhostSnipeAttackDamageWater" ModelReaction="GhostSnipeAttackDamageReactionWater"/>
-        <DamageMap index="Flesh" Sound="GhostSnipeAttackDamageFlesh" ModelReaction="GhostSnipeAttackDamageReactionFlesh"/>
-        <DamageMap index="LightArmor" Sound="GhostSnipeAttackDamageLightArmor" ModelReaction="GhostSnipeAttackDamageReactionLightArmor"/>
-        <DamageMap index="Metal" Sound="GhostSnipeAttackDamageMetal" ModelReaction="GhostSnipeAttackDamageReactionMetal"/>
-        <DamageMap index="Shield" Sound="GhostSnipeAttackDamageShield" ModelReaction="GhostSnipeAttackDamageReactionShield"/>
-        <ContainerAssets Model="ShrinkerApplyLevel1BunkerAttackLaunch" Sound="ShrinkerApplyLevel1BunkerAttackLaunch"/>
-        <ImpactModel value="ShrinkerBeamImpact"/>
+    <CActorAction id="EnergyTransferLaunch2" parent="GenericAttack" effectImpact="EnergyTransferApplyLevel1" effectLaunch="EnergyTransferLaunchLevel1">
+        <On Terms="Effect.EnergyTransferLaunchLevel2.Start; At Caster" Send="Create"/>
+        <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
+        <LaunchAssets Model="UltrasonicPulseAttackLaunch" Sound="Spectre_UltrasonicPulseLaunch"/>
+        <Beam value="UltrasonicPulseAttackBeam"/>
+        <Missile value="UltrasonicPulseAttackMissile"/>
+        <ImpactPointSiteOps Ops="SOpTargetPointStationary SOpShadow UltrasonicPulseOffset"/>
+        <ImpactMap index="None" Model="UltrasonicPulseAttackImpact" Sound="UltraSonicPulseImpactSound" ModelReaction="UltrasonicPulseAttackImpactReaction"/>
+        <ImpactMap index="Dirt" Sound="UltrasonicPulseAttackImpactDirt" ModelReaction="UltrasonicPulseAttackImpactReactionDirt"/>
+        <ImpactMap index="Rock" Sound="UltrasonicPulseAttackImpactRock" ModelReaction="UltrasonicPulseAttackImpactReactionRock"/>
+        <ImpactMap index="Snow" Sound="UltrasonicPulseAttackImpactSnow" ModelReaction="UltrasonicPulseAttackImpactReactionSnow"/>
+        <ImpactMap index="Sand" Sound="UltrasonicPulseAttackImpactSand" ModelReaction="UltrasonicPulseAttackImpactReactionSand"/>
+        <ImpactMap index="Water" Sound="UltrasonicPulseAttackImpactWater" ModelReaction="UltrasonicPulseAttackImpactReactionWater"/>
+        <ImpactMap index="Flesh" Sound="UltrasonicPulseAttackImpactFlesh" ModelReaction="UltrasonicPulseAttackImpactReactionFlesh"/>
+        <ImpactMap index="LightArmor" Sound="UltrasonicPulseAttackImpactLightArmor" ModelReaction="UltrasonicPulseAttackImpactReactionLightArmor"/>
+        <ImpactMap index="Metal" Sound="UltrasonicPulseAttackImpactMetal" ModelReaction="UltrasonicPulseAttackImpactReactionMetal"/>
+        <ImpactMap index="Shield" Sound="UltrasonicPulseAttackImpactShield" ModelReaction="UltrasonicPulseAttackImpactReactionShield"/>
+        <DamageMap index="None" Model="UltrasonicPulseAttackDamage" Sound="UltrasonicPulseAttackDamage" ModelReaction="UltrasonicPulseAttackDamageReaction"/>
+        <DamageMap index="Dirt" Sound="UltrasonicPulseAttackDamageDirt" ModelReaction="UltrasonicPulseAttackDamageReactionDirt"/>
+        <DamageMap index="Rock" Sound="UltrasonicPulseAttackDamageRock" ModelReaction="UltrasonicPulseAttackDamageReactionRock"/>
+        <DamageMap index="Snow" Sound="UltrasonicPulseAttackDamageSnow" ModelReaction="UltrasonicPulseAttackDamageReactionSnow"/>
+        <DamageMap index="Sand" Sound="UltrasonicPulseAttackDamageSand" ModelReaction="UltrasonicPulseAttackDamageReactionSand"/>
+        <DamageMap index="Water" Sound="UltrasonicPulseAttackDamageWater" ModelReaction="UltrasonicPulseAttackDamageReactionWater"/>
+        <DamageMap index="Flesh" Sound="UltrasonicPulseAttackDamageFlesh" ModelReaction="UltrasonicPulseAttackDamageReactionFlesh"/>
+        <DamageMap index="LightArmor" Sound="UltrasonicPulseAttackDamageLightArmor" ModelReaction="UltrasonicPulseAttackDamageReactionLightArmor"/>
+        <DamageMap index="Metal" Sound="UltrasonicPulseAttackDamageMetal" ModelReaction="UltrasonicPulseAttackDamageReactionMetal"/>
+        <DamageMap index="Shield" Sound="UltrasonicPulseAttackDamageShield" ModelReaction="UltrasonicPulseAttackDamageReactionShield"/>
     </CActorAction>
     <CActorUnit id="ArmageddonBomb" parent="GenericUnitStandard" unitName="ArmageddonBomb">
         <On Terms="ActorCreation" Send="AnimBracketStart $BSD Stand,Work {} {} ContentPlayOnce"/>
@@ -2737,11 +2712,11 @@
         <On Terms="Abil.Contaminate2.SourceCastStart" Send="AnimBracketStart Contaminate Attack,Right {} {} ContentPlayOnce"/>
         <On Terms="Abil.Contaminate2.SourceCastStart" Send="AnimSetTimeScale Contaminate 2.500000"/>
         <On Terms="Abil.Shrinker.SourcePrepStart" Send="AnimBracketStart Shrinker {} Attack,Right {} ContentPlayOnce"/>
-        <On Terms="Abil.Shrinker.SourceCastStop" Send="AnimBracketStop Shrinker"/>
+        <On Terms="Abil.Shrinker.TargetCastStop" Send="AnimBracketStop Shrinker"/>
         <On Terms="Abil.Penance.SourcePrepStart" Send="AnimBracketStart Shrinker {} Attack,Right {} ContentPlayOnce"/>
         <On Terms="Abil.Penance.TargetCastStop" Send="AnimBracketStop Shrinker"/>
         <On Terms="Abil.EnergyTransfer.SourcePrepStart" Send="AnimBracketStart Shrinker {} Attack,Right {} ContentPlayOnce"/>
-        <On Terms="Abil.EnergyTransfer.SourceCastStop" Send="AnimBracketStop Shrinker"/>
+        <On Terms="Abil.EnergyTransfer.TargetCastStop" Send="AnimBracketStop Shrinker"/>
         <On Terms="UnitBirth.ChemicalExpert" Send="Create"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Reload"/>
         <On Terms="WeaponStart.*.AttackStart" Send="AnimPlay BSD Attack"/>

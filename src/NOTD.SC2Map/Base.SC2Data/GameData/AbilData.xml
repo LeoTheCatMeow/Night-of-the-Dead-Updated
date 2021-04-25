@@ -397,7 +397,7 @@
         </Cost>
         <TargetFilters value="-;Robotic,Mechanical,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Buried,UnderConstruction,Dead"/>
         <Range value="5"/>
-        <PrepTime value="0.5"/>
+        <PrepTime value="0"/>
         <UninterruptibleArray index="Prep" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <LevelButtonTooltip value="Level 2 Energy Transfer"/>
@@ -1616,7 +1616,7 @@
         </Cost>
         <TargetFilters value="-;Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Hidden"/>
         <Range value="8"/>
-        <PrepTime value="0.5"/>
+        <PrepTime value="0"/>
         <UninterruptibleArray index="Prep" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Channel" value="1"/>
@@ -2187,7 +2187,7 @@
         </Cost>
         <TargetFilters value="-;Structure,RawResource,HarvestableResource,Missile,Destructible,Item,Buried,UnderConstruction,Dead"/>
         <Range value="5"/>
-        <PrepTime value="0.5"/>
+        <PrepTime value="0"/>
         <UninterruptibleArray index="Prep" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <LevelButtonTooltip value="Level 2 Shrinker"/>
