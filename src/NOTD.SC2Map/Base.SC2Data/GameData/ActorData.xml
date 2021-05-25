@@ -186,9 +186,15 @@
         <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 0,202,0 0,206,0"/>
         <On Terms="Behavior.AcidicBoss.On" Send="Create"/>
         <On Terms="Behavior.AcidicBoss.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="Corrosion" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
         <On Terms="Behavior.Corrosion2.On" Send="Create"/>
         <On Terms="Behavior.Corrosion2.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="Acidic"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
     <CActorUnit id="AcidicDeathPuddle" parent="GenericUnitStandard" unitName="AcidCloud">

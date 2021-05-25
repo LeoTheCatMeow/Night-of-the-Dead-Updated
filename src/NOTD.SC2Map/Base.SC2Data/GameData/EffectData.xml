@@ -107,6 +107,10 @@
         <Chance value="0.15"/>
         <Behavior value="Corrosion2"/>
     </CEffectApplyBehavior>
+    <CEffectUseMagazine id="LaunchScourge">
+        <EditorCategories value="Race:Zerg"/>
+        <MagazineAbil value="ScourgeHangar"/>
+    </CEffectUseMagazine>
     <CEffectDamage id="DeadlyDescendDamageNightmare" parent="DU_WEAP_MISSILE">
         <ValidatorArray value="IsNightmare"/>
         <EditorCategories value="Race:Zerg"/>
@@ -124,6 +128,12 @@
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
     </CEffectDamage>
+    <CEffectEnumArea id="CorrosiveBileCorrosionSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="2.25" Effect="AcidCorrosionApply"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectEnumArea>
     <CEffectDamage id="DeafeningBlastDamageNightmare" parent="DU_WEAP_MISSILE">
         <ValidatorArray value="IsNightmare"/>
         <EditorCategories value="Race:Zerg"/>
@@ -140,8 +150,39 @@
         <Flags index="NoTakenMaximum" value="1"/>
         <Flags index="NoTakenMinimum" value="1"/>
         <Kind value="Spell"/>
-        <Amount value="125"/>
+        <Amount value="135"/>
     </CEffectDamage>
+    <CEffectDamage id="KorhalSporeCannonBombardmentDamage">
+        <AttributeBonus index="Structure" value="0"/>
+        <ArmorReduction value="2.5"/>
+        <Kind value="Ranged"/>
+        <Amount value="60"/>
+        <AreaArray index="0" Radius="1"/>
+        <AreaArray index="1" Radius="1.75" Fraction="0.75"/>
+        <AreaArray index="2" Radius="2.25" Fraction="0.5"/>
+        <SearchFilters value="Ground;Self,Missile,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="KorhalSporeCannonBombardmentLaunchMissile">
+        <ImpactEffect value="CorrosiveBileSet"/>
+    </CEffectLaunchMissile>
+    <CEffectModifyUnit id="NanosteelNetLiftHighflying">
+        <ValidatorArray value="TargetisSahaquiel"/>
+        <EditorCategories value=""/>
+        <Marker Link="Effect/NanosteelNetLower"/>
+        <Height value="5"/>
+        <HeightTime value="0.5"/>
+    </CEffectModifyUnit>
+    <CEffectSet id="NanosteelNetLiftSet">
+        <EditorCategories value=""/>
+        <EffectArray value="NanosteelNetLift"/>
+        <EffectArray value="NanosteelNetLiftHighflying"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="NanosteelNetLowerHighflying">
+        <ValidatorArray value="TargetisSahaquiel"/>
+        <EditorCategories value=""/>
+        <Height value="-5"/>
+        <HeightTime value="0.5"/>
+    </CEffectModifyUnit>
     <CEffectSet id="ScourgeBiteSet">
         <EditorCategories value=""/>
         <EffectArray value="ScourageBiteDamage"/>
@@ -180,7 +221,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="0"/>
         <Visibility value="Visible"/>
-        <Amount value="75"/>
+        <Amount value="85"/>
         <ValidatorArray value="IsNotNightmare"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
@@ -252,7 +293,7 @@
     </CEffectSet>
     <CEffectDamage id="AcidSporesFifthBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
-        <ArmorReduction value="2"/>
+        <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
         <Amount value="60"/>
     </CEffectDamage>
@@ -272,7 +313,7 @@
     </CEffectEnumArea>
     <CEffectDamage id="AcidSporesSecondBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
-        <ArmorReduction value="2"/>
+        <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
         <Amount value="39"/>
     </CEffectDamage>
@@ -292,7 +333,7 @@
     </CEffectLaunchMissile>
     <CEffectDamage id="AcidSporesFourthBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
-        <ArmorReduction value="2"/>
+        <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
         <Amount value="53"/>
     </CEffectDamage>
@@ -304,7 +345,7 @@
     </CEffectSet>
     <CEffectDamage id="AcidSporesThirdBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
-        <ArmorReduction value="2"/>
+        <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
         <Amount value="46"/>
     </CEffectDamage>
@@ -327,7 +368,7 @@
     </CEffectDamage>
     <CEffectDamage id="AcidSporesFirstBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
-        <ArmorReduction value="2"/>
+        <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
         <Amount value="32"/>
     </CEffectDamage>
@@ -424,8 +465,8 @@
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="DeadlyDescendIncreaseHeight">
         <EditorCategories value=""/>
-        <Height value="1"/>
-        <HeightTime value="0.2"/>
+        <Height value="5"/>
+        <HeightTime value="1"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="DeadlyDescendVulnerability">
         <EditorCategories value=""/>
@@ -433,8 +474,8 @@
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="DeadlyDescendDropHeight">
         <EditorCategories value=""/>
-        <Height value="-2.5"/>
-        <HeightTime value="0.1"/>
+        <Height value="-5"/>
+        <HeightTime value="0.2"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="DeadlyDescendRecovery">
         <EditorCategories value=""/>
@@ -442,17 +483,8 @@
     <CEffectSet id="CorrosiveBileSet">
         <EditorCategories value=""/>
         <EffectArray value="KorhalSporeCannonBombardmentDamage"/>
-        <EffectArray value="AcidCorrosionApply"/>
+        <EffectArray value="CorrosiveBileCorrosionSearch"/>
     </CEffectSet>
-    <CEffectDamage id="KorhalSporeCannonBombardmentDamage">
-        <AttributeBonus index="Structure" value="0"/>
-        <ArmorReduction value="1.5"/>
-        <AreaArray index="0" Radius="1"/>
-        <AreaArray index="1" Radius="1.75" Fraction="0.75"/>
-        <AreaArray index="2" Radius="2.25" Fraction="0.5"/>
-        <SearchFilters value="Ground;Self,Missile,Dead,Hidden,Invulnerable"/>
-        <Kind value="Ranged"/>
-    </CEffectDamage>
     <CEffectDamage id="PrismaticBeamMUx1">
         <ValidatorArray value="NotItem"/>
         <AttributeBonus index="Light" value="4"/>
@@ -502,10 +534,11 @@
     <CEffectEnumArea id="SearchScourgeTargets">
         <EditorCategories value=""/>
         <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="16" Effect="CarrierInterceptor"/>
-        <MaxCount value="4"/>
-        <TargetSorts RequestCount="4">
-            <SortArray value="TSDistanceToTargetFartoClose"/>
+        <AreaArray Radius="18" Effect="CarrierInterceptor"/>
+        <MaxCount value="1"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSRandom"/>
+            <SortArray value="TSFarthestDistance"/>
         </TargetSorts>
     </CEffectEnumArea>
     <CEffectSet id="VenomandInfectionSet">
@@ -3632,6 +3665,7 @@
     </CEffectModifyUnit>
     <CEffectModifyUnit id="NanosteelNetLift">
         <ValidatorArray value="TargetIsAir"/>
+        <ValidatorArray value="TargetIsNotSahaquiel"/>
         <EditorCategories value=""/>
         <Marker Link="Effect/NanosteelNetLower"/>
         <Height value="3"/>
@@ -6580,8 +6614,9 @@
     </CEffectLaunchMissile>
     <CEffectModifyUnit id="NanosteelNetLower">
         <ValidatorArray value="TargetIsAir"/>
+        <ValidatorArray value="TargetIsNotSahaquiel"/>
         <EditorCategories value=""/>
-        <Height value="-5"/>
+        <Height value="-3"/>
         <HeightTime value="0.5"/>
     </CEffectModifyUnit>
     <CEffectEnumArea id="NanosteelNetSearchLevel1">
@@ -6608,18 +6643,21 @@
         <EditorCategories value=""/>
         <EffectArray value="NanosteelNetSearchLevel1"/>
         <EffectArray value="NanosteelNetLower"/>
+        <EffectArray value="NanosteelNetLowerHighflying"/>
     </CEffectSet>
     <CEffectSet id="NanosteelNetSetInitialLevel2">
         <EditorCategories value=""/>
         <Marker Link="Effect/NanosteelNetSetInitialLevel1"/>
         <EffectArray value="NanosteelNetSearchLevel2"/>
         <EffectArray value="NanosteelNetLower"/>
+        <EffectArray value="NanosteelNetLowerHighflying"/>
     </CEffectSet>
     <CEffectSet id="NanosteelNetSetInitialLevel3">
         <EditorCategories value=""/>
         <Marker Link="Effect/NanosteelNetSetInitialLevel1"/>
         <EffectArray value="NanosteelNetSearchLevel3"/>
         <EffectArray value="NanosteelNetLower"/>
+        <EffectArray value="NanosteelNetLowerHighflying"/>
     </CEffectSet>
     <CEffectDamage id="PlasmaCutterOverchargeLevel1Damage">
         <EditorCategories value=""/>

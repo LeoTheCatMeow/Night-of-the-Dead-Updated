@@ -1004,6 +1004,13 @@
         <Compare value="GT"/>
         <Behavior value="AbsolutionSpellBuff"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitType id="TargetisSahaquiel">
+        <Value value="Sahaquiel"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="TargetIsNotSahaquiel">
+        <Value value="Sahaquiel"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
     <CValidatorUnitCompareBehaviorCount id="TargethasAbsolution">
         <Compare value="GT"/>
         <Behavior value="AbsolutionInvulnerability"/>

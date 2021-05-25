@@ -1342,8 +1342,8 @@
         <Attributes index="Massive" value="1"/>
         <Attributes index="Heroic" value="1"/>
         <Attributes index="MapBoss" value="1"/>
-        <LifeStart value="40000"/>
-        <LifeMax value="40000"/>
+        <LifeStart value="37500"/>
+        <LifeMax value="37500"/>
         <LifeArmor value="3"/>
         <LifeRegenRate value="3"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
@@ -1352,7 +1352,7 @@
         <Acceleration value="100"/>
         <StationaryTurningRate value="135"/>
         <TurningRate value="135"/>
-        <Sight value="15"/>
+        <Sight value="18"/>
         <Height value="5"/>
         <VisionHeight value="4"/>
         <Food value="-10"/>
@@ -1386,6 +1386,7 @@
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <GlossaryPriority value="200"/>
         <KillXP value="50"/>
+        <AttackTargetPriority value="20"/>
     </CUnit>
     <CUnit id="HyperionYamatoSpecialWeapon">
         <FlagArray index="Invulnerable" value="1"/>
@@ -2096,16 +2097,18 @@
         <EditorCategories value=""/>
     </CUnit>
     <CUnit id="Scourge">
-        <LifeStart value="85"/>
-        <LifeMax value="85"/>
+        <LifeStart value="90"/>
+        <LifeMax value="90"/>
         <LifeRegenRate value="1"/>
-        <Speed value="3"/>
+        <Speed value="2.75"/>
         <Sight value="5"/>
         <Food value="0"/>
         <CostResource index="Minerals" value="0"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
-        <BehaviorArray Link="TauntImmunity"/>
         <WeaponArray index="0" Link="ScourgeBite"/>
+        <DefaultAcquireLevel value="None"/>
+        <Response value="Nothing"/>
+        <Height value="3"/>
     </CUnit>
     <CUnit id="SynchronizationModule" parent="ITEM">
         <Race value="Terr"/>
