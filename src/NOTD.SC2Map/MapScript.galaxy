@@ -17666,12 +17666,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitCreateEffectPoint(UnitFromId(1176968664), "CorrosiveBilePersistent", UnitGetPosition(gv_marineHero[1]));
     return true;
 }
 
