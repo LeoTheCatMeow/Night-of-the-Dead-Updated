@@ -25,6 +25,16 @@
         <AssetArray index="0" removed="1"/>
     </CSound>
     <CSound id="Brutalisk_Explode2" parent="Zerg_ExplosionLarge"/>
+    <CSound id="Colossus_Explode_Legs_Impact">
+        <AssetArray index="0" Volume="6.000000,6.000000"/>
+        <AssetArray index="1" removed="1"/>
+        <AssetArray index="2" removed="1"/>
+    </CSound>
+    <CSound id="Kraith_Vox_ChargePreCast">
+        <AssetArray index="0" File="Assets\Sounds\Kraith_Vox_Charge_2.wav" Pitch="-2.740000,-2.740000" Volume="6.000000,6.000000"/>
+        <AssetArray index="1" removed="1"/>
+        <AssetArray index="2" removed="1"/>
+    </CSound>
     <CSound id="Medivac_HealLoop">
         <Volume value="-15.000000,-15.000000"/>
     </CSound>
@@ -42,6 +52,14 @@
         <DupeDestroyCount value="5"/>
         <Pitch value="-6.000000,-5.000000"/>
         <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="CorrosiveBileMarkerSound" parent="Combat">
+        <EditorCategories value="Race:Zerg"/>
+        <AssetArray File="Assets\Sounds\Ravager_Impact_05.wav" Volume="3.000000,3.000000" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Ravager_Impact_06.wav" Volume="3.000000,3.000000" FacialGroup=""/>
+        <DupeMaximumMethod value="Replace"/>
+        <DupePrioritization value="Oldest"/>
+        <Pitch value="2.000000,4.000000"/>
     </CSound>
     <CSound id="Raven_HunterSeekerLaunch">
         <DupeDestroyCount value="3"/>

@@ -83,6 +83,61 @@
         <MoveFilters value="-;Player,Ally,Neutral,Enemy"/>
         <MoveSmartPriority value="0"/>
     </CAbilMove>
+    <CAbilEffectInstant id="DeafeningBlast">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="DeafeningBlastChargeUp"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="BestUnit" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="2"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="DeafeningBlast"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="ReleaseScourge">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="SearchScourgeTargets"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="BestUnit" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1.5"/>
+        </Cost>
+        <AutoCastRange value="15"/>
+        <AutoCastValidatorArray value="CasterNotStunned"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ReleaseScourge"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="DeadlyDescend">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="DeadlyDescendChargeUp"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="BestUnit" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="2"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="DeadlyDescend"/>
+    </CAbilEffectInstant>
+    <CAbilArmMagazine id="ScourgeHangar">
+        <AbilSetId value="CarrierHanger"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="Transient" value="1"/>
+        <Leash value="15"/>
+        <InfoArray index="Ammo1" Count="4" Manage="Recall" Unit="Scourge">
+            <Charge Link="CarrierInterceptor" Location="Unit"/>
+            <Cooldown Link="Abil/##id##"/>
+            <Button DefaultButtonFace="PrepareScourge">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Flags index="AutoBuild" value="1"/>
+            <Flags index="LeashRetarget" value="1"/>
+        </InfoArray>
+        <Alert value="TrainComplete"/>
+        <EffectArray index="Death" value="InterceptorFate"/>
+        <MaxCount value="12"/>
+    </CAbilArmMagazine>
     <CAbilEffectInstant id="MakeExplosives">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" removed="1"/>
@@ -910,10 +965,10 @@
         <Effect index="0" value="ShivaLaunchMissile"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Cooldown TimeUse="20"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
         </Cost>
         <TargetFilters value="-;-"/>
-        <Range value="100"/>
+        <Range value="50"/>
         <AutoCastFilters value="-;Player,Ally"/>
         <PrepTime value="1"/>
         <CastIntroTime value="0.2"/>
@@ -922,7 +977,7 @@
         <UninterruptibleArray index="Channel" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
         <CursorEffect value="ShivaSearchDamage"/>
-        <EffectRange index="0" value="10,500"/>
+        <EffectRange index="0" value="20,500"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Shiva"/>
         <FollowRange value="100"/>
     </CAbilEffectTarget>

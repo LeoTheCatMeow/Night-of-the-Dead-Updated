@@ -166,6 +166,18 @@
         <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
     </CActorModel>
     <CActorMissile id="AcidMissile" parent="GenericAttackMissile" unitName="AcidMissile"/>
+    <CActorSite id="AcidSporesFirstBounceImpactSite">
+        <HostSiteOps HoldRotation="1"/>
+    </CActorSite>
+    <CActorSite id="AcidSporesSecondBounceImpactSite">
+        <HostSiteOps HoldRotation="1"/>
+    </CActorSite>
+    <CActorSite id="AcidSporesThirdBounceImpactSite">
+        <HostSiteOps HoldRotation="1"/>
+    </CActorSite>
+    <CActorSite id="AcidSporesFourthBounceImpactSite">
+        <HostSiteOps HoldRotation="1"/>
+    </CActorSite>
     <CActorModel id="Acidic" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
         <On Terms="Behavior.Acidic.On" Send="Create"/>
@@ -174,6 +186,8 @@
         <On Terms="ActorCreation" Target="::Host" Send="SetTeamColor 0,202,0 0,206,0"/>
         <On Terms="Behavior.AcidicBoss.On" Send="Create"/>
         <On Terms="Behavior.AcidicBoss.Off" Send="Destroy"/>
+        <On Terms="Behavior.Corrosion2.On" Send="Create"/>
+        <On Terms="Behavior.Corrosion2.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
@@ -196,6 +210,14 @@
         <On Terms="Effect.ApoptosisBloodWave.Start; PassChance 10.000000" Send="Create"/>
         <Sound value="Mutalisk_Attack"/>
     </CActorSound>
+    <CActorModel id="BioBombardmentMode" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.BioBombardmentMode.On" Send="Create"/>
+        <On Terms="Behavior.BioBombardmentMode.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachHead SOpRot90XLocal"/>
+        <Scale value="1.200000"/>
+    </CActorModel>
     <CActorModel id="CIAmmoAnimation" parent="ModelAnimationStyleContinuous">
         <Inherits index="Visibility" value="1"/>
         <EditorCategories value=""/>
@@ -206,6 +228,72 @@
         <Model value="ChemicalVulnerability"/>
         <Scale value="0.500000"/>
     </CActorModel>
+    <CActorModel id="DeadlyDescendChargeUp" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.DeadlyDescendChargeUp.On" Send="Create"/>
+        <On Terms="Behavior.DeadlyDescendChargeUp.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor {232,0,0 2.000000}"/>
+        <Model value="ChargeUp"/>
+    </CActorModel>
+    <CActorModel id="DeafeningBlastChargeUp" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.DeafeningBlastChargeUp.On" Send="Create"/>
+        <On Terms="Behavior.DeafeningBlastChargeUp.Off" Send="Destroy"/>
+        <On Terms="ActorDestruction" Send="SetTintColor {255,255,128 1.500000}"/>
+        <Model value="ChargeUp"/>
+    </CActorModel>
+    <CActorSound id="ChargeUpSound" parent="SoundContinuous">
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <InheritType value="OneShot"/>
+        <EditorCategories value=""/>
+        <Supporter Subject=""/>
+        <On index="1" Terms="Behavior.DeadlyDescendChargeUp.On" Send="Create"/>
+        <On index="2" Terms="Behavior.DeadlyDescendChargeUp.Off" Send="Destroy"/>
+        <On Terms="Behavior.DeafeningBlastChargeUp.On" Send="Create"/>
+        <On Terms="Behavior.DeafeningBlastChargeUp.Off" Send="Destroy"/>
+        <Sound value="Kraith_Vox_ChargePreCast"/>
+    </CActorSound>
+    <CActorModel id="CorrosiveBileMarker" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.CorrosiveBilePersistent.Start" Send="Create"/>
+        <On Terms="Effect.CorrosiveBilePersistent.Stop" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor {0,255,64 3.000000}"/>
+        <VisibleTo index="All" value="1"/>
+        <FogVisibility value="Visible"/>
+    </CActorModel>
+    <CActorModel id="DeadlyDescendImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.DeadlyDescend.Off" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps HoldPosition="1" HoldRotation="1"/>
+    </CActorModel>
+    <CActorSound id="CorrosiveBileMarkerSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.CorrosiveBilePersistent.Start" Send="Create"/>
+    </CActorSound>
+    <CActorModel id="DeafeningBlastImapct" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.DeafeningBlastSearch.Start" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps HoldPosition="1" HoldRotation="1"/>
+        <Model value="DeafeningBlastImpact"/>
+        <Scale value="3.000000"/>
+    </CActorModel>
+    <CActorModel id="DeadlyDescendImpactSmoke" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.DeadlyDescend.Off" Send="Create"/>
+        <Scale value="2.000000"/>
+    </CActorModel>
+    <CActorSound id="DeadlyDescendImpactSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.DeadlyDescend.Off" Send="Create"/>
+        <Sound value="Colossus_Explode_Legs_Impact"/>
+    </CActorSound>
+    <CActorSound id="DeafeningBlastSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.DeafeningBlastSearch.Start" Send="Create"/>
+        <Sound value="PsiDecimator_DieExplosion"/>
+    </CActorSound>
     <CActorModel id="EnergyCapacitorBuff" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Birth Death ContentForceLooping"/>
@@ -224,6 +312,68 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Scale value="1.700000"/>
     </CActorModel>
+    <CActorAction id="FirstBounceAttack" parent="GenericAttack" effectImpact="AcidSporesFirstBounceDamage" effectLaunch="AcidSporesFirstBounceLaunch">
+        <LaunchRequest Subject="AcidSporesInitialImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Corruptor_AttackLaunch"/>
+        <Missile value="GuardianAttackMissile"/>
+        <ImpactSite value="AcidSporesFirstBounceImpactSite"/>
+        <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
+    </CActorAction>
+    <CActorSite id="AcidSporesInitialImpactSite">
+        <HostSiteOps HoldRotation="1"/>
+    </CActorSite>
+    <CActorAction id="AcidSporesFifthBounceAttack" parent="GenericAttack" effectImpact="AcidSporesFifthBounceDamage" effectLaunch="AcidSporesFifthBounceLaunch">
+        <LaunchRequest Subject="AcidSporesFourthBounceImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Corruptor_AttackLaunch"/>
+        <Missile value="GuardianAttackMissile"/>
+        <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
+    </CActorAction>
+    <CActorSiteOpRotationExplicit id="SOpRot90XLocal">
+        <EditorCategories value=""/>
+        <Forward value="0.000000,1.000000,0.000000"/>
+        <Up value="-1.000000,0.000000,0.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorModel id="SahaquielDeath" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.Sahaquiel" Send="Create"/>
+        <Model value="GuardianDeath"/>
+        <Scale value="2.200000"/>
+    </CActorModel>
+    <CActorAction id="GuardianAttack">
+        <ImpactSite value="AcidSporesInitialImpactSite"/>
+    </CActorAction>
+    <CActorMissile id="GuardianAttackMissile"/>
+    <CActorAction id="AcidSporesSecondBounceAttack" parent="GenericAttack" effectImpact="AcidSporesSecondBounceDamage" effectLaunch="AcidSporesSecondBounceLaunch">
+        <LaunchRequest Subject="AcidSporesFirstBounceImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Corruptor_AttackLaunch"/>
+        <Missile value="GuardianAttackMissile"/>
+        <ImpactSite value="AcidSporesSecondBounceImpactSite"/>
+        <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
+    </CActorAction>
+    <CActorUnit id="Sahaquiel" parent="GenericUnitStandard" unitName="Sahaquiel">
+        <Aliases value="_UnitLarge"/>
+        <On Terms="Behavior.DeadlyDescend.On" Send="AnimPlay Cover Birth PlayForever,NonLooping -1.000000 -1.000000 1.000000 AsDuration"/>
+        <On Terms="Behavior.DeadlyDescendRecovery.On" Send="AnimClear Cover"/>
+        <HostSiteOps Ops="SOpBankerBroodLord"/>
+        <Model value="Guardian"/>
+        <Scale value="2.200000"/>
+        <Baselines index="Stand" BlendIn="1.000000" BlendOut="1.000000"/>
+        <Baselines index="Walk" BlendIn="1.000000" BlendOut="1.000000"/>
+        <BuildModel value="Guardian"/>
+        <DeathArray index="Normal" ModelLink="" SoundLink="Zerg_ExplosionMedium" VoiceLink="Corruptor_Death"/>
+        <PlacementModel value="Guardian"/>
+        <PortraitModel value="PrimalGuardianPortrait"/>
+        <BarOffset value="60"/>
+        <BarWidth value="100"/>
+        <HeroIcon value="Assets\Textures\btn-unit-zerg-primalguardian.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level0.dds"/>
+        <NameOffset value="80"/>
+        <UnitIcon value="Assets\Textures\btn-unit-zerg-primalguardian.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Zerg-BroodLord.dds"/>
+        </Wireframe>
+    </CActorUnit>
     <CActorAction id="HailstormMissileVolley" effectImpact="ImpactSet">
         <On index="1" Terms="Effect.ImpactSet.Start; FromEffectTreeDescendant"/>
         <On index="2" Terms="Effect.ImpactSet.Stop; FromEffectTreeDescendant"/>
@@ -347,6 +497,19 @@
             <Image value="Assets\Textures\Wireframe-Terran-D8Charge.dds"/>
         </Wireframe>
     </CActorUnit>
+    <CActorAction id="AcidSporesThirdBounceAttack" parent="GenericAttack" effectImpact="AcidSporesThirdBounceDamage" effectLaunch="AcidSporesThirdBounceLaunch">
+        <LaunchRequest Subject="AcidSporesSecondBounceImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Corruptor_AttackLaunch"/>
+        <Missile value="GuardianAttackMissile"/>
+        <ImpactSite value="AcidSporesThirdBounceImpactSite"/>
+        <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
+    </CActorAction>
+    <!--                                                                                         -->
+    <!-- Scourge .............................................................................. -->
+    <!--                                                                                         -->
+    <CActorUnit id="Scourge">
+        <Scale value="0.800000"/>
+    </CActorUnit>
     <CActorSplat id="SupplyStationCursorSplat" parent="ProtossCursorSplat">
         <EditorCategories value=""/>
         <On index="0" Terms="Abil.SupplyStation.Cursor" Send="Create"/>
@@ -356,6 +519,13 @@
         <On Terms="Behavior.MissileTargetLock.On" Send="Create"/>
         <Sound value="Raven_HunterSeekerLaunch"/>
     </CActorSound>
+    <CActorAction id="AcidSporesFourthBounceAttack" parent="GenericAttack" effectImpact="AcidSporesFourthBounceDamage" effectLaunch="AcidSporesFourthBounceLaunch">
+        <LaunchRequest Subject="AcidSporesThirdBounceImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Corruptor_AttackLaunch"/>
+        <Missile value="GuardianAttackMissile"/>
+        <ImpactSite value="AcidSporesFourthBounceImpactSite"/>
+        <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
+    </CActorAction>
     <CActorRange id="VRLRange" parent="RangeAbil" abil="VRL772"/>
     <CActorModel id="SurgicalStrikeEffect" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -4531,6 +4701,14 @@
         <DamageMap index="Metal" Sound="MutaliskAttackSegment3DamageMetal" ModelReaction="MutaliskAttackSegment3DamageReactionMetal"/>
         <DamageMap index="Shield" Sound="MutaliskAttackSegment3DamageShield" ModelReaction="MutaliskAttackSegment3DamageReactionShield"/>
     </CActorAction>
+    <CActorSound id="VileStreamLaunchSound">
+        <On Terms="Effect.VileStream.Start" Send="Create"/>
+        <Sound value="SS_SwarmGuardianAttackLaunch"/>
+    </CActorSound>
+    <CActorSound id="VileStreamLoopSound">
+        <On Terms="Effect.VileStream.Start" Send="Create"/>
+        <On Terms="Effect.VileStream.Stop" Send="Destroy"/>
+    </CActorSound>
     <CActorRange id="VolatileInjectionRange" parent="RangeAbil" abil="VolatileInjection"/>
     <CActorRange id="SurgicalLaserRange" parent="RangeAbil" abil="SurgicalLaser"/>
     <CActorRange id="PrecisionShotRange" parent="RangeAbil" abil="PrecisionShot">
@@ -5483,9 +5661,9 @@
         <On Terms="Effect.ShivaSearchDamage.Start" Send="Create"/>
         <Sound value="ShivaBlast"/>
     </CActorSound>
-    <CActorSplat id="ShivaCursorRange" parent="TerranCursorSplat" abil="CounterMeasures">
-        <On index="0" Terms="Abil.Shiva.Cursor" Send="Create"/>
+    <CActorSplat id="ShivaCursorRange" parent="TerranCursorSplat" abil="Shiva">
         <Scale value="5.000000"/>
+        <Model value="nukeCursorSplat"/>
     </CActorSplat>
     <CActorUnit id="DrGunjan" parent="GenericUnitStandard" unitName="DrGunjan">
         <On Terms="UnitPortrait.*.Customize; ModelVariation 2" Send="PortraitCustomize Scientist2Portrait"/>
@@ -6457,8 +6635,7 @@
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} OpeningPlayForever"/>
         <On Terms="Effect.ShivaChemicalPersistent.Start" Send="Create"/>
         <On Terms="Effect.ShivaChemicalPersistent.Stop" Send="Destroy"/>
-        <Model value="TauntAnimation"/>
-        <Scale value="15.000000"/>
+        <Scale value="11.000000"/>
     </CActorModel>
     <CActorAction id="VenomousAttack" parent="GenericAttack" effectImpact="ApplyVenomousExplosion" effectLaunch="VenomousAlgaeLaunchMissile">
         <LaunchAttachQuery Methods="Head"/>
@@ -15610,6 +15787,12 @@
         <On Terms="Behavior.VRL772Stun.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Behavior.ArmageddonStun.On" Send="Create"/>
         <On Terms="Behavior.ArmageddonStun.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.SahaquielsFuryStun.On" Send="Create"/>
+        <On Terms="Behavior.SahaquielsFuryStun.Off" Send="Destroy"/>
+        <On Terms="Behavior.SahaquielsWrathStun.On" Send="Create"/>
+        <On Terms="Behavior.SahaquielsWrathStun.Off" Send="Destroy"/>
+        <On Terms="Behavior.AfterDescendVulnerability.On" Send="Create"/>
+        <On Terms="Behavior.AfterDescendVulnerability.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
     </CActorModel>
     <CActorModel id="NanoShockStun" parent="ModelAnimationStyleContinuous">

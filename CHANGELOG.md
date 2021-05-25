@@ -1,5 +1,14 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-5-25
+[LeoTheCat]
+- Fixed M5 Pulse Rifle not displaying its splash modification on the tooltip.
+- Survival Infantry & Bot waves now no longer share vision with zombies (requested by Outbreak mode tryhards).
+- Demo's sentinel mines are made invulnerable again (some players find them die too easily).
+- Lowered the rendering priority of the boss bar so that it is less likely to block the pause UI (may still need more work).
+- Added a new optional mission in the central square, featuring a new boss - Sahaquiel. 
+- Added Shiva back into the game as a possible drop from Sahaquiel on Nightmare, with stats & damage tuned down.
+
 2021-4-24
 [LeoTheCat]
 - Fixed Pathfinder's Assault Jump range indicator not showing up correctly.

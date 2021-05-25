@@ -912,6 +912,9 @@ unit gv_zeus;
 unit gv_leto;
 int gv_zeusLetoRespawnCount;
 int gv_zeusLetoLives;
+unitgroup gv_centralSquareMobs;
+bool gv_centralSquareReached;
+unit gv_sahaquiel;
 int gv_oMPerformanceTimer;
 int gv_oMCount;
 int gv_oMCount2;
@@ -1496,6 +1499,7 @@ void InitGlobals () {
     }
     gv_mineShaftMobs = UnitGroupEmpty();
     gv_zeusLetoLives = 2;
+    gv_centralSquareMobs = UnitGroupEmpty();
     gv_bossBar.lv_bossBarFrame = c_invalidDialogControlId;
     gv_bossBar.lv_bossBarStatusFrame = c_invalidDialogControlId;
     gv_bossBar.lv_bossBarNameLabel = c_invalidDialogControlId;
@@ -2019,6 +2023,8 @@ bool gf_PreCinematicProcessing ();
 bool gf_PostCinematicProcessing ();
 void gf_MineBossSeth ();
 void gf_MineBossZeusLeto ();
+void gf_CentralSquareBossSahaquiel ();
+void gf_SahaquielScourgeSpawn ();
 void gf_StartBossFight (unit lp_bossUnit, int lp_usePing);
 void gf_EndBossFight ();
 void gf_SetBossforBossBar (unit lp_boss);
@@ -2302,6 +2308,8 @@ trigger gt_ZeusLetoAI;
 trigger gt_ZeusLetoRespawn;
 trigger gt_ZeusLetoHardenedCarapace;
 trigger gt_MineBossKill;
+trigger gt_CentralSquare;
+trigger gt_CentralSquareBossKilled;
 trigger gt_OM1EnterCommTower;
 trigger gt_OM1DownloadCycle;
 trigger gt_OM1DownloadComplete;
@@ -4899,6 +4907,10 @@ void gf_RegisterMarineWithEvents (unit lp_marine) {
     TriggerAddEventUnitRegion(gt_MineShaft, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(156), false);
     TriggerAddEventUnitRegion(gt_MineShaft, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(157), true);
     TriggerAddEventUnitRegion(gt_MineShaft, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(157), false);
+    TriggerAddEventUnitRegion(gt_CentralSquare, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(218), true);
+    TriggerAddEventUnitRegion(gt_CentralSquare, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(218), false);
+    TriggerAddEventUnitRegion(gt_CentralSquare, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(228), true);
+    TriggerAddEventUnitRegion(gt_CentralSquare, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(228), false);
     TriggerAddEventUnitRegion(gt_OM1EnterCommTower, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(126), true);
     TriggerAddEventUnitRegion(gt_OM6CommTowerTransmission, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(126), true);
     TriggerAddEventUnitRegion(gt_OM2aOgilvyFound, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(lp_marine)), RegionFromId(179), true);
@@ -10580,6 +10592,175 @@ bool auto_gf_MineBossZeusLeto_TriggerFunc (bool testConds, bool runActions) {
     UnitBehaviorAdd(gv_leto, "RampageApplyBehaviorZuesLeto", gv_leto, 1);
     Wait(5.0, c_timeReal);
     gf_TipNOTD(20000, StringExternal("Param/Value/606A90B6"));
+    return true;
+}
+
+trigger auto_gf_CentralSquareBossSahaquiel_Trigger = null;
+
+void gf_CentralSquareBossSahaquiel () {
+    if (auto_gf_CentralSquareBossSahaquiel_Trigger == null) {
+        auto_gf_CentralSquareBossSahaquiel_Trigger = TriggerCreate("auto_gf_CentralSquareBossSahaquiel_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_CentralSquareBossSahaquiel_Trigger, false, false);
+}
+
+bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_spawnLocation;
+    int lv_nearbyMarines;
+    int lv_farAwayMarines;
+    fixed lv_currentHealthPercent;
+    int lv_bileCount;
+    point lv_randomBombardmentPoint;
+
+    // Automatic Variable Declarations
+    fixed auto02C56B34_at;
+    const int autoCF49CBB3_n = 3;
+    int autoCF49CBB3_i;
+    unitgroup autoC11DA6F4_g;
+    int autoC11DA6F4_u;
+    unit autoC11DA6F4_var;
+    unitgroup auto33136FC4_g;
+    int auto33136FC4_u;
+    unit auto33136FC4_var;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_spawnLocation = gf_RandomSpawnPointNOTD(RegionFromId(211));
+    gv_bossFight = true;
+    Wait(1.0, c_timeGame);
+    UnitCreate(1, "Sahaquiel", 0, 14, lv_spawnLocation, libNtve_gf_RandomAngle());
+    gv_sahaquiel = UnitLastCreated();
+    libNtve_gf_PauseUnit(UnitLastCreated(), true);
+    libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+    UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+    UnitGroupAdd(gv_centralSquareMobs, UnitLastCreated());
+    SoundPlay(SoundLink("TZeratul04BriefingOvermind00008", -1), PlayerGroupAll(), 100.0, 0.0);
+    if ((gv_alivePlayers <= 3)) {
+        UnitSetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, (UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, c_unitPropCurrent) * 0.65));
+    }
+    else if ((gv_alivePlayers == 4)) {
+        UnitSetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, (UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, c_unitPropCurrent) * 0.75));
+    }
+    else if ((gv_alivePlayers == 5)) {
+        UnitSetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, (UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, c_unitPropCurrent) * 0.8));
+    }
+    else if ((gv_alivePlayers == 6)) {
+        UnitSetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, (UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, c_unitPropCurrent) * 0.85));
+    }
+    else if ((gv_alivePlayers == 7)) {
+        UnitSetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, (UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifeMax, c_unitPropCurrent) * 0.9));
+    }
+    Wait(3.5, c_timeGame);
+    gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/E80C152D"));
+    TriggerEnable(gt_CentralSquareBossKilled, true);
+    libNtve_gf_PauseUnit(gv_sahaquiel, false);
+    libNtve_gf_MakeUnitInvulnerable(gv_sahaquiel, false);
+    gv_currentBoss = "Sahaquiel";
+    gf_StartBossFight(gv_sahaquiel, ge_Ping_Disabled);
+    gf_SahaquielScourgeSpawn();
+    while ((UnitIsAlive(gv_sahaquiel) == true)) {
+        lv_currentHealthPercent = UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifePercent, c_unitPropCurrent);
+        Wait(8.0, c_timeGame);
+        auto02C56B34_at = 0;
+        while (!((UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifePercent, c_unitPropCurrent) <= MaxF((lv_currentHealthPercent - 20.0), 10.0))) && auto02C56B34_at <= 7.0) {
+            Wait(0.2, c_timeGame);
+            auto02C56B34_at = auto02C56B34_at + 0.2;
+        }
+        if ((UnitIsAlive(gv_sahaquiel) == false)) {
+            break;
+        }
+        UnitBehaviorAdd(gv_sahaquiel, "BioBombardmentMode", gv_sahaquiel, 1);
+        SoundPlay(SoundLink("BroodLord_Yes", -1), PlayerGroupAll(), 100.0, 0.0);
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/616258C1"));
+        Wait(2.0, c_timeGame);
+        for (autoCF49CBB3_i = 1; autoCF49CBB3_i <= autoCF49CBB3_n; autoCF49CBB3_i += 1) {
+            autoC11DA6F4_g = gv_marines;
+            autoC11DA6F4_u = UnitGroupCount(autoC11DA6F4_g, c_unitCountAll);
+            for (;; autoC11DA6F4_u -= 1) {
+                autoC11DA6F4_var = UnitGroupUnitFromEnd(autoC11DA6F4_g, autoC11DA6F4_u);
+                if (autoC11DA6F4_var == null) { break; }
+                if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.5) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 40.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
+                    lv_bileCount += 1;
+                    UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
+                    VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
+                    Wait(0.8, c_timeGame);
+                    if ((gv_nightmare == true)) {
+                        UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
+                        VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
+                        Wait(0.4, c_timeGame);
+                    }
+                }
+            }
+            while ((lv_bileCount < 6) && (UnitIsAlive(gv_sahaquiel) == true)) {
+                do {
+                    lv_randomBombardmentPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 20.0));
+                }while ((DistanceBetweenPoints(lv_randomBombardmentPoint, UnitGetPosition(gv_sahaquiel)) <= 4.5));
+                UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", lv_randomBombardmentPoint);
+                VisRevealArea(0, RegionCircle(lv_randomBombardmentPoint, 2.25), 3.0, false);
+                lv_bileCount += 1;
+                Wait(0.8, c_timeGame);
+            }
+            lv_bileCount = 0;
+            Wait(1.0, c_timeGame);
+        }
+        if ((UnitIsAlive(gv_sahaquiel) == false)) {
+            break;
+        }
+        auto33136FC4_g = gv_marines;
+        auto33136FC4_u = UnitGroupCount(auto33136FC4_g, c_unitCountAll);
+        for (;; auto33136FC4_u -= 1) {
+            auto33136FC4_var = UnitGroupUnitFromEnd(auto33136FC4_g, auto33136FC4_u);
+            if (auto33136FC4_var == null) { break; }
+            if ((libNtve_gf_UnitIsVisibleToPlayer(auto33136FC4_var, 14) == true) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 5.0)) {
+                lv_nearbyMarines += 1;
+            }
+            if ((DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) > 18.0) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 40.0)) {
+                lv_farAwayMarines += 1;
+            }
+        }
+        UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
+        SoundPlay(SoundLink("Broodlord_Land", -1), PlayerGroupAll(), 100.0, 0.0);
+        if ((lv_nearbyMarines > 0) && (lv_farAwayMarines == 0)) {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2F9DE260"));
+            UnitIssueOrder(gv_sahaquiel, Order(AbilityCommand("DeadlyDescend", 0)), c_orderQueueAddToFront);
+            Wait(11.0, c_timeGame);
+        }
+        else {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
+            UnitIssueOrder(gv_sahaquiel, Order(AbilityCommand("DeafeningBlast", 0)), c_orderQueueAddToFront);
+            Wait(3.0, c_timeGame);
+        }
+        lv_nearbyMarines = 0;
+        lv_farAwayMarines = 0;
+    }
+    return true;
+}
+
+trigger auto_gf_SahaquielScourgeSpawn_Trigger = null;
+
+void gf_SahaquielScourgeSpawn () {
+    if (auto_gf_SahaquielScourgeSpawn_Trigger == null) {
+        auto_gf_SahaquielScourgeSpawn_Trigger = TriggerCreate("auto_gf_SahaquielScourgeSpawn_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_SahaquielScourgeSpawn_Trigger, false, false);
+}
+
+bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Implementation
+    while ((UnitIsAlive(gv_sahaquiel) == true)) {
+        UnitIssueOrder(gv_sahaquiel, Order(AbilityCommand("ScourgeHangar", 0)), c_orderQueueAddToFront);
+        if ((gv_isVeteranSquad == false)) {
+            Wait((12.0 - (IntToFixed(gv_alivePlayers) / 2.0)), c_timeGame);
+        }
+        else {
+            Wait((8.0 - (IntToFixed(gv_alivePlayers) / 2.0)), c_timeGame);
+        }
+    }
     return true;
 }
 
@@ -17485,6 +17666,12 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitCreateEffectPoint(UnitFromId(1176968664), "CorrosiveBilePersistent", UnitGetPosition(gv_marineHero[1]));
     return true;
 }
 
@@ -24198,6 +24385,182 @@ void gt_MineBossKill_Init () {
     TriggerEnable(gt_MineBossKill, false);
     TriggerAddEventUnitDied(gt_MineBossKill, UnitRefFromVariable("gv_zeus"));
     TriggerAddEventUnitDied(gt_MineBossKill, UnitRefFromVariable("gv_leto"));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Central Square
+//--------------------------------------------------------------------------------------------------
+bool gt_CentralSquare_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_marinesPresent;
+
+    // Automatic Variable Declarations
+    const int auto5D990356_ae = gv_numberofPlayers;
+    int auto5D990356_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(218), 0), c_unitCountAlive) >= 1)) {
+        UnitFlashSelection(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(156), 0), c_unitCountAlive), 1.0);
+        lv_marinesPresent += 1;
+    }
+
+    if ((UnitGroupCount(UnitGroupFilterRegion(gv_marines, RegionFromId(228), 0), c_unitCountAlive) >= 1)) {
+        UnitFlashSelection(UnitGroupRandomUnit(UnitGroupFilterRegion(gv_marines, RegionFromId(157), 0), c_unitCountAlive), 1.0);
+        lv_marinesPresent += 1;
+    }
+
+    if (((lv_marinesPresent > 1) || ((lv_marinesPresent == 1) && (UnitGroupCount(gv_marines, c_unitCountAlive) == 1)))) {
+        TriggerEnable(TriggerGetCurrent(), false);
+        gf_StoryMessageNOTD(StringExternal("Param/Value/8515A142"));
+        gf_MarineSpeechNOTD(gv_sgtStallans, StringExternal("Param/Value/1237F5A4"));
+        Wait(3.5, c_timeReal);
+        libNtve_gf_RemoveDoodadsinRegion(RegionFromId(218), "DecalProtoss");
+        libNtve_gf_RemoveDoodadsinRegion(RegionFromId(228), "DecalProtoss");
+        Wait(1.0, c_timeReal);
+        gf_TipNOTD(1000, StringExternal("Param/Value/3D275DE4"));
+        gf_StoryMessageNOTD(StringExternal("Param/Value/C4FA0416"));
+        SoundPlay(SoundLink("BroodLord_What", -1), PlayerGroupAll(), 100.0, 0.0);
+        auto5D990356_var = gv_indexBaseValue;
+        for ( ; auto5D990356_var <= auto5D990356_ae; auto5D990356_var += 1 ) {
+            CameraShakeStart(auto5D990356_var, c_cameraPositionTarget, c_cameraDirectionZ, 0.15, 1.0, 100.0, 5.5);
+        }
+        Wait(0.5, c_timeReal);
+        gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/D8378703"));
+        gf_CentralSquareBossSahaquiel();
+    }
+    else {
+        if ((gv_centralSquareReached == false)) {
+            gv_centralSquareReached = true;
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/7B8010E7"));
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CentralSquare_Init () {
+    gt_CentralSquare = TriggerCreate("gt_CentralSquare_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Central Square Boss Killed
+//--------------------------------------------------------------------------------------------------
+bool gt_CentralSquareBossKilled_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_rewardRoll;
+    point lv_deathLocation;
+
+    // Automatic Variable Declarations
+    int auto9E4252E0_n;
+    int auto9E4252E0_i;
+    const int auto8CC644D7_n = 3;
+    int auto8CC644D7_i;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGroupHasUnit(gv_centralSquareMobs, EventUnit()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_deathLocation = UnitGetPosition(EventUnit());
+    SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupAll(), 100.0, 0.0);
+    UnitGroupRemove(gv_centralSquareMobs, EventUnit());
+    gf_EndBossFight();
+    gf_AwardPlayerXPNOTD(3);
+    gf_AwardRatingNOTD(5);
+    gf_AwardMarineXPNOTD(50.0);
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/4E3EA196"));
+    Wait(5.0, c_timeReal);
+    UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
+    gv_bossFight = false;
+    lv_rewardRoll = RandomInt(1, 4);
+    auto9E4252E0_n = RandomInt(4, 6);
+    for (auto9E4252E0_i = 1; auto9E4252E0_i <= auto9E4252E0_n; auto9E4252E0_i += 1) {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Magazine", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        Wait(0.12, c_timeReal);
+    }
+    if ((lv_rewardRoll == 1)) {
+        if ((gv_isVeteranSquad == false)) {
+            libNtve_gf_CreateUnitsAtPoint2(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "Bandage", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "AntiVenom", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        }
+        else {
+            for (auto8CC644D7_i = 1; auto8CC644D7_i <= auto8CC644D7_n; auto8CC644D7_i += 1) {
+                libNtve_gf_CreateUnitsAtPoint2(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+                Wait(0.12, c_timeReal);
+            }
+        }
+    }
+    else if ((lv_rewardRoll == 2)) {
+        if ((gv_isVeteranSquad == false)) {
+            libNtve_gf_CreateUnitsAtPoint2(1, "MP9A2SubMachineGun", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "APAmmo", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        }
+        else {
+            libNtve_gf_CreateUnitsAtPoint2(1, "Shotgun", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "HPAmmo", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        }
+    }
+    else if ((lv_rewardRoll == 3)) {
+        if ((gv_isVeteranSquad == false)) {
+            libNtve_gf_CreateUnitsAtPoint2(1, "CombatMobilityAugment", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "RiotShield", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        }
+        else {
+            libNtve_gf_CreateUnitsAtPoint2(1, "PersonnelArcReactor", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "NanoHealthAugment", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        }
+    }
+    else if ((lv_rewardRoll == 4)) {
+        if ((gv_nightmare == false)) {
+            if ((RandomInt(0, 1) == 1)) {
+                libNtve_gf_CreateUnitsAtPoint2(1, "XS4Armor", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            }
+            else {
+                libNtve_gf_CreateUnitsAtPoint2(1, "C6Armor", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            }
+        }
+        else {
+            if ((RandomInt(0, 1) == 1)) {
+                libNtve_gf_CreateUnitsAtPoint2(1, "XS4Armor", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            }
+            else {
+                libNtve_gf_CreateUnitsAtPoint2(1, "C6Armor", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+            }
+            Wait(0.12, c_timeReal);
+            libNtve_gf_CreateUnitsAtPoint2(1, "Shiva", 0, 10, RegionRandomPoint(RegionCircle(lv_deathLocation, 3.0)));
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CentralSquareBossKilled_Init () {
+    gt_CentralSquareBossKilled = TriggerCreate("gt_CentralSquareBossKilled_Func");
+    TriggerEnable(gt_CentralSquareBossKilled, false);
+    TriggerAddEventUnitDied(gt_CentralSquareBossKilled, UnitRefFromVariable("gv_sahaquiel"));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -42823,6 +43186,7 @@ bool gt_SurvivalInit_Func (bool testConds, bool runActions) {
     gv_survivalSpawnPoints[4].lv_startCamera = CameraInfoFromId(2222);
     gv_survivalSpawnPoints[5].lv_startCamera = CameraInfoFromId(2223);
     gf_SurvivalEnvironmentalChanges();
+    libNtve_gf_SetAlliance(13, 14, libNtve_ge_AllianceSetting_Ally);
     auto6AC06B08_g = gv_marineSquad;
     auto6AC06B08_var = -1;
     while (true) {
@@ -43654,9 +44018,14 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
     gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/116239BA"));
     auto6BCA4EFB_n = (gv_spawnFactor * 5);
     for (auto6BCA4EFB_i = 1; auto6BCA4EFB_i <= auto6BCA4EFB_n; auto6BCA4EFB_i += 1) {
-        gf_SmartSpawnWithBehaviorNOTD("Marine", 75.0, "AdvancedMutation", null, null);
+        UnitCreate(1, "Marine", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 75.0)), libNtve_gf_RandomAngle());
+        UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
+        UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(0.35, c_timeReal);
-        gf_SmartSpawnWithBehaviorNOTD("Sniper", 75.0, "AdvancedMutation", "Detector2", null);
+        UnitCreate(1, "Marine", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 75.0)), libNtve_gf_RandomAngle());
+        UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "Detector2", 13, 1);
+        UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(0.35, c_timeReal);
     }
     Wait(30.0, c_timeReal);
@@ -43761,7 +44130,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoC4BAA258_n = gv_spawnFactor;
     for (autoC4BAA258_i = 1; autoC4BAA258_i <= autoC4BAA258_n; autoC4BAA258_i += 1) {
-        UnitCreate(1, "Devastator", 0, 14, gf_RandomSpawnPointNOTD(RegionCircle(libNtve_gf_CenterOfUnitGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
+        UnitCreate(1, "Devastator", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(libNtve_gf_CenterOfUnitGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
         lv_localDevastator = UnitLastCreated();
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         libNtve_gf_PauseUnit(lv_localDevastator, true);
@@ -43782,14 +44151,25 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
 
         Wait(0.1, c_timeReal);
     }
-    UnitGroupAdd(gv_zombieWave, UnitLastCreated());
     autoD3BDB475_n = (gv_spawnFactor * 6);
     for (autoD3BDB475_i = 1; autoD3BDB475_i <= autoD3BDB475_n; autoD3BDB475_i += 1) {
-        gf_SmartSpawnWithBehaviorNOTD("X1GuardianLevel2", 90.0, "Detector5", "PersonalCloakingFree", "AdvancedMutation");
+        UnitCreate(1, "X1GuardianLevel2", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
+        UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "Detector5", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "PersonalCloakingFree", 13, 1);
+        UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(0.2, c_timeReal);
-        gf_SmartSpawnWithBehaviorNOTD("CrawlerDroneLevel2", 90.0, "Detector5", "PersonalCloakingFree", "AdvancedMutation");
+        UnitCreate(1, "CrawlerDroneLevel2", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
+        UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "Detector5", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "PersonalCloakingFree", 13, 1);
+        UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(0.2, c_timeReal);
-        gf_SmartSpawnWithBehaviorNOTD("FieldProbe", 90.0, "Detector5", "PersonalCloakingFree", "AdvancedMutation");
+        UnitCreate(1, "FieldProbe", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
+        UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "Detector5", 13, 1);
+        UnitBehaviorAddPlayer(UnitLastCreated(), "PersonalCloakingFree", 13, 1);
+        UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(1.0, c_timeReal);
     }
     Wait(20.0, c_timeReal);
@@ -47436,6 +47816,8 @@ void InitTriggers () {
     gt_ZeusLetoRespawn_Init();
     gt_ZeusLetoHardenedCarapace_Init();
     gt_MineBossKill_Init();
+    gt_CentralSquare_Init();
+    gt_CentralSquareBossKilled_Init();
     gt_OM1EnterCommTower_Init();
     gt_OM1DownloadCycle_Init();
     gt_OM1DownloadComplete_Init();

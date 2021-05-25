@@ -115,6 +115,20 @@
             <DamageDealtFraction index="Spell" value="1.5"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Corrosion2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-hydriaticacid.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="10"/>
+        <Duration value="30"/>
+        <Modification MoveSpeedMultiplier="0.97">
+            <DamageTakenUnscaled index="Spell" value="3"/>
+            <DamageTakenUnscaled index="Melee" value="3"/>
+            <DamageTakenUnscaled index="Ranged" value="3"/>
+            <DamageTakenUnscaled index="Splash" value="3"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AcidicBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <InitialEffect value="AcidicApplyBonusCloud"/>
@@ -221,6 +235,19 @@
         </DamageResponse>
         <DeathType value="Disintegrate"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="BioBombardmentMode">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <AbilLinkDisableArray value="ReleaseScourge"/>
+            <WeaponEnableArray value="VileStream"/>
+            <WeaponDisableArray value="AcidSpores"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <DamageResponse ModifyFraction="0.75">
+            <ValidatorArray value="IsNormal"/>
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorAttribute id="CP">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-zeratul-sentry-eclipseprotocol.dds"/>
@@ -245,6 +272,112 @@
         <Period value="3"/>
         <PeriodicEffect value="VenomandInfectionSet"/>
         <Modification MoveSpeedMultiplier="0.7"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DeadlyDescend">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.21"/>
+        <Period value="0.1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffect value="DeadlyDescendDropHeight"/>
+        <FinalEffect value="DeadlyDescendImpactSet"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AfterDescendVulnerability">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="8"/>
+        <FinalEffect value="DeadlyDescendRecovery"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <DamageTakenFraction index="Melee" value="2"/>
+            <BehaviorLinkDisableArray value="HighflyingUnit"/>
+        </Modification>
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-techupgrade-terran-nano-botinjectors.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DeadlyDescendChargeUp">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <FinalEffect value="DeadlyDescendApply"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DeafeningBlastChargeUp">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <FinalEffect value="DeafeningBlastSearch"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DeadlyDescendRecovery">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.01"/>
+        <Period value="0.2"/>
+        <PeriodCount value="5"/>
+        <PeriodicEffect value="DeadlyDescendIncreaseHeight"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SahaquielsFuryStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+        <Modification SightMaximum="1">
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+            <AbilClassEnableArray index="CAbilInventory" value="1"/>
+            <AbilClassEnableArray index="CAbilLearn" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SahaquielsWrathStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3.5"/>
+        <Modification SightMaximum="1">
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+            <AbilClassEnableArray index="CAbilInventory" value="1"/>
+            <AbilClassEnableArray index="CAbilLearn" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="HighflyingUnit">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <PlaneDelta index="Ground" value="-1"/>
+        </Modification>
+        <DamageResponse ModifyFraction="0.5" TargetFilters="Ground;-">
+            <Chance value="1"/>
+        </DamageResponse>
+        <InfoIcon value="Assets\Textures\btn-unit-zerg-broodlord.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Infectious">
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
@@ -923,6 +1056,19 @@
             <DamageTakenFraction index="Splash" value="-0.5"/>
             <VitalMaxArray index="Life" value="25"/>
             <VitalMaxAdditiveMultiplierArray index="Life" value="0.25"/>
+            <BehaviorLinkDisableArray value="TauntedLevel1"/>
+            <BehaviorLinkDisableArray value="TauntedLevel2"/>
+            <BehaviorLinkDisableArray value="TauntedLevel3"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel1"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel2"/>
+            <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
+            <BehaviorLinkDisableArray value="MadSparkTaunted"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntImmunity">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
             <BehaviorLinkDisableArray value="TauntedLevel1"/>
             <BehaviorLinkDisableArray value="TauntedLevel2"/>
             <BehaviorLinkDisableArray value="TauntedLevel3"/>
@@ -4465,12 +4611,21 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="NanosteelNetLevel1" parent="NanosteelNetTemplate" Level="1">
         <Duration value="3"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="HighflyingUnit"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanosteelNetLevel2" parent="NanosteelNetTemplate" Level="2">
         <Duration value="4"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="HighflyingUnit"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanosteelNetLevel3" parent="NanosteelNetTemplate" Level="3">
         <Duration value="5"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="HighflyingUnit"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanosteelNetSlowLevel1" parent="NanosteelNetSlowTemplate" Level="1">
         <Modification MoveSpeedMultiplier="0.8"/>
@@ -4529,8 +4684,10 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-armnuke.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.99"/>
-        <Modification MoveSpeedMultiplier="0.8"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.9">
+            <VitalRegenArray index="Life" value="-65"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="CrawlerDroneBirthStun">
         <InfoFlags index="Hidden" value="1"/>
@@ -7190,7 +7347,6 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-nano-botinjectors.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCountPerCaster value="10"/>
         <Duration value="7"/>
         <Modification SightMaximum="1">
             <ModifyFlags index="DisableAbils" value="1"/>

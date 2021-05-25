@@ -123,6 +123,12 @@
         <ScaleMax value="0.880000,0.880000,0.880000"/>
         <ScaleMin value="0.720000,0.720000,0.720000"/>
     </CModel>
+    <CModel id="BioBombardmentMode">
+        <Model value="Assets\Effects\Zerg\Infestation\Infestation.m3"/>
+    </CModel>
+    <CModel id="ChargeUp">
+        <Model value="Assets\Effects\Zerg\Void_Kerrigan_QuantumRay_Charge\Void_Kerrigan_QuantumRay_Charge.m3"/>
+    </CModel>
     <CModel id="ChemicalVulnerability">
         <Model value="Assets\Effects\Zerg\MiasmaImpact\MiasmaImpact.m3"/>
     </CModel>
@@ -138,6 +144,18 @@
         <ShadowRadius value="0.340800"/>
         <TechPurchaseCamera value="TechPurchaseInfantry"/>
         <UnitGlossaryCamera value="Star2CameraMid03"/>
+    </CModel>
+    <CModel id="CorrosiveBileMarker">
+        <Model value="Assets\Effects\Zerg\Ravager_Artillery_Marker_Long\Ravager_Artillery_Marker_Long.m3"/>
+    </CModel>
+    <CModel id="DeadlyDescendImpact">
+        <Model value="Assets\Effects\Neutral\OrbitalStrike_Coop_Impact\OrbitalStrike_Coop_Impact.m3"/>
+    </CModel>
+    <CModel id="DeafeningBlastImpact">
+        <Model value="Assets\Effects\Protoss\Void_Narud_Psionic_Shock_Wave\Void_Narud_Psionic_Shock_Wave.m3"/>
+    </CModel>
+    <CModel id="DeadlyDescendImpactSmoke">
+        <Model value="Assets\Effects\Neutral\Evolution_Impact_Terran_Coop\Evolution_Impact_Terran_Coop.m3"/>
     </CModel>
     <CModel id="EnergyCapacitorBuff">
         <Model value="Assets\Effects\Protoss\Artanis_AstralWinds_Impact\Artanis_AstralWinds_Impact.m3"/>
@@ -886,6 +904,10 @@
         </TextureDeclares>
         <UnitGlossaryCamera value="Star2CameraMid05"/>
         <Radius value="0.550000"/>
+    </CModel>
+    <CModel id="ShivaChemicalGas" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\KerriganBirthRays\KerriganBirthRays.m3"/>
+        <AnimSpeed value="0.700000"/>
     </CModel>
     <CModel id="TechnicianSkin1" parent="Unit" Race="Terran">
         <Model value="Assets\Units\Terran\VikingAssault_Mecha_Collection\VikingAssault_Mecha_Collection.m3"/>

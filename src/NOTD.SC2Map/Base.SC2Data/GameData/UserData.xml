@@ -569,6 +569,23 @@
                 <Field Id="Boss Unit"/>
             </Unit>
         </Instances>
+        <Instances Id="Sahaquiel">
+            <Color Color="255,255,0,0">
+                <Field Id="Ping Color"/>
+            </Color>
+            <Image Image="Assets\Textures\wireframe-zerg-guardian.dds">
+                <Field Id="Portrait"/>
+            </Image>
+            <Model Model="PingBonus">
+                <Field Id="Minimap Ping"/>
+            </Model>
+            <Text Text="UserData/BossData/Sahaquiel_Name">
+                <Field Id="Name"/>
+            </Text>
+            <Unit Unit="Sahaquiel">
+                <Field Id="Boss Unit"/>
+            </Unit>
+        </Instances>
     </CUser>
     <CUser id="CommunicationTowerCompletionMessages">
         <Fields Id="Message" Type="Text" Count="3"/>

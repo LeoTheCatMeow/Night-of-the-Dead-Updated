@@ -196,6 +196,9 @@
     <CUnit id="AcidSalivaWeapon">
         <FlagArray index="Invulnerable" value="1"/>
     </CUnit>
+    <CUnit id="AcidSporesMissile">
+        <FlagArray index="Invulnerable" value="1"/>
+    </CUnit>
     <CUnit id="AirStrikeMissile" parent="MISSILE">
         <Race value="Zerg"/>
         <FlagArray index="Invulnerable" value="1"/>
@@ -1327,6 +1330,63 @@
         <SeparationRadius value="0.1"/>
         <InnerRadius value="0.125"/>
     </CUnit>
+    <CUnit id="Sahaquiel">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
+        <LifeStart value="40000"/>
+        <LifeMax value="40000"/>
+        <LifeArmor value="3"/>
+        <LifeRegenRate value="3"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
+        <Mover value="Fly"/>
+        <Speed value="2.1015"/>
+        <Acceleration value="100"/>
+        <StationaryTurningRate value="135"/>
+        <TurningRate value="135"/>
+        <Sight value="15"/>
+        <Height value="5"/>
+        <VisionHeight value="4"/>
+        <Food value="-10"/>
+        <CostCategory value="Army"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScourgeHangar"/>
+        <AbilArray Link="ReleaseScourge"/>
+        <AbilArray Link="DeadlyDescend"/>
+        <AbilArray Link="DeafeningBlast"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
+        <BehaviorArray Link="Detector2"/>
+        <BehaviorArray Link="HighflyingUnit"/>
+        <WeaponArray Link="AcidSpores"/>
+        <WeaponArray Link="VileStream"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="PrepareScourge" Type="AbilCmd" AbilCmd="ScourgeHangar,Ammo1" Row="2" Column="0"/>
+            <LayoutButtons Face="ReleaseScourge" Type="AbilCmd" AbilCmd="ReleaseScourge,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="DeadlyDescend" Type="AbilCmd" AbilCmd="DeadlyDescend,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="DeafeningBlast" Type="AbilCmd" AbilCmd="DeafeningBlast,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+        <Radius value="2.25"/>
+        <SeparationRadius value="1"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <GlossaryPriority value="200"/>
+        <KillXP value="50"/>
+    </CUnit>
     <CUnit id="HyperionYamatoSpecialWeapon">
         <FlagArray index="Invulnerable" value="1"/>
     </CUnit>
@@ -2034,6 +2094,18 @@
         <LifeStart value="15"/>
         <LifeMax value="15"/>
         <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="Scourge">
+        <LifeStart value="85"/>
+        <LifeMax value="85"/>
+        <LifeRegenRate value="1"/>
+        <Speed value="3"/>
+        <Sight value="5"/>
+        <Food value="0"/>
+        <CostResource index="Minerals" value="0"/>
+        <BehaviorArray Link="DifficultyScalingHP"/>
+        <BehaviorArray Link="TauntImmunity"/>
+        <WeaponArray index="0" Link="ScourgeBite"/>
     </CUnit>
     <CUnit id="SynchronizationModule" parent="ITEM">
         <Race value="Terr"/>
@@ -3323,6 +3395,7 @@
         <Mob value="Multiplayer"/>
         <FlagArray index="Turnable" value="0"/>
         <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
         <FlagArray index="Cloaked" value="1"/>
         <FlagArray index="Buried" value="1"/>
         <FlagArray index="AlwaysThreatens" value="1"/>

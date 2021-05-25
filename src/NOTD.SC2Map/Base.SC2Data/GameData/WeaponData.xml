@@ -47,6 +47,12 @@
         <Period value="1.5"/>
         <Effect value="AcidSalivaLM"/>
     </CWeaponLegacy>
+    <CWeaponLegacy id="AcidSpores">
+        <Range value="12"/>
+        <Period value="2.75"/>
+        <Options index="ContinuousScan" value="1"/>
+        <TargetFilters value="Ground,Visible;Missile,Dead,Hidden,Invulnerable"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="ArcliteShockCannon">
         <Range value="35"/>
         <TargetFilters value="Ground;Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
@@ -259,6 +265,26 @@
         <Period value="1.2"/>
         <Effect value="PsionicLashDamage"/>
     </CWeaponLegacy>
+    <CWeaponStrafe id="ScourgeBite">
+        <EditorCategories value="Race:Protoss"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-hotstunnelingclaws.dds"/>
+        <DisplayEffect value="ScourageBiteDamage"/>
+        <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="2"/>
+        <Arc value="19.6875"/>
+        <Period value="3"/>
+        <Effect value="ScourgeBiteSet"/>
+    </CWeaponStrafe>
+    <CWeaponLegacy id="VileStream">
+        <Options index="Disabled" value="1"/>
+        <Options index="Hidden" value="0"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level0.dds"/>
+        <DisplayEffect value="VileStreamDamage"/>
+        <TargetFilters value="Ground,Visible;Missile,Dead,Hidden,Invulnerable"/>
+        <AcquireFilters value="-;-"/>
+        <Range value="4.5"/>
+        <Period value="0.6"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="ZombieClawsLevel2">
         <EditorCategories value="Race:Zerg"/>
         <Options index="Melee" value="1"/>
@@ -426,21 +452,6 @@
         <Backswing value="0.2"/>
         <Effect value="KineticCatapultLaunchLevel2"/>
         <AllowedMovement value="Slowing"/>
-    </CWeaponLegacy>
-    <CWeaponLegacy id="Shiva">
-        <EditorCategories value="Race:Terran"/>
-        <Icon value="Assets\Textures\btn-ability-terran-armnuke.dds"/>
-        <DisplayEffect value=""/>
-        <TargetFilters value="-;Self,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
-        <MinScanRange value="6"/>
-        <Range value="60"/>
-        <Period value="1.2"/>
-        <DamagePoint value="0.083"/>
-        <RandomDelayMin value="1.5"/>
-        <Effect value="ShivaLaunchMissile"/>
-        <AcquireFilters value="-;Player,Ally,Neutral,Enemy"/>
-        <AcquireScanFilters value="-;Player,Ally,Neutral,Enemy"/>
-        <RandomDelayMax value="1.5"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="HadesObliterator">
         <EditorCategories value="Race:Terran"/>
