@@ -2101,10 +2101,11 @@
         <LifeMax value="90"/>
         <LifeRegenRate value="1"/>
         <Speed value="2.75"/>
-        <Sight value="5"/>
+        <Sight value="6"/>
         <Food value="0"/>
         <CostResource index="Minerals" value="0"/>
         <BehaviorArray Link="DifficultyScalingHP"/>
+        <BehaviorArray Link="Benign"/>
         <WeaponArray index="0" Link="ScourgeBite"/>
         <DefaultAcquireLevel value="None"/>
         <Response value="Nothing"/>
@@ -3147,8 +3148,8 @@
         <LifeStart value="265"/>
         <LifeMax value="265"/>
         <LifeRegenRate value="0.6015"/>
-        <EnergyStart value="75"/>
-        <EnergyMax value="75"/>
+        <EnergyStart value="85"/>
+        <EnergyMax value="85"/>
         <EnergyRegenRate value="1.1015"/>
         <ShieldsStart value="50"/>
         <ShieldsMax value="50"/>

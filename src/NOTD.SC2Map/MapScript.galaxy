@@ -10669,7 +10669,7 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
     while ((UnitIsAlive(gv_sahaquiel) == true)) {
         gv_sahaquielScourgeSpawn = true;
         lv_currentHealthPercent = UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifePercent, c_unitPropCurrent);
-        Wait(9.0, c_timeGame);
+        Wait(10.0, c_timeGame);
         auto02C56B34_at = 0;
         while (!((UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifePercent, c_unitPropCurrent) <= MaxF((lv_currentHealthPercent - 20.0), 10.0))) && auto02C56B34_at <= 7.0) {
             Wait(0.2, c_timeGame);
@@ -10689,29 +10689,29 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
             for (;; autoC11DA6F4_u -= 1) {
                 autoC11DA6F4_var = UnitGroupUnitFromEnd(autoC11DA6F4_g, autoC11DA6F4_u);
                 if (autoC11DA6F4_var == null) { break; }
-                if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.5) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 40.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
+                if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.0) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 40.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
                     lv_bileCount += 1;
                     UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
                     VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
-                    Wait(0.7, c_timeGame);
+                    Wait(0.6, c_timeGame);
                     if ((gv_nightmare == true)) {
                         UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
                         VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
-                        Wait(0.4, c_timeGame);
+                        Wait(0.2, c_timeGame);
                     }
                 }
             }
             while ((lv_bileCount < 5) && (UnitIsAlive(gv_sahaquiel) == true)) {
                 do {
                     lv_randomBombardmentPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 20.0));
-                }while ((DistanceBetweenPoints(lv_randomBombardmentPoint, UnitGetPosition(gv_sahaquiel)) <= 4.5));
+                }while ((DistanceBetweenPoints(lv_randomBombardmentPoint, UnitGetPosition(gv_sahaquiel)) <= 4.0));
                 UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", lv_randomBombardmentPoint);
                 VisRevealArea(0, RegionCircle(lv_randomBombardmentPoint, 2.25), 3.0, false);
                 lv_bileCount += 1;
-                Wait(0.7, c_timeGame);
+                Wait(0.6, c_timeGame);
             }
             lv_bileCount = 0;
-            Wait(0.7, c_timeGame);
+            Wait(0.6, c_timeGame);
         }
         if ((UnitIsAlive(gv_sahaquiel) == false)) {
             break;
@@ -10767,12 +10767,12 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
 
     // Implementation
     while ((UnitIsAlive(gv_sahaquiel) == true)) {
-        autoE0CA2010_g = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter(0, 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 12);
+        autoE0CA2010_g = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter(0, 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 4);
         autoE0CA2010_u = UnitGroupCount(autoE0CA2010_g, c_unitCountAll);
         for (;; autoE0CA2010_u -= 1) {
             autoE0CA2010_var = UnitGroupUnitFromEnd(autoE0CA2010_g, autoE0CA2010_u);
             if (autoE0CA2010_var == null) { break; }
-            if ((RandomInt(0, 1) == 1) && (UnitGroupCount(gv_sahaquielScourgeGroup, c_unitCountAlive) < 12)) {
+            if ((UnitGroupCount(gv_sahaquielScourgeGroup, c_unitCountAlive) < (gv_alivePlayers + 4))) {
                 libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scourge", c_unitCreateIgnorePlacement, 14, UnitGetPosition(gv_sahaquiel));
                 UnitGroupAdd(gv_sahaquielScourgeGroup, UnitLastCreated());
                 UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), autoE0CA2010_var), c_orderQueueReplace);
@@ -23403,6 +23403,10 @@ bool gt_EliteMutation_Func (bool testConds, bool runActions) {
         }
 
         if (!((UnitGetType(EventUnit()) != "DemetersCocoon"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Scourge"))) {
             return false;
         }
     }
@@ -44083,7 +44087,7 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(0.35, c_timeReal);
-        UnitCreate(1, "Marine", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 75.0)), libNtve_gf_RandomAngle());
+        UnitCreate(1, "Sniper", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 75.0)), libNtve_gf_RandomAngle());
         UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
         UnitBehaviorAddPlayer(UnitLastCreated(), "Detector2", 13, 1);
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());

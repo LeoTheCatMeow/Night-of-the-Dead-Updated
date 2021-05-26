@@ -295,7 +295,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="60"/>
+        <Amount value="70"/>
     </CEffectDamage>
     <CEffectSet id="DeadlyDescendImpactSet">
         <EditorCategories value=""/>
@@ -315,7 +315,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="39"/>
+        <Amount value="46"/>
     </CEffectDamage>
     <CEffectEnumArea id="AcidSporesFourthBounceSearch">
         <EditorCategories value="Race:Zerg"/>
@@ -335,7 +335,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="53"/>
+        <Amount value="62"/>
     </CEffectDamage>
     <CEffectSet id="AcidSporesThirdBounceSet">
         <EditorCategories value=""/>
@@ -347,7 +347,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="46"/>
+        <Amount value="54"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="AcidSporesThirdBounceLaunch">
         <EditorCategories value="Race:Zerg"/>
@@ -364,13 +364,13 @@
     </CEffectEnumArea>
     <CEffectDamage id="AcidSporesDamage">
         <ArmorReduction value="1.5"/>
-        <Amount value="25"/>
+        <Amount value="30"/>
     </CEffectDamage>
     <CEffectDamage id="AcidSporesFirstBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="32"/>
+        <Amount value="38"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="AcidSporesFirstBounceLaunch">
         <EditorCategories value="Race:Zerg"/>
@@ -493,7 +493,7 @@
     </CEffectDamage>
     <CEffectDamage id="ScourageBiteDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
-        <Amount value="7"/>
+        <Amount value="6"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="EnergyTransferLaunchLevel1">
