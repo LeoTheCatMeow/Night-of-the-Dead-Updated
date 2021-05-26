@@ -150,13 +150,13 @@
         <Flags index="NoTakenMaximum" value="1"/>
         <Flags index="NoTakenMinimum" value="1"/>
         <Kind value="Spell"/>
-        <Amount value="135"/>
+        <Amount value="150"/>
     </CEffectDamage>
     <CEffectDamage id="KorhalSporeCannonBombardmentDamage">
         <AttributeBonus index="Structure" value="0"/>
-        <ArmorReduction value="2.5"/>
+        <ArmorReduction value="3"/>
         <Kind value="Ranged"/>
-        <Amount value="60"/>
+        <Amount value="90"/>
         <AreaArray index="0" Radius="1"/>
         <AreaArray index="1" Radius="1.75" Fraction="0.75"/>
         <AreaArray index="2" Radius="2.25" Fraction="0.5"/>
@@ -247,7 +247,7 @@
     <CEffectEnumArea id="DeafeningBlastSearch">
         <EditorCategories value="Race:Zerg"/>
         <SearchFilters value="-;Player,Ally,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="4.5" Effect="DeafeningBlastCenterDamage"/>
+        <AreaArray Radius="4" Effect="DeafeningBlastCenterDamage"/>
         <AreaArray Radius="30" Effect="DeafeningBlastSet"/>
         <SearchFlags index="CallForHelp" value="1"/>
     </CEffectEnumArea>
@@ -493,7 +493,7 @@
     </CEffectDamage>
     <CEffectDamage id="ScourageBiteDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
-        <Amount value="6"/>
+        <Amount value="9"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="EnergyTransferLaunchLevel1">
@@ -1721,7 +1721,7 @@
     <CEffectCreatePersistent id="VileStream">
         <InitialEffect value="VileStreamLM"/>
         <PeriodCount value="3"/>
-        <PeriodicPeriodArray index="0" value="0.6"/>
+        <PeriodicPeriodArray index="0" value="0.5"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="VileStreamDamage">
         <EditorCategories value=""/>

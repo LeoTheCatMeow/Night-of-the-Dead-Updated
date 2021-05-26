@@ -14,11 +14,14 @@ Mini Patch Details:
 - Fixed Sahaquiel painting marines permanently green with corrosion debuff.
 - Fixed Technician's nanosteel nets messing up Sahaquiel's height.
 - Fixed Sahaquiel's Bio Bombardment not applying the corrosion debuff.
+- Fixed stuns interrupting Sahaquiel's abilities.
 - Reworked Sahaquiel's scourge relasing pattern so that it is more spread out instead of focusing on one person.
-- Scourges now deal very little damage but requires manual aiming or splash damage to take down (benign).
+- Scourge now requires manual aiming or splash damage to be taken down (benign).
 - Sahaquiel's corrosion debuff now lasts shorter but can be refreshed, thus avoid stacking it up will now be important.
-- Slightly lowered Sahaquiel's base health.
-- Changed Sahaquiel's rating reward to the more referred xp reward.
+- Increased Sahquiel's bio bombardment frequency and damage.
+- Lowered Sahaquiel's base health from 40k to 35k.
+- Increased Sahaquiel melee damage taken on the ground from 300% to 400%.
+- Changed Sahaquiel's rating reward to the more preferred xp reward.
 
 2021-4-24
 [LeoTheCat]

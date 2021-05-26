@@ -10693,11 +10693,11 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                     lv_bileCount += 1;
                     UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
                     VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
-                    Wait(0.6, c_timeGame);
+                    Wait(0.5, c_timeGame);
                     if ((gv_nightmare == true)) {
                         UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
                         VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
-                        Wait(0.2, c_timeGame);
+                        Wait(0.1, c_timeGame);
                     }
                 }
             }
@@ -10708,10 +10708,10 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                 UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", lv_randomBombardmentPoint);
                 VisRevealArea(0, RegionCircle(lv_randomBombardmentPoint, 2.25), 3.0, false);
                 lv_bileCount += 1;
-                Wait(0.6, c_timeGame);
+                Wait(0.5, c_timeGame);
             }
             lv_bileCount = 0;
-            Wait(0.6, c_timeGame);
+            Wait(0.5, c_timeGame);
         }
         if ((UnitIsAlive(gv_sahaquiel) == false)) {
             break;
@@ -10732,12 +10732,12 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
         SoundPlay(SoundLink("Broodlord_Land", -1), PlayerGroupAll(), 100.0, 0.0);
         if ((lv_nearbyMarines > 0) && (lv_farAwayMarines == 0)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2F9DE260"));
-            UnitIssueOrder(gv_sahaquiel, Order(AbilityCommand("DeadlyDescend", 0)), c_orderQueueAddToFront);
-            Wait(11.0, c_timeGame);
+            UnitBehaviorAdd(gv_sahaquiel, "DeadlyDescendChargeUp", gv_sahaquiel, 1);
+            Wait(12.0, c_timeGame);
         }
         else {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
-            UnitIssueOrder(gv_sahaquiel, Order(AbilityCommand("DeafeningBlast", 0)), c_orderQueueAddToFront);
+            UnitBehaviorAdd(gv_sahaquiel, "DeafeningBlastChargeUp", gv_sahaquiel, 1);
             Wait(3.0, c_timeGame);
         }
         lv_nearbyMarines = 0;
@@ -10773,16 +10773,16 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
             autoE0CA2010_var = UnitGroupUnitFromEnd(autoE0CA2010_g, autoE0CA2010_u);
             if (autoE0CA2010_var == null) { break; }
             if ((UnitGroupCount(gv_sahaquielScourgeGroup, c_unitCountAlive) < (gv_alivePlayers + 4))) {
-                libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scourge", c_unitCreateIgnorePlacement, 14, UnitGetPosition(gv_sahaquiel));
+                libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scourge", c_unitCreateIgnorePlacement, 14, RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 2.0)));
                 UnitGroupAdd(gv_sahaquielScourgeGroup, UnitLastCreated());
                 UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), autoE0CA2010_var), c_orderQueueReplace);
             }
         }
         if ((gv_isVeteranSquad == false)) {
-            Wait(6.0, c_timeGame);
+            Wait(7.0, c_timeGame);
         }
         else {
-            Wait(4.0, c_timeGame);
+            Wait(5.0, c_timeGame);
         }
         while (!(((gv_sahaquielScourgeSpawn == true) || (UnitIsAlive(gv_sahaquiel) == false)))) {
             Wait(0.2, c_timeGame);

@@ -262,6 +262,9 @@
     <CModel id="HelsAngelAssault">
         <Radius value="1.600000"/>
     </CModel>
+    <CModel id="Larva">
+        <SelectionRadius value="0.375000"/>
+    </CModel>
     <CModel id="LockOn">
         <Model value="Assets\Effects\Terran\MiraHorner_Raven_Coop_Target_Impact\MiraHorner_Raven_Coop_Target_Impact.m3"/>
     </CModel>
@@ -395,6 +398,10 @@
     </CModel>
     <CModel id="InboundSicknessImpact">
         <Model value="Assets\COOP\Zeratul\Effects\Sentry_Zeratul_COOP_HealingBeamImpact\Sentry_Zeratul_COOP_HealingBeamImpact.m3"/>
+    </CModel>
+    <!-- Test -->
+    <CModel id="Scourge">
+        <SelectionRadius value="0.500000"/>
     </CModel>
     <CModel id="Shadowed">
         <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>

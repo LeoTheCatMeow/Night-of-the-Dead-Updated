@@ -510,12 +510,6 @@
         <ImpactSite value="AcidSporesThirdBounceImpactSite"/>
         <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
     </CActorAction>
-    <!--                                                                                         -->
-    <!-- Scourge .............................................................................. -->
-    <!--                                                                                         -->
-    <CActorUnit id="Scourge">
-        <Scale value="0.800000"/>
-    </CActorUnit>
     <CActorSplat id="SupplyStationCursorSplat" parent="ProtossCursorSplat">
         <EditorCategories value=""/>
         <On index="0" Terms="Abil.SupplyStation.Cursor" Send="Create"/>
