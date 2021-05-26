@@ -115,13 +115,13 @@
         <ValidatorArray value="IsNightmare"/>
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
-        <ArmorReduction value="3"/>
+        <ArmorReduction value="8"/>
         <Visibility value="Visible"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
-        <Amount value="650"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
-        <AreaArray Radius="2.25" Fraction="0.8"/>
+        <Amount value="600"/>
+        <AreaArray Radius="1" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="0.8"/>
         <AreaArray Radius="3" Fraction="0.6"/>
         <AreaArray Radius="3.75" Fraction="0.4"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
@@ -258,11 +258,11 @@
     <CEffectDamage id="DeadlyDescendDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
-        <ArmorReduction value="3"/>
+        <ArmorReduction value="8"/>
         <Visibility value="Visible"/>
-        <Amount value="200"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
-        <AreaArray Radius="2.25" Fraction="0.8"/>
+        <Amount value="250"/>
+        <AreaArray Radius="1" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="0.8"/>
         <AreaArray Radius="3" Fraction="0.6"/>
         <AreaArray Radius="3.75" Fraction="0.4"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
