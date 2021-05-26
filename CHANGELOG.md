@@ -9,6 +9,17 @@
 - Added a new optional mission in the central square, featuring a new boss - Sahaquiel. 
 - Added Shiva back into the game as a possible drop from Sahaquiel on Nightmare, with stats & damage tuned down.
 
+Mini Patch Details:
+- Fixed Survival infantry wave missing ghosts.
+- Fixed Sahaquiel painting marines permanently green with corrosion debuff.
+- Fixed Technician's nanosteel nets messing up Sahaquiel's height.
+- Fixed Sahaquiel's Bio Bombardment not applying the corrosion debuff.
+- Reworked Sahaquiel's scourge relasing pattern so that it is more spread out instead of focusing on one person.
+- Scourges now deal very little damage but requires manual aiming or splash damage to take down (benign).
+- Sahaquiel's corrosion debuff now lasts shorter but can be refreshed, thus avoid stacking it up will now be important.
+- Slightly lowered Sahaquiel's base health.
+- Changed Sahaquiel's rating reward to the more referred xp reward.
+
 2021-4-24
 [LeoTheCat]
 - Fixed Pathfinder's Assault Jump range indicator not showing up correctly.
