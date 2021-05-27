@@ -119,14 +119,24 @@
         <Visibility value="Visible"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
-        <Amount value="500"/>
+        <Amount value="300"/>
         <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.85"/>
-        <AreaArray Radius="3" Fraction="0.7"/>
-        <AreaArray Radius="3.75" Fraction="0.55"/>
+        <AreaArray Radius="2" Fraction="0.9"/>
+        <AreaArray Radius="3" Fraction="0.8"/>
+        <AreaArray Radius="4" Fraction="0.7"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoDealtMaximum" value="1"/>
+        <Flags index="NoDealtMinimum" value="1"/>
+        <Flags index="NoScaledTakenBonus" value="1"/>
+        <Flags index="NoFractionTakenBonus" value="1"/>
+        <Flags index="NoUnscaledTakenBonus" value="1"/>
+        <Flags index="NoTakenMaximum" value="1"/>
+        <Flags index="NoTakenMinimum" value="1"/>
     </CEffectDamage>
     <CEffectEnumArea id="CorrosiveBileCorrosionSearch">
         <EditorCategories value="Race:Zerg"/>
@@ -150,7 +160,7 @@
         <Flags index="NoTakenMaximum" value="1"/>
         <Flags index="NoTakenMinimum" value="1"/>
         <Kind value="Spell"/>
-        <Amount value="150"/>
+        <Amount value="140"/>
     </CEffectDamage>
     <CEffectDamage id="KorhalSporeCannonBombardmentDamage">
         <AttributeBonus index="Structure" value="0"/>
@@ -221,7 +231,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="0"/>
         <Visibility value="Visible"/>
-        <Amount value="85"/>
+        <Amount value="80"/>
         <ValidatorArray value="IsNotNightmare"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
@@ -260,17 +270,27 @@
         <ImpactLocation Value="TargetPoint"/>
         <ArmorReduction value="5"/>
         <Visibility value="Visible"/>
-        <Amount value="250"/>
+        <Amount value="150"/>
         <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.85"/>
-        <AreaArray Radius="3" Fraction="0.7"/>
-        <AreaArray Radius="3.75" Fraction="0.55"/>
+        <AreaArray Radius="2" Fraction="0.9"/>
+        <AreaArray Radius="3" Fraction="0.8"/>
+        <AreaArray Radius="4" Fraction="0.7"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
         <ValidatorArray value="IsNotNightmare"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoDealtMaximum" value="1"/>
+        <Flags index="NoDealtMinimum" value="1"/>
+        <Flags index="NoScaledTakenBonus" value="1"/>
+        <Flags index="NoFractionTakenBonus" value="1"/>
+        <Flags index="NoUnscaledTakenBonus" value="1"/>
+        <Flags index="NoTakenMaximum" value="1"/>
+        <Flags index="NoTakenMinimum" value="1"/>
     </CEffectDamage>
     <CEffectEnumArea id="AcidSporesFifthBounceSearch">
         <EditorCategories value="Race:Zerg"/>

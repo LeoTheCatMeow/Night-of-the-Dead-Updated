@@ -8,6 +8,7 @@
 - Lowered the rendering priority of the boss bar so that it is less likely to block the pause UI (may still need more work).
 - Added a new optional mission in the central square, featuring a new boss - Sahaquiel. 
 - Added Shiva back into the game as a possible drop from Sahaquiel on Nightmare, with stats & damage tuned down.
+- Added a small cooldown to Elite Mutation Monstrous Mutation's stun to prevent stunlock in rare scenarios.
 
 Mini Patch Details:
 - Fixed Survival infantry wave missing ghosts.
@@ -19,10 +20,12 @@ Mini Patch Details:
 - Reworked Sahaquiel's scourge relasing pattern so that it is more spread out instead of focusing on one person.
 - Sahaquiel's acid spores can no longer bounce from or to structures (mad spark etc).
 - Sahaquiel's corrosion debuff now lasts shorter but can be refreshed, thus avoid stacking it up will now be important.
-- Increased Sahquiel's bio bombardment frequency.
 - Lowered Sahaquiel's base health from 40k to 35k.
 - Increased Sahaquiel melee damage taken on the ground from 300% to 400%.
 - Changed Sahaquiel's rating reward to the more preferred xp reward.
+- Lowered Sahaquiel's slam damage so that it won't one-shot but made it fixed (can't be increased or descreased, armor still works).
+- Sahaquiel's energy nova attack also has fixed damage, deals less damage than the slam but penatrates armor.
+- Added a flyer helper to mark Sahaquiel's ground position.
 
 2021-4-24
 [LeoTheCat]

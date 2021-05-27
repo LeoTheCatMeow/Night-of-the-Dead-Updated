@@ -786,6 +786,10 @@
         </Modification>
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
+            <Cost>
+                <Charge Link="Behavior/MonstrousBoss"/>
+                <Cooldown Link="Behavior/MonstrousBoss" TimeUse="0.5"/>
+            </Cost>
         </DamageResponse>
         <Period value="7"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
@@ -873,6 +877,9 @@
         </Modification>
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
+            <Cost>
+                <Cooldown TimeUse="0.5"/>
+            </Cost>
         </DamageResponse>
         <Period value="5"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>

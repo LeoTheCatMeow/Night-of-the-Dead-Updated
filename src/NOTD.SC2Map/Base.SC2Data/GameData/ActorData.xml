@@ -334,6 +334,30 @@
         <Missile value="GuardianAttackMissile"/>
         <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
     </CActorAction>
+    <CActorModel id="SahaquielFlyerHelperSplat" parent="ModelAnimationStyleContinuous">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On index="0" Terms="UnitDeath.Sahaquiel" Send="Destroy"/>
+        <On index="2" Terms="UnitCreation.Sahaquiel" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,0,0"/>
+        <On Terms="ActorCreation" Send="Create SahaquielFlyerHelperBeam"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOrigin SOpShadowRespectsBaseHeight"/>
+        <Model value="AOEPreTargetAirUnitProtossSplat"/>
+        <Scale value="11.000000"/>
+    </CActorModel>
+    <CActorBeamSimple id="SahaquielFlyerHelperBeam" parent="BeamSimpleAnimationStyleContinuous">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Supporter Subject="_Unit" Actor="Find"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,0,0"/>
+        <Host Subject="::Creator"/>
+        <Model value="AOEPreTargetAirUnitProtoss"/>
+        <HostLaunch Subject="_Unit" Actor="Find"/>
+        <HostLaunchSiteOps Ops="SOpAttachOrigin"/>
+        <HostImpact Subject="::Creator" Actor="Find"/>
+    </CActorBeamSimple>
     <CActorSiteOpRotationExplicit id="SOpRot90XLocal">
         <EditorCategories value=""/>
         <Forward value="0.000000,1.000000,0.000000"/>
