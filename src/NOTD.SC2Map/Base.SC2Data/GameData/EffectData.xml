@@ -119,11 +119,11 @@
         <Visibility value="Visible"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
-        <Amount value="300"/>
+        <Amount value="240"/>
         <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.9"/>
-        <AreaArray Radius="3" Fraction="0.8"/>
-        <AreaArray Radius="4" Fraction="0.7"/>
+        <AreaArray Radius="2" Fraction="0.85"/>
+        <AreaArray Radius="3" Fraction="0.7"/>
+        <AreaArray Radius="4" Fraction="0.55"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
@@ -231,7 +231,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="0"/>
         <Visibility value="Visible"/>
-        <Amount value="85"/>
+        <Amount value="80"/>
         <ValidatorArray value="IsNotNightmare"/>
         <Flags index="NoScaledDealtBonus" value="1"/>
         <Flags index="NoFractionDealtBonus" value="1"/>
@@ -270,11 +270,11 @@
         <ImpactLocation Value="TargetPoint"/>
         <ArmorReduction value="5"/>
         <Visibility value="Visible"/>
-        <Amount value="150"/>
+        <Amount value="120"/>
         <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.9"/>
-        <AreaArray Radius="3" Fraction="0.8"/>
-        <AreaArray Radius="4" Fraction="0.7"/>
+        <AreaArray Radius="2" Fraction="0.85"/>
+        <AreaArray Radius="3" Fraction="0.7"/>
+        <AreaArray Radius="4" Fraction="0.55"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
@@ -299,7 +299,7 @@
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="3.75" Effect="AcidSporesFifthBounceLaunch"/>
         <MaxCount value="1"/>
-        <ValidatorArray value="IsNormal"/>
+        <ValidatorArray value="IsNightmare"/>
     </CEffectEnumArea>
     <CEffectLaunchMissile id="AcidSporesFifthBounceLaunch">
         <EditorCategories value="Race:Zerg"/>
@@ -412,6 +412,7 @@
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable,Stunned"/>
         <AreaArray Radius="3.75" Effect="AcidSporesThirdBounceLaunch"/>
         <MaxCount value="1"/>
+        <ValidatorArray value="IsNormal"/>
     </CEffectEnumArea>
     <CEffectSet id="AcidSporesFourthBounceSet">
         <EditorCategories value=""/>

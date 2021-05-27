@@ -10732,15 +10732,20 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
         if ((lv_nearbyMarines > 0) && (lv_farAwayMarines == 0)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2F9DE260"));
             UnitBehaviorAdd(gv_sahaquiel, "DeadlyDescendChargeUp", gv_sahaquiel, 1);
+            VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 3.0, false);
             Wait(12.0, c_timeGame);
         }
         else {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
             UnitBehaviorAdd(gv_sahaquiel, "DeafeningBlastChargeUp", gv_sahaquiel, 1);
+            VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 3.0, false);
             Wait(3.0, c_timeGame);
         }
         lv_nearbyMarines = 0;
         lv_farAwayMarines = 0;
+        while (!((((UnitBehaviorCount(gv_sahaquiel, "DeadlyDescendChargeUp") == 0) && (UnitBehaviorCount(gv_sahaquiel, "DeafeningBlastChargeUp") == 0) && (UnitBehaviorCount(gv_sahaquiel, "AfterDescendVulnerability") == 0) && (UnitBehaviorCount(gv_sahaquiel, "DeadlyDescendRecovery") == 0)) || (UnitIsAlive(gv_sahaquiel) == false)))) {
+            Wait(0.2, c_timeGame);
+        }
     }
     return true;
 }
@@ -10778,10 +10783,10 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
             }
         }
         if ((gv_isVeteranSquad == false)) {
-            Wait(7.0, c_timeGame);
+            Wait(8.0, c_timeGame);
         }
         else {
-            Wait(5.5, c_timeGame);
+            Wait(6.0, c_timeGame);
         }
         while (!(((gv_sahaquielScourgeSpawn == true) || (UnitIsAlive(gv_sahaquiel) == false)))) {
             Wait(0.2, c_timeGame);
