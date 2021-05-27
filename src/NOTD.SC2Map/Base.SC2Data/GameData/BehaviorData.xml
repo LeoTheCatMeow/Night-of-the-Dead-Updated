@@ -244,10 +244,6 @@
             <WeaponDisableArray value="AcidSpores"/>
         </Modification>
         <InfoFlags index="Hidden" value="1"/>
-        <DamageResponse ModifyFraction="0.75">
-            <ValidatorArray value="IsNormal"/>
-            <Chance value="1"/>
-        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorAttribute id="CP">
         <Alignment value="Positive"/>
