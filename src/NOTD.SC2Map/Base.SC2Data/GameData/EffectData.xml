@@ -115,15 +115,15 @@
         <ValidatorArray value="IsNightmare"/>
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
-        <ArmorReduction value="8"/>
+        <ArmorReduction value="5"/>
         <Visibility value="Visible"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
-        <Amount value="600"/>
+        <Amount value="500"/>
         <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.8"/>
-        <AreaArray Radius="3" Fraction="0.6"/>
-        <AreaArray Radius="3.75" Fraction="0.4"/>
+        <AreaArray Radius="2" Fraction="0.85"/>
+        <AreaArray Radius="3" Fraction="0.7"/>
+        <AreaArray Radius="3.75" Fraction="0.55"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
@@ -156,7 +156,7 @@
         <AttributeBonus index="Structure" value="0"/>
         <ArmorReduction value="3"/>
         <Kind value="Ranged"/>
-        <Amount value="90"/>
+        <Amount value="65"/>
         <AreaArray index="0" Radius="1"/>
         <AreaArray index="1" Radius="1.75" Fraction="0.75"/>
         <AreaArray index="2" Radius="2.25" Fraction="0.5"/>
@@ -258,13 +258,13 @@
     <CEffectDamage id="DeadlyDescendDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
-        <ArmorReduction value="8"/>
+        <ArmorReduction value="5"/>
         <Visibility value="Visible"/>
         <Amount value="250"/>
         <AreaArray Radius="1" Fraction="1"/>
-        <AreaArray Radius="2" Fraction="0.8"/>
-        <AreaArray Radius="3" Fraction="0.6"/>
-        <AreaArray Radius="3.75" Fraction="0.4"/>
+        <AreaArray Radius="2" Fraction="0.85"/>
+        <AreaArray Radius="3" Fraction="0.7"/>
+        <AreaArray Radius="3.75" Fraction="0.55"/>
         <SearchFilters value="Ground;Self,Missile,Item,Dead,Hidden,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="0"/>
         <SearchFlags index="SameCliff" value="0"/>
@@ -276,7 +276,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4.5" Effect="AcidSporesFifthBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNormal"/>
@@ -295,7 +295,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="70"/>
+        <Amount value="55"/>
     </CEffectDamage>
     <CEffectSet id="DeadlyDescendImpactSet">
         <EditorCategories value=""/>
@@ -315,13 +315,13 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="46"/>
+        <Amount value="40"/>
     </CEffectDamage>
     <CEffectEnumArea id="AcidSporesFourthBounceSearch">
         <EditorCategories value="Race:Zerg"/>
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4.5" Effect="AcidSporesFourthBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNormal"/>
@@ -335,7 +335,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="62"/>
+        <Amount value="50"/>
     </CEffectDamage>
     <CEffectSet id="AcidSporesThirdBounceSet">
         <EditorCategories value=""/>
@@ -347,7 +347,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="54"/>
+        <Amount value="45"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="AcidSporesThirdBounceLaunch">
         <EditorCategories value="Race:Zerg"/>
@@ -358,7 +358,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4.5" Effect="AcidSporesSecondBounceLaunch"/>
         <MaxCount value="1"/>
     </CEffectEnumArea>
@@ -370,7 +370,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1.5"/>
         <Visibility value="Visible"/>
-        <Amount value="38"/>
+        <Amount value="35"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="AcidSporesFirstBounceLaunch">
         <EditorCategories value="Race:Zerg"/>
@@ -389,7 +389,7 @@
         <EditorCategories value="Race:Zerg"/>
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable,Stunned"/>
         <AreaArray Radius="4.5" Effect="AcidSporesThirdBounceLaunch"/>
         <MaxCount value="1"/>
     </CEffectEnumArea>
@@ -510,9 +510,10 @@
         <EditorCategories value="Race:Zerg"/>
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="4.5" Effect="AcidSporesFirstBounceLaunch"/>
         <MaxCount value="1"/>
+        <ValidatorArray value="NotStructureTarget"/>
     </CEffectEnumArea>
     <CEffectSet id="AcidSporesInitialSet">
         <EditorCategories value=""/>
@@ -6511,7 +6512,7 @@
     <CEffectEnumArea id="MadSparkSearch">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="5" Effect="MadSparkSet"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -7198,7 +7199,7 @@
         <Marker Link="Effect/ImYourFatherSearchIssueAttack"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="7" Effect="ImYourFatherSetLevel2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -7207,7 +7208,7 @@
         <Marker Link="Effect/ImYourFatherSearchIssueAttack"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="7" Effect="ImYourFatherSetLevel3"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -12364,13 +12365,13 @@
         <EditorCategories value=""/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="7" Effect="ImYourFatherSetLevel1"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="TauntLevel1SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
         <AreaArray index="0" Radius="8" Effect="TauntLevel1Set"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
     </CEffectEnumArea>
     <CEffectSet id="TauntLevel2Set">
         <EditorCategories value=""/>
@@ -12379,7 +12380,7 @@
     </CEffectSet>
     <CEffectEnumArea id="TauntLevel2SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
         <AreaArray index="0" Radius="8" Effect="TauntLevel2Set"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="TauntLevel2ApplyBehavior">
         <ValidatorArray index="0" value="ImYourFatherApplyBehaviorTargetFilters"/>
@@ -12406,7 +12407,7 @@
         <Marker Link="Effect/ImYourFatherLevel1Search"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="7" Effect="ImYourFatherIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -12415,7 +12416,7 @@
         <Marker Link="Effect/ImYourFatherLevel1Search"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="8" Effect="TauntIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -13189,7 +13190,7 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="TauntLevel3SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
         <AreaArray index="0" Radius="8" Effect="TauntLevel3Set"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="StimpackMarauder">
         <ValidatorArray index="0" value="HiddenCompareBA"/>
@@ -13241,7 +13242,7 @@
         <Marker Link="Effect/ImYourFatherLevel1Search"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="8" Effect="TauntIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
@@ -13250,7 +13251,7 @@
         <Marker Link="Effect/ImYourFatherLevel1Search"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Benign,Resistant"/>
         <AreaArray Radius="8" Effect="TauntIssueStop"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>

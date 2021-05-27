@@ -2028,7 +2028,7 @@ void gf_MineBossSeth ();
 void gf_MineBossZeusLeto ();
 void gf_CentralSquareBossSahaquiel ();
 void gf_SahaquielScourgeSpawn ();
-void gf_SahaquielScourgeAI ();
+void gf_SahaquielBattleAI ();
 void gf_StartBossFight (unit lp_bossUnit, int lp_usePing);
 void gf_EndBossFight ();
 void gf_SetBossforBossBar (unit lp_boss);
@@ -10639,7 +10639,6 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
     gv_sahaquiel = UnitLastCreated();
     libNtve_gf_PauseUnit(UnitLastCreated(), true);
     libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
-    UnitGroupAdd(gv_zombieWave, UnitLastCreated());
     UnitGroupAdd(gv_centralSquareMobs, UnitLastCreated());
     SoundPlay(SoundLink("TZeratul04BriefingOvermind00008", -1), PlayerGroupAll(), 100.0, 0.0);
     if ((gv_alivePlayers <= 3)) {
@@ -10665,7 +10664,7 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
     gv_currentBoss = "Sahaquiel";
     gf_StartBossFight(gv_sahaquiel, ge_Ping_Disabled);
     gf_SahaquielScourgeSpawn();
-    gf_SahaquielScourgeAI();
+    gf_SahaquielBattleAI();
     while ((UnitIsAlive(gv_sahaquiel) == true)) {
         gv_sahaquielScourgeSpawn = true;
         lv_currentHealthPercent = UnitGetPropertyFixed(gv_sahaquiel, c_unitPropLifePercent, c_unitPropCurrent);
@@ -10691,13 +10690,13 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                 if (autoC11DA6F4_var == null) { break; }
                 if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.0) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 40.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
                     lv_bileCount += 1;
-                    UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
+                    UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.5)));
                     VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
-                    Wait(0.5, c_timeGame);
+                    Wait(0.6, c_timeGame);
                     if ((gv_nightmare == true)) {
-                        UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
+                        UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.5)));
                         VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
-                        Wait(0.1, c_timeGame);
+                        Wait(0.3, c_timeGame);
                     }
                 }
             }
@@ -10708,10 +10707,10 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                 UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", lv_randomBombardmentPoint);
                 VisRevealArea(0, RegionCircle(lv_randomBombardmentPoint, 2.25), 3.0, false);
                 lv_bileCount += 1;
-                Wait(0.5, c_timeGame);
+                Wait(0.6, c_timeGame);
             }
             lv_bileCount = 0;
-            Wait(0.5, c_timeGame);
+            Wait(0.6, c_timeGame);
         }
         if ((UnitIsAlive(gv_sahaquiel) == false)) {
             break;
@@ -10782,7 +10781,7 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
             Wait(7.0, c_timeGame);
         }
         else {
-            Wait(5.0, c_timeGame);
+            Wait(5.5, c_timeGame);
         }
         while (!(((gv_sahaquielScourgeSpawn == true) || (UnitIsAlive(gv_sahaquiel) == false)))) {
             Wait(0.2, c_timeGame);
@@ -10798,24 +10797,38 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
     return true;
 }
 
-trigger auto_gf_SahaquielScourgeAI_Trigger = null;
+trigger auto_gf_SahaquielBattleAI_Trigger = null;
 
-void gf_SahaquielScourgeAI () {
-    if (auto_gf_SahaquielScourgeAI_Trigger == null) {
-        auto_gf_SahaquielScourgeAI_Trigger = TriggerCreate("auto_gf_SahaquielScourgeAI_TriggerFunc");
+void gf_SahaquielBattleAI () {
+    if (auto_gf_SahaquielBattleAI_Trigger == null) {
+        auto_gf_SahaquielBattleAI_Trigger = TriggerCreate("auto_gf_SahaquielBattleAI_TriggerFunc");
     }
 
-    TriggerExecute(auto_gf_SahaquielScourgeAI_Trigger, false, false);
+    TriggerExecute(auto_gf_SahaquielBattleAI_Trigger, false, false);
 }
 
-bool auto_gf_SahaquielScourgeAI_TriggerFunc (bool testConds, bool runActions) {
+bool auto_gf_SahaquielBattleAI_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    unitgroup lv_potentialTargets;
+    bool lv_hasTarget;
+
     // Automatic Variable Declarations
     unitgroup autoA4D70888_g;
     int autoA4D70888_u;
     unit autoA4D70888_var;
 
+    // Variable Initialization
+    lv_potentialTargets = UnitGroupEmpty();
+
     // Implementation
     while ((UnitIsAlive(gv_sahaquiel) == true)) {
+        lv_potentialTargets = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter((1 << c_targetFilterGround) | (1 << c_targetFilterVisible), 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
+        if ((UnitGroupCount(lv_potentialTargets, c_unitCountAlive) == 0)) {
+            UnitIssueOrder(gv_sahaquiel, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(gv_sahaquiel)))), c_orderQueueReplace);
+        }
+        else {
+            UnitIssueOrder(gv_sahaquiel, OrderTargetingUnit(AbilityCommand("attack", 0), UnitGroupClosestToPoint(lv_potentialTargets, UnitGetPosition(gv_sahaquiel))), c_orderQueueReplace);
+        }
         autoA4D70888_g = gv_sahaquielScourgeGroup;
         autoA4D70888_u = UnitGroupCount(autoA4D70888_g, c_unitCountAll);
         for (;; autoA4D70888_u -= 1) {
@@ -10826,7 +10839,7 @@ bool auto_gf_SahaquielScourgeAI_TriggerFunc (bool testConds, bool runActions) {
                 Wait(0.2, c_timeGame);
             }
         }
-        Wait(1.0, c_timeGame);
+        Wait(0.5, c_timeGame);
     }
     return true;
 }

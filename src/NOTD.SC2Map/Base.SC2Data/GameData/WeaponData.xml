@@ -51,7 +51,12 @@
         <Range value="12"/>
         <Period value="2.75"/>
         <Options index="ContinuousScan" value="1"/>
+        <Options index="IgnoreThreat" value="1"/>
+        <Options index="IgnoreAttackPriority" value="1"/>
         <TargetFilters value="Ground,Visible;Missile,Dead,Hidden,Invulnerable"/>
+        <AcquireTargetSorts RequestCount="1">
+            <SortArray value="TSDistance"/>
+        </AcquireTargetSorts>
     </CWeaponLegacy>
     <CWeaponLegacy id="ArcliteShockCannon">
         <Range value="35"/>

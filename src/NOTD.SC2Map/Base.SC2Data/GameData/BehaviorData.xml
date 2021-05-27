@@ -340,6 +340,13 @@
         <InfoFlags index="Hidden" value="1"/>
         <InitialEffect value="DeadlyDescendIncreaseHeight"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Resistant">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Resistant" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="SahaquielsFuryStun">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-tosh-mindblast.dds"/>
