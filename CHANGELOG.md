@@ -15,10 +15,11 @@ Mini Patch Details:
 - Fixed Technician's nanosteel nets messing up Sahaquiel's height.
 - Fixed Sahaquiel's Bio Bombardment not applying the corrosion debuff.
 - Fixed stuns interrupting Sahaquiel's abilities.
+- Fixed Sahaquiel's acid spores not prioritizing the closest unit.
 - Reworked Sahaquiel's scourge relasing pattern so that it is more spread out instead of focusing on one person.
-- Scourge now requires manual aiming or splash damage to be taken down (benign).
+- Sahaquiel's acid spores can no longer bounce from or to structures (mad spark etc).
 - Sahaquiel's corrosion debuff now lasts shorter but can be refreshed, thus avoid stacking it up will now be important.
-- Increased Sahquiel's bio bombardment frequency and damage.
+- Increased Sahquiel's bio bombardment frequency.
 - Lowered Sahaquiel's base health from 40k to 35k.
 - Increased Sahaquiel melee damage taken on the ground from 300% to 400%.
 - Changed Sahaquiel's rating reward to the more preferred xp reward.
