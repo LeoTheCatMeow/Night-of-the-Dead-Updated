@@ -10729,7 +10729,7 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
             Wait(1.0, c_timeGame);
             UnitBehaviorAdd(gv_sahaquiel, "DeadlyDescendChargeUp", gv_sahaquiel, 1);
             VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 3.0, false);
-            Wait(12.0, c_timeGame);
+            Wait(13.0, c_timeGame);
         }
         else {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
@@ -10824,12 +10824,14 @@ bool auto_gf_SahaquielBattleAI_TriggerFunc (bool testConds, bool runActions) {
 
     // Implementation
     while ((UnitIsAlive(gv_sahaquiel) == true)) {
-        lv_potentialTargets = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter((1 << c_targetFilterGround) | (1 << c_targetFilterVisible), 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
-        if ((UnitGroupCount(lv_potentialTargets, c_unitCountAlive) == 0)) {
-            UnitIssueOrder(gv_sahaquiel, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(gv_sahaquiel)))), c_orderQueueReplace);
-        }
-        else {
-            UnitIssueOrder(gv_sahaquiel, OrderTargetingUnit(AbilityCommand("attack", 0), UnitGroupClosestToPoint(lv_potentialTargets, UnitGetPosition(gv_sahaquiel))), c_orderQueueReplace);
+        if ((UnitHasBehavior(gv_sahaquiel, "TauntedLevel1") == false) && (UnitHasBehavior(gv_sahaquiel, "TauntedLevel2") == false) && (UnitHasBehavior(gv_sahaquiel, "TauntedLevel3") == false) && (UnitHasBehavior(gv_sahaquiel, "ImYourFatherTauntedLevel1") == false) && (UnitHasBehavior(gv_sahaquiel, "ImYourFatherTauntedLevel2") == false) && (UnitHasBehavior(gv_sahaquiel, "ImYourFatherTauntedLevel3") == false) && (UnitHasBehavior(gv_sahaquiel, "MadSparkTaunted") == false)) {
+            lv_potentialTargets = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter((1 << c_targetFilterGround) | (1 << c_targetFilterVisible), 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
+            if ((UnitGroupCount(lv_potentialTargets, c_unitCountAlive) == 0)) {
+                UnitIssueOrder(gv_sahaquiel, OrderTargetingPoint(AbilityCommand("attack", 0), UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(gv_sahaquiel)))), c_orderQueueReplace);
+            }
+            else {
+                UnitIssueOrder(gv_sahaquiel, OrderTargetingUnit(AbilityCommand("attack", 0), UnitGroupClosestToPoint(lv_potentialTargets, UnitGetPosition(gv_sahaquiel))), c_orderQueueReplace);
+            }
         }
         autoA4D70888_g = gv_sahaquielScourgeGroup;
         autoA4D70888_u = UnitGroupCount(autoA4D70888_g, c_unitCountAll);
