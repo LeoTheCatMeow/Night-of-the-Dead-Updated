@@ -10679,16 +10679,16 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
         }
         gv_sahaquielScourgeSpawn = false;
         UnitBehaviorAdd(gv_sahaquiel, "BioBombardmentMode", gv_sahaquiel, 1);
-        SoundPlay(SoundLink("BroodLord_Yes", -1), PlayerGroupAll(), 100.0, 0.0);
+        SoundPlay(SoundLink("BroodLord_What", -1), PlayerGroupAll(), 300.0, 0.0);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/616258C1"));
-        Wait(3.0, c_timeGame);
+        Wait(2.0, c_timeGame);
         for (autoCF49CBB3_i = 1; autoCF49CBB3_i <= autoCF49CBB3_n; autoCF49CBB3_i += 1) {
             autoC11DA6F4_g = gv_marines;
             autoC11DA6F4_u = UnitGroupCount(autoC11DA6F4_g, c_unitCountAll);
             for (;; autoC11DA6F4_u -= 1) {
                 autoC11DA6F4_var = UnitGroupUnitFromEnd(autoC11DA6F4_g, autoC11DA6F4_u);
                 if (autoC11DA6F4_var == null) { break; }
-                if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.0) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
+                if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.5) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
                     lv_bileCount += 1;
                     UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.5)));
                     VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
@@ -10698,14 +10698,14 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
             while ((lv_bileCount < 5) && (UnitIsAlive(gv_sahaquiel) == true)) {
                 do {
                     lv_randomBombardmentPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 20.0));
-                }while ((DistanceBetweenPoints(lv_randomBombardmentPoint, UnitGetPosition(gv_sahaquiel)) <= 4.0));
+                }while ((DistanceBetweenPoints(lv_randomBombardmentPoint, UnitGetPosition(gv_sahaquiel)) <= 4.5));
                 UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", lv_randomBombardmentPoint);
                 VisRevealArea(0, RegionCircle(lv_randomBombardmentPoint, 2.25), 3.0, false);
                 lv_bileCount += 1;
                 Wait(0.6, c_timeGame);
             }
             lv_bileCount = 0;
-            Wait(0.6, c_timeGame);
+            Wait(1.0, c_timeGame);
         }
         if ((UnitIsAlive(gv_sahaquiel) == false)) {
             break;
@@ -10718,25 +10718,25 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
             if ((libNtve_gf_UnitIsVisibleToPlayer(auto33136FC4_var, 14) == true) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 5.5)) {
                 lv_nearbyMarines += 1;
             }
-            if ((DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) > 22.0) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0)) {
+            if ((DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) > 24.0) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0)) {
                 lv_farAwayMarines += 1;
             }
         }
         UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
-        SoundPlay(SoundLink("Broodlord_Land", -1), PlayerGroupAll(), 100.0, 0.0);
+        SoundPlay(SoundLink("BroodLord_Pissed", -1), PlayerGroupAll(), 300.0, 0.0);
         if ((lv_nearbyMarines > 0) && (lv_farAwayMarines == 0)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2F9DE260"));
-            Wait(1.0, c_timeGame);
+            Wait(3.0, c_timeGame);
             UnitBehaviorAdd(gv_sahaquiel, "DeadlyDescendChargeUp", gv_sahaquiel, 1);
-            VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 3.0, false);
-            Wait(13.0, c_timeGame);
+            VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 4.0, false);
+            Wait(14.0, c_timeGame);
         }
         else {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
-            Wait(1.0, c_timeGame);
-            UnitBehaviorAdd(gv_sahaquiel, "DeafeningBlastChargeUp", gv_sahaquiel, 1);
-            VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 3.0, false);
             Wait(3.0, c_timeGame);
+            UnitBehaviorAdd(gv_sahaquiel, "DeafeningBlastChargeUp", gv_sahaquiel, 1);
+            VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 4.0, false);
+            Wait(4.0, c_timeGame);
         }
         lv_nearbyMarines = 0;
         lv_farAwayMarines = 0;

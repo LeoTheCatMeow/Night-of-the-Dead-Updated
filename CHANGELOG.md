@@ -20,12 +20,13 @@ Mini Patch Details:
 - Reworked Sahaquiel's scourge relasing pattern so that it is more spread out instead of focusing on one person.
 - Sahaquiel's acid spores can no longer bounce from or to structures (mad spark etc).
 - Sahaquiel's corrosion debuff now lasts shorter but can be refreshed, thus avoid stacking it up will now be important.
-- Lowered Sahaquiel's base health from 40k to 31.5k.
+- Lowered Sahaquiel's base health from 40k to 27.5k.
 - Increased Sahaquiel melee damage taken on the ground from 300% to 400%.
 - Changed Sahaquiel's rating reward to the more preferred xp reward.
 - Lowered Sahaquiel's slam damage so that it won't one-shot but made it fixed (can't be increased or descreased, armor still works).
 - Sahaquiel's energy nova attack also has fixed damage, deals less damage than the slam but penatrates armor.
 - Added a flyer helper to mark Sahaquiel's ground position.
+- Sahaquiel's acid spores now won't bounce from high ground to low ground or vice versa.
 
 2021-4-24
 [LeoTheCat]
