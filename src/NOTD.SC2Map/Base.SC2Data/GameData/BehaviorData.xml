@@ -301,7 +301,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="DeadlyDescendChargeUp">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="4"/>
+        <Duration value="4.5"/>
         <FinalEffect value="DeadlyDescendApply"/>
         <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
@@ -314,7 +314,7 @@
     <CBehaviorBuff id="DeafeningBlastChargeUp">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="4"/>
+        <Duration value="4.5"/>
         <FinalEffect value="DeafeningBlastSearch"/>
         <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>

@@ -10678,9 +10678,9 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
             break;
         }
         gv_sahaquielScourgeSpawn = false;
-        UnitBehaviorAdd(gv_sahaquiel, "BioBombardmentMode", gv_sahaquiel, 1);
-        SoundPlay(SoundLink("BroodLord_What", -1), PlayerGroupAll(), 300.0, 0.0);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/616258C1"));
+        SoundPlay(SoundLink("BroodLord_What", -1), PlayerGroupAll(), 300.0, 0.0);
+        UnitBehaviorAdd(gv_sahaquiel, "BioBombardmentMode", gv_sahaquiel, 1);
         Wait(2.0, c_timeGame);
         for (autoCF49CBB3_i = 1; autoCF49CBB3_i <= autoCF49CBB3_n; autoCF49CBB3_i += 1) {
             autoC11DA6F4_g = gv_marines;
@@ -10722,21 +10722,22 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                 lv_farAwayMarines += 1;
             }
         }
-        UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
         SoundPlay(SoundLink("BroodLord_Pissed", -1), PlayerGroupAll(), 300.0, 0.0);
         if ((lv_nearbyMarines > 0) && (lv_farAwayMarines == 0)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2F9DE260"));
-            Wait(3.0, c_timeGame);
+            Wait(2.0, c_timeGame);
+            UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
             UnitBehaviorAdd(gv_sahaquiel, "DeadlyDescendChargeUp", gv_sahaquiel, 1);
             VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 4.0, false);
-            Wait(14.0, c_timeGame);
+            Wait(14.5, c_timeGame);
         }
         else {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
-            Wait(3.0, c_timeGame);
+            Wait(2.0, c_timeGame);
+            UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
             UnitBehaviorAdd(gv_sahaquiel, "DeafeningBlastChargeUp", gv_sahaquiel, 1);
             VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 4.0, false);
-            Wait(4.0, c_timeGame);
+            Wait(4.5, c_timeGame);
         }
         lv_nearbyMarines = 0;
         lv_farAwayMarines = 0;

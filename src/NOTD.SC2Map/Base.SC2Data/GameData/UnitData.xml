@@ -1357,6 +1357,8 @@
         <VisionHeight value="4"/>
         <Food value="-10"/>
         <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <KillXP value="50"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
         <AbilArray Link="stop"/>
@@ -1385,8 +1387,6 @@
         <MinimapRadius value="1"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <GlossaryPriority value="200"/>
-        <KillXP value="50"/>
-        <AttackTargetPriority value="20"/>
     </CUnit>
     <CUnit id="HyperionYamatoSpecialWeapon">
         <FlagArray index="Invulnerable" value="1"/>
