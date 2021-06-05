@@ -104,7 +104,7 @@
     <CEffectApplyBehavior id="AcidCorrosionApplyLesser">
         <ValidatorArray index="0" value="IsNightmare"/>
         <EditorCategories value=""/>
-        <Chance value="0.25"/>
+        <Chance value="0.4"/>
         <Behavior value="Corrosion2"/>
     </CEffectApplyBehavior>
     <CEffectUseMagazine id="LaunchScourge">
@@ -119,7 +119,7 @@
         <Visibility value="Visible"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
-        <Amount value="220"/>
+        <Amount value="240"/>
         <AreaArray Radius="1" Fraction="1"/>
         <AreaArray Radius="2" Fraction="0.85"/>
         <AreaArray Radius="3" Fraction="0.7"/>
@@ -164,12 +164,12 @@
     </CEffectDamage>
     <CEffectDamage id="KorhalSporeCannonBombardmentDamage">
         <AttributeBonus index="Structure" value="0"/>
-        <ArmorReduction value="3"/>
+        <ArmorReduction value="0"/>
         <Kind value="Ranged"/>
-        <Amount value="60"/>
+        <Amount value="65"/>
         <AreaArray index="0" Radius="1"/>
-        <AreaArray index="1" Radius="1.75" Fraction="0.75"/>
-        <AreaArray index="2" Radius="2.25" Fraction="0.5"/>
+        <AreaArray index="1" Radius="1.75" Fraction="0.85"/>
+        <AreaArray index="2" Radius="2.25" Fraction="0.7"/>
         <SearchFilters value="Ground;Self,Missile,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="KorhalSporeCannonBombardmentLaunchMissile">
@@ -193,6 +193,12 @@
         <Height value="-5"/>
         <HeightTime value="0.5"/>
     </CEffectModifyUnit>
+    <CEffectCreateUnit id="ShivaCreateRevealDummy">
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <SpawnOwner Value="Neutral"/>
+        <SpawnUnit value="ShivaRevealDummy"/>
+    </CEffectCreateUnit>
     <CEffectSet id="ScourgeBiteSet">
         <EditorCategories value=""/>
         <EffectArray value="ScourageBiteDamage"/>
@@ -270,7 +276,7 @@
         <ImpactLocation Value="TargetPoint"/>
         <ArmorReduction value="5"/>
         <Visibility value="Visible"/>
-        <Amount value="110"/>
+        <Amount value="120"/>
         <AreaArray Radius="1" Fraction="1"/>
         <AreaArray Radius="2" Fraction="0.85"/>
         <AreaArray Radius="3" Fraction="0.7"/>
@@ -297,7 +303,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.5" Effect="AcidSporesFifthBounceLaunch"/>
+        <AreaArray Radius="3.75" Effect="AcidSporesFifthBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNightmare"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -343,7 +349,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.5" Effect="AcidSporesFourthBounceLaunch"/>
+        <AreaArray Radius="3.75" Effect="AcidSporesFourthBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNormal"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -381,13 +387,14 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.5" Effect="AcidSporesSecondBounceLaunch"/>
+        <AreaArray Radius="3.75" Effect="AcidSporesSecondBounceLaunch"/>
         <MaxCount value="1"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
     <CEffectDamage id="AcidSporesDamage">
         <ArmorReduction value="2"/>
         <Amount value="30"/>
+        <AttributeBonus index="Structure" value="60"/>
     </CEffectDamage>
     <CEffectDamage id="AcidSporesFirstBounceDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
@@ -413,7 +420,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable,Stunned"/>
-        <AreaArray Radius="3.5" Effect="AcidSporesThirdBounceLaunch"/>
+        <AreaArray Radius="3.75" Effect="AcidSporesThirdBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNormal"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -536,7 +543,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.5" Effect="AcidSporesFirstBounceLaunch"/>
+        <AreaArray Radius="3.75" Effect="AcidSporesFirstBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="NotStructureTarget"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -568,6 +575,18 @@
             <SortArray value="TSFarthestDistance"/>
         </TargetSorts>
     </CEffectEnumArea>
+    <CEffectDamage id="ShivaChemicalDamage">
+        <ValidatorArray value="NotCharlie"/>
+        <EditorCategories value=""/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoDealtMaximum" value="1"/>
+        <Flags index="NoDealtMinimum" value="1"/>
+        <Amount value="32.5"/>
+        <Death value="Disintegrate"/>
+        <SearchFilters value="-;Item,Dead,Invulnerable"/>
+    </CEffectDamage>
     <CEffectSet id="VenomandInfectionSet">
         <EditorCategories value=""/>
         <EffectArray value="VenomApplySelfChance"/>
@@ -1298,12 +1317,6 @@
         <Flags index="NoUnscaledDealtBonus" value="1"/>
         <Flags index="NoDealtMaximum" value="1"/>
         <Flags index="NoDealtMinimum" value="1"/>
-        <Flags index="NoScaledTakenBonus" value="1"/>
-        <Flags index="NoFractionTakenBonus" value="1"/>
-        <Flags index="NoUnscaledTakenBonus" value="1"/>
-        <Flags index="NoTakenMaximum" value="1"/>
-        <Flags index="NoTakenMinimum" value="1"/>
-        <Flags index="NoBehaviorResponse" value="1"/>
         <Kind value="NoProc"/>
     </CEffectDamage>
     <CEffectDamage id="FirebatUFull">
@@ -1937,6 +1950,11 @@
     <CEffectDamage id="ApoptosisBloodDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoDealtMaximum" value="1"/>
+        <Flags index="NoDealtMinimum" value="1"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="ApoptosisBloodWave">
         <EditorCategories value=""/>
@@ -3706,6 +3724,11 @@
     <CEffectDamage id="PenetratingDamage">
         <EditorCategories value=""/>
         <Flags index="Notification" value="1"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoDealtMaximum" value="1"/>
+        <Flags index="NoDealtMinimum" value="1"/>
         <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectDestroyPersistent id="PersesDeathEndFirewave">
@@ -7267,8 +7290,6 @@
         <PeriodCount value="180"/>
         <PeriodicEffectArray value="ShivaChemicalSearch"/>
         <PeriodicPeriodArray value="1"/>
-        <RevealRadius value="18"/>
-        <RevealFlags index="Unfog" value="1"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="ShivaChemicalSearch">
         <EditorCategories value=""/>
@@ -7302,7 +7323,6 @@
         <Flags index="NoUnscaledDealtBonus" value="1"/>
         <Flags index="NoDealtMaximum" value="1"/>
         <Flags index="NoDealtMinimum" value="1"/>
-        <Flags index="NoBehaviorResponse" value="1"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="ShivaLaunchMissile">
         <EditorCategories value="Race:Terran"/>
@@ -7320,6 +7340,7 @@
         <EditorCategories value=""/>
         <EffectArray value="ShivaSearchDamage"/>
         <EffectArray value="ShivaChemicalPersistent"/>
+        <EffectArray value="ShivaCreateRevealDummy"/>
         <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
     <CEffectSet id="ShotgunDamageSet">

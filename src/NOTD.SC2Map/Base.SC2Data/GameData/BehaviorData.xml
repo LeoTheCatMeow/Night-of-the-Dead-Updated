@@ -336,6 +336,12 @@
         <InfoFlags index="Hidden" value="1"/>
         <InitialEffect value="DeadlyDescendIncreaseHeight"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ShivaRevealTimed">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="180"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Resistant">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4681,10 +4687,10 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-armnuke.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="1"/>
-        <Modification MoveSpeedMultiplier="0.9">
-            <VitalRegenArray index="Life" value="-65"/>
-        </Modification>
+        <Duration value="1.01"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ShivaChemicalDamage"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CrawlerDroneBirthStun">
         <InfoFlags index="Hidden" value="1"/>

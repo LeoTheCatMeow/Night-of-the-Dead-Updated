@@ -1,7 +1,21 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-6-5
+[LeoTheCat]
+- Added a different button for Flamethrower's Vengeance to indicate that it is off. 
+- Fixed a bug where leveling up Vengeance will enable the behavior but not change the state of the button. 
+- Vengeance button will now be re-enabled upon leveling up Vengeance to keep consistency between the button and the behavior.
+- Fixed a bug where Shiva's damage ignores certain boss mechanics and immortality effects, causing unintended results. 
+- Lowered Sahaquiel's radius from 2.25 to 1.6875 as 2.25 is way too large (larger than even Hades).
+- Flamethrower will still do good damage against Sahaquiel but it will be less extreme. 
+- Added some very minor number buffs to Sahaquiel as players are getting better at taking it down.
+- Fixed a fairly old bug where Tartarus and Apoptosis take more damage than they should be taking due to their boss mechanics. 
+- As a result these 2 bosses will feel harder than normal, and further balancing may be needed.
+- Made some fixes to critical strike damage as it may also be ignoring certain boss or defensive mechanics.
+
 2021-5-25
 [LeoTheCat]
+Overview:
 - Fixed M5 Pulse Rifle not displaying its splash modification on the tooltip.
 - Survival Infantry & Bot waves now no longer share vision with zombies (requested by Outbreak mode tryhards).
 - Demo's sentinel mines are made invulnerable again (some players find them die too easily).
@@ -9,6 +23,7 @@
 - Added a new optional mission in the central square, featuring a new boss - Sahaquiel. 
 - Added Shiva back into the game as a possible drop from Sahaquiel on Nightmare, with stats & damage tuned down.
 - Added a small cooldown to Elite Mutation Monstrous Mutation's stun to prevent stunlock in rare scenarios.
+- Changed Veteran's Focus and Slow Roast hotkeys from Q to E to avoid FO players accidentally shelling the team (Fire Mission is also Q).
 
 Mini Patch Details:
 - Fixed Survival infantry wave missing ghosts.
@@ -27,6 +42,7 @@ Mini Patch Details:
 - Sahaquiel's energy nova attack also has fixed damage, deals less damage than the slam but penatrates armor.
 - Added a flyer helper to mark Sahaquiel's ground position.
 - Sahaquiel's acid spores now won't bounce from high ground to low ground or vice versa.
+- Shiva explosion now reveals the area for the team so people are more aware of where the chemical wasteland is.
 
 2021-4-24
 [LeoTheCat]

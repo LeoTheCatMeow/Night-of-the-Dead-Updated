@@ -4376,10 +4376,13 @@
     </CAbilMorph>
     <CAbilBehavior id="Vengeance">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="On" DefaultButtonFace="VengeanceOn">
+        <CmdButtonArray index="On" DefaultButtonFace="VengeanceOff">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
-        <CmdButtonArray index="Off" DefaultButtonFace="VengeanceOn"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="VengeanceOn">
+            <Flags index="ShowInGlossary" value="1"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
         <BehaviorArray value="VengeanceLevel1"/>
         <BehaviorArray value="VengeanceLevel2"/>
         <BehaviorArray value="VengeanceLevel3"/>

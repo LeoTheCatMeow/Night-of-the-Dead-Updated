@@ -334,6 +334,10 @@
         <Missile value="GuardianAttackMissile"/>
         <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
     </CActorAction>
+    <CActorUnit id="ShivaRevealDummy" parent="GenericUnitBase" unitName="ShivaRevealDummy">
+        <EditorCategories value=""/>
+        <Model value="Invisible"/>
+    </CActorUnit>
     <CActorModel id="SahaquielFlyerHelperSplat" parent="ModelAnimationStyleContinuous">
         <Inherits index="CloakEffect" value="1"/>
         <Inherits index="Visibility" value="1"/>

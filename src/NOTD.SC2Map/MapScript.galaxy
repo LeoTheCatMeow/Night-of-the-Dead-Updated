@@ -10690,14 +10690,14 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                 if (autoC11DA6F4_var == null) { break; }
                 if ((DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) > 4.5) && (DistanceBetweenPoints(UnitGetPosition(autoC11DA6F4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0) && (UnitIsAlive(gv_sahaquiel) == true)) {
                     lv_bileCount += 1;
-                    UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.5)));
+                    UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", RegionRandomPoint(RegionCircle(UnitGetPosition(autoC11DA6F4_var), 1.0)));
                     VisRevealArea(0, RegionCircle(UnitGetPosition(autoC11DA6F4_var), 2.25), 3.0, false);
                     Wait(0.6, c_timeGame);
                 }
             }
-            while ((lv_bileCount < 5) && (UnitIsAlive(gv_sahaquiel) == true)) {
+            while ((lv_bileCount < 8) && (UnitIsAlive(gv_sahaquiel) == true)) {
                 do {
-                    lv_randomBombardmentPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 20.0));
+                    lv_randomBombardmentPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0));
                 }while ((DistanceBetweenPoints(lv_randomBombardmentPoint, UnitGetPosition(gv_sahaquiel)) <= 4.5));
                 UnitCreateEffectPoint(gv_sahaquiel, "CorrosiveBilePersistent", lv_randomBombardmentPoint);
                 VisRevealArea(0, RegionCircle(lv_randomBombardmentPoint, 2.25), 3.0, false);
@@ -10705,7 +10705,7 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
                 Wait(0.6, c_timeGame);
             }
             lv_bileCount = 0;
-            Wait(1.0, c_timeGame);
+            Wait(0.6, c_timeGame);
         }
         if ((UnitIsAlive(gv_sahaquiel) == false)) {
             break;
@@ -10718,14 +10718,14 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
             if ((libNtve_gf_UnitIsVisibleToPlayer(auto33136FC4_var, 14) == true) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 5.5)) {
                 lv_nearbyMarines += 1;
             }
-            if ((DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) > 24.0) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0)) {
+            if ((DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) > 20.0) && (DistanceBetweenPoints(UnitGetPosition(auto33136FC4_var), UnitGetPosition(gv_sahaquiel)) <= 35.0)) {
                 lv_farAwayMarines += 1;
             }
         }
         SoundPlay(SoundLink("BroodLord_Pissed", -1), PlayerGroupAll(), 300.0, 0.0);
         if ((lv_nearbyMarines > 0) && (lv_farAwayMarines == 0)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/2F9DE260"));
-            Wait(2.0, c_timeGame);
+            Wait(0.5, c_timeGame);
             UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
             UnitBehaviorAdd(gv_sahaquiel, "DeadlyDescendChargeUp", gv_sahaquiel, 1);
             VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 4.0, false);
@@ -10733,7 +10733,7 @@ bool auto_gf_CentralSquareBossSahaquiel_TriggerFunc (bool testConds, bool runAct
         }
         else {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/B5018649"));
-            Wait(2.0, c_timeGame);
+            Wait(0.5, c_timeGame);
             UnitBehaviorRemove(gv_sahaquiel, "BioBombardmentMode", 1);
             UnitBehaviorAdd(gv_sahaquiel, "DeafeningBlastChargeUp", gv_sahaquiel, 1);
             VisRevealArea(0, RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0), 4.0, false);
@@ -10769,22 +10769,22 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
 
     // Implementation
     while ((UnitIsAlive(gv_sahaquiel) == true)) {
-        autoE0CA2010_g = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter(0, 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 4);
+        autoE0CA2010_g = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 14, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(gv_sahaquiel), 18.0), UnitFilter(0, 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 3);
         autoE0CA2010_u = UnitGroupCount(autoE0CA2010_g, c_unitCountAll);
         for (;; autoE0CA2010_u -= 1) {
             autoE0CA2010_var = UnitGroupUnitFromEnd(autoE0CA2010_g, autoE0CA2010_u);
             if (autoE0CA2010_var == null) { break; }
             if ((UnitGroupCount(gv_sahaquielScourgeGroup, c_unitCountAlive) < (gv_alivePlayers + 4))) {
-                libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scourge", c_unitCreateIgnorePlacement, 14, RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 2.0)));
+                libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scourge", c_unitCreateIgnorePlacement, 14, RegionRandomPoint(RegionCircle(UnitGetPosition(gv_sahaquiel), 4.0)));
                 UnitGroupAdd(gv_sahaquielScourgeGroup, UnitLastCreated());
                 UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(AbilityCommand("attack", 0), autoE0CA2010_var), c_orderQueueReplace);
             }
         }
         if ((gv_isVeteranSquad == false)) {
-            Wait(8.0, c_timeGame);
+            Wait(5.4, c_timeGame);
         }
         else {
-            Wait(6.0, c_timeGame);
+            Wait(3.75, c_timeGame);
         }
         while (!(((gv_sahaquielScourgeSpawn == true) || (UnitIsAlive(gv_sahaquiel) == false)))) {
             Wait(0.2, c_timeGame);
@@ -16438,10 +16438,13 @@ void gf_LevelUpTalentFlamethrower (int lp_itemNo, unit lp_triggUnit, int lp_trig
 
     if ((lp_itemNo == 4)) {
         if ((gv_talentLevel[lp_itemNo][lp_triggPlayer] == 2)) {
-            TechTreeUpgradeAddLevel(lp_triggPlayer, "RighteousnessLevel2", 1);
             UnitBehaviorRemove(lp_triggUnit, "FrenzyBuffLevel1", c_unitBehaviorCountAll);
         }
 
+    }
+
+    if ((lp_itemNo == 7)) {
+        UnitIssueOrder(lp_triggUnit, Order(AbilityCommand("Vengeance", 0)), c_orderQueueAddToFront);
     }
 
     if ((lp_itemNo == 8)) {
