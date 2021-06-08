@@ -15054,11 +15054,11 @@ bool auto_gf_StatsModRange_TriggerFunc (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_player;
     fixed lv_range;
-    string[12] lv_dataWeaponName;
+    string[13] lv_dataWeaponName;
     fixed lv_rangePercentagePerLevel;
 
     // Automatic Variable Declarations
-    const int auto71526214_ae = 11;
+    const int auto71526214_ae = 12;
     int auto71526214_var;
     int auto4030AA11_val;
 
@@ -15079,6 +15079,7 @@ bool auto_gf_StatsModRange_TriggerFunc (bool testConds, bool runActions) {
     lv_dataWeaponName[9] = "UA420AssaultRifle";
     lv_dataWeaponName[10] = "StingerMK3";
     lv_dataWeaponName[11] = "Flamethrower";
+    lv_dataWeaponName[12] = "Crowbar";
     auto71526214_var = 0;
     for ( ; auto71526214_var <= auto71526214_ae; auto71526214_var += 1 ) {
         lv_range = StringToFixed(CatalogFieldValueGet(c_gameCatalogWeapon, lv_dataWeaponName[auto71526214_var], "Range", 10));
@@ -22436,7 +22437,7 @@ bool gt_MagazineUse_Func (bool testConds, bool runActions) {
 
     if (true) {
         gf_UpdateMagazineCount(3, ge_AmmoChange_Increase, lv_selectingPlayer);
-        if ((lv_originAmmo <= 0) && (gv_marineRounds[lv_selectingPlayer] <= 0) && (UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1) != "Crowbar")) {
+        if ((lv_originAmmo <= 0) && (gv_marineRounds[lv_selectingPlayer] <= 0) && (gv_reloading[lv_selectingPlayer] == false) && (UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1) != "Crowbar")) {
             gf_ReloadMagazine(lv_selectingPlayer, EventUnit(), ge_ReloadType_Perfect, UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1));
         }
         else {

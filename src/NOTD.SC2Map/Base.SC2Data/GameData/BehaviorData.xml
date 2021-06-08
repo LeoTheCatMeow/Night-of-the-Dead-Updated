@@ -88,6 +88,7 @@
         </Modification>
         <MaxStackCount value="3"/>
         <DamageResponse Handled="APAmmoApplyArmorDebuff" Location="Attacker">
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -1132,6 +1133,7 @@
         <InfoIcon value="Assets\Textures\btn-techupgrade-terran-devastatormissiles.dds"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <DamageResponse Handled="CIAmmoApplySet" Location="Attacker">
+            <Kind index="NoProc" value="0"/>
             <ExcludeEffectArray value="InfernalFlameThrower"/>
             <ExcludeEffectArray value="FlameThrowerLevel2"/>
             <ExcludeEffectArray value="FlameThrowerLevel3"/>
@@ -1515,6 +1517,7 @@
         <Duration value="20"/>
         <DamageResponse Handled="AdrenalineAttackSpeedApplyBehaviorLevel1" Location="Attacker">
             <Kind index="Spell" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
@@ -1550,6 +1553,7 @@
         <Duration value="20"/>
         <DamageResponse Handled="AdrenalineAttackSpeedApplyBehaviorLevel13" Location="Attacker">
             <Kind index="Spell" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
@@ -1561,6 +1565,7 @@
         <Duration value="20"/>
         <DamageResponse Handled="AdrenalineAttackSpeedApplyBehaviorLevel12" Location="Attacker">
             <Kind index="Spell" value="0"/>
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
         <BehaviorCategories index="User1" value="1"/>
@@ -7945,6 +7950,7 @@
         </Modification>
         <MaxStackCount value="3"/>
         <DamageResponse Handled="HEAmmoSet" Location="Attacker">
+            <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>

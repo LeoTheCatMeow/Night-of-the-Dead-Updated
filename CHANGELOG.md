@@ -12,6 +12,9 @@
 - Fixed a fairly old bug where Tartarus and Apoptosis take more damage than they should be taking due to their boss mechanics. 
 - As a result these 2 bosses will feel harder than normal, and further balancing may be needed.
 - Made some fixes to critical strike damage as it may also be ignoring certain boss or defensive mechanics.
+- Rifleman's Bloodlust can now be auto-cast as requested by some players.
+- Fixed reloading from 0 magazine eating up additional magazines if they are used during the reload.
+- Fixed weapon range mod not affecting crowbar.
 
 2021-5-25
 [LeoTheCat]

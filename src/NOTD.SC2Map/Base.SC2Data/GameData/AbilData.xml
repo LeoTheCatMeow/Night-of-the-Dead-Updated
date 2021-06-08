@@ -239,7 +239,10 @@
     <CAbilBehavior id="Bloodlust">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <CmdButtonArray index="On" DefaultButtonFace="Bloodlust"/>
-        <CmdButtonArray index="Off" DefaultButtonFace="Bloodlust"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="BloodlustPlaceholder">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -249,7 +252,6 @@
         <BehaviorArray value="Bloodlust"/>
         <LevelButtonOnImage value="Assets\Textures\btn-ability-terran-domination.dds"/>
         <LevelButtonOffImage value="Assets\Textures\btn-ability-terran-domination.dds"/>
-        <AutoCastValidatorArray value="CasterNotBloodlust"/>
     </CAbilBehavior>
     <CAbilBehavior id="BoomHeadshot">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
