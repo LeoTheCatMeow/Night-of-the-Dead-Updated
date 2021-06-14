@@ -67,10 +67,10 @@
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="HardShell">
-        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Melee]" Value="-0.25"/>
-        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Ranged]" Value="-0.25"/>
-        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Spell]" Value="-0.25"/>
-        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Splash]" Value="-0.25"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Melee]" Value="-0.2"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Ranged]" Value="-0.2"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Spell]" Value="-0.2"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Splash]" Value="-0.2"/>
     </CUpgrade>
     <CUpgrade id="HarvesterofSorrowBonusCrit">
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.25"/>
@@ -297,6 +297,10 @@
         <EffectArray Operation="Set" Reference="Behavior,ConcentratedFireLevel2,Modification.SightBonus" Value="1"/>
         <EffectArray Operation="Set" Reference="Behavior,ConcentratedFireLevel3,Modification.SightBonus" Value="1.5"/>
         <EffectArray Operation="Set" Reference="Behavior,SightBonus,Modification.SightBonus" Value="0.5"/>
+        <EffectArray Operation="Set" Reference="Behavior,MotionSensorVisionBonusLevel1,Modification.SightBonus" Value="0.75"/>
+        <EffectArray Operation="Set" Reference="Behavior,MotionSensorVisionBonusLevel2,Modification.SightBonus" Value="0.75"/>
+        <EffectArray Operation="Set" Reference="Behavior,BattlefieldIntelligence,Modification.SightBonus" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Behavior,VeteransFocus,Modification.SightBonus" Value="2"/>
     </CUpgrade>
     <CUpgrade id="SatchelDeployment">
         <Alert value=""/>
@@ -337,6 +341,9 @@
         <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel2,ShieldRegenRate" Value="-10.000000"/>
         <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel3,ShieldRegenRate" Value="-10.000000"/>
         <EffectArray Operation="Set" Reference="Unit,ReaperMK13,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,MobileInfantryFlamethrower,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,MobileInfantryMarksman,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,MobileInfantryRifleman,ShieldRegenRate" Value="-10.000000"/>
     </CUpgrade>
     <CUpgrade id="StealthMatrixLevel1">
         <Alert value=""/>

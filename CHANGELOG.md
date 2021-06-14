@@ -12,7 +12,9 @@
    Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
    Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
 - Winning Daily Challenges reward extra XP and Rating.
-- Localization not done, please use English for accurate Daily Challenge descriptions.
+
+- Tweaked the spawn factor scaling now that High Spawn is no longer available, so that SF9 can be more easily obtained.
+- Playing NM with 7+ players or having at least 1 very experienced player helps bump up the SF.
 
 2021-6-5
 [LeoTheCat]
