@@ -66,6 +66,12 @@
         <EffectArray Reference="Effect,SatchelLevel1AftershockDamage,AttributeBonus[Structure]" Value="14"/>
         <MaxLevel value="3"/>
     </CUpgrade>
+    <CUpgrade id="HardShell">
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Melee]" Value="-0.25"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Ranged]" Value="-0.25"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Spell]" Value="-0.25"/>
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.DamageTakenFraction[Splash]" Value="-0.25"/>
+    </CUpgrade>
     <CUpgrade id="HarvesterofSorrowBonusCrit">
         <EffectArray Reference="Effect,ApplyCriticalStrikeSet,Chance[0]" Value="0.25"/>
     </CUpgrade>
@@ -242,6 +248,56 @@
         <MaxLevel value="23"/>
         <Flags index="UpgradeCheat" value="0"/>
     </CUpgrade>
+    <CUpgrade id="RocketScience">
+        <EffectArray Operation="Set" Reference="Effect,StingerMK3Damage,Amount" Value="90"/>
+        <EffectArray Operation="Set" Reference="Effect,NukeDamage,Amount" Value="360"/>
+        <EffectArray Operation="Set" Reference="Effect,ShivaDamage,Amount" Value="3600"/>
+        <EffectArray Operation="Set" Reference="Effect,StingerMK3Damage,AttributeBonus[Massive]" Value="30"/>
+    </CUpgrade>
+    <CUpgrade id="DarkMoon">
+        <EffectArray Operation="Set" Reference="Unit,TychusChaingun,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,ChemicalExpert,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Commando,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,DominionKillTeam,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Engineer,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Flamethrower3,Sight" Value="3.75"/>
+        <EffectArray Operation="Set" Reference="Unit,ForwardObserver,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Marksman,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Medic2,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Pathfinder,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOps,Sight" Value="4.25"/>
+        <EffectArray Operation="Set" Reference="Unit,Spectre,Sight" Value="4.5"/>
+        <EffectArray Operation="Set" Reference="Unit,Rifleman,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,Technician,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,DisruptionTowerLevel1,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,DisruptionTowerLevel2,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,FieldNexus,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,FieldProbe,Sight" Value="1"/>
+        <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel1,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel2,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel3,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,CrawlerDroneLevel1,Sight" Value="1"/>
+        <EffectArray Operation="Set" Reference="Unit,CrawlerDroneLevel2,Sight" Value="1"/>
+        <EffectArray Operation="Set" Reference="Unit,BlackDog,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,MaintenanceDroneMK1,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,MaintenanceDroneMK2,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,MaintenanceDroneMK3,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,TargetingArray,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,ReaperMK13,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,SupplyStationLevel1,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,SupplyStationLevel2,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,SentinelMine,Sight" Value="1"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOpsMentalProjection,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Behavior,OccularImplants,Modification.SightBonus" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Unit,MobileInfantryRifleman,Sight" Value="3"/>
+        <EffectArray Operation="Set" Reference="Unit,MobileInfantryMarksman,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Unit,MobileInfantryFlamethrower,Sight" Value="4"/>
+        <EffectArray Operation="Set" Reference="Behavior,FocusedFire,Modification.SightBonus" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Behavior,ConcentratedFireLevel1,Modification.SightBonus" Value="0.5"/>
+        <EffectArray Operation="Set" Reference="Behavior,ConcentratedFireLevel2,Modification.SightBonus" Value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,ConcentratedFireLevel3,Modification.SightBonus" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Behavior,SightBonus,Modification.SightBonus" Value="0.5"/>
+    </CUpgrade>
     <CUpgrade id="SatchelDeployment">
         <Alert value=""/>
         <EffectArray Operation="Subtract" Reference="Abil,SatchelDeployment,Cost[0].Cooldown[0].TimeUse[0]" Value="1.000000"/>
@@ -259,6 +315,28 @@
         <EffectArray Operation="Subtract" Reference="Abil,NapalmBarrage,Cost[0].Cooldown.TimeUse" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Abil,NapalmBarrage,Cost[0].Vital[Energy]" Value="3"/>
         <AffectedUnitArray value="ForwardObserver"/>
+    </CUpgrade>
+    <CUpgrade id="SolarRadiation">
+        <EffectArray Operation="Set" Reference="Unit,TychusChaingun,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,ChemicalExpert,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Commando,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,DominionKillTeam,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Engineer,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Flamethrower3,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,ForwardObserver,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Marksman,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Medic2,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Pathfinder,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOps,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Spectre,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Rifleman,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Technician,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,FieldNexus,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,FieldProbe,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel1,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel2,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,X1GuardianLevel3,ShieldRegenRate" Value="-10.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,ReaperMK13,ShieldRegenRate" Value="-10.000000"/>
     </CUpgrade>
     <CUpgrade id="StealthMatrixLevel1">
         <Alert value=""/>

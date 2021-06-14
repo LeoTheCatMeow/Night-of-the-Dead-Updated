@@ -1,5 +1,19 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-6-14
+[LeoTheCat]
+- Added a "-god" command to "-train" mode which makes the player marine take no damage.
+- Due to Blizzard's updates, cheats won't work online even if allowed, so "-train" mode is your best bet to test the map.
+- Make sure to type "-train" before selecting a storyline.
+- Updated the game over screen to direct players to the current active community (the website is dead, use the discord link).
+
+- Replaced High Spawn with Daily Challenge, which offers more interesting variations instead of a simple difficulty increase. 
+- The current Daily Challenges include:
+   Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
+   Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
+- Winning Daily Challenges reward extra XP and Rating.
+- Localization not done, please use English for accurate Daily Challenge descriptions.
+
 2021-6-5
 [LeoTheCat]
 - Added a different button for Flamethrower's Vengeance to indicate that it is off. 

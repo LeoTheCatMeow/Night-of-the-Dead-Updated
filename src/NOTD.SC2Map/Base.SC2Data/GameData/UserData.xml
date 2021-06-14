@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CUser id="DailyChallengeInfo">
+        <Fields Id="Daily Challenge Info" Type="Text"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Sunday">
+            <Text Text="UserData/DailyChallengeInfo/Sunday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="Monday">
+            <Text Text="UserData/DailyChallengeInfo/Monday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="Tuesday">
+            <Text Text="UserData/DailyChallengeInfo/Tuesday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="Wednesday">
+            <Text Text="UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="Thursday">
+            <Text Text="UserData/DailyChallengeInfo/Thursday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="Friday">
+            <Text Text="UserData/DailyChallengeInfo/Friday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="Saturday">
+            <Text Text="UserData/DailyChallengeInfo/Saturday_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+        <Instances Id="None">
+            <Text Text="UserData/DailyChallengeInfo/None_Daily Challenge Info">
+                <Field Id="Daily Challenge Info"/>
+            </Text>
+        </Instances>
+    </CUser>
     <CUser id="ShopItemsCosmetics">
         <Fields Id="Skin (Effect)" Type="GameLink" GameLinkType="Effect"/>
         <Fields Id="XPRequirement" Type="Int"/>

@@ -573,6 +573,14 @@ const int ge_GameModes_Normal = 0;
 const int ge_GameModes_Nightmare = 1;
 const int ge_GameModes_Hell = 2;
 const int ge_GameModes_Recruit = 3;
+const int ge_DailyChallenge_None = 0;
+const int ge_DailyChallenge_HardShell = 1;
+const int ge_DailyChallenge_DarkMoon = 2;
+const int ge_DailyChallenge_RiflemanSquad = 3;
+const int ge_DailyChallenge_SolarRadiation = 4;
+const int ge_DailyChallenge_AmmoShortage = 5;
+const int ge_DailyChallenge_RocketScience = 6;
+const int ge_DailyChallenge_SkippedLegDay = 7;
 const int ge_GRIDDLG_HV_Horizontal = 0;
 const int ge_GRIDDLG_HV_Vertical = 1;
 const int ge_GRIDDLG_HV2_ClientPosition = 0;
@@ -726,7 +734,6 @@ string[9] gv_friendlyFireBuff;
 trigger[5] gv_domeSpawn;
 string gv_domeSequence;
 int gv_spawnFactor;
-string gv_sFOption;
 int gv_performanceTimer;
 int gv_squadXP;
 int gv_scaledXP;
@@ -801,6 +808,11 @@ int gv_currentGameMode;
 trigger[gv_stories + 1] gv_storyIntializationTriggers;
 bool[gv_stories + 1] gv_storylineUnlocked;
 bool gv_storylineSelectionFinalized;
+datetime gv_currentDateTime;
+int gv_currentDayOfWeek;
+int gv_currentDailyChallenge;
+bool gv_dailyChallengeActivated;
+text gv_dailyChallengeInfo;
 int gv_storylineDialog;
 int gv_storylineModDialog;
 int gv_storylineModDialog2;
@@ -1306,7 +1318,6 @@ void InitGlobals () {
     gv_marines = UnitGroupEmpty();
     gv_domeSequence = "";
     gv_spawnFactor = 1;
-    gv_sFOption = "0001";
     gv_isHardVetSquad = true;
     gv_isVeteranSquad = true;
     gv_noNewbie = true;
@@ -1358,6 +1369,8 @@ void InitGlobals () {
     for (init_i = 0; init_i <= gv_stories; init_i += 1) {
         gv_storylineUnlocked[init_i] = true;
     }
+    gv_currentDateTime = InitialDateTimeGet();
+    gv_currentDailyChallenge = ge_DailyChallenge_None;
     gv_storylineDialog = c_invalidDialogId;
     gv_storylineModDialog = c_invalidDialogId;
     gv_storylineModDialog2 = c_invalidDialogId;
@@ -2184,6 +2197,7 @@ void gf_NavyCrossAward (int lp_medalNumber);
 void gf_SpeedBonusXP ();
 void gf_OutbreakBonusXP ();
 void gf_EliteMutationBonusXP ();
+void gf_DailyChallengeBonusXP ();
 void gf_GameOverInit ();
 void gf_EndGameUINOTD ();
 void gf_EndGameUISetNOTD ();
@@ -2206,6 +2220,7 @@ trigger gt_storylineModSelection;
 trigger gt_StorylineSelection;
 trigger gt_ModeSelection;
 trigger gt_AutoStorylineSelection;
+trigger gt_SkippedLegDayChallenge;
 trigger gt_ClassCreation;
 trigger gt_PingUsedNOTD;
 trigger gt_PingResetTimerExprires;
@@ -2236,6 +2251,7 @@ trigger gt_SpectatorModeType;
 trigger gt_SpectatorModeClick;
 trigger gt_SpectatorModeOff;
 trigger gt_CustomCheatLevel;
+trigger gt_CustomCheatGod;
 trigger gt_Demerits;
 trigger gt_DemeritsVisible;
 trigger gt_ManualReload;
@@ -3536,19 +3552,6 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
             gv_difficultyHPScaling += 0.2;
         }
     }
-    if ((gv_sFOption == "0002")) {
-        gv_spawnFactor += 1;
-        gv_difficultyHPScaling += 0.1;
-    }
-    else if ((gv_sFOption == "0003")) {
-        if ((gv_nightmare || gv_hell)) {
-            gv_spawnFactor = 9;
-        }
-        else {
-            gv_spawnFactor += 2;
-        }
-        gv_difficultyHPScaling += 0.2;
-    }
     gv_spawnFactor = MinI(gv_spawnFactor, 9);
     gv_difficultyHPScaling = MinF(gv_difficultyHPScaling, 1.5);
     DialogControlHookupStandard(c_triggerControlTypeLabel, "UIContainer/ConsoleUIContainer/MissionTimePanel/TimeLabel");
@@ -3868,12 +3871,61 @@ void gf_UpdateModeSelectionUIs (int lp_mode) {
 
 void gf_ExecuteStorylineMods () {
     // Automatic Variable Declarations
+    int auto563293EA_val;
+    playergroup auto24E99740_g;
+    int auto24E99740_var;
+    playergroup autoA526A7DF_g;
+    int autoA526A7DF_var;
+    playergroup auto99FD7B20_g;
+    int auto99FD7B20_var;
+
     // Implementation
     if ((gv_storylineModOn[1] == true)) {
         TriggerExecute(gt_EliteMutationCommand, true, false);
     }
     if ((gv_storylineModOn[2] == true)) {
-        gv_sFOption = "0003";
+        gv_dailyChallengeActivated = true;
+        auto563293EA_val = gv_currentDailyChallenge;
+        if (auto563293EA_val == ge_DailyChallenge_DarkMoon) {
+            auto24E99740_g = gv_marineSquad;
+            auto24E99740_var = -1;
+            while (true) {
+                auto24E99740_var = PlayerGroupNextPlayer(auto24E99740_g, auto24E99740_var);
+                if (auto24E99740_var < 0) { break; }
+                TechTreeUpgradeAddLevel(auto24E99740_var, "DarkMoon", 1);
+            }
+        }
+        else if (auto563293EA_val == ge_DailyChallenge_HardShell) {
+            TechTreeUpgradeAddLevel(13, "HardShell", 1);
+            TechTreeUpgradeAddLevel(14, "HardShell", 1);
+        }
+        else if (auto563293EA_val == ge_DailyChallenge_AmmoShortage) {
+        }
+        else if (auto563293EA_val == ge_DailyChallenge_RocketScience) {
+            autoA526A7DF_g = gv_marineSquad;
+            autoA526A7DF_var = -1;
+            while (true) {
+                autoA526A7DF_var = PlayerGroupNextPlayer(autoA526A7DF_g, autoA526A7DF_var);
+                if (autoA526A7DF_var < 0) { break; }
+                TechTreeUpgradeAddLevel(autoA526A7DF_var, "RocketScience", 1);
+            }
+        }
+        else if (auto563293EA_val == ge_DailyChallenge_SolarRadiation) {
+            auto99FD7B20_g = gv_marineSquad;
+            auto99FD7B20_var = -1;
+            while (true) {
+                auto99FD7B20_var = PlayerGroupNextPlayer(auto99FD7B20_g, auto99FD7B20_var);
+                if (auto99FD7B20_var < 0) { break; }
+                TechTreeUpgradeAddLevel(auto99FD7B20_var, "SolarRadiation", 1);
+            }
+        }
+        else if (auto563293EA_val == ge_DailyChallenge_SkippedLegDay) {
+            TriggerEnable(gt_SkippedLegDayChallenge, true);
+        }
+        else if (auto563293EA_val == ge_DailyChallenge_RiflemanSquad) {
+        }
+        else {
+        }
     }
     if ((gv_storylineModOn[3] == true)) {
         TriggerExecute(gt_OutbreakCommand, true, false);
@@ -5750,8 +5802,8 @@ void gf_DisplaySquadInformation () {
     if ((gv_eliteMutationActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/723F181B")) + gv_endStyling));
     }
-    if (gv_glassCannonActivated) {
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + StringExternal("Param/Value/EFD575E9")) + gv_endStyling));
+    if ((gv_dailyChallengeActivated == true)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_dailyChallengeInfo) + gv_endStyling));
     }
     if ((gv_navyCrossFailed == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/A0E38EFB"));
@@ -8163,7 +8215,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
             lv_trainingPurchase = true;
         }
         else {
-            if ((gv_playerCredits[lv_buyingPlayer] >= lv_itemCost) && ((gv_navyCrossMode == false) || ((lv_item != "Medpack") && (lv_item != "Bandage")))) {
+            if ((gv_playerCredits[lv_buyingPlayer] >= lv_itemCost) && ((gv_navyCrossMode == false) || ((lv_item != "Medpack") && (lv_item != "Bandage"))) && ((gv_currentDailyChallenge != ge_DailyChallenge_AmmoShortage) || ((lv_item != "Magazine") && (lv_item != "AmmoBox")))) {
                 gf_UpdateCredits(lv_buyingPlayer, -lv_itemCost);
                 lv_itemBought = true;
             }
@@ -17230,6 +17282,24 @@ void gf_EliteMutationBonusXP () {
     }
 }
 
+void gf_DailyChallengeBonusXP () {
+    // Variable Declarations
+    int lv_xp;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((gv_dailyChallengeActivated == true)) {
+        lv_xp = libNtve_gf_DifficultyValueInt(45, 45, 45, 0);
+        gf_AwardPlayerXPNOTD(lv_xp);
+        gf_AwardRatingNOTD(5);
+        TextExpressionSetToken("Param/Expression/32F4B8C8", "A", IntToText(lv_xp));
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/32F4B8C8"));
+        SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
+    }
+}
+
 trigger auto_gf_GameOverInit_Trigger = null;
 
 void gf_GameOverInit () {
@@ -18086,7 +18156,6 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_noNewbie = (lv_xPMin >= 500);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
-    gv_sFOption = GameAttributeGameValue("6");
     TextExpressionSetToken("Param/Expression/67750AE9", "A", IntToText(gv_scaledXP));
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
     UIShowCinematicText(PlayerGroupAll(), TextExpressionAssemble("Param/Expression/67750AE9"), 0.1, 2.0, SoundLink("AC_UI_MouseOver01", -1));
@@ -18315,6 +18384,8 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     int lv_tempDialogFrame;
 
     // Automatic Variable Declarations
+    int autoAEACDCF9_val;
+
     // Variable Initialization
     lv_tempDialogFrame = c_invalidDialogControlId;
 
@@ -18407,15 +18478,45 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     gv_storylineModSelection[1] = DialogControlLastCreated();
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "EliteMutationImageFrame");
     gv_storylineModSelectionFrame[1] = DialogControlLastCreated();
-    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "HighSpawnButton");
-    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/EB366E98"), PlayerGroupAll());
-    gv_storylineModSelection[2] = DialogControlLastCreated();
-    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "HighSpawnImageFrame");
-    gv_storylineModSelectionFrame[2] = DialogControlLastCreated();
-    if ((GameAttributeGameValue("6") == "0003")) {
-        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[2], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
-        gv_storylineModOn[2] = true;
+    DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "DailyChallengeButton");
+    gv_currentDayOfWeek = GetDateTimeWeekday(gv_currentDateTime);
+    autoAEACDCF9_val = gv_currentDayOfWeek;
+    if (autoAEACDCF9_val == 0) {
+        gv_currentDailyChallenge = ge_DailyChallenge_DarkMoon;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Sunday", "Daily Challenge Info", 1);
     }
+    else if (autoAEACDCF9_val == 1) {
+        gv_currentDailyChallenge = ge_DailyChallenge_HardShell;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Monday", "Daily Challenge Info", 1);
+    }
+    else if (autoAEACDCF9_val == 2) {
+        gv_currentDailyChallenge = ge_DailyChallenge_AmmoShortage;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Tuesday", "Daily Challenge Info", 1);
+    }
+    else if (autoAEACDCF9_val == 3) {
+        gv_currentDailyChallenge = ge_DailyChallenge_RocketScience;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Wednesday", "Daily Challenge Info", 1);
+    }
+    else if (autoAEACDCF9_val == 4) {
+        gv_currentDailyChallenge = ge_DailyChallenge_SolarRadiation;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Thursday", "Daily Challenge Info", 1);
+    }
+    else if (autoAEACDCF9_val == 5) {
+        gv_currentDailyChallenge = ge_DailyChallenge_SkippedLegDay;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Friday", "Daily Challenge Info", 1);
+    }
+    else if (autoAEACDCF9_val == 6) {
+        gv_currentDailyChallenge = ge_DailyChallenge_RiflemanSquad;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "Saturday", "Daily Challenge Info", 1);
+    }
+    else {
+        gv_currentDailyChallenge = ge_DailyChallenge_None;
+        gv_dailyChallengeInfo = UserDataGetText("DailyChallengeInfo", "None", "Daily Challenge Info", 1);
+    }
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), gv_dailyChallengeInfo, PlayerGroupAll());
+    gv_storylineModSelection[2] = DialogControlLastCreated();
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "DailyChallengeImageFrame");
+    gv_storylineModSelectionFrame[2] = DialogControlLastCreated();
     DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "OutbreakButton");
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/997DA716"), PlayerGroupAll());
     gv_storylineModSelection[3] = DialogControlLastCreated();
@@ -18729,6 +18830,27 @@ void gt_AutoStorylineSelection_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Skipped Leg Day Challenge
+//--------------------------------------------------------------------------------------------------
+bool gt_SkippedLegDayChallenge_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), "MyLeg", 0, 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SkippedLegDayChallenge_Init () {
+    gt_SkippedLegDayChallenge = TriggerCreate("gt_SkippedLegDayChallenge_Func");
+    TriggerEnable(gt_SkippedLegDayChallenge, false);
+    TriggerAddEventTimePeriodic(gt_SkippedLegDayChallenge, 180.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Class Creation
 //--------------------------------------------------------------------------------------------------
 bool gt_ClassCreation_Func (bool testConds, bool runActions) {
@@ -18838,6 +18960,9 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
             gv_playerRandom[lv_selectingPlayer] = true;
         }
 
+    }
+    if ((gv_currentDailyChallenge == ge_DailyChallenge_RiflemanSquad) && (gv_dailyChallengeActivated == true)) {
+        gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 1);
     }
     UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), RegionRandomPoint(lv_spawnArea), 90.0);
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
@@ -19887,10 +20012,7 @@ bool gt_NightmareHellMode_Func (bool testConds, bool runActions) {
             TextExpressionSetToken("Param/Expression/876B094F", "C", gv_endStyling);
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/876B094F"));
         }
-        if ((gv_sFOption == "0003")) {
-            gv_spawnFactor = 9;
-        }
-        else if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
+        if ((gv_totalPlayers == 8) && (gv_squadRating >= 2300)) {
             gv_spawnFactor += 1;
         }
         gv_spawnFactor = MinI(gv_spawnFactor, 9);
@@ -20068,9 +20190,9 @@ bool gt_TrainingCommand_Func (bool testConds, bool runActions) {
     DialogControlSetVisible(gv_saveButton, PlayerGroupAll(), false);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, (StringExternal("Param/Value/7DCDCFAF") + IntToText(gv_trainingShopPurchases[1]) + StringExternal("Param/Value/1B47C56C")));
     SoundPlayForPlayer(SoundLink("UI_TechConsole_Purchase", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
-    GameCheatAllow(c_gameCheatAny, true);
     gv_noShopMode = false;
     TriggerEnable(gt_CustomCheatLevel, true);
+    TriggerEnable(gt_CustomCheatGod, true);
     return true;
 }
 
@@ -20255,6 +20377,27 @@ void gt_CustomCheatLevel_Init () {
     gt_CustomCheatLevel = TriggerCreate("gt_CustomCheatLevel_Func");
     TriggerEnable(gt_CustomCheatLevel, false);
     TriggerAddEventChatMessage(gt_CustomCheatLevel, c_playerAny, "-level ", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Custom Cheat God
+//--------------------------------------------------------------------------------------------------
+bool gt_CustomCheatGod_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_ChangeUnitDamage(gv_marineHero[EventPlayer()], libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CustomCheatGod_Init () {
+    gt_CustomCheatGod = TriggerCreate("gt_CustomCheatGod_Func");
+    TriggerEnable(gt_CustomCheatGod, false);
+    TriggerAddEventChatMessage(gt_CustomCheatGod, c_playerAny, "-god", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -21767,10 +21910,10 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
     if ((gv_alivePlayers == 2)) {
         SoundPlay(SoundLink("TValerian02ADominionMarine600039", -1), PlayerGroupActive(), 100.0, 0.0);
     }
-    if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 5) && (gv_spawnFactor > 1) && (gv_sFOption != "0003")) {
+    if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 5) && (gv_spawnFactor > 1)) {
         gv_spawnFactor -= 1;
     }
-    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 3) && (gv_spawnFactor > 1) && (gv_sFOption != "0003")) {
+    else if ((gv_totalPlayers > 6) && ((gv_totalPlayers - UnitGroupCount(gv_marines, c_unitCountAlive)) == 3) && (gv_spawnFactor > 1)) {
         gv_spawnFactor -= 1;
     }
     return true;
@@ -22396,7 +22539,12 @@ bool gt_DropMagazine_Func (bool testConds, bool runActions) {
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Magazine", 0, 10, UnitGetPosition(EventUnit()));
     UnitAddChargeUsed(UnitLastCreated(), "Ammo/Magazine", 2.0);
     UnitIssueOrder(EventUnit(), OrderTargetingUnit(null, UnitLastCreated()), c_orderQueueAddToFront);
-    gf_UpdateMagazineCount(3, ge_AmmoChange_Decrease, lv_triggeringPlayer);
+    if ((gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true)) {
+        gf_UpdateMagazineCount(2, ge_AmmoChange_Decrease, lv_triggeringPlayer);
+    }
+    else {
+        gf_UpdateMagazineCount(3, ge_AmmoChange_Decrease, lv_triggeringPlayer);
+    }
     gf_EquipmentUpdateMarineWeight(lv_triggeringPlayer, true);
     gf_UpdateAmmoDialog(lv_triggeringPlayer);
     return true;
@@ -22436,7 +22584,12 @@ bool gt_MagazineUse_Func (bool testConds, bool runActions) {
     }
 
     if (true) {
-        gf_UpdateMagazineCount(3, ge_AmmoChange_Increase, lv_selectingPlayer);
+        if ((gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true)) {
+            gf_UpdateMagazineCount(2, ge_AmmoChange_Increase, lv_selectingPlayer);
+        }
+        else {
+            gf_UpdateMagazineCount(3, ge_AmmoChange_Increase, lv_selectingPlayer);
+        }
         if ((lv_originAmmo <= 0) && (gv_marineRounds[lv_selectingPlayer] <= 0) && (gv_reloading[lv_selectingPlayer] == false) && (UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1) != "Crowbar")) {
             gf_ReloadMagazine(lv_selectingPlayer, EventUnit(), ge_ReloadType_Perfect, UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1));
         }
@@ -38238,6 +38391,7 @@ bool gt_STC1ItemSpawn_Func (bool testConds, bool runActions) {
         gf_CreateItemNOTD("StingerMK3", 1);
     }
 
+    lv_magazineSpawn += gv_magazineAdjustment;
     gf_CreateItemNOTD("Helium3Canister", 1);
     gf_CreateItemNOTD("Magazine", lv_magazineSpawn);
     gf_CreateItemNOTD("AmmoBox", 3);
@@ -47474,6 +47628,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
 
     gf_OutbreakBonusXP();
     gf_EliteMutationBonusXP();
+    gf_DailyChallengeBonusXP();
     Wait(1.75, c_timeReal);
     UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
     return true;
@@ -47797,6 +47952,7 @@ void InitTriggers () {
     gt_StorylineSelection_Init();
     gt_ModeSelection_Init();
     gt_AutoStorylineSelection_Init();
+    gt_SkippedLegDayChallenge_Init();
     gt_ClassCreation_Init();
     gt_PingUsedNOTD_Init();
     gt_PingResetTimerExprires_Init();
@@ -47827,6 +47983,7 @@ void InitTriggers () {
     gt_SpectatorModeClick_Init();
     gt_SpectatorModeOff_Init();
     gt_CustomCheatLevel_Init();
+    gt_CustomCheatGod_Init();
     gt_Demerits_Init();
     gt_DemeritsVisible_Init();
     gt_ManualReload_Init();

@@ -337,6 +337,15 @@
         <InfoFlags index="Hidden" value="1"/>
         <InitialEffect value="DeadlyDescendIncreaseHeight"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="MyLeg">
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-genemutation-thornsaura.dds"/>
+        <BehaviorCategories index="User1" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="180"/>
+        <Modification MoveSpeedMultiplier="0.5">
+            <AbilLinkDisableArray value="Sprint"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="ShivaRevealTimed">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>

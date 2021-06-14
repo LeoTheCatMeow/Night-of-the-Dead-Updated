@@ -406,13 +406,6 @@ Attribute005/Value007/Name=NMAC
 Attribute005/Value008/Name=NMSurv
 Attribute005/Value009/Name=NMSec
 Attribute005/Value010/Name=AnyNM
-Attribute006/Name=Spawn Factor
-Attribute006/Value001/Desc=Standard Spawn Factor
-Attribute006/Value001/Name=Standard
-Attribute006/Value002/Desc=+1 SF and 10% HP Scaling
-Attribute006/Value002/Name=Elevated
-Attribute006/Value003/Desc=+2 SF, SF set to 9 for Nightmare, + 20% HP Scaling
-Attribute006/Value003/Name=High Spawn
 Attribute007/Desc=Enforces merits and demerits. It is recommended to disable this option in a private lobby and keep enabled in a public lobby. Use demerits to help protect the team from abusive players. Abusive players will lose access to advanced selections and items.
 Attribute007/Name=Merits
 Attribute007/Value001/Desc=Merits and demerits will be enforced.
@@ -663,6 +656,7 @@ Behavior/Name/Monstrous=Monstrous
 Behavior/Name/MonstrousBoss=Monstrous (Boss)
 Behavior/Name/MoreDoTs=Nano Sear
 Behavior/Name/MotionSensorArmorDebuff=Motion Sensor (Armor Debuff)
+Behavior/Name/MyLeg=My Leg!
 Behavior/Name/NanitesUpgradeLevel1=Nanites Upgrade (Level 1)
 Behavior/Name/NanitesUpgradeLevel2=Nanites Upgrade (Level 2)
 Behavior/Name/NanitesUpgradeLevel3=Nanites Upgrade (Level 3)
@@ -1040,6 +1034,7 @@ Behavior/Tooltip/Monstrous=Unit gains the following features:<n/>+100 flat and <
 Behavior/Tooltip/MonstrousBoss=Unit gains the following features:<n/>+<d ref="Behavior,MonstrousBoss,Modification.VitalMaxAdditiveMultiplierArray[0] * 100"/>% health. <n/>+30% damage but -30% attack speed. <n/>+<d ref="Behavior,MonstrousBoss,Modification.DamageTakenFraction[0] * 100"/>% damage taken from spells.<n/>Attack has 30% chance to briefly stuns the victim.<n/><c val="FFFF00">Nearby enemies in a 7 radius are periodically pulled toward the unit (if unit is massive)</c>
 Behavior/Tooltip/MoreDoTs=Unit takes 25 damage per second. Attack and move speed is slowed by 10%. Loses 2 armor. Stacks up to 5 times.
 Behavior/Tooltip/MotionSensorArmorDebuff=Unit armor is reduced by 1.
+Behavior/Tooltip/MyLeg=Unit moves 50% slower and is unable to sprint.<n/><n/>"Told you not to skip leg day..."
 Behavior/Tooltip/NanitesUpgradeLevel1=+2 HP regeneration to Technician and +1 HP regeneration to non-biological allies nearby Technician
 Behavior/Tooltip/NanitesUpgradeLevel2=+4 HP regeneration to Technician and +2 HP regeneration to non-biological allies nearby Technician
 Behavior/Tooltip/NanitesUpgradeLevel3=+6 HP regeneration to Technician and +3 HP regeneration to non-biological allies nearby Technician
@@ -2176,6 +2171,12 @@ DocInfo/PatchNote060=- Made some fixes to critical strike damage as it may also 
 DocInfo/PatchNote061=- Rifleman's Bloodlust can now be auto-cast as requested by some players.
 DocInfo/PatchNote062=- Fixed reloading from 0 magazine eating up additional magazines if they are used during the reload.
 DocInfo/PatchNote063=- Fixed weapon range mod not affecting crowbar.
+DocInfo/PatchNote064=[LeoTheCat]
+DocInfo/PatchNote065=- Added a "-god" command to "-train" mode which makes the player marine take no damage.
+DocInfo/PatchNote066=- Due to Blizzard's updates, cheats won't work online even if allowed, so "-train" mode is your best bet to test the map.
+DocInfo/PatchNote067=- Make sure to type "-train" before selecting a storyline.
+DocInfo/PatchNote068=- Updated the game over screen to direct players to the current active community (the website is dead, use the discord link).
+DocInfo/PatchNote069=
 DocInfo/PatchNote070=[LeoTheCat]
 DocInfo/PatchNote071=<Gameplay Changes>
 DocInfo/PatchNote072=- Taunts of the same kind but different levels no long stack damage reduction. Different taunts can still stack (Demo + Assault).
@@ -2211,6 +2212,12 @@ DocInfo/PatchNote101=- Fixed some incorrect talent descriptions in Chinese local
 DocInfo/PatchNote102=- Fixed a bug where certain enemies are not droping creep on death, or dropping them on the other side of the map for some reason.
 DocInfo/PatchNote103=- Creeps are made visible and thus easier to target, since the above fix will add more creep into the game/increase difficulty.
 DocInfo/PatchNote104=- Fixed a bug where Technician's black dog turret will ocassionally look like it is bleeding (may still need more work).
+DocInfo/PatchNote105=- Replaced High Spawn with Daily Challenge, which offers more interesting variations instead of a simple difficulty increase. 
+DocInfo/PatchNote106=- The current Daily Challenges include:
+DocInfo/PatchNote107=   Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
+DocInfo/PatchNote108=   Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
+DocInfo/PatchNote109=- Winning Daily Challenges reward extra XP and Rating.
+DocInfo/PatchNote110=- Localization not done, please use English for accurate Daily Challenge descriptions.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4229,6 +4236,7 @@ Param/Expression/207EADA5=<s val="GlueButtonSmall">Rec/Norm: <c val="71E100">~A~
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
+Param/Expression/32F4B8C8=+~A~ XP and 5 Rating for Daily Challenge Bonus
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8= ~A~ Class Point awarded</s>
@@ -4282,7 +4290,7 @@ Param/Value/02779103=Ivan Plushenko
 Param/Value/0286289B=The civilians are escaping. There's no telling how many are infected.
 Param/Value/02AB0A1A=<s val="InfoPaneHeroRank">(The Colonists in the Containment Facility board the truck...)</s>
 Param/Value/02B65806=Deimos' attacks deal greater damage to high armor units
-Param/Value/02F14065=<c val="F4D72B">Victory. Thanks for playing NOTD. Discuss at www.notdstarcraft.com</c>
+Param/Value/02F14065=<c val="F4D72B">Victory. Thanks for playing NOTD. Join us on Discord "Night of the Dead".</c>
 Param/Value/030213C9=Spread out!
 Param/Value/0353117D=Zeus and Leto must be killed almost simultaneously to prevent respawn.
 Param/Value/0358704F=Re-activate Devastators from Airlock (0/3)
@@ -4421,7 +4429,7 @@ Param/Value/1A082645=Let's move to the LZ.
 Param/Value/1A6721DE=(Accessing communications log...)
 Param/Value/1A9B7959=Huddle close. Enemies are coming from several directions.
 Param/Value/1ADA3260=You've done well. We'll be back to re-take Apollo soon.
-Param/Value/1B47C56C=<n/>- Type '-level #' to set hero level #.
+Param/Value/1B47C56C=<n/>- Type '-level #' to set hero level #.<n/>- Type '-god' to enter god mode.
 Param/Value/1B4F39CB=Cohesion
 Param/Value/1B5403D2=<s val="GlueButton"><c val="F4D72B">It pains me to kill all these...people.</c></s>
 Param/Value/1BA21C68=<s val="BriefingHanText">(Seismic activity detected...)</s>
@@ -5467,7 +5475,7 @@ Param/Value/C669D621=What is Seth doing here?
 Param/Value/C68BF08E=Activating Apollo defense systems...
 Param/Value/C6B04A5B=Fliers incoming. Switch to sniper rifles!
 Param/Value/C6D3FF88=Keep moving. It's catching up.
-Param/Value/C6FDB822=Game Over. Find us on Discord for regular updates. Search 'NOTD Official'.
+Param/Value/C6FDB822=Game Over. Find us on Discord for regular updates. Search 'Night of the Dead'.
 Param/Value/C7373C86=
 Param/Value/C7813FD7=(Cronus prepares for <c val="FF0000">destruction</c>...)
 Param/Value/C79D92C1=You have 30 seconds to set up before I release the locks.
@@ -5626,7 +5634,7 @@ Param/Value/DE5AD556=You'll find some of our men at the rendezvous point.
 Param/Value/DE5F080F=Our aerial drones just got neutralized. Something's out there.
 Param/Value/DE9C0537=)</s>
 Param/Value/DEC24BDA=<s val="GlueButton"><c val="F4D72B">I was put in this cryo-cell with other protesters. I'm a botanist for the Mars terraforming mission. Just couldn't stand by the sidelines watching UGC shackle the colonies. We're fighting for our rights. Is that too much?</c></s>
-Param/Value/DEFC0404=Game Over. Thanks for playing NOTD. Discuss at www.notdstarcraft.com
+Param/Value/DEFC0404=Game Over. Thanks for playing NOTD. Join the original NOTD map chat to find more players.
 Param/Value/DEFE4055=Check the perimeter. There could be more.
 Param/Value/DF20B52C=Powering up gate controls.
 Param/Value/DF2DC1DE=Scaled XP: 
@@ -5711,7 +5719,6 @@ Param/Value/EA780536=Not again. Brace yourselves.
 Param/Value/EA8C7D2D=Search for survivors in Apollo
 Param/Value/EACCCFD6=+3 XP for Performance Bonus
 Param/Value/EAE4AD6B=Use AOE abilities to conserve ammo
-Param/Value/EB366E98=<s val="InfoPaneHeroRank">High Spawn</s><n/>- Adds 2 Spawn Factor & 20% HP Scaling<n/>- Nightmare Spawn Factor set to 9<n/>- Overrides the lobby setting
 Param/Value/EBEE9058=<c val="FF3030">@_@</c>
 Param/Value/EBF29E00=</c> <c val="F5D62B">for outstanding behavior.</c><n/>Limit merits to 10 players.
 Param/Value/EC3FECA5=(You notice a Compliance Implant at Tanaka's neck...)
@@ -6291,6 +6298,7 @@ Upgrade/Name/ConcentratedFireCriticalStrike2=Harvester of Sorrow Critical Strike
 Upgrade/Name/CripplingFire=Crippling Fire
 Upgrade/Name/CriticalStrikeKnife=Critical Strike Knife
 Upgrade/Name/CriticalStrikeSkill=Critical Strike Skill
+Upgrade/Name/DarkMoon=Dark Moon
 Upgrade/Name/EnergyBattery=Energy Battery
 Upgrade/Name/EnergyCapacitors=Energy Capacitors
 Upgrade/Name/ExplosiveAftershockUpgrade=Explosive Aftershock Upgrade
@@ -6304,6 +6312,7 @@ Upgrade/Name/ForcePushLevel2=Force Push Level 2
 Upgrade/Name/ForcePushLevel3=Force Push Level 3
 Upgrade/Name/GravityGrenade=Gravity Grenade
 Upgrade/Name/HandgunProficiency=Handgun Proficiency
+Upgrade/Name/HardShell=Hard Shell
 Upgrade/Name/HarvesterofSorrowBonusCrit=Harvester of Sorrow Bonus Crit
 Upgrade/Name/Helium3IgniterLevel1=Helium-3 Igniter Level 1
 Upgrade/Name/Helium3IgniterLevel2=Helium-3 Igniter Level 2
@@ -6319,10 +6328,12 @@ Upgrade/Name/ProbeLimit=Probe Limit
 Upgrade/Name/Realism=Realism (Obsolete)
 Upgrade/Name/RiflemanGrenades=Rifleman Grenades
 Upgrade/Name/RighteousnessLevel2=Righteousness Level 2
+Upgrade/Name/RocketScience=Rocket Science
 Upgrade/Name/SatchelDeployment=Satchel Deployment
 Upgrade/Name/ShatterLevel2=Shatter Level 2
 Upgrade/Name/ShellProductionUpgrade=Fire Support Efficiency Upgrade Level 1
 Upgrade/Name/ShellProductionUpgrade2=Fire Support Efficiency Upgrade Level 2
+Upgrade/Name/SolarRadiation=Solar Radiation
 Upgrade/Name/SprintUpgrade=Sprint Upgrade
 Upgrade/Name/StealthMatrix=Stealth Matrix
 Upgrade/Name/StealthMatrixLevel1=Stealth Matrix Upgrade
@@ -6473,6 +6484,14 @@ UserData/CommunicationTowerCompletionMessages/Completion_Message=The transmissio
 UserData/CommunicationTowerCompletionMessages/Completion_Message_001=The transmissions were scrambled by a military satellite before it reached Earth. Somebody didn't want news to break out.
 UserData/CommunicationTowerCompletionMessages/Completion_Message_002=The transmissions suggest that UGC knew about this outbreak from its inception. They failed to contain its spread and decided to bring us boots here.
 UserData/CustomNames/ArcanePariah_Name=My Little Marksman
+UserData/DailyChallengeInfo/Friday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FF3333">Skipped Leg Day</c></s><n/>- Someone skipped leg day
+UserData/DailyChallengeInfo/Monday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="338800">Hard Shell</c></s><n/>- Zombies take 25% less damage
+UserData/DailyChallengeInfo/None_Daily Challenge Info=Oops... how did this happen?<n/>Let Leo know Daily Challenge is bugged.
+UserData/DailyChallengeInfo/Saturday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFFFF">Rifleman Squad</c></s><n/>- Always has been
+UserData/DailyChallengeInfo/Sunday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="666666">Dark Moon</c></s><n/>- Greatly reduced vision for everyone
+UserData/DailyChallengeInfo/Thursday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="80FFFF">Solar Radiation</c></s><n/>- All players rapidly lose shields
+UserData/DailyChallengeInfo/Tuesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FF8800">Ammo Shortage</c></s><n/>- 1 Mag only adds 2 Clips<n/>- Cannot purchase ammo
+UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Rocket Science</c></s><n/>- Nuke/Stinger/Shiva only deal 30% of their original damage
 UserData/DeathTexts/Agron_Death Message=has been eviscerated by a <c val="FF0000">Agron</c>.
 UserData/DeathTexts/Apoptosis_Death Message=has fallen before the <c val="FF0000">Blood Lord
 UserData/DeathTexts/Athena_Death Message=has been sliced and diced by <c val="FF0000">Athena
