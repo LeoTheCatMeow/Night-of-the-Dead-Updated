@@ -458,7 +458,6 @@
     </CActorModel>
     <CActorModel id="LockOn" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand Death"/>
         <On Terms="Behavior.MasterMarksmanLockOn.On" Send="Create"/>
         <On Terms="Behavior.MasterMarksmanLockOn.Off" Send="AnimBracketStop BSD"/>
         <On Terms="Effect.MasterMarksmanProcLockOnSet.Start" Send="SetTintColor {255,255,128 3.000000}"/>

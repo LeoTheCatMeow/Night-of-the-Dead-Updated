@@ -2176,7 +2176,7 @@ DocInfo/PatchNote065=- Added a "-god" command to "-train" mode which makes the p
 DocInfo/PatchNote066=- Due to Blizzard's updates, cheats won't work online even if allowed, so "-train" mode is your best bet to test the map.
 DocInfo/PatchNote067=- Make sure to type "-train" before selecting a storyline.
 DocInfo/PatchNote068=- Updated the game over screen to direct players to the current active community (the website is dead, use the discord link).
-DocInfo/PatchNote069=
+DocInfo/PatchNote069=- Replaced High Spawn with Daily Challenge, which offers more interesting variations instead of a simple difficulty increase. 
 DocInfo/PatchNote070=[LeoTheCat]
 DocInfo/PatchNote071=<Gameplay Changes>
 DocInfo/PatchNote072=- Taunts of the same kind but different levels no long stack damage reduction. Different taunts can still stack (Demo + Assault).
@@ -2212,14 +2212,16 @@ DocInfo/PatchNote101=- Fixed some incorrect talent descriptions in Chinese local
 DocInfo/PatchNote102=- Fixed a bug where certain enemies are not droping creep on death, or dropping them on the other side of the map for some reason.
 DocInfo/PatchNote103=- Creeps are made visible and thus easier to target, since the above fix will add more creep into the game/increase difficulty.
 DocInfo/PatchNote104=- Fixed a bug where Technician's black dog turret will ocassionally look like it is bleeding (may still need more work).
-DocInfo/PatchNote105=- Replaced High Spawn with Daily Challenge, which offers more interesting variations instead of a simple difficulty increase. 
-DocInfo/PatchNote106=- The current Daily Challenges include:
-DocInfo/PatchNote107=   Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
-DocInfo/PatchNote108=   Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
-DocInfo/PatchNote109=- Winning Daily Challenges reward extra XP and Rating.
-DocInfo/PatchNote110=
-DocInfo/PatchNote111=- Tweaked the spawn factor scaling now that High Spawn is no longer available, so that SF9 can be more easily obtained.
-DocInfo/PatchNote112=- Playing NM with 7+ players or having at least 1 very experienced player helps bump up the SF.
+DocInfo/PatchNote105=- The current Daily Challenges include:
+DocInfo/PatchNote106=  Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
+DocInfo/PatchNote107=  Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
+DocInfo/PatchNote108=- Winning Daily Challenges reward extra XP and Rating.
+DocInfo/PatchNote109=- Tweaked the spawn factor scaling now that High Spawn is no longer available, so that SF9 can be more easily obtained.
+DocInfo/PatchNote110=- Playing NM with 7+ players or having at least 1 very experienced player helps bump up the SF.
+DocInfo/PatchNote111=
+DocInfo/PatchNote112=Mini Patch Details:
+DocInfo/PatchNote113=- Fixed some bugs with Ammo Shortage daily challenge and scaled the daily challenge rewards since it is easier to do them on Recruit.
+DocInfo/PatchNote114=- Rocket Science (Wednesday) will now add 1 to spawn factor if Recruit mode, since nuke/stinger/shiva aren't very related to Recruit.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4238,7 +4240,7 @@ Param/Expression/207EADA5=<s val="GlueButtonSmall">Rec/Norm: <c val="71E100">~A~
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
-Param/Expression/32F4B8C8=+~A~ XP and 5 Rating for Daily Challenge Bonus
+Param/Expression/32F4B8C8=+~A~ XP and ~B~ Rating for Daily Challenge Bonus
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8= ~A~ Class Point awarded</s>
@@ -6493,7 +6495,7 @@ UserData/DailyChallengeInfo/Saturday_Daily Challenge Info=<s val="InfoPaneHeroRa
 UserData/DailyChallengeInfo/Sunday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="666666">Dark Moon</c></s><n/>- Greatly reduced vision for everyone
 UserData/DailyChallengeInfo/Thursday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="80FFFF">Solar Radiation</c></s><n/>- All players rapidly lose shields
 UserData/DailyChallengeInfo/Tuesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FF8800">Ammo Shortage</c></s><n/>- 1 Mag only adds 1 Clip
-UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Rocket Science</c></s><n/>- Nuke/Stinger/Shiva only deal 30% of their original damage
+UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Rocket Science</c></s><n/>- Nuke/Stinger/Shiva only deal 30% of their original damage<n/>- Adds 1 Spawn Factor for Recruit games
 UserData/DeathTexts/Agron_Death Message=has been eviscerated by a <c val="FF0000">Agron</c>.
 UserData/DeathTexts/Apoptosis_Death Message=has fallen before the <c val="FF0000">Blood Lord
 UserData/DeathTexts/Athena_Death Message=has been sliced and diced by <c val="FF0000">Athena

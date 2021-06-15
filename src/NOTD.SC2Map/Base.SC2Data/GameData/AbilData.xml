@@ -5005,7 +5005,7 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="OneShotOneKill" Requirements="MarksmanRifleEquipped"/>
         <Cost index="0">
             <Vital index="Energy" value="20"/>
-            <Cooldown TimeUse="2"/>
+            <Cooldown TimeUse="1.8"/>
         </Cost>
         <Effect index="0" value="OSOKLevel1FiringSet"/>
         <Effect value="OSOKLevel2FiringSet"/>

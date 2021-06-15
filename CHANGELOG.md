@@ -6,15 +6,17 @@
 - Due to Blizzard's updates, cheats won't work online even if allowed, so "-train" mode is your best bet to test the map.
 - Make sure to type "-train" before selecting a storyline.
 - Updated the game over screen to direct players to the current active community (the website is dead, use the discord link).
-
 - Replaced High Spawn with Daily Challenge, which offers more interesting variations instead of a simple difficulty increase. 
 - The current Daily Challenges include:
-   Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
-   Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
+  Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
+  Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
 - Winning Daily Challenges reward extra XP and Rating.
-
 - Tweaked the spawn factor scaling now that High Spawn is no longer available, so that SF9 can be more easily obtained.
 - Playing NM with 7+ players or having at least 1 very experienced player helps bump up the SF.
+
+Mini Patch Details:
+- Fixed some bugs with Ammo Shortage daily challenge and scaled the daily challenge rewards since it is easier to do them on Recruit.
+- Rocket Science (Wednesday) will now add 1 to spawn factor if Recruit mode, since nuke/stinger/shiva aren't very related to Recruit.
 
 2021-6-5
 [LeoTheCat]

@@ -3512,6 +3512,9 @@ bool auto_gf_SetDifficulty_TriggerFunc (bool testConds, bool runActions) {
                 if (autoD552839B_var < 0) { break; }
                 PlayerSetDifficulty(autoD552839B_var, 1);
             }
+            if ((gv_dailyChallengeActivated == true) && (gv_currentDailyChallenge == ge_DailyChallenge_RocketScience)) {
+                gv_spawnFactor += 1;
+            }
         }
     }
     else if (autoB90D3843_val == ge_GameModes_Nightmare) {
@@ -10848,10 +10851,10 @@ bool auto_gf_SahaquielScourgeSpawn_TriggerFunc (bool testConds, bool runActions)
             }
         }
         if ((gv_isVeteranSquad == false)) {
-            Wait(5.4, c_timeGame);
+            Wait(5.0, c_timeGame);
         }
         else {
-            Wait(3.75, c_timeGame);
+            Wait(3.0, c_timeGame);
         }
         while (!(((gv_sahaquielScourgeSpawn == true) || (UnitIsAlive(gv_sahaquiel) == false)))) {
             Wait(0.2, c_timeGame);
@@ -17300,16 +17303,19 @@ void gf_EliteMutationBonusXP () {
 void gf_DailyChallengeBonusXP () {
     // Variable Declarations
     int lv_xp;
+    int lv_rating;
 
     // Automatic Variable Declarations
     // Variable Initialization
 
     // Implementation
     if ((gv_dailyChallengeActivated == true)) {
-        lv_xp = libNtve_gf_DifficultyValueInt(45, 45, 45, 0);
+        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 0);
+        lv_rating = libNtve_gf_DifficultyValueInt(3, 4, 5, 0);
         gf_AwardPlayerXPNOTD(lv_xp);
-        gf_AwardRatingNOTD(5);
+        gf_AwardRatingNOTD(lv_rating);
         TextExpressionSetToken("Param/Expression/32F4B8C8", "A", IntToText(lv_xp));
+        TextExpressionSetToken("Param/Expression/32F4B8C8", "B", IntToText(lv_rating));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/32F4B8C8"));
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
     }
@@ -22541,7 +22547,7 @@ bool gt_DropMagazine_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((gv_marineMags[lv_triggeringPlayer] >= 3))) {
+        if (!((((gv_marineMags[lv_triggeringPlayer] >= 3) && (gv_currentDailyChallenge != ge_DailyChallenge_AmmoShortage)) || ((gv_marineMags[lv_triggeringPlayer] >= 1) && (gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true))))) {
             return false;
         }
     }
