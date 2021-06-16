@@ -22547,7 +22547,7 @@ bool gt_DropMagazine_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((((gv_marineMags[lv_triggeringPlayer] >= 3) && (gv_currentDailyChallenge != ge_DailyChallenge_AmmoShortage)) || ((gv_marineMags[lv_triggeringPlayer] >= 1) && (gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true))))) {
+        if (!((((gv_marineMags[lv_triggeringPlayer] >= 3) && ((gv_dailyChallengeActivated == false) || (gv_currentDailyChallenge != ge_DailyChallenge_AmmoShortage))) || ((gv_marineMags[lv_triggeringPlayer] >= 1) && (gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true))))) {
             return false;
         }
     }
@@ -36142,6 +36142,7 @@ bool gt_ACW9ChaseDrTanakaPoisonGas_Func (bool testConds, bool runActions) {
     gf_MarineSpeechNOTD(gv_ltSheng, StringExternal("Param/Value/54524404"));
     UnitIssueOrder(gv_drTanaka, OrderTargetingPoint(AbilityCommand("move", 0), gv_drTanakaLabWorkPoints[1]), c_orderQueueReplace);
     libNtve_gf_MakeUnitInvulnerable(gv_drTanaka, true);
+    UnitSetPropertyFixed(gv_drTanaka, c_unitPropLifeRegen, 100.0);
     TriggerEnable(gt_TanakaInjured, false);
     TriggerEnable(gt_ACDrTanakaDeath, false);
     TriggerStop(gt_TanakaInjured);

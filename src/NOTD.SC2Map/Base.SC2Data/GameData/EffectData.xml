@@ -107,6 +107,9 @@
         <Chance value="0.4"/>
         <Behavior value="Corrosion2"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="BroodlingEscortDamage">
+        <ArmorReduction value="0"/>
+    </CEffectDamage>
     <CEffectUseMagazine id="LaunchScourge">
         <EditorCategories value="Race:Zerg"/>
         <MagazineAbil value="ScourgeHangar"/>
@@ -2734,7 +2737,7 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="NeedleClaws2" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
-        <ArmorReduction value="0.2"/>
+        <ArmorReduction value="0.1"/>
         <Amount value="7"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
