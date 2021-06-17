@@ -45770,7 +45770,7 @@ bool gt_SupplyStation_Func (bool testConds, bool runActions) {
         if ((UnitWeaponGet(lv_effectTarget, 1) == "L3GrenadeLauncher") && (gv_marineRounds[lv_ownerofMarine] >= 5)) {
             UnitBehaviorRemovePlayer(lv_effectTarget, "InsufficientAmmo", lv_ownerofMarine, 1);
         }
-        if ((gv_marineMags[lv_ownerofMarine] == 0) && (gv_marineRounds[lv_ownerofMarine] >= 1) && (!((UnitWeaponGet(lv_effectTarget, 1) == "StingerMK3") || (UnitWeaponGet(lv_effectTarget, 1) == "L3GrenadeLauncher")))) {
+        if ((gv_marineRounds[lv_ownerofMarine] >= 1) && (!((UnitWeaponGet(lv_effectTarget, 1) == "StingerMK3") || (UnitWeaponGet(lv_effectTarget, 1) == "L3GrenadeLauncher")))) {
             UnitBehaviorRemovePlayer(lv_effectTarget, "InsufficientAmmo", lv_ownerofMarine, 1);
         }
     }

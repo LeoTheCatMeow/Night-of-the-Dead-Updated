@@ -13,16 +13,15 @@
 - Winning Daily Challenges reward extra XP and Rating.
 - Tweaked the spawn factor scaling now that High Spawn is no longer available, so that SF9 can be more easily obtained.
 - Playing NM with 7+ players or having at least 1 very experienced player helps bump up the SF.
-- Fixed a bug where venom from Chemical Expert can still kill Dr Tanaka after the lab sequence, causing game over. 
 
 Mini Patch Details:
 - Fixed some bugs with Ammo Shortage daily challenge and scaled the daily challenge rewards since it is easier to do them on Recruit.
 - Rocket Science (Wednesday) will now add 1 to spawn factor if Recruit mode, since nuke/stinger/shiva aren't very related to Recruit.
 - Fixed a bug where venom from Chemical Expert can still kill Dr Tanaka after the lab sequence, causing game over. 
 - Fixed a bug where Psi Ops's ravaging phantom procs from non-tempest kills.
-- Attempting to fix a rare bug where Psi Ops's attack can be permenantly disabled due to a combination of leaver control and L3 Launcher.
 - Replaced "Rocket Science" daily challenge with a more fun "Zoomers!" challenge.
 - Added a "-max" command as a vote for maximum difficulty since some players do prefer SF9 and 250% HP Scaling for the challenge.
+- Fixed a bug where attack may remain disabled when supply station restores ammo from 0 to 1 or 2.
 
 2021-6-5
 [LeoTheCat]
