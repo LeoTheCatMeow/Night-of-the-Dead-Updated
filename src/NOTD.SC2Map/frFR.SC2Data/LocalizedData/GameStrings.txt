@@ -2157,6 +2157,20 @@ DocInfo/PatchNote071=- Fixed a bug where win check ("-w #") can be broken for th
 DocInfo/PatchNote072=- Fixed a bug where Devourers offer high ground vision for other zombies. Devourers shouldn't have high ground vision.
 DocInfo/PatchNote073=- Taunts of the same kind but different levels no long stack. Different taunts can still stack (Demo + Assault).
 DocInfo/PatchNote074=- Outbreak spawn is now moderately reduced during Hades fight and gas sequence due to confined map space/navigation difficulty.
+DocInfo/PatchNote105=- The current Daily Challenges include:
+DocInfo/PatchNote106=  Dark Moon (Reduced Vision), Hard Shell (Tougher Enemies), Ammo Shortage, Rocket Science (Weak Nuke, Stinger, and Shiva), 
+DocInfo/PatchNote107=  Solar Radiation (No Shield), Skipped Leg Day (Someone Slowed), and Rifleman Squad (All Rifleman).
+DocInfo/PatchNote108=- Winning Daily Challenges reward extra XP and Rating.
+DocInfo/PatchNote109=- Tweaked the spawn factor scaling now that High Spawn is no longer available, so that SF9 can be more easily obtained.
+DocInfo/PatchNote110=- Playing NM with 7+ players or having at least 1 very experienced player helps bump up the SF.
+DocInfo/PatchNote111=
+DocInfo/PatchNote112=Mini Patch Details:
+DocInfo/PatchNote113=- Fixed some bugs with Ammo Shortage daily challenge and scaled the daily challenge rewards since it is easier to do them on Recruit.
+DocInfo/PatchNote114=- Rocket Science (Wednesday) will now add 1 to spawn factor if Recruit mode, since nuke/stinger/shiva aren't very related to Recruit.
+DocInfo/PatchNote115=- Fixed a bug where venom from Chemical Expert can still kill Dr Tanaka after the lab sequence, causing game over. 
+DocInfo/PatchNote116=- Fixed a bug where Psi Ops's ravaging phantom procs from non-tempest kills.
+DocInfo/PatchNote117=- Attempting to fix a rare bug where Psi Ops's attack can be permenantly disabled due to a combination of leaver control and L3 Launcher.
+DocInfo/PatchNote118=- Replaced "Rocket Science" daily challenge with a more fun "Zoomers!" challenge.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -6355,7 +6369,7 @@ UserData/DailyChallengeInfo/Saturday_Daily Challenge Info=<s val="InfoPaneHeroRa
 UserData/DailyChallengeInfo/Sunday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="666666">Dark Moon</c></s><n/>- Greatly reduced vision for everyone
 UserData/DailyChallengeInfo/Thursday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="80FFFF">Solar Radiation</c></s><n/>- All players rapidly lose shields
 UserData/DailyChallengeInfo/Tuesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FF8800">Ammo Shortage</c></s><n/>- 1 Mag only adds 1 Clip
-UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Rocket Science</c></s><n/>- Nuke/Stinger/Shiva only deal 30% of their original damage<n/>- Adds 1 Spawn Factor for Recruit games
+UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Zoomers!</c></s><n/>- Most enemies most significantly faster
 UserData/DeathTexts/Agron_Death Message=has been eviscerated by a <c val="FF0000">Agron</c>.
 UserData/DeathTexts/Apoptosis_Death Message=has fallen before the <c val="FF0000">Blood Lord
 UserData/DeathTexts/Athena_Death Message=has been sliced and diced by <c val="FF0000">Athena

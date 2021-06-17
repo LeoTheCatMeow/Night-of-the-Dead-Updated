@@ -306,7 +306,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.75" Effect="AcidSporesFifthBounceLaunch"/>
+        <AreaArray Radius="3.5" Effect="AcidSporesFifthBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNightmare"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -352,7 +352,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.75" Effect="AcidSporesFourthBounceLaunch"/>
+        <AreaArray Radius="3.5" Effect="AcidSporesFourthBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNormal"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -390,7 +390,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.75" Effect="AcidSporesSecondBounceLaunch"/>
+        <AreaArray Radius="3.5" Effect="AcidSporesSecondBounceLaunch"/>
         <MaxCount value="1"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
@@ -423,7 +423,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Dead,Hidden,Invulnerable,Stunned"/>
-        <AreaArray Radius="3.75" Effect="AcidSporesThirdBounceLaunch"/>
+        <AreaArray Radius="3.5" Effect="AcidSporesThirdBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="IsNormal"/>
         <SearchFlags index="SameCliff" value="1"/>
@@ -546,7 +546,7 @@
         <ExcludeArray Value="Outer"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3.75" Effect="AcidSporesFirstBounceLaunch"/>
+        <AreaArray Radius="3.5" Effect="AcidSporesFirstBounceLaunch"/>
         <MaxCount value="1"/>
         <ValidatorArray value="NotStructureTarget"/>
         <SearchFlags index="SameCliff" value="1"/>

@@ -83,6 +83,12 @@
         <MoveFilters value="-;Player,Ally,Neutral,Enemy"/>
         <MoveSmartPriority value="0"/>
     </CAbilMove>
+    <CAbilArmMagazine id="BroodLordHangar">
+        <InfoArray index="Ammo1" Time="2.2">
+            <Charge Link="Abil/##id##"/>
+            <Cooldown Link="Abil/##id##"/>
+        </InfoArray>
+    </CAbilArmMagazine>
     <CAbilEffectInstant id="DeafeningBlast">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="DeafeningBlastChargeUp"/>
@@ -1802,6 +1808,7 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="L3GrenadeLauncher" Requirements="L3Equipped">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
+        <Flags index="AbortOnAllianceChange" value="0"/>
     </CAbilEffectTarget>
     <CAbilLearn id="LearnPathfinder">
         <EditorCategories value="AbilityorEffectType:Units"/>

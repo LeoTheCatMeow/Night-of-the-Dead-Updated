@@ -710,8 +710,6 @@ Behavior/Name/QuickAimLevel1=Quick Aim Level 1
 Behavior/Name/QuickAimLevel2=Quick Aim Level 2
 Behavior/Name/QuickAimLevel3=Quick Aim Level 3
 Behavior/Name/Rampage=Rampage
-Behavior/Name/RavagingPhantomLevel1=Ravaging Phantom (Level 1)
-Behavior/Name/RavagingPhantomLevel2=Ravaging Phantom (Level 2)
 Behavior/Name/Recoil=Recoil
 Behavior/Name/ReflexesLevel1=Reflexes (Level 1)
 Behavior/Name/ReflexesLevel2=Reflexes (Level 2)
@@ -1074,8 +1072,6 @@ Behavior/Tooltip/QuickAimLevel1=+200% attack speed for 3 secs
 Behavior/Tooltip/QuickAimLevel2=+300% attack speed for 3 secs
 Behavior/Tooltip/QuickAimLevel3=+400% attack speed for 3 secs
 Behavior/Tooltip/Rampage=Rampage. +100% attack speed. +40% move speed.
-Behavior/Tooltip/RavagingPhantomLevel1=
-Behavior/Tooltip/RavagingPhantomLevel2=
 Behavior/Tooltip/Recoil=Marine is slowed by 40% from Barrett M112's forceful recoil.
 Behavior/Tooltip/ReflexesLevel1=15% chance to dodge attacks. +5% movespeed.
 Behavior/Tooltip/ReflexesLevel2=30% chance to dodge attacks. +10% movespeed.
@@ -2223,6 +2219,10 @@ DocInfo/PatchNote112=Mini Patch Details:
 DocInfo/PatchNote113=- Fixed some bugs with Ammo Shortage daily challenge and scaled the daily challenge rewards since it is easier to do them on Recruit.
 DocInfo/PatchNote114=- Rocket Science (Wednesday) will now add 1 to spawn factor if Recruit mode, since nuke/stinger/shiva aren't very related to Recruit.
 DocInfo/PatchNote115=- Fixed a bug where venom from Chemical Expert can still kill Dr Tanaka after the lab sequence, causing game over. 
+DocInfo/PatchNote116=- Fixed a bug where Psi Ops's ravaging phantom procs from non-tempest kills.
+DocInfo/PatchNote117=- Attempting to fix a rare bug where Psi Ops's attack can be permenantly disabled due to a combination of leaver control and L3 Launcher.
+DocInfo/PatchNote118=- Replaced "Rocket Science" daily challenge with a more fun "Zoomers!" challenge.
+DocInfo/PatchNote119=- Added a "-max" command as a vote for maximum difficulty since some players do prefer SF9 and 250% HP Scaling for the challenge.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4253,6 +4253,7 @@ Param/Expression/50E65A76=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~P
 Param/Expression/559B8D7C=~A~: ~B~
 Param/Expression/606DB275=Magazine (~A~)
 Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
+Param/Expression/6A6D9888=<s val="InfoPaneHeroRank">~A~ has voted for maximum difficulty</s>
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/713D1F7E=+~A~ XP for Outbreak Bonus
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
@@ -4271,6 +4272,7 @@ Param/Expression/ABAE731B=~A~/~B~
 Param/Expression/C6F9A88B=<s val="GlueButtonSmall">Easy Company: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack!
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/D5EBFD15=<s val="InfoPaneHeroRank"><c val="FFFF00">The game will continue with maximum difficulty</c></s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
 Param/Expression/D9838420=+~A~ XP for Elite Mutation Bonus
@@ -6349,6 +6351,7 @@ Upgrade/Name/TrickShotLevel3=Trick Shot Level 3
 Upgrade/Name/TrickShotLevel4=Trick Shot Level 4
 Upgrade/Name/UnknownUpgrade2=Flamer Air
 Upgrade/Name/WeaponProficiency=Weapon Proficiency
+Upgrade/Name/Zoomers=Zoomers!
 UserData/BossData/Apoptosis_Name=Apoptosis
 UserData/BossData/Athena_Name=Athena
 UserData/BossData/Cerberus_Name=Cerberus
@@ -6496,7 +6499,7 @@ UserData/DailyChallengeInfo/Saturday_Daily Challenge Info=<s val="InfoPaneHeroRa
 UserData/DailyChallengeInfo/Sunday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="666666">Dark Moon</c></s><n/>- Greatly reduced vision for everyone
 UserData/DailyChallengeInfo/Thursday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="80FFFF">Solar Radiation</c></s><n/>- All players rapidly lose shields
 UserData/DailyChallengeInfo/Tuesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FF8800">Ammo Shortage</c></s><n/>- 1 Mag only adds 1 Clip
-UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Rocket Science</c></s><n/>- Nuke/Stinger/Shiva only deal 30% of their original damage<n/>- Adds 1 Spawn Factor for Recruit games
+UserData/DailyChallengeInfo/Wednesday_Daily Challenge Info=<s val="InfoPaneHeroRank"><c val="FFFF00">Zoomers!</c></s><n/>- Most enemies move significantly faster
 UserData/DeathTexts/Agron_Death Message=has been eviscerated by a <c val="FF0000">Agron</c>.
 UserData/DeathTexts/Apoptosis_Death Message=has fallen before the <c val="FF0000">Blood Lord
 UserData/DeathTexts/Athena_Death Message=has been sliced and diced by <c val="FF0000">Athena

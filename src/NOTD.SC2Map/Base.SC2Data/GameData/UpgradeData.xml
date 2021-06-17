@@ -507,4 +507,7 @@
         <AffectedUnitArray value="Rifleman"/>
         <MaxLevel value="2"/>
     </CUpgrade>
+    <CUpgrade id="Zoomers">
+        <EffectArray Operation="Set" Reference="Behavior,DifficultyScalingHP,Modification.MoveSpeedMultiplier" Value="1.5"/>
+    </CUpgrade>
 </Catalog>

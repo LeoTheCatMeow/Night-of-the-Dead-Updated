@@ -7455,13 +7455,6 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-zeratul.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="SensoryConfusionLevel1"/>
-        <DamageResponse Handled="RavagingPhantomApplyTemp" Location="Attacker" TargetFilters="-;Player,Ally,Neutral,Structure,Item,Invulnerable">
-            <Kind index="Melee" value="0"/>
-            <Kind index="Ranged" value="0"/>
-            <Kind index="Splash" value="0"/>
-            <ExcludeEffectArray value="PsionicTempestDamage"/>
-            <Chance value="0.4"/>
-        </DamageResponse>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RavagingPhantomLevel1Tempest">
@@ -7486,13 +7479,6 @@
         <Period value="0.1"/>
         <PeriodCount value="1"/>
         <PeriodicEffect value="RavagingPhantomRemove"/>
-        <DamageResponse Handled="RavagingPhantomApplyTemp" Location="Attacker" TargetFilters="-;Player,Ally,Neutral,Structure,Item,Invulnerable">
-            <Kind index="Melee" value="0"/>
-            <Kind index="Ranged" value="0"/>
-            <Kind index="Splash" value="0"/>
-            <ExcludeEffectArray value="PsionicTempestDamage"/>
-            <Chance value="0.8"/>
-        </DamageResponse>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="RavagingPhantomLevel2Tempest">
