@@ -20062,6 +20062,13 @@ void gt_NightmareHellMode_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_MaxDifficultyCommand_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_nightmare == true))) {
+            return false;
+        }
+    }
+
     // Actions
     if (!runActions) {
         return true;
