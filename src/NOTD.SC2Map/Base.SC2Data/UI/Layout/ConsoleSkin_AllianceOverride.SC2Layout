@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Frame type="Frame" name="ConsoleSkinTemplate" file="ConsoleSkin_Alliance">
+    <StateGroup name="DisplayState">
+      <DefaultState val="NotVisible" />
+      <State name="Terran_Alliance">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleTerran_Alliance" />
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+      <State name="Zerg_Alliance">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleZerg_Alliance" />
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+      <State name="Protoss_Alliance">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleProtoss_Alliance" />
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+      <State name="NotVisible">
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+    </StateGroup>
+  </Frame>
+</Desc>

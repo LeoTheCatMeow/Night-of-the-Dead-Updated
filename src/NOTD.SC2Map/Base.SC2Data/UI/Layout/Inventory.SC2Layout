@@ -33,18 +33,24 @@
             </Frame>
 
             <Frame type="CommandButton" name="Slot08">
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
                 </Frame>
             </Frame>
 
             <Frame type="CommandButton" name="Slot12">
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
                 </Frame>
             </Frame>
 
             <Frame type="CommandButton" name="Slot33">
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
                 </Frame>
@@ -55,6 +61,8 @@
                 <Height val="48"/>
                 <Anchor side="Left" relative="$parent/Slot33" pos="Max" offset="#EquipmentButtonGap"/>
                 <Anchor side="Bottom" relative="$parent/Slot33" pos="Max" offset="0"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -64,6 +72,8 @@
             <Frame type="CommandButton" name="Slot35">
                 <Anchor side="Left" relative="$parent/Slot34" pos="Max" offset="#EquipmentButtonGap"/>
                 <Anchor side="Bottom" relative="$parent/Slot34" pos="Max" offset="0"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -92,6 +102,8 @@
                 <Anchor side="Right" relative="$parent" pos="Min" offset="-500"/>
                 <Width val="82"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
             </Frame>
 
             <Frame type="CommandButton" name="Slot01">
@@ -100,6 +112,8 @@
                 <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -112,6 +126,8 @@
                 <Anchor side="Left" relative="$parent/Slot01" pos="Max" offset="#ContainerButtonGap"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -124,6 +140,8 @@
                 <Anchor side="Left" relative="$parent/Slot02" pos="Max" offset="#ContainerButtonGap"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -136,6 +154,8 @@
                 <Anchor side="Left" relative="$parent/Slot03" pos="Max" offset="#ContainerButtonGap"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -148,6 +168,8 @@
                 <Anchor side="Left" relative="$parent/Slot04" pos="Max" offset="#ContainerButtonGap"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -160,6 +182,8 @@
                 <Anchor side="Left" relative="$parent/Slot05" pos="Max" offset="#ContainerButtonGap"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -172,6 +196,8 @@
                 <Anchor side="Left" relative="$parent/Slot06" pos="Max" offset="#ContainerButtonGap"/>
                 <Width val="62"/>
                 <Height val="62"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
 
                 <Frame type="Image" name="GameButtonBorderImage">
                     <Alpha val="150"/>
@@ -188,12 +214,16 @@
                 <Height val="62"/>
                 <Anchor side="Bottom" relative="$parent" pos="Max" offset="500"/>
                 <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
             </Frame>
 
             <Frame type="CommandButton" name="Button00">
                 <Width val="62"/>
                 <Height val="62"/>
                 <Anchor side="Right" relative="$parent/Button01" pos="Min" offset="500"/>
+                <ClickOnDown val="True" />
+                <DragMoveSlop val="300" />
             </Frame>
 
             <Frame type="Frame" name="ContainerSizeFrame">

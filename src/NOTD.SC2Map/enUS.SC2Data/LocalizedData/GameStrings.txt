@@ -2223,6 +2223,22 @@ DocInfo/PatchNote116=- Fixed a bug where Psi Ops's ravaging phantom procs from n
 DocInfo/PatchNote117=- Replaced "Rocket Science" daily challenge with a more fun "Zoomers!" challenge.
 DocInfo/PatchNote118=- Added a "-max" command as a vote for maximum difficulty since some players do prefer SF9 and 250% HP Scaling for the challenge.
 DocInfo/PatchNote119=- Fixed a bug where attack may remain disabled when supply station restores ammo from 0 to 1 or 2.
+DocInfo/PatchNote120=*Special thanks to player "RPS" for valuable contributions!*
+DocInfo/PatchNote121=[RPS]
+DocInfo/PatchNote122=- Fixed inventory items requiring "pixel perfect" clicking. Now they will be clicked on cursor down and will be much more responsive.
+DocInfo/PatchNote123=- Adjusted the item image offset when right clicking on an inventory item so that it is in a better spot. 
+DocInfo/PatchNote124=- Fixed console skins overriding NOTD's custom console layout and messing up all the UI. 
+DocInfo/PatchNote125=
+DocInfo/PatchNote126=[LeoTheCat]
+DocInfo/PatchNote127=- Fixed Forward Observer's minis losing all the upgrades upon Forward Observer's death.
+DocInfo/PatchNote128=- "-god" command in "-train" mode will now also grant extra regen to counter certain degen effects (such as open wound from Apop).
+DocInfo/PatchNote129=- Added a "-free" command in "-train" mode for free energy.
+DocInfo/PatchNote130=- Added a "-help" command to display all the commands for new players who are unfamiliar with the game.
+DocInfo/PatchNote131=- Removed glass cannon mode as it rarely sees any usage. 
+DocInfo/PatchNote132=
+DocInfo/PatchNote133=P.S. Due to irl work, I [LeoTheCat] won't be able to develop the game any further. I'll still maintain and bugfix the map occasionally. Any
+DocInfo/PatchNote134=community contribution is welcome. The map files are open source: https://github.com/LeoTheCatMeow/Night-of-the-Dead-Updated
+DocInfo/PatchNote135=You can reach out to me on Discord as well. Thanks for playing NOTD!
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4199,7 +4215,7 @@ Level 3 Surveillance Drone=Technician releases a retooled aerial repair drone wi
 Level 3 Surveillance Flares=Surveillance Flares - Fires 5 flares from a hovering support plane spread out randomly around target area of 15 radius.
 Level 3 Taunt=Forces enemies in 8 radius to attack you for 7 seconds. Taunted units deal 30% less damage.
 Level 3 X-1 Guardian=Summons a 225 HP battle bot. Deals 30 damage per attack (1.2 attack speed). Attacks penetrate armor.
-LoadingScreen/Tip=Type "/join Night of the Dead" in any channel to join the chat and find more players.
+LoadingScreen/Tip=Type "/join Night of the Dead" in any channel to join the chat and find more players.<n/>Type "-help" in game to see a list of commands available.
 MapInfo/Player00/Name=Neutral
 MapInfo/Player01/Name=Marine 1
 MapInfo/Player02/Name=Marine 2
@@ -4245,7 +4261,6 @@ Param/Expression/32F4B8C8=+~A~ XP and ~B~ Rating for Daily Challenge Bonus
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8= ~A~ Class Point awarded</s>
-Param/Expression/492B833D=<s val="InfoPaneHeroRank"><c val="FFCE09">Glass Cannon Mode</c></s>
 Param/Expression/4CE48FDE=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend!
 Param/Expression/4D6170D4=<s val="InfoPaneHeroRank"><c val="FBC442">(~A~ awarded...)</s></c>
 Param/Expression/4FB8FD67=~A~<n/>
@@ -4278,7 +4293,6 @@ Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ 
 Param/Expression/D9838420=+~A~ XP for Elite Mutation Bonus
 Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
 Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>)</s>
-Param/Expression/E91DA1DF=<s val="GlueButtonSmall"><c val="FFCE09">Glass Cannon Mode is Available</c><n/><c val="FFFF">- Marines <c val="80FF80">deal</c> +200% damage<n/>- Marines <c val="FF8080">take</c> +200% damage<n/>Activate now? (<c val="80FF80">Y</c>/<c val="FF8080">N</c>)</s></c>
 Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/F405B274=<s val="GlueButtonSmall">Nightmare: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
@@ -4422,6 +4436,7 @@ Param/Value/17187F2B=Let's get somewhere safe. Motion sensors are still picking 
 Param/Value/174CE2FA=XP: 
 Param/Value/17AD8B74=<s val="WaitingForUsersDialogTitle"><c val="00FF40">Z - Zoom</c><n/><c val="00FFFF">X - Team UI Panel</c><n/><c val="FFFF80">C - Switch Camera</c><n/>M - End Gunship Mode</s>
 Param/Value/17CD3B24=Release anti-toxin into ventilation control
+Param/Value/1831733B=No Damage Taken.
 Param/Value/184B235F=Squad XP: 
 Param/Value/185E43B0=Rifleman
 Param/Value/186567B9=That cocoon in the airlock...somebody needs to do something about it. Something nasty is growing in there.
@@ -4436,7 +4451,7 @@ Param/Value/1A082645=Let's move to the LZ.
 Param/Value/1A6721DE=(Accessing communications log...)
 Param/Value/1A9B7959=Huddle close. Enemies are coming from several directions.
 Param/Value/1ADA3260=You've done well. We'll be back to re-take Apollo soon.
-Param/Value/1B47C56C=<n/>- Type '-level #' to set hero level #.<n/>- Type '-god' to enter god mode.
+Param/Value/1B47C56C=<n/>- Type '-level #' to set hero level #.<n/>- Type '-god' to enter god mode.<n/>- Type '-free' for unlimited energy.
 Param/Value/1B4F39CB=Cohesion
 Param/Value/1B5403D2=<s val="GlueButton"><c val="F4D72B">It pains me to kill all these...people.</c></s>
 Param/Value/1BA21C68=<s val="BriefingHanText">(Seismic activity detected...)</s>
@@ -4564,6 +4579,7 @@ Param/Value/2E1900EB=Investigate the Communications Tower
 Param/Value/2E588F08=
 Param/Value/2E973C55=This is the last dome. We got this.
 Param/Value/2F400B8B=+1 XP for Performance Bonus
+Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
 Param/Value/2F787A1C=<s val="InfoPaneHeroRank">No issues found.</s>
 Param/Value/2F9BB167=Give suppressive fire and move! That thing has thick armor.
 Param/Value/2F9DE260=<c val="FF0000">(Sahaquiel prepares for a deadly descend...)</c>
@@ -5302,6 +5318,7 @@ Param/Value/A7AD8FD6=<c val="FFC914">Perfect!</c>
 Param/Value/A8040132=It's too late - kill him!
 Param/Value/A811CC29=With HAL and its security systems down, most of the zombies will be coming at us.
 Param/Value/A83A325D=
+Param/Value/A851F00D=Energy Regeneration Increased to 100.
 Param/Value/A86AA5D2=(Erebos' psionic energy builds up...)
 Param/Value/A86CF95E=We need heavy weapons here.
 Param/Value/A8828B40=It's done. No turning back now.
@@ -5676,6 +5693,7 @@ Param/Value/E319356D=<s val="InfoPaneUnitInfo">Other Mobs:
 Param/Value/E32A665D=Deimos
 Param/Value/E3864FB9=Kill the Zombie Queen
 Param/Value/E3A8B054=Maybe. I'd like to question him myself when I get the chance.
+Param/Value/E3B7F600=Level Modified.
 Param/Value/E3BD112F=You squad needs to investigate the airlock for clues. If anybody was trying to get out, they'd head to the airlock.
 Param/Value/E3E8800E=<s val="InfoPaneHeroRank">All Randoms mode activated</s><n/>- Good luck.
 Param/Value/E405D451=Your progress will automatically load each game.
@@ -5704,7 +5722,6 @@ Param/Value/E820F84B=Almost everyone's dead, we're looking for answers and a way
 Param/Value/E829401C=(Bio-Dome Sealed..)
 Param/Value/E845C07C=<s val="BriefingHanText">(Distress call signature verified...)</s>
 Param/Value/E8977402=Apollo
-Param/Value/E8AE19CC=Class Selection Override Enabled
 Param/Value/E8B12632=This is it.
 Param/Value/E8E3F69D=Delete your bank file and visit www.notdstarcraft.com with a screenshot to clear your hacker status.
 Param/Value/E8E46D7D= is dangerously evil. Caution advised.

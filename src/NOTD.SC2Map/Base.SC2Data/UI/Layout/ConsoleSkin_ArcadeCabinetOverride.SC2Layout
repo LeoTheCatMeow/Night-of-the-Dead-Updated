@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+ <Frame type="Frame" name="ConsoleSkinTemplate" file="ConsoleSkin_ArcadeCabinet">
+    <StateGroup name="DisplayState">
+      <DefaultState val="NotVisible" />
+      <State name="ConsoleTerran_ArcadePurple">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleTerran_ArcadePurple" />
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+      <State name="ConsoleZerg_ArcadePurple">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleZerg_ArcadePurple" />
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+      <State name="ConsoleProtoss_ArcadePurple">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleProtoss_ArcadePurple" />
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+      <State name="NotVisible">
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+    </StateGroup>
+  </Frame>
+</Desc>

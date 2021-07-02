@@ -1,5 +1,23 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-7-2
+*Special thanks to player "RPS" for valuable contributions!*
+[RPS]
+- Fixed inventory items requiring "pixel perfect" clicking. Now they will be clicked on cursor down and will be much more responsive.
+- Adjusted the item image offset when right clicking on an inventory item so that it is in a better spot. 
+- Fixed console skins overriding NOTD's custom console layout and messing up all the UI. 
+
+[LeoTheCat]
+- Fixed Forward Observer's minis losing all the upgrades upon Forward Observer's death.
+- "-god" command in "-train" mode will now also grant extra regen to counter certain degen effects (such as open wound from Apop).
+- Added a "-free" command in "-train" mode for free energy.
+- Added a "-help" command to display all the commands for new players who are unfamiliar with the game.
+- Removed glass cannon mode as it rarely sees any usage. 
+
+P.S. Due to irl work, I [LeoTheCat] won't be able to develop the game any further. I'll still maintain and bugfix the map occasionally. Any
+community contribution is welcome. The map files are open source: https://github.com/LeoTheCatMeow/Night-of-the-Dead-Updated
+You can reach out to me on Discord as well. Thanks for playing NOTD!
+
 2021-6-14
 [LeoTheCat]
 - Added a "-god" command to "-train" mode which makes the player marine take no damage.

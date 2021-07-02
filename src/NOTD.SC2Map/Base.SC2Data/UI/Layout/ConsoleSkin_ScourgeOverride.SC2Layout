@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+ <Frame type="Frame" name="ConsoleSkinTemplate" file="ConsoleSkin_Scourge">
+    <StateGroup name="DisplayState">
+      <DefaultState val="NotVisible" />
+      <State name="Terran_Scourge">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleTerran_Scourge" />
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+      <State name="Zerg_Scourge">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleZerg_Scourge" />
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+      <State name="Protoss_Scourge">
+        <When type="Property" frame="$ConsolePanel" CurrentConsoleSkin="ConsoleProtoss_Scourge" />
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+      <State name="NotVisible">
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+    </StateGroup>
+  </Frame>
+</Desc>
