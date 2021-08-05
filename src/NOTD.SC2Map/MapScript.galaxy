@@ -3715,14 +3715,13 @@ void gf_SQDifficultyAdjustments () {
         gv_spawnFactor += 1;
     }
     gv_difficultyHPScaling += (SquareRoot(((MaxF(gv_squadRating, 1500.0) - 1500.0) / 10.0)) * 0.07);
-    gv_difficultyHPScaling += (SquareRoot((MinI(gv_scaledXP, 100000) / 10.0)) * 0.002);
+    gv_difficultyHPScaling += (SquareRoot((MinI(gv_scaledXP, 100000) / 10.0)) * 0.003);
     if ((gv_isVeteranSquad == false)) {
         gv_difficultyHPScaling -= 0.1;
     }
 
-    if ((gv_isVeteranSquad == false) && (gv_scaledXP >= 3500) && (RandomInt(0, 1) == 1)) {
+    if ((gv_scaledXP >= 3750) && (gv_squadRating < 2000) && (RandomInt(0, 1) == 1)) {
         gv_spawnFactor += 1;
-        gv_difficultyHPScaling += 0.05;
     }
 
 }
