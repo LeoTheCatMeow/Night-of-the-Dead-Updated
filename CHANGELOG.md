@@ -3,6 +3,8 @@
 2021-8-5
 [LeoTheCat]
 - CI Ammo now reduces enemy HP regeneration by 50% (mainly as a counter to atrocious mutation in EM mode).
+- CI Ammo now can be applied by explosive effects, such as Stinger and L3, but the damage source still needs to be the player.
+- For balance reasons CI Ammo still can't be applied by pure fire or burning damage, such as Flamethrower (those often hit way too fast).
 - AP Ammo now causes hardended mutation to take 10% more physical damage per stack. 
 - Fixed a bug where Chemical Expert's Chemical Plating may hurt allies when combined with Psi Op's backout. 
 - Chemical Plating now reacts to all types of damage (previously only applied the poison to melee attackers).
@@ -16,10 +18,9 @@
 - Overall, Medic's weave still has a better energy to heal efficiency but now heal is slightly faster when maxed out.
 - Marksman now ignores collision during shadowstep.
 - Fixed Helium Igniter Lv3 burn damage not classified as fire damage.
-
-The update is mainly based on the feedbacks I received on the community discord, there are some issues I'm still investigating -
-Armageddon Bomb rare bug, FO dispersion command interference, certain enemies moving during cutsccene, age old bugs such as ammo doube use,
-L3 disabled with shared control, vision problems with mindlink + nexus, etc Let me know if you find more. 
+- Fixed Demo's Explosive Aftershock doing more damage than intended with Satchel Level 1 (Level 2 unaffected).
+- Fixed Demo's Explosive Aftershock not working properly with Armageddon Bomb.
+- Shifted Armageddon Bomb detonation effect execution order in hope to avoid rare bugs where the bomb fails to remove itself after use.
 
 2021-7-2
 *Special thanks to player "RPS" for valuable contributions!*

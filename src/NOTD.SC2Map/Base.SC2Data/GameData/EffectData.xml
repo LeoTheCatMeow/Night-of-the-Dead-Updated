@@ -107,6 +107,12 @@
         <Chance value="0.4"/>
         <Behavior value="Corrosion2"/>
     </CEffectApplyBehavior>
+    <CEffectEnumArea id="ArmageddonSearchDamageEnemyAftershock">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="5" Effect="ArmageddonDamageAftershock"/>
+        <MaxCount value="10"/>
+    </CEffectEnumArea>
     <CEffectDamage id="BroodlingEscortDamage">
         <ArmorReduction value="0"/>
     </CEffectDamage>
@@ -854,16 +860,12 @@
     </CEffectEnumArea>
     <CEffectDamage id="ArmageddonDamageAftershock">
         <EditorCategories value=""/>
-        <Chance value="0.25"/>
+        <Chance value="0.3"/>
         <Death value="Fire"/>
-        <AreaArray Radius="4" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <ExcludeArray Value="Target"/>
     </CEffectDamage>
-    <CEffectSet id="ArmageddonDamageSet">
-        <EditorCategories value=""/>
-        <EffectArray value="ArmageddonDamage"/>
-        <EffectArray value="ArmageddonDamageAftershock"/>
-    </CEffectSet>
     <CEffectApplyBehavior id="CominginHotDOTLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -938,8 +940,9 @@
         <Flags index="Notification" value="1"/>
         <Kind value="Splash"/>
         <Death value="Blast"/>
-        <AreaArray Radius="3" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1DamageSet">
         <EditorCategories value=""/>
@@ -960,8 +963,9 @@
         <Flags index="Notification" value="1"/>
         <Kind value="Splash"/>
         <Death value="Blast"/>
-        <AreaArray Radius="3" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectEnumArea id="SatchelLevel1SearchFriendly">
         <EditorCategories value=""/>
@@ -4838,6 +4842,7 @@
         <EffectArray value="ArmageddonSearchDamageFriendly"/>
         <EffectArray value="ArmageddonRadiationPersistent"/>
         <EffectArray value="ArmageddonApplyHide"/>
+        <EffectArray value="ArmageddonSearchDamageEnemyAftershock"/>
     </CEffectSet>
     <CEffectEnumArea id="ArmageddonStunSearch">
         <EditorCategories value=""/>
