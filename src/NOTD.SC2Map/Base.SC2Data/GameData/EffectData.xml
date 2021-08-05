@@ -110,6 +110,10 @@
     <CEffectDamage id="BroodlingEscortDamage">
         <ArmorReduction value="0"/>
     </CEffectDamage>
+    <CEffectDamage id="HotSBanelingExplodeLargeDirect">
+        <AttributeBonus index="Structure" value="0"/>
+        <Amount value="60"/>
+    </CEffectDamage>
     <CEffectUseMagazine id="LaunchScourge">
         <EditorCategories value="Race:Zerg"/>
         <MagazineAbil value="ScourgeHangar"/>
@@ -168,12 +172,12 @@
     <CEffectDamage id="KorhalSporeCannonBombardmentDamage">
         <AttributeBonus index="Structure" value="0"/>
         <ArmorReduction value="0"/>
-        <Kind value="Ranged"/>
         <Amount value="65"/>
         <AreaArray index="0" Radius="1"/>
         <AreaArray index="1" Radius="1.75" Fraction="0.85"/>
         <AreaArray index="2" Radius="2.25" Fraction="0.7"/>
         <SearchFilters value="Ground;Self,Missile,Dead,Hidden,Invulnerable"/>
+        <KindSplash value="Splash"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="KorhalSporeCannonBombardmentLaunchMissile">
         <ImpactEffect value="CorrosiveBileSet"/>
@@ -1465,6 +1469,7 @@
     </CEffectRemoveBehavior>
     <CEffectDamage id="HotSBanelingExplodeLargeSearchDamage">
         <Amount value="60"/>
+        <AttributeBonus index="Structure" value="0"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="InfernoApplyChainNapalm">
         <EditorCategories value=""/>
@@ -4975,19 +4980,19 @@
     </CEffectDamage>
     <CEffectEnumArea id="ChemicalPlatingSearchLevel1">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
         <AreaArray Radius="5" Effect="ChemicalPlatingApplyBuffLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ChemicalPlatingSearchLevel2">
         <EditorCategories value=""/>
         <Marker Link="Effect/ChemicalPlatingSearchLevel1"/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
         <AreaArray Radius="5" Effect="ChemicalPlatingApplyBuffLevel2"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ChemicalPlatingSearchLevel3">
         <EditorCategories value=""/>
         <Marker Link="Effect/ChemicalPlatingSearchLevel1"/>
-        <SearchFilters value="-;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,UnderConstruction,Dead,Hidden"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Worker,RawResource,HarvestableResource,Missile,Item,Uncommandable,UnderConstruction,Dead,Hidden"/>
         <AreaArray Radius="5" Effect="ChemicalPlatingApplyBuffLevel3"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ContaminateApplyVenom">
@@ -7577,7 +7582,7 @@
         <ValidatorArray value="NotItem"/>
         <ValidatorArray value="NotInvulnerable"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <Kind value="Splash"/>
+        <Kind value="Ranged"/>
     </CEffectDamage>
     <CEffectEnumArea id="BarrageSearchArea">
         <SearchFilters value="Ground;Self,Player,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
@@ -13323,6 +13328,8 @@
         <ResponseFlags index="Flee" value="0"/>
         <ArmorReduction value="1"/>
         <SearchFilters value="Ground,Structure;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <Amount value="75"/>
+        <AreaArray index="0" Radius="2.5"/>
     </CEffectDamage>
     <CEffectDamage id="VolatileBurstU3" parent="DU_WEAP">
         <EditorCategories value="Race:Zerg"/>
@@ -13342,8 +13349,8 @@
         <ValidatorArray value="HiddenCompareBA"/>
         <ValidatorArray value="NotVortexd"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.475"/>
-        <RechargeVitalRate value="5"/>
+        <DrainVitalCostFactor value="0.425"/>
+        <RechargeVitalRate value="7"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel3">
         <ValidatorArray value="NotWarpingIn"/>
@@ -13351,8 +13358,8 @@
         <ValidatorArray value="HiddenCompareBA"/>
         <ValidatorArray value="NotVortexd"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.45"/>
-        <RechargeVitalRate value="7"/>
+        <DrainVitalCostFactor value="0.35"/>
+        <RechargeVitalRate value="10"/>
     </CEffectCreateHealer>
     <CEffectApplyBehavior id="VolatileInjectionLevel1Apply">
         <EditorCategories value=""/>
@@ -13503,6 +13510,6 @@
         <ValidatorArray index="2" value="HiddenCompareBA"/>
         <ValidatorArray index="3" value="NotVortexd"/>
         <ValidatorArray index="4" removed="1"/>
-        <RechargeVitalRate value="3"/>
+        <RechargeVitalRate value="4"/>
     </CEffectCreateHealer>
 </Catalog>

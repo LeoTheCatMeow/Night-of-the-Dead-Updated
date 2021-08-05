@@ -1,5 +1,27 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-8-5
+[LeoTheCat]
+- CI Ammo now reduces enemy HP regeneration by 50% (mainly as a counter to atrocious mutation in EM mode).
+- AP Ammo now causes hardended mutation to take 10% more physical damage per -1 armor. 
+- Fixed a bug where Chemical Expert's Chemical Plating may hurt allies when combined with Psi Op's backout. 
+- Chemical Plating now reacts to all types of damage (previously only applied the poison to melee attackers).
+- Chemical Plating now also blocks 5/10/15 damage from chemical bursts (Banes, Beastlings, Erebos spore attack, Sahaquiel bombardment etc.)
+- Disabled the visual beam from Psi Op's blackout as it does not display properly, the overhead effect still remains.
+- '-help' command now only displays for the person that enters it, to avoid spam abuse.
+- '-help' command now only displays for the person that enters it, to avoid spam abuse.
+- Slightly lowered the difficulty hp scaling for small teams (<4 players), duo & solo players may have an easier time. 
+- Slightly lowered the outbreak spawn during Hades and AC gas again, since those parts still seem to be very challenging.
+- Lowered the hp buff from atrocious mutation on Lelantos and Titans (which are heroic, non-boss units).
+- Increased Medic's heal speed from 3/5/7 per second to 4/7/10 per second, slightly lowered the energy consumption speed as well.
+- Overall, Medic's weave still has a better energy to heal efficiency but now heal is slightly faster when maxed out.
+- Marksman now ignores collision during shadowstep.
+- Fixed Helium Igniter Lv3 burn damage not classified as fire damage.
+
+The update is mainly based on the feedbacks I received on the community discord, there are some issues I'm still investigating -
+Armageddon Bomb rare bug, FO dispersion command interference, certain enemies moving during cutsccene, age old bugs such as ammo doube use,
+L3 disabled with shared control, vision problems with mindlink + nexus, etc Let me know if you find more. 
+
 2021-7-2
 *Special thanks to player "RPS" for valuable contributions!*
 [RPS]

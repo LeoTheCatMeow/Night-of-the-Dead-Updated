@@ -10381,7 +10381,6 @@
         <AutoScaleFactor value="0.300000"/>
     </CActorModel>
     <CActorBeamSimple id="BlackoutControlBeam" parent="BeamSimpleAnimationStyleContinuous">
-        <On Terms="Effect.BlackoutApplyMindControl.Start" Send="Create"/>
         <Model value="DominationBeam"/>
         <AutoScaleFactor value="0.600000"/>
         <HostLaunch Subject="_Unit" Scope="Caster" Actor="Find"/>

@@ -19,6 +19,11 @@
         <CombineArray value="CasterhasAbsolutionSpellBuff"/>
         <CombineArray value="CasterHasEnergy"/>
     </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="CasterIsHardenedUnit">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="Hardened"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareVital id="CasterDegensHP">
         <Compare value="GT"/>
         <WhichUnit Value="Caster"/>
@@ -28,6 +33,15 @@
     <CValidatorUnitCompareBehaviorCount id="CasterHasPlayerLivesEmergencyHeal">
         <WhichUnit Value="Caster"/>
         <Behavior value="PlayerLivesEmergencyHeal"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="CasterIsHardened">
+        <CombineArray value="CasterIsHardenedUnit"/>
+        <CombineArray value="CasterIsHardenedBoss"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="CasterIsHardenedBoss">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="HardenedBoss"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareVital id="CasterLifeLT3Percent" parent="CasterLifePercent">
         <Compare value="LT"/>

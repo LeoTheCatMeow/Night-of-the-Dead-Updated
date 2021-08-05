@@ -136,11 +136,12 @@
         <InitialEffect value="AcidicApplyBonusCloud"/>
         <FinalEffect value="AcidicDeathSet"/>
         <Modification XPMultiplier="2">
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
         </Modification>
         <DamageResponse Handled="AcidicToxinApplyBoss">
             <Chance value="0.3"/>
         </DamageResponse>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AcidicToxin">
         <InfoIcon value="Assets\Textures\btn-ability-zerg-parasiticbomb.dds"/>
@@ -197,9 +198,10 @@
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.5"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="1.2"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -208,9 +210,10 @@
         <PeriodicEffect value="AtrociousDebuffSearch"/>
         <Modification XPMultiplier="2">
             <DamageTakenFraction index="Spell" value="0.25"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AtrociousBonusRegen">
         <InfoFlags index="Hidden" value="1"/>
@@ -236,6 +239,7 @@
             <Chance value="1"/>
         </DamageResponse>
         <DeathType value="Disintegrate"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BioBombardmentMode">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -454,6 +458,9 @@
             <RequireEffectArray value="TheHorrorDamageHeroic"/>
             <Chance value="1"/>
         </DamageResponse>
+        <Modification>
+            <VitalRegenMultiplier index="Life" value="-0.5"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="CinematicInvulnerability">
         <InfoFlags index="Hidden" value="1"/>
@@ -707,6 +714,7 @@
         </DamageResponse>
         <Period value="1.5"/>
         <PeriodicEffect value="HardenedEnergySparkSearch"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InboundSicknessBuffLevel1">
         <Alignment value="Positive"/>
@@ -805,6 +813,7 @@
         </DamageResponse>
         <Period value="7"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="InfernoChainNapalm">
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-corvidreactor.dds"/>
@@ -877,6 +886,7 @@
         </DamageResponse>
         <Period value="2.5"/>
         <PeriodicEffect value="HardenedEnergySparkSearch"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MonstrousBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -885,7 +895,7 @@
             <DamageDealtFraction index="Ranged" value="0.3"/>
             <DamageDealtFraction index="Splash" value="0.3"/>
             <DamageTakenFraction index="Spell" value="0.25"/>
-            <VitalMaxAdditiveMultiplierArray index="Life" value="0.4"/>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.45"/>
         </Modification>
         <DamageResponse Handled="ShotgunStunApply" Location="Attacker">
             <Chance value="1"/>
@@ -895,6 +905,7 @@
         </DamageResponse>
         <Period value="5"/>
         <PeriodicEffect value="MonstrousPullCreatePersistent"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="M5PulseShock">
         <Alignment value="Negative"/>
@@ -955,6 +966,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="Helium3IgniterBurnDamage"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -973,6 +985,7 @@
             <Chance value="1"/>
         </DamageResponse>
         <DeathType value="Fire"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="KittenBeacon2">
         <InfoFlags index="Hidden" value="1"/>
@@ -1020,6 +1033,7 @@
             <VitalMaxAdditiveMultiplierArray index="Life" value="1.8"/>
             <VitalRegenArray index="Life" value="15"/>
         </Modification>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ScorchingBoss">
         <Alignment value="Positive"/>
@@ -1045,6 +1059,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="Helium3IgniterBurnDamage"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -1062,6 +1077,7 @@
             <RequireEffectArray value="FireMissionLevel3DamageVar3"/>
             <Chance value="1"/>
         </DamageResponse>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SentinelMineLimit">
         <InfoFlags index="Hidden" value="1"/>
@@ -1087,6 +1103,7 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorAttribute id="ShieldArmor">
         <Face value="ProtossShieldsLevel3"/>
@@ -1152,6 +1169,7 @@
             <ExcludeEffectArray value="BurstFireDamageLevel2"/>
             <ExcludeEffectArray value="BurstFireDamageLevel3"/>
             <ExcludeEffectArray value="InfernoDamage"/>
+            <ExcludeEffectArray value="Helium3IgniterBurnDamage"/>
             <ExcludeEffectArray value="NukeDamage"/>
             <ExcludeEffectArray value="LaserRifleDamage"/>
             <ExcludeEffectArray value="ArmorMeltDamage"/>
@@ -1194,6 +1212,7 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShadowedBoss">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1211,8 +1230,9 @@
             <BehaviorLinkDisableArray value="ImYourFatherTauntedLevel3"/>
             <BehaviorLinkDisableArray value="MadSparkTaunted"/>
         </Modification>
-        <Period value="8"/>
+        <Period value="9"/>
         <PeriodicEffect value="ShadowedSilenceFieldSearch"/>
+        <InfoIcon value="Assets\Textures\btn-hero-dehaka-death.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShadowedSilence">
         <InfoIcon value="Assets\Textures\btn-ability-spearofadun-warpharmonization.dds"/>
@@ -3775,21 +3795,39 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingLevel1" parent="ChemicalPlatingTemplate" Level="1">
         <BehaviorCategories index="User1" value="1"/>
-        <DamageResponse>
+        <DamageResponse TargetFilters="-;Player,Ally,CanHaveShields">
+            <Kind index="Spell" value="1"/>
+            <Kind index="Ranged" value="1"/>
+            <Kind index="Splash" value="1"/>
             <Kind index="NoProc" value="0"/>
         </DamageResponse>
+        <Modification>
+            <DamageTakenUnscaled index="Splash" value="-5"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingLevel2" parent="ChemicalPlatingTemplate" Level="2">
         <BehaviorCategories index="User1" value="1"/>
-        <DamageResponse>
+        <DamageResponse TargetFilters="-;Player,Ally,CanHaveShields">
+            <Kind index="Spell" value="1"/>
+            <Kind index="Ranged" value="1"/>
+            <Kind index="Splash" value="1"/>
             <Kind index="NoProc" value="0"/>
         </DamageResponse>
+        <Modification>
+            <DamageTakenUnscaled index="Splash" value="-10"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingLevel3" parent="ChemicalPlatingTemplate" Level="3">
         <BehaviorCategories index="User1" value="1"/>
-        <DamageResponse>
+        <DamageResponse TargetFilters="-;Player,Ally,CanHaveShields">
+            <Kind index="Spell" value="1"/>
+            <Kind index="Ranged" value="1"/>
+            <Kind index="Splash" value="1"/>
             <Kind index="NoProc" value="0"/>
         </DamageResponse>
+        <Modification>
+            <DamageTakenUnscaled index="Splash" value="-15"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChemicalPlatingOxalicPoison">
         <InfoIcon value="Assets\Textures\btn-upgrade-terran-caduceusreactor.dds"/>
@@ -5091,6 +5129,43 @@
         <Alignment value="Negative"/>
         <BehaviorCategories index="User12" value="1"/>
         <MaxStackCount value="3"/>
+        <DamageResponse ModifyFraction="1.1">
+            <RequireEffectArray value="GuassRifle"/>
+            <RequireEffectArray value="MP9A2SubMachineGun"/>
+            <RequireEffectArray value="C10CanisterRifle"/>
+            <RequireEffectArray value="M45MarksmanRifleMini"/>
+            <RequireEffectArray value="M45AMarksmanRifle"/>
+            <RequireEffectArray value="XM814HeavyMachineGun"/>
+            <RequireEffectArray value="Crowbar"/>
+            <RequireEffectArray value="BarrettM112"/>
+            <RequireEffectArray value="UA420AssaultRifle"/>
+            <RequireEffectArray value="P38ScytheGuassPistol"/>
+            <RequireEffectArray value="Shotgun"/>
+            <RequireEffectArray value="ExecuteHeroicMassiveDamage"/>
+            <RequireEffectArray value="ChargeDamageLevel1"/>
+            <RequireEffectArray value="ChargeDamageLevel2"/>
+            <RequireEffectArray value="SpikedArmorLevel1Damage"/>
+            <RequireEffectArray value="SpikedArmorLevel2Damage"/>
+            <RequireEffectArray value="SpikedArmorLevel3Damage"/>
+            <RequireEffectArray value="CombatKnifeDamage"/>
+            <RequireEffectArray value="Predator"/>
+            <RequireEffectArray value="KineticCatapultLevel1Damage"/>
+            <RequireEffectArray value="KineticCatapultLevel2Damage"/>
+            <RequireEffectArray value="BlackDogDamageAMRounds"/>
+            <RequireEffectArray value="AutoTurret"/>
+            <RequireEffectArray value="OSOKLevel1BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel1BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel2BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel2BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BaseDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettDamage"/>
+            <RequireEffectArray value="OSOKLevel3BarrettBossDamage"/>
+            <RequireEffectArray value="OSOKLevel3MarksmanBossDamage"/>
+            <RequireEffectArray value="PrecisionShotLevel1Damage"/>
+            <RequireEffectArray value="PrecisionShotLevel2Damage"/>
+            <ValidatorArray value="CasterIsHardened"/>
+            <Chance value="1"/>
+        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="BURNDummy1">
         <InfoFlags index="Hidden" value="1"/>
@@ -6782,6 +6857,7 @@
         <Duration value="5"/>
         <Player Value="Caster"/>
         <Modification>
+            <StateFlags index="Summoned" value="1"/>
             <StateFlags index="Uncommandable" value="1"/>
             <LifeArmorBonus value="25"/>
         </Modification>
@@ -7837,6 +7913,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="Helium3IgniterBurnDamage"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -8153,6 +8230,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="Helium3IgniterBurnDamage"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -8193,6 +8271,7 @@
             <RequireEffectArray value="BurstFireDamageLevel2"/>
             <RequireEffectArray value="BurstFireDamageLevel3"/>
             <RequireEffectArray value="InfernoDamage"/>
+            <RequireEffectArray value="Helium3IgniterBurnDamage"/>
             <RequireEffectArray value="ThermalLancesMU"/>
             <RequireEffectArray value="SigmaDamage"/>
             <RequireEffectArray value="NukeDamage"/>
@@ -9093,6 +9172,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="2"/>
         <Modification MoveSpeedMultiplier="2.5">
+            <StateFlags index="SuppressCollision" value="1"/>
             <VitalRegenArray index="Life" value="2"/>
             <VitalRegenArray index="Shields" value="2"/>
         </Modification>
@@ -9105,6 +9185,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="2"/>
         <Modification MoveSpeedMultiplier="4">
+            <StateFlags index="SuppressCollision" value="1"/>
             <VitalRegenArray index="Life" value="5"/>
             <VitalRegenArray index="Shields" value="5"/>
         </Modification>
