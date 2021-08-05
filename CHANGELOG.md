@@ -9,7 +9,6 @@
 - Chemical Plating now also blocks 5/10/15 damage from chemical bursts (Banes, Beastlings, Erebos spore attack, Sahaquiel bombardment etc.)
 - Disabled the visual beam from Psi Op's blackout as it does not display properly, the overhead effect still remains.
 - '-help' command now only displays for the person that enters it, to avoid spam abuse.
-- '-help' command now only displays for the person that enters it, to avoid spam abuse.
 - Slightly lowered the difficulty hp scaling for small teams (<4 players), duo & solo players may have an easier time. 
 - Slightly lowered the outbreak spawn during Hades and AC gas again, since those parts still seem to be very challenging.
 - Lowered the hp buff from atrocious mutation on Lelantos and Titans (which are heroic, non-boss units).
