@@ -864,7 +864,6 @@
         <Death value="Fire"/>
         <AreaArray Radius="3" Fraction="1"/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="CominginHotDOTLevel1">
         <EditorCategories value=""/>
@@ -940,9 +939,8 @@
         <Flags index="Notification" value="1"/>
         <Kind value="Splash"/>
         <Death value="Blast"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectSet id="SatchelLevel1DamageSet">
         <EditorCategories value=""/>
@@ -963,9 +961,8 @@
         <Flags index="Notification" value="1"/>
         <Kind value="Splash"/>
         <Death value="Blast"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
-        <ExcludeArray Value="Target"/>
     </CEffectDamage>
     <CEffectEnumArea id="SatchelLevel1SearchFriendly">
         <EditorCategories value=""/>
