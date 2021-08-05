@@ -3,7 +3,7 @@
 2021-8-5
 [LeoTheCat]
 - CI Ammo now reduces enemy HP regeneration by 50% (mainly as a counter to atrocious mutation in EM mode).
-- AP Ammo now causes hardended mutation to take 10% more physical damage per -1 armor. 
+- AP Ammo now causes hardended mutation to take 10% more physical damage per stack. 
 - Fixed a bug where Chemical Expert's Chemical Plating may hurt allies when combined with Psi Op's backout. 
 - Chemical Plating now reacts to all types of damage (previously only applied the poison to melee attackers).
 - Chemical Plating now also blocks 5/10/15 damage from chemical bursts (Banes, Beastlings, Erebos spore attack, Sahaquiel bombardment etc.)
