@@ -355,6 +355,9 @@
         <InfoFlags index="Hidden" value="1"/>
         <InitialEffect value="DeadlyDescendIncreaseHeight"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="GhostHoldFireB">
+        <Modification MoveSpeedMultiplier="1.1"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="PersonalCloakDevice">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -5349,12 +5352,6 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="GhostHoldFire">
         <Modification MoveSpeedMultiplier="1.1"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="GhostHoldFireB">
-        <Modification MoveSpeedMultiplier="1.1">
-            <WeaponDisableArray value="StingerMK3"/>
-        </Modification>
-        <RemoveValidatorArray index="0" value="HoldFireValidator"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MotionSensorArmorDebuff">
         <Alignment value="Negative"/>

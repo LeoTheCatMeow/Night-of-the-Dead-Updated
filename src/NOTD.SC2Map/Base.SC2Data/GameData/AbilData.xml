@@ -5191,14 +5191,15 @@
     <CAbilEffectTarget id="ZeratulStun">
         <Range index="0" value="9"/>
     </CAbilEffectTarget>
-    <CAbilAttack id="attack2">
+    <CAbilAttack id="AttackUnsmart">
         <OrderArray index="0">
             <DisplayType value="Attack"/>
             <Color value="255,255,0,0"/>
             <Model value="Assets\UI\Cursors\WayPointAttackSwarm\WayPointAttackSwarm.m3"/>
             <LineTexture value="Assets\Textures\WayPointLine.dds"/>
         </OrderArray>
-        <TargetMessage value="Abil/TargetMessage/attack2"/>
+        <TargetMessage value="Abil/TargetMessage/AttackUnsmart"/>
+        <SmartFilters value="-;Player,Ally,Neutral,Enemy"/>
         <MinAttackSpeedMultiplier value="0.25"/>
         <MaxAttackSpeedMultiplier value="128"/>
     </CAbilAttack>

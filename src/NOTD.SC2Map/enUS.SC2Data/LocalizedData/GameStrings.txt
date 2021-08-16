@@ -7,6 +7,7 @@ Abil/Name/Anticipation=Anticipation
 Abil/Name/Armageddon=Armageddon
 Abil/Name/AsgardMove=Asgard Move
 Abil/Name/AssaultJump=Assault Jump
+Abil/Name/AttackUnsmart=Attack Unsmart
 Abil/Name/BURN=BURN!
 Abil/Name/Ballistics=Ballistics
 Abil/Name/Bandage=Bandage
@@ -322,10 +323,9 @@ Abil/Name/X1UpgradeLevel1=X-1 Upgrade Level 1
 Abil/Name/X1UpgradeLevel2=X-1 Upgrade Level 2
 Abil/Name/XM35GrenadeLauncher=XM-35 Grenade Launcher
 Abil/Name/ZeratulBlink2=Blink Copy
-Abil/Name/attack2=Attack Copy
 Abil/Name/move2=Move Copy
 Abil/Name/stop2=Stop Copy
-Abil/TargetMessage/attack2=<IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" height="52" width="32" alignment="absolutemiddle"/>   Ground to Auto-attack<n/><IMG path="Assets\Textures\tutorialmouserightbuttondown.dds" height="52" width="32" alignment="absolutemiddle"/>   Cancel
+Abil/TargetMessage/AttackUnsmart=<IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" height="52" width="32" alignment="absolutemiddle"/>   Ground to Auto-attack<n/><IMG path="Assets\Textures\tutorialmouserightbuttondown.dds" height="52" width="32" alignment="absolutemiddle"/>   Cancel
 Actor/LevelUp=            <s val="LevelUpText">Level Up</s>
 Alert/Text/AthenaWeakened=(Athena is <c val="FF0000">weakened</c> for 10 seconds...)
 Alert/Text/EileithyiaRegeneration=(Eileithyia regenerates successfully...)
@@ -2260,15 +2260,17 @@ DocInfo/PatchNote151=- Marksman now ignores collision during shadowstep.
 DocInfo/PatchNote152=- Fixed Helium Igniter Lv3 burn damage not classified as fire damage.
 DocInfo/PatchNote156=[LeoTheCat]
 DocInfo/PatchNote157=- Fixed Deimos not classified as a boss in Elite Mutation mode and thus getting stronger mutations or not mutate at all.
-DocInfo/PatchNote158=- Hold Fire now completely disables Stinger, it is no longer possible to misfire with right click. You can cancel Hold Fire with X + G.
-DocInfo/PatchNote159=- Players can now type "-roll" to roll a dice (random 1 - 6), if there's trouble deciding on certain things.
-DocInfo/PatchNote160=- All Random mode now gives some XP and minor credit rewards upon victory.
-DocInfo/PatchNote161=- Fixed Survival mode class selection CP bar displaying wrong information due to the FO/PF swap some time ago.
-DocInfo/PatchNote162=- Tried again to fix the rare bug where Stinger and L3 can cause attack to get permanently disabled on a player that has left the game.
-DocInfo/PatchNote163=- Rewored Black Ops Insignia to no longer grant any cosmetic changes.
-DocInfo/PatchNote164=- Black Ops Insignia instead grants increased turn rate (about 25%) and a mini cloak upon life damage with a long cooldown.
-DocInfo/PatchNote165=- Black Ops Insignia info can be found near the CP/Shield Armor tooltip area if bought.
-DocInfo/PatchNote166=- Thermal Sight now also grants +2 to sight radius (so that it is less useless).
+DocInfo/PatchNote158=- Players can now type "-roll" to roll a dice (random 1 - 6), if there's trouble deciding on certain things.
+DocInfo/PatchNote159=- All Random mode now gives some XP and minor credit rewards upon victory.
+DocInfo/PatchNote160=- Fixed Survival mode class selection CP bar displaying wrong information due to the FO/PF swap some time ago.
+DocInfo/PatchNote161=- Tried again to fix the rare bug where Stinger and L3 can cause attack to get permanently disabled on a player that has left the game.
+DocInfo/PatchNote162=- Rewored Black Ops Insignia to no longer grant any cosmetic changes.
+DocInfo/PatchNote163=- Black Ops Insignia instead grants increased turn rate (about 25%) and a mini cloak upon life damage with a long cooldown.
+DocInfo/PatchNote164=- Black Ops Insignia info can be found near the CP/Shield Armor tooltip area if bought.
+DocInfo/PatchNote165=- Thermal Sight now also grants +2 to sight radius (so that it is less useless).
+DocInfo/PatchNote166=
+DocInfo/PatchNote167=Mini Patch Detail:
+DocInfo/PatchNote168=- Reverted the Stinger Hold Fire change as people struggle to get used to it. Better implementations may be attempted in the future.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
