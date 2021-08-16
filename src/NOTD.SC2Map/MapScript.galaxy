@@ -2200,6 +2200,7 @@ void gf_SpeedBonusXP ();
 void gf_OutbreakBonusXP ();
 void gf_EliteMutationBonusXP ();
 void gf_DailyChallengeBonusXP ();
+void gf_AllRandomBonusXP ();
 void gf_GameOverInit ();
 void gf_EndGameUINOTD ();
 void gf_EndGameUISetNOTD ();
@@ -2243,6 +2244,7 @@ trigger gt_AllRandom;
 trigger gt_EnableDisableClassicStatusBar;
 trigger gt_EnableDisableQuietPing;
 trigger gt_DanceCheer;
+trigger gt_RollaDice;
 trigger gt_MaxRandom;
 trigger gt_DisableRandomButton;
 trigger gt_NightmareHellMode;
@@ -4692,7 +4694,7 @@ void gf_SurvivalClassSelectionUI () {
         gv_classSelectionDialogItem[lv_player][10] = DialogControlLastCreated();
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class10Label");
         gf_SetupClassSelection(lv_player, 10, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][10], gv_playerCP[lv_player].lv_demoPFChem);
+        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][10], gv_playerCP[lv_player].lv_engineerFO);
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class11Select");
         gv_classSelectionDialogItem[lv_player][11] = DialogControlLastCreated();
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class11Label");
@@ -4707,7 +4709,7 @@ void gf_SurvivalClassSelectionUI () {
         gv_classSelectionDialogItem[lv_player][13] = DialogControlLastCreated();
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class13Label");
         gf_SetupClassSelection(lv_player, 13, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][13], gv_playerCP[lv_player].lv_engineerFO);
+        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][13], gv_playerCP[lv_player].lv_demoPFChem);
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class14Select");
         gv_classSelectionDialogItem[lv_player][14] = DialogControlLastCreated();
         DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class14Label");
@@ -5049,6 +5051,13 @@ void gf_StartingBonuses (int lp_playerIndex) {
     }
     if ((gv_medalOfHonor[lp_playerIndex] >= 150)) {
         UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "RatingSpeedBonus2", gv_marineHero[lp_playerIndex], 1);
+    }
+
+    if ((gf_BOInsigniaBought(lp_playerIndex) == true)) {
+        TechTreeUpgradeAddLevel(lp_playerIndex, "BlackOpsInsignia", 1);
+        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "BlackOpsInsignia", gv_marineHero[lp_playerIndex], 1);
+        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "Insignia", gv_marineHero[lp_playerIndex], 1);
+        UnitSetAttributePoint(gv_marineHero[lp_playerIndex], "Insignia", true, 1);
     }
 
 }
@@ -7443,7 +7452,7 @@ bool auto_gf_DisableAttackEquippingWeapons_TriggerFunc (bool testConds, bool run
             UnitBehaviorAddPlayer(lv_inventoryHero, "InsufficientAmmo", lp_inventoryOwner, 1);
         }
         else {
-            UnitBehaviorRemovePlayer(lv_inventoryHero, "InsufficientAmmo", lp_inventoryOwner, 1);
+            UnitBehaviorRemove(lv_inventoryHero, "InsufficientAmmo", 1);
         }
     }
 
@@ -14521,11 +14530,6 @@ void gf_UISetPlayerRankNameIconXP (int lp_triggeringPlayer) {
         libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1) + StringExternal("Param/Value/F5F4A3AF") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
     }
     gf_UIUpdateXP(lp_triggeringPlayer);
-    if ((gf_BOInsigniaBought(lp_triggeringPlayer) == true)) {
-        gf_UpgradeBOInsigniaRank(lp_triggeringPlayer);
-        libNtve_gf_SetDialogItemImage(gv_teamStatusPortraitButton[lp_triggeringPlayer], "NOTD Rank Icons\\Black Ops Insignia.dds", PlayerGroupAll());
-    }
-
 }
 
 trigger auto_gf_UISetDoctorTitle_Trigger = null;
@@ -17300,6 +17304,23 @@ void gf_DailyChallengeBonusXP () {
     }
 }
 
+void gf_AllRandomBonusXP () {
+    // Variable Declarations
+    int lv_xp;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((gv_randomsOption == 3)) {
+        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 0);
+        gf_AwardPlayerXPNOTD(lv_xp);
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(30, 60, 90, 0));
+        TextExpressionSetToken("Param/Expression/8F6674B0", "A", IntToText(lv_xp));
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/8F6674B0"));
+    }
+}
+
 trigger auto_gf_GameOverInit_Trigger = null;
 
 void gf_GameOverInit () {
@@ -19858,6 +19879,29 @@ void gt_DanceCheer_Init () {
     TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad4, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
     TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad5, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
     TriggerAddEventKeyPressed(gt_DanceCheer, c_playerAny, c_keyNumPad6, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Roll a Dice
+//--------------------------------------------------------------------------------------------------
+bool gt_RollaDice_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TextExpressionSetToken("Param/Expression/18B09A35", "A", PlayerName(EventPlayer()));
+    TextExpressionSetToken("Param/Expression/18B09A35", "B", IntToText(RandomInt(1, 6)));
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/18B09A35"));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_RollaDice_Init () {
+    gt_RollaDice = TriggerCreate("gt_RollaDice_Func");
+    TriggerAddEventChatMessage(gt_RollaDice, c_playerAny, "-roll a dice", false);
+    TriggerAddEventChatMessage(gt_RollaDice, c_playerAny, "-roll", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -47666,6 +47710,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
     gf_OutbreakBonusXP();
     gf_EliteMutationBonusXP();
     gf_DailyChallengeBonusXP();
+    gf_AllRandomBonusXP();
     Wait(1.75, c_timeReal);
     UIClearMessages(PlayerGroupActive(), c_messageAreaDirective);
     return true;
@@ -48010,6 +48055,7 @@ void InitTriggers () {
     gt_EnableDisableClassicStatusBar_Init();
     gt_EnableDisableQuietPing_Init();
     gt_DanceCheer_Init();
+    gt_RollaDice_Init();
     gt_MaxRandom_Init();
     gt_DisableRandomButton_Init();
     gt_NightmareHellMode_Init();

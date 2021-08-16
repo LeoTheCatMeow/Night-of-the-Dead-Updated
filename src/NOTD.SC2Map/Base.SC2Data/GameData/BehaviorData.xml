@@ -116,6 +116,20 @@
             <DamageDealtFraction index="Spell" value="1.5"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="BlackOpsInsignia">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="NOTD Rank Icons\Black Ops Insignia.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Handled="BlackOpsInsignia">
+            <ValidatorArray value="CasterNotTauntCombine"/>
+            <ValidatorArray value="CasterNotIYFCombine"/>
+            <ValidatorArray value="CasterShieldsLT10"/>
+            <Chance value="1"/>
+            <Cost>
+                <Cooldown TimeUse="300"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Corrosion2">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-hydriaticacid.dds"/>
@@ -341,6 +355,33 @@
         <InfoFlags index="Hidden" value="1"/>
         <InitialEffect value="DeadlyDescendIncreaseHeight"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="PersonalCloakDevice">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1.4"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <DamageTakenFraction index="Spell" value="-0.5"/>
+            <DamageTakenFraction index="Melee" value="-0.5"/>
+            <DamageTakenFraction index="Ranged" value="-0.5"/>
+            <DamageTakenFraction index="Splash" value="-0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CooldownCounter">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="300"/>
+    </CBehaviorBuff>
+    <CBehaviorAttribute id="Insignia">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorAttribute>
+    <CBehaviorAttribute id="StingerEquipped">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MinPoints value="1"/>
+    </CBehaviorAttribute>
     <CBehaviorBuff id="MyLeg">
         <InfoIcon value="Assets\Textures\btn-ability-zerg-genemutation-thornsaura.dds"/>
         <BehaviorCategories index="User1" value="1"/>
@@ -2630,21 +2671,9 @@
         <InitialEffect value="ItsMeAgainSwitchTargetSet"/>
     </CBehaviorBuff>
     <CBehaviorAttribute id="L3Equipped">
-        <Cost>
-            <Charge Link="Behavior/BurnEnable"/>
-            <Cooldown Link="Behavior/BurnEnable"/>
-        </Cost>
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <MinPoints value="1"/>
-        <Modification>
-            <DeathResponse>
-                <Cost>
-                    <Charge Link="Behavior/BurnEnable"/>
-                    <Cooldown Link="Behavior/BurnEnable"/>
-                </Cost>
-            </DeathResponse>
-        </Modification>
     </CBehaviorAttribute>
     <CBehaviorAttribute id="MarksmanRifleEquipped">
         <Cost>
@@ -5322,7 +5351,10 @@
         <Modification MoveSpeedMultiplier="1.1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="GhostHoldFireB">
-        <Modification MoveSpeedMultiplier="1.1"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <WeaponDisableArray value="StingerMK3"/>
+        </Modification>
+        <RemoveValidatorArray index="0" value="HoldFireValidator"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MotionSensorArmorDebuff">
         <Alignment value="Negative"/>
@@ -8735,7 +8767,7 @@
     <CBehaviorBuff id="ThermalSight" parent="Detector">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-permanentlycloaked-observer-color.dds"/>
-        <Modification Detect="9"/>
+        <Modification SightBonus="2" Detect="9"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MotionSensorLevel1">
         <Alignment value="Positive"/>

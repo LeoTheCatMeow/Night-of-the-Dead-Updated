@@ -107,12 +107,27 @@
         <Chance value="0.4"/>
         <Behavior value="Corrosion2"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyPersonalCloakDevice">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="PersonalCloakDevice"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyCooldown">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="CooldownCounter"/>
+    </CEffectApplyBehavior>
     <CEffectEnumArea id="ArmageddonSearchDamageEnemyAftershock">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,RawResource,HarvestableResource,Missile,Item,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="5" Effect="ArmageddonDamageAftershock"/>
         <MaxCount value="10"/>
     </CEffectEnumArea>
+    <CEffectSet id="BlackOpsInsignia">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyCooldown"/>
+        <EffectArray value="ApplyPersonalCloakDevice"/>
+    </CEffectSet>
     <CEffectDamage id="BroodlingEscortDamage">
         <ArmorReduction value="0"/>
     </CEffectDamage>

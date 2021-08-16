@@ -1,5 +1,18 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-8-15
+[LeoTheCat]
+- Fixed Deimos not classified as a boss in Elite Mutation mode and thus getting stronger mutations or not mutate at all.
+- Hold Fire now completely disables Stinger, it is no longer possible to misfire with right click. You can cancel Hold Fire with X + G.
+- Players can now type "-roll" to roll a dice (random 1 - 6), if there's trouble deciding on certain things.
+- All Random mode now gives some XP and minor credit rewards upon victory.
+- Fixed Survival mode class selection CP bar displaying wrong information due to the FO/PF swap some time ago.
+- Tried again to fix the rare bug where Stinger and L3 can cause attack to get permanently disabled on a player that has left the game.
+- Rewored Black Ops Insignia to no longer grant any cosmetic changes.
+- Black Ops Insignia instead grants increased turn rate (about 25%) and a mini cloak upon life damage with a long cooldown.
+- Black Ops Insignia info can be found near the CP/Shield Armor tooltip area if bought.
+- Thermal Sight now also grants +2 to sight radius (so that it is less useless).
+
 2021-8-5
 [LeoTheCat]
 - CI Ammo now reduces enemy HP regeneration by 50% (mainly as a counter to atrocious mutation in EM mode).

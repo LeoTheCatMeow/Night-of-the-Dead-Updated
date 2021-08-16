@@ -215,7 +215,6 @@
         <Flags index="DropOnDeath" value="1"/>
         <Class value="Weapons"/>
         <Container value=""/>
-        <EquipBehaviorArray value="StingerPassive"/>
         <EquipBehaviorArray value="L3Equipped"/>
         <EquipWeaponArray Link="L3GrenadeLauncher"/>
         <EffectCost>
@@ -383,6 +382,7 @@
             <Cooldown Link=""/>
         </EffectCost>
         <EffectFlags index="Transient" value="1"/>
+        <EquipBehaviorArray value="StingerEquipped"/>
     </CItemEffectInstant>
     <CItemEffectInstant id="SynchronizationModule">
         <Flags index="DropOnDeath" value="1"/>

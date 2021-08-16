@@ -737,6 +737,7 @@ Behavior/Tooltip/BURNLevel2=單位被火焰兵的燃燒!技能燒烤。
 Behavior/Tooltip/Backstab=從目標的側邊或後面攻擊會造成50%額外傷害<n/><n/>"還有你嗎，布魯圖?" - 尤利烏斯.凱撒
 Behavior/Tooltip/Bandage=使用繃帶會瞬間回血50點
 Behavior/Tooltip/BattlefieldIntelligence=單位的視野增加3點，持續60秒，最少視野不能減到少於5點。
+Behavior/Tooltip/BlackOpsInsignia=<c val="80FF80">Combat Agility Augment</c>: unit gains increased turn rate.<n/><n/><c val="80FF80">Personal Cloaking Device</c>: upon taking damage, cloaks for 1.4 seconds and reduces damage taken <n/>Current Cooldown: <c val="FFFF80"><d ref="$BehaviorRemainingDuration:CooldownCounter$"/><n/></c><n/>Does not activate if a taunt ability is in use.
 Behavior/Tooltip/BlackoutBlind=單位失明5秒。
 Behavior/Tooltip/BlackoutControlled=單位暫時變成靈能特戰兵的盟友5秒。
 Behavior/Tooltip/BlackoutLevel1=所有攻擊會使目標暫時失明，每次攻擊消耗2點能量值，2%機會使非英雄目標轉化成不能控制的盟軍，持續5秒。
@@ -1011,7 +1012,7 @@ Behavior/Tooltip/TauntedLevel2=被迫使攻擊衝鋒步兵，傷害力-20%。
 Behavior/Tooltip/TauntedLevel3=被迫使攻擊衝鋒步兵，傷害力-30%。
 Behavior/Tooltip/TheHorror=單位暫時失明並失去戰鬥力10秒。
 Behavior/Tooltip/TheHorrorHeroic=單位暫時失明並失去戰鬥力10秒。
-Behavior/Tooltip/ThermalSight=檢測所有在9範圍以內的隱身單位。
+Behavior/Tooltip/ThermalSight=檢測所有在9範圍以內的隱身單位，+2视野。
 Behavior/Tooltip/TimetoDie=爆破兵暫時變得對大部分的攻擊都非常能耐，10秒以內他的護甲與護盾護甲提升8倍，傷害力+100%，移動速度+25%。另外爆破兵每3秒會擊暈並對所有在3範圍的敵人造成185點傷害力。
 Behavior/Tooltip/TimetoDieStun=單位昏迷1秒。
 Behavior/Tooltip/Turbo=移動速度提高35%。
@@ -1837,7 +1838,7 @@ Button/Tooltip/TeamLocation=在地圖以玩家位置數字形式顯示所有倖�
 Button/Tooltip/Technician=擁有一套非常強大的外型戰鬥裝甲，技術員可以粉碎擋在其道路的任何東西。
 Button/Tooltip/TerraTron=費用: <c val="71B8FF">5000</c><n/>要求: <c val="FFFF00">5000經驗值</c>
 Button/Tooltip/TheHorror=KTH-22化學手榴彈，俗稱"恐懼"，是一種運用快速反應神經毒劑和迷幻劑用來恐嚇和迷惑受影響者的武器。最初被設計為輔助審問的工具，但是因為"恐懼"對受害者們產生激烈的副作用，所以在警察部隊裡禁止使用。"恐懼"不久之後被武器化，因為它成為戰爭的工具的潛能是不可否認的。<n/><n/>1級 - 所有在4範圍的單位暫時失明並失去戰鬥力10秒。期間每秒損失5%最大生命值(對英雄單位有減免)。在恐懼中存活下來的人會陷入瘋狂，對敵方英雄單位無效。<n/><n/><c val="FF0000">警告: 可傷害友軍。</c><n/><n/>"你想看些非常嚇人的東西吗?"
-Button/Tooltip/ThermalSight=<c val="FFFF00">熱成像儀</c><n/>特種部隊專用，可在8範圍內檢測隱形單位。<n/><n/>叠加上限: <c val="FFFFFF">1</c><n/>重量: <c val="FFFFFF">2</c><n/><n/>"我是小間諜。"
+Button/Tooltip/ThermalSight=<c val="FFFF00">熱成像儀</c><n/>特種部隊專用，可在9範圍內檢測隱形單位, +2视野。<n/><n/>叠加上限: <c val="FFFFFF">1</c><n/>重量: <c val="FFFFFF">2</c><n/><n/>"我是小間諜。"
 Button/Tooltip/ThrowGravityGun=向地點扔目標。
 Button/Tooltip/TimetoDie=爆破兵暫時變得對大部分的攻擊都非常能耐，10秒以內他的護甲與護盾護甲提升8倍，傷害力+100%，移動速度+25%。另外爆破兵每3秒會擊暈並對所有在3範圍的敵人造成185點傷害力。
 Button/Tooltip/Titan=一隻巨大的，難對付的殭屍。
@@ -2447,7 +2448,7 @@ Param/Value/2E1900EB=Investigate the Communications Tower
 Param/Value/2E588F08=
 Param/Value/2E973C55=This is the last dome. We got this.
 Param/Value/2F400B8B=+1 XP for Performance Bonus
-Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
+Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations | [<c val="FFFF80">-roll</c>] Roll a Dice<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
 Param/Value/2F787A1C=<s val="InfoPaneHeroRank">No issues found.</s>
 Param/Value/2F9BB167=Give suppressive fire and move! That thing has thick armor.
 Param/Value/2F9DE260=<c val="FF0000">(萨哈奎尔准备泰山压顶...)</c>
@@ -4543,7 +4544,7 @@ UserData/ShopItems/ShopItem28_ShopTooltip=Biological - can get hugged<n/>LifeMax
 UserData/ShopItems/ShopItem29_ShopTooltip=Mechanical<n/>LifeMax:300  LifeRegen:10 RegenDelay: Yes<n/>Movement Speed:2.5 EnergyMax:55 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem2_ShopTooltip=Changes Marine color to <c val="b4141e">Red</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem30_ShopTooltip=Since the Great Rat Plague of 2028, kittens have been a mainstay in every citizen's home - providing frontline defense against the next plague. Kittens are also cute. Be a responsible neighbour - order now.<n/><n/>Credits: <c val="71B8FF">1000</c><n/><n/><s val="Swarm_RegularXSmall">"It's too dangerous to go alone. Take this..."</s>
-UserData/ShopItems/ShopItem31_ShopTooltip=Rank icon of Marine replaced with Black Ops Insignia.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
+UserData/ShopItems/ShopItem31_ShopTooltip=Unlocks the secrets of Black Ops.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
 UserData/ShopItems/ShopItem32_ShopTooltip=Allows modification of weapons.<n/><n/>Credits: <c val="71B8FF">10000</c>
 UserData/ShopItems/ShopItem33_ShopTooltip=Heavy Sniper Rifle that is capable of inflicting massive damage. This powerful weapon also weighs down the Marine.<n/><n/>Credits: <c val="71B8FF">250</c><n/><n/><s val="Swarm_RegularXSmall">"This goes through armor, and the victim, and the wall, the tree outside....."</s>
 UserData/ShopItems/ShopItem34_ShopTooltip=Launches high explosive grenades that detonate on contact with targets.<n/><n/>Credits: <c val="71B8FF">325</c><n/><n/><s val="Swarm_RegularXSmall">"Demolition is my Mission!" - Nick Nitro</s>

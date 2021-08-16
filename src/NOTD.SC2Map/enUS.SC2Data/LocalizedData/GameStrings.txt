@@ -615,6 +615,7 @@ Behavior/Name/Inferno=Inferno
 Behavior/Name/InfernoChainNapalm=Inferno (Chain Napalm)
 Behavior/Name/InfernoChainTarget=Inferno (Chain Target)
 Behavior/Name/InfernoTarget=Inferno (Target)
+Behavior/Name/Insignia=Insignia
 Behavior/Name/Intimidation=Intimidation
 Behavior/Name/IronHand=Iron Hand
 Behavior/Name/ItsMeAgainDamageLevel1=Its Me Again! Damage Level 1
@@ -997,6 +998,7 @@ Behavior/Tooltip/Infection=Unit is infected is slowly turning into a zombie.
 Behavior/Tooltip/Infection2=Unit is infected is slowly turning into a zombie.
 Behavior/Tooltip/Infectious=Unit is infectious and will turn its victims into zombies.
 Behavior/Tooltip/Inferno=Unit is burned from within and will explode in 3 seconds dealing 300 damage in 3 radius.
+Behavior/Tooltip/Insignia=Black Ops Insignia<n/><c val="80FF80">Combat Agility Augment</c>: unit gains increased turn rate.<n/><n/><c val="80FF80">Personal Cloaking Device</c>: upon taking life damage, cloaks for 1.4 seconds and reduces damage taken <n/>Current Cooldown: <c val="FFFF80"><d ref="$BehaviorRemainingDuration:CooldownCounter$"/><n/></c><n/>Does not activate if a taunt ability is in use.
 Behavior/Tooltip/Intimidation=-1 Life & Shield Armor for 4 seconds. Stacks up to 5 times.
 Behavior/Tooltip/IronHand=Iron Hand protocol activated. +100% attack speed for 5 seconds. Will suffer from Overheating subsequently.
 Behavior/Tooltip/ItsMeAgainLevel1=Each subsequent attack on same unit deals 7% additional damage. Stacks up to 5 times.
@@ -1166,7 +1168,7 @@ Behavior/Tooltip/TauntedLevel2=Taunted to attack Assault. Damage dealt lowered b
 Behavior/Tooltip/TauntedLevel3=Taunted to attack Assault. Damage dealt lowered by 30%.
 Behavior/Tooltip/TheHorror=Target is blinded and has attacks disabled for 10 seconds. Gradually losing life.
 Behavior/Tooltip/TheHorrorHeroic=Target is blinded and has attacks disabled for 10 seconds. Gradually losing life.
-Behavior/Tooltip/ThermalSight=Detects invisible units in 9 radius.
+Behavior/Tooltip/ThermalSight=Gains 2 sight radius and detects invisible units in 9 radius.
 Behavior/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains <d ref="Behavior,TimetoDie,Modification.ShieldArmorMultiplier"/>x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
 Behavior/Tooltip/TimetoDieStun=Unit is stunned for 1 sec.
 Behavior/Tooltip/Turbo=35% increased movespeed.
@@ -2036,7 +2038,7 @@ Button/Tooltip/TeamLocation2=Pings location of all teammates for 5 seconds.
 Button/Tooltip/Technician=Armed in an extremely powerful exosuit, the technician can pulverize anything in its way.
 Button/Tooltip/TerraTron=Credits: <c val="71B8FF">5000</c>
 Button/Tooltip/TheHorror=The KTH-22 Chemical Grenade, nicknamed "The Horror", is a canister utilizing fast-acting nerve agents and hallucinogens that terrify and disorient those affected by its contents. Originally designed as an interrogation aid, it was banned for use in police forces due to the radical side effects experienced by its victims. It was shortly weaponized afterwards, as its potency as an implement of war is undeniable.<n/><n/>Level 1 -- Disables the attack of and blinds all units within a radius of 4 for 10 seconds. Affected units lose 5% max HP per second, reduced against Heroic. Those that manage to survive The Horror are driven mad. Does not apply madness to Enemy Heroic.<n/><n/><c val="FF0000">Warning: Can harm allies in the target area.</c><n/><n/>"You want to see something real scary?"
-Button/Tooltip/ThermalSight=<c val="FFFF00">Thermal Sight</c><n/>Used by Special Forces. Detects invisible units in 9 radius.<n/><n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c><n/><n/>"I spy with my little eye."
+Button/Tooltip/ThermalSight=<c val="FFFF00">Thermal Sight</c><n/>Used by Special Forces. Gains 2 sight radius and detects invisible units in 9 radius.<n/><n/>Maximum Stack: <c val="FFFFFF">1</c><n/>Weight: <c val="FFFFFF">2</c><n/><n/>"I spy with my little eye."
 Button/Tooltip/ThrowGravityGun=Throw target towards point.
 Button/Tooltip/TimetoDie=Demo is highly resistant to most damage for 10 seconds and gains 8x increase in Life and Shield Armor. +100% attack damage and +25% movespeed. Demo deals 185 damage and stuns all enemies in 3 radius for 1 second, in every 3 second interval.
 Button/Tooltip/Titan=An enormously tough zombie.
@@ -2256,6 +2258,17 @@ DocInfo/PatchNote149=- Increased Medic's heal speed from 3/5/7 per second to 4/7
 DocInfo/PatchNote150=- Overall, Medic's weave still has a better energy to heal efficiency but now heal is slightly faster when maxed out.
 DocInfo/PatchNote151=- Marksman now ignores collision during shadowstep.
 DocInfo/PatchNote152=- Fixed Helium Igniter Lv3 burn damage not classified as fire damage.
+DocInfo/PatchNote156=[LeoTheCat]
+DocInfo/PatchNote157=- Fixed Deimos not classified as a boss in Elite Mutation mode and thus getting stronger mutations or not mutate at all.
+DocInfo/PatchNote158=- Hold Fire now completely disables Stinger, it is no longer possible to misfire with right click. You can cancel Hold Fire with X + G.
+DocInfo/PatchNote159=- Players can now type "-roll" to roll a dice (random 1 - 6), if there's trouble deciding on certain things.
+DocInfo/PatchNote160=- All Random mode now gives some XP and minor credit rewards upon victory.
+DocInfo/PatchNote161=- Fixed Survival mode class selection CP bar displaying wrong information due to the FO/PF swap some time ago.
+DocInfo/PatchNote162=- Tried again to fix the rare bug where Stinger and L3 can cause attack to get permanently disabled on a player that has left the game.
+DocInfo/PatchNote163=- Rewored Black Ops Insignia to no longer grant any cosmetic changes.
+DocInfo/PatchNote164=- Black Ops Insignia instead grants increased turn rate (about 25%) and a mini cloak upon life damage with a long cooldown.
+DocInfo/PatchNote165=- Black Ops Insignia info can be found near the CP/Shield Armor tooltip area if bought.
+DocInfo/PatchNote166=- Thermal Sight now also grants +2 to sight radius (so that it is less useless).
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -2353,6 +2366,7 @@ Effect/Name/ApoptosisBloodWaveSearch=Apoptosis Blood Wave Search
 Effect/Name/ApoptosisBloodWaveSet=Apoptosis Blood Wave Set
 Effect/Name/ApplyCharge=Apply Charge
 Effect/Name/ApplyCloak=Apply Cloak
+Effect/Name/ApplyCooldown=Apply Cooldown
 Effect/Name/ApplyCorrosion=Apply Corrosion
 Effect/Name/ApplyCriticalStrikeAttacker=Apply Critical Strike Attacker
 Effect/Name/ApplyCriticalStrikeDefender=Apply Critical Strike Defender
@@ -2364,6 +2378,7 @@ Effect/Name/ApplyFocusedFireTarget=Apply Focused Fire Target
 Effect/Name/ApplyHarvesterofSorrow=Apply Harvester of Sorrow (Target Impact)
 Effect/Name/ApplyIntimidation=Apply Intimidation
 Effect/Name/ApplyMadness=Apply Madness
+Effect/Name/ApplyPersonalCloakDevice=Apply Personal Cloak Device
 Effect/Name/ApplySapStunSet=Apply Sap Stun Set
 Effect/Name/ApplyStealthMatrix=Apply Stealth Matrix Switch
 Effect/Name/ApplyStealthMatrixLevel1=Apply Stealth Matrix Level 1
@@ -2452,6 +2467,7 @@ Effect/Name/BlackDogLimit=BlackDogLimit
 Effect/Name/BlackDogSearchHEFRounds=Black Dog Search (HE-F Rounds)
 Effect/Name/BlackDogSetInner=Black Dog Set (Inner)
 Effect/Name/BlackDogSetOuter=Black Dog Set (Outer)
+Effect/Name/BlackOpsInsignia=Black Ops Insignia
 Effect/Name/BlackOpsSniperRifle=Black Ops Sniper Rifle
 Effect/Name/BlackholeClose=Blackhole Close
 Effect/Name/BlackholeDamage=Blackhole Damage
@@ -4268,13 +4284,14 @@ Param/Expression/0972D6BC=You are considered <c val="FF4040">abusive</c> by ~A~ 
 Param/Expression/12668883=<s val="GlueButtonSmall">Security Team: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/142E3EDE=Wave ~A~
 Param/Expression/17F31179=<s val="GlueButtonSmall">Alpha Company: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
+Param/Expression/18B09A35=~A~ has rolled a <c val="00FF00">~B~</c>
 Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="0080FF">~B~</c>.
 Param/Expression/1E570E34=Ammo Box (~A~)
 Param/Expression/207EADA5=<s val="GlueButtonSmall">Rec/Norm: <c val="71E100">~A~</c></s>
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
-Param/Expression/32F4B8C8=+~A~ XP and ~B~ Rating for Daily Challenge Bonus
+Param/Expression/32F4B8C8=+<c val="FFFF80">~A~</c> XP and<c val="FFFF80"> ~B~</c> Rating for Daily Challenge Bonus
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8= ~A~ Class Point awarded</s>
@@ -4287,16 +4304,17 @@ Param/Expression/606DB275=Magazine (~A~)
 Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/6A6D9888=<s val="InfoPaneHeroRank">~A~ has voted for maximum difficulty</s>
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
-Param/Expression/713D1F7E=+~A~ XP for Outbreak Bonus
+Param/Expression/713D1F7E=+<c val="FFFF80">~A~</c> XP for Outbreak Bonus
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/739881FA=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
 Param/Expression/749F018B=Survive (Wave ~A~/40)
 Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/81A0B422=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
-Param/Expression/8261F9D4=+~A~ XP for Speed Bonus
+Param/Expression/8261F9D4=+<c val="FFFF80">~A~ </c>XP for Speed Bonus
 Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to retreat!
 Param/Expression/876B094F=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
+Param/Expression/8F6674B0=+<c val="FFFF80">~A~</c> XP for All Random Bonus
 Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">Wins</c> (<c val="49ABF3">Speed</c>) (<c val="E10000">NM</c>) (<c val="F1D845">NM Speed</c>)</s>
 Param/Expression/A5DC8985=Attack ~A~
 Param/Expression/A91F7F6B=~A~~B~~C~
@@ -4307,7 +4325,7 @@ Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D5EBFD15=<s val="InfoPaneHeroRank"><c val="FFFF00">The game will continue with maximum difficulty</c></s>
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
-Param/Expression/D9838420=+~A~ XP for Elite Mutation Bonus
+Param/Expression/D9838420=+<c val="FFFF80">~A~ </c>XP for Elite Mutation Bonus
 Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
 Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>)</s>
 Param/Expression/EFDB5152=~A~: ~B~
@@ -4596,7 +4614,7 @@ Param/Value/2E1900EB=Investigate the Communications Tower
 Param/Value/2E588F08=
 Param/Value/2E973C55=This is the last dome. We got this.
 Param/Value/2F400B8B=+1 XP for Performance Bonus
-Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
+Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations | [<c val="FFFF80">-roll</c>] Roll a Dice<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
 Param/Value/2F787A1C=<s val="InfoPaneHeroRank">No issues found.</s>
 Param/Value/2F9BB167=Give suppressive fire and move! That thing has thick armor.
 Param/Value/2F9DE260=<c val="FF0000">(Sahaquiel prepares for a deadly descend...)</c>
@@ -6331,6 +6349,7 @@ Upgrade/Name/AntiVenomUpgrade=Anti-Venom Upgrade
 Upgrade/Name/AnticipationLevel2=Anticipation Level 2
 Upgrade/Name/AssaultJumpLevel1=Assault Jump Level 1
 Upgrade/Name/AssaultJumpLevel2=Assault Jump Level 2
+Upgrade/Name/BlackOpsInsignia=Black Ops Insignia
 Upgrade/Name/BringThemDownLevel1=Bring Them Down Level 1
 Upgrade/Name/BringThemDownLevel2=Bring Them Down Level 2
 Upgrade/Name/BringThemDownLevel3=Bring Them Down Level 3
@@ -6746,7 +6765,7 @@ UserData/ShopItems/ShopItem28_ShopTooltip=Biological - can get hugged<n/>LifeMax
 UserData/ShopItems/ShopItem29_ShopTooltip=Mechanical<n/>LifeMax:300  LifeRegen:10 RegenDelay: Yes<n/>Movement Speed:2.5 EnergyMax:55 Shields:10<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem2_ShopTooltip=Changes Marine color to <c val="b4141e">Red</c> for all games.<n/><n/>Credits: <c val="71B8FF">5000</c>
 UserData/ShopItems/ShopItem30_ShopTooltip=Since the Great Rat Plague of 2028, kittens have been a mainstay in every citizen's home - providing frontline defense against the next plague. Kittens are also cute. Be a responsible neighbour - order now.<n/><n/>Credits: <c val="71B8FF">1000</c><n/><n/><s val="Swarm_RegularXSmall">"It's too dangerous to go alone. Take this..."</s>
-UserData/ShopItems/ShopItem31_ShopTooltip=Rank icon of Marine replaced with Black Ops Insignia.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
+UserData/ShopItems/ShopItem31_ShopTooltip=Unlocks the secrets of Black Ops.<n/><n/>Credits: <c val="71B8FF">10000</c><n/><n/><s val="Swarm_RegularXSmall">"I only thought I knew the truth."</s>
 UserData/ShopItems/ShopItem32_ShopTooltip=Allows modification of weapons.<n/><n/>Credits: <c val="71B8FF">10000</c>
 UserData/ShopItems/ShopItem33_ShopTooltip=Heavy Sniper Rifle that is capable of inflicting massive damage. This powerful weapon also weighs down the Marine.<n/><n/>Credits: <c val="71B8FF">250</c><n/><n/><s val="Swarm_RegularXSmall">"This goes through armor, and the victim, and the wall, the tree outside....."</s>
 UserData/ShopItems/ShopItem34_ShopTooltip=Launches high explosive grenades that detonate on contact with targets.<n/><n/>Credits: <c val="71B8FF">325</c><n/><n/><s val="Swarm_RegularXSmall">"Demolition is my Mission!" - Nick Nitro</s>

@@ -179,6 +179,15 @@
         <Value value="2"/>
         <Behavior value="FrenzyDummy"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="HoldFireValidator">
+        <CombineArray value="CasterNotAttacking"/>
+        <CombineArray value="StingerEquipped"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="StingerEquipped">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="StingerEquipped"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="HasBlind">
         <Compare value="GT"/>
         <Behavior value="Blind"/>

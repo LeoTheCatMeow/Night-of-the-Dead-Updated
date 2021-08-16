@@ -345,6 +345,36 @@
         <EffectArray Operation="Set" Reference="Unit,MobileInfantryMarksman,ShieldRegenRate" Value="-10.000000"/>
         <EffectArray Operation="Set" Reference="Unit,MobileInfantryRifleman,ShieldRegenRate" Value="-10.000000"/>
     </CUpgrade>
+    <CUpgrade id="BlackOpsInsignia">
+        <EffectArray Reference="Unit,TychusChaingun,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,ChemicalExpert,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Commando,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,DominionKillTeam,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Engineer,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Flamethrower3,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,ForwardObserver,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Marksman,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Medic2,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Pathfinder,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,PsiOps,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Spectre,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Rifleman,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Technician,TurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,TychusChaingun,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,ChemicalExpert,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Commando,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,DominionKillTeam,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Engineer,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Flamethrower3,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,ForwardObserver,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Marksman,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Medic2,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Pathfinder,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,PsiOps,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Spectre,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Rifleman,StationaryTurningRate" Value="149.941406"/>
+        <EffectArray Reference="Unit,Technician,StationaryTurningRate" Value="149.941406"/>
+    </CUpgrade>
     <CUpgrade id="StealthMatrixLevel1">
         <Alert value=""/>
         <EffectArray Operation="Set" Reference="Effect,EscapeCloak,Behavior[0]" Value="EscapeCloakLevel2"/>
