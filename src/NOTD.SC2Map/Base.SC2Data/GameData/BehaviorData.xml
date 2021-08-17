@@ -120,7 +120,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="NOTD Rank Icons\Black Ops Insignia.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse Handled="BlackOpsInsignia">
+        <DamageResponse Handled="BlackOpsInsignia" ModifyFraction="0.5">
             <ValidatorArray value="CasterNotTauntCombine"/>
             <ValidatorArray value="CasterNotIYFCombine"/>
             <ValidatorArray value="CasterShieldsLT10"/>

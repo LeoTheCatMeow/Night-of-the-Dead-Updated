@@ -4939,6 +4939,14 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
         gf_CreateKittens(lp_playerIndex);
     }
 
+    if ((gf_BOInsigniaBought(lp_playerIndex) == true)) {
+        Wait(0.1, c_timeGame);
+        TechTreeUpgradeAddLevel(lp_playerIndex, "BlackOpsInsignia", 1);
+        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "BlackOpsInsignia", gv_marineHero[lp_playerIndex], 1);
+        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "Insignia", gv_marineHero[lp_playerIndex], 1);
+        UnitSetAttributePoint(gv_marineHero[lp_playerIndex], "Insignia", true, 1);
+    }
+
     UnitInventoryContainerOpen(PlayerGroupActive(), gv_marineHero[lp_playerIndex], 1, true);
     UIClearMessages(PlayerGroupSingle(lp_player), c_messageAreaDirective);
     Wait(12.0, c_timeReal);
@@ -5051,13 +5059,6 @@ void gf_StartingBonuses (int lp_playerIndex) {
     }
     if ((gv_medalOfHonor[lp_playerIndex] >= 150)) {
         UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "RatingSpeedBonus2", gv_marineHero[lp_playerIndex], 1);
-    }
-
-    if ((gf_BOInsigniaBought(lp_playerIndex) == true)) {
-        TechTreeUpgradeAddLevel(lp_playerIndex, "BlackOpsInsignia", 1);
-        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "BlackOpsInsignia", gv_marineHero[lp_playerIndex], 1);
-        UnitBehaviorAdd(gv_marineHero[lp_playerIndex], "Insignia", gv_marineHero[lp_playerIndex], 1);
-        UnitSetAttributePoint(gv_marineHero[lp_playerIndex], "Insignia", true, 1);
     }
 
 }
@@ -8291,7 +8292,10 @@ void gf_ShopBuyPerm (int lp_itemID, int lp_player, string lp_itemType) {
             else if ((lv_itemType == "insignia") && (gf_BOInsigniaBought(lp_player) == false)) {
                 gf_UpdateCredits(lp_player, -lv_itemCost);
                 gv_playerColorCode[lp_player] += lv_colorCode;
-                gf_UpgradeBOInsigniaRank(lp_player);
+                TechTreeUpgradeAddLevel(lp_player, "BlackOpsInsignia", 1);
+                UnitBehaviorAdd(gv_marineHero[lp_player], "BlackOpsInsignia", gv_marineHero[lp_player], 1);
+                UnitBehaviorAdd(gv_marineHero[lp_player], "Insignia", gv_marineHero[lp_player], 1);
+                UnitSetAttributePoint(gv_marineHero[lp_player], "Insignia", true, 1);
                 lv_boughtItem = true;
             }
             if ((lv_itemType == "color") && (lv_colorCode != ModI(gv_playerColorCode[lp_player], 100))) {
