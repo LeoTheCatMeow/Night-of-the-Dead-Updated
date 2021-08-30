@@ -4914,6 +4914,9 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
         TechTreeUpgradeAddLevel(lp_player, "SurveillanceFlareStarter", 1);
         TechTreeAbilityAllow(lp_player, AbilityCommand("MassDesignate", 0), false);
         TriggerEnable(gt_Backstab, true);
+        if ((gf_BOInsigniaBought(lp_playerIndex) == true)) {
+            gf_UpgradeBOInsigniaRank(lp_playerIndex);
+        }
     }
     else if ((UnitGetType(gv_marineHero[lp_playerIndex]) == "DominionKillTeam")) {
         TechTreeAbilityAllow(lp_player, AbilityCommand("MakeExplosives", 0), false);
@@ -14631,13 +14634,8 @@ bool auto_gf_UISetDoctorTitle_TriggerFunc (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Implementation
     DialogControlSetAnimationState(gv_teamStatusPlayerPanel[lp_triggeringPlayer], PlayerGroupAll(), "Rank", "Doctor");
-    if ((gf_BOInsigniaBought(lp_triggeringPlayer) == true)) {
-        gf_UpgradeBOInsigniaRank(lp_triggeringPlayer);
-    }
-    else {
-        libNtve_gf_SetDialogItemImage(gv_teamStatusRankIcon[lp_triggeringPlayer], "Assets\\Textures\\btn-ability-terran-heal.dds", PlayerGroupAll());
-        libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], StringExternal("Param/Value/25EB75DE"), PlayerGroupAll());
-    }
+    libNtve_gf_SetDialogItemImage(gv_teamStatusRankIcon[lp_triggeringPlayer], "Assets\\Textures\\btn-ability-terran-heal.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], StringExternal("Param/Value/25EB75DE"), PlayerGroupAll());
     return true;
 }
 

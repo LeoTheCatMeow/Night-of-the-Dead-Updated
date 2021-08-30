@@ -1,5 +1,17 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-8-30
+[ThunderRazor]
+- Added "-skip" and "-skip all" commands to skip cutscenes in Easy Company. 
+- Fixed a runtime error when all truck civs are dead in Easy Company.
+- Ensured that Dr. Bergman is in the lab when it is time to trigger lab in Easy Company.
+- Fixed Easter Egg mobs moving in cutscenes. They'll now be reset & removed if triggered during a cutscene.
+
+[LeoTheCat]
+- Fixed BO Insignia rank icon still displaying for medic.
+- BO Insignia rank will now display for Recon if bought.
+- Improved the cloak time for BO Insignia from 1.4s game time to 1.4s real time.
+
 2021-8-15
 [LeoTheCat]
 - Fixed Deimos not classified as a boss in Elite Mutation mode and thus getting stronger mutations or not mutate at all.
