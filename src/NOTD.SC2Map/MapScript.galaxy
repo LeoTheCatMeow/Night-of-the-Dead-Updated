@@ -1090,6 +1090,7 @@ unit gv_survivalCronusB;
 unitgroup gv_survivalNydusGroup;
 int gv_survivalSpawn;
 gs_SurvivalSpawnLocation[6] gv_survivalSpawnPoints;
+unit gv_hell_boss;
 int[gv_numberofPlayers + 1] gv_MissionLogClose;
 int[gv_numberofPlayers + 1] gv_MissionLogOpen;
 int[gv_numberofPlayers + 1] gv_MissionLog;
@@ -2020,8 +2021,6 @@ void gf_RandomNydusPop ();
 point gf_RandomPointatGroundHeight (region lp_region, fixed lp_groundHeight);
 void gf_ZombieBossAIPathingGOTB (unit lp_unit, abilcmd lp_abilityCommand, point lp_target, fixed lp_searchRange);
 point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRange, int lp_searchPoints);
-void gf_GOTBRangeAttack (unit lp_boss, unit lp_target, bool lp_crossHairs, string lp_weapon, string lp_buff1, string lp_buff2);
-void gf_GOTBTeleportEMP (unit lp_boss);
 bool gf_CPDecayFactor ();
 void gf_MarineSpeechNOTD (unit lp_speechUnit, text lp_speech);
 void gf_SendTransmissionNOTD (unit lp_transmissionUnit, text lp_transmissionSender, text lp_transmissionContent, fixed lp_transmissionDuration);
@@ -2108,6 +2107,10 @@ void gf_SurvivalCronusAI (unit lp_cronus);
 void gf_SurvivalWaveTitleDisplay (int lp_wave);
 void gf_SurvivalNydusSpawn ();
 void gf_SurvivalCreepDeposit ();
+void gf_GOTBRangeAttack (unit lp_boss, unit lp_target, bool lp_crossHairs, string lp_weapon, string lp_buff1, string lp_buff2);
+void gf_GOTBTeleport (unit lp_boss);
+void gf_GOTBShock (unit lp_boss);
+void gf_GOTBCharge (unit lp_boss);
 void gf_MissionLogCreation (int lp_player);
 void gf_MissionLogAppend (text lp_textToAppend);
 int gf_GetPreviousNextPlayer (int lp_currentPlayer, bool lp_isNext);
@@ -2329,9 +2332,9 @@ trigger gt_UnitInfected;
 trigger gt_InfectionCleared;
 trigger gt_Barrels;
 trigger gt_BarrelKills;
+trigger gt_HellFireIgnite;
 trigger gt_GateEnterAirlockMainGateOuter;
 trigger gt_GateEnterAirlockMainGateInner;
-trigger gt_testgotb;
 trigger gt_NavyCrossCheck;
 trigger gt_NightmareBonus;
 trigger gt_HellBonus;
@@ -2609,6 +2612,11 @@ trigger gt_SurvivalCronusAAI;
 trigger gt_SurvivalCronusBAI;
 trigger gt_SurvivalW3135;
 trigger gt_SurvivalW3640;
+trigger gt_testgotb;
+trigger gt_GOTBAIActive;
+trigger gt_GOTBAIProactive;
+trigger gt_GOTBAIReactive;
+trigger gt_GOTBAIDodge;
 trigger gt_MissionLogToggle;
 trigger gt_DialogButtonClicks;
 trigger gt_CreateTeamStatusDialog;
@@ -9298,93 +9306,6 @@ point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRan
     return lv_bestpoint;
 }
 
-trigger auto_gf_GOTBRangeAttack_Trigger = null;
-unit auto_gf_GOTBRangeAttack_lp_boss;
-unit auto_gf_GOTBRangeAttack_lp_target;
-bool auto_gf_GOTBRangeAttack_lp_crossHairs;
-string auto_gf_GOTBRangeAttack_lp_weapon;
-string auto_gf_GOTBRangeAttack_lp_buff1;
-string auto_gf_GOTBRangeAttack_lp_buff2;
-
-void gf_GOTBRangeAttack (unit lp_boss, unit lp_target, bool lp_crossHairs, string lp_weapon, string lp_buff1, string lp_buff2) {
-    auto_gf_GOTBRangeAttack_lp_boss = lp_boss;
-    auto_gf_GOTBRangeAttack_lp_target = lp_target;
-    auto_gf_GOTBRangeAttack_lp_crossHairs = lp_crossHairs;
-    auto_gf_GOTBRangeAttack_lp_weapon = lp_weapon;
-    auto_gf_GOTBRangeAttack_lp_buff1 = lp_buff1;
-    auto_gf_GOTBRangeAttack_lp_buff2 = lp_buff2;
-
-    if (auto_gf_GOTBRangeAttack_Trigger == null) {
-        auto_gf_GOTBRangeAttack_Trigger = TriggerCreate("auto_gf_GOTBRangeAttack_TriggerFunc");
-    }
-
-    TriggerExecute(auto_gf_GOTBRangeAttack_Trigger, false, false);
-}
-
-bool auto_gf_GOTBRangeAttack_TriggerFunc (bool testConds, bool runActions) {
-    unit lp_boss = auto_gf_GOTBRangeAttack_lp_boss;
-    unit lp_target = auto_gf_GOTBRangeAttack_lp_target;
-    bool lp_crossHairs = auto_gf_GOTBRangeAttack_lp_crossHairs;
-    string lp_weapon = auto_gf_GOTBRangeAttack_lp_weapon;
-    string lp_buff1 = auto_gf_GOTBRangeAttack_lp_buff1;
-    string lp_buff2 = auto_gf_GOTBRangeAttack_lp_buff2;
-
-    // Automatic Variable Declarations
-    return true;
-}
-
-trigger auto_gf_GOTBTeleportEMP_Trigger = null;
-unit auto_gf_GOTBTeleportEMP_lp_boss;
-
-void gf_GOTBTeleportEMP (unit lp_boss) {
-    auto_gf_GOTBTeleportEMP_lp_boss = lp_boss;
-
-    if (auto_gf_GOTBTeleportEMP_Trigger == null) {
-        auto_gf_GOTBTeleportEMP_Trigger = TriggerCreate("auto_gf_GOTBTeleportEMP_TriggerFunc");
-    }
-
-    TriggerExecute(auto_gf_GOTBTeleportEMP_Trigger, false, false);
-}
-
-bool auto_gf_GOTBTeleportEMP_TriggerFunc (bool testConds, bool runActions) {
-    unit lp_boss = auto_gf_GOTBTeleportEMP_lp_boss;
-
-    // Automatic Variable Declarations
-    unitgroup autoA2114B44_g;
-    int autoA2114B44_u;
-    unit autoA2114B44_var;
-
-    // Implementation
-    if (UnitIsAlive(lp_boss) && !(gv_cinematicMode)) {
-        libNtve_gf_AttachActorToUnit(lp_boss, "PsionicShockwave", "Ref_Center");
-        libNtve_gf_MakeUnitInvulnerable(lp_boss, true);
-        UnitBehaviorRemoveCategory(lp_boss, c_unitBehaviorFlagStun);
-        UnitBehaviorRemoveCategory(lp_boss, c_unitBehaviorFlagSlow);
-        UnitSetPosition(lp_boss, PointWithOffsetPolar(UnitGetPosition(lp_boss), RandomFixed(5.0, 9.0), UnitGetFacing(lp_boss)), true);
-        UnitIssueOrder(lp_boss, OrderTargetingPoint(AbilityCommand("attack", 0), PointWithOffsetPolar(UnitGetPosition(lp_boss), RandomFixed(1.0, 4.0), UnitGetFacing(lp_boss))), c_orderQueueReplace);
-        Wait(0.125, c_timeGame);
-        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
-    }
-    if (UnitIsAlive(lp_boss) && !(gv_cinematicMode)) {
-        libNtve_gf_AttachActorToUnit(lp_boss, "PsionicShockwave", "Ref_Center");
-        autoA2114B44_g = UnitGroupAlliance(UnitGetOwner(lp_boss), c_unitAllianceEnemy, RegionCircle(UnitGetPosition(lp_boss), 7.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-        autoA2114B44_u = UnitGroupCount(autoA2114B44_g, c_unitCountAll);
-        for (;; autoA2114B44_u -= 1) {
-            autoA2114B44_var = UnitGroupUnitFromEnd(autoA2114B44_g, autoA2114B44_u);
-            if (autoA2114B44_var == null) { break; }
-            UnitSetPropertyFixed(autoA2114B44_var, c_unitPropEnergyPercent, 0.0);
-            UnitSetPropertyFixed(autoA2114B44_var, c_unitPropShieldsPercent, 0.0);
-            libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoA2114B44_var));
-        }
-        Wait(0.125, c_timeGame);
-        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
-    }
-    if (UnitIsAlive(lp_boss)) {
-        libNtve_gf_MakeUnitInvulnerable(lp_boss, false);
-    }
-    return true;
-}
-
 bool gf_CPDecayFactor () {
     // Automatic Variable Declarations
     // Implementation
@@ -11129,7 +11050,7 @@ bool auto_gf_ECC1ItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     lv_magazineSpawn = 24;
 
     // Implementation
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         lv_magazineSpawn = 28;
     }
 
@@ -14103,7 +14024,7 @@ void gf_SurvivalCronusAI (unit lp_cronus) {
     // Implementation
     if ((UnitGetPropertyFixed(lp_cronus, c_unitPropLifePercent, c_unitPropCurrent) <= 75.0)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/91A0BD6A"));
-        if ((gv_nightmare == false)) {
+        if ((gv_nightmare == false) && (gv_hell == false)) {
             if ((RandomInt(0, 1) == 1)) {
                 UnitCreateEffectUnit(lp_cronus, "CronusInitial", lp_cronus);
             }
@@ -14220,6 +14141,254 @@ bool auto_gf_SurvivalCreepDeposit_TriggerFunc (bool testConds, bool runActions) 
         Wait(RandomFixed(0.1, 0.5), c_timeGame);
     }
     return true;
+}
+
+trigger auto_gf_GOTBRangeAttack_Trigger = null;
+unit auto_gf_GOTBRangeAttack_lp_boss;
+unit auto_gf_GOTBRangeAttack_lp_target;
+bool auto_gf_GOTBRangeAttack_lp_crossHairs;
+string auto_gf_GOTBRangeAttack_lp_weapon;
+string auto_gf_GOTBRangeAttack_lp_buff1;
+string auto_gf_GOTBRangeAttack_lp_buff2;
+
+void gf_GOTBRangeAttack (unit lp_boss, unit lp_target, bool lp_crossHairs, string lp_weapon, string lp_buff1, string lp_buff2) {
+    auto_gf_GOTBRangeAttack_lp_boss = lp_boss;
+    auto_gf_GOTBRangeAttack_lp_target = lp_target;
+    auto_gf_GOTBRangeAttack_lp_crossHairs = lp_crossHairs;
+    auto_gf_GOTBRangeAttack_lp_weapon = lp_weapon;
+    auto_gf_GOTBRangeAttack_lp_buff1 = lp_buff1;
+    auto_gf_GOTBRangeAttack_lp_buff2 = lp_buff2;
+
+    if (auto_gf_GOTBRangeAttack_Trigger == null) {
+        auto_gf_GOTBRangeAttack_Trigger = TriggerCreate("auto_gf_GOTBRangeAttack_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_GOTBRangeAttack_Trigger, false, false);
+}
+
+bool auto_gf_GOTBRangeAttack_TriggerFunc (bool testConds, bool runActions) {
+    unit lp_boss = auto_gf_GOTBRangeAttack_lp_boss;
+    unit lp_target = auto_gf_GOTBRangeAttack_lp_target;
+    bool lp_crossHairs = auto_gf_GOTBRangeAttack_lp_crossHairs;
+    string lp_weapon = auto_gf_GOTBRangeAttack_lp_weapon;
+    string lp_buff1 = auto_gf_GOTBRangeAttack_lp_buff1;
+    string lp_buff2 = auto_gf_GOTBRangeAttack_lp_buff2;
+
+    // Automatic Variable Declarations
+    return true;
+}
+
+void gf_GOTBTeleport (unit lp_boss) {
+    // Variable Declarations
+    point lv_p;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_p = UnitGetPosition(lp_boss);
+
+    // Implementation
+    if (UnitIsAlive(lp_boss) && !(gv_cinematicMode)) {
+        libNtve_gf_ChangeUnitDamage(lp_boss, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Minimal);
+        UnitBehaviorRemoveCategory(lp_boss, c_unitBehaviorFlagStun);
+        UnitBehaviorRemoveCategory(lp_boss, c_unitBehaviorFlagSlow);
+        UnitBehaviorRemove(lp_boss, "Napalm2", 1);
+        UnitBehaviorRemove(lp_boss, "NanosteelNetSlowLevel1", 1);
+        UnitBehaviorRemove(lp_boss, "NanosteelNetSlowLevel2", 1);
+        UnitBehaviorRemove(lp_boss, "NanosteelNetSlowLevel3", 1);
+        UnitBehaviorRemove(lp_boss, "TheHorror", 1);
+        UnitBehaviorRemove(lp_boss, "TheHorrorHeroic", 1);
+        UnitBehaviorRemove(lp_boss, "ForcePushStunBoss", 1);
+        UnitBehaviorRemove(lp_boss, "ForcePushHeightLevel1Boss", 1);
+        UnitBehaviorRemove(lp_boss, "ForcePushHeightLevel2Boss", 1);
+        UnitBehaviorRemove(lp_boss, "ForcePushHeightLevel3Boss", 1);
+        GameDestroyEffects(lv_p, 1.0, 0, "NanosteelNetApplySlowLevel1");
+        GameDestroyEffects(lv_p, 1.0, 0, "NanosteelNetApplySlowLevel2");
+        GameDestroyEffects(lv_p, 1.0, 0, "NanosteelNetApplySlowLevel3");
+        gf_GOTBShock(lp_boss);
+        UnitSetPosition(lp_boss, PointWithOffsetPolar(lv_p, RandomFixed(5.0, 9.0), UnitGetFacing(lp_boss)), true);
+        Wait(0.125, c_timeGame);
+        if (UnitIsAlive(lp_boss) && !(gv_cinematicMode)) {
+            gf_GOTBShock(lp_boss);
+            Wait(0.125, c_timeGame);
+            UnitIssueOrder(lp_boss, OrderTargetingPoint(AbilityCommand("attack", 0), PointWithOffsetPolar(UnitGetPosition(lp_boss), RandomFixed(1.0, 4.0), UnitGetFacing(lp_boss))), c_orderQueueReplace);
+        }
+    }
+    if (UnitIsAlive(lp_boss)) {
+        libNtve_gf_ChangeUnitDamage(lp_boss, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Full);
+    }
+}
+
+trigger auto_gf_GOTBShock_Trigger = null;
+unit auto_gf_GOTBShock_lp_boss;
+
+void gf_GOTBShock (unit lp_boss) {
+    auto_gf_GOTBShock_lp_boss = lp_boss;
+
+    if (auto_gf_GOTBShock_Trigger == null) {
+        auto_gf_GOTBShock_Trigger = TriggerCreate("auto_gf_GOTBShock_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_GOTBShock_Trigger, false, false);
+}
+
+bool auto_gf_GOTBShock_TriggerFunc (bool testConds, bool runActions) {
+    unit lp_boss = auto_gf_GOTBShock_lp_boss;
+
+    // Variable Declarations
+    region lv_ri;
+    region lv_ro;
+
+    // Automatic Variable Declarations
+    unitgroup autoE316D244_g;
+    int autoE316D244_u;
+    unit autoE316D244_var;
+    unitgroup auto8E46A5CC_g;
+    int auto8E46A5CC_u;
+    unit auto8E46A5CC_var;
+    unitgroup auto6E7C6723_g;
+    int auto6E7C6723_u;
+    unit auto6E7C6723_var;
+    unitgroup autoBAD10DB2_g;
+    int autoBAD10DB2_u;
+    unit autoBAD10DB2_var;
+    unitgroup auto5A4838AA_g;
+    int auto5A4838AA_u;
+    unit auto5A4838AA_var;
+    unitgroup auto6DAAEE97_g;
+    int auto6DAAEE97_u;
+    unit auto6DAAEE97_var;
+    unitgroup auto0756D9DC_g;
+    int auto0756D9DC_u;
+    unit auto0756D9DC_var;
+    unitgroup auto7C0923D7_g;
+    int auto7C0923D7_u;
+    unit auto7C0923D7_var;
+    unitgroup autoDB77B763_g;
+    int autoDB77B763_u;
+    unit autoDB77B763_var;
+    unitgroup auto2604AE1C_g;
+    int auto2604AE1C_u;
+    unit auto2604AE1C_var;
+    unitgroup autoDC5FF714_g;
+    int autoDC5FF714_u;
+    unit autoDC5FF714_var;
+
+    // Variable Initialization
+    lv_ri = RegionCircle(UnitGetPosition(lp_boss), 3.5);
+    lv_ro = RegionCircle(UnitGetPosition(lp_boss), 7.0);
+
+    // Implementation
+    libNtve_gf_AttachActorToUnit(lp_boss, "PsionicShockwave", "Ref_Center");
+    autoE316D244_g = UnitGroupAlliance(UnitGetOwner(lp_boss), c_unitAllianceEnemy, lv_ro, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoE316D244_u = UnitGroupCount(autoE316D244_g, c_unitCountAll);
+    for (;; autoE316D244_u -= 1) {
+        autoE316D244_var = UnitGroupUnitFromEnd(autoE316D244_g, autoE316D244_u);
+        if (autoE316D244_var == null) { break; }
+        UnitSetPropertyFixed(autoE316D244_var, c_unitPropEnergy, (UnitGetPropertyFixed(autoE316D244_var, c_unitPropEnergy, c_unitPropCurrent) * 0.25));
+        UnitSetPropertyFixed(autoE316D244_var, c_unitPropShields, (UnitGetPropertyFixed(autoE316D244_var, c_unitPropShields, c_unitPropCurrent) * 0.25));
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoE316D244_var));
+    }
+    auto8E46A5CC_g = UnitGroupAlliance(UnitGetOwner(lp_boss), c_unitAllianceEnemy, lv_ri, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto8E46A5CC_u = UnitGroupCount(auto8E46A5CC_g, c_unitCountAll);
+    for (;; auto8E46A5CC_u -= 1) {
+        auto8E46A5CC_var = UnitGroupUnitFromEnd(auto8E46A5CC_g, auto8E46A5CC_u);
+        if (auto8E46A5CC_var == null) { break; }
+        UnitBehaviorAdd(auto8E46A5CC_var, "RepulseStun", lp_boss, 1);
+    }
+    auto6E7C6723_g = UnitGroup(null, c_playerAny, lv_ro, UnitFilter((1 << c_targetFilterMissile), 0, 0, 0), 0);
+    auto6E7C6723_u = UnitGroupCount(auto6E7C6723_g, c_unitCountAll);
+    for (;; auto6E7C6723_u -= 1) {
+        auto6E7C6723_var = UnitGroupUnitFromEnd(auto6E7C6723_g, auto6E7C6723_u);
+        if (auto6E7C6723_var == null) { break; }
+        UnitKill(auto6E7C6723_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto6E7C6723_var));
+    }
+    autoBAD10DB2_g = UnitGroup("SentinelMine", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    autoBAD10DB2_u = UnitGroupCount(autoBAD10DB2_g, c_unitCountAll);
+    for (;; autoBAD10DB2_u -= 1) {
+        autoBAD10DB2_var = UnitGroupUnitFromEnd(autoBAD10DB2_g, autoBAD10DB2_u);
+        if (autoBAD10DB2_var == null) { break; }
+        UnitKill(autoBAD10DB2_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(autoBAD10DB2_var));
+    }
+    auto5A4838AA_g = UnitGroup("SatchelLevel1", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    auto5A4838AA_u = UnitGroupCount(auto5A4838AA_g, c_unitCountAll);
+    for (;; auto5A4838AA_u -= 1) {
+        auto5A4838AA_var = UnitGroupUnitFromEnd(auto5A4838AA_g, auto5A4838AA_u);
+        if (auto5A4838AA_var == null) { break; }
+        UnitKill(auto5A4838AA_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto5A4838AA_var));
+    }
+    auto6DAAEE97_g = UnitGroup("SatchelLevel2", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    auto6DAAEE97_u = UnitGroupCount(auto6DAAEE97_g, c_unitCountAll);
+    for (;; auto6DAAEE97_u -= 1) {
+        auto6DAAEE97_var = UnitGroupUnitFromEnd(auto6DAAEE97_g, auto6DAAEE97_u);
+        if (auto6DAAEE97_var == null) { break; }
+        UnitKill(auto6DAAEE97_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto6DAAEE97_var));
+    }
+    auto0756D9DC_g = UnitGroup("ArmageddonBomb", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    auto0756D9DC_u = UnitGroupCount(auto0756D9DC_g, c_unitCountAll);
+    for (;; auto0756D9DC_u -= 1) {
+        auto0756D9DC_var = UnitGroupUnitFromEnd(auto0756D9DC_g, auto0756D9DC_u);
+        if (auto0756D9DC_var == null) { break; }
+        UnitKill(auto0756D9DC_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto0756D9DC_var));
+    }
+    auto7C0923D7_g = UnitGroup("PlasmaDetonator", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    auto7C0923D7_u = UnitGroupCount(auto7C0923D7_g, c_unitCountAll);
+    for (;; auto7C0923D7_u -= 1) {
+        auto7C0923D7_var = UnitGroupUnitFromEnd(auto7C0923D7_g, auto7C0923D7_u);
+        if (auto7C0923D7_var == null) { break; }
+        UnitKill(auto7C0923D7_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(auto7C0923D7_var));
+    }
+    autoDB77B763_g = UnitGroup("NapalmFire", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    autoDB77B763_u = UnitGroupCount(autoDB77B763_g, c_unitCountAll);
+    for (;; autoDB77B763_u -= 1) {
+        autoDB77B763_var = UnitGroupUnitFromEnd(autoDB77B763_g, autoDB77B763_u);
+        if (autoDB77B763_var == null) { break; }
+        UnitKill(autoDB77B763_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoDB77B763_var));
+    }
+    auto2604AE1C_g = UnitGroup("MonofilamentTrapLevel12", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    auto2604AE1C_u = UnitGroupCount(auto2604AE1C_g, c_unitCountAll);
+    for (;; auto2604AE1C_u -= 1) {
+        auto2604AE1C_var = UnitGroupUnitFromEnd(auto2604AE1C_g, auto2604AE1C_u);
+        if (auto2604AE1C_var == null) { break; }
+        UnitKill(auto2604AE1C_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(auto2604AE1C_var));
+    }
+    autoDC5FF714_g = UnitGroup("MonofilamentTrapLevel1", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
+    autoDC5FF714_u = UnitGroupCount(autoDC5FF714_g, c_unitCountAll);
+    for (;; autoDC5FF714_u -= 1) {
+        autoDC5FF714_var = UnitGroupUnitFromEnd(autoDC5FF714_g, autoDC5FF714_u);
+        if (autoDC5FF714_var == null) { break; }
+        UnitKill(autoDC5FF714_var);
+        libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoDC5FF714_var));
+    }
+    Wait(0.125, c_timeGame);
+    libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+    return true;
+}
+
+void gf_GOTBCharge (unit lp_boss) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((RandomInt(0, 2) > 0)) {
+        UnitBehaviorAdd(lp_boss, "ShadowstepLevel2", lp_boss, 1);
+        if ((RandomInt(0, 2) > 0)) {
+            if ((RandomInt(0, 2) > 0)) {
+                UnitBehaviorAdd(lp_boss, "QuickAimLevel3", lp_boss, 1);
+            }
+            else {
+                UnitBehaviorAdd(lp_boss, "QuickAimLevel2", lp_boss, 1);
+            }
+        }
+        else {
+            UnitBehaviorAdd(lp_boss, "QuickAimLevel1", lp_boss, 1);
+        }
+    }
 }
 
 trigger auto_gf_MissionLogCreation_Trigger = null;
@@ -24087,6 +24256,70 @@ void gt_BarrelKills_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Hell Fire Ignite
+//--------------------------------------------------------------------------------------------------
+bool gt_HellFireIgnite_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(gv_hell)) {
+            return false;
+        }
+
+        if (!(UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeBiological))) {
+            return false;
+        }
+
+        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropShields, c_unitPropCurrent) < 5.0))) {
+            return false;
+        }
+
+        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropLifePercent, c_unitPropCurrent) < RandomFixed(0.0, 50.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (PlayerGroupHasPlayer(gv_marineSquad, UnitGetOwner(EventUnit()))) {
+        UnitBehaviorAddPlayer(EventUnit(), "Napalm2", 13, 1);
+    }
+    else {
+        UnitBehaviorAddPlayer(EventUnit(), "Napalm2", UnitGetOwner(EventUnitDamageSourceUnit()), 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_HellFireIgnite_Init () {
+    gt_HellFireIgnite = TriggerCreate("gt_HellFireIgnite_Func");
+    TriggerEnable(gt_HellFireIgnite, false);
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "LaserRifleDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "FlamethrowerMK2Damage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "Helium3IgniterBurnDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "BurstFireDamageLevel3");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "BURNDamageLevel2");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "NukeDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "ArmageddonDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "SatchelLevel2Damage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "FaithDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "InfernoDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "IonCannonDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "CircularLanceDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "IVAXPlasmaCannons");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "ExplodingBarrelLargeExplosion");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "StingerMK3Damage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "SigmaDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "PlasmaDischargeDamage");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "VolatileBurstBeastling");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "VolatileBurstU");
+    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "SiegeBreakerDamage");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Gate - Enter Airlock Main Gate Outer
 //--------------------------------------------------------------------------------------------------
 bool gt_GateEnterAirlockMainGateOuter_Func (bool testConds, bool runActions) {
@@ -24164,34 +24397,6 @@ void gt_GateEnterAirlockMainGateInner_Init () {
     gt_GateEnterAirlockMainGateInner = TriggerCreate("gt_GateEnterAirlockMainGateInner_Func");
     TriggerEnable(gt_GateEnterAirlockMainGateInner, false);
     TriggerAddEventUnitRegion(gt_GateEnterAirlockMainGateInner, null, RegionFromId(2), true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: test gotb
-//--------------------------------------------------------------------------------------------------
-bool gt_testgotb_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((GameIsTestMap(false) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    gf_GOTBTeleportEMP(gv_marineHero[EventPlayer()]);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_testgotb_Init () {
-    gt_testgotb = TriggerCreate("gt_testgotb_Func");
-    TriggerEnable(gt_testgotb, false);
-    TriggerAddEventChatMessage(gt_testgotb, c_playerAny, "T", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -26429,6 +26634,9 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
         gf_PingBeaconAdd("PingPanelBeaconOnMyWay", UnitGetPosition(auto1391D07C_var), 0);
     }
     Wait(1.0, c_timeReal);
+    if (gv_hell) {
+        TriggerEnable(gt_HellFireIgnite, true);
+    }
     gf_StoryMessageNOTD(StringExternal("Param/Value/B7ED1099"));
     SoundPlay(SoundLink("UI_TerranKlaxonAlert", -1), PlayerGroupActive(), 80.0, 0.0);
     Wait(2.0, c_timeReal);
@@ -34160,7 +34368,7 @@ bool gt_ACC1ItemSpawn_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         lv_magazineSpawn = 33;
         gf_CreateItemNOTD("Helium3Canister", 1);
     }
@@ -34287,6 +34495,9 @@ bool gt_ACW1Landing_Func (bool testConds, bool runActions) {
     SoundPlay(SoundLink("TRaynor01Raynor00037", -1), PlayerGroupActive(), 100.0, 0.0);
     TriggerExecute(gt_ACC1ItemSpawn, true, false);
     Wait(10.0, c_timeReal);
+    if (gv_hell) {
+        TriggerEnable(gt_HellFireIgnite, true);
+    }
     if ((gv_alivePlayers >= 1)) {
         autoCFBFA4F3_n = gv_spawnFactor;
         for (autoCFBFA4F3_i = 1; autoCFBFA4F3_i <= autoCFBFA4F3_n; autoCFBFA4F3_i += 1) {
@@ -38549,6 +38760,9 @@ bool gt_STInitialize_Func (bool testConds, bool runActions) {
     }
 
     Wait(9.0, c_timeReal);
+    if (gv_hell) {
+        TriggerEnable(gt_HellFireIgnite, true);
+    }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_secTeamAMarines, c_unitCountAlive), StringExternal("Param/Value/9DAEEBF7"));
     UIHideTextCrawl(PlayerGroupAll());
     UnitIssueOrder(gv_charlie, OrderTargetingPoint(AbilityCommand("move", 1), RegionRandomPoint(RegionPlayableMap())), c_orderQueueReplace);
@@ -38652,7 +38866,7 @@ bool gt_STC1ItemSpawn_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         lv_magazineSpawn = 24;
         gf_CreateItemNOTD("Helium3Canister", 2);
         gf_CreateItemNOTD("StingerMK3", 1);
@@ -43791,6 +44005,9 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
     Wait(30.0, c_timeReal);
     TriggerEnable(gt_NightmareHellMode, false);
     TriggerEnable(gt_OutbreakCommand, false);
+    if (gv_hell) {
+        TriggerEnable(gt_HellFireIgnite, true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoAC4073FA_n = (gv_spawnFactor * 8);
@@ -43819,7 +44036,7 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
     Wait(30.0, c_timeReal);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         gf_SurvivalCreepDeposit();
     }
 
@@ -44643,7 +44860,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         libNtve_gf_PauseUnit(lv_localDevastator, true);
         libNtve_gf_ChangeUnitDamage(lv_localDevastator, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
-        if ((gv_nightmare == false)) {
+        if ((gv_nightmare == false) && (gv_hell == false)) {
             libNtve_gf_AttachActorToUnit(UnitLastCreated(), "NewbieWarning", "Ref_Center");
         }
 
@@ -44685,7 +44902,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     Wait(20.0, c_timeReal);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         gf_SurvivalCreepDeposit();
     }
 
@@ -44698,7 +44915,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     Wait(20.0, c_timeReal);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         gf_SurvivalCreepDeposit();
     }
 
@@ -44719,7 +44936,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/39018B47"));
     Wait(5.0, c_timeReal);
     UnitCreate(1, "GuardianoftheBeta", 0, 13, RegionRandomPoint(gv_reinforcementSpawn[RandomInt(2, 6)]), libNtve_gf_RandomAngle());
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         UnitBehaviorAdd(UnitLastCreated(), "PersonalCloakingFree", UnitLastCreated(), 1);
         UnitBehaviorAdd(UnitLastCreated(), "Frenzy35", UnitLastCreated(), 1);
     }
@@ -44732,11 +44949,18 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     for ( ; auto8681F8A1_var <= auto8681F8A1_ae; auto8681F8A1_var += 1 ) {
         CameraShakeStart(auto8681F8A1_var, c_cameraPositionTarget, c_cameraDirectionZ, 0.1, 2.0, 100.0, 5.5);
     }
+    if (gv_hell) {
+        gv_hell_boss = gv_gOTB;
+        TriggerEnable(gt_GOTBAIActive, true);
+        TriggerEnable(gt_GOTBAIDodge, true);
+        TriggerEnable(gt_GOTBAIProactive, true);
+        TriggerEnable(gt_GOTBAIReactive, true);
+    }
     while (!((UnitIsAlive(gv_boss) == false))) {
         Wait(2.0, c_timeGame);
     }
     gf_EndBossFight();
-    if ((gv_nightmare == true)) {
+    if ((gv_nightmare || gv_hell)) {
         gf_UnifiedAwards(120, 0.0, libNtve_gf_DifficultyValueInt(100, 200, 400, 0), 1, 10);
     }
     else {
@@ -44758,6 +44982,266 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
 void gt_SurvivalW3640_Init () {
     gt_SurvivalW3640 = TriggerCreate("gt_SurvivalW3640_Func");
     TriggerEnable(gt_SurvivalW3640, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: test gotb
+//--------------------------------------------------------------------------------------------------
+bool gt_testgotb_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameIsTestMap(false) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_hell_boss = gv_marineHero[EventPlayer()];
+    gf_GOTBTeleport(gv_marineHero[EventPlayer()]);
+    TriggerEnable(gt_GOTBAIActive, true);
+    TriggerEnable(gt_GOTBAIDodge, true);
+    TriggerEnable(gt_GOTBAIProactive, true);
+    TriggerEnable(gt_GOTBAIReactive, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_testgotb_Init () {
+    gt_testgotb = TriggerCreate("gt_testgotb_Func");
+    TriggerEnable(gt_testgotb, false);
+    TriggerAddEventChatMessage(gt_testgotb, c_playerAny, "T", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GOTB AI - Active
+//--------------------------------------------------------------------------------------------------
+bool gt_GOTBAIActive_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int autoAAC38113_n = 12;
+    int autoAAC38113_i;
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitIsAlive(gv_hell_boss))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitTestState(gv_hell_boss, c_unitStateStunned) || UnitTestState(gv_hell_boss, c_unitStateTurnSuppressed) || UnitTestState(gv_hell_boss, c_unitStateMoveSuppressed) || UnitTestState(gv_hell_boss, c_unitStateAttackSuppressed))) {
+        TriggerEnable(gt_GOTBAIReactive, false);
+        gf_GOTBTeleport(gv_hell_boss);
+        TriggerEnable(gt_GOTBAIReactive, true);
+    }
+    if ((DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(gv_hell_boss)))) > 9.0)) {
+        for (autoAAC38113_i = 1; autoAAC38113_i <= autoAAC38113_n; autoAAC38113_i += 1) {
+            UnitBehaviorAdd(gv_hell_boss, "ShadowstepLevel2", gv_hell_boss, 1);
+            Wait(0.25, c_timeGame);
+            if ((DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(gv_hell_boss)))) < 9.0)) {
+                break;
+            }
+        }
+    }
+    gf_GOTBCharge(gv_hell_boss);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_GOTBAIActive_Init () {
+    gt_GOTBAIActive = TriggerCreate("gt_GOTBAIActive_Func");
+    TriggerEnable(gt_GOTBAIActive, false);
+    TriggerAddEventTimePeriodic(gt_GOTBAIActive, 3.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GOTB AI - Proactive
+//--------------------------------------------------------------------------------------------------
+bool gt_GOTBAIProactive_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitBehaviorCount(gv_hell_boss, "QuickAimLevel1") == 0))) {
+            return false;
+        }
+
+        if (!((UnitBehaviorCount(gv_hell_boss, "QuickAimLevel2") == 0))) {
+            return false;
+        }
+
+        if (!((UnitBehaviorCount(gv_hell_boss, "QuickAimLevel3") == 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    Wait(0.5, c_timeGame);
+    gf_GOTBCharge(gv_hell_boss);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_GOTBAIProactive_Init () {
+    gt_GOTBAIProactive = TriggerCreate("gt_GOTBAIProactive_Func");
+    TriggerEnable(gt_GOTBAIProactive, false);
+    TriggerAddEventUnitStartedAttack2(gt_GOTBAIProactive, UnitRefFromVariable("gv_hell_boss"), null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GOTB AI - Reactive
+//--------------------------------------------------------------------------------------------------
+bool gt_GOTBAIReactive_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int auto35DD7FBD_n;
+    int auto35DD7FBD_i;
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitIsAlive(gv_hell_boss))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerEnable(gt_GOTBAIActive, false);
+    Wait(0.25, c_timeReal);
+    if ((UnitTestState(gv_hell_boss, c_unitStateStunned) || UnitTestState(gv_hell_boss, c_unitStateTurnSuppressed) || UnitTestState(gv_hell_boss, c_unitStateMoveSuppressed) || UnitTestState(gv_hell_boss, c_unitStateAttackSuppressed) || (RandomInt(0, 1) == 1))) {
+        gf_GOTBTeleport(gv_hell_boss);
+    }
+    else {
+        auto35DD7FBD_n = RandomInt(2, 6);
+        for (auto35DD7FBD_i = 1; auto35DD7FBD_i <= auto35DD7FBD_n; auto35DD7FBD_i += 1) {
+            UnitBehaviorAdd(gv_hell_boss, "ShadowstepLevel2", gv_hell_boss, 1);
+            Wait(0.25, c_timeGame);
+        }
+        UnitBehaviorAdd(gv_hell_boss, "QuickAimLevel3", gv_hell_boss, 1);
+    }
+    Wait(2.0, c_timeReal);
+    TriggerEnable(gt_GOTBAIActive, true);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_GOTBAIReactive_Init () {
+    gt_GOTBAIReactive = TriggerCreate("gt_GOTBAIReactive_Func");
+    TriggerEnable(gt_GOTBAIReactive, false);
+    TriggerAddEventUnitAttacked2(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), "StingerMK3");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentTrapDamageEnemiesLevel1");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentTrapDamageEnemiesLevel2");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "RaynorSnipeDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentCartridgeDamageLevel2");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentCartridgeDamageLevel3");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "WidowMineExplodeSplash");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "PlasmaDischargeDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "SatchelLevel1Damage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "SatchelLevel2Damage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "L3GrenadeExplosion");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "NapalmBarrageDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "Damage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "RepulseDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "ContaminateDamageLevel1");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "ContaminateDamageLevel2");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "ContaminateDamageLevel3");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "PsionicTempestDamage");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GOTB AI - Dodge
+//--------------------------------------------------------------------------------------------------
+bool gt_GOTBAIDodge_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_target;
+
+    // Automatic Variable Declarations
+    int auto2A8DE145_n;
+    int auto2A8DE145_i;
+    int autoCF09430C_n;
+    int autoCF09430C_i;
+
+    // Variable Initialization
+    lv_target = OrderGetTargetPoint(EventUnitOrder());
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitIsAlive(gv_hell_boss))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerEnable(gt_GOTBAIActive, false);
+    TriggerEnable(gt_GOTBAIReactive, false);
+    Wait(0.25, c_timeReal);
+    if ((DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), lv_target) < 9.0)) {
+        if ((RandomInt(0, 1) == 1)) {
+            UnitBehaviorAdd(gv_hell_boss, "ShadowstepLevel2", gv_hell_boss, 1);
+            Wait(0.85, c_timeReal);
+            gf_GOTBTeleport(gv_hell_boss);
+        }
+        else {
+            auto2A8DE145_n = RandomInt(5, 8);
+            for (auto2A8DE145_i = 1; auto2A8DE145_i <= auto2A8DE145_n; auto2A8DE145_i += 1) {
+                UnitBehaviorAdd(gv_hell_boss, "ShadowstepLevel2", gv_hell_boss, 1);
+                Wait(0.25, c_timeGame);
+            }
+        }
+    }
+    else if ((DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), UnitGetPosition(EventUnit())) > 9.0) && (DistanceBetweenPoints(UnitGetPosition(gv_gOTB), lv_target) < 25.0) && (AbsF(ModF((AngleBetweenPoints(UnitGetPosition(gv_hell_boss), lv_target) - UnitGetFacing(gv_hell_boss)), 360.0)) < 45.0)) {
+        UnitIssueOrder(gv_hell_boss, Order(AbilityCommand("stop", 0)), c_orderQueueReplace);
+        Wait(0.25, c_timeReal);
+        libNtve_gf_PauseUnit(gv_hell_boss, true);
+        Wait(RandomFixed(2.0, 5.0), c_timeReal);
+        libNtve_gf_PauseUnit(gv_hell_boss, false);
+    }
+    else if (true) {
+        autoCF09430C_n = RandomInt(2, 6);
+        for (autoCF09430C_i = 1; autoCF09430C_i <= autoCF09430C_n; autoCF09430C_i += 1) {
+            UnitBehaviorAdd(gv_hell_boss, "ShadowstepLevel2", gv_hell_boss, 1);
+            Wait(0.25, c_timeGame);
+        }
+    }
+    Wait(2.0, c_timeReal);
+    TriggerEnable(gt_GOTBAIReactive, true);
+    TriggerEnable(gt_GOTBAIActive, true);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_GOTBAIDodge_Init () {
+    gt_GOTBAIDodge = TriggerCreate("gt_GOTBAIDodge_Func");
+    TriggerEnable(gt_GOTBAIDodge, false);
+    TriggerAddEventUnitOrder(gt_GOTBAIDodge, null, AbilityCommand("TacNukeStrike", 0));
+    TriggerAddEventUnitOrder(gt_GOTBAIDodge, null, AbilityCommand("GravityGrenade", 0));
+    TriggerAddEventUnitOrder(gt_GOTBAIDodge, null, AbilityCommand("ScorchedEarth", 0));
+    TriggerAddEventUnitOrder(gt_GOTBAIDodge, null, AbilityCommand("AirStrike", 0));
+    TriggerAddEventUnitOrder(gt_GOTBAIDodge, null, AbilityCommand("ShockwaveBarrage", 0));
+    TriggerAddEventUnitOrder(gt_GOTBAIDodge, null, AbilityCommand("NapalmBarrage", 0));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -48317,9 +48801,9 @@ void InitTriggers () {
     gt_InfectionCleared_Init();
     gt_Barrels_Init();
     gt_BarrelKills_Init();
+    gt_HellFireIgnite_Init();
     gt_GateEnterAirlockMainGateOuter_Init();
     gt_GateEnterAirlockMainGateInner_Init();
-    gt_testgotb_Init();
     gt_NavyCrossCheck_Init();
     gt_NightmareBonus_Init();
     gt_HellBonus_Init();
@@ -48597,6 +49081,11 @@ void InitTriggers () {
     gt_SurvivalCronusBAI_Init();
     gt_SurvivalW3135_Init();
     gt_SurvivalW3640_Init();
+    gt_testgotb_Init();
+    gt_GOTBAIActive_Init();
+    gt_GOTBAIProactive_Init();
+    gt_GOTBAIReactive_Init();
+    gt_GOTBAIDodge_Init();
     gt_MissionLogToggle_Init();
     gt_DialogButtonClicks_Init();
     gt_CreateTeamStatusDialog_Init();
