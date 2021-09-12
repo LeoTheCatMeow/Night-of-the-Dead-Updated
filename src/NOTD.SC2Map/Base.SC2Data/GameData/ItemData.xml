@@ -338,6 +338,18 @@
         </EffectCost>
         <EffectFlags index="Transient" value="1"/>
     </CItemEffectInstant>
+    <CItemEffectInstant id="CloakingDevice">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="Enhancements"/>
+        <EquipBehaviorArray value="CloakingDevice"/>
+        <EquipBehaviorArray value="PortableCloakBuff"/>
+        <Effect value=""/>
+        <EffectCost>
+            <Charge Link=""/>
+            <Cooldown Link=""/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
     <CItemAbil id="Shiva">
         <Flags index="DropOnDeath" value="1"/>
         <Flags index="KillWhenDepleted" value="1"/>
@@ -409,6 +421,17 @@
         <Class value="Supplies"/>
         <Abil value="Helium3PowerUp"/>
     </CItemAbil>
+    <CItemEffectInstant id="SensorJammer">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="Enhancements"/>
+        <EquipBehaviorArray value="SensorJammer"/>
+        <Effect value=""/>
+        <EffectCost>
+            <Charge Link=""/>
+            <Cooldown Link=""/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
     <CItemEffectInstant id="UA420AssaultRifle" parent="CONTAINER">
         <Flags index="DropOnDeath" value="1"/>
         <Class value="Weapons"/>

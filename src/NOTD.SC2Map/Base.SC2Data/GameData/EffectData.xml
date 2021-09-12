@@ -131,6 +131,26 @@
     <CEffectDamage id="BroodlingEscortDamage">
         <ArmorReduction value="0"/>
     </CEffectDamage>
+    <CEffectModifyUnit id="CloakingDeviceEnergy">
+        <EditorCategories value=""/>
+        <VitalArray index="Energy">
+            <Change value="-40"/>
+        </VitalArray>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="SensorJamApplyBehavior">
+        <EditorCategories value=""/>
+        <Behavior value="SensorJammed"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SensorJamApplyBehaviorSelf">
+        <EditorCategories value=""/>
+        <Behavior value="SensorJammedSelf"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SensorJammerSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Ally,Neutral,Heroic,Dead"/>
+        <AreaArray Radius="25" Effect="SensorJamApplyBehavior"/>
+    </CEffectEnumArea>
     <CEffectDamage id="HotSBanelingExplodeLargeDirect">
         <AttributeBonus index="Structure" value="0"/>
         <Amount value="60"/>
@@ -221,6 +241,12 @@
         <Height value="-5"/>
         <HeightTime value="0.5"/>
     </CEffectModifyUnit>
+    <CEffectSet id="SensorJammerSet">
+        <ValidatorArray value="hasEnergy"/>
+        <EditorCategories value=""/>
+        <EffectArray value="SensorJamApplyBehaviorSelf"/>
+        <EffectArray value="SensorJammerSearch"/>
+    </CEffectSet>
     <CEffectCreateUnit id="ShivaCreateRevealDummy">
         <WhichLocation Value="TargetPoint"/>
         <CreateFlags index="Placement" value="0"/>

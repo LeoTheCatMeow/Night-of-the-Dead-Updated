@@ -1332,6 +1332,22 @@
         <SeparationRadius value="0.1"/>
         <InnerRadius value="0.125"/>
     </CUnit>
+    <CUnit id="CloakingDevice" parent="ITEM">
+        <Race value="Terr"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unclickable" value="0"/>
+        <FlagArray index="Uncommandable" value="0"/>
+        <FlagArray index="Unhighlightable" value="0"/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="Pawnable" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Sight value="0"/>
+        <BehaviorArray Link="PermanentlyCloaked"/>
+        <Radius value="0.125"/>
+        <SeparationRadius value="0.1"/>
+        <InnerRadius value="0.125"/>
+    </CUnit>
     <CUnit id="ShivaRevealDummy">
         <Race value="Terr"/>
         <FlagArray index="Unselectable" value="1"/>
@@ -2337,6 +2353,21 @@
         <HotkeyCategory value="Hotkey/Heros"/>
         <LifeRegenDelay value="0.5"/>
         <LifeArmorTip value="Unit/Recon/LifeArmorToolTip"/>
+    </CUnit>
+    <CUnit id="SensorJammer" parent="ITEM">
+        <Race value="Terr"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unclickable" value="0"/>
+        <FlagArray index="Uncommandable" value="0"/>
+        <FlagArray index="Unhighlightable" value="0"/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="Pawnable" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Sight value="0"/>
+        <Radius value="0.125"/>
+        <SeparationRadius value="0.1"/>
+        <InnerRadius value="0.125"/>
     </CUnit>
     <CUnit id="TitanBoulder" parent="MISSILE_INVULNERABLE">
         <Race value="Zerg"/>

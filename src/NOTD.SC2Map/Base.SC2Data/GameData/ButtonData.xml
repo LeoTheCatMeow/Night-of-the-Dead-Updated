@@ -82,6 +82,13 @@
         <AlertIcon value="Assets\Textures\btn-unit-zerg-scourge.dds"/>
         <EditorCategories value="Race:Zerg"/>
     </CButton>
+    <CButton id="CloakingDevice">
+        <TooltipFlags index="ShowResources" value="0"/>
+        <Icon value="Assets\Textures\btn-ability-mengsk-ghost-supercloak.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value=""/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
     <CButton id="TargetingComputerPlaceholder">
         <Icon value="Assets\Textures\btn-tips-laserdrillantiair.dds"/>
         <EditorCategories value="Race:Terran"/>
@@ -454,6 +461,13 @@
         <Icon value="Assets\Textures\btn-tips-starmap.dds"/>
         <EditorCategories value="Race:Terran"/>
         <Universal value="1"/>
+        <HidesForSimpleText value="0"/>
+    </CButton>
+    <CButton id="SensorJammer">
+        <TooltipFlags index="ShowResources" value="0"/>
+        <Icon value="Assets\Textures\btn-ability-terran-detectionconedebuff.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value=""/>
         <HidesForSimpleText value="0"/>
     </CButton>
     <CButton id="TimetoDie">

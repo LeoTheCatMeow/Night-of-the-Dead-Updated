@@ -603,6 +603,7 @@ bool[gv_numberofPlayers + 1] gv_playerBanned;
 bool gv_warningTextBreak;
 int[121][gv_numberofPlayers + 1] gv_playerBankData;
 int gv_bankSize;
+int gv_creditCap;
 point[19] gv_pathtoMilitaryBase;
 int[gv_numberofPlayers + 1] gv_playerXP;
 int[gv_numberofPlayers + 1] gv_playerRating;
@@ -881,8 +882,9 @@ fixed gv_minMerits;
 fixed[9] gv_meritBalance;
 playergroup gv_meritedNominee;
 bool[9] gv_demeritsVisible;
-bank[9] gv_demeritsBank;
 bool gv_demeritsEnabled;
+bank[9] gv_demeritsBank;
+actor[9] gv_demeritWarning;
 int[9] gv_marineMags;
 int gv_magazineAdjustment;
 int[9] gv_marineRounds;
@@ -1230,6 +1232,7 @@ void InitGlobals () {
 
     gv_overridingPlayerHandle = "";
     gv_bankSize = 120;
+    gv_creditCap = 500;
     gv_defaultLighting = "UnknownLight";
     gv_primaryObjective = c_invalidObjectiveId;
     gv_secondaryObjective = c_invalidObjectiveId;
@@ -2883,8 +2886,8 @@ bool auto_gf_SaveInitBoundaryCheck_TriggerFunc (bool testConds, bool runActions)
     gv_playerBankData[5][lv_index] = gv_playerKarma[lv_index];
     gv_playerBankData[6][lv_index] = gv_playerStats[lv_index];
     gv_playerBankData[7][lv_index] = gv_playerCredits[lv_index];
-    if (((gv_playerBankData[7][lv_index] - gv_startingCredits[lv_index]) > 500) && (GameIsTestMap(false) == false)) {
-        gv_playerBankData[7][lv_index] = (gv_startingCredits[lv_index] + 500);
+    if (((gv_playerBankData[7][lv_index] - gv_startingCredits[lv_index]) > gv_creditCap) && (GameIsTestMap(false) == false)) {
+        gv_playerBankData[7][lv_index] = (gv_startingCredits[lv_index] + gv_creditCap);
     }
 
     if ((gv_playerBankData[7][lv_index] > 10000)) {
@@ -4821,9 +4824,11 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
 
     // Variable Declarations
     int lv_classPoints;
-    actor lv_warning;
 
     // Automatic Variable Declarations
+    const int auto9B8C7CD9_ae = 8;
+    int auto9B8C7CD9_var;
+
     // Variable Initialization
 
     // Implementation
@@ -4852,17 +4857,17 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     UnitControlGroupAddUnit(lp_player, 1, gv_marineHero[lp_playerIndex]);
     if ((gv_playerBanned[lp_playerIndex] == true)) {
         libNtve_gf_AttachModelToUnit(gv_marineHero[lp_playerIndex], "BriefingUnitSelectRedSmall", "Ref_Center");
-        lv_warning = libNtve_gf_ActorLastCreated();
+        gv_demeritWarning[lp_playerIndex] = libNtve_gf_ActorLastCreated();
         UnitBehaviorAddPlayer(gv_marineHero[lp_playerIndex], "PenalLegion", 14, 1);
     }
     else if ((gv_meritBalance[lp_playerIndex] < gv_minMerits)) {
         libNtve_gf_AttachModelToUnit(gv_marineHero[lp_playerIndex], "BriefingUnitSelectRedSmall", "Ref_Center");
-        lv_warning = libNtve_gf_ActorLastCreated();
+        gv_demeritWarning[lp_playerIndex] = libNtve_gf_ActorLastCreated();
         UIDisplayMessage(PlayerGroupAlliance(c_playerGroupAlly, lp_player), c_messageAreaSubtitle, (PlayerName(lp_player) + StringExternal("Param/Value/6D39072C")));
     }
     else if ((gv_playerKarma[lp_playerIndex] <= 1400)) {
         libNtve_gf_AttachModelToUnit(gv_marineHero[lp_playerIndex], "BriefingUnitSelectRedSmall", "Ref_Center");
-        lv_warning = libNtve_gf_ActorLastCreated();
+        gv_demeritWarning[lp_playerIndex] = libNtve_gf_ActorLastCreated();
         UIDisplayMessage(PlayerGroupAlliance(c_playerGroupAlly, lp_player), c_messageAreaSubtitle, ((PlayerName(lp_player) + StringExternal("Param/Value/E8E46D7D")) + StringToText("")));
     }
     else if ((gv_totalMerits[lp_playerIndex] >= gv_maxMerits) && (gv_totalDemerits[lp_playerIndex] <= 0) && (PlayerGroupCount(gv_meritedNominee) == 1)) {
@@ -4974,8 +4979,11 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     UIClearMessages(PlayerGroupSingle(lp_player), c_messageAreaDirective);
     Wait(12.0, c_timeReal);
     gf_TipLocalNOTD(500, lp_player, StringExternal("Param/Value/2482F8A0"));
-    Wait(600.0, c_timeReal);
-    libNtve_gf_KillModel(lv_warning);
+    Wait(60.0, c_timeReal);
+    auto9B8C7CD9_var = 1;
+    for ( ; auto9B8C7CD9_var <= auto9B8C7CD9_ae; auto9B8C7CD9_var += 1 ) {
+        libNtve_gf_KillModel(gv_demeritWarning[auto9B8C7CD9_var]);
+    }
     return true;
 }
 
@@ -17181,10 +17189,13 @@ void gf_WinUpdate (int lp_player, bool lp_hellSpeed, bool lp_nMSpeed, bool lp_sp
     // Automatic Variable Declarations
     // Implementation
     if (gv_survivalMode) {
-        if (gv_nightmare) {
+        if (gv_hell) {
+            gv_survivalWinHell[lp_player] += 1;
+        }
+        else if (gv_nightmare) {
             gv_survivalWinNM[lp_player] += 1;
         }
-        else {
+        else if (true) {
             gv_survivalWin[lp_player] += 1;
         }
     }
@@ -17262,6 +17273,11 @@ void gf_VictoryBonusXP () {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/DCD19264"));
         gf_AwardCreditsNOTD(20);
     }
+    else if (gv_hell) {
+        gf_AwardPlayerXPNOTD(40);
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/B067BF84"));
+        gf_AwardCreditsNOTD(120);
+    }
     else if (gv_nightmare) {
         gf_AwardPlayerXPNOTD(30);
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDirective, StringExternal("Param/Value/D48BFD10"));
@@ -17290,10 +17306,15 @@ void gf_MedalofHonorAward (int lp_medalNumber) {
     int auto7EE366EF_var;
 
     // Implementation
-    if (gv_nightmare && ((gv_totalPlayers == gv_alivePlayers) || gv_mOHAwardException) && (gv_totalPlayers >= 2)) {
+    if ((gv_nightmare || gv_hell) && ((gv_totalPlayers == gv_alivePlayers) || gv_mOHAwardException) && (gv_totalPlayers >= 2)) {
         TextExpressionSetToken("Param/Expression/4D6170D4", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/4D6170D4"));
-        gf_UnifiedAwards(25, 0.0, 300, 1, 2);
+        if (gv_hell) {
+            gf_UnifiedAwards(50, 0.0, 600, 1, 10);
+        }
+        else {
+            gf_UnifiedAwards(25, 0.0, 300, 1, 2);
+        }
         auto7EE366EF_var = gv_indexBaseValue;
         for ( ; auto7EE366EF_var <= auto7EE366EF_ae; auto7EE366EF_var += 1 ) {
             if ((PlayerStatus(auto7EE366EF_var) == c_playerStatusActive)) {
@@ -17344,7 +17365,7 @@ void gf_LifeSavingAward (int lp_medalNumber) {
     // Implementation
     autoD589CE20_var = gv_indexBaseValue;
     for ( ; autoD589CE20_var <= autoD589CE20_ae; autoD589CE20_var += 1 ) {
-        if ((PlayerStatus(autoD589CE20_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[autoD589CE20_var]) || gv_cPAwardException[autoD589CE20_var]) && (UnitGetType(gv_marineHero[autoD589CE20_var]) == "Medic2") && ((gv_lifeSavingMedal[autoD589CE20_var] < 20) || ((gv_lifeSavingMedal[autoD589CE20_var] >= 20) && gv_nightmare))) {
+        if ((PlayerStatus(autoD589CE20_var) == c_playerStatusActive) && (UnitIsAlive(gv_marineHero[autoD589CE20_var]) || gv_cPAwardException[autoD589CE20_var]) && (UnitGetType(gv_marineHero[autoD589CE20_var]) == "Medic2") && ((gv_lifeSavingMedal[autoD589CE20_var] < 20) || ((gv_lifeSavingMedal[autoD589CE20_var] >= 20) && (gv_nightmare || gv_hell)))) {
             gv_lifeSavingMedal[autoD589CE20_var] += 1;
             TextExpressionSetToken("Param/Expression/D3BA9547", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoD589CE20_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/D3BA9547"));
@@ -17372,7 +17393,7 @@ void gf_BronzeStarAward (int lp_medalNumber) {
         lv_pet = UnitGroupUnitFromEnd(auto5607B0F3_g, auto5607B0F3_u);
         if (lv_pet == null) { break; }
         lv_player = UnitGetOwner(lv_pet);
-        if ((PlayerStatus(lv_player) == c_playerStatusActive) && (libNtve_gf_UnitGetPropertyKills(lv_pet, c_unitPropCurrent) >= 50) && ((gv_bronzeStar[lv_player] < 20) || ((gv_bronzeStar[lv_player] >= 20) && gv_nightmare))) {
+        if ((PlayerStatus(lv_player) == c_playerStatusActive) && (libNtve_gf_UnitGetPropertyKills(lv_pet, c_unitPropCurrent) >= 50) && ((gv_bronzeStar[lv_player] < 20) || ((gv_bronzeStar[lv_player] >= 20) && (gv_nightmare || gv_hell)))) {
             gv_bronzeStar[lv_player] += 1;
             TextExpressionSetToken("Param/Expression/710E94FC", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/710E94FC"));
@@ -17390,7 +17411,7 @@ void gf_DSMAward (int lp_medalNumber) {
     // Implementation
     autoC1B50F84_var = gv_indexBaseValue;
     for ( ; autoC1B50F84_var <= autoC1B50F84_ae; autoC1B50F84_var += 1 ) {
-        if ((PlayerStatus(autoC1B50F84_var) == c_playerStatusActive) && ((gv_distinguishedServiceMedal[autoC1B50F84_var] < 20) || ((gv_distinguishedServiceMedal[autoC1B50F84_var] >= 20) && gv_nightmare))) {
+        if ((PlayerStatus(autoC1B50F84_var) == c_playerStatusActive) && ((gv_distinguishedServiceMedal[autoC1B50F84_var] < 20) || ((gv_distinguishedServiceMedal[autoC1B50F84_var] >= 20) && (gv_nightmare || gv_hell)))) {
             gv_distinguishedServiceMedal[autoC1B50F84_var] += 1;
             TextExpressionSetToken("Param/Expression/D7FE6A11", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoC1B50F84_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/D7FE6A11"));
@@ -17408,7 +17429,7 @@ void gf_LegionOfMeritAward (int lp_medalNumber) {
     // Implementation
     autoE693EBB1_var = gv_indexBaseValue;
     for ( ; autoE693EBB1_var <= autoE693EBB1_ae; autoE693EBB1_var += 1 ) {
-        if ((PlayerStatus(autoE693EBB1_var) == c_playerStatusActive) && ((gv_legionOfMerit[autoE693EBB1_var] < 20) || ((gv_legionOfMerit[autoE693EBB1_var] >= 20) && gv_nightmare))) {
+        if ((PlayerStatus(autoE693EBB1_var) == c_playerStatusActive) && ((gv_legionOfMerit[autoE693EBB1_var] < 20) || ((gv_legionOfMerit[autoE693EBB1_var] >= 20) && (gv_nightmare || gv_hell)))) {
             gv_legionOfMerit[autoE693EBB1_var] += 1;
             TextExpressionSetToken("Param/Expression/2FE78331", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoE693EBB1_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/2FE78331"));
@@ -17426,7 +17447,7 @@ void gf_ExpeditionaryAward (int lp_medalNumber) {
     // Implementation
     autoDC3D2109_var = gv_indexBaseValue;
     for ( ; autoDC3D2109_var <= autoDC3D2109_ae; autoDC3D2109_var += 1 ) {
-        if (((gv_expeditionaryMedal[autoDC3D2109_var] < 20) || ((gv_expeditionaryMedal[autoDC3D2109_var] >= 20) && gv_nightmare)) && (PlayerStatus(autoDC3D2109_var) == c_playerStatusActive)) {
+        if (((gv_expeditionaryMedal[autoDC3D2109_var] < 20) || ((gv_expeditionaryMedal[autoDC3D2109_var] >= 20) && (gv_nightmare || gv_hell))) && (PlayerStatus(autoDC3D2109_var) == c_playerStatusActive)) {
             gv_expeditionaryMedal[autoDC3D2109_var] += 1;
             TextExpressionSetToken("Param/Expression/72793672", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoDC3D2109_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/72793672"));
@@ -17444,7 +17465,7 @@ void gf_SilverStarAward (int lp_medalNumber) {
     // Implementation
     autoC9D3A8A8_var = gv_indexBaseValue;
     for ( ; autoC9D3A8A8_var <= autoC9D3A8A8_ae; autoC9D3A8A8_var += 1 ) {
-        if ((UnitGetType(gv_marineHero[autoC9D3A8A8_var]) == "Rifleman") && (PlayerStatus(autoC9D3A8A8_var) == c_playerStatusActive) && (gv_hitsTaken[autoC9D3A8A8_var] <= 10) && ((gv_silverStar[autoC9D3A8A8_var] < 20) || ((gv_silverStar[autoC9D3A8A8_var] >= 20) && gv_nightmare))) {
+        if ((UnitGetType(gv_marineHero[autoC9D3A8A8_var]) == "Rifleman") && (PlayerStatus(autoC9D3A8A8_var) == c_playerStatusActive) && (gv_hitsTaken[autoC9D3A8A8_var] <= 10) && ((gv_silverStar[autoC9D3A8A8_var] < 20) || ((gv_silverStar[autoC9D3A8A8_var] >= 20) && (gv_nightmare || gv_hell)))) {
             gv_silverStar[autoC9D3A8A8_var] += 1;
             TextExpressionSetToken("Param/Expression/8074E518", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoC9D3A8A8_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/8074E518"));
@@ -17462,7 +17483,7 @@ void gf_NavyCrossAward (int lp_medalNumber) {
     // Implementation
     autoA6BCDAE0_var = gv_indexBaseValue;
     for ( ; autoA6BCDAE0_var <= autoA6BCDAE0_ae; autoA6BCDAE0_var += 1 ) {
-        if ((PlayerStatus(autoA6BCDAE0_var) == c_playerStatusActive) && ((gv_navyCross[autoA6BCDAE0_var] < 20) || ((gv_navyCross[autoA6BCDAE0_var] >= 20) && gv_nightmare))) {
+        if ((PlayerStatus(autoA6BCDAE0_var) == c_playerStatusActive) && ((gv_navyCross[autoA6BCDAE0_var] < 20) || ((gv_navyCross[autoA6BCDAE0_var] >= 20) && (gv_nightmare || gv_hell)))) {
             gv_navyCross[autoA6BCDAE0_var] += 1;
             TextExpressionSetToken("Param/Expression/9A873C53", "A", UserDataGetText("Medals", UserDataInstance("Medals", lp_medalNumber), "Name", 1));
             UIDisplayMessage(PlayerGroupSingle(autoA6BCDAE0_var), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/9A873C53"));
@@ -17482,6 +17503,9 @@ void gf_SpeedBonusXP () {
     // Implementation
     if ((!(gv_isVeteranSquad))) {
         lv_speedXP = 10;
+    }
+    else if (gv_hell) {
+        lv_speedXP = 50;
     }
     else if (gv_nightmare) {
         lv_speedXP = 40;
@@ -17503,9 +17527,9 @@ void gf_OutbreakBonusXP () {
 
     // Implementation
     if ((gv_outbreakActivated == true)) {
-        lv_xp = libNtve_gf_DifficultyValueInt(20, 40, 60, 0);
+        lv_xp = libNtve_gf_DifficultyValueInt(20, 40, 60, 80);
         gf_AwardPlayerXPNOTD(lv_xp);
-        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(80, 160, 240, 0));
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(80, 160, 240, 320));
         TextExpressionSetToken("Param/Expression/713D1F7E", "A", IntToText(lv_xp));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/713D1F7E"));
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
@@ -17521,9 +17545,9 @@ void gf_EliteMutationBonusXP () {
 
     // Implementation
     if ((gv_eliteMutationActivated == true)) {
-        lv_xp = libNtve_gf_DifficultyValueInt(20, 40, 60, 0);
+        lv_xp = libNtve_gf_DifficultyValueInt(20, 40, 60, 80);
         gf_AwardPlayerXPNOTD(lv_xp);
-        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(80, 160, 240, 0));
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(80, 160, 240, 320));
         TextExpressionSetToken("Param/Expression/D9838420", "A", IntToText(lv_xp));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/D9838420"));
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
@@ -17540,8 +17564,8 @@ void gf_DailyChallengeBonusXP () {
 
     // Implementation
     if ((gv_dailyChallengeActivated == true)) {
-        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 0);
-        lv_rating = libNtve_gf_DifficultyValueInt(3, 4, 5, 0);
+        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 55);
+        lv_rating = libNtve_gf_DifficultyValueInt(3, 4, 5, 6);
         gf_AwardPlayerXPNOTD(lv_xp);
         gf_AwardRatingNOTD(lv_rating);
         TextExpressionSetToken("Param/Expression/32F4B8C8", "A", IntToText(lv_xp));
@@ -17560,9 +17584,9 @@ void gf_AllRandomBonusXP () {
 
     // Implementation
     if ((gv_randomsOption == 3)) {
-        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 0);
+        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 55);
         gf_AwardPlayerXPNOTD(lv_xp);
-        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(30, 60, 90, 0));
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(30, 60, 90, 120));
         TextExpressionSetToken("Param/Expression/8F6674B0", "A", IntToText(lv_xp));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/8F6674B0"));
     }
@@ -18088,11 +18112,18 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!(((PlayerHandle(EventPlayer()) == "1-S2-1-417524") || (PlayerHandle(EventPlayer()) == "1-S2-1-431521") || (PlayerHandle(EventPlayer()) == "1-S2-1-1143628") || (PlayerHandle(EventPlayer()) == "1-S2-1-3388720") || (PlayerHandle(EventPlayer()) == "1-S2-1-11533459") || !(GameIsOnline())))) {
+        if (!(((PlayerHandle(EventPlayer()) == "1-S2-1-417524") || (PlayerHandle(EventPlayer()) == "1-S2-1-431521") || (PlayerHandle(EventPlayer()) == "1-S2-1-1143628") || (PlayerHandle(EventPlayer()) == "1-S2-1-3388720") || (PlayerHandle(EventPlayer()) == "1-S2-1-11533459") || (PlayerHandle(EventPlayer()) == "1-S2-1-1246603") || !(GameIsOnline())))) {
             return false;
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gf_CreateItemLocalNOTD("SensorJammer", 1, RegionCircle(UnitGetPosition(gv_marineHero[EventPlayer()]), 2.5));
+    gf_CreateItemLocalNOTD("CloakingDevice", 1, RegionCircle(UnitGetPosition(gv_marineHero[EventPlayer()]), 2.5));
     return true;
 }
 
@@ -24526,7 +24557,7 @@ bool gt_HellBonus_Func (bool testConds, bool runActions) {
             else if (true) {
                 gf_UpdateRating(autoE2015653_var, 3);
             }
-            if ((gv_playerXP[autoE2015653_var] <= 2000)) {
+            if ((gv_playerXP[autoE2015653_var] <= 10000)) {
                 gf_UpdateKarma(autoE2015653_var, 2);
             }
 
@@ -43976,6 +44007,10 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
     }
 
     SoundPlay(SoundLink("ChallengescombinedExecutor00117", -1), PlayerGroupAll(), 100.0, 0.0);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+        TriggerEnable(gt_SkipAll, true);
+    }
     Wait(5.0, c_timeReal);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/E8B12632"));
     Wait(2.0, c_timeReal);
@@ -43989,7 +44024,8 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
         Wait(0.5, c_timeReal);
     }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/CCAD1762"));
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_StoryMessageNOTD(StringExternal("Param/Value/C7F08836"));
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -44002,7 +44038,10 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
         }
 
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     TriggerEnable(gt_NightmareHellMode, false);
     TriggerEnable(gt_OutbreakCommand, false);
     if (gv_hell) {
@@ -44019,7 +44058,10 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
 
         Wait(0.5, c_timeReal);
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/6187C54A"));
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -44033,7 +44075,10 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
         Wait(0.8, c_timeReal);
     }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/0A03D515"));
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     if ((gv_nightmare || gv_hell)) {
@@ -44050,7 +44095,10 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
         Wait(0.8, c_timeReal);
     }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/335ED149"));
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_AwardPlayerXPNOTD(5);
     if ((gv_alivePlayers > 1)) {
         gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(10, 20, 40, 0), 0, 1);
@@ -44103,7 +44151,10 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Mutalisk", 45.0);
         Wait(0.55, c_timeReal);
     }
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoC694B5E6_n = (gv_spawnFactor * 5);
@@ -44111,7 +44162,10 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("RoachBurrowed", 45.0);
         Wait(0.5, c_timeReal);
     }
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/1657D975"));
@@ -44120,7 +44174,10 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("HulkBurrowed", 20.0, "AdvancedMutation", null, null);
         Wait(0.5, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/94F0E7E3"));
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -44129,12 +44186,18 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Wraith2", 70.0);
         Wait(0.2, c_timeReal);
     }
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     SoundPlay(SoundLink("TTychus05TaldarimExecutor00046", -1), PlayerGroupAll(), 100.0, 0.0);
     gf_SurvivalCreepDeposit();
-    Wait(15.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 15.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/97B832BE"));
     UnitCreate(1, "Tartarus", 0, 14, RegionRandomPoint(gv_reinforcementSpawn[RandomInt(2, 6)]), libNtve_gf_RandomAngle());
     UnitGroupAdd(gv_zombieWave, UnitLastCreated());
@@ -44157,7 +44220,10 @@ bool gt_SurvivalW610_Func (bool testConds, bool runActions) {
         UnitKill(gv_eilethyia);
         gf_StoryMessageNOTD(StringExternal("Param/Value/BDE3C18F"));
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_AwardPlayerXPNOTD(5);
     if ((gv_alivePlayers > 1)) {
         gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(20, 40, 80, 0), 0, 2);
@@ -44217,7 +44283,10 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("BanelingBurrowed", 35.0, "AdvancedMutation", null, null);
         Wait(0.2, c_timeReal);
     }
-    Wait(15.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 15.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("Param/Value/3549F488"));
@@ -44240,7 +44309,10 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Hugger2", 70.0);
         Wait(3.0, c_timeReal);
     }
-    Wait(15.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 15.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("Param/Value/37825E7E"));
     SoundPlay(SoundLink("PerditionTurret_MorphOpen", -1), PlayerGroupAll(), 100.0, 0.0);
     UnitBehaviorAdd(gv_ionCannonA, "NanoHasteLevel3", gv_ionCannonA, 1);
@@ -44263,7 +44335,10 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Lelantos", 90.0);
         Wait(0.2, c_timeReal);
     }
-    Wait(60.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 60.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto475D9F6C_n = (gv_spawnFactor * 5);
@@ -44272,7 +44347,10 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
         Wait(0.7, c_timeReal);
     }
     SoundPlay(SoundLink("THanson02Tychus00006", -1), PlayerGroupAll(), 100.0, 0.0);
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto8E12658B_n = (gv_spawnFactor * 5);
@@ -44280,7 +44358,10 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("Immortal22", 30.0, "AdvancedMutation", null, null);
         Wait(0.2, c_timeReal);
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_AwardPlayerXPNOTD(7);
     if ((gv_alivePlayers > 1)) {
         gf_UnifiedAwards(0, 0.0, libNtve_gf_DifficultyValueInt(20, 40, 80, 0), 0, 2);
@@ -44340,7 +44421,10 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("Parasite", 20.0, "AdvancedMutation", "Detector2", null);
         Wait(0.2, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto8EC517FE_n = (gv_spawnFactor * 5);
@@ -44348,7 +44432,10 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Devourer2", 45.0);
         Wait(1.0, c_timeReal);
     }
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoF6CF1D26_n = (gv_spawnFactor * 5);
@@ -44356,7 +44443,10 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("SeekerBurrowed", 45.0);
         Wait(0.35, c_timeReal);
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoD4112944_n = (gv_spawnFactor * 5);
@@ -44364,7 +44454,10 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Slasher2", 45.0);
         Wait(1.0, c_timeReal);
     }
-    Wait(40.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 40.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     SoundPlay(SoundLink("TTychus05TaldarimExecutor00040", -1), PlayerGroupAll(), 100.0, 0.0);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -44400,7 +44493,10 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
     for ( ; autoCDDDE615_var <= autoCDDDE615_ae; autoCDDDE615_var += 1 ) {
         gf_UpdateKarma(autoCDDDE615_var, 1);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_survivalMedal20Waves = true;
     auto88BA3318_var = gv_indexBaseValue;
     for ( ; auto88BA3318_var <= auto88BA3318_ae; auto88BA3318_var += 1 ) {
@@ -44412,7 +44508,7 @@ bool gt_SurvivalW1620_Func (bool testConds, bool runActions) {
 
     }
     TriggerExecute(gt_AutoSave, true, false);
-    if ((gv_alivePlayers <= 1)) {
+    if ((gv_alivePlayers <= 1) && (GameIsTestMap(false) == false)) {
         gv_gameOver = true;
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/4826ECBA"));
     }
@@ -44461,7 +44557,10 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
     SoundPlay(SoundLink("UI_ChatMessageReceived", -1), PlayerGroupAll(), 100.0, 0.0);
     gf_StoryMessageNOTD(StringExternal("Param/Value/2BC9DA7A"));
     TriggerExecute(gt_STC1ItemSpawn, true, false);
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto6DA4E8D0_n = (gv_spawnFactor * 10);
@@ -44469,7 +44568,10 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("SeekerBurrowed", 35.0, "AdvancedMutation", null, null);
         Wait(0.35, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto6C27A6C4_n = (gv_spawnFactor * 2);
@@ -44477,7 +44579,10 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("InfestedAbominationBurrowed", 55.0, "SpeedDebuff", null, null);
         Wait(5.0, c_timeReal);
     }
-    Wait(50.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 50.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto5ECB4DF0_n = (gv_spawnFactor * 2);
@@ -44485,7 +44590,10 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Hugger2", 30.0);
         Wait(0.35, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     gf_SurvivalCreepDeposit();
@@ -44494,7 +44602,10 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("UltraliskBurrowed", 50.0, "Rampage", null, null);
         Wait(0.5, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto10007FE5_n = (gv_spawnFactor * 8);
@@ -44514,7 +44625,10 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
         }
         Wait(0.5, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(10, 15, 15, 0), 0.0, libNtve_gf_DifficultyValueInt(40, 60, 80, 0), 0, 2);
     TriggerExecute(gt_SurvivalW2630, true, false);
     return true;
@@ -44574,7 +44688,10 @@ bool gt_SurvivalW2630_Func (bool testConds, bool runActions) {
 
         Wait(0.5, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto788720E3_n = (gv_spawnFactor * 2);
@@ -44590,7 +44707,10 @@ bool gt_SurvivalW2630_Func (bool testConds, bool runActions) {
         }
         PlayerCreateEffectPoint(9, "NukePersistent", lv_airstrikePoint);
     }
-    Wait(35.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 35.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     gf_SurvivalCreepDeposit();
@@ -44599,7 +44719,10 @@ bool gt_SurvivalW2630_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("SeekerBurrowed", 90.0, "AdvancedMutation", null, null);
         Wait(1.0, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     auto4C709E04_n = (gv_spawnFactor * 5);
@@ -44607,7 +44730,10 @@ bool gt_SurvivalW2630_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("RoachBurrowed", 90.0, "AdvancedMutation", null, null);
         Wait(0.5, c_timeReal);
     }
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     SoundPlay(SoundLink("TTychus05TaldarimExecutor00041", -1), PlayerGroupAll(), 100.0, 0.0);
@@ -44630,7 +44756,10 @@ bool gt_SurvivalW2630_Func (bool testConds, bool runActions) {
     TriggerStop(gt_SurvivalCronusAAI);
     TriggerStop(gt_SurvivalCronusBAI);
     TriggerExecute(gt_AutoSave, true, false);
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     TriggerExecute(gt_SurvivalW3135, true, false);
     return true;
 }
@@ -44728,7 +44857,10 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("Blindling2", 80.0);
         Wait(0.5, c_timeReal);
     }
-    Wait(25.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 25.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     gf_SurvivalCreepDeposit();
@@ -44737,7 +44869,10 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("Beastling2", 70.0, "AdvancedMutation", null, null);
         Wait(1.0, c_timeReal);
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     gf_RadioNOTD(PlayerName(UnitGetOwner(UnitGroupRandomUnit(gv_marines, c_unitCountAlive))), StringExternal("Param/Value/116239BA"));
@@ -44753,7 +44888,10 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(0.35, c_timeReal);
     }
-    Wait(30.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 30.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoE29E0B24_n = (gv_spawnFactor * 7);
@@ -44761,7 +44899,10 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("ZombieLevel22", 90.0, "AdvancedMutation", "Detector5", null);
         Wait(0.3, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     for (autoA6E935BB_i = 1; autoA6E935BB_i <= autoA6E935BB_n; autoA6E935BB_i += 1) {
@@ -44777,7 +44918,10 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         }
         Wait(7.0, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(20, 30, 30, 0), 0.0, libNtve_gf_DifficultyValueInt(60, 90, 120, 0), 0, 3);
     TriggerExecute(gt_SurvivalW3640, true, false);
     return true;
@@ -44850,7 +44994,10 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         Wait(0.5, c_timeReal);
     }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/EA2FA3C7"));
-    Wait(90.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 90.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     autoC4BAA258_n = gv_spawnFactor;
@@ -44897,9 +45044,15 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         Wait(1.0, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gf_SmartSpawnNOTD("Nazara", 90.0);
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     if ((gv_nightmare || gv_hell)) {
@@ -44912,7 +45065,10 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("DemetersCocoon", 110.0, "Detector2", null, null);
         Wait(3.0, c_timeReal);
     }
-    Wait(20.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 20.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     if ((gv_nightmare || gv_hell)) {
@@ -44927,7 +45083,10 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         Wait(2.0, c_timeReal);
     }
     gf_SurvivalNydusSpawn();
-    Wait(40.0, c_timeReal);
+    gf_WaitIf((GameIsTestMap(false) && gf_SkipCinematicCheck()), 5.0, 40.0, c_timeReal);
+    if (GameIsTestMap(false)) {
+        gf_EnableSkipCinematic(true);
+    }
     SoundPlay(SoundLink("TTosh02TaldarimExecutor00007", -1), PlayerGroupAll(), 100.0, 0.0);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -48414,7 +48573,7 @@ bool gt_ClassPointsUpdateVictoryOnly_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if (gv_nightmare && (gv_gameVictoryTime <= 3600.0)) {
+    if ((gv_nightmare || gv_hell) && (gv_gameVictoryTime <= 3600.0)) {
         lv_cPAwarded = 2;
     }
 

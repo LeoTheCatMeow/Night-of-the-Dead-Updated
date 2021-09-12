@@ -295,6 +295,14 @@
         <On Terms="Behavior.DeadlyDescend.Off" Send="Create"/>
         <Sound value="Colossus_Explode_Legs_Impact"/>
     </CActorSound>
+    <CActorModel id="SensorBlastJammer" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.SensorJammerSearch.Start" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps HoldPosition="1" HoldRotation="1"/>
+        <Model value="DeafeningBlastImpact"/>
+        <Scale value="0.200000,0.200000,0.100000"/>
+    </CActorModel>
     <CActorSound id="DeafeningBlastSound" parent="SoundOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.DeafeningBlastSearch.Start" Send="Create"/>
@@ -334,6 +342,20 @@
         <Missile value="GuardianAttackMissile"/>
         <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
     </CActorAction>
+    <CActorUnit id="CloakingDevice" parent="GenericUnitBase" unitName="CloakingDevice">
+        <EditorCategories value=""/>
+        <Model value="AmmoBox"/>
+        <Scale value="0.800000,0.800000,1.000000"/>
+        <BuildModel value="AmmoBox"/>
+        <EditorModel value="AmmoBox"/>
+        <PlacementModel value="AmmoBox"/>
+        <HeroIcon value="Assets\Textures\btn-ability-mengsk-ghost-supercloak.dds"/>
+        <HighlightTooltip value="Unit/Name/CloakingDeviceHighlightTooltip"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <UnitIcon value="Assets\Textures\btn-ability-mengsk-ghost-supercloak.dds"/>
+    </CActorUnit>
     <CActorUnit id="ShivaRevealDummy" parent="GenericUnitBase" unitName="ShivaRevealDummy">
         <EditorCategories value=""/>
         <Model value="Invisible"/>
@@ -553,6 +575,20 @@
         <ImpactSite value="AcidSporesFourthBounceImpactSite"/>
         <ImpactMap index="None" Model="GuardianAttackImpact" Sound="Corruptor_AttackImpact"/>
     </CActorAction>
+    <CActorUnit id="SensorJammer" parent="GenericUnitBase" unitName="SensorJammer">
+        <EditorCategories value=""/>
+        <Model value="Crate"/>
+        <Scale value="0.900000,0.900000,1.100000"/>
+        <BuildModel value="Crate"/>
+        <EditorModel value="Crate"/>
+        <PlacementModel value="Crate"/>
+        <HeroIcon value="Assets\Textures\btn-ability-terran-detectionconedebuff.dds"/>
+        <HighlightTooltip value="Unit/Name/SensorJammerHighlightTooltip"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <UnitIcon value="Assets\Textures\btn-ability-terran-detectionconedebuff.dds"/>
+    </CActorUnit>
     <CActorRange id="VRLRange" parent="RangeAbil" abil="VRL772"/>
     <CActorModel id="SurgicalStrikeEffect" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
