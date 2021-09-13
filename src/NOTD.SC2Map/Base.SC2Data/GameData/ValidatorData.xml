@@ -19,12 +19,6 @@
         <CombineArray value="CasterhasAbsolutionSpellBuff"/>
         <CombineArray value="CasterHasEnergy"/>
     </CValidatorCombine>
-    <CValidatorUnitCompareVital id="CasterEnergyGE5">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GE"/>
-        <Value value="5"/>
-        <Vital value="Energy"/>
-    </CValidatorUnitCompareVital>
     <CValidatorUnitCompareBehaviorCount id="CasterIsHardenedUnit">
         <WhichUnit Value="Caster"/>
         <Compare value="GT"/>
