@@ -833,6 +833,8 @@
     <CActorModel id="Infection" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.Infection.On" Send="Create"/>
         <On Terms="Behavior.Infection.Off" Send="Destroy"/>
+        <On Terms="Behavior.Infectious.On" Send="Create"/>
+        <On Terms="Behavior.Infectious.Off" Send="Destroy"/>
     </CActorModel>
     <CActorModel id="Hardened" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>

@@ -4339,8 +4339,9 @@ Param/Expression/81A0B422=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C
 Param/Expression/8261F9D4=+<c val="FFFF80">~A~ </c>XP for Speed Bonus
 Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to retreat!
 Param/Expression/876B094F=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
+Param/Expression/8EAFA28F=<s val="GlueButtonSmall">Hell: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/8F6674B0=+<c val="FFFF80">~A~</c> XP for All Random Bonus
-Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">Wins</c> (<c val="49ABF3">Speed</c>) (<c val="E10000">NM</c>) (<c val="F1D845">NM Speed</c>)</s>
+Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">Wins</c> (<c val="49ABF3">Speed</c>) (<c val="E10000">NM</c>) (<c val="F1D845">NM Speed</c>) (<c val="DB48FF">Hell</c>)</s>
 Param/Expression/A5DC8985=Attack ~A~
 Param/Expression/A91F7F6B=~A~~B~~C~
 Param/Expression/ABAE731B=~A~/~B~
@@ -4352,7 +4353,7 @@ Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
 Param/Expression/D9838420=+<c val="FFFF80">~A~ </c>XP for Elite Mutation Bonus
 Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
-Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>)</s>
+Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/F405B274=<s val="GlueButtonSmall">Nightmare: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
@@ -4662,6 +4663,7 @@ Param/Value/31C1E4F1=<s val="InfoPaneHeroRank">Navy Cross</s><n/>- All medical s
 Param/Value/3205EB83=Lab Rats
 Param/Value/324269D7=<s val="GlueButton"><c val="F4D72B">Deimos has released a swarm of Titans from containment!</c></s>
 Param/Value/3258859A=HAL, shut down those orbital lasers. We're on the same side.
+Param/Value/3260E260=<s val="ChatBar">Black Ops: <c val="F4D72B">Airstrike requested at Coordinates (
 Param/Value/3277B085=(Superior Service Medal awarded...)
 Param/Value/32D3A5EF=It doesn't look heavily armored. Our sniper rifles or flamers can take it down.
 Param/Value/32F3AC3C=+1 XP for Performance Bonus
@@ -5242,6 +5244,7 @@ Param/Value/918A8106=It's in a dormant state now.
 Param/Value/9190998C=Protect Dr. Tanaka until his research is complete
 Param/Value/91A0BD6A=(Cronus prepares for <c val="FF0000">destruction</c>...)
 Param/Value/91F0176F=Collect items scattered throughout the map. These help improve your chances of success in NOTD.<n/><n/>Item Classes:<n/>Weapons: Each weapon shines in different situations.<n/>Armor: Improves your armor<n/>Enhancements: Equip these to improve your stats<n/>Ammo: You require ammo to continue firing your weapons<n/>Supplies: These include medkits which keep you in top shape.<n/><n/>Sharing items with teammates will improve squad survivability.
+Param/Value/91F39833=).</s></c>
 Param/Value/92459A55=<img path="Assets\Textures\tutorialmouserightbuttondown.dds"/><n/><s val="WaitingForUsersDialogTitle"><c val="FFDD1C">Right Click - Gauss Cannon</c><n/><c val="1CFFCC">Arrows/Mousewheel - Speed</c></s>
 Param/Value/92547BE7=We'll need to escort the colonists to another location.
 Param/Value/9263B5DE=+3 XP for Performance Bonus
@@ -5933,6 +5936,7 @@ Param/Value/FE8803E4=Incoming.
 Param/Value/FEF9177A=Doctor
 Param/Value/FF26767E=No CP changes when random in recruit difficulty. (XP > 10000)
 Param/Value/FF39EBA6=<s val="ChatBar">HAL: <c val="F4D72B"></c><c val="FF0000"><Imminent system failure></s></c>
+Param/Value/FF3EFF47=, 
 Param/Value/FF4D0407=I hope it won't come to that. Keep your distance from the creatures.
 Param/Value/FF63624E=Roger.
 Param/Value/FF7D5EAC=<s val="BriefingHanText">(<c val="8A8AFF">Helium-3 Canister</c> recovered by 
