@@ -1,5 +1,13 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-9-25
+[ThunderRazor]
+- Enabled "-skip" for Survival waves - Nearly all breaks between waves are reduced to 5 seconds (some 10 seconds) when "-skip" is applied. 
+- Opened first pass on Surv Hell to the public - Requires typing "-hell" in Survival Normal (Vet) to activate.
+- Zombies and infestors that burn to death do not spawn ghouls, creep tumors, etc.
+- Infected mobs will prioritize civilians. 
+- Fixed EC eggs not hatching.
+
 2021-8-30
 [ThunderRazor]
 - Added "-skip" and "-skip all" commands to skip cutscenes in Easy Company. 
