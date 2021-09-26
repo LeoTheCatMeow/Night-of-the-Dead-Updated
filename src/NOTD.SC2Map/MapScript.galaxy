@@ -14440,9 +14440,9 @@ bool auto_gf_GOTBShock_TriggerFunc (bool testConds, bool runActions) {
     for (;; autoE316D244_u -= 1) {
         autoE316D244_var = UnitGroupUnitFromEnd(autoE316D244_g, autoE316D244_u);
         if (autoE316D244_var == null) { break; }
-        UnitSetPropertyFixed(autoE316D244_var, c_unitPropEnergy, (UnitGetPropertyFixed(autoE316D244_var, c_unitPropEnergy, c_unitPropCurrent) * 0.25));
-        UnitSetPropertyFixed(autoE316D244_var, c_unitPropShields, (UnitGetPropertyFixed(autoE316D244_var, c_unitPropShields, c_unitPropCurrent) * 0.25));
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoE316D244_var));
+        UnitSetPropertyFixed(autoE316D244_var, c_unitPropEnergy, (UnitGetPropertyFixed(autoE316D244_var, c_unitPropEnergy, c_unitPropCurrent) * 0.75));
+        UnitSetPropertyFixed(autoE316D244_var, c_unitPropShields, (UnitGetPropertyFixed(autoE316D244_var, c_unitPropShields, c_unitPropCurrent) * 0.75));
     }
     auto8E46A5CC_g = UnitGroupAlliance(UnitGetOwner(lp_boss), c_unitAllianceEnemy, lv_ri, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto8E46A5CC_u = UnitGroupCount(auto8E46A5CC_g, c_unitCountAll);
@@ -14456,72 +14456,72 @@ bool auto_gf_GOTBShock_TriggerFunc (bool testConds, bool runActions) {
     for (;; auto6E7C6723_u -= 1) {
         auto6E7C6723_var = UnitGroupUnitFromEnd(auto6E7C6723_g, auto6E7C6723_u);
         if (auto6E7C6723_var == null) { break; }
-        UnitKill(auto6E7C6723_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto6E7C6723_var));
+        UnitKill(auto6E7C6723_var);
     }
     autoBAD10DB2_g = UnitGroup("SentinelMine", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     autoBAD10DB2_u = UnitGroupCount(autoBAD10DB2_g, c_unitCountAll);
     for (;; autoBAD10DB2_u -= 1) {
         autoBAD10DB2_var = UnitGroupUnitFromEnd(autoBAD10DB2_g, autoBAD10DB2_u);
         if (autoBAD10DB2_var == null) { break; }
-        UnitKill(autoBAD10DB2_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(autoBAD10DB2_var));
+        UnitKill(autoBAD10DB2_var);
     }
     auto5A4838AA_g = UnitGroup("SatchelLevel1", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     auto5A4838AA_u = UnitGroupCount(auto5A4838AA_g, c_unitCountAll);
     for (;; auto5A4838AA_u -= 1) {
         auto5A4838AA_var = UnitGroupUnitFromEnd(auto5A4838AA_g, auto5A4838AA_u);
         if (auto5A4838AA_var == null) { break; }
-        UnitKill(auto5A4838AA_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto5A4838AA_var));
+        UnitKill(auto5A4838AA_var);
     }
     auto6DAAEE97_g = UnitGroup("SatchelLevel2", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     auto6DAAEE97_u = UnitGroupCount(auto6DAAEE97_g, c_unitCountAll);
     for (;; auto6DAAEE97_u -= 1) {
         auto6DAAEE97_var = UnitGroupUnitFromEnd(auto6DAAEE97_g, auto6DAAEE97_u);
         if (auto6DAAEE97_var == null) { break; }
-        UnitKill(auto6DAAEE97_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto6DAAEE97_var));
+        UnitKill(auto6DAAEE97_var);
     }
     auto0756D9DC_g = UnitGroup("ArmageddonBomb", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     auto0756D9DC_u = UnitGroupCount(auto0756D9DC_g, c_unitCountAll);
     for (;; auto0756D9DC_u -= 1) {
         auto0756D9DC_var = UnitGroupUnitFromEnd(auto0756D9DC_g, auto0756D9DC_u);
         if (auto0756D9DC_var == null) { break; }
-        UnitKill(auto0756D9DC_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Terran, UnitGetPosition(auto0756D9DC_var));
+        UnitKill(auto0756D9DC_var);
     }
     auto7C0923D7_g = UnitGroup("PlasmaDetonator", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     auto7C0923D7_u = UnitGroupCount(auto7C0923D7_g, c_unitCountAll);
     for (;; auto7C0923D7_u -= 1) {
         auto7C0923D7_var = UnitGroupUnitFromEnd(auto7C0923D7_g, auto7C0923D7_u);
         if (auto7C0923D7_var == null) { break; }
-        UnitKill(auto7C0923D7_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(auto7C0923D7_var));
+        UnitKill(auto7C0923D7_var);
     }
     autoDB77B763_g = UnitGroup("NapalmFire", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     autoDB77B763_u = UnitGroupCount(autoDB77B763_g, c_unitCountAll);
     for (;; autoDB77B763_u -= 1) {
         autoDB77B763_var = UnitGroupUnitFromEnd(autoDB77B763_g, autoDB77B763_u);
         if (autoDB77B763_var == null) { break; }
-        UnitKill(autoDB77B763_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoDB77B763_var));
+        UnitKill(autoDB77B763_var);
     }
     auto2604AE1C_g = UnitGroup("MonofilamentTrapLevel12", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     auto2604AE1C_u = UnitGroupCount(auto2604AE1C_g, c_unitCountAll);
     for (;; auto2604AE1C_u -= 1) {
         auto2604AE1C_var = UnitGroupUnitFromEnd(auto2604AE1C_g, auto2604AE1C_u);
         if (auto2604AE1C_var == null) { break; }
-        UnitKill(auto2604AE1C_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(auto2604AE1C_var));
+        UnitKill(auto2604AE1C_var);
     }
     autoDC5FF714_g = UnitGroup("MonofilamentTrapLevel1", c_playerAny, lv_ri, UnitFilter(0, 0, 0, 0), 0);
     autoDC5FF714_u = UnitGroupCount(autoDC5FF714_g, c_unitCountAll);
     for (;; autoDC5FF714_u -= 1) {
         autoDC5FF714_var = UnitGroupUnitFromEnd(autoDC5FF714_g, autoDC5FF714_u);
         if (autoDC5FF714_var == null) { break; }
-        UnitKill(autoDC5FF714_var);
         libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(autoDC5FF714_var));
+        UnitKill(autoDC5FF714_var);
     }
     Wait(0.125, c_timeGame);
     libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
@@ -14534,12 +14534,7 @@ void gf_GOTBCharge (unit lp_boss) {
     if ((RandomInt(0, 2) > 0)) {
         UnitBehaviorAdd(lp_boss, "ShadowstepLevel2", lp_boss, 1);
         if ((RandomInt(0, 2) > 0)) {
-            if ((RandomInt(0, 2) > 0)) {
-                UnitBehaviorAdd(lp_boss, "QuickAimLevel3", lp_boss, 1);
-            }
-            else {
-                UnitBehaviorAdd(lp_boss, "QuickAimLevel2", lp_boss, 1);
-            }
+            UnitBehaviorAdd(lp_boss, "QuickAimLevel2", lp_boss, 1);
         }
         else {
             UnitBehaviorAdd(lp_boss, "QuickAimLevel1", lp_boss, 1);
@@ -45169,6 +45164,7 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         Wait(0.35, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 30.0, c_timeReal);
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45178,6 +45174,7 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         Wait(0.3, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45196,7 +45193,7 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 10.0, 20.0, c_timeReal);
     gf_EnableSkipCinematic(true);
-    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(20, 30, 30, 45), libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 10000.0), libNtve_gf_DifficultyValueInt(60, 90, 120, 160), 0, 3);
+    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(20, 30, 30, 45), libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0), libNtve_gf_DifficultyValueInt(60, 90, 120, 160), 0, 3);
     TriggerExecute(gt_SurvivalW3640, true, false);
     return true;
 }
@@ -45269,6 +45266,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/EA2FA3C7"));
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 90.0, c_timeReal);
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45300,6 +45298,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
 
         Wait(0.1, c_timeReal);
     }
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     autoD3BDB475_n = (gv_spawnFactor * 6);
     for (autoD3BDB475_i = 1; autoD3BDB475_i <= autoD3BDB475_n; autoD3BDB475_i += 1) {
         UnitCreate(1, "X1GuardianLevel2", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
@@ -45323,6 +45322,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     Wait(20.0, c_timeReal);
     gf_SmartSpawnNOTD("Nazara", 90.0);
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
@@ -45338,6 +45338,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         Wait(3.0, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     if ((gv_nightmare || gv_hell)) {
@@ -45353,6 +45354,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     gf_SurvivalNydusSpawn();
     Wait(40.0, c_timeReal);
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     SoundPlay(SoundLink("TTosh02TaldarimExecutor00007", -1), PlayerGroupAll(), 100.0, 0.0);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45474,7 +45476,7 @@ bool gt_GOTBAIActive_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((UnitTestState(gv_hell_boss, c_unitStateStunned) || UnitTestState(gv_hell_boss, c_unitStateTurnSuppressed) || UnitTestState(gv_hell_boss, c_unitStateMoveSuppressed) || UnitTestState(gv_hell_boss, c_unitStateAttackSuppressed) || (lv_pathai == -1) || (lv_pathg == 65536))) {
+    if ((UnitTestState(gv_hell_boss, c_unitStateStunned) || UnitTestState(gv_hell_boss, c_unitStateTurnSuppressed) || UnitTestState(gv_hell_boss, c_unitStateAttackSuppressed) || (lv_pathai == -1) || (lv_pathg == 65536))) {
         TriggerEnable(gt_GOTBAIReactive, false);
         gf_GOTBTeleport(gv_hell_boss);
         TriggerEnable(gt_GOTBAIReactive, true);
@@ -45570,7 +45572,7 @@ bool gt_GOTBAIReactive_Func (bool testConds, bool runActions) {
             UnitBehaviorAdd(gv_hell_boss, "ShadowstepLevel2", gv_hell_boss, 1);
             Wait(0.25, c_timeGame);
         }
-        UnitBehaviorAdd(gv_hell_boss, "QuickAimLevel3", gv_hell_boss, 1);
+        UnitBehaviorAdd(gv_hell_boss, "QuickAimLevel2", gv_hell_boss, 1);
     }
     Wait(2.0, c_timeReal);
     TriggerEnable(gt_GOTBAIActive, true);
@@ -45583,23 +45585,23 @@ void gt_GOTBAIReactive_Init () {
     gt_GOTBAIReactive = TriggerCreate("gt_GOTBAIReactive_Func");
     TriggerEnable(gt_GOTBAIReactive, false);
     TriggerAddEventUnitAttacked2(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), "StingerMK3");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentTrapDamageEnemiesLevel1");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentTrapDamageEnemiesLevel2");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "RaynorSnipeDamage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentCartridgeDamageLevel2");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "MonofilamentCartridgeDamageLevel3");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "WidowMineExplodeSplash");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "PlasmaDischargeDamage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "SatchelLevel1Damage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "SatchelLevel2Damage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "L3GrenadeExplosion");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "NapalmBarrageDamage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "Damage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "RepulseDamage");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "ContaminateDamageLevel1");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "ContaminateDamageLevel2");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "ContaminateDamageLevel3");
-    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageEither, "PsionicTempestDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "MonofilamentTrapDamageEnemiesLevel1");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "MonofilamentTrapDamageEnemiesLevel2");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "RaynorSnipeDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "MonofilamentCartridgeDamageLevel2");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "MonofilamentCartridgeDamageLevel3");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "WidowMineExplodeSplash");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "PlasmaDischargeDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "SatchelLevel1Damage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "SatchelLevel2Damage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "L3GrenadeExplosion");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "NapalmBarrageDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "Damage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "RepulseDamage");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "ContaminateDamageLevel1");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "ContaminateDamageLevel2");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "ContaminateDamageLevel3");
+    TriggerAddEventUnitDamaged(gt_GOTBAIReactive, UnitRefFromVariable("gv_hell_boss"), c_unitDamageTypeAny, c_unitDamageNonFatal, "PsionicTempestDamage");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -45648,7 +45650,7 @@ bool gt_GOTBAIDodge_Func (bool testConds, bool runActions) {
             }
         }
     }
-    else if ((DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), UnitGetPosition(EventUnit())) > 9.0) && (DistanceBetweenPoints(UnitGetPosition(gv_gOTB), lv_target) < 25.0) && (AbsF(ModF((AngleBetweenPoints(UnitGetPosition(gv_hell_boss), lv_target) - UnitGetFacing(gv_hell_boss)), 360.0)) < 45.0)) {
+    else if ((DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), UnitGetPosition(EventUnit())) > 9.0) && (DistanceBetweenPoints(UnitGetPosition(gv_hell_boss), lv_target) < 25.0) && (AbsF(ModF((AngleBetweenPoints(UnitGetPosition(gv_hell_boss), lv_target) - UnitGetFacing(gv_hell_boss)), 360.0)) < 45.0)) {
         UnitIssueOrder(gv_hell_boss, Order(AbilityCommand("stop", 0)), c_orderQueueReplace);
         Wait(0.25, c_timeReal);
         libNtve_gf_PauseUnit(gv_hell_boss, true);
