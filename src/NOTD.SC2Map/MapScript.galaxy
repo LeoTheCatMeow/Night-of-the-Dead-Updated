@@ -9977,6 +9977,9 @@ void gf_AwardMarineXPNOTD (fixed lp_marineXPAwarded) {
 bool auto_gf_AwardMarineXPNOTD_TriggerFunc (bool testConds, bool runActions) {
     fixed lp_marineXPAwarded = auto_gf_AwardMarineXPNOTD_lp_marineXPAwarded;
 
+    // Variable Declarations
+    fixed lv_pool;
+
     // Automatic Variable Declarations
     const int autoE2ECD467_ae = 8;
     int autoE2ECD467_var;
@@ -9984,20 +9987,27 @@ bool auto_gf_AwardMarineXPNOTD_TriggerFunc (bool testConds, bool runActions) {
     int autoC7A2A660_u;
     unit autoC7A2A660_var;
 
+    // Variable Initialization
+    lv_pool = lp_marineXPAwarded;
+
     // Implementation
     autoE2ECD467_var = 1;
     for ( ; autoE2ECD467_var <= autoE2ECD467_ae; autoE2ECD467_var += 1 ) {
         gv_marineExperienceBonus[autoE2ECD467_var] += lp_marineXPAwarded;
     }
-    autoC7A2A660_g = gv_pets;
-    autoC7A2A660_u = UnitGroupCount(autoC7A2A660_g, c_unitCountAll);
-    for (;; autoC7A2A660_u -= 1) {
-        autoC7A2A660_var = UnitGroupUnitFromEnd(autoC7A2A660_g, autoC7A2A660_u);
-        if (autoC7A2A660_var == null) { break; }
-        if ((UnitIsAlive(autoC7A2A660_var) == true)) {
-            UnitSetPropertyFixed(autoC7A2A660_var, c_unitPropXP, (UnitGetPropertyFixed(autoC7A2A660_var, c_unitPropXP, c_unitPropCurrent) + lp_marineXPAwarded));
-        }
+    while ((lv_pool > 0.0)) {
+        autoC7A2A660_g = gv_pets;
+        autoC7A2A660_u = UnitGroupCount(autoC7A2A660_g, c_unitCountAll);
+        for (;; autoC7A2A660_u -= 1) {
+            autoC7A2A660_var = UnitGroupUnitFromEnd(autoC7A2A660_g, autoC7A2A660_u);
+            if (autoC7A2A660_var == null) { break; }
+            if ((UnitIsAlive(autoC7A2A660_var) == true)) {
+                UnitSetPropertyFixed(autoC7A2A660_var, c_unitPropXP, (UnitGetPropertyFixed(autoC7A2A660_var, c_unitPropXP, c_unitPropCurrent) + MaxF(lv_pool, 125.0)));
+            }
 
+        }
+        lv_pool -= MinF(lv_pool, 125.0);
+        Wait(0.1, c_timeReal);
     }
     return true;
 }
@@ -45164,7 +45174,6 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         Wait(0.35, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 30.0, c_timeReal);
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45174,7 +45183,6 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         Wait(0.3, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45193,7 +45201,7 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 10.0, 20.0, c_timeReal);
     gf_EnableSkipCinematic(true);
-    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(20, 30, 30, 45), libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0), libNtve_gf_DifficultyValueInt(60, 90, 120, 160), 0, 3);
+    gf_UnifiedAwards(libNtve_gf_DifficultyValueInt(20, 30, 30, 45), libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 1000.0), libNtve_gf_DifficultyValueInt(60, 90, 120, 160), 0, 3);
     TriggerExecute(gt_SurvivalW3640, true, false);
     return true;
 }
@@ -45266,7 +45274,6 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     gf_MarineSpeechNOTD(UnitGroupRandomUnit(gv_marines, c_unitCountAlive), StringExternal("Param/Value/EA2FA3C7"));
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 90.0, c_timeReal);
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
@@ -45298,7 +45305,6 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
 
         Wait(0.1, c_timeReal);
     }
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     autoD3BDB475_n = (gv_spawnFactor * 6);
     for (autoD3BDB475_i = 1; autoD3BDB475_i <= autoD3BDB475_n; autoD3BDB475_i += 1) {
         UnitCreate(1, "X1GuardianLevel2", 0, 13, gf_RandomSpawnPointNOTD(RegionCircle(UnitGroupCenterOfGroup(gv_marines), 90.0)), libNtve_gf_RandomAngle());
@@ -45322,7 +45328,6 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     Wait(20.0, c_timeReal);
     gf_SmartSpawnNOTD("Nazara", 90.0);
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
@@ -45338,7 +45343,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         Wait(3.0, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
+    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 1500.0));
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
     if ((gv_nightmare || gv_hell)) {
@@ -45354,7 +45359,6 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
     }
     gf_SurvivalNydusSpawn();
     Wait(40.0, c_timeReal);
-    gf_AwardMarineXPNOTD(libNtve_gf_DifficultyValueFixed(0.0, 0.0, 0.0, 300.0));
     SoundPlay(SoundLink("TTosh02TaldarimExecutor00007", -1), PlayerGroupAll(), 100.0, 0.0);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
