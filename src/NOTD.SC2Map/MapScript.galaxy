@@ -10387,7 +10387,7 @@ void gf_EnableSkipCinematic (bool lp_option) {
         gv_skipped = false;
         if ((gv_skipAll == false)) {
             TriggerEnable(gt_Skip, true);
-            if ((gv_isVeteranSquad == false)) {
+            if ((gv_isVeteranSquad == false) && (gv_survivalMode == false)) {
                 DialogCreate(66, 66, c_anchorTop, 0, 0, true);
                 gv_cinematicCue = DialogLastCreated();
                 DialogSetImageVisible(gv_cinematicCue, false);
