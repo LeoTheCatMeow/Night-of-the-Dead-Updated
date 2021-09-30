@@ -29099,34 +29099,35 @@ bool gt_Boss1bSpawn_Func (bool testConds, bool runActions) {
     }
     lv_localPointA = UnitGetPosition(gv_eilethyia);
     DialogDestroy(gv_cinematicCue);
-    if ((gf_SkipCinematicCheck() == false)) {
-        CameraInfoSetTarget(CameraInfoFromId(1030), lv_localPointA);
-        if ((gf_PreCinematicProcessing() == true)) {
-        }
+    CameraInfoSetTarget(CameraInfoFromId(1030), lv_localPointA);
+    if ((gf_PreCinematicProcessing() == true)) {
+    }
 
-        UnitPauseAll(true);
-        auto70D3520A_g = gv_marineSquad;
-        auto70D3520A_var = -1;
-        while (true) {
-            auto70D3520A_var = PlayerGroupNextPlayer(auto70D3520A_g, auto70D3520A_var);
-            if (auto70D3520A_var < 0) { break; }
-            VisRevealArea(auto70D3520A_var, RegionCircle(lv_localPointA, 7.0), 11.0, false);
-            CameraApplyInfo(auto70D3520A_var, CameraInfoFromId(1030), 0.0, -1, 10, true);
-        }
+    UnitPauseAll(true);
+    auto70D3520A_g = gv_marineSquad;
+    auto70D3520A_var = -1;
+    while (true) {
+        auto70D3520A_var = PlayerGroupNextPlayer(auto70D3520A_g, auto70D3520A_var);
+        if (auto70D3520A_var < 0) { break; }
+        VisRevealArea(auto70D3520A_var, RegionCircle(lv_localPointA, 7.0), 11.0, false);
+        CameraApplyInfo(auto70D3520A_var, CameraInfoFromId(1030), 0.0, -1, 10, true);
     }
     Wait(1.5, c_timeReal);
     SoundPlay(SoundLink("Transmission", -1), PlayerGroupActive(), 100.0, 0.0);
     UIDisplayMessage(PlayerGroupActive(), c_messageAreaCinematic, StringExternal("Param/Value/BD3E0FCC"));
     gf_MissionLogAppend(StringExternal("Param/Value/15B7932E"));
-    if ((gv_skipped == false)) {
+    if ((gf_SkipCinematicCheck() == false)) {
         Wait(5.0, c_timeReal);
-        UIClearMessages(PlayerGroupAll(), c_messageAreaCinematic);
-        UnitPauseAll(false);
-        if ((gf_PostCinematicProcessing() == true)) {
-        }
-
-        UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
     }
+    else {
+        Wait(1.5, c_timeReal);
+    }
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaCinematic);
+    UnitPauseAll(false);
+    if ((gf_PostCinematicProcessing() == true)) {
+    }
+
     UnitIssueOrder(gv_eilethyia, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionFromId(95))), c_orderQueueReplace);
     Wait(3.0, c_timeReal);
     UnitIssueOrder(gv_eilethyia, OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionFromId(95))), c_orderQueueReplace);
