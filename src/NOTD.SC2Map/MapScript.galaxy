@@ -2030,13 +2030,7 @@ void gf_RandomBanetrain ();
 void gf_SporelingWave ();
 void gf_RandomNydusPop ();
 point gf_RandomPointatGroundHeight (region lp_region, fixed lp_groundHeight);
-bool gf_DamageisFireWeapon (string lp_effect);
-bool gf_DamageisFireAbility (string lp_effect);
-bool gf_DamageisBlastWeapon (string lp_effect);
-bool gf_DamageisBlastAbility (string lp_effect);
-bool gf_DamageisPlasmaWeapon (string lp_effect);
-bool gf_DamageisPlasmaAbility (string lp_effect);
-bool gf_DamageisVolatile (string lp_effect);
+int gf_DamageEffectDeathType (string lp_effect);
 void gf_ZombieBossAIPathingGOTB (unit lp_unit, abilcmd lp_abilityCommand, point lp_target, fixed lp_searchRange);
 point gf_FindBestPathToTarget (unit lp_unit, point lp_target, fixed lp_searchRange, int lp_searchPoints);
 bool gf_CPDecayFactor ();
@@ -2352,11 +2346,12 @@ trigger gt_EliteMutationBoss;
 trigger gt_EliteMutationChanceRotation;
 trigger gt_UnitInfected;
 trigger gt_InfectionCleared;
+trigger gt_UnitScorching;
 trigger gt_Barrels;
 trigger gt_BarrelKills;
 trigger gt_GateEnterAirlockMainGateOuter;
 trigger gt_GateEnterAirlockMainGateInner;
-trigger gt_HellFireIgnite;
+trigger gt_HellFire;
 trigger gt_NavyCrossCheck;
 trigger gt_NightmareBonus;
 trigger gt_HellBonus;
@@ -8634,6 +8629,14 @@ bool auto_gf_SmartSpawnWithBehaviorNOTD_TriggerFunc (bool testConds, bool runAct
     Wait(0.25, c_timeGame);
     UnitIssueOrder(lv_spawnUnit, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
     UnitGroupAdd(gv_zombieWave, lv_spawnUnit);
+    if ((UnitBehaviorCount(UnitLastCreated(), "Infection") != 0)) {
+        UnitGroupAdd(gv_infectedUnits, UnitLastCreated());
+    }
+    if (gv_hell) {
+        if (((UnitBehaviorCount(UnitLastCreated(), "Scorching") != 0) || (UnitBehaviorCount(UnitLastCreated(), "ScorchingBoss") != 0))) {
+            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+        }
+    }
     return true;
 }
 
@@ -9262,46 +9265,16 @@ point gf_RandomPointatGroundHeight (region lp_region, fixed lp_groundHeight) {
     return lv_randomPoint;
 }
 
-bool gf_DamageisFireWeapon (string lp_effect) {
-    // Automatic Variable Declarations
-    // Implementation
-    return ((lp_effect == "FlamethrowerMK2Damage") || (lp_effect == "LaserRifleDamage") || (lp_effect == "StingerMK3Damage") || (lp_effect == "SiegeBreakerDamage") || (lp_effect == "ThermalLancesMU") || (lp_effect == "BURNDamageLevel1") || (lp_effect == "BURNDamageLevel1") || false);
-}
+int gf_DamageEffectDeathType (string lp_effect) {
+    // Variable Declarations
+    int lv_value;
 
-bool gf_DamageisFireAbility (string lp_effect) {
     // Automatic Variable Declarations
-    // Implementation
-    return ((lp_effect == "NukeDamage") || (lp_effect == "CircularLanceDamage") || (lp_effect == "BurstFireDamageLevel1") || (lp_effect == "BurstFireDamageLevel2") || (lp_effect == "BurstFireDamageLevel3") || (lp_effect == "SigmaDamage") || (lp_effect == "ArmageddonDamage") || (lp_effect == "FaithDamage") || (lp_effect == "ExplodingBarrelLargeExplosion") || (lp_effect == "IonCannonDamage") || (lp_effect == "InfernoDamage"));
-}
+    // Variable Initialization
+    lv_value = CatalogFieldValueGetAsInt(c_gameCatalogEffect, lp_effect, "Death", c_playerAny);
 
-bool gf_DamageisBlastWeapon (string lp_effect) {
-    // Automatic Variable Declarations
     // Implementation
-    return ((lp_effect == "WidowMineExplodeSplash"));
-}
-
-bool gf_DamageisBlastAbility (string lp_effect) {
-    // Automatic Variable Declarations
-    // Implementation
-    return ((lp_effect == "SatchelLevel1Damage") || (lp_effect == "SatchelLevel2Damage") || (lp_effect == "L3GrenadeExplosion"));
-}
-
-bool gf_DamageisPlasmaWeapon (string lp_effect) {
-    // Automatic Variable Declarations
-    // Implementation
-    return ((lp_effect == "IVAXPlasmaCannons"));
-}
-
-bool gf_DamageisPlasmaAbility (string lp_effect) {
-    // Automatic Variable Declarations
-    // Implementation
-    return ((lp_effect == "PlasmaDischargeDamage"));
-}
-
-bool gf_DamageisVolatile (string lp_effect) {
-    // Automatic Variable Declarations
-    // Implementation
-    return ((lp_effect == "VolatileBurstBeastling") || (lp_effect == "VolatileBurstU"));
+    return lv_value;
 }
 
 trigger auto_gf_ZombieBossAIPathingGOTB_Trigger = null;
@@ -13039,6 +13012,11 @@ bool auto_gf_ACAmbientSpawn_TriggerFunc (bool testConds, bool runActions) {
                 else if ((RandomInt(0, 30) == 1)) {
                     if ((RandomInt(0, 2) == 1)) {
                         gf_SmartSpawnNOTD("Devourer2", 60.0);
+                        if (gv_hell && (RandomInt(0, 1) == 1)) {
+                            UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+                            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+                        }
                     }
                     else {
                         gf_SmartSpawnNOTD("UltraliskBurrowed", 60.0);
@@ -14262,6 +14240,11 @@ bool auto_gf_SurvivalNydusSpawn_TriggerFunc (bool testConds, bool runActions) {
             if ((PlayerGetPropertyInt(14, c_playerPropSuppliesUsed) < 110)) {
                 UnitCreate(1, "Devourer", 0, 14, UnitGetPosition(auto50BD7ED6_var), libNtve_gf_RandomAngle());
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                if (gv_hell) {
+                    UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+                    UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                    UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+                }
                 Wait(0.2, c_timeGame);
             }
 
@@ -18290,6 +18273,14 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, libNtve_gf_ConvertBooleanToText((gf_DamageEffectDeathType("FlamethrowerMK2Damage") == c_deathTypeFire)));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, libNtve_gf_ConvertBooleanToText((gf_DamageEffectDeathType("DevourerClawsDamage") == c_deathTypeEviscerate)));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, libNtve_gf_ConvertBooleanToText((gf_DamageEffectDeathType("InfestedTalons") == c_deathTypeSquish)));
     return true;
 }
 
@@ -23737,6 +23728,12 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
     point lv_localPointA;
 
     // Automatic Variable Declarations
+    unitgroup auto20BA1673_g;
+    int auto20BA1673_u;
+    unit auto20BA1673_var;
+    int auto1106CCE4_n;
+    int auto1106CCE4_i;
+
     // Variable Initialization
     lv_deadUnit = EventUnit();
     lv_deadUnitType = UnitGetType(EventUnit());
@@ -23744,7 +23741,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(((lv_deadUnitType == "Devourer") || (lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran") || (lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2") || (lv_deadUnitType == "Titan") || UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0))))) {
+        if (!(((lv_deadUnitType == "Devourer") || (lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran") || (lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2") || (lv_deadUnitType == "Titan") || (lv_deadUnitType == "Baneling") || (lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal") || UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0))))) {
             return false;
         }
 
@@ -23766,6 +23763,11 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
             Wait(0.1, c_timeReal);
             UnitCreate(1, "Baneling", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
             UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+            if (gv_hell && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+                UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+                UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+            }
         }
 
     }
@@ -23774,7 +23776,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         if (!(gv_cinematicMode)) {
             UnitCreate(1, "Zergling", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
             UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-            if (UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+            if (gv_hell && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
             }
         }
@@ -23787,8 +23789,14 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
                 libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
                 UnitCreate(3, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
                 UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
-                if (UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
-                    UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+                if (gv_hell && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+                    auto20BA1673_g = UnitLastCreatedGroup();
+                    auto20BA1673_u = UnitGroupCount(auto20BA1673_g, c_unitCountAll);
+                    for (;; auto20BA1673_u -= 1) {
+                        auto20BA1673_var = UnitGroupUnitFromEnd(auto20BA1673_g, auto20BA1673_u);
+                        if (auto20BA1673_var == null) { break; }
+                        UnitBehaviorAdd(auto20BA1673_var, "Scorching", auto20BA1673_var, 1);
+                    }
                 }
             }
 
@@ -23804,6 +23812,17 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
                 UnitGroupAddUnitGroup(gv_zombieWave, UnitLastCreatedGroup());
             }
 
+        }
+        else if ((lv_deadUnitType == "Baneling") && gv_hell && !(gv_cinematicMode) && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+            UnitCreate(1, "NapalmFire", c_unitCreateIgnorePlacement, libNtve_gf_KillingPlayer(), lv_localPointA, libNtve_gf_RandomAngle());
+        }
+        else if (((lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal")) && gv_hell && !(gv_cinematicMode) && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+            UnitCreate(1, "NapalmFire", 0, libNtve_gf_KillingPlayer(), lv_localPointA, libNtve_gf_RandomAngle());
+            auto1106CCE4_n = RandomInt(0, 3);
+            for (auto1106CCE4_i = 1; auto1106CCE4_i <= auto1106CCE4_n; auto1106CCE4_i += 1) {
+                Wait(0.1, c_timeReal);
+                UnitCreate(1, "NapalmFire", 0, libNtve_gf_KillingPlayer(), RegionRandomPoint(RegionCircle(lv_localPointA, 1.5)), libNtve_gf_RandomAngle());
+            }
         }
         if (!(gv_cinematicMode) && (UnitGetOwner(lv_deadUnit) < 13) && (UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0)))) {
             libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
@@ -23833,15 +23852,17 @@ void gt_ZombieDeathEffects_Init () {
 bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_localPointA;
+    bool lv_isScorching;
 
     // Automatic Variable Declarations
-    int auto0B0DA9E5_n;
-    int auto0B0DA9E5_i;
+    int auto2B71D0CC_n;
+    int auto2B71D0CC_i;
     const int autoCB76FEDC_ae = gv_numberofPlayers;
     int autoCB76FEDC_var;
 
     // Variable Initialization
     lv_localPointA = UnitGetPosition(EventUnit());
+    lv_isScorching = UnitGroupHasUnit(gv_scorchingUnits, EventUnit());
 
     // Conditions
     if (testConds) {
@@ -23861,29 +23882,38 @@ bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
     gv_infestorLock = true;
     UnitGroupRemove(gv_infestors, EventUnit());
     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
-    if (((EventUnitDamageDeathCheck(c_deathTypeFire) == false) || UnitGroupHasUnit(gv_scorchingUnits, EventUnit()))) {
+    if (((EventUnitDamageDeathCheck(c_deathTypeFire) == false) || lv_isScorching)) {
         libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreepLarge", 0, 14, lv_localPointA, RegionRandomPoint(RegionPlayableMap()));
         if ((gv_nightmare || gv_hell)) {
             libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
         }
-
-        if ((gv_nightmare || gv_hell)) {
-            auto0B0DA9E5_n = gv_spawnFactor;
-            for (auto0B0DA9E5_i = 1; auto0B0DA9E5_i <= auto0B0DA9E5_n; auto0B0DA9E5_i += 1) {
-                UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
+        if (gv_nightmare) {
+            UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
+            UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+            UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
+        }
+        else if (gv_hell) {
+            auto2B71D0CC_n = gv_spawnFactor;
+            for (auto2B71D0CC_i = 1; auto2B71D0CC_i <= auto2B71D0CC_n; auto2B71D0CC_i += 1) {
+                UnitCreate(1, "Slither", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
                 UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
-                if (UnitGroupHasUnit(gv_scorchingUnits, EventUnit())) {
+                UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                UnitBehaviorAddPlayer(UnitLastCreated(), "SpeedBuff", 13, 1);
+                if (lv_isScorching) {
+                    UnitWeaponRemove(UnitLastCreated(), "VenomousFangs");
+                    UnitWeaponAdd(UnitLastCreated(), "FlamethrowerMK2", null);
                     UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
                 }
-                if (gv_hell && (RandomInt(0, 2) == 1)) {
-                    UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 14, 1);
-                    UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
+                else {
+                    if ((RandomInt(0, 2) == 1)) {
+                        UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
+                    }
                 }
                 Wait(0.1, c_timeGame);
             }
         }
-
     }
     gf_AwardMarineXPNOTD(75.0);
     SoundPlay(SoundLink("Dialogue_TransmissionStart", -1), PlayerGroupActive(), 100.0, 0.0);
@@ -24061,13 +24091,12 @@ bool gt_InfestorAI_Func (bool testConds, bool runActions) {
                         UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
                         UnitBehaviorAdd(UnitLastCreated(), "Infectious", UnitLastCreated(), 1);
                     }
-                    else if (lv_isScorching && ((lv_infestorOwner == 13) || (lv_infestorOwner == 14))) {
-                        libNtve_gf_UnitCreateFacingPoint(1, "Parasite", 0, lv_infestorOwner, UnitGetPosition(auto3952867D_var), RegionRandomPoint(lv_infestorArea));
-                        UnitWeaponRemove(UnitLastCreated(), "NeedleClaws2");
-                        UnitWeaponAdd(UnitLastCreated(), "FlamethrowerMK2", null);
+                    else if (gv_hell && lv_isScorching && ((lv_infestorOwner == 13) || (lv_infestorOwner == 14))) {
+                        libNtve_gf_UnitCreateFacingPoint(1, "Baneling", 0, lv_infestorOwner, UnitGetPosition(auto3952867D_var), RegionRandomPoint(lv_infestorArea));
+                        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
                         UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
                         UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
-                        UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
+                        UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
                     }
                     else if (((gv_squadRating >= 1700) || (gv_nightmare == true)) && ((lv_infestorOwner == 13) || (lv_infestorOwner == 14)) && (RandomInt(0, 2) == 1)) {
                         libNtve_gf_UnitCreateFacingPoint(1, "Blindling", 0, lv_infestorOwner, UnitGetPosition(auto3952867D_var), RegionRandomPoint(lv_infestorArea));
@@ -24473,6 +24502,35 @@ void gt_InfectionCleared_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Unit Scorching
+//--------------------------------------------------------------------------------------------------
+bool gt_UnitScorching_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(gv_hell)) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupAdd(gv_scorchingUnits, EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_UnitScorching_Init () {
+    gt_UnitScorching = TriggerCreate("gt_UnitScorching_Func");
+    TriggerEnable(gt_UnitScorching, false);
+    TriggerAddEventUnitBehaviorChange(gt_UnitScorching, null, "Scorching", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(gt_UnitScorching, null, "ScorchingBoss", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Barrels
 //--------------------------------------------------------------------------------------------------
 bool gt_Barrels_Func (bool testConds, bool runActions) {
@@ -24628,9 +24686,9 @@ void gt_GateEnterAirlockMainGateInner_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hell Fire Ignite
+// Trigger: Hell Fire
 //--------------------------------------------------------------------------------------------------
-bool gt_HellFireIgnite_Func (bool testConds, bool runActions) {
+bool gt_HellFire_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
@@ -24638,15 +24696,27 @@ bool gt_HellFireIgnite_Func (bool testConds, bool runActions) {
             return false;
         }
 
+        if (!((gf_DamageEffectDeathType(EventUnitDamageEffect()) == c_deathTypeFire))) {
+            return false;
+        }
+
         if (!(UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeBiological))) {
             return false;
         }
 
-        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropShields, c_unitPropCurrent) < 5.0))) {
+        if (!((UnitBehaviorCount(EventUnit(), "Scorching") == 0))) {
             return false;
         }
 
-        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropLifePercent, c_unitPropCurrent) < RandomFixed(0.0, 50.0)))) {
+        if (!((UnitBehaviorCount(EventUnit(), "ScorchingBoss") == 0))) {
+            return false;
+        }
+
+        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropShields, c_unitPropCurrent) < 1.0))) {
+            return false;
+        }
+
+        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropLife, c_unitPropCurrent) < RandomFixed(0.0, (3.0 * EventUnitDamageAmount()))))) {
             return false;
         }
     }
@@ -24656,39 +24726,15 @@ bool gt_HellFireIgnite_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if (PlayerGroupHasPlayer(gv_marineSquad, UnitGetOwner(EventUnit()))) {
-        UnitBehaviorAddPlayer(EventUnit(), "Napalm2", 13, 1);
-    }
-    else {
-        UnitBehaviorAddPlayer(EventUnit(), "Napalm2", UnitGetOwner(EventUnitDamageSourceUnit()), 1);
-    }
+    UnitBehaviorAddPlayer(EventUnit(), "Napalm2", EventUnitDamageSourcePlayer(), 1);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_HellFireIgnite_Init () {
-    gt_HellFireIgnite = TriggerCreate("gt_HellFireIgnite_Func");
-    TriggerEnable(gt_HellFireIgnite, false);
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "LaserRifleDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "FlamethrowerMK2Damage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "Helium3IgniterBurnDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "BurstFireDamageLevel3");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "BURNDamageLevel2");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "NukeDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "ArmageddonDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "SatchelLevel2Damage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "FaithDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "InfernoDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "IonCannonDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "CircularLanceDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "IVAXPlasmaCannons");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "ExplodingBarrelLargeExplosion");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "StingerMK3Damage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "SigmaDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "PlasmaDischargeDamage");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "VolatileBurstBeastling");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "VolatileBurstU");
-    TriggerAddEventUnitDamaged(gt_HellFireIgnite, null, c_unitDamageTypeAny, c_unitDamageNonFatal, "SiegeBreakerDamage");
+void gt_HellFire_Init () {
+    gt_HellFire = TriggerCreate("gt_HellFire_Func");
+    TriggerEnable(gt_HellFire, false);
+    TriggerAddEventUnitDamaged(gt_HellFire, null, c_unitDamageTypeRanged, c_unitDamageNonFatal, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -26964,7 +27010,7 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
                 UnitSetPropertyFixed(auto881692DC_var, c_unitPropLife, 150.0);
             }
         }
-        TriggerEnable(gt_HellFireIgnite, true);
+        TriggerEnable(gt_HellFire, true);
         gv_creditCap += 500;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -34930,7 +34976,7 @@ bool gt_ACW1Landing_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_ACC1ItemSpawn, true, false);
     Wait(10.0, c_timeReal);
     if (gv_hell) {
-        TriggerEnable(gt_HellFireIgnite, true);
+        TriggerEnable(gt_HellFire, true);
         gv_creditCap += 1000;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -35095,6 +35141,11 @@ bool gt_ACW1Landing_Func (bool testConds, bool runActions) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Beastling2", 0, 14, RegionRandomPoint(gv_chapter1SpawnRegion[RandomInt(1, 4)]), RegionRandomPoint(RegionFromId(29)));
                 UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBeastling", 0)), c_orderQueueReplace);
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                if (gv_hell) {
+                    UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+                    UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                    UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+                }
             }
 
         }
@@ -35130,6 +35181,11 @@ bool gt_ACW1Landing_Func (bool testConds, bool runActions) {
                 libNtve_gf_UnitCreateFacingPoint(1, "Beastling2", 0, 14, RegionRandomPoint(gv_chapter1SpawnRegion[RandomInt(1, 4)]), RegionRandomPoint(RegionFromId(29)));
                 UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("UnburrowBeastling", 0)), c_orderQueueReplace);
                 UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+                if (gv_hell) {
+                    UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+                    UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                    UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+                }
             }
 
         }
@@ -39210,7 +39266,7 @@ bool gt_STInitialize_Func (bool testConds, bool runActions) {
 
     Wait(9.0, c_timeReal);
     if (gv_hell) {
-        TriggerEnable(gt_HellFireIgnite, true);
+        TriggerEnable(gt_HellFire, true);
         gv_creditCap += 1500;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -44460,7 +44516,7 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
         Wait(0.3, c_timeReal);
         if ((RandomInt(0, 5) == 1)) {
             if (gv_hell && (RandomInt(0, 3) == 1)) {
-                gf_SmartSpawnWithBehaviorNOTD("Slither", 22.0, "AdvancedMutation", "Infectious", null);
+                gf_SmartSpawnWithBehaviorNOTD("Slither", 22.0, "AdvancedMutation", "Infectious", "Rampage");
                 UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
             }
             else {
@@ -44473,7 +44529,7 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
     TriggerEnable(gt_NightmareHellMode, false);
     TriggerEnable(gt_OutbreakCommand, false);
     if (gv_hell) {
-        TriggerEnable(gt_HellFireIgnite, true);
+        TriggerEnable(gt_HellFire, true);
         gv_creditCap += 1000;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -44674,7 +44730,12 @@ bool gt_SurvivalW1115_Func (bool testConds, bool runActions) {
     gf_StoryMessageNOTD(StringExternal("Param/Value/C9B81C92"));
     TriggerExecute(gt_STC2ItemSpawn, true, false);
     gf_StatsModifyLock();
-    gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 5), "BanelingBurrowed", 35.0, "AdvancedMutation", null, null, 0.2, c_timeReal);
+    if (gv_hell) {
+        gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 5), "BanelingBurrowed", 35.0, "AdvancedMutation", "Scorching", null, 0.2, c_timeReal);
+    }
+    else {
+        gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 5), "BanelingBurrowed", 35.0, "AdvancedMutation", null, null, 0.2, c_timeReal);
+    }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 15.0, c_timeReal);
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
@@ -45188,6 +45249,11 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
     auto61FD287A_n = (gv_spawnFactor * 7);
     for (auto61FD287A_i = 1; auto61FD287A_i <= auto61FD287A_n; auto61FD287A_i += 1) {
         gf_SmartSpawnNOTD("BanelingBurrowed", 80.0);
+        if (gv_hell) {
+            UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+        }
         gf_SmartSpawnNOTD("Blindling2", 80.0);
         Wait(0.5, c_timeReal);
     }
@@ -45199,6 +45265,11 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
     autoF33E36B1_n = (gv_spawnFactor * 5);
     for (autoF33E36B1_i = 1; autoF33E36B1_i <= autoF33E36B1_n; autoF33E36B1_i += 1) {
         gf_SmartSpawnWithBehaviorNOTD("Beastling2", 70.0, "AdvancedMutation", null, null);
+        if (gv_hell) {
+            UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+        }
         Wait(1.0, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 30.0, c_timeReal);
@@ -45216,17 +45287,10 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 13, 1);
         UnitBehaviorAddPlayer(UnitLastCreated(), "Detector2", 13, 1);
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-        if (gv_hell) {
-            if ((RandomInt(0, 5) == 1)) {
-                UnitSetTeamColorIndex(UnitLastCreated(), 6);
-                UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(UnitLastCreated(), 1));
-                UnitWeaponAdd(UnitLastCreated(), "LaserRifle", null);
-            }
-            else if ((RandomInt(0, 10) == 1)) {
-                UnitSetTeamColorIndex(UnitLastCreated(), 15);
-                UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(UnitLastCreated(), 1));
-                UnitWeaponAdd(UnitLastCreated(), "StingerMK3", null);
-            }
+        if (gv_hell && (RandomInt(0, 5) == 1)) {
+            UnitSetTeamColorIndex(UnitLastCreated(), 6);
+            UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(UnitLastCreated(), 1));
+            UnitWeaponAdd(UnitLastCreated(), "LaserRifle", null);
         }
         Wait(0.35, c_timeReal);
     }
@@ -45349,7 +45413,7 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         if (gv_hell && (RandomInt(0, 5) == 1)) {
             UnitSetTeamColorIndex(lv_localDevastator, 15);
             UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(lv_localDevastator, 1));
-            UnitWeaponAdd(lv_localDevastator, "StingerMK3", null);
+            UnitWeaponAdd(lv_localDevastator, "SJBattlecruiser", null);
         }
         libNtve_gf_PauseUnit(lv_localDevastator, false);
         libNtve_gf_ChangeUnitDamage(lv_localDevastator, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Full);
@@ -45412,6 +45476,11 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         UnitCreate(1, "NydusCanal", 0, 14, gf_RandomSpawnPointNOTD(RegionCircle(UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive)), 25.0)), libNtve_gf_RandomAngle());
         UnitGroupAdd(gv_zombieWave, UnitLastCreated());
         UnitGroupAdd(gv_survivalNydusGroup, UnitLastCreated());
+        if (gv_hell) {
+            UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
+        }
         Wait(2.0, c_timeReal);
     }
     gf_SurvivalNydusSpawn();
@@ -49372,11 +49441,12 @@ void InitTriggers () {
     gt_EliteMutationChanceRotation_Init();
     gt_UnitInfected_Init();
     gt_InfectionCleared_Init();
+    gt_UnitScorching_Init();
     gt_Barrels_Init();
     gt_BarrelKills_Init();
     gt_GateEnterAirlockMainGateOuter_Init();
     gt_GateEnterAirlockMainGateInner_Init();
-    gt_HellFireIgnite_Init();
+    gt_HellFire_Init();
     gt_NavyCrossCheck_Init();
     gt_NightmareBonus_Init();
     gt_HellBonus_Init();
