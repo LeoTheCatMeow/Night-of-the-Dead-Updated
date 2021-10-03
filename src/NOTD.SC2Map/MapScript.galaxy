@@ -18800,11 +18800,13 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
     }
 
     Wait(80.0, c_timeReal);
-    if ((RandomInt(0, 9) == 1)) {
+    if ((RandomInt(0, 3) == 1)) {
         UnitCreate(1, "LocustFlying", 0, 10, gf_RandomSpawnPointNOTD(RegionEntireMap()), libNtve_gf_RandomAngle());
         libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+        UnitSetHeight(UnitLastCreated(), -2.5, 0.0);
         UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(UnitLastCreated(), 1));
         UnitBehaviorAdd(UnitLastCreated(), "CloakedUndetectable", UnitLastCreated(), 1);
+        UnitBehaviorAdd(UnitLastCreated(), "2xUnitSpeed", UnitLastCreated(), 1);
         UnitGroupAdd(gv_critters, UnitLastCreated());
         TriggerEnable(gt_CritterAI, true);
     }
@@ -23767,8 +23769,6 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
             UnitGroupAdd(gv_zombieWave, UnitLastCreated());
             if (gv_hell && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
-                UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
-                UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
             }
         }
 
@@ -23830,7 +23830,8 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
             libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
             if (gv_hell) {
                 UnitCreate(1, "Seeker", c_unitCreateIgnorePlacement, 14, lv_localPointA, UnitGetFacing(lv_deadUnit));
-                UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 14, 1);
+                UnitBehaviorAddPlayer(UnitLastCreated(), "AdvancedMutation", 14, 2);
+                UnitBehaviorAddPlayer(UnitLastCreated(), "Frenzy100", 14, 1);
                 UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
             }
             else {
@@ -24090,7 +24091,8 @@ bool gt_InfestorAI_Func (bool testConds, bool runActions) {
                 if ((UnitIsAlive(auto3952867D_var) == true) && (gv_cinematicMode == false)) {
                     if (lv_isInfectious && ((lv_infestorOwner == 13) || (lv_infestorOwner == 14))) {
                         libNtve_gf_UnitCreateFacingPoint(1, "Seeker", 0, lv_infestorOwner, UnitGetPosition(auto3952867D_var), RegionRandomPoint(lv_infestorArea));
-                        UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+                        UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 2);
+                        UnitBehaviorAddPlayer(UnitLastCreated(), "Frenzy100", 14, 1);
                         UnitBehaviorAdd(UnitLastCreated(), "Infectious", UnitLastCreated(), 1);
                     }
                     else if (gv_hell && lv_isScorching && ((lv_infestorOwner == 13) || (lv_infestorOwner == 14))) {
@@ -24151,6 +24153,7 @@ bool gt_CritterAI_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_target;
     bool lv_near;
+    int lv_rnd;
 
     // Automatic Variable Declarations
     unitgroup autoD8115512_g;
@@ -24178,13 +24181,22 @@ bool gt_CritterAI_Func (bool testConds, bool runActions) {
         autoD8115512_var = UnitGroupUnitFromEnd(autoD8115512_g, autoD8115512_u);
         if (autoD8115512_var == null) { break; }
         while (lv_near) {
-            lv_target = RegionRandomPoint(RegionPlayableMap());
+            if ((RandomInt(0, 7) == 1)) {
+                lv_target = UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive));
+            }
+            else {
+                lv_target = RegionRandomPoint(RegionPlayableMap());
+            }
             lv_near = (DistanceBetweenPoints(UnitGetPosition(autoD8115512_var), lv_target) < 50.0);
         }
-        if ((RandomInt(0, 7) == 1)) {
+        lv_rnd = RandomInt(0, 7);
+        if ((lv_rnd == 1)) {
             UnitIssueOrder(autoD8115512_var, OrderTargetingPoint(AbilityCommand("move", 1), lv_target), c_orderQueueReplace);
         }
-        else {
+        else if ((lv_rnd == 2)) {
+            UnitSetPosition(autoD8115512_var, lv_target, true);
+        }
+        else if (true) {
             UnitIssueOrder(autoD8115512_var, OrderTargetingPoint(AbilityCommand("move", 1), lv_target), c_orderQueueAddToEnd);
         }
     }
@@ -24195,7 +24207,7 @@ bool gt_CritterAI_Func (bool testConds, bool runActions) {
 void gt_CritterAI_Init () {
     gt_CritterAI = TriggerCreate("gt_CritterAI_Func");
     TriggerEnable(gt_CritterAI, false);
-    TriggerAddEventTimePeriodic(gt_CritterAI, 15.0, c_timeGame);
+    TriggerAddEventTimePeriodic(gt_CritterAI, 10.0, c_timeReal);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -24567,6 +24579,7 @@ bool gt_UnitScorching_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
     UnitGroupAdd(gv_scorchingUnits, EventUnit());
     return true;
 }
@@ -45011,8 +45024,6 @@ void gt_SurvivalW1620_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    int auto6DA4E8D0_n;
-    int auto6DA4E8D0_i;
     int auto10007FE5_n;
     int auto10007FE5_i;
 
@@ -45037,21 +45048,22 @@ bool gt_SurvivalW2125_Func (bool testConds, bool runActions) {
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
-    auto6DA4E8D0_n = (gv_spawnFactor * 10);
-    for (auto6DA4E8D0_i = 1; auto6DA4E8D0_i <= auto6DA4E8D0_n; auto6DA4E8D0_i += 1) {
-        if (gv_hell) {
-            gf_SmartSpawnWithBehaviorNOTD("SeekerBurrowed", 35.0, "AdvancedMutation", "Infectious", null);
-        }
-        else {
-            gf_SmartSpawnWithBehaviorNOTD("SeekerBurrowed", 35.0, "AdvancedMutation", null, null);
-        }
-        Wait(0.35, c_timeReal);
+    if (gv_hell) {
+        gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 10), "SeekerBurrowed", 35.0, "AdvancedMutation", "Frenzy100", "Infectious", 0.35, c_timeReal);
+    }
+    else {
+        gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 10), "SeekerBurrowed", 35.0, "AdvancedMutation", null, null, 0.35, c_timeReal);
     }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 20.0, c_timeReal);
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
     gf_SurvivalWaveTitleDisplay(gv_wave);
-    gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 2), "InfestedAbominationBurrowed", 55.0, "SpeedDebuff", null, null, 5.0, c_timeReal);
+    if (gv_hell) {
+        gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 2), "InfestedAbominationBurrowed", 55.0, "Frenzy100", null, null, 5.0, c_timeReal);
+    }
+    else {
+        gf_SmartSpawnWithBehaviorRepeat((gv_spawnFactor * 2), "InfestedAbominationBurrowed", 55.0, "SpeedDebuff", null, null, 5.0, c_timeReal);
+    }
     gf_WaitIf(gf_SkipCinematicCheck(), 5.0, 50.0, c_timeReal);
     gf_EnableSkipCinematic(true);
     gv_wave += 1;
@@ -45308,8 +45320,6 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         gf_SmartSpawnNOTD("BanelingBurrowed", 80.0);
         if (gv_hell) {
             UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
-            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
-            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
         }
         gf_SmartSpawnNOTD("Blindling2", 80.0);
         Wait(0.5, c_timeReal);
@@ -45324,8 +45334,6 @@ bool gt_SurvivalW3135_Func (bool testConds, bool runActions) {
         gf_SmartSpawnWithBehaviorNOTD("Beastling2", 70.0, "AdvancedMutation", null, null);
         if (gv_hell) {
             UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
-            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
-            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
         }
         Wait(1.0, c_timeReal);
     }
@@ -45536,7 +45544,6 @@ bool gt_SurvivalW3640_Func (bool testConds, bool runActions) {
         if (gv_hell) {
             UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
             UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
-            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
         }
         Wait(2.0, c_timeReal);
     }
