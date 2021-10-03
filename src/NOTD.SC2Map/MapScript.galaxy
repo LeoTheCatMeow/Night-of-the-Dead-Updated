@@ -915,6 +915,7 @@ int[gv_numberofPlayers + 1] gv_shop;
 int[gv_numberofPlayers + 1][gv_numberOfShopOptions + 1] gv_shopButtons;
 int[gv_numberofPlayers + 1] gv_shopCloseButtons;
 bool[9] gv_shopSelected;
+unitgroup gv_critters;
 unitgroup gv_infestors;
 bool gv_infestorLock;
 bool gv_infestorAggroMode;
@@ -1522,6 +1523,7 @@ void InitGlobals () {
     for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
         gv_shopCloseButtons[init_i] = c_invalidDialogControlId;
     }
+    gv_critters = UnitGroupEmpty();
     gv_infestors = UnitGroupEmpty();
     gv_outbreakCounter = 100;
     gv_mutationChance = 8.0;
@@ -2340,6 +2342,7 @@ trigger gt_ZombieDeathEffects;
 trigger gt_InfestorKilled;
 trigger gt_InfestorAmbientSpawns;
 trigger gt_InfestorAI;
+trigger gt_CritterAI;
 trigger gt_OutbreakSpawn;
 trigger gt_EliteMutation;
 trigger gt_EliteMutationBoss;
@@ -8629,14 +8632,6 @@ bool auto_gf_SmartSpawnWithBehaviorNOTD_TriggerFunc (bool testConds, bool runAct
     Wait(0.25, c_timeGame);
     UnitIssueOrder(lv_spawnUnit, Order(AbilityCommand("UnburrowZombieLevel1", 0)), c_orderQueueReplace);
     UnitGroupAdd(gv_zombieWave, lv_spawnUnit);
-    if ((UnitBehaviorCount(UnitLastCreated(), "Infection") != 0)) {
-        UnitGroupAdd(gv_infectedUnits, UnitLastCreated());
-    }
-    if (gv_hell) {
-        if (((UnitBehaviorCount(UnitLastCreated(), "Scorching") != 0) || (UnitBehaviorCount(UnitLastCreated(), "ScorchingBoss") != 0))) {
-            UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
-        }
-    }
     return true;
 }
 
@@ -18805,6 +18800,14 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
     }
 
     Wait(80.0, c_timeReal);
+    if ((RandomInt(0, 9) == 1)) {
+        UnitCreate(1, "LocustFlying", 0, 10, gf_RandomSpawnPointNOTD(RegionEntireMap()), libNtve_gf_RandomAngle());
+        libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+        UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(UnitLastCreated(), 1));
+        UnitBehaviorAdd(UnitLastCreated(), "CloakedUndetectable", UnitLastCreated(), 1);
+        UnitGroupAdd(gv_critters, UnitLastCreated());
+        TriggerEnable(gt_CritterAI, true);
+    }
     auto83606DB6_var = gv_indexBaseValue;
     for ( ; auto83606DB6_var <= auto83606DB6_ae; auto83606DB6_var += 1 ) {
         UnitCreate(1, "InfestorBurrowed2", 0, 14, gf_RandomSpawnPointNOTD(RegionEntireMap()), libNtve_gf_RandomAngle());
@@ -18815,7 +18818,6 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
         if (gv_hell) {
             if ((RandomInt(0, 2) == 1)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
-                UnitGroupAdd(gv_scorchingUnits, UnitLastCreated());
             }
             else if ((RandomInt(0, 1) == 1)) {
                 UnitBehaviorAdd(UnitLastCreated(), "Infectious", UnitLastCreated(), 1);
@@ -24143,6 +24145,60 @@ void gt_InfestorAI_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Critter AI
+//--------------------------------------------------------------------------------------------------
+bool gt_CritterAI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_target;
+    bool lv_near;
+
+    // Automatic Variable Declarations
+    unitgroup autoD8115512_g;
+    int autoD8115512_u;
+    unit autoD8115512_var;
+
+    // Variable Initialization
+    lv_near = true;
+
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoD8115512_g = gv_critters;
+    autoD8115512_u = UnitGroupCount(autoD8115512_g, c_unitCountAll);
+    for (;; autoD8115512_u -= 1) {
+        autoD8115512_var = UnitGroupUnitFromEnd(autoD8115512_g, autoD8115512_u);
+        if (autoD8115512_var == null) { break; }
+        while (lv_near) {
+            lv_target = RegionRandomPoint(RegionPlayableMap());
+            lv_near = (DistanceBetweenPoints(UnitGetPosition(autoD8115512_var), lv_target) < 50.0);
+        }
+        if ((RandomInt(0, 7) == 1)) {
+            UnitIssueOrder(autoD8115512_var, OrderTargetingPoint(AbilityCommand("move", 1), lv_target), c_orderQueueReplace);
+        }
+        else {
+            UnitIssueOrder(autoD8115512_var, OrderTargetingPoint(AbilityCommand("move", 1), lv_target), c_orderQueueAddToEnd);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CritterAI_Init () {
+    gt_CritterAI = TriggerCreate("gt_CritterAI_Func");
+    TriggerEnable(gt_CritterAI, false);
+    TriggerAddEventTimePeriodic(gt_CritterAI, 15.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Outbreak Spawn
 //--------------------------------------------------------------------------------------------------
 bool gt_OutbreakSpawn_Func (bool testConds, bool runActions) {
@@ -24506,13 +24562,6 @@ void gt_InfectionCleared_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_UnitScorching_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!(gv_hell)) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -27010,7 +27059,10 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
                 UnitSetPropertyFixed(auto881692DC_var, c_unitPropLife, 150.0);
             }
         }
+        TriggerEnable(gt_UnitInfected, true);
+        TriggerEnable(gt_InfectionCleared, true);
         TriggerEnable(gt_HellFire, true);
+        TriggerEnable(gt_UnitScorching, true);
         gv_creditCap += 500;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -34976,7 +35028,10 @@ bool gt_ACW1Landing_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_ACC1ItemSpawn, true, false);
     Wait(10.0, c_timeReal);
     if (gv_hell) {
+        TriggerEnable(gt_UnitInfected, true);
+        TriggerEnable(gt_InfectionCleared, true);
         TriggerEnable(gt_HellFire, true);
+        TriggerEnable(gt_UnitScorching, true);
         gv_creditCap += 1000;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -39267,6 +39322,7 @@ bool gt_STInitialize_Func (bool testConds, bool runActions) {
     Wait(9.0, c_timeReal);
     if (gv_hell) {
         TriggerEnable(gt_HellFire, true);
+        TriggerEnable(gt_UnitScorching, true);
         gv_creditCap += 1500;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -44530,6 +44586,7 @@ bool gt_SurvivalW15_Func (bool testConds, bool runActions) {
     TriggerEnable(gt_OutbreakCommand, false);
     if (gv_hell) {
         TriggerEnable(gt_HellFire, true);
+        TriggerEnable(gt_UnitScorching, true);
         gv_creditCap += 1000;
         if (gv_eliteMutationActivated) {
             gv_creditCap += 500;
@@ -49435,6 +49492,7 @@ void InitTriggers () {
     gt_InfestorKilled_Init();
     gt_InfestorAmbientSpawns_Init();
     gt_InfestorAI_Init();
+    gt_CritterAI_Init();
     gt_OutbreakSpawn_Init();
     gt_EliteMutation_Init();
     gt_EliteMutationBoss_Init();
