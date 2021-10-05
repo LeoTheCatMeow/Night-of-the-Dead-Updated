@@ -688,6 +688,7 @@ unit gv_incompleteIVAX;
 unit[3] gv_sensorTower;
 unitgroup gv_infectedUnits;
 unitgroup gv_scorchingUnits;
+unitgroup gv_unknownUnits;
 region[6] gv_militaryBaseSpawn;
 region[6] gv_mineSpawn;
 region[12] gv_nydusNetwork;
@@ -915,7 +916,6 @@ int[gv_numberofPlayers + 1] gv_shop;
 int[gv_numberofPlayers + 1][gv_numberOfShopOptions + 1] gv_shopButtons;
 int[gv_numberofPlayers + 1] gv_shopCloseButtons;
 bool[9] gv_shopSelected;
-unitgroup gv_critters;
 unitgroup gv_infestors;
 bool gv_infestorLock;
 bool gv_infestorAggroMode;
@@ -1260,6 +1260,7 @@ void InitGlobals () {
     gv_complianceNexusGroup = UnitGroupEmpty();
     gv_infectedUnits = UnitGroupEmpty();
     gv_scorchingUnits = UnitGroupEmpty();
+    gv_unknownUnits = UnitGroupEmpty();
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_equipmentButton[init_i] = c_invalidDialogControlId;
     }
@@ -1523,7 +1524,6 @@ void InitGlobals () {
     for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
         gv_shopCloseButtons[init_i] = c_invalidDialogControlId;
     }
-    gv_critters = UnitGroupEmpty();
     gv_infestors = UnitGroupEmpty();
     gv_outbreakCounter = 100;
     gv_mutationChance = 8.0;
@@ -2342,7 +2342,7 @@ trigger gt_ZombieDeathEffects;
 trigger gt_InfestorKilled;
 trigger gt_InfestorAmbientSpawns;
 trigger gt_InfestorAI;
-trigger gt_CritterAI;
+trigger gt_UnknownAI;
 trigger gt_OutbreakSpawn;
 trigger gt_EliteMutation;
 trigger gt_EliteMutationBoss;
@@ -18800,15 +18800,17 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
     }
 
     Wait(80.0, c_timeReal);
-    if ((RandomInt(0, 3) == 1)) {
+    if ((RandomInt(0, 9) == 1)) {
         UnitCreate(1, "LocustFlying", 0, 10, gf_RandomSpawnPointNOTD(RegionEntireMap()), libNtve_gf_RandomAngle());
-        libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, 1000.0);
+        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLife, 1000.0);
+        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 100.0);
         UnitSetHeight(UnitLastCreated(), -2.5, 0.0);
         UnitWeaponRemove(UnitLastCreated(), UnitWeaponGet(UnitLastCreated(), 1));
         UnitBehaviorAdd(UnitLastCreated(), "CloakedUndetectable", UnitLastCreated(), 1);
-        UnitBehaviorAdd(UnitLastCreated(), "2xUnitSpeed", UnitLastCreated(), 1);
-        UnitGroupAdd(gv_critters, UnitLastCreated());
-        TriggerEnable(gt_CritterAI, true);
+        UnitBehaviorAdd(UnitLastCreated(), "2xUnitSpeed", UnitLastCreated(), 2);
+        UnitGroupAdd(gv_unknownUnits, UnitLastCreated());
+        TriggerEnable(gt_UnknownAI, true);
     }
     auto83606DB6_var = gv_indexBaseValue;
     for ( ; auto83606DB6_var <= auto83606DB6_ae; auto83606DB6_var += 1 ) {
@@ -23737,6 +23739,8 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
     unit auto20BA1673_var;
     int auto1106CCE4_n;
     int auto1106CCE4_i;
+    const int auto7930F91B_n = 3;
+    int auto7930F91B_i;
 
     // Variable Initialization
     lv_deadUnit = EventUnit();
@@ -23745,7 +23749,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(((lv_deadUnitType == "Devourer") || (lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran") || (lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2") || (lv_deadUnitType == "Titan") || (lv_deadUnitType == "Baneling") || (lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal") || UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0))))) {
+        if (!(((lv_deadUnitType == "Devourer") || (lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran") || (lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2") || (lv_deadUnitType == "Titan") || (lv_deadUnitType == "Baneling") || (lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal") || UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || UnitGroupHasUnit(gv_unknownUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0))))) {
             return false;
         }
 
@@ -23824,6 +23828,12 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
             for (auto1106CCE4_i = 1; auto1106CCE4_i <= auto1106CCE4_n; auto1106CCE4_i += 1) {
                 Wait(0.1, c_timeReal);
                 UnitCreate(1, "NapalmFire", 0, libNtve_gf_KillingPlayer(), RegionRandomPoint(RegionCircle(lv_localPointA, 1.5)), libNtve_gf_RandomAngle());
+            }
+        }
+        else if (UnitGroupHasUnit(gv_unknownUnits, lv_deadUnit)) {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringExternal("Param/Value/9F2AB564"));
+            for (auto7930F91B_i = 1; auto7930F91B_i <= auto7930F91B_n; auto7930F91B_i += 1) {
+                UnitCreate(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_localPointA, 1.0)), libNtve_gf_RandomAngle());
             }
         }
         if (!(gv_cinematicMode) && (UnitGetOwner(lv_deadUnit) < 13) && (UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0)))) {
@@ -24147,9 +24157,9 @@ void gt_InfestorAI_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Critter AI
+// Trigger: Unknown AI
 //--------------------------------------------------------------------------------------------------
-bool gt_CritterAI_Func (bool testConds, bool runActions) {
+bool gt_UnknownAI_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_target;
     bool lv_near;
@@ -24159,6 +24169,8 @@ bool gt_CritterAI_Func (bool testConds, bool runActions) {
     unitgroup autoD8115512_g;
     int autoD8115512_u;
     unit autoD8115512_var;
+    int autoD8D35750_n;
+    int autoD8D35750_i;
 
     // Variable Initialization
     lv_near = true;
@@ -24175,11 +24187,37 @@ bool gt_CritterAI_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    autoD8115512_g = gv_critters;
+    autoD8115512_g = gv_unknownUnits;
     autoD8115512_u = UnitGroupCount(autoD8115512_g, c_unitCountAll);
     for (;; autoD8115512_u -= 1) {
         autoD8115512_var = UnitGroupUnitFromEnd(autoD8115512_g, autoD8115512_u);
         if (autoD8115512_var == null) { break; }
+        if ((RandomInt(0, 3) == 1)) {
+            lv_target = UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(autoD8115512_var)));
+            lv_near = (DistanceBetweenPoints(UnitGetPosition(autoD8115512_var), lv_target) < 5.0);
+            if (lv_near) {
+                TriggerEnable(TriggerGetCurrent(), false);
+                autoD8D35750_n = RandomInt(3, 5);
+                for (autoD8D35750_i = 1; autoD8D35750_i <= autoD8D35750_n; autoD8D35750_i += 1) {
+                    if (UnitIsAlive(autoD8115512_var)) {
+                        lv_target = UnitGetPosition(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(autoD8115512_var)));
+                        UnitIssueOrder(autoD8115512_var, OrderTargetingPoint(AbilityCommand("move", 0), lv_target), c_orderQueueReplace);
+                    }
+                    Wait(1.0, c_timeReal);
+                }
+                if (UnitIsAlive(autoD8115512_var) && (RandomInt(0, 1) == 1)) {
+                    gf_MarineSpeechNOTD(UnitGroupClosestToPoint(gv_marines, UnitGetPosition(autoD8115512_var)), StringExternal("Param/Value/F9F1D332"));
+                }
+                Wait(1.0, c_timeReal);
+                if (UnitIsAlive(autoD8115512_var)) {
+                    lv_target = RegionRandomPoint(RegionPlayableMap());
+                    UnitIssueOrder(autoD8115512_var, OrderTargetingPoint(AbilityCommand("move", 1), lv_target), c_orderQueueReplace);
+                }
+                TriggerEnable(TriggerGetCurrent(), true);
+                return true;
+            }
+            lv_near = true;
+        }
         while (lv_near) {
             if ((RandomInt(0, 7) == 1)) {
                 lv_target = UnitGetPosition(UnitGroupRandomUnit(gv_marines, c_unitCountAlive));
@@ -24204,10 +24242,10 @@ bool gt_CritterAI_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_CritterAI_Init () {
-    gt_CritterAI = TriggerCreate("gt_CritterAI_Func");
-    TriggerEnable(gt_CritterAI, false);
-    TriggerAddEventTimePeriodic(gt_CritterAI, 10.0, c_timeReal);
+void gt_UnknownAI_Init () {
+    gt_UnknownAI = TriggerCreate("gt_UnknownAI_Func");
+    TriggerEnable(gt_UnknownAI, false);
+    TriggerAddEventTimePeriodic(gt_UnknownAI, 10.0, c_timeReal);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -49499,7 +49537,7 @@ void InitTriggers () {
     gt_InfestorKilled_Init();
     gt_InfestorAmbientSpawns_Init();
     gt_InfestorAI_Init();
-    gt_CritterAI_Init();
+    gt_UnknownAI_Init();
     gt_OutbreakSpawn_Init();
     gt_EliteMutation_Init();
     gt_EliteMutationBoss_Init();
