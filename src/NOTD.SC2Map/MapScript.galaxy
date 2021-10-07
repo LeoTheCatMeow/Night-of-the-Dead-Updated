@@ -748,6 +748,7 @@ int gv_squadRating;
 bool gv_isHardVetSquad;
 bool gv_isVeteranSquad;
 bool gv_noNewbie;
+bool gv_firstGame;
 int gv_hitPar;
 bool gv_cinematicMode;
 bool gv_bossFight;
@@ -2263,6 +2264,7 @@ trigger gt_VoteKick;
 trigger gt_Clear;
 trigger gt_Skip;
 trigger gt_SkipAll;
+trigger gt_SkipAllYN;
 trigger gt_SquadStatsCheck;
 trigger gt_CiviliansCheck;
 trigger gt_TeamLocation;
@@ -8179,7 +8181,7 @@ void gf_ShopButton (int lp_panel, int lp_player, int lp_itemNumber, int lp_page)
     lv_tempPanel = DialogControlLastCreated();
     DialogControlHookup(lv_tempPanel, c_triggerControlTypeButton, "Button");
     gv_shopButtons[lp_player][lp_itemNumber] = DialogControlLastCreated();
-    if ((lp_page == 1) && (lp_itemNumber <= 60) && ((gv_noShopMode == true) || (gv_isVeteranSquad == false))) {
+    if ((lp_page == 1) && (lp_itemNumber <= 60) && ((gv_noShopMode == true))) {
         libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringToText(UserDataGetString("ShopItems", "ShopItem"+IntToString(lp_itemNumber), "Name", 1)) + StringExternal("Param/Value/3CFEA3BD") + UserDataGetText("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopTooltip", 1)), PlayerGroupAll());
         DialogControlHookup(lv_tempPanel, c_triggerControlTypeImage, "ShopImage");
         libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopImage", 1), PlayerGroupAll());
@@ -8235,7 +8237,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     lv_itemID = lp_itemID;
 
     // Implementation
-    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_isVeteranSquad == true) && (gv_noShopMode == false)) || (lv_itemID > 60) || (gv_trainingActivated == true))) {
+    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noShopMode == false)) || (lv_itemID > 60) || (gv_trainingActivated == true))) {
         lv_itemCost = UserDataGetInt("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopCost", 1);
         if ((lv_itemCost == -1)) {
             if ((gv_playerXP[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "XPRequirement", 1)) && (gv_playerKarma[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "KarmaRequirement", 1))) {
@@ -10356,7 +10358,7 @@ void gf_EnableSkipCinematic (bool lp_option) {
     if ((lp_option == true)) {
         gv_skip = gv_skipAll;
         gv_skipped = false;
-        if ((gv_skipAll == false)) {
+        if ((gv_skipAll == false) && (gv_firstGame == false)) {
             TriggerEnable(gt_Skip, true);
             if ((gv_isVeteranSquad == false) && (gv_survivalMode == false)) {
                 DialogCreate(66, 66, c_anchorTop, 0, 0, true);
@@ -18591,6 +18593,9 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
         if (autoED8D603D_var < 0) { break; }
         lv_xPPool += Log2(MinF(MaxF(IntToFixed(gv_playerXP[autoED8D603D_var]), 1.0), 100000.0));
         lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
+        if ((gv_playerXP[autoED8D603D_var] == 0)) {
+            gv_firstGame = true;
+        }
         if ((gv_playerXP[autoED8D603D_var] < 500)) {
             lv_newbieCount += 1;
             gv_playerIsNewbie[autoED8D603D_var] = true;
@@ -18603,8 +18608,8 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
         }
     }
     lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_totalPlayers)));
-    gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_noNewbie = (lv_xPMin >= 500);
+    gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
     TextExpressionSetToken("Param/Expression/67750AE9", "A", IntToText(gv_scaledXP));
     TextExpressionSetToken("Param/Expression/67750AE9", "C", IntToText(lv_newbieCount));
@@ -18868,10 +18873,10 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     gv_storyIntializationTriggers[2] = gt_ACInitialize;
     gv_storyIntializationTriggers[3] = gt_STInitialize;
     gv_storyIntializationTriggers[4] = gt_SurvivalInit;
-    if ((gv_scaledXP < 3000)) {
+    if ((gv_firstGame || (gv_scaledXP < 3000))) {
         gv_storylineUnlocked[3] = false;
     }
-    if ((gv_scaledXP < 1000)) {
+    if ((gv_firstGame || (gv_scaledXP < 1000))) {
         gv_storylineUnlocked[2] = false;
         gv_storylineUnlocked[4] = false;
     }
@@ -19764,6 +19769,10 @@ bool gt_Skip_Func (bool testConds, bool runActions) {
             return false;
         }
 
+        if (!((gv_firstGame == false))) {
+            return false;
+        }
+
         if (!((!(gv_survivalMode) || (EventPlayer() <= 2)))) {
             return false;
         }
@@ -19776,11 +19785,14 @@ bool gt_Skip_Func (bool testConds, bool runActions) {
 
     gv_skip = true;
     DialogDestroy(gv_cinematicCue);
+    gv_skipCount += 1;
     if (gv_survivalMode) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/226ED1FF"));
-        if ((gv_skipCount == 0)) {
-            gv_skipCount += 1;
+        if ((gv_skipCount == 1)) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/C3FEF060"));
+        }
+        if ((gv_skipCount == 3)) {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/240D185D"));
         }
     }
     else {
@@ -19804,6 +19816,10 @@ bool gt_SkipAll_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!((gv_firstGame == false))) {
+            return false;
+        }
+
         if (!((!(gv_survivalMode) || (EventPlayer() <= 2)))) {
             return false;
         }
@@ -19815,15 +19831,19 @@ bool gt_SkipAll_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    gv_skipAll = true;
     DialogDestroy(gv_cinematicCue);
-    if (TriggerIsEnabled(gt_Skip)) {
-        gv_skip = true;
-    }
     if (gv_survivalMode) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/394DA293"));
+        TriggerEnable(gt_SkipAllYN, true);
+        Wait(10.0, c_timeReal);
+        TriggerEnable(gt_SkipAllYN, false);
     }
     else {
+        gv_skipAll = true;
+        if (TriggerIsEnabled(gt_Skip)) {
+            gv_skip = true;
+            gv_skipCount += 1;
+        }
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/9E555F57"));
     }
     SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
@@ -19835,6 +19855,45 @@ void gt_SkipAll_Init () {
     gt_SkipAll = TriggerCreate("gt_SkipAll_Func");
     TriggerEnable(gt_SkipAll, false);
     TriggerAddEventChatMessage(gt_SkipAll, c_playerAny, "-skip all", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Skip All Y/N
+//--------------------------------------------------------------------------------------------------
+bool gt_SkipAllYN_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_firstGame == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if (((EventChatMessage(false) == "y") || (EventChatMessage(false) == "Y"))) {
+        gv_skipAll = true;
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/96F4D99F"));
+        if (TriggerIsEnabled(gt_Skip)) {
+            gv_skip = true;
+        }
+        gv_skipCount += 3;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SkipAllYN_Init () {
+    gt_SkipAllYN = TriggerCreate("gt_SkipAllYN_Func");
+    TriggerEnable(gt_SkipAllYN, false);
+    TriggerAddEventChatMessage(gt_SkipAllYN, c_playerAny, "y", true);
+    TriggerAddEventChatMessage(gt_SkipAllYN, c_playerAny, "Y", true);
+    TriggerAddEventChatMessage(gt_SkipAllYN, c_playerAny, "n", true);
+    TriggerAddEventChatMessage(gt_SkipAllYN, c_playerAny, "N", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -27031,7 +27090,6 @@ bool gt_ECInitialize_Func (bool testConds, bool runActions) {
     }
 
     UnitSetState(UnitFromId(178), c_unitStateSelectable, true);
-    gf_ECShopXPReq();
     Wait(9.0, c_timeReal);
     UnitCreate(1, "JohnAnderton", 0, 10, RegionRandomPoint(RegionFromId(180)), libNtve_gf_RandomAngle());
     gv_john = UnitLastCreated();
@@ -34894,17 +34952,13 @@ bool gt_ACInitialize_Func (bool testConds, bool runActions) {
         UnitCreate(1, "Hugger", 0, 14, RegionRandomPoint(RegionFromId(200)), libNtve_gf_RandomAngle());
     }
 
-    if ((gv_isVeteranSquad == true)) {
+    if (true) {
         Wait(150.0, c_timeReal);
-        gf_ShopDisable();
-        UnitSetState(UnitFromId(1857), c_unitStateSelectable, false);
-        UnitSetState(UnitFromId(2505), c_unitStateSelectable, false);
     }
-    else {
-        gf_ShopDisable();
-        UnitSetState(UnitFromId(1857), c_unitStateSelectable, false);
-        UnitSetState(UnitFromId(2505), c_unitStateSelectable, false);
-    }
+
+    gf_ShopDisable();
+    UnitSetState(UnitFromId(1857), c_unitStateSelectable, false);
+    UnitSetState(UnitFromId(2505), c_unitStateSelectable, false);
     return true;
 }
 
@@ -39968,7 +40022,7 @@ bool gt_STW2EnterArmoryDeimos_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    if ((gv_isVeteranSquad == true)) {
+    if (true) {
         UnitRemove(UnitFromId(1857));
         UnitRemove(UnitFromId(2505));
         UnitSetState(UnitFromId(2502), c_unitStateSelectable, true);
@@ -49117,7 +49171,7 @@ bool gt_VictoryBonus_Func (bool testConds, bool runActions) {
         TriggerExecute(gt_ClassPointsUpdateVictoryOnly, true, false);
     }
 
-    if ((lv_hellSpeed || lv_nMSpeed || lv_speed)) {
+    if ((!(gv_survivalMode) || (gv_skipCount < 3)) && (lv_hellSpeed || lv_nMSpeed || lv_speed)) {
         gf_SpeedBonusXP();
         SoundPlay(SoundLink("UI_Achievement", -1), PlayerGroupActive(), 100.0, 0.0);
     }
@@ -49458,6 +49512,7 @@ void InitTriggers () {
     gt_Clear_Init();
     gt_Skip_Init();
     gt_SkipAll_Init();
+    gt_SkipAllYN_Init();
     gt_SquadStatsCheck_Init();
     gt_CiviliansCheck_Init();
     gt_TeamLocation_Init();
