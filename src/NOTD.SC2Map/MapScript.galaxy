@@ -19862,7 +19862,6 @@ bool gt_SkipAll_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_SkipAll_Init () {
     gt_SkipAll = TriggerCreate("gt_SkipAll_Func");
-    TriggerEnable(gt_SkipAll, false);
     TriggerAddEventChatMessage(gt_SkipAll, c_playerAny, "-skip all", true);
     TriggerAddEventChatMessage(gt_SkipAll, c_playerAny, "-no skip", true);
 }
