@@ -23810,8 +23810,6 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
     unit auto20BA1673_var;
     int auto1106CCE4_n;
     int auto1106CCE4_i;
-    const int auto7930F91B_n = 3;
-    int auto7930F91B_i;
 
     // Variable Initialization
     lv_deadUnit = EventUnit();
@@ -23859,6 +23857,16 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         }
 
     }
+    if (UnitGroupHasUnit(gv_unknownUnits, lv_deadUnit)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringExternal("Param/Value/9F2AB564"));
+        UnitCreate(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_localPointA, 1.0)), libNtve_gf_RandomAngle());
+        if ((gv_squadRating >= 1800)) {
+            UnitCreate(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_localPointA, 1.0)), libNtve_gf_RandomAngle());
+        }
+        if ((gv_nightmare || gv_hell)) {
+            UnitCreate(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_localPointA, 1.0)), libNtve_gf_RandomAngle());
+        }
+    }
     if (((gv_squadRating >= 1800) || gv_nightmare || gv_hell)) {
         if (((lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2"))) {
             Wait(RandomFixed(1.2, 3.0), c_timeReal);
@@ -23890,21 +23898,15 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
             }
 
         }
-        else if ((lv_deadUnitType == "Baneling") && gv_hell && !(gv_cinematicMode) && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+        else if (gv_hell && (lv_deadUnitType == "Baneling") && !(gv_cinematicMode) && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
             UnitCreate(1, "NapalmFire", c_unitCreateIgnorePlacement, libNtve_gf_KillingPlayer(), lv_localPointA, libNtve_gf_RandomAngle());
         }
-        else if (((lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal")) && gv_hell && !(gv_cinematicMode) && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
+        else if (gv_hell && ((lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal")) && !(gv_cinematicMode) && UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)) {
             UnitCreate(1, "NapalmFire", 0, libNtve_gf_KillingPlayer(), lv_localPointA, libNtve_gf_RandomAngle());
             auto1106CCE4_n = RandomInt(0, 3);
             for (auto1106CCE4_i = 1; auto1106CCE4_i <= auto1106CCE4_n; auto1106CCE4_i += 1) {
                 Wait(0.1, c_timeReal);
                 UnitCreate(1, "NapalmFire", 0, libNtve_gf_KillingPlayer(), RegionRandomPoint(RegionCircle(lv_localPointA, 1.5)), libNtve_gf_RandomAngle());
-            }
-        }
-        else if (UnitGroupHasUnit(gv_unknownUnits, lv_deadUnit)) {
-            UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringExternal("Param/Value/9F2AB564"));
-            for (auto7930F91B_i = 1; auto7930F91B_i <= auto7930F91B_n; auto7930F91B_i += 1) {
-                UnitCreate(1, "Helium3Canister", 0, 10, RegionRandomPoint(RegionCircle(lv_localPointA, 1.0)), libNtve_gf_RandomAngle());
             }
         }
         if (!(gv_cinematicMode) && (UnitGetOwner(lv_deadUnit) < 13) && (UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0)))) {
