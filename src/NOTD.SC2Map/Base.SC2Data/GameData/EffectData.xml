@@ -6621,6 +6621,7 @@
         <EditorCategories value=""/>
         <EffectArray value="MadSparkApplyEnemy"/>
         <EffectArray value="MadSparkIssueAttack"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectIssueOrder id="MarchoftheMachinesIssueAttack">
         <EditorCategories value=""/>
@@ -7318,12 +7319,14 @@
         <Marker Link="Effect/ImYourFatherSet"/>
         <EffectArray value="ImYourFatherIssueAttack"/>
         <EffectArray value="ImYourFatherApplyBehaviorLevel2"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectSet id="ImYourFatherSetLevel3">
         <EditorCategories value=""/>
         <Marker Link="Effect/ImYourFatherSet"/>
         <EffectArray value="ImYourFatherIssueAttack"/>
         <EffectArray value="ImYourFatherApplyBehaviorLevel3"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectDamage id="LaserDrillTripodDamage">
         <Amount value="0"/>
@@ -12476,6 +12479,7 @@
         <EditorCategories value=""/>
         <EffectArray value="TauntIssueAttack"/>
         <EffectArray value="TauntLevel2ApplyBehavior"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectEnumArea id="TauntLevel2SearchIssueAttack" parent="TauntSearchIssueAttackTemplate">
         <AreaArray index="0" Radius="8" Effect="TauntLevel2Set"/>
@@ -12490,6 +12494,7 @@
         <EditorCategories value=""/>
         <EffectArray value="TauntIssueAttack"/>
         <EffectArray value="TauntLevel3ApplyBehavior"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectApplyBehavior id="TauntLevel3ApplyBehavior">
         <ValidatorArray index="0" value="ImYourFatherApplyBehaviorTargetFilters"/>
@@ -12500,6 +12505,7 @@
         <EditorCategories value=""/>
         <EffectArray value="TauntIssueAttack"/>
         <EffectArray value="TauntLevel1ApplyBehavior"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectEnumArea id="ImYourFatherSearchIssueStop">
         <EditorCategories value=""/>
@@ -12523,6 +12529,7 @@
         <EditorCategories value=""/>
         <EffectArray value="ImYourFatherIssueAttack"/>
         <EffectArray value="ImYourFatherApplyBehaviorLevel1"/>
+        <ValidatorArray value="NotInfectious"/>
     </CEffectSet>
     <CEffectApplyBehavior id="MasterMarksmanApplyLockOnDelay">
         <EditorCategories value=""/>

@@ -23115,6 +23115,7 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
     int lv_triggeringPlayer;
     bool lv_noWeapon;
     bool lv_noArmor;
+    bool lv_quickUse;
     bool[4] lv_openEnhancementSlot;
 
     // Automatic Variable Declarations
@@ -23134,6 +23135,7 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
     lv_triggeringPlayer = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
     lv_noWeapon = true;
     lv_noArmor = true;
+    lv_quickUse = true;
     for (init_i = 0; init_i <= 3; init_i += 1) {
         lv_openEnhancementSlot[init_i] = true;
     }
@@ -23149,15 +23151,21 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
         for (;; auto386449FA_u -= 1) {
             auto386449FA_var = UnitGroupUnitFromEnd(auto386449FA_g, auto386449FA_u);
             if (auto386449FA_var == null) { break; }
-            if ((UnitInventoryContainer(auto386449FA_var) == 2) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons"))) {
-                lv_noWeapon = false;
+            if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons"))) {
+                if ((UnitInventoryContainer(auto386449FA_var) == 2)) {
+                    lv_noWeapon = false;
+                }
+                else if ((UnitInventoryContainer(auto386449FA_var) == 1) && (UnitInventorySlot(auto386449FA_var) == 2)) {
+                    lv_quickUse = false;
+                }
             }
-
         }
         if ((lv_noWeapon == true)) {
             UnitInventoryMove(EventUnitInventoryItem(), 2, 6);
         }
-
+        else if ((lv_quickUse == true)) {
+            UnitInventoryMove(EventUnitInventoryItem(), 1, 2);
+        }
     }
 
     if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Armor"))) {
@@ -35475,8 +35483,6 @@ bool gt_ACW1EnterArmory_Func (bool testConds, bool runActions) {
         if (auto30E953F7_var == null) { break; }
         UnitSetOwner(auto30E953F7_var, 9, false);
         UnitFlashSelection(auto30E953F7_var, 1.5);
-        UnitSetPropertyFixed(auto30E953F7_var, c_unitPropLifePercent, RandomFixed(50.0, 90.0));
-        UnitSetPropertyFixed(auto30E953F7_var, c_unitPropShieldsPercent, RandomFixed(0.0, 50.0));
     }
     UnitGroupAddUnitGroup(gv_secTeamAMarines, gv_secTeamBMarines);
     AIAttackWaveSetTargetEscort(9, gv_marines, 2);

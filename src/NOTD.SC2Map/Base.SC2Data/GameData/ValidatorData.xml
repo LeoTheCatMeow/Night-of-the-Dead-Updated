@@ -183,6 +183,13 @@
         <Value value="2"/>
         <Behavior value="FrenzyDummy"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasInfectious">
+        <Compare value="GT"/>
+        <Behavior value="Infectious"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="NotInfectious">
+        <Behavior value="Infectious"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="StingerEquipped">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
