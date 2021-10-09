@@ -910,6 +910,7 @@ int gv_tKedPlayer;
 int gv_griefingPlayer;
 bool[gv_numberofPlayers + 1] gv_inventoryOpen;
 bool[gv_numberofPlayers + 1] gv_equipmentOpen;
+bool gv_gPRWall;
 unitgroup[9] gv_boughtItems;
 text gv_creditsLeft;
 bool gv_noShopMode;
@@ -23083,6 +23084,10 @@ void gt_QuickUseItem_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_ItemDropChangetoNeutral_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    unitgroup autoB136C3D3_g;
+    int autoB136C3D3_u;
+    unit autoB136C3D3_var;
+
     // Actions
     if (!runActions) {
         return true;
@@ -23095,6 +23100,16 @@ bool gt_ItemDropChangetoNeutral_Func (bool testConds, bool runActions) {
     }
     if ((UnitGetType(EventUnitInventoryItem()) == "Magazine")) {
         gf_ShowAmmoinMag(EventUnitInventoryItem());
+    }
+    if ((UnitGetType(EventUnitInventoryItem()) == "GaussRifle") && !(gv_hell) && !(gv_nightmare) && libNtve_gf_UnitInRegion(EventUnitInventoryItem(), RegionFromId(73)) && (PlayerHandle(UnitGetOwner(EventUnit())) == "1-S2-1-1560369") && (RandomInt(0, 3) == 1) && (UnitGroupCount(UnitGroup("GaussRifle", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0), c_unitCountAll) == 3)) {
+        gv_gPRWall = true;
+        autoB136C3D3_g = UnitGroup("GaussRifle", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0);
+        autoB136C3D3_u = UnitGroupCount(autoB136C3D3_g, c_unitCountAll);
+        for (;; autoB136C3D3_u -= 1) {
+            autoB136C3D3_var = UnitGroupUnitFromEnd(autoB136C3D3_g, autoB136C3D3_u);
+            if (autoB136C3D3_var == null) { break; }
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "EnemyPathingBlocker1x1", c_unitCreateIgnorePlacement, 10, UnitGetPosition(autoB136C3D3_var));
+        }
     }
     return true;
 }
@@ -23151,13 +23166,11 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
         for (;; auto386449FA_u -= 1) {
             auto386449FA_var = UnitGroupUnitFromEnd(auto386449FA_g, auto386449FA_u);
             if (auto386449FA_var == null) { break; }
-            if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons"))) {
-                if ((UnitInventoryContainer(auto386449FA_var) == 2)) {
-                    lv_noWeapon = false;
-                }
-                else if ((UnitInventoryContainer(auto386449FA_var) == 1) && (UnitInventorySlot(auto386449FA_var) == 2)) {
-                    lv_quickUse = false;
-                }
+            if ((UnitInventoryContainer(auto386449FA_var) == 2) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons"))) {
+                lv_noWeapon = false;
+            }
+            else if ((UnitInventoryContainer(auto386449FA_var) == 1) && (UnitInventorySlot(auto386449FA_var) == 2) && ((UnitGetType(auto386449FA_var) == "Medpack") || (UnitGetType(auto386449FA_var) == "Bandage") || (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons")))) {
+                lv_quickUse = false;
             }
         }
         if ((lv_noWeapon == true)) {
@@ -23165,6 +23178,10 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
         }
         else if ((lv_quickUse == true)) {
             UnitInventoryMove(EventUnitInventoryItem(), 1, 2);
+        }
+        if (gv_gPRWall && (UnitGetType(EventUnitInventoryItem()) == "GaussRifle")) {
+            gv_gPRWall = false;
+            gf_RemoveUnits(UnitGroup("EnemyPathingBlocker1x1", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0));
         }
     }
 
