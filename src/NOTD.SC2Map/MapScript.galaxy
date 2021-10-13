@@ -19446,12 +19446,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
             else {
                 lv_range = gf_GetRandomRange(lv_selectingPlayer);
                 while (true) {
-                    if ((gv_classCount[2] == 0) && (RandomInt(1, 3) == 2)) {
-                        lv_index = 2;
-                    }
-                    else {
-                        lv_index = RandomInt(1, lv_range);
-                    }
+                    lv_index = RandomInt(1, lv_range);
                     if (((RandomInt(1, 2) > gv_classCount[lv_index]) || ((lv_index < 3) && (gv_classCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range)))) {
                         break;
                     }
