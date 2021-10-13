@@ -1,5 +1,15 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-10-13
+[ThunderRazor]
+- Fixed an issue where Eli appears stuck in EC after a -skip.
+- The 3rd "-skip" or "-skip all" voids the speed bonus. Disabled AC/ST/Surv if there are any first-time (0xp) players. 
+  Shop is now open with a recruit squad as with a veteran squad.
+- Added "-no skip".
+- Replaced medic's medivac voice with the original medic voice.
+- Disabled predetermined randoms. Random chances are determined after each class selection. Classes that haven't been selected will
+  have a higher chance than selected ones.
+
 2021-9-25
 [ThunderRazor]
 - Enabled "-skip" for Survival waves - Nearly all breaks between waves are reduced to 5 seconds (some 10 seconds) when "-skip" is applied. 
