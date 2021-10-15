@@ -838,9 +838,8 @@ int[9][19] gv_classSelectionDialogItem;
 fixed gv_classLimitMultiplier;
 bool gv_classLimitBroken;
 int[15] gv_classCount;
-playergroup gv_classSelectPool;
-int[9] gv_playerRandomIndex;
-int[15] gv_playerRandomIndexRepeats;
+int[9] gv_classIndex;
+int[15] gv_classIndexCount;
 timer gv_pingRepeatPreventionTimer;
 gs_PingInfo gv_lastPingInfo;
 timer[17] gv_pingResetTimer;
@@ -1429,9 +1428,8 @@ void InitGlobals () {
         }
     }
     gv_classLimitMultiplier = 1.0;
-    gv_classSelectPool = PlayerGroupEmpty();
     for (init_i = 0; init_i <= 8; init_i += 1) {
-        gv_playerRandomIndex[init_i] = 1;
+        gv_classIndex[init_i] = 1;
     }
     gv_pingRepeatPreventionTimer = TimerCreate();
     gv_lastPingInfo.lv_pingtype = -1;
@@ -4918,7 +4916,6 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     }
 
     gv_classCount[UserDataGetInt("Classes", gv_playerClass[lp_player], "Slot", 1)] += 1;
-    PlayerGroupRemove(gv_classSelectPool, lp_player);
     gf_StartingBonuses(lp_player);
     if ((UnitGetType(gv_marineHero[lp_player]) == "Medic2")) {
         UnitIssueOrder(gv_marineHero[lp_player], Order(AbilityCommand("LearnMedic", 1)), c_orderQueueReplace);
@@ -5182,11 +5179,11 @@ bool auto_gf_InitializePlayerRandomSequence_TriggerFunc (bool testConds, bool ru
     auto79CAB446_var = 1;
     for ( ; auto79CAB446_var <= auto79CAB446_ae; auto79CAB446_var += 1 ) {
         lv_randomIndex = RandomInt(1, gf_GetRandomRange(auto79CAB446_var));
-        while ((gv_playerRandomIndexRepeats[lv_randomIndex] >= 2) && (lv_randomIndex > 2)) {
+        while ((gv_classIndexCount[lv_randomIndex] >= 2) && (lv_randomIndex > 2)) {
             lv_randomIndex = RandomInt(1, gf_GetRandomRange(auto79CAB446_var));
         }
-        gv_playerRandomIndexRepeats[lv_randomIndex] += 1;
-        gv_playerRandomIndex[auto79CAB446_var] = lv_randomIndex;
+        gv_classIndexCount[lv_randomIndex] += 1;
+        gv_classIndex[auto79CAB446_var] = lv_randomIndex;
         Wait(0.2, c_timeGame);
     }
     return true;
@@ -18271,14 +18268,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, libNtve_gf_ConvertBooleanToText((gf_DamageEffectDeathType("FlamethrowerMK2Damage") == c_deathTypeFire)));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, libNtve_gf_ConvertBooleanToText((gf_DamageEffectDeathType("DevourerClawsDamage") == c_deathTypeEviscerate)));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, libNtve_gf_ConvertBooleanToText((gf_DamageEffectDeathType("InfestedTalons") == c_deathTypeSquish)));
     return true;
 }
 
@@ -19344,6 +19333,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     int lv_selectingPlayer;
     int lv_index;
     region lv_spawnArea;
+    point lv_spawnPoint;
     int lv_usedDialogItem;
     int lv_range;
 
@@ -19351,7 +19341,6 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     int auto458FE4A2_val;
     const int auto34C5CBDD_n = 2;
     int auto34C5CBDD_i;
-    fixed autoF675845C_at;
 
     // Variable Initialization
     lv_selectingPlayer = EventPlayer();
@@ -19380,7 +19369,6 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
         TriggerEnable(gt_NoRandoms, false);
     }
 
-    PlayerGroupAdd(gv_classSelectPool, lv_selectingPlayer);
     while ((lv_usedDialogItem != gv_classSelectionDialogItem[lv_selectingPlayer][lv_index])) {
         lv_index += 1;
     }
@@ -19422,14 +19410,9 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     }
     else {
     }
-    autoF675845C_at = 0;
-    while (!((PlayerGroupPlayer(gv_classSelectPool, 1) == lv_selectingPlayer)) && autoF675845C_at <= 1.0) {
-        Wait(0.125, c_timeGame);
-        autoF675845C_at = autoF675845C_at + 0.125;
-    }
-    PlayerGroupRemove(gv_classSelectPool, 0);
-    libNtve_gf_SwooshCamera(lv_selectingPlayer, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), RegionGetCenter(lv_spawnArea), 0.0);
+    lv_spawnPoint = RegionRandomPoint(lv_spawnArea);
     if ((((gv_storyline != 4) && (lv_index < 9)) || ((gv_storyline == 4) && (lv_index < 15)) || ((gv_isVeteranSquad == false) && (lv_index < 15)))) {
+        gv_classIndexCount[lv_index] += 1;
         gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
     }
     else {
@@ -19440,15 +19423,21 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                 TriggerExecute(gt_DisableRandomButton, false, false);
             }
 
+            gv_playerRandom[lv_selectingPlayer] = true;
             if ((gv_classSelectionOverrideIndex != 0) && (PlayerHandle(lv_selectingPlayer) == gv_overridingPlayerHandle)) {
+                gv_classIndexCount[gv_classSelectionOverrideIndex] += 1;
                 gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", gv_classSelectionOverrideIndex);
             }
             else {
                 lv_range = gf_GetRandomRange(lv_selectingPlayer);
                 while (true) {
                     lv_index = RandomInt(1, lv_range);
-                    if (((gv_classCount[lv_index] < 2) || ((lv_index < 3) && (gv_classCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range)))) {
+                    if (((gv_classIndexCount[lv_index] < RandomInt(1, 2)) || ((lv_index < 3) && (gv_classIndexCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range)))) {
+                        gv_classIndexCount[lv_index] += 1;
                         break;
+                        gv_classIndex[lv_selectingPlayer] = lv_index;
+                        libNtve_gf_CreateModelAtPoint("QuestionMark", libNtve_gf_PointWithZOffset(lv_spawnPoint, 1.0));
+                        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
                     }
                 }
                 gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
@@ -19459,14 +19448,14 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
             else {
                 gf_UpdateMagazineCount(7, ge_AmmoChange_Increase, lv_selectingPlayer);
             }
-            gv_playerRandom[lv_selectingPlayer] = true;
         }
 
     }
     if ((gv_currentDailyChallenge == ge_DailyChallenge_RiflemanSquad) && (gv_dailyChallengeActivated == true)) {
         gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 1);
     }
-    UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), RegionRandomPoint(lv_spawnArea), 90.0);
+    libNtve_gf_SwooshCamera(lv_selectingPlayer, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), RegionGetCenter(lv_spawnArea), 0.0);
+    UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), lv_spawnPoint, 90.0);
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
     UnitSetCustomValue(gv_marineHero[lv_selectingPlayer], 1, IntToFixed(lv_selectingPlayer));
     UnitGroupAdd(gv_marines, gv_marineHero[lv_selectingPlayer]);
