@@ -840,6 +840,9 @@ bool gv_classLimitBroken;
 int[15] gv_classCount;
 int[9] gv_classIndex;
 int[15] gv_classIndexCount;
+int[9][3] gv_classRerollButton;
+bool[9] gv_classRerollEnabled;
+int gv_classRerollCount;
 timer gv_pingRepeatPreventionTimer;
 gs_PingInfo gv_lastPingInfo;
 timer[17] gv_pingResetTimer;
@@ -1430,6 +1433,14 @@ void InitGlobals () {
     gv_classLimitMultiplier = 1.0;
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_classIndex[init_i] = 1;
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        for (init_j = 0; init_j <= 2; init_j += 1) {
+            gv_classRerollButton[init_i][init_j] = c_invalidDialogControlId;
+        }
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_classRerollEnabled[init_i] = true;
     }
     gv_pingRepeatPreventionTimer = TimerCreate();
     gv_lastPingInfo.lv_pingtype = -1;
@@ -2259,6 +2270,7 @@ trigger gt_ModeSelection;
 trigger gt_AutoStorylineSelection;
 trigger gt_SkippedLegDayChallenge;
 trigger gt_ClassCreation;
+trigger gt_ClassReroll;
 trigger gt_PingUsedNOTD;
 trigger gt_PingResetTimerExprires;
 trigger gt_PingPanelAutoDisable;
@@ -2278,6 +2290,7 @@ trigger gt_MobsCheck;
 trigger gt_NavyCross;
 trigger gt_NoRandoms;
 trigger gt_AllRandom;
+trigger gt_Blacklist;
 trigger gt_EnableDisableClassicStatusBar;
 trigger gt_EnableDisableQuietPing;
 trigger gt_DanceCheer;
@@ -5006,6 +5019,7 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     Wait(12.0, c_timeReal);
     gf_TipLocalNOTD(500, lp_player, StringExternal("Param/Value/2482F8A0"));
     Wait(60.0, c_timeReal);
+    TriggerEnable(gt_Blacklist, false);
     auto9B8C7CD9_var = 1;
     for ( ; auto9B8C7CD9_var <= auto9B8C7CD9_ae; auto9B8C7CD9_var += 1 ) {
         libNtve_gf_KillModel(gv_demeritWarning[auto9B8C7CD9_var]);
@@ -19341,6 +19355,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     int auto458FE4A2_val;
     const int auto34C5CBDD_n = 2;
     int auto34C5CBDD_i;
+    fixed auto18F09C47_at;
 
     // Variable Initialization
     lv_selectingPlayer = EventPlayer();
@@ -19411,6 +19426,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     else {
     }
     lv_spawnPoint = RegionRandomPoint(lv_spawnArea);
+    libNtve_gf_SwooshCamera(lv_selectingPlayer, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), RegionGetCenter(lv_spawnArea), 0.0);
     if ((((gv_storyline != 4) && (lv_index < 9)) || ((gv_storyline == 4) && (lv_index < 15)) || ((gv_isVeteranSquad == false) && (lv_index < 15)))) {
         gv_classIndexCount[lv_index] += 1;
         gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
@@ -19434,10 +19450,41 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                     lv_index = RandomInt(1, lv_range);
                     if (((gv_classIndexCount[lv_index] < RandomInt(1, 2)) || ((lv_index < 3) && (gv_classIndexCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range)))) {
                         gv_classIndexCount[lv_index] += 1;
+                        if (gv_classRerollEnabled[lv_selectingPlayer]) {
+                            gv_classRerollCount += 1;
+                            gv_classIndex[lv_selectingPlayer] = lv_index;
+                            gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
+                            DialogCreate(400, 150, c_anchorCenter, 0, 0, true);
+                            DialogSetImageVisible(DialogLastCreated(), false);
+                            DialogSetTitle(DialogLastCreated(), UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1));
+                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 52, 52, c_anchorBottom, -50, 25, StringExternal("Param/Value/F2AF6503"), ColorWithAlpha(0,0,0,0), false, 2.0);
+                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 100, c_anchorBottomLeft, 25, 25, StringExternal("Param/Value/4B18419D"), StringToText(""), "");
+                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 100.0);
+                            libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
+                            gv_classRerollButton[lv_selectingPlayer][1] = DialogControlLastCreated();
+                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 45, 45, c_anchorBottom, 50, 25, StringExternal("Param/Value/8BB1E382"), ColorWithAlpha(0,0,0,0), false, 2.0);
+                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 100, c_anchorBottomRight, 25, 25, StringExternal("Param/Value/BEA0869B"), StringToText(""), "");
+                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 100.0);
+                            libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
+                            gv_classRerollButton[lv_selectingPlayer][2] = DialogControlLastCreated();
+                            DialogSetVisible(DialogLastCreated(), PlayerGroupSingle(lv_selectingPlayer), true);
+                            TriggerEnable(gt_ClassReroll, true);
+                            auto18F09C47_at = 0;
+                            while (!(((gv_classIndex[lv_selectingPlayer] == 0) || (gv_classIndex[lv_selectingPlayer] == 15))) && auto18F09C47_at <= 10.0) {
+                                Wait(0.25, c_timeReal);
+                                auto18F09C47_at = auto18F09C47_at + 0.25;
+                            }
+                            DialogDestroy(DialogControlGetDialog(gv_classRerollButton[lv_selectingPlayer][1]));
+                            if ((gv_classIndex[lv_selectingPlayer] == 15)) {
+                                gv_classIndexCount[lv_index] -= 1;
+                                continue;
+                            }
+                            gv_classRerollCount -= 1;
+                            if ((gv_classRerollCount == 0)) {
+                                TriggerEnable(gt_ClassReroll, false);
+                            }
+                        }
                         break;
-                        gv_classIndex[lv_selectingPlayer] = lv_index;
-                        libNtve_gf_CreateModelAtPoint("QuestionMark", libNtve_gf_PointWithZOffset(lv_spawnPoint, 1.0));
-                        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
                     }
                 }
                 gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
@@ -19454,7 +19501,6 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     if ((gv_currentDailyChallenge == ge_DailyChallenge_RiflemanSquad) && (gv_dailyChallengeActivated == true)) {
         gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 1);
     }
-    libNtve_gf_SwooshCamera(lv_selectingPlayer, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), RegionGetCenter(lv_spawnArea), 0.0);
     UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), lv_spawnPoint, 90.0);
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
     UnitSetCustomValue(gv_marineHero[lv_selectingPlayer], 1, IntToFixed(lv_selectingPlayer));
@@ -19522,6 +19568,48 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
 void gt_ClassCreation_Init () {
     gt_ClassCreation = TriggerCreate("gt_ClassCreation_Func");
     TriggerAddEventDialogControl(gt_ClassCreation, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Reroll
+//--------------------------------------------------------------------------------------------------
+bool gt_ClassReroll_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(gv_classRerollEnabled[EventPlayer()])) {
+            return false;
+        }
+
+        if (!((gv_classRerollButton[EventPlayer()][1] != c_invalidDialogControlId))) {
+            return false;
+        }
+
+        if (!(((EventDialogControl() == gv_classRerollButton[EventPlayer()][1]) || (EventDialogControl() == gv_classRerollButton[EventPlayer()][2])))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_classRerollEnabled[EventPlayer()] = false;
+    if ((EventDialogControl() == gv_classRerollButton[EventPlayer()][1])) {
+        gv_classIndex[EventPlayer()] = 0;
+    }
+    else {
+        gv_classIndex[EventPlayer()] = 15;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ClassReroll_Init () {
+    gt_ClassReroll = TriggerCreate("gt_ClassReroll_Func");
+    TriggerEnable(gt_ClassReroll, false);
+    TriggerAddEventDialogControl(gt_ClassReroll, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -20407,6 +20495,30 @@ void gt_AllRandom_Init () {
     TriggerAddEventChatMessage(gt_AllRandom, 1, "-ar", true);
     TriggerAddEventChatMessage(gt_AllRandom, 2, "-allrand", false);
     TriggerAddEventChatMessage(gt_AllRandom, 2, "-ar", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Blacklist
+//--------------------------------------------------------------------------------------------------
+bool gt_Blacklist_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/68B46564"));
+    if ((EventChatMessage(true) == "-black")) {
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_Blacklist_Init () {
+    gt_Blacklist = TriggerCreate("gt_Blacklist_Func");
+    TriggerAddEventChatMessage(gt_Blacklist, c_playerAny, "-black", false);
+    TriggerAddEventChatMessage(gt_Blacklist, c_playerAny, "-prefer", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -49546,6 +49658,7 @@ void InitTriggers () {
     gt_AutoStorylineSelection_Init();
     gt_SkippedLegDayChallenge_Init();
     gt_ClassCreation_Init();
+    gt_ClassReroll_Init();
     gt_PingUsedNOTD_Init();
     gt_PingResetTimerExprires_Init();
     gt_PingPanelAutoDisable_Init();
@@ -49565,6 +49678,7 @@ void InitTriggers () {
     gt_NavyCross_Init();
     gt_NoRandoms_Init();
     gt_AllRandom_Init();
+    gt_Blacklist_Init();
     gt_EnableDisableClassicStatusBar_Init();
     gt_EnableDisableQuietPing_Init();
     gt_DanceCheer_Init();
