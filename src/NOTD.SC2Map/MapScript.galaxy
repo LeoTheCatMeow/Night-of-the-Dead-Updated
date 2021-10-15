@@ -19475,13 +19475,13 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                                 auto18F09C47_at = auto18F09C47_at + 0.25;
                             }
                             DialogDestroy(DialogControlGetDialog(gv_classRerollButton[lv_selectingPlayer][1]));
-                            if ((gv_classIndex[lv_selectingPlayer] == 15)) {
-                                gv_classIndexCount[lv_index] -= 1;
-                                continue;
-                            }
                             gv_classRerollCount -= 1;
                             if ((gv_classRerollCount == 0)) {
                                 TriggerEnable(gt_ClassReroll, false);
+                            }
+                            if ((gv_classIndex[lv_selectingPlayer] == 15)) {
+                                gv_classIndexCount[lv_index] -= 1;
+                                continue;
                             }
                         }
                         break;
