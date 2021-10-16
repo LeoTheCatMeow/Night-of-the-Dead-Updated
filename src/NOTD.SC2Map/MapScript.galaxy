@@ -19521,16 +19521,16 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                             gv_classIndex[lv_selectingPlayer] = lv_index;
                             DialogCreate(400, 175, c_anchorCenter, -200, 100, true);
                             DialogSetTitle(DialogLastCreated(), TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
-                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 52, 52, c_anchorBottom, -85, 45, StringExternal("Param/Value/F2AF6503"), ColorWithAlpha(0,0,0,0), false, 2.0);
-                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 125, c_anchorBottomLeft, 25, 25, StringExternal("Param/Value/4B18419D"), StringToText(""), "");
-                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 100.0);
+                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 55, c_anchorBottomLeft, 25, 40, StringExternal("Param/Value/4B18419D"), StringToText(""), "");
+                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
                             libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
                             gv_classRerollButton[lv_selectingPlayer][1] = DialogControlLastCreated();
-                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 45, 45, c_anchorBottom, 85, 45, StringExternal("Param/Value/8BB1E382"), ColorWithAlpha(0,0,0,0), false, 2.0);
-                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 125, c_anchorBottomRight, 25, 25, StringExternal("Param/Value/BEA0869B"), StringToText(""), "");
-                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 100.0);
+                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 52, 52, c_anchorBottom, -85, 45, StringExternal("Param/Value/F2AF6503"), ColorWithAlpha(0,0,0,0), false, 2.0);
+                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 55, c_anchorBottomRight, 25, 40, StringExternal("Param/Value/BEA0869B"), StringToText(""), "");
+                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
                             libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
                             gv_classRerollButton[lv_selectingPlayer][2] = DialogControlLastCreated();
+                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 45, 45, c_anchorBottom, 85, 45, StringExternal("Param/Value/8BB1E382"), ColorWithAlpha(0,0,0,0), false, 2.0);
                             if ((gv_classIndexCount[lv_index] == 2)) {
                                 TextExpressionSetToken("Param/Expression/E53962E3", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
                                 libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, TextExpressionAssemble("Param/Expression/E53962E3"), ColorWithAlpha(0,0,0,0), false, 2.0);
