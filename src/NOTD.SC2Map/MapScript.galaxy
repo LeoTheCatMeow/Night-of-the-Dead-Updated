@@ -840,9 +840,12 @@ bool gv_classLimitBroken;
 int[15] gv_classCount;
 int[9] gv_classIndex;
 int[15] gv_classIndexCount;
-int[9][3] gv_classRerollButton;
 bool[9] gv_classRerollEnabled;
+int[9][3] gv_classRerollButton;
 int gv_classRerollCount;
+string[9] gv_preferredClasses;
+int[9] gv_preferredClassCount;
+bool[9] gv_classPreferred;
 timer gv_pingRepeatPreventionTimer;
 gs_PingInfo gv_lastPingInfo;
 timer[17] gv_pingResetTimer;
@@ -1435,12 +1438,15 @@ void InitGlobals () {
         gv_classIndex[init_i] = 1;
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_classRerollEnabled[init_i] = true;
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
         for (init_j = 0; init_j <= 2; init_j += 1) {
             gv_classRerollButton[init_i][init_j] = c_invalidDialogControlId;
         }
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
-        gv_classRerollEnabled[init_i] = true;
+        gv_preferredClasses[init_i] = "";
     }
     gv_pingRepeatPreventionTimer = TimerCreate();
     gv_lastPingInfo.lv_pingtype = -1;
@@ -1950,6 +1956,7 @@ void gf_InitializePlayerRandomSequence ();
 int gf_GetRandomRange (int lp_player);
 int gf_GetClassCP (int lp_player, string lp_class);
 int gf_GetClassColor (string lp_class);
+string gf_GetClassfromKeyString (string lp_word);
 void gf_CustomNameChange (int lp_selectingPlayer);
 void gf_PingPlay (int lp_pingType, int lp_player, point lp_pingLocation, int lp_gameUser, string lp_pingTargetType, point lp_pingTargetPosition, int lp_pingTargetOwner);
 void gf_PingPlayUnit (string lp_pingTargetType, point lp_pingTargetPosition, int lp_pingTargetOwner, int lp_player, int lp_gameUser);
@@ -5328,6 +5335,62 @@ int gf_GetClassColor (string lp_class) {
     else {
         return 0;
     }
+}
+
+string gf_GetClassfromKeyString (string lp_word) {
+    // Variable Declarations
+    string lv_word;
+    string lv_subs;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_word = StringCase(lp_word, false);
+    lv_subs = StringSub(lv_word, 1, 3);
+
+    // Implementation
+    if (((lv_word == "fo") || (lv_subs == "for"))) {
+        return "Forward Observer";
+    }
+    else if (((lv_word == "po") || (lv_subs == "psi"))) {
+        return "Psi Ops";
+    }
+    else if (((lv_word == "pf") || (lv_subs == "pat"))) {
+        return "Pathfinder";
+    }
+    else if (((lv_word == "ce") || (lv_subs == "che"))) {
+        return "Chemical Expert";
+    }
+    else if (((lv_word == "t") || (lv_subs == "tec"))) {
+        return "Technician";
+    }
+    else if (((lv_word == "mando") || (lv_subs == "com"))) {
+        return "Commando";
+    }
+    else if (((lv_word == "f") || (lv_subs == "fla"))) {
+        return "Flamethrower";
+    }
+    else if (((lv_word == "d") || (lv_subs == "dem"))) {
+        return "Demolitions";
+    }
+    else if (((lv_word == "e") || (lv_subs == "eng"))) {
+        return "Engineer";
+    }
+    else if (((lv_word == "mm") || (lv_subs == "mar") || (lv_word == "smm"))) {
+        return "Marksman";
+    }
+    else if (((lv_word == "a") || (lv_subs == "ass"))) {
+        return "Assault";
+    }
+    else if (((lv_subs == "med"))) {
+        return "Medic";
+    }
+    else if (((lv_word == "r") || (lv_subs == "rec") || (lv_word == "con"))) {
+        return "Recon";
+    }
+    else if (((lv_subs == "rif") || (lv_subs == "cri") || (lv_subs == "rof") || (lv_subs == "cro"))) {
+        return "Rifleman";
+    }
+    return "Random";
 }
 
 trigger auto_gf_CustomNameChange_Trigger = null;
@@ -19450,14 +19513,14 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                 lv_range = gf_GetRandomRange(lv_selectingPlayer);
                 while (true) {
                     lv_index = RandomInt(1, lv_range);
-                    if (((gv_classIndexCount[lv_index] < RandomInt(1, 2)) || ((lv_index < 3) && (gv_classIndexCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range)))) {
+                    gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
+                    if (((gv_classIndexCount[lv_index] < RandomInt(1, 2)) || ((lv_index < 3) && (gv_classIndexCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range))) && ((gv_preferredClassCount[lv_selectingPlayer] == 0) || (RandomInt(1, 5) == 3) || (!(gv_classPreferred[lv_selectingPlayer]) && !(StringContains(gv_preferredClasses[lv_selectingPlayer], (gv_playerClass[lv_selectingPlayer]), c_stringAnywhere, c_stringCase))) || (gv_classPreferred[lv_selectingPlayer] && StringContains(gv_preferredClasses[lv_selectingPlayer], (gv_playerClass[lv_selectingPlayer]), c_stringAnywhere, c_stringCase)))) {
                         gv_classIndexCount[lv_index] += 1;
                         if (gv_classRerollEnabled[lv_selectingPlayer]) {
                             gv_classRerollCount += 1;
                             gv_classIndex[lv_selectingPlayer] = lv_index;
-                            gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
-                            DialogCreate(400, 175, c_anchorCenter, 0, 100, true);
-                            DialogSetTitle(DialogLastCreated(), TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), UserDataGetColor("Classes", gv_playerClass[lv_selectingPlayer], "Class Color", 1)));
+                            DialogCreate(400, 175, c_anchorCenter, -200, 100, true);
+                            DialogSetTitle(DialogLastCreated(), TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
                             libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 52, 52, c_anchorBottom, -85, 45, StringExternal("Param/Value/F2AF6503"), ColorWithAlpha(0,0,0,0), false, 2.0);
                             libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 125, c_anchorBottomLeft, 25, 25, StringExternal("Param/Value/4B18419D"), StringToText(""), "");
                             DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 100.0);
@@ -19469,12 +19532,12 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                             libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
                             gv_classRerollButton[lv_selectingPlayer][2] = DialogControlLastCreated();
                             if ((gv_classIndexCount[lv_index] == 2)) {
-                                TextExpressionSetToken("Param/Expression/E53962E3", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), UserDataGetColor("Classes", gv_playerClass[lv_selectingPlayer], "Class Color", 1)));
+                                TextExpressionSetToken("Param/Expression/E53962E3", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
                                 libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, TextExpressionAssemble("Param/Expression/E53962E3"), ColorWithAlpha(0,0,0,0), false, 2.0);
                             }
                             if ((gv_classIndexCount[lv_index] > 2)) {
                                 TextExpressionSetToken("Param/Expression/76E485D0", "A", IntToText((gv_classIndexCount[lv_index] - 1)));
-                                TextExpressionSetToken("Param/Expression/76E485D0", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), UserDataGetColor("Classes", gv_playerClass[lv_selectingPlayer], "Class Color", 1)));
+                                TextExpressionSetToken("Param/Expression/76E485D0", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
                                 libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, TextExpressionAssemble("Param/Expression/76E485D0"), ColorWithAlpha(0,0,0,0), false, 2.0);
                             }
                             DialogSetVisible(DialogLastCreated(), PlayerGroupSingle(lv_selectingPlayer), true);
@@ -19497,7 +19560,6 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                         break;
                     }
                 }
-                gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
             }
             if ((gv_storyline != 3)) {
                 gf_UpdateMagazineCount(10, ge_AmmoChange_Increase, lv_selectingPlayer);
@@ -19878,7 +19940,7 @@ bool gt_Skip_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((!(gv_survivalMode) || (EventPlayer() <= 2)))) {
+        if (!((EventPlayer() < 3))) {
             return false;
         }
     }
@@ -19921,7 +19983,7 @@ bool gt_SkipAll_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!(((!(gv_survivalMode) && (EventPlayer() < 3)) || (EventChatMessage(false) == "-no skip")))) {
+        if (!(((EventPlayer() < 3) || (EventChatMessage(false) == "-no skip")))) {
             return false;
         }
     }
@@ -20511,16 +20573,53 @@ void gt_AllRandom_Init () {
 // Trigger: Blacklist
 //--------------------------------------------------------------------------------------------------
 bool gt_Blacklist_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_localPlayer;
+    int lv_wordNum;
+    string lv_word;
+    int lv_range;
+    string lv_currentClass;
+    color lv_localColor;
+    text lv_localTitle;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_localPlayer = EventPlayer();
+    lv_wordNum = 2;
+    lv_word = "";
+    lv_range = gf_GetRandomRange(lv_localPlayer);
+    lv_currentClass = "Random";
+    lv_localColor = Color(0,0,0);
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    UIDisplayMessage(PlayerGroupSingle(EventPlayer()), c_messageAreaSubtitle, StringExternal("Param/Value/68B46564"));
     if ((EventChatMessage(true) == "-black")) {
+        gv_classPreferred[lv_localPlayer] = false;
+        lv_localTitle = StringExternal("Param/Value/07A54F59");
+        lv_localColor = Color(100.00, 50.20, 50.20);
     }
-
+    else {
+        gv_classPreferred[lv_localPlayer] = true;
+        lv_localTitle = StringExternal("Param/Value/E2A19D6F");
+        lv_localColor = Color(50.20, 100.00, 50.20);
+    }
+    gv_preferredClasses[lv_localPlayer] = "";
+    while (true) {
+        lv_word = StringWord(EventChatMessage(false), lv_wordNum);
+        if ((lv_word == "")) {
+            break;
+        }
+        lv_currentClass = gf_GetClassfromKeyString(lv_word);
+        if ((lv_currentClass != "Random") && !(StringContains(gv_preferredClasses[lv_localPlayer], (lv_currentClass), c_stringAnywhere, c_stringCase))) {
+            gv_preferredClasses[lv_localPlayer] = (gv_preferredClasses[lv_localPlayer] + " " + (lv_currentClass));
+            gv_preferredClassCount[lv_localPlayer] += 1;
+        }
+        lv_wordNum += 1;
+    }
+    UIDisplayMessage(PlayerGroupSingle(lv_localPlayer), c_messageAreaSubtitle, (lv_localTitle + TextWithColor(StringToText(gv_preferredClasses[lv_localPlayer]), lv_localColor)));
     return true;
 }
 
@@ -20528,7 +20627,7 @@ bool gt_Blacklist_Func (bool testConds, bool runActions) {
 void gt_Blacklist_Init () {
     gt_Blacklist = TriggerCreate("gt_Blacklist_Func");
     TriggerAddEventChatMessage(gt_Blacklist, c_playerAny, "-black", false);
-    TriggerAddEventChatMessage(gt_Blacklist, c_playerAny, "-prefer", false);
+    TriggerAddEventChatMessage(gt_Blacklist, c_playerAny, "-pref", false);
 }
 
 //--------------------------------------------------------------------------------------------------
