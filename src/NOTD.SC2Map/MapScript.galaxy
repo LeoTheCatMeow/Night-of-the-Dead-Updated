@@ -1913,6 +1913,9 @@ bool gf_PlayerBanCheck (string lp_playerHandle);
 bool gf_PlayerAutomaticBanCheck (int lp_player);
 void gf_NOTDFormatTimerWindow (int lp_tw);
 void gf_DisplayWarningWithTimeout (text lp_message);
+int gf_HextoInt (string lp_h);
+string gf_InttoHex (int lp_i);
+string gf_ShuffleString (string lp_string);
 void gf_SaveInitBoundaryCheck (int lp_playerNo);
 void gf_Save (int lp_playerNo, int lp_bankSize);
 void gf_ResetPlayerData (int lp_playerNo, int lp_bankSize);
@@ -2890,6 +2893,46 @@ bool auto_gf_DisplayWarningWithTimeout_TriggerFunc (bool testConds, bool runActi
         gv_warningTextBreak = false;
     }
     return true;
+}
+
+int gf_HextoInt (string lp_h) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (StringFind("0123456789abcdef", lp_h, c_stringNoCase) - 1);
+}
+
+string gf_InttoHex (int lp_i) {
+    // Automatic Variable Declarations
+    // Implementation
+    return StringSub("0123456789abcdef", (lp_i + 1), (lp_i + 1));
+}
+
+string gf_ShuffleString (string lp_string) {
+    // Variable Declarations
+    string lv_par;
+    int lv_i;
+    string lv_sub;
+    string lv_ret;
+
+    // Automatic Variable Declarations
+    int auto1074DB3B_ae;
+    int auto1074DB3B_var;
+
+    // Variable Initialization
+    lv_par = lp_string;
+    lv_sub = "";
+    lv_ret = "";
+
+    // Implementation
+    auto1074DB3B_ae = StringLength(lp_string);
+    auto1074DB3B_var = 1;
+    for ( ; auto1074DB3B_var <= auto1074DB3B_ae; auto1074DB3B_var += 1 ) {
+        lv_i = RandomInt(1, StringLength(lv_par));
+        lv_sub = StringSub(lv_par, lv_i, lv_i);
+        lv_ret = (lv_ret + lv_sub);
+        lv_par = StringReplace(lv_par, "", lv_i, lv_i);
+    }
+    return lv_ret;
 }
 
 trigger auto_gf_SaveInitBoundaryCheck_Trigger = null;
@@ -18345,13 +18388,19 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText(gf_ShuffleString(StringWord(EventChatMessage(false), 2))));
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void gt_GenericTest_Init () {
     gt_GenericTest = TriggerCreate("gt_GenericTest_Func");
-    TriggerAddEventChatMessage(gt_GenericTest, c_playerAny, "-test", true);
+    TriggerAddEventChatMessage(gt_GenericTest, c_playerAny, "-test", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -19530,7 +19579,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
                             DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
                             libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
                             gv_classRerollButton[lv_selectingPlayer][2] = DialogControlLastCreated();
-                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 45, 45, c_anchorBottom, 85, 45, StringExternal("Param/Value/8BB1E382"), ColorWithAlpha(0,0,0,0), false, 2.0);
+                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 46, 46, c_anchorBottom, 85, 45, StringExternal("Param/Value/8BB1E382"), ColorWithAlpha(0,0,0,0), false, 2.0);
                             if ((gv_classIndexCount[lv_index] == 2)) {
                                 TextExpressionSetToken("Param/Expression/E53962E3", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
                                 libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, TextExpressionAssemble("Param/Expression/E53962E3"), ColorWithAlpha(0,0,0,0), false, 2.0);
