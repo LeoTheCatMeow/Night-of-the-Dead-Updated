@@ -650,6 +650,7 @@ int[9] gv_survivalWinHell;
 int[9] gv_eCWinHellSpeed;
 int[9] gv_aCWinHellSpeed;
 int[9] gv_sTWinHellSpeed;
+int[9] gv_rerolls;
 int[9] gv_winEM;
 int[9] gv_nMWinEM;
 int[9] gv_nMWinOB;
@@ -835,17 +836,20 @@ string[gv_numberofPlayers + 1] gv_playerTraitsString;
 text[gv_numberofPlayers + 1] gv_playerTraitsText;
 int[9] gv_classSelectionDialog;
 int[9][19] gv_classSelectionDialogItem;
+int[9][4] gv_classRerollButton;
+bool[9] gv_rerollEnable;
+int[9] gv_rerollsRemain;
+int[9] gv_classRange;
+string[9] gv_availableClasses;
+int[9] gv_classRequestIndex;
+bool[9] gv_classPreferred;
+string[9] gv_preferredClasses;
+int[9] gv_preferredClassCount;
+int[9] gv_classIndex;
+int[15] gv_classIndexCount;
 fixed gv_classLimitMultiplier;
 bool gv_classLimitBroken;
 int[15] gv_classCount;
-int[9] gv_classIndex;
-int[15] gv_classIndexCount;
-bool[9] gv_classRerollEnabled;
-int[9][3] gv_classRerollButton;
-int gv_classRerollCount;
-string[9] gv_preferredClasses;
-int[9] gv_preferredClassCount;
-bool[9] gv_classPreferred;
 timer gv_pingRepeatPreventionTimer;
 gs_PingInfo gv_lastPingInfo;
 timer[17] gv_pingResetTimer;
@@ -1433,21 +1437,24 @@ void InitGlobals () {
             gv_classSelectionDialogItem[init_i][init_j] = c_invalidDialogControlId;
         }
     }
-    gv_classLimitMultiplier = 1.0;
     for (init_i = 0; init_i <= 8; init_i += 1) {
-        gv_classIndex[init_i] = 1;
-    }
-    for (init_i = 0; init_i <= 8; init_i += 1) {
-        gv_classRerollEnabled[init_i] = true;
-    }
-    for (init_i = 0; init_i <= 8; init_i += 1) {
-        for (init_j = 0; init_j <= 2; init_j += 1) {
+        for (init_j = 0; init_j <= 3; init_j += 1) {
             gv_classRerollButton[init_i][init_j] = c_invalidDialogControlId;
         }
     }
     for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_classRange[init_i] = 3;
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_availableClasses[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_preferredClasses[init_i] = "";
     }
+    for (init_i = 0; init_i <= 8; init_i += 1) {
+        gv_classIndex[init_i] = 1;
+    }
+    gv_classLimitMultiplier = 1.0;
     gv_pingRepeatPreventionTimer = TimerCreate();
     gv_lastPingInfo.lv_pingtype = -1;
     for (init_i = 0; init_i <= 16; init_i += 1) {
@@ -1950,16 +1957,20 @@ void gf_RecruitClassSelectionUI ();
 void gf_SurvivalClassSelectionUI ();
 void gf_SetupClassSelection (int lp_player, int lp_classSlot, int lp_classLabel);
 void gf_ClassPointBarCreation (int lp_parentDialog, int lp_parentDialogItem, int lp_classPoints);
+void gf_InitAvailClasses ();
+void gf_ClearAvailClass (int lp_classIndex);
+void gf_AddAvailClass (int lp_classIndex);
+int gf_GetRandomRange (int lp_player);
+int gf_RandomAvailClass (int lp_player);
+string gf_GetClassfromKeyString (string lp_word);
 bool gf_ClassSelectionDialog (int lp_player, int lp_dialogItem);
 void gf_ClassCreationMaster (int lp_player);
 void gf_RegisterMarineWithEvents (unit lp_marine);
 void gf_StartingBonuses (int lp_playerIndex);
 void gf_ClassLimitCheck ();
 void gf_InitializePlayerRandomSequence ();
-int gf_GetRandomRange (int lp_player);
 int gf_GetClassCP (int lp_player, string lp_class);
 int gf_GetClassColor (string lp_class);
-string gf_GetClassfromKeyString (string lp_word);
 void gf_CustomNameChange (int lp_selectingPlayer);
 void gf_PingPlay (int lp_pingType, int lp_player, point lp_pingLocation, int lp_gameUser, string lp_pingTargetType, point lp_pingTargetPosition, int lp_pingTargetOwner);
 void gf_PingPlayUnit (string lp_pingTargetType, point lp_pingTargetPosition, int lp_pingTargetOwner, int lp_player, int lp_gameUser);
@@ -2279,8 +2290,9 @@ trigger gt_StorylineSelection;
 trigger gt_ModeSelection;
 trigger gt_AutoStorylineSelection;
 trigger gt_SkippedLegDayChallenge;
-trigger gt_ClassCreation;
+trigger gt_ClassRequest;
 trigger gt_ClassReroll;
+trigger gt_ClassCreation;
 trigger gt_PingUsedNOTD;
 trigger gt_PingResetTimerExprires;
 trigger gt_PingPanelAutoDisable;
@@ -3027,6 +3039,7 @@ bool auto_gf_SaveInitBoundaryCheck_TriggerFunc (bool testConds, bool runActions)
     gv_playerBankData[44][lv_index] = gv_survivalWinNM[lv_index];
     gv_playerBankData[45][lv_index] = gv_bootCampComplete[lv_index];
     gv_playerBankData[49][lv_index] = gv_survivalWinHell[lv_index];
+    gv_playerBankData[60][lv_index] = gv_rerolls[lv_index];
     gv_playerBankData[61][lv_index] = gv_winEM[lv_index];
     gv_playerBankData[62][lv_index] = gv_nMWinEM[lv_index];
     gv_playerBankData[63][lv_index] = gv_nMWinOB[lv_index];
@@ -3524,6 +3537,7 @@ void gf_MemoryLoad (int lp_player) {
     gv_survivalWinNM[lp_player] = gv_playerBankData[44][lp_player];
     gv_bootCampComplete[lp_player] = gv_playerBankData[45][lp_player];
     gv_survivalWinHell[lp_player] = gv_playerBankData[49][lp_player];
+    gv_rerolls[lp_player] = gv_playerBankData[60][lp_player];
     gv_winEM[lp_player] = gv_playerBankData[61][lp_player];
     gv_nMWinEM[lp_player] = gv_playerBankData[62][lp_player];
     gv_nMWinOB[lp_player] = gv_playerBankData[63][lp_player];
@@ -4084,7 +4098,9 @@ void gf_FinalizeStorylineSelection () {
     gf_SetDifficulty();
     gf_MarineExperienceSharing();
     gf_BehaviorUpdate();
+    gf_InitAvailClasses();
     Wait(5.0, c_timeGame);
+    TriggerExecute(gt_ClassRequest, false, false);
     UIClearMessages(gv_marineSquad, c_messageAreaAll);
     if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
         gf_AllRandomSelectionUI();
@@ -4879,6 +4895,152 @@ void gf_ClassPointBarCreation (int lp_parentDialog, int lp_parentDialogItem, int
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), ((StringExternal("Param/Value/2FF21ADA") + IntToText(lp_classPoints)) + StringExternal("Param/Value/42F6F864")), PlayerGroupAll());
 }
 
+trigger auto_gf_InitAvailClasses_Trigger = null;
+
+void gf_InitAvailClasses () {
+    if (auto_gf_InitAvailClasses_Trigger == null) {
+        auto_gf_InitAvailClasses_Trigger = TriggerCreate("auto_gf_InitAvailClasses_TriggerFunc");
+    }
+
+    TriggerExecute(auto_gf_InitAvailClasses_Trigger, false, false);
+}
+
+bool auto_gf_InitAvailClasses_TriggerFunc (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int autoF9A7485F_ae = 8;
+    int autoF9A7485F_var;
+
+    // Implementation
+    autoF9A7485F_var = 1;
+    for ( ; autoF9A7485F_var <= autoF9A7485F_ae; autoF9A7485F_var += 1 ) {
+        gv_classRange[autoF9A7485F_var] = gf_GetRandomRange(autoF9A7485F_var);
+        gv_availableClasses[autoF9A7485F_var] = StringSub("112233445566778899aabbccddee", 1, (gv_classRange[autoF9A7485F_var] * 2));
+    }
+    return true;
+}
+
+void gf_ClearAvailClass (int lp_classIndex) {
+    // Automatic Variable Declarations
+    const int auto82081E03_ae = 8;
+    int auto82081E03_var;
+
+    // Implementation
+    auto82081E03_var = 1;
+    for ( ; auto82081E03_var <= auto82081E03_ae; auto82081E03_var += 1 ) {
+        gv_availableClasses[auto82081E03_var] = StringReplaceWord(gv_availableClasses[auto82081E03_var], gf_InttoHex(lp_classIndex), "", 1, c_stringNoCase);
+    }
+    gv_classIndexCount[lp_classIndex] += 1;
+}
+
+void gf_AddAvailClass (int lp_classIndex) {
+    // Automatic Variable Declarations
+    const int auto104EB529_ae = 8;
+    int auto104EB529_var;
+
+    // Implementation
+    auto104EB529_var = 1;
+    for ( ; auto104EB529_var <= auto104EB529_ae; auto104EB529_var += 1 ) {
+        if ((gv_classRange[auto104EB529_var] >= lp_classIndex) && (gv_classIndexCount[lp_classIndex] < 2)) {
+            gv_availableClasses[auto104EB529_var] = (gv_availableClasses[auto104EB529_var] + gf_InttoHex(lp_classIndex));
+        }
+    }
+    gv_classIndexCount[lp_classIndex] -= 1;
+}
+
+int gf_GetRandomRange (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((((((gv_playerXP[lp_player] >= 80000) && (gv_playerRating[lp_player] >= 1500)) || ((gv_playerXP[lp_player] >= 10000) && (gv_playerRating[lp_player] >= 1700))) && (gv_playerKarma[lp_player] >= 1500)) || (gv_storyline == 4))) {
+        return 14;
+    }
+    else if (((gv_playerXP[lp_player] >= 80000) || ((gv_playerXP[lp_player] >= 10000) && (gv_playerRating[lp_player] >= 1600))) && (gv_playerKarma[lp_player] >= 1300)) {
+        return 7;
+    }
+    else if ((gv_playerXP[lp_player] >= 5000) && (gv_playerKarma[lp_player] >= 1300)) {
+        return 6;
+    }
+    else if ((gv_playerXP[lp_player] >= 500) && (gv_playerKarma[lp_player] >= 1300)) {
+        return 5;
+    }
+    else if ((gv_playerXP[lp_player] >= 100) && (gv_playerKarma[lp_player] >= 1300)) {
+        return 4;
+    }
+    return 3;
+}
+
+int gf_RandomAvailClass (int lp_player) {
+    // Variable Declarations
+    int lv_index;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((gv_availableClasses[lp_player] != "")) {
+        lv_index = RandomInt(1, StringLength(gv_availableClasses[lp_player]));
+        return gf_HextoInt(StringSub(gv_availableClasses[lp_player], lv_index, lv_index));
+    }
+    else {
+        return RandomInt(1, 2);
+    }
+}
+
+string gf_GetClassfromKeyString (string lp_word) {
+    // Variable Declarations
+    string lv_word;
+    string lv_subs;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_word = StringCase(lp_word, false);
+    lv_subs = StringSub(lv_word, 1, 3);
+
+    // Implementation
+    if (((lv_word == "fo") || (lv_subs == "for"))) {
+        return "Forward Observer";
+    }
+    else if (((lv_word == "po") || (lv_subs == "psi"))) {
+        return "Psi Ops";
+    }
+    else if (((lv_word == "pf") || (lv_subs == "pat"))) {
+        return "Pathfinder";
+    }
+    else if (((lv_word == "ce") || (lv_subs == "che"))) {
+        return "Chemical Expert";
+    }
+    else if (((lv_subs == "tec") || (lv_subs == "tek"))) {
+        return "Technician";
+    }
+    else if (((lv_word == "mando") || (lv_subs == "com"))) {
+        return "Commando";
+    }
+    else if (((lv_subs == "fla"))) {
+        return "Flamethrower";
+    }
+    else if (((lv_subs == "dem"))) {
+        return "Demolitions";
+    }
+    else if (((lv_subs == "eng"))) {
+        return "Engineer";
+    }
+    else if (((lv_word == "mm") || (lv_subs == "mar") || (lv_word == "smm"))) {
+        return "Marksman";
+    }
+    else if (((lv_subs == "ass") || (lv_word == "as"))) {
+        return "Assault";
+    }
+    else if (((lv_subs == "med"))) {
+        return "Medic";
+    }
+    else if (((lv_subs == "rec") || (lv_word == "con"))) {
+        return "Recon";
+    }
+    else if (((lv_subs == "rif") || (lv_subs == "cri") || (lv_subs == "rof") || (lv_subs == "cro") || (lv_word == "rf"))) {
+        return "Rifleman";
+    }
+    return "Random";
+}
+
 bool gf_ClassSelectionDialog (int lp_player, int lp_dialogItem) {
     // Automatic Variable Declarations
     const int auto53A62CA8_ae = 15;
@@ -5069,7 +5231,6 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     Wait(12.0, c_timeReal);
     gf_TipLocalNOTD(500, lp_player, StringExternal("Param/Value/2482F8A0"));
     Wait(60.0, c_timeReal);
-    TriggerEnable(gt_Blacklist, false);
     auto9B8C7CD9_var = 1;
     for ( ; auto9B8C7CD9_var <= auto9B8C7CD9_ae; auto9B8C7CD9_var += 1 ) {
         libNtve_gf_KillModel(gv_demeritWarning[auto9B8C7CD9_var]);
@@ -5253,27 +5414,6 @@ bool auto_gf_InitializePlayerRandomSequence_TriggerFunc (bool testConds, bool ru
     return true;
 }
 
-int gf_GetRandomRange (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    if ((((((gv_playerXP[lp_player] >= 80000) && (gv_playerRating[lp_player] >= 1500)) || ((gv_playerXP[lp_player] >= 10000) && (gv_playerRating[lp_player] >= 1700))) && (gv_playerKarma[lp_player] >= 1500)) || (gv_storyline == 4))) {
-        return 14;
-    }
-    else if (((gv_playerXP[lp_player] >= 80000) || ((gv_playerXP[lp_player] >= 10000) && (gv_playerRating[lp_player] >= 1600))) && (gv_playerKarma[lp_player] >= 1300)) {
-        return 7;
-    }
-    else if ((gv_playerXP[lp_player] >= 5000) && (gv_playerKarma[lp_player] >= 1300)) {
-        return 6;
-    }
-    else if ((gv_playerXP[lp_player] >= 500) && (gv_playerKarma[lp_player] >= 1300)) {
-        return 5;
-    }
-    else if ((gv_playerXP[lp_player] >= 100) && (gv_playerKarma[lp_player] >= 1300)) {
-        return 4;
-    }
-    return 3;
-}
-
 int gf_GetClassCP (int lp_player, string lp_class) {
     // Automatic Variable Declarations
     string auto1E180296_val;
@@ -5378,62 +5518,6 @@ int gf_GetClassColor (string lp_class) {
     else {
         return 0;
     }
-}
-
-string gf_GetClassfromKeyString (string lp_word) {
-    // Variable Declarations
-    string lv_word;
-    string lv_subs;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_word = StringCase(lp_word, false);
-    lv_subs = StringSub(lv_word, 1, 3);
-
-    // Implementation
-    if (((lv_word == "fo") || (lv_subs == "for"))) {
-        return "Forward Observer";
-    }
-    else if (((lv_word == "po") || (lv_subs == "psi"))) {
-        return "Psi Ops";
-    }
-    else if (((lv_word == "pf") || (lv_subs == "pat"))) {
-        return "Pathfinder";
-    }
-    else if (((lv_word == "ce") || (lv_subs == "che"))) {
-        return "Chemical Expert";
-    }
-    else if (((lv_word == "t") || (lv_subs == "tec"))) {
-        return "Technician";
-    }
-    else if (((lv_word == "mando") || (lv_subs == "com"))) {
-        return "Commando";
-    }
-    else if (((lv_word == "f") || (lv_subs == "fla"))) {
-        return "Flamethrower";
-    }
-    else if (((lv_word == "d") || (lv_subs == "dem"))) {
-        return "Demolitions";
-    }
-    else if (((lv_word == "e") || (lv_subs == "eng"))) {
-        return "Engineer";
-    }
-    else if (((lv_word == "mm") || (lv_subs == "mar") || (lv_word == "smm"))) {
-        return "Marksman";
-    }
-    else if (((lv_word == "a") || (lv_subs == "ass"))) {
-        return "Assault";
-    }
-    else if (((lv_subs == "med"))) {
-        return "Medic";
-    }
-    else if (((lv_word == "r") || (lv_subs == "rec") || (lv_word == "con"))) {
-        return "Recon";
-    }
-    else if (((lv_subs == "rif") || (lv_subs == "cri") || (lv_subs == "rof") || (lv_subs == "cro"))) {
-        return "Rifleman";
-    }
-    return "Random";
 }
 
 trigger auto_gf_CustomNameChange_Trigger = null;
@@ -18388,12 +18472,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText(gf_ShuffleString(StringWord(EventChatMessage(false), 2))));
     return true;
 }
 
@@ -18707,6 +18785,15 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     while (true) {
         autoED8D603D_var = PlayerGroupNextPlayer(autoED8D603D_g, autoED8D603D_var);
         if (autoED8D603D_var < 0) { break; }
+        if ((gv_playerRating[autoED8D603D_var] >= 2500)) {
+            gv_rerollsRemain[autoED8D603D_var] += 1;
+        }
+        if ((gv_playerKarma[autoED8D603D_var] >= 2000)) {
+            gv_rerollsRemain[autoED8D603D_var] += 1;
+        }
+        if ((gv_playerKarma[autoED8D603D_var] >= 1525)) {
+            gv_rerollsRemain[autoED8D603D_var] += gv_rerolls[autoED8D603D_var];
+        }
         lv_xPPool += Log2(MinF(MaxF(IntToFixed(gv_playerXP[autoED8D603D_var]), 1.0), 100000.0));
         lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
         if ((gv_playerXP[autoED8D603D_var] == 0)) {
@@ -18959,6 +19046,9 @@ bool gt_Environment_Func (bool testConds, bool runActions) {
 
     Wait(220.0, c_timeReal);
     TriggerEnable(gt_ClassCreation, false);
+    TriggerEnable(gt_Blacklist, false);
+    TriggerEnable(gt_ClassReroll, false);
+    TriggerStop(gt_ClassRequest);
     return true;
 }
 
@@ -19452,6 +19542,159 @@ void gt_SkippedLegDayChallenge_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Class Request
+//--------------------------------------------------------------------------------------------------
+bool gt_ClassRequest_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_p;
+    int lv_lastIndex;
+
+    // Automatic Variable Declarations
+    const int auto48E73DD6_ae = 8;
+    const int auto48E73DD6_ai = 1;
+    const int auto1DBF85D4_ae = 8;
+    const int auto1DBF85D4_ai = 1;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while (true) {
+        lv_p = 1;
+        for ( ; ( (auto48E73DD6_ai >= 0 && lv_p <= auto48E73DD6_ae) || (auto48E73DD6_ai < 0 && lv_p >= auto48E73DD6_ae) ) ; lv_p += auto48E73DD6_ai ) {
+            if ((gv_classRequestIndex[lv_p] > 0) && (gv_classRequestIndex[lv_p] < 15)) {
+                gf_ClearAvailClass(gv_classRequestIndex[lv_p]);
+                gv_classRequestIndex[lv_p] = 0;
+            }
+            if (gv_rerollEnable[lv_p] && (gv_classRerollButton[lv_p][3] != c_invalidDialogControlId)) {
+                if ((gv_classIndexCount[gv_classIndex[lv_p]] < 2)) {
+                    libNtve_gf_SetDialogItemText(gv_classRerollButton[lv_p][3], StringToText(""), PlayerGroupAll());
+                }
+                if ((gv_classIndexCount[gv_classIndex[lv_p]] == 2)) {
+                    TextExpressionSetToken("Param/Expression/22C8FC4A", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_p], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_p], "Class Unit", 1)))));
+                    libNtve_gf_SetDialogItemText(gv_classRerollButton[lv_p][3], TextExpressionAssemble("Param/Expression/22C8FC4A"), PlayerGroupAll());
+                }
+                if ((gv_classIndexCount[gv_classIndex[lv_p]] > 2)) {
+                    TextExpressionSetToken("Param/Expression/8E654F35", "A", IntToText((gv_classIndexCount[gv_classIndex[lv_p]] - 1)));
+                    TextExpressionSetToken("Param/Expression/8E654F35", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_p], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_p], "Class Unit", 1)))));
+                    libNtve_gf_SetDialogItemText(gv_classRerollButton[lv_p][3], TextExpressionAssemble("Param/Expression/8E654F35"), PlayerGroupAll());
+                }
+            }
+        }
+        Wait(0.125, c_timeGame);
+        lv_p = 1;
+        for ( ; ( (auto1DBF85D4_ai >= 0 && lv_p <= auto1DBF85D4_ae) || (auto1DBF85D4_ai < 0 && lv_p >= auto1DBF85D4_ae) ) ; lv_p += auto1DBF85D4_ai ) {
+            if ((gv_classRequestIndex[lv_p] > 0) && (gv_classRequestIndex[lv_p] < 15)) {
+                break;
+            }
+            lv_lastIndex = 0;
+            if ((gv_classRequestIndex[lv_p] == -1)) {
+                lv_lastIndex = gv_classIndex[lv_p];
+                gv_classRequestIndex[lv_p] = 15;
+            }
+            if ((gv_classRequestIndex[lv_p] == 15)) {
+                gv_classIndex[lv_p] = gf_RandomAvailClass(lv_p);
+                gv_playerClass[lv_p] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", gv_classIndex[lv_p]);
+                if (((gv_classIndex[lv_p] == lv_lastIndex) || ((gv_preferredClassCount[lv_p] != 0) && ((!(gv_classPreferred[lv_p]) && StringContains(gv_preferredClasses[lv_p], (gv_playerClass[lv_p]), c_stringAnywhere, c_stringCase)) || (gv_classPreferred[lv_p] && !(StringContains(gv_preferredClasses[lv_p], (gv_playerClass[lv_p]), c_stringAnywhere, c_stringCase))))))) {
+                    gv_classIndex[lv_p] = gf_RandomAvailClass(lv_p);
+                    gv_playerClass[lv_p] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", gv_classIndex[lv_p]);
+                }
+                if ((gv_rerollsRemain[lv_p] > 0)) {
+                    DialogCreate(400, 175, c_anchorCenter, -200, 100, true);
+                    DialogSetTitle(DialogLastCreated(), TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_p], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_p], "Class Unit", 1)))));
+                    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 55, c_anchorBottomLeft, 25, 40, StringExternal("Param/Value/047D27BD"), StringToText(""), "");
+                    DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
+                    libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
+                    gv_classRerollButton[lv_p][1] = DialogControlLastCreated();
+                    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 52, 52, c_anchorBottom, -85, 45, StringExternal("Param/Value/E979CE03"), ColorWithAlpha(0,0,0,0), false, 2.0);
+                    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 55, c_anchorBottomRight, 25, 40, StringExternal("Param/Value/CDEFE582"), StringToText(""), "");
+                    DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
+                    libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
+                    gv_classRerollButton[lv_p][2] = DialogControlLastCreated();
+                    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 46, 46, c_anchorBottom, 85, 45, StringExternal("Param/Value/318B4528"), ColorWithAlpha(0,0,0,0), false, 2.0);
+                    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+                    gv_classRerollButton[lv_p][3] = DialogControlLastCreated();
+                    TriggerEnable(gt_ClassReroll, true);
+                    gv_rerollEnable[lv_p] = true;
+                    DialogSetVisible(DialogLastCreated(), PlayerGroupSingle(lv_p), true);
+                }
+                if ((gv_classIndex[lv_p] == lv_lastIndex)) {
+                }
+                else {
+                    if ((lv_lastIndex > 0)) {
+                        gf_AddAvailClass(lv_lastIndex);
+                    }
+                    gf_ClearAvailClass(gv_classIndex[lv_p]);
+                }
+                gv_classRequestIndex[lv_p] = 0;
+            }
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ClassRequest_Init () {
+    gt_ClassRequest = TriggerCreate("gt_ClassRequest_Func");
+    TriggerEnable(gt_ClassRequest, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Reroll
+//--------------------------------------------------------------------------------------------------
+bool gt_ClassReroll_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_accept;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!(gv_rerollEnable[EventPlayer()])) {
+            return false;
+        }
+
+        if (!((gv_classRerollButton[EventPlayer()][1] != c_invalidDialogControlId))) {
+            return false;
+        }
+
+        if (!((lv_accept || (EventDialogControl() == gv_classRerollButton[EventPlayer()][1]) || (EventDialogControl() == gv_classRerollButton[EventPlayer()][2])))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_accept = (EventDialogControl() == gv_classRerollButton[EventPlayer()][1]);
+    gv_rerollEnable[EventPlayer()] = false;
+    DialogDestroy(DialogControlGetDialog(EventDialogControl()));
+    if (lv_accept) {
+        gv_classRequestIndex[EventPlayer()] = gv_classIndex[EventPlayer()];
+        gv_rerollsRemain[EventPlayer()] = 0;
+    }
+    else {
+        gv_classRequestIndex[EventPlayer()] = 16;
+        gv_rerollsRemain[EventPlayer()] -= 1;
+        gv_classRequestIndex[EventPlayer()] = -1;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ClassReroll_Init () {
+    gt_ClassReroll = TriggerCreate("gt_ClassReroll_Func");
+    TriggerEnable(gt_ClassReroll, false);
+    TriggerAddEventDialogControl(gt_ClassReroll, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Class Creation
 //--------------------------------------------------------------------------------------------------
 bool gt_ClassCreation_Func (bool testConds, bool runActions) {
@@ -19467,7 +19710,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     int auto458FE4A2_val;
     const int auto34C5CBDD_n = 2;
     int auto34C5CBDD_i;
-    fixed auto18F09C47_at;
+    fixed auto7D0ED819_at;
 
     // Variable Initialization
     lv_selectingPlayer = EventPlayer();
@@ -19541,88 +19784,55 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     if (false) {
         libNtve_gf_SwooshCamera(lv_selectingPlayer, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), RegionGetCenter(lv_spawnArea), 0.0);
     }
-    if ((((gv_storyline != 4) && (lv_index < 9)) || ((gv_storyline == 4) && (lv_index < 15)) || ((gv_isVeteranSquad == false) && (lv_index < 15)))) {
-        gv_classIndexCount[lv_index] += 1;
-        gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
-    }
-    else {
-        if ((lv_usedDialogItem == gv_classSelectionDialogItem[lv_selectingPlayer][15])) {
-            gv_randomsOption = 2;
-            gv_maxRandom -= 1;
-            if ((gv_maxRandom == 0) && (TriggerGetExecCount(TriggerGetCurrent()) < (gv_totalPlayers - 1))) {
-                TriggerExecute(gt_DisableRandomButton, false, false);
-            }
-
-            gv_playerRandom[lv_selectingPlayer] = true;
-            if ((gv_classSelectionOverrideIndex != 0) && (PlayerHandle(lv_selectingPlayer) == gv_overridingPlayerHandle)) {
-                gv_classIndexCount[gv_classSelectionOverrideIndex] += 1;
-                gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", gv_classSelectionOverrideIndex);
-            }
-            else {
-                lv_range = gf_GetRandomRange(lv_selectingPlayer);
-                while (true) {
-                    lv_index = RandomInt(1, lv_range);
-                    gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
-                    if (((gv_classIndexCount[lv_index] < RandomInt(1, 2)) || ((lv_index < 3) && (gv_classIndexCount[lv_index] > 1) && (RandomInt(1, 14) >= lv_range))) && ((gv_preferredClassCount[lv_selectingPlayer] == 0) || (RandomInt(1, 5) == 3) || (!(gv_classPreferred[lv_selectingPlayer]) && !(StringContains(gv_preferredClasses[lv_selectingPlayer], (gv_playerClass[lv_selectingPlayer]), c_stringAnywhere, c_stringCase))) || (gv_classPreferred[lv_selectingPlayer] && StringContains(gv_preferredClasses[lv_selectingPlayer], (gv_playerClass[lv_selectingPlayer]), c_stringAnywhere, c_stringCase)))) {
-                        gv_classIndexCount[lv_index] += 1;
-                        if (gv_classRerollEnabled[lv_selectingPlayer]) {
-                            gv_classRerollCount += 1;
-                            gv_classIndex[lv_selectingPlayer] = lv_index;
-                            DialogCreate(400, 175, c_anchorCenter, -200, 100, true);
-                            DialogSetTitle(DialogLastCreated(), TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
-                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 55, c_anchorBottomLeft, 25, 40, StringExternal("Param/Value/4B18419D"), StringToText(""), "");
-                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
-                            libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
-                            gv_classRerollButton[lv_selectingPlayer][1] = DialogControlLastCreated();
-                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 52, 52, c_anchorBottom, -85, 45, StringExternal("Param/Value/F2AF6503"), ColorWithAlpha(0,0,0,0), false, 2.0);
-                            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 175, 55, c_anchorBottomRight, 25, 40, StringExternal("Param/Value/BEA0869B"), StringToText(""), "");
-                            DialogControlFadeTransparency(DialogControlLastCreated(), PlayerGroupAll(), 0.0, 50.0);
-                            libNtve_gf_SetDialogItemClickOnDown(DialogControlLastCreated(), true, PlayerGroupAll());
-                            gv_classRerollButton[lv_selectingPlayer][2] = DialogControlLastCreated();
-                            libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 46, 46, c_anchorBottom, 85, 45, StringExternal("Param/Value/8BB1E382"), ColorWithAlpha(0,0,0,0), false, 2.0);
-                            if ((gv_classIndexCount[lv_index] == 2)) {
-                                TextExpressionSetToken("Param/Expression/E53962E3", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
-                                libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, TextExpressionAssemble("Param/Expression/E53962E3"), ColorWithAlpha(0,0,0,0), false, 2.0);
-                            }
-                            if ((gv_classIndexCount[lv_index] > 2)) {
-                                TextExpressionSetToken("Param/Expression/76E485D0", "A", IntToText((gv_classIndexCount[lv_index] - 1)));
-                                TextExpressionSetToken("Param/Expression/76E485D0", "B", TextWithColor(UserDataGetText("Classes", gv_playerClass[lv_selectingPlayer], "Class Name", 1), libNtve_gf_ConvertPlayerColorToColor(gf_GetClassColor(UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1)))));
-                                libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 330, 25, c_anchorBottom, 0, 20, TextExpressionAssemble("Param/Expression/76E485D0"), ColorWithAlpha(0,0,0,0), false, 2.0);
-                            }
-                            DialogSetVisible(DialogLastCreated(), PlayerGroupSingle(lv_selectingPlayer), true);
-                            TriggerEnable(gt_ClassReroll, true);
-                            auto18F09C47_at = 0;
-                            while (!(((gv_classIndex[lv_selectingPlayer] == 0) || (gv_classIndex[lv_selectingPlayer] == 15))) && auto18F09C47_at <= 10.0) {
-                                Wait(0.25, c_timeReal);
-                                auto18F09C47_at = auto18F09C47_at + 0.25;
-                            }
-                            DialogDestroy(DialogControlGetDialog(gv_classRerollButton[lv_selectingPlayer][1]));
-                            gv_classRerollCount -= 1;
-                            if ((gv_classRerollCount == 0)) {
-                                TriggerEnable(gt_ClassReroll, false);
-                            }
-                            if ((gv_classIndex[lv_selectingPlayer] == 15)) {
-                                gv_classIndexCount[lv_index] -= 1;
-                                continue;
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            if ((gv_storyline != 3)) {
-                gf_UpdateMagazineCount(10, ge_AmmoChange_Increase, lv_selectingPlayer);
-            }
-            else {
-                gf_UpdateMagazineCount(7, ge_AmmoChange_Increase, lv_selectingPlayer);
-            }
-        }
-
-    }
     if ((gv_currentDailyChallenge == ge_DailyChallenge_RiflemanSquad) && (gv_dailyChallengeActivated == true)) {
         gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 1);
     }
+    else if ((((gv_storyline != 4) && (lv_index < 9)) || ((gv_storyline == 4) && (lv_index < 15)) || ((gv_isVeteranSquad == false) && (lv_index < 15)))) {
+        gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", lv_index);
+        gv_classRequestIndex[lv_selectingPlayer] = lv_index;
+    }
+    else if ((lv_usedDialogItem == gv_classSelectionDialogItem[lv_selectingPlayer][15])) {
+        gv_randomsOption = 2;
+        gv_maxRandom -= 1;
+        if ((gv_maxRandom == 0) && (TriggerGetExecCount(TriggerGetCurrent()) < (gv_totalPlayers - 1))) {
+            TriggerExecute(gt_DisableRandomButton, false, false);
+        }
+
+        gv_playerRandom[lv_selectingPlayer] = true;
+        if ((gv_classSelectionOverrideIndex != 0) && (PlayerHandle(lv_selectingPlayer) == gv_overridingPlayerHandle)) {
+            gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", gv_classSelectionOverrideIndex);
+            gv_classRequestIndex[lv_selectingPlayer] = gv_classSelectionOverrideIndex;
+        }
+        else {
+            gv_classRequestIndex[lv_selectingPlayer] = 15;
+            auto7D0ED819_at = 0;
+            while (!((gv_classRequestIndex[lv_selectingPlayer] == 0) && (gv_rerollsRemain[lv_selectingPlayer] == 0)) && auto7D0ED819_at <= 10.0) {
+                Wait(0.25, c_timeReal);
+                auto7D0ED819_at = auto7D0ED819_at + 0.25;
+            }
+            if ((gv_rerollsRemain[lv_selectingPlayer] > 0)) {
+                gv_rerollEnable[lv_selectingPlayer] = false;
+                DialogDestroy(DialogControlGetDialog(gv_classRerollButton[lv_selectingPlayer][1]));
+            }
+            lv_index = gv_classIndex[lv_selectingPlayer];
+        }
+        if ((gv_storyline != 3)) {
+            gf_UpdateMagazineCount(10, ge_AmmoChange_Increase, lv_selectingPlayer);
+        }
+        else {
+            gf_UpdateMagazineCount(7, ge_AmmoChange_Increase, lv_selectingPlayer);
+        }
+    }
+    else if (true) {
+        UIDisplayMessage(PlayerGroupSingle(lv_selectingPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/2A2A7720"));
+        gv_playerClass[lv_selectingPlayer] = UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 1);
+    }
     UnitCreate(1, UserDataGetUnit("Classes", gv_playerClass[lv_selectingPlayer], "Class Unit", 1), 0, EventPlayer(), lv_spawnPoint, 90.0);
+    if ((TriggerGetExecCount(TriggerGetCurrent()) == (gv_totalPlayers - 1))) {
+        TriggerEnable(gt_ClassReroll, false);
+        TriggerEnable(gt_Blacklist, false);
+        TriggerStop(gt_ClassRequest);
+    }
     gv_marineHero[lv_selectingPlayer] = UnitLastCreated();
     UnitSetCustomValue(gv_marineHero[lv_selectingPlayer], 1, IntToFixed(lv_selectingPlayer));
     UnitGroupAdd(gv_marines, gv_marineHero[lv_selectingPlayer]);
@@ -19689,48 +19899,6 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
 void gt_ClassCreation_Init () {
     gt_ClassCreation = TriggerCreate("gt_ClassCreation_Func");
     TriggerAddEventDialogControl(gt_ClassCreation, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Class Reroll
-//--------------------------------------------------------------------------------------------------
-bool gt_ClassReroll_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!(gv_classRerollEnabled[EventPlayer()])) {
-            return false;
-        }
-
-        if (!((gv_classRerollButton[EventPlayer()][1] != c_invalidDialogControlId))) {
-            return false;
-        }
-
-        if (!(((EventDialogControl() == gv_classRerollButton[EventPlayer()][1]) || (EventDialogControl() == gv_classRerollButton[EventPlayer()][2])))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    gv_classRerollEnabled[EventPlayer()] = false;
-    if ((EventDialogControl() == gv_classRerollButton[EventPlayer()][1])) {
-        gv_classIndex[EventPlayer()] = 0;
-    }
-    else {
-        gv_classIndex[EventPlayer()] = 15;
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ClassReroll_Init () {
-    gt_ClassReroll = TriggerCreate("gt_ClassReroll_Func");
-    TriggerEnable(gt_ClassReroll, false);
-    TriggerAddEventDialogControl(gt_ClassReroll, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -49815,8 +49983,9 @@ void InitTriggers () {
     gt_ModeSelection_Init();
     gt_AutoStorylineSelection_Init();
     gt_SkippedLegDayChallenge_Init();
-    gt_ClassCreation_Init();
+    gt_ClassRequest_Init();
     gt_ClassReroll_Init();
+    gt_ClassCreation_Init();
     gt_PingUsedNOTD_Init();
     gt_PingResetTimerExprires_Init();
     gt_PingPanelAutoDisable_Init();

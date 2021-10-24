@@ -2307,12 +2307,14 @@ DocInfo/PatchNote191=- Disabled predetermined randoms. Random chances are determ
 DocInfo/PatchNote192=  have a higher chance than selected ones.
 DocInfo/PatchNote193=[ThunderRazor]
 DocInfo/PatchNote194=QoL updates for Random class selections:
-DocInfo/PatchNote195=- Added re-roll option after random. Click checkmark to accept. Click die to re-roll. You can only re-roll once.
-DocInfo/PatchNote196=- Added -blacklist command. Type -blacklist class1 class2 etc. (space delimited) to avoid list of classes.
-DocInfo/PatchNote197=  If a blacklisted class is rolled, 80% chance the dice will re-roll until you get a class that is not blacklisted.
-DocInfo/PatchNote198=- Added -preferred command. Type -prefer class1 class2 etc. (space delimited) to prefer list of classes.
-DocInfo/PatchNote199=  If a preferred class is not rolled, 80% chance the dice will re-roll until you get a class that is preferred.
-DocInfo/PatchNote200=  You can only choose between -blacklist and -prefer.
+DocInfo/PatchNote195=- Added random reroll option for players with perfect karma or perfect rating (stacks).
+DocInfo/PatchNote196=  Click checkmark to accept. Click die to re-roll.
+DocInfo/PatchNote197=  In the future, rerolls may be purchased at the shop as permanent modifications.
+DocInfo/PatchNote198=- Added -blacklist command. Type -blacklist class1 class2 etc. (space delimited) to avoid list of classes.
+DocInfo/PatchNote199=  If a blacklisted class is rolled, the dice will automatically reroll once.
+DocInfo/PatchNote200=- Added -preferred command. Type -prefer class1 class2 etc. (space delimited) to prefer list of classes.
+DocInfo/PatchNote201=  If a preferred class is not rolled, the dice will automatically reroll once.
+DocInfo/PatchNote202=  You can only choose between -blacklist and -prefer.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4338,6 +4340,7 @@ Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="
 Param/Expression/1E570E34=Ammo Box (~A~)
 Param/Expression/207EADA5=<s val="GlueButtonSmall">Rec/Norm: <c val="71E100">~A~</c></s>
 Param/Expression/20BD633D=Designate ~A~
+Param/Expression/22C8FC4A=<c val="FFCE09">1 other Marine is</c> ~B~
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/32F4B8C8=+<c val="FFFF80">~A~</c> XP and<c val="FFFF80"> ~B~</c> Rating for Daily Challenge Bonus
@@ -4357,13 +4360,13 @@ Param/Expression/713D1F7E=+<c val="FFFF80">~A~</c> XP for Outbreak Bonus
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/739881FA=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
 Param/Expression/749F018B=Survive (Wave ~A~/40)
-Param/Expression/76E485D0=<c val="FF3333">~A~ other Marines are</c> ~B~
 Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/81A0B422=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
 Param/Expression/8261F9D4=+<c val="FFFF80">~A~ </c>XP for Speed Bonus
 Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to retreat!
 Param/Expression/876B094F=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
+Param/Expression/8E654F35=<c val="FF3333">~A~ other Marines are</c> ~B~
 Param/Expression/8EAFA28F=<s val="GlueButtonSmall">Hell: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/8F6674B0=+<c val="FFFF80">~A~</c> XP for All Random Bonus
 Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">Wins</c> (<c val="49ABF3">Speed</c>) (<c val="E10000">NM</c>) (<c val="F1D845">NM Speed</c>) (<c val="DB48FF">Hell</c>)</s>
@@ -4378,7 +4381,6 @@ Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
 Param/Expression/D9838420=+<c val="FFFF80">~A~ </c>XP for Elite Mutation Bonus
 Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
-Param/Expression/E53962E3=<c val="FFCE09">1 other Marine is</c> ~B~
 Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/F405B274=<s val="GlueButtonSmall">Nightmare: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
@@ -4390,7 +4392,6 @@ Param/Value/00AD8F43=Are you seeing this?
 Param/Value/018D8BCF=Proceed to Epsilon Mining Site
 Param/Value/0193DE09=We've arrived at the source.
 Param/Value/01991E09=<s val="BriefingHanText">Survivors: 39</s>
-Param/Value/01BBB729=
 Param/Value/02115397=Search the Airlock for clues
 Param/Value/021B3BD8=Move
 Param/Value/0249DD5A= has lost 30 Rating & Karma and 100 XP!
@@ -4407,6 +4408,7 @@ Param/Value/03A117C6=Why are we killing all these people.
 Param/Value/03DBB218=IVAX
 Param/Value/0417696E=Good Samaritan
 Param/Value/041ADC4A=Find military personnel at Apollo Starport
+Param/Value/047D27BD=Accept
 Param/Value/048EF2B2=If Black Ops are involved, this has implications all the way to the top.
 Param/Value/048FA946=You've got to shoot 'em in the head. Give me your gun. I'll show you.
 Param/Value/04F0C35D=The doctor needs to hurry up.
@@ -4608,6 +4610,7 @@ Param/Value/25A13A94=Find the doctor, don't let him get away.
 Param/Value/25A58BB6=I don't like the look of this...RUN AND HIDE out of sight. Now!
 Param/Value/25EB75DE=Doctor
 Param/Value/25EE9DF9=
+Param/Value/260D0199=
 Param/Value/261B5256=
 Param/Value/26C70C28=Gen. Koller
 Param/Value/26E60809=-1 
@@ -4639,6 +4642,7 @@ Param/Value/299BF98C=(Demeter <c val="FF0000">grasps into the darkness with its 
 Param/Value/29A05D77=What if the Compliance Nexuses were a tool to spread the virus...
 Param/Value/29BCFD8F=Such a shame.
 Param/Value/29FDB2A4=I don't think we are. There's nothing more to say.
+Param/Value/2A2A7720=<c val="FF0000">An unknown error occurred!</c>
 Param/Value/2A6A71C1=I'll... help you cure the infestation...if you can still trust me.
 Param/Value/2A6CAC7C=Find a defensible position and survive
 Param/Value/2A6E68C4=Compliance Nexuses are randomly scattered across Apollo
@@ -4670,7 +4674,7 @@ Param/Value/2E1900EB=Investigate the Communications Tower
 Param/Value/2E588F08=
 Param/Value/2E973C55=This is the last dome. We got this.
 Param/Value/2F400B8B=+1 XP for Performance Bonus
-Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations | [<c val="FFFF80">-skip</c>/<c val="FFFF80">-skip all</c>] Skip Cinematics | [<c val="FFFF80">-roll</c>] Roll a Dice<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
+Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations | [<c val="FFFF80">-skip</c>/<c val="FFFF80">-skip all</c>] Skip Cinematics | [<c val="FFFF80">-pref</c>/<c val="FFFF80">-blacklist</c>] Prefer/Blacklist Classes | [<c val="FFFF80">-roll</c>] Roll a Dice<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
 Param/Value/2F787A1C=<s val="InfoPaneHeroRank">No issues found.</s>
 Param/Value/2F9BB167=Give suppressive fire and move! That thing has thick armor.
 Param/Value/2F9DE260=<c val="FF0000">(Sahaquiel prepares for a deadly descend...)</c>
@@ -4688,6 +4692,7 @@ Param/Value/30A09D44=Infestation detected in Apollo perimeter! Lethal force enga
 Param/Value/30F0E2B0=What's happening!?
 Param/Value/31763C9E=
 Param/Value/317B23C0=<s val="BriefingHanText">Immigration & Military Facility</s>
+Param/Value/318B4528=<img path="Assets\Textures\ui_battlenet_glue_icons_random_highlight.dds"/>
 Param/Value/31C1E4F1=<s val="InfoPaneHeroRank">Navy Cross</s><n/>- All medical supplies removed from game.
 Param/Value/3205EB83=Lab Rats
 Param/Value/324269D7=<s val="GlueButton"><c val="F4D72B">Deimos has released a swarm of Titans from containment!</c></s>
@@ -4839,7 +4844,6 @@ Param/Value/4A4CFC07=Say hello to my little friend.
 Param/Value/4A8E52F6=Press B to allocate talent points
 Param/Value/4AB0C16C=I repeat...Broken Arrow!
 Param/Value/4AF6E21F=(The Queen goes into a <c val="FF0000">Frenzy</c>!)
-Param/Value/4B18419D=Accept
 Param/Value/4B31A45D=Negative. You're the first team on ground and the rest of battalion will arrive ETA 3 hours.
 Param/Value/4B3AA85B=It wants our brains. Kill it!
 Param/Value/4B50586A=<s val="InfoPaneHeroRank">Not eligible for Navy Cross</s>
@@ -4972,6 +4976,7 @@ Param/Value/5F4DD8DA=ETA 2 Mikes. I see enemy movement. They're moving in on you
 Param/Value/5F562428=</c></s>
 Param/Value/5FA0B4DE=(The Queen begins to lay eggs..)
 Param/Value/5FAE1461= randomed 
+Param/Value/5FDA2666=
 Param/Value/5FFE221C=
 Param/Value/6015481C=Proceed to Central Square
 Param/Value/6022681D=Chase her! She's almost dead.
@@ -5238,7 +5243,6 @@ Param/Value/8B17FA99=Re-activate Devastators from Airlock. They provide heavy su
 Param/Value/8B3790A4=Stats
 Param/Value/8B3F7459=Too many distractions. Must focus.
 Param/Value/8B5E5F28=Chapter 1
-Param/Value/8BB1E382=<img path="Assets\Textures\ui_battlenet_glue_icons_random_highlight.dds"/>
 Param/Value/8BD93954=<s val="BriefingHanText">   Designers<n/>   Daren Yoong (Ability)<n/>   Charles Passen (Kithrixx)</s>
 Param/Value/8BEB60C9=<n/>Games Played: 
 Param/Value/8BFF1855=Rescue Sec Team B from Apollo East
@@ -5409,7 +5413,6 @@ Param/Value/A450A312=[<c val="FF0000">Priority Transmission</c>]<n/>General Koll
 Param/Value/A49EACA3=<s val="BriefingHanText">Apollo Starport</s>
 Param/Value/A4DCEB1A=Loud and clear. We were cut off but we've held together against the initial outbreak.
 Param/Value/A524C94A=Bergmann has betrayed Easy Company. Stay alert!
-Param/Value/A532988B=
 Param/Value/A5C8AE5C=<s val="GlueButton"><c val="F4D72B">May his soul rest in peace.</c></s>
 Param/Value/A5C960A4=Epsilon Mine Site - located West of your drop off - has sent a distress signal several hours ago. UGC has lost contact with the facility since. Proceed with caution. Intel suggests that the rebels could be behind this incident. With 70% of the world's energy supply at stake, UGC Command keeping a close watch on this mission.<n/><n/><c val="FF0000">Lethal force authorized.</c>
 Param/Value/A5E0FFE0=+3 XP for Performance Bonus
@@ -5558,7 +5561,6 @@ Param/Value/BD76034D=<c val="FF0000">-1 Rating</c> for mission delay
 Param/Value/BDA42EE5=You can only spectate after both your hero and pet dies.
 Param/Value/BDE3C18F=(Eileithyia has mutated into a dangerous Queen...)
 Param/Value/BE83CAAC=Gather at the Military Base.
-Param/Value/BEA0869B=Reroll
 Param/Value/BEC11F18=There are 5 forms of infestation wandering throughout Apollo which seem to control the lesser infestation and their number. Killing these will reduce the number of hordes that will attack the squad.
 Param/Value/BEFDC6B7= </c><c val="F4D72B">has been accidentally slaughtered by </c><c val="FF0000">
 Param/Value/BF4FE9A7=<s val="BriefingHanText">Directive: Outbreak evacuation ship</s>
@@ -5656,6 +5658,7 @@ Param/Value/CD5B26BE=Retrieve Weapons & Ammo from Armory
 Param/Value/CD783517=Class Selection - Recruit
 Param/Value/CDB4532A=<s val="GlueButton"><c val="F4D72B">Motion sensors lit up like a Christmas tree, brace for a fast attack!</c></s>
 Param/Value/CDBBA6C1=You are in direct violation of UGC Article 11.
+Param/Value/CDEFE582=Reroll
 Param/Value/CE01A2D6=<c val="F5D62B">Fire in the hole!</c>
 Param/Value/CE13C562=Retreat
 Param/Value/CE164DAC=
@@ -5842,6 +5845,7 @@ Param/Value/E8E46D7D= is dangerously evil. Caution advised.
 Param/Value/E939CB1C=<s val="GlueButton">HAL : <c val="F4D72B">Warning! Burrowed lifeforms detected at these locations.</c></s>
 Param/Value/E94E0C6A=Proceed to Communications Tower
 Param/Value/E95917BD=Roger, Wilco.
+Param/Value/E979CE03=<img path="Assets\Textures\ui_battlenet_challenge_button_checkmark.dds"/>
 Param/Value/E9845FDB=: <c val="F4D72B">
 Param/Value/E99CE20A=<s val="InfoPaneHeroRank">Colonists Rescued:  
 Param/Value/E9ABE14F=(Zeus and Leto go into a rampage..)
@@ -5896,7 +5900,6 @@ Param/Value/F2219781=<c val="FF0000">Out of Ammo</c>
 Param/Value/F22F3EB3=If there are any, they'd probably be in underground chambers or the containment center.
 Param/Value/F235544E=(Demeter stares <c val="FF0000">with its eyes</c>...)
 Param/Value/F2861A34=Capture Tartarus by disabling it. Most forms of stuns work to disorient it. Sufficient attacks while its disoriented will then weaken Tartarus enough for it to be captured.
-Param/Value/F2AF6503=<img path="Assets\Textures\ui_battlenet_challenge_button_checkmark.dds"/>
 Param/Value/F2DBA6CF=Where is everyone?
 Param/Value/F2F0980F=<s val="InfoPaneHeroRank">
 Param/Value/F2FD400A=(Transmission interrupted...)
