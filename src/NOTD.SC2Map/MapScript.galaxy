@@ -19647,22 +19647,24 @@ void gt_ClassRequest_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_ClassReroll_Func (bool testConds, bool runActions) {
     // Variable Declarations
+    int lv_localPlayer;
     bool lv_accept;
 
     // Automatic Variable Declarations
     // Variable Initialization
+    lv_localPlayer = EventPlayer();
 
     // Conditions
     if (testConds) {
-        if (!(gv_rerollEnable[EventPlayer()])) {
+        if (!(gv_rerollEnable[lv_localPlayer])) {
             return false;
         }
 
-        if (!((gv_classRerollButton[EventPlayer()][1] != c_invalidDialogControlId))) {
+        if (!((gv_classRerollButton[lv_localPlayer][1] != c_invalidDialogControlId))) {
             return false;
         }
 
-        if (!((lv_accept || (EventDialogControl() == gv_classRerollButton[EventPlayer()][1]) || (EventDialogControl() == gv_classRerollButton[EventPlayer()][2])))) {
+        if (!((lv_accept || (EventDialogControl() == gv_classRerollButton[lv_localPlayer][1]) || (EventDialogControl() == gv_classRerollButton[lv_localPlayer][2])))) {
             return false;
         }
     }
@@ -19672,17 +19674,19 @@ bool gt_ClassReroll_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_accept = (EventDialogControl() == gv_classRerollButton[EventPlayer()][1]);
-    gv_rerollEnable[EventPlayer()] = false;
+    lv_accept = (EventDialogControl() == gv_classRerollButton[lv_localPlayer][1]);
+    gv_rerollEnable[lv_localPlayer] = false;
     DialogDestroy(DialogControlGetDialog(EventDialogControl()));
     if (lv_accept) {
-        gv_classRequestIndex[EventPlayer()] = gv_classIndex[EventPlayer()];
-        gv_rerollsRemain[EventPlayer()] = 0;
+        gv_classRequestIndex[lv_localPlayer] = gv_classIndex[lv_localPlayer];
+        gv_rerollsRemain[lv_localPlayer] = 0;
     }
     else {
-        gv_classRequestIndex[EventPlayer()] = 16;
-        gv_rerollsRemain[EventPlayer()] -= 1;
-        gv_classRequestIndex[EventPlayer()] = -1;
+        gf_UpdateKarma(lv_localPlayer, -5);
+        gf_UpdateRating(lv_localPlayer, -1);
+        gv_classRequestIndex[lv_localPlayer] = 16;
+        gv_rerollsRemain[lv_localPlayer] -= 1;
+        gv_classRequestIndex[lv_localPlayer] = -1;
     }
     return true;
 }
