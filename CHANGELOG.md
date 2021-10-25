@@ -1,5 +1,18 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-10-25
+[ThunderRazor]
+QoL updates for Random class selections:
+- Added random reroll option for players with perfect karma or perfect rating (stacks).
+  Click checkmark to accept. Click die to re-roll.
+  In the future, rerolls may be purchased at the shop as permanent modifications.
+- Added -blacklist command. Type -blacklist class1 class2 etc. (space delimited) to avoid list of classes.
+  If a blacklisted class is rolled, the dice will automatically reroll once.
+- Added -preferred command. Type -prefer class1 class2 etc. (space delimited) to prefer list of classes.
+  If a preferred class is not rolled, the dice will automatically reroll once.
+  You can only choose between -blacklist and -prefer.
+- -5 Karma & -1 Rating penalty for random rerolls
+
 2021-10-13
 [ThunderRazor]
 - Fixed an issue where Eli appears stuck in EC after a -skip.
