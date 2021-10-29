@@ -2811,14 +2811,9 @@ bool auto_gf_NOTDBanlist_TriggerFunc (bool testConds, bool runActions) {
 }
 
 bool gf_PlayerBanCheck (string lp_playerHandle) {
-    // Variable Declarations
-    point lv_untitledVariable001;
-
     // Automatic Variable Declarations
     int autoDE02A363_ae;
     int autoDE02A363_var;
-
-    // Variable Initialization
 
     // Implementation
     autoDE02A363_ae = UserDataFieldValueCount("Banlist", "Player Handle");
@@ -2833,7 +2828,16 @@ bool gf_PlayerBanCheck (string lp_playerHandle) {
 }
 
 bool gf_PlayerAutomaticBanCheck (int lp_player) {
+    // Variable Declarations
+    bool lv_fail;
+
     // Automatic Variable Declarations
+    int autoE8D3F1B8_ae;
+    int autoE8D3F1B8_var;
+
+    // Variable Initialization
+    lv_fail = true;
+
     // Implementation
     if ((((gv_playerRank[lp_player] * 2) + gf_GetMedalStats(lp_player)) < gf_GetCurrentAllocatedStats(lp_player))) {
         gf_StatsBalancePlayerStats(lp_player);
@@ -2867,6 +2871,24 @@ bool gf_PlayerAutomaticBanCheck (int lp_player) {
     }
     else if ((gf_StatsGetMaxModPoints(lp_player) < gv_modTotalPointsNegative[lp_player])) {
         return true;
+    }
+    else if ((gv_playerXP[lp_player] >= 990000)) {
+        autoE8D3F1B8_ae = UserDataFieldValueCount("Banlist", "Player Handle");
+        autoE8D3F1B8_var = 1;
+        for ( ; autoE8D3F1B8_var <= autoE8D3F1B8_ae; autoE8D3F1B8_var += 1 ) {
+            if ((PlayerHandle(lp_player) == UserDataGetString("Banlist", "Safelist", "Player Handle", autoE8D3F1B8_var))) {
+                lv_fail = false;
+                break;
+            }
+        }
+        if (lv_fail) {
+            if ((gv_playerXP[lp_player] >= 1000000)) {
+                return true;
+            }
+            else {
+                UIDisplayMessage(PlayerGroupSingle(lp_player), c_messageAreaSubtitle, StringExternal("Param/Value/8B54E915"));
+            }
+        }
     }
     return false;
 }

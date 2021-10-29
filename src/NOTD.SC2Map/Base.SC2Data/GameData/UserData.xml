@@ -277,7 +277,19 @@
     <CUser id="Banlist">
         <Fields Id="Player Handle" Type="String" Count="1000"/>
         <Instances Id="[Default]"/>
-        <Instances Id="Banlist"/>
+        <Instances Id="Banlist">
+            <String String="1-S2-1-20852387">
+                <Field Id="Player Handle"/>
+            </String>
+        </Instances>
+        <Instances Id="Safelist">
+            <String String="1-S2-1-5768282">
+                <Field Id="Player Handle"/>
+            </String>
+            <String String="1-S2-1-1560369">
+                <Field Id="Player Handle" Index="1"/>
+            </String>
+        </Instances>
     </CUser>
     <CUser id="BossData">
         <Fields Id="Name" Type="Text"/>
