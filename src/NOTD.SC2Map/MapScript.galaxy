@@ -18774,12 +18774,6 @@ bool gt_GenericTest_Func (bool testConds, bool runActions) {
         }
     }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    gf_ECEndCinematic();
     return true;
 }
 
