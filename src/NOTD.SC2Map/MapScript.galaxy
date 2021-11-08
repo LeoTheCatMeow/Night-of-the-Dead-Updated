@@ -4972,7 +4972,7 @@ void gf_SetRandomClass (int lp_player) {
     // Implementation
     if ((gv_classList[lp_player] == "")) {
         lv_ind = 1;
-        lv_class = gf_InttoHex(lv_ind);
+        lv_class = "1";
     }
     else {
         lv_i = RandomInt(1, StringLength(gv_classList[lp_player]));
@@ -4983,7 +4983,7 @@ void gf_SetRandomClass (int lp_player) {
     if ((gv_preferredClassCount[lp_player] != 0) && ((!(gv_classPreferred[lp_player]) && StringContains(gv_preferredClasses[lp_player], (lv_className), c_stringAnywhere, c_stringCase)) || (gv_classPreferred[lp_player] && !(StringContains(gv_preferredClasses[lp_player], (lv_className), c_stringAnywhere, c_stringCase))))) {
         if ((gv_classList[lp_player] == "")) {
             lv_ind = 1;
-            lv_class = gf_InttoHex(lv_ind);
+            lv_class = "1";
         }
         else {
             lv_i = RandomInt(1, StringLength(gv_classList[lp_player]));
