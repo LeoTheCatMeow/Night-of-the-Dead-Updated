@@ -488,7 +488,7 @@ const fixed gv_c_PINGRESETTIME = 2.0;
 const fixed gv_c_PINGSUPPRESSIONTIME = 0.25;
 const fixed gv_c_PINGLOCKOUTTIME = 5.0;
 const int gv_maxDemerits = 3;
-const int gv_numberOfShopOptions = 68;
+const int gv_numberOfShopOptions = 69;
 const string gv_bossFightStart = "StartBossFight";
 const string gv_bossFightEnd = "EndBossFight";
 const string gv_bossUnit = "Boss";
@@ -3568,6 +3568,9 @@ void gf_MemoryLoad (int lp_player) {
     gv_bootCampComplete[lp_player] = gv_playerBankData[45][lp_player];
     gv_survivalWinHell[lp_player] = gv_playerBankData[49][lp_player];
     gv_rerolls[lp_player] = gv_playerBankData[60][lp_player];
+    if ((gv_rerolls[lp_player] > 3)) {
+        gv_rerolls[lp_player] = 3;
+    }
     gv_winEM[lp_player] = gv_playerBankData[61][lp_player];
     gv_nMWinEM[lp_player] = gv_playerBankData[62][lp_player];
     gv_nMWinOB[lp_player] = gv_playerBankData[63][lp_player];
@@ -4113,7 +4116,9 @@ void gf_FinalizeStorylineSelection () {
     DialogDestroy(gv_storylineDialog);
     DialogDestroy(gv_storylineModDialog);
     DialogDestroy(gv_storylineModDialog2);
+    libNtve_gf_HideGameUI(false, PlayerGroupActive());
     UIHideCinematicText(PlayerGroupAll());
+    TimerWindowDestroy(gv_globalTimerWindow);
     gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
     GameSetLighting(gv_defaultLighting, 3.9);
     TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
@@ -5424,6 +5429,10 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeCommandPanel, true);
     UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeInventoryPanel, true);
     UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMinimapPanel, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeConsolePanel, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMenuBar, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMissionTimePanel, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeAllianceButton, true);
     CameraLockInput(lp_player, false);
     libNtve_gf_SetDialogItemUnit(gv_teamStatusLifeBar[lp_player], gv_marineHero[lp_player], PlayerGroupAll());
     UnitSetPropertyFixed(gv_marineHero[lp_player], c_unitPropLevel, 1.0);
@@ -8642,7 +8651,7 @@ bool auto_gf_ShopCreation_TriggerFunc (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     const int auto75ED4ACC_ae = gv_numberOfShopOptions;
     int auto75ED4ACC_var;
-    const int auto1F1F9F31_ae = 32;
+    const int auto1F1F9F31_ae = 33;
     int auto1F1F9F31_var;
 
     // Variable Initialization
@@ -8655,7 +8664,7 @@ bool auto_gf_ShopCreation_TriggerFunc (bool testConds, bool runActions) {
     lv_tempDialogItem = DialogControlLastCreated();
     DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeButton, "CloseButton");
     gv_shopCloseButtons[lp_player] = DialogControlLastCreated();
-    auto75ED4ACC_var = 33;
+    auto75ED4ACC_var = 34;
     for ( ; auto75ED4ACC_var <= auto75ED4ACC_ae; auto75ED4ACC_var += 1 ) {
         gf_ShopButton(lv_tempDialogItem, lp_player, auto75ED4ACC_var, 1);
     }
@@ -8684,7 +8693,7 @@ void gf_ShopButton (int lp_panel, int lp_player, int lp_itemNumber, int lp_page)
     lv_tempPanel = DialogControlLastCreated();
     DialogControlHookup(lv_tempPanel, c_triggerControlTypeButton, "Button");
     gv_shopButtons[lp_player][lp_itemNumber] = DialogControlLastCreated();
-    if ((lp_page == 1) && (lp_itemNumber <= 60) && ((gv_noShopMode == true))) {
+    if ((lp_page == 1) && (lp_itemNumber <= 61) && ((gv_noShopMode == true))) {
         libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringToText(UserDataGetString("ShopItems", "ShopItem"+IntToString(lp_itemNumber), "Name", 1)) + StringExternal("Param/Value/3CFEA3BD") + UserDataGetText("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopTooltip", 1)), PlayerGroupAll());
         DialogControlHookup(lv_tempPanel, c_triggerControlTypeImage, "ShopImage");
         libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopImage", 1), PlayerGroupAll());
@@ -8740,7 +8749,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     lv_itemID = lp_itemID;
 
     // Implementation
-    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noShopMode == false)) || (lv_itemID > 60) || (gv_trainingActivated == true))) {
+    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noShopMode == false)) || (lv_itemID > 61) || (gv_trainingActivated == true))) {
         lv_itemCost = UserDataGetInt("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopCost", 1);
         if ((lv_itemCost == -1)) {
             if ((gv_playerXP[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "XPRequirement", 1)) && (gv_playerKarma[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "KarmaRequirement", 1))) {
@@ -8843,6 +8852,11 @@ void gf_ShopBuyPerm (int lp_itemID, int lp_player, string lp_itemType) {
                 gf_UpdateCredits(lp_player, -lv_itemCost);
                 gv_playerWeaponsMod2[lp_player] += 100;
                 gf_ModUpdateUnlockedModPointsText(lp_player);
+                lv_boughtItem = true;
+            }
+            else if ((lv_itemType == "reroll") && (gv_rerolls[lp_player] < 3)) {
+                gf_UpdateCredits(lp_player, -lv_itemCost);
+                gv_rerolls[lp_player] += 1;
                 lv_boughtItem = true;
             }
             else if ((lv_itemType == "kitten") && (gf_KittensBought(lp_player) == false)) {
@@ -19044,6 +19058,11 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     libNtve_gf_HideGameUI(false, PlayerGroupActive());
     GameSetSpeedValue(c_gameSpeedFaster);
     GameSetSpeedLocked(true);
+    TimerStart(gv_globalTimer, 60.0, false, c_timeReal);
+    TimerWindowCreate(gv_globalTimer, StringExternal("Param/Value/65CB3623"), true, false);
+    gf_NOTDFormatTimerWindow(TimerWindowLastCreated());
+    gv_globalTimerWindow = TimerWindowLastCreated();
+    TimerWindowShow(gv_globalTimerWindow, PlayerGroupActive(), true);
     Wait(0.1, c_timeGame);
     if ((GameIsTestMap(false) == true)) {
         GameCheatAllow(c_gameCheatAny, true);
@@ -19387,6 +19406,7 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     if ((gv_firstGame || (gv_scaledXP < 1000))) {
         gv_storylineUnlocked[2] = false;
         gv_storylineUnlocked[4] = false;
+        TimerWindowSetTitle(gv_globalTimerWindow, StringExternal("Param/Value/95A59AA2"));
     }
     UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
     gf_UIDialogCreation(1235, 1225, 0, 0, c_anchorCenter);
@@ -19568,6 +19588,13 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
         DialogControlSetEnabled(gv_modeSelection[1], PlayerGroupAll(), false);
         gf_UpdateModeSelectionUIs(ge_GameModes_Recruit);
     }
+    libNtve_gf_HideGameUI(true, PlayerGroupActive());
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeMenuBar, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeMissionTimePanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeConsolePanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeCommandPanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeMinimapPanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeAllianceButton, false);
     return true;
 }
 
@@ -19789,9 +19816,18 @@ void gt_ModeSelection_Init () {
 // Trigger: Auto Storyline Selection
 //--------------------------------------------------------------------------------------------------
 bool gt_AutoStorylineSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_unlocked;
+    int lv_index;
+
     // Automatic Variable Declarations
+    const int auto539912AE_ae = 4;
+    int auto539912AE_var;
     const int auto8FD6CC03_ae = 3;
     int auto8FD6CC03_var;
+
+    // Variable Initialization
+    lv_unlocked = "";
 
     // Actions
     if (!runActions) {
@@ -19806,9 +19842,19 @@ bool gt_AutoStorylineSelection_Func (bool testConds, bool runActions) {
         gv_isVeteranSquad = false;
         gv_noNewbie = false;
     }
-    auto8FD6CC03_var = 2;
+    auto539912AE_var = 1;
+    for ( ; auto539912AE_var <= auto539912AE_ae; auto539912AE_var += 1 ) {
+        if (gv_storylineUnlocked[auto539912AE_var]) {
+            lv_unlocked = (lv_unlocked + IntToString(auto539912AE_var));
+        }
+    }
+    lv_index = RandomInt(1, StringLength(lv_unlocked));
+    gv_storyline = StringToInt(StringSub(lv_unlocked, lv_index, lv_index));
+    auto8FD6CC03_var = 1;
     for ( ; auto8FD6CC03_var <= auto8FD6CC03_ae; auto8FD6CC03_var += 1 ) {
-        DialogControlFadeTransparency(gv_storylineSelection[auto8FD6CC03_var], PlayerGroupAll(), 0.5, 80.0);
+        if ((auto8FD6CC03_var != gv_storyline)) {
+            DialogControlFadeTransparency(gv_storylineSelection[auto8FD6CC03_var], PlayerGroupAll(), 0.5, 80.0);
+        }
     }
     Wait(1.0, c_timeGame);
     gf_FinalizeStorylineSelection();
@@ -20845,6 +20891,7 @@ void gt_AllRandom_Init () {
 bool gt_Blacklist_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_localPlayer;
+    string lv_chatString;
     int lv_wordNum;
     string lv_word;
     int lv_range;
@@ -20855,6 +20902,7 @@ bool gt_Blacklist_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Variable Initialization
     lv_localPlayer = EventPlayer();
+    lv_chatString = EventChatMessage(false);
     lv_wordNum = 2;
     lv_word = "";
     lv_range = gf_GetRandomRange(lv_localPlayer);
@@ -20877,8 +20925,15 @@ bool gt_Blacklist_Func (bool testConds, bool runActions) {
         lv_localColor = Color(50.20, 100.00, 50.20);
     }
     gv_preferredClasses[lv_localPlayer] = "";
+    lv_word = StringWord(lv_chatString, lv_wordNum);
+    if ((lv_word == "tank")) {
+    }
+    else if ((lv_word == "dps")) {
+    }
+    else if ((lv_word == "cloak")) {
+    }
     while (true) {
-        lv_word = StringWord(EventChatMessage(false), lv_wordNum);
+        lv_word = StringWord(lv_chatString, lv_wordNum);
         if ((lv_word == "")) {
             break;
         }
@@ -24341,10 +24396,6 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         if (!(((lv_deadUnitType == "Devourer") || (lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran") || (lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2") || (lv_deadUnitType == "Titan") || (lv_deadUnitType == "Baneling") || (lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal") || UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || UnitGroupHasUnit(gv_unknownUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0))))) {
             return false;
         }
-
-        if (!(((EventUnitDamageDeathCheck(c_deathTypeFire) == false) || UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)))) {
-            return false;
-        }
     }
 
     // Actions
@@ -24366,7 +24417,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         }
 
     }
-    if ((((lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran")) && (RandomInt(0, 2) == 1))) {
+    if (((lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran")) && (RandomInt(0, 2) == 1) && (EventUnitDamageDeathCheck(c_deathTypeFire) == false) && (EventUnitDamageDeathCheck(c_deathTypeBlast) == false)) {
         Wait(RandomFixed(1.5, 3.0), c_timeReal);
         if (!(gv_cinematicMode)) {
             UnitCreate(1, "Zergling", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
@@ -24490,41 +24541,39 @@ bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
     gv_infestorLock = true;
     UnitGroupRemove(gv_infestors, EventUnit());
     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
-    if (((EventUnitDamageDeathCheck(c_deathTypeFire) == false) || lv_isScorching)) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreepLarge", 0, 14, lv_localPointA, RegionRandomPoint(RegionPlayableMap()));
-        if ((gv_nightmare || gv_hell)) {
-            libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+    libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreepLarge", 0, 14, lv_localPointA, RegionRandomPoint(RegionPlayableMap()));
+    if ((gv_nightmare || gv_hell)) {
+        libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+    }
+    if (gv_nightmare) {
+        auto16F7DD33_n = gv_spawnFactor;
+        for (auto16F7DD33_i = 1; auto16F7DD33_i <= auto16F7DD33_n; auto16F7DD33_i += 1) {
+            UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
+            UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+            UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
+            Wait(0.1, c_timeGame);
         }
-        if (gv_nightmare) {
-            auto16F7DD33_n = gv_spawnFactor;
-            for (auto16F7DD33_i = 1; auto16F7DD33_i <= auto16F7DD33_n; auto16F7DD33_i += 1) {
-                UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
-                UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-                UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
-                Wait(0.1, c_timeGame);
+    }
+    else if (gv_hell) {
+        auto2B71D0CC_n = gv_spawnFactor;
+        for (auto2B71D0CC_i = 1; auto2B71D0CC_i <= auto2B71D0CC_n; auto2B71D0CC_i += 1) {
+            UnitCreate(1, "Slither", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
+            UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+            UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
+            UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
+            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+            UnitBehaviorAddPlayer(UnitLastCreated(), "SpeedBuff", 13, 1);
+            if (lv_isScorching) {
+                UnitWeaponRemove(UnitLastCreated(), "VenomousFangs");
+                UnitWeaponAdd(UnitLastCreated(), "FlamethrowerMK2", null);
+                UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
             }
-        }
-        else if (gv_hell) {
-            auto2B71D0CC_n = gv_spawnFactor;
-            for (auto2B71D0CC_i = 1; auto2B71D0CC_i <= auto2B71D0CC_n; auto2B71D0CC_i += 1) {
-                UnitCreate(1, "Slither", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
-                UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-                UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
-                UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
-                UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
-                UnitBehaviorAddPlayer(UnitLastCreated(), "SpeedBuff", 13, 1);
-                if (lv_isScorching) {
-                    UnitWeaponRemove(UnitLastCreated(), "VenomousFangs");
-                    UnitWeaponAdd(UnitLastCreated(), "FlamethrowerMK2", null);
-                    UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+            else {
+                if ((RandomInt(0, 2) == 1)) {
+                    UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
                 }
-                else {
-                    if ((RandomInt(0, 2) == 1)) {
-                        UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
-                    }
-                }
-                Wait(0.1, c_timeGame);
             }
+            Wait(0.1, c_timeGame);
         }
     }
     gf_AwardMarineXPNOTD(75.0);
