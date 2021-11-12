@@ -727,6 +727,7 @@ int[9] gv_magazinesUsed;
 int[9] gv_playerRoundLimit;
 int gv_alivePlayers;
 int gv_totalPlayers;
+int gv_humanPlayers;
 bool[9] gv_playerRecovery;
 int[9] gv_playerLives;
 playergroup gv_marineSquad;
@@ -736,6 +737,8 @@ playergroup gv_admin;
 bool[9] gv_isAdmin;
 bool[9] gv_playerIsHardVet;
 bool[9] gv_playerIsNewbie;
+bool[9] gv_playerIsHuman;
+bool[9] gv_playerIsComp;
 int[9] gv_marineWeightPoints;
 unitgroup gv_marines;
 string[9] gv_friendlyFireBuff;
@@ -2284,6 +2287,7 @@ void gf_EndGameUISetNOTD ();
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
 trigger gt_GenericTest;
+trigger gt_AIPlayerTest;
 trigger gt_AddCredits;
 trigger gt_ClassSelectOverride;
 trigger gt_ManualSave;
@@ -5111,6 +5115,7 @@ bool gf_OpenRerollDialog (int lp_player) {
         return (gv_rollAccepted[lp_player] == false);
     }
     else {
+        gv_rerollsRemain[lp_player] = 0;
         return false;
     }
 }
@@ -6421,7 +6426,7 @@ void gf_DemeritDialogCreateShow (int lp_viewingPlayer, int lp_viewedPlayer) {
             }
             gv_demeritDialog[lp_viewedPlayer] = DialogLastCreated();
             libNtve_gf_CreateDialogItemLabel(gv_demeritDialog[lp_viewedPlayer], 200, 25, c_anchorLeft, 0, -12, (StringExternal("Param/Value/351A44C5") + PlayerName(lp_viewedPlayer) + StringExternal("Param/Value/0D570AB4")), ColorWithAlpha(0,0,0,0), false, 2.0);
-            if ((PlayerStatus(lp_viewedPlayer) != c_playerStatusUnused)) {
+            if (gv_playerIsHuman[lp_viewedPlayer]) {
                 libNtve_gf_CreateDialogItemLabel(gv_demeritDialog[lp_viewedPlayer], 200, 25, c_anchorLeft, 0, 12, (StringExternal("Param/Value/6A606D49") + StringToText(PlayerHandle(lp_viewedPlayer)) + StringExternal("Param/Value/ACF8242C")), ColorWithAlpha(0,0,0,0), false, 2.0);
             }
             if (false) {
@@ -15445,7 +15450,12 @@ void gf_UISetPlayerRankNameIconXP (int lp_triggeringPlayer) {
         libNtve_gf_SetDialogItemImage(gv_teamStatusPortraitButton[lp_triggeringPlayer], UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Icon", 1), PlayerGroupAll());
         libNtve_gf_SetDialogItemImage(gv_teamStatusRankIcon[lp_triggeringPlayer], UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Icon", 1), PlayerGroupAll());
         libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1), PlayerGroupAll());
-        libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1) + StringExternal("Param/Value/F5F4A3AF") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
+        if (gv_playerIsHuman[lp_triggeringPlayer]) {
+            libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1) + StringExternal("Param/Value/F5F4A3AF") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
+        }
+        else {
+            libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1)), gv_admin);
+        }
     }
     gf_UIUpdateXP(lp_triggeringPlayer);
 }
@@ -18798,6 +18808,51 @@ void gt_GenericTest_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AI Player Test
+//--------------------------------------------------------------------------------------------------
+bool gt_AIPlayerTest_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_localPlayer;
+
+    // Automatic Variable Declarations
+    const int auto6EF702C4_ae = 4;
+    const int auto6EF702C4_ai = 1;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!(!(GameIsOnline()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_localPlayer = 2;
+    for ( ; ( (auto6EF702C4_ai >= 0 && lv_localPlayer <= auto6EF702C4_ae) || (auto6EF702C4_ai < 0 && lv_localPlayer >= auto6EF702C4_ae) ) ; lv_localPlayer += auto6EF702C4_ai ) {
+        if (((PlayerType(lv_localPlayer) == c_playerTypeComputer) || (PlayerType(lv_localPlayer) == c_playerTypeNone))) {
+            gv_playerIsComp[lv_localPlayer] = true;
+            PlayerOptionOverride(lv_localPlayer, "selectuncontrolable", "1");
+            PlayerOptionOverride(lv_localPlayer, "simplecommandcard", "0");
+            PlayerOptionOverride(lv_localPlayer, "showalerts", "1");
+            PlayerOptionOverride(lv_localPlayer, "tickedunitstatus", "0");
+            PlayerGroupAdd(gv_marineSquad, lv_localPlayer);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_AIPlayerTest_Init () {
+    gt_AIPlayerTest = TriggerCreate("gt_AIPlayerTest_Func");
+    TriggerAddEventMapInit(gt_AIPlayerTest);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Add Credits
 //--------------------------------------------------------------------------------------------------
 bool gt_AddCredits_Func (bool testConds, bool runActions) {
@@ -19087,6 +19142,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     UISetResourceTradingAllowed(c_resourceTypeVespene, false);
     TriggerExecute(gt_Environment, true, false);
     TimerStart(gv_gameTime, 10800.0, false, c_timeReal);
+    TriggerExecute(gt_AIPlayerTest, true, true);
     TriggerExecute(gt_PlayerIntialize, true, true);
     TriggerEnable(gt_NightmareHellMode, true);
     TriggerEnable(gt_OutbreakCommand, true);
@@ -19106,33 +19162,35 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     while (true) {
         autoED8D603D_var = PlayerGroupNextPlayer(autoED8D603D_g, autoED8D603D_var);
         if (autoED8D603D_var < 0) { break; }
-        if ((gv_playerRating[autoED8D603D_var] >= 2500)) {
-            gv_rerollsRemain[autoED8D603D_var] += 1;
-        }
-        if ((gv_playerKarma[autoED8D603D_var] >= 2000)) {
-            gv_rerollsRemain[autoED8D603D_var] += 1;
-        }
-        if ((gv_playerKarma[autoED8D603D_var] >= 1525)) {
-            gv_rerollsRemain[autoED8D603D_var] += gv_rerolls[autoED8D603D_var];
-        }
-        lv_xPPool += Log2(MinF(MaxF(IntToFixed(gv_playerXP[autoED8D603D_var]), 1.0), 100000.0));
-        lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
-        if ((gv_playerXP[autoED8D603D_var] == 0)) {
-            gv_firstGame = true;
-            gv_noSkip = true;
-        }
-        if ((gv_playerXP[autoED8D603D_var] < 500)) {
-            lv_newbieCount += 1;
-            gv_playerIsNewbie[autoED8D603D_var] = true;
-        }
-        if ((gv_playerXP[autoED8D603D_var] >= 10000)) {
-            gv_playerIsHardVet[autoED8D603D_var] = true;
-        }
-        else {
-            gv_isHardVetSquad = false;
+        if (gv_playerIsHuman[autoED8D603D_var]) {
+            if ((gv_playerRating[autoED8D603D_var] >= 2500)) {
+                gv_rerollsRemain[autoED8D603D_var] += 1;
+            }
+            if ((gv_playerKarma[autoED8D603D_var] >= 2000)) {
+                gv_rerollsRemain[autoED8D603D_var] += 1;
+            }
+            if ((gv_playerKarma[autoED8D603D_var] >= 1525)) {
+                gv_rerollsRemain[autoED8D603D_var] += gv_rerolls[autoED8D603D_var];
+            }
+            lv_xPPool += Log2(MinF(MaxF(IntToFixed(gv_playerXP[autoED8D603D_var]), 1.0), 100000.0));
+            lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
+            if ((gv_playerXP[autoED8D603D_var] == 0)) {
+                gv_firstGame = true;
+                gv_noSkip = true;
+            }
+            if ((gv_playerXP[autoED8D603D_var] < 500)) {
+                lv_newbieCount += 1;
+                gv_playerIsNewbie[autoED8D603D_var] = true;
+            }
+            if ((gv_playerXP[autoED8D603D_var] >= 10000)) {
+                gv_playerIsHardVet[autoED8D603D_var] = true;
+            }
+            else {
+                gv_isHardVetSquad = false;
+            }
         }
     }
-    lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_totalPlayers)));
+    lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_humanPlayers)));
     gv_noNewbie = (lv_xPMin >= 500);
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
@@ -19173,12 +19231,19 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
     while (true) {
         auto0E90487C_var = PlayerGroupNextPlayer(auto0E90487C_g, auto0E90487C_var);
         if (auto0E90487C_var < 0) { break; }
+        if ((PlayerType(auto0E90487C_var) == c_playerTypeComputer)) {
+            gv_playerIsComp[auto0E90487C_var] = true;
+        }
+        if ((PlayerType(auto0E90487C_var) == c_playerTypeUser) && (PlayerStatus(auto0E90487C_var) == c_playerStatusActive)) {
+            gv_playerIsHuman[auto0E90487C_var] = true;
+            gv_humanPlayers += 1;
+        }
         PlayerOptionOverride(auto0E90487C_var, "selectuncontrolable", "1");
         PlayerOptionOverride(auto0E90487C_var, "simplecommandcard", "0");
         PlayerOptionOverride(auto0E90487C_var, "showalerts", "1");
         PlayerOptionOverride(auto0E90487C_var, "tickedunitstatus", "0");
         PlayerGroupAdd(gv_marineSquad, auto0E90487C_var);
-        if (((PlayerHandle(auto0E90487C_var) == "1-S2-1-417524") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-431521") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1143628") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-3388720") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-11533459") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1246603") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-7513326") || !(GameIsOnline()))) {
+        if (gv_playerIsHuman[auto0E90487C_var] && ((PlayerHandle(auto0E90487C_var) == "1-S2-1-417524") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-431521") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1143628") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-3388720") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-11533459") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1246603") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-7513326") || !(GameIsOnline()))) {
             PlayerGroupAdd(gv_admin, auto0E90487C_var);
             gv_isAdmin[auto0E90487C_var] = true;
         }
@@ -19199,11 +19264,13 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
     while (true) {
         autoCC32BB0F_var = PlayerGroupNextPlayer(autoCC32BB0F_g, autoCC32BB0F_var);
         if (autoCC32BB0F_var < 0) { break; }
-        gf_MemoryLoad(autoCC32BB0F_var);
-        gf_StatsLoadPlayerStats(autoCC32BB0F_var);
-        gf_UIInitializeStartingCareerStats(autoCC32BB0F_var);
-        gf_StatsLoadPlayerWeaponModPoints(autoCC32BB0F_var);
-        PlayerModifyPropertyInt(autoCC32BB0F_var, c_playerPropCustom, c_playerPropOperSetTo, gv_playerXP[autoCC32BB0F_var]);
+        if (gv_playerIsHuman[autoCC32BB0F_var] && (PlayerStatus(autoCC32BB0F_var) == c_playerStatusActive)) {
+            gf_MemoryLoad(autoCC32BB0F_var);
+            gf_StatsLoadPlayerStats(autoCC32BB0F_var);
+            gf_UIInitializeStartingCareerStats(autoCC32BB0F_var);
+            gf_StatsLoadPlayerWeaponModPoints(autoCC32BB0F_var);
+            PlayerModifyPropertyInt(autoCC32BB0F_var, c_playerPropCustom, c_playerPropOperSetTo, gv_playerXP[autoCC32BB0F_var]);
+        }
     }
     return true;
 }
@@ -19928,7 +19995,6 @@ bool gt_Reroll_Func (bool testConds, bool runActions) {
     }
     else {
         gf_UpdateKarma(lv_localPlayer, -5);
-        gf_UpdateRating(lv_localPlayer, -1);
         gv_rerollsRemain[lv_localPlayer] -= 1;
     }
     gv_rerollEnable[lv_localPlayer] = false;
@@ -46794,10 +46860,10 @@ bool gt_CreateTeamStatusDialog_Func (bool testConds, bool runActions) {
         DialogControlHookup(gv_teamStatusPlayerPanel[lv_currentPlayer], c_triggerControlTypeButton, "StatusButton");
         gv_teamStatusPortraitButton[lv_currentPlayer] = DialogControlLastCreated();
         DialogControlHookup(gv_teamStatusPlayerPanel[lv_currentPlayer], c_triggerControlTypeImage, "BorderImage");
-        if (gf_Staff(PlayerHandle(lv_currentPlayer))) {
+        if (gv_playerIsHuman[lv_currentPlayer] && gf_Staff(PlayerHandle(lv_currentPlayer))) {
             libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_multiplayerload_avatarborder_grandmaster.dds", PlayerGroupAll());
         }
-        else if (gf_TournamentWinner(PlayerHandle(lv_currentPlayer))) {
+        else if (gv_playerIsHuman[lv_currentPlayer] && gf_TournamentWinner(PlayerHandle(lv_currentPlayer))) {
             libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_multiplayerload_avatarborder_master.dds", PlayerGroupAll());
         }
         else if ((gv_medalOfHonor[lv_currentPlayer] >= 500)) {
@@ -47001,7 +47067,7 @@ bool gt_CreateMedalsDialog_Func (bool testConds, bool runActions) {
     while (true) {
         lv_currentPlayer = PlayerGroupNextPlayer(auto8419F750_g, lv_currentPlayer);
         if (lv_currentPlayer < 0) { break; }
-        if ((PlayerHandle(lv_currentPlayer) == "5-S2-1-643123")) {
+        if (gv_playerIsHuman[lv_currentPlayer] && (PlayerHandle(lv_currentPlayer) == "5-S2-1-643123")) {
             GameOver(lv_currentPlayer, c_gameOverVictory, true, true);
         }
 
@@ -50076,6 +50142,7 @@ void gt_NOTDCreditsRoll_Init () {
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
     gt_GenericTest_Init();
+    gt_AIPlayerTest_Init();
     gt_AddCredits_Init();
     gt_ClassSelectOverride_Init();
     gt_ManualSave_Init();
