@@ -488,7 +488,7 @@ const fixed gv_c_PINGRESETTIME = 2.0;
 const fixed gv_c_PINGSUPPRESSIONTIME = 0.25;
 const fixed gv_c_PINGLOCKOUTTIME = 5.0;
 const int gv_maxDemerits = 3;
-const int gv_numberOfShopOptions = 68;
+const int gv_numberOfShopOptions = 69;
 const string gv_bossFightStart = "StartBossFight";
 const string gv_bossFightEnd = "EndBossFight";
 const string gv_bossUnit = "Boss";
@@ -727,17 +727,25 @@ int[9] gv_magazinesUsed;
 int[9] gv_playerRoundLimit;
 int gv_alivePlayers;
 int gv_totalPlayers;
+int gv_humanPlayers;
 bool[9] gv_playerRecovery;
 int[9] gv_playerLives;
 playergroup gv_marineSquad;
+playergroup gv_marineSquadAI;
 playergroup gv_leavers;
 playergroup gv_activePlayers;
 playergroup gv_admin;
 bool[9] gv_isAdmin;
 bool[9] gv_playerIsHardVet;
 bool[9] gv_playerIsNewbie;
+bool[9] gv_playerIsHuman;
+bool[9] gv_playerIsComp;
 int[9] gv_marineWeightPoints;
 unitgroup gv_marines;
+unitgroup gv_marinesAI;
+unitgroup gv_marinesHuman;
+unitgroup gv_marinesNotRecon;
+unitgroup gv_marinesNotReconAny;
 string[9] gv_friendlyFireBuff;
 trigger[5] gv_domeSpawn;
 string gv_domeSequence;
@@ -848,6 +856,7 @@ int[9] gv_classRange;
 bool[9] gv_classPreferred;
 string[9] gv_preferredClasses;
 int[9] gv_preferredClassCount;
+bool[9] gv_playerHasPicked;
 int[9] gv_classIndex;
 int[15] gv_classIndexCount;
 fixed gv_classLimitMultiplier;
@@ -1347,10 +1356,15 @@ void InitGlobals () {
         gv_playerLives[init_i] = 3;
     }
     gv_marineSquad = PlayerGroupEmpty();
+    gv_marineSquadAI = PlayerGroupEmpty();
     gv_leavers = PlayerGroupEmpty();
     gv_activePlayers = PlayerGroupEmpty();
     gv_admin = PlayerGroupEmpty();
     gv_marines = UnitGroupEmpty();
+    gv_marinesAI = UnitGroupEmpty();
+    gv_marinesHuman = UnitGroupEmpty();
+    gv_marinesNotRecon = UnitGroupEmpty();
+    gv_marinesNotReconAny = UnitGroupEmpty();
     gv_domeSequence = "";
     gv_spawnFactor = 1;
     gv_isHardVetSquad = true;
@@ -1924,6 +1938,12 @@ void gf_UIDialogCreation (int lp_height, int lp_width, int lp_offsetX, int lp_of
 void gf_NOTDBanlist ();
 bool gf_PlayerBanCheck (string lp_playerHandle);
 bool gf_PlayerAutomaticBanCheck (int lp_player);
+int gf_GetMedalWins (int lp_player);
+int gf_GetMedalWinsNM (int lp_player);
+int gf_GetCPWins (int lp_player);
+int gf_GetCPWinsSpeed (int lp_player);
+fixed gf_CPVariation (int lp_player);
+int gf_GetTotalCP (int lp_player);
 void gf_NOTDFormatTimerWindow (int lp_tw);
 void gf_DisplayWarningWithTimeout (text lp_message);
 int gf_HextoInt (string lp_h);
@@ -2313,6 +2333,7 @@ trigger gt_SquadStatsCheck;
 trigger gt_CiviliansCheck;
 trigger gt_TeamLocation;
 trigger gt_ClassPointsCheck;
+trigger gt_StatsCheck;
 trigger gt_Help;
 trigger gt_WinsCheck;
 trigger gt_AmmoCheck;
@@ -2340,6 +2361,9 @@ trigger gt_CustomCheatGod;
 trigger gt_CustomCheatFree;
 trigger gt_Demerits;
 trigger gt_DemeritsVisible;
+trigger gt_MarineHeroAITestRegPlayer;
+trigger gt_MarineHeroAIClassCreation;
+trigger gt_MarineHeroAI;
 trigger gt_ManualReload;
 trigger gt_AmmoUsage;
 trigger gt_AmmoUsageStinger;
@@ -2800,7 +2824,7 @@ bool auto_gf_NOTDBanlist_TriggerFunc (bool testConds, bool runActions) {
     while (true) {
         lv_currentPlayer = PlayerGroupNextPlayer(auto19E39D56_g, lv_currentPlayer);
         if (lv_currentPlayer < 0) { break; }
-        if ((gf_PlayerBanCheck(PlayerHandle(lv_currentPlayer)) || gf_PlayerAutomaticBanCheck(lv_currentPlayer))) {
+        if ((PlayerHandle(lv_currentPlayer) != "") && (gf_PlayerBanCheck(PlayerHandle(lv_currentPlayer)) || gf_PlayerAutomaticBanCheck(lv_currentPlayer))) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaChat, ((StringExternal("Param/Value/EC7D13E1") + PlayerName(lv_currentPlayer)) + StringExternal("Param/Value/875FB6A5")));
             UIDisplayMessage(PlayerGroupSingle(lv_currentPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/E8E3F69D"));
             PlayerModifyPropertyInt(lv_currentPlayer, c_playerPropDamageTakenPercent, c_playerPropOperSetTo, 400);
@@ -2837,14 +2861,22 @@ bool gf_PlayerBanCheck (string lp_playerHandle) {
 
 bool gf_PlayerAutomaticBanCheck (int lp_player) {
     // Variable Declarations
-    bool lv_fail;
+    int lv_wins;
+    int lv_nMWins;
+    int lv_totWins;
+    int lv_totCP;
+    bool lv_xpfail;
 
     // Automatic Variable Declarations
     int autoE8D3F1B8_ae;
     int autoE8D3F1B8_var;
 
     // Variable Initialization
-    lv_fail = true;
+    lv_wins = gf_GetMedalWins(lp_player);
+    lv_nMWins = gf_GetMedalWinsNM(lp_player);
+    lv_totWins = (lv_wins + lv_nMWins);
+    lv_totCP = gf_GetTotalCP(lp_player);
+    lv_xpfail = true;
 
     // Implementation
     if ((((gv_playerRank[lp_player] * 2) + gf_GetMedalStats(lp_player)) < gf_GetCurrentAllocatedStats(lp_player))) {
@@ -2862,10 +2894,19 @@ bool gf_PlayerAutomaticBanCheck (int lp_player) {
     else if ((gf_BOInsigniaBought(lp_player) == true) && (gv_playerLifeTimeCreditsAcquired[lp_player] < 10000)) {
         return true;
     }
+    else if (((lv_totWins > gv_playerGamesPlayed[lp_player]) || (lv_totWins < 0) || (lv_totWins > 561024))) {
+        return true;
+    }
     else if ((gv_combatActionRibbon[lp_player] > gv_playerGamesPlayed[lp_player])) {
         return true;
     }
     else if (((gv_lifeSavingMedal[lp_player] + gv_silverStar[lp_player]) > gv_combatActionRibbon[lp_player])) {
+        return true;
+    }
+    else if (((gv_medalOfHonor[lp_player] > lv_nMWins) || ((MaxI((gv_lifeSavingMedal[lp_player] - 20), 0) + MaxI((gv_silverStar[lp_player] - 20), 0)) > lv_nMWins))) {
+        return true;
+    }
+    else if ((lv_totCP > (gf_GetCPWins(lp_player) + (2 * gf_GetCPWinsSpeed(lp_player))))) {
         return true;
     }
     else if ((gf_StatsGetMaxModPoints(lp_player) > 20)) {
@@ -2880,16 +2921,22 @@ bool gf_PlayerAutomaticBanCheck (int lp_player) {
     else if ((gf_StatsGetMaxModPoints(lp_player) < gv_modTotalPointsNegative[lp_player])) {
         return true;
     }
+    else if (false && (lv_totCP > 500) && (gf_CPVariation(lp_player) < 1.0)) {
+        return true;
+    }
+    else if (false && (gv_playerXP[lp_player] < 1000000) && (gv_playerXP[lp_player] >= 5000) && (lv_totWins > 0) && ((gv_playerXP[lp_player] > FixedToInt((4.0 * IntToFixed(gv_playerLifeTimeCreditsAcquired[lp_player]) * (IntToFixed(gv_playerGamesPlayed[lp_player]) / IntToFixed(lv_totWins))))) || (gv_playerXP[lp_player] < FixedToInt((0.25 * IntToFixed(gv_playerLifeTimeCreditsAcquired[lp_player]) * (IntToFixed(lv_totWins) / IntToFixed(gv_playerGamesPlayed[lp_player]))))))) {
+        return true;
+    }
     else if ((gv_playerXP[lp_player] >= 990000)) {
         autoE8D3F1B8_ae = UserDataFieldValueCount("Banlist", "Player Handle");
         autoE8D3F1B8_var = 1;
         for ( ; autoE8D3F1B8_var <= autoE8D3F1B8_ae; autoE8D3F1B8_var += 1 ) {
             if ((PlayerHandle(lp_player) == UserDataGetString("Banlist", "Safelist", "Player Handle", autoE8D3F1B8_var))) {
-                lv_fail = false;
+                lv_xpfail = false;
                 break;
             }
         }
-        if (lv_fail) {
+        if (lv_xpfail) {
             if ((gv_playerXP[lp_player] >= 1000000)) {
                 return true;
             }
@@ -2899,6 +2946,48 @@ bool gf_PlayerAutomaticBanCheck (int lp_player) {
         }
     }
     return false;
+}
+
+int gf_GetMedalWins (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (gv_eCWinNormal[lp_player] + gv_eCSpeed[lp_player] + gv_aCWinNormal[lp_player] + gv_aCSpeed[lp_player] + gv_sTWinNormal[lp_player] + gv_sTSpeed[lp_player] + gv_survivalWin[lp_player]);
+}
+
+int gf_GetMedalWinsNM (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (gv_eCWinNM[lp_player] + gv_eCNMSpeed[lp_player] + gv_aCWinNM[lp_player] + gv_aCNMSpeed[lp_player] + gv_sTWinNM[lp_player] + gv_sTNMSpeed[lp_player] + gv_survivalWinNM[lp_player] + gv_eCWinHell[lp_player] + gv_eCWinHellSpeed[lp_player] + gv_aCWinHell[lp_player] + gv_aCWinHellSpeed[lp_player] + gv_sTWinHell[lp_player] + gv_sTWinHellSpeed[lp_player] + gv_survivalWinHell[lp_player]);
+}
+
+int gf_GetCPWins (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (gv_eCWinNormal[lp_player] + gv_eCSpeed[lp_player] + gv_eCWinNM[lp_player] + gv_eCWinHell[lp_player] + gv_aCWinNormal[lp_player] + gv_aCSpeed[lp_player] + gv_aCWinNM[lp_player] + gv_aCWinHell[lp_player] + gv_sTWinNormal[lp_player] + gv_sTSpeed[lp_player] + gv_sTWinNM[lp_player] + gv_sTWinHell[lp_player]);
+}
+
+int gf_GetCPWinsSpeed (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (gv_eCNMSpeed[lp_player] + gv_aCNMSpeed[lp_player] + gv_sTNMSpeed[lp_player] + gv_eCWinHellSpeed[lp_player] + gv_aCWinHellSpeed[lp_player] + gv_sTWinHellSpeed[lp_player]);
+}
+
+fixed gf_CPVariation (int lp_player) {
+    // Variable Declarations
+    fixed lv_mu;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_mu = (IntToFixed(gf_GetTotalCP(lp_player)) / 8.0);
+
+    // Implementation
+    return ((AbsF((IntToFixed(gv_playerCP[lp_player].lv_assaultFlamerTech) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_commandoPO) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_demoPFChem) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_engineerFO) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_marksman) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_medic) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_recon) - lv_mu)) + AbsF((IntToFixed(gv_playerCP[lp_player].lv_rifleman) - lv_mu))) / (lv_mu + 0.0001));
+}
+
+int gf_GetTotalCP (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (gv_playerCP[lp_player].lv_assaultFlamerTech + gv_playerCP[lp_player].lv_commandoPO + gv_playerCP[lp_player].lv_demoPFChem + gv_playerCP[lp_player].lv_engineerFO + gv_playerCP[lp_player].lv_marksman + gv_playerCP[lp_player].lv_medic + gv_playerCP[lp_player].lv_recon + gv_playerCP[lp_player].lv_rifleman);
 }
 
 void gf_NOTDFormatTimerWindow (int lp_tw) {
@@ -3398,6 +3487,9 @@ bool auto_gf_PlayerAlliances_TriggerFunc (bool testConds, bool runActions) {
         if (auto68F10CB5_var < 0) { break; }
         libNtve_gf_SetAlliance(auto68F10CB5_var, 9, libNtve_ge_AllianceSetting_AllyWithSharedVision);
         libNtve_gf_SetAlliance(auto68F10CB5_var, 0, libNtve_ge_AllianceSetting_AllyWithSharedVision);
+        if (gv_playerIsComp[auto68F10CB5_var]) {
+            libNtve_gf_SetAllianceBetweenTwoPlayerGroups(PlayerGroupSingle(auto68F10CB5_var), gv_marineSquad, libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
+        }
     }
     return true;
 }
@@ -3568,6 +3660,9 @@ void gf_MemoryLoad (int lp_player) {
     gv_bootCampComplete[lp_player] = gv_playerBankData[45][lp_player];
     gv_survivalWinHell[lp_player] = gv_playerBankData[49][lp_player];
     gv_rerolls[lp_player] = gv_playerBankData[60][lp_player];
+    if ((gv_rerolls[lp_player] > 3)) {
+        gv_rerolls[lp_player] = 3;
+    }
     gv_winEM[lp_player] = gv_playerBankData[61][lp_player];
     gv_nMWinEM[lp_player] = gv_playerBankData[62][lp_player];
     gv_nMWinOB[lp_player] = gv_playerBankData[63][lp_player];
@@ -3756,12 +3851,14 @@ void gf_SetPlayerLives () {
     while (true) {
         lv_index = PlayerGroupNextPlayer(auto784ED87A_g, lv_index);
         if (lv_index < 0) { break; }
-        lv_experiencePool += gv_playerXP[lv_index];
-        if ((gv_isVeteranSquad == false) && (gv_playerRating[lv_index] > 1800)) {
-            lv_ratingPool += 1800;
-        }
-        else {
-            lv_ratingPool += gv_playerRating[lv_index];
+        if (gv_playerIsHuman[lv_index]) {
+            lv_experiencePool += gv_playerXP[lv_index];
+            if ((gv_isVeteranSquad == false) && (gv_playerRating[lv_index] > 1800)) {
+                lv_ratingPool += 1800;
+            }
+            else {
+                lv_ratingPool += gv_playerRating[lv_index];
+            }
         }
         if ((gv_playerRating[lv_index] >= 1900)) {
             gv_playerLives[lv_index] = 0;
@@ -3780,8 +3877,8 @@ void gf_SetPlayerLives () {
         }
         libNtve_gf_SetDialogItemText(gv_statsPlayerLivesLeft[lv_index], IntToText(gv_playerLives[lv_index]), PlayerGroupAll());
     }
-    gv_squadXP = (lv_experiencePool / gv_totalPlayers);
-    gv_squadRating = (lv_ratingPool / gv_totalPlayers);
+    gv_squadXP = (lv_experiencePool / gv_humanPlayers);
+    gv_squadRating = (lv_ratingPool / gv_humanPlayers);
 }
 
 void gf_PlayerCountAdjustments () {
@@ -4113,9 +4210,12 @@ void gf_FinalizeStorylineSelection () {
     DialogDestroy(gv_storylineDialog);
     DialogDestroy(gv_storylineModDialog);
     DialogDestroy(gv_storylineModDialog2);
+    libNtve_gf_HideGameUI(false, PlayerGroupActive());
     UIHideCinematicText(PlayerGroupAll());
+    TimerWindowDestroy(gv_globalTimerWindow);
     gv_defaultLighting = UserDataGetGameLink("Storyline", UserDataInstance("Storyline", gv_storyline), "Default Lighting", 1);
     GameSetLighting(gv_defaultLighting, 3.9);
+    TriggerEnable(gt_AllRandom, false);
     TriggerExecute(gv_storyIntializationTriggers[gv_storyline], true, false);
     auto280742A1_g = PlayerGroupAll();
     auto280742A1_var = -1;
@@ -4154,6 +4254,7 @@ void gf_FinalizeStorylineSelection () {
         gf_ShopCreation(auto39703627_var);
     }
     gv_storylineSelectionFinalized = true;
+    TriggerExecute(gt_MarineHeroAIClassCreation, true, false);
 }
 
 int gf_GetPlayerTraitfromCP (int lp_player, int lp_traitIndex) {
@@ -4369,33 +4470,35 @@ bool auto_gf_AllRandomSelectionUI_TriggerFunc (bool testConds, bool runActions) 
         auto8CD6B792_var = PlayerGroupNextPlayer(auto8CD6B792_g, auto8CD6B792_var);
         if (auto8CD6B792_var < 0) { break; }
         lv_index = auto8CD6B792_var;
-        gf_UIDialogCreation(730, 575, 30, 100, c_anchorTopLeft);
-        gv_classSelectionDialog[lv_index] = DialogLastCreated();
-        DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_index], c_triggerControlTypePanel, "ClassSelection/ClassSelectionAllRandom");
-        lv_tempDialogFrame = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/F80A3847"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
-        gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
-        gf_SetupClassSelection(lv_index, 15, DialogControlLastCreated());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
-        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Icon", 1), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Title Brief", 1) + PlayerName(lv_index)), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/CBBE284F"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "Title Full", 1), PlayerGroupAll());
-        DialogControlCreate(gv_classSelectionDialog[lv_index], c_triggerControlTypeProgressBar);
-        DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
-        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 50, 640);
-        libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)), PlayerGroupAll());
-        libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
-        libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_index]), PlayerGroupAll());
-        libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_index], 475, 37, c_anchorTopLeft, 50, 640, (IntToText(gv_playerXP[lv_index]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
-        libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
-        DialogSetVisible(gv_classSelectionDialog[lv_index], PlayerGroupSingle(auto8CD6B792_var), true);
+        if (gv_playerIsHuman[lv_index]) {
+            gf_UIDialogCreation(730, 575, 30, 100, c_anchorTopLeft);
+            gv_classSelectionDialog[lv_index] = DialogLastCreated();
+            DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_index], c_triggerControlTypePanel, "ClassSelection/ClassSelectionAllRandom");
+            lv_tempDialogFrame = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/F80A3847"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
+            gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
+            gf_SetupClassSelection(lv_index, 15, DialogControlLastCreated());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Icon", 1), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Title Brief", 1) + PlayerName(lv_index)), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/CBBE284F"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "Title Full", 1), PlayerGroupAll());
+            DialogControlCreate(gv_classSelectionDialog[lv_index], c_triggerControlTypeProgressBar);
+            DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
+            DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 50, 640);
+            libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)), PlayerGroupAll());
+            libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+            libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_index]), PlayerGroupAll());
+            libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_index], 475, 37, c_anchorTopLeft, 50, 640, (IntToText(gv_playerXP[lv_index]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
+            libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
+            DialogSetVisible(gv_classSelectionDialog[lv_index], PlayerGroupSingle(auto8CD6B792_var), true);
+        }
     }
     DialogControlSetVisible(gv_teamUI, PlayerGroupAll(), true);
     return true;
@@ -4431,116 +4534,118 @@ bool auto_gf_ClassSelectionUI_TriggerFunc (bool testConds, bool runActions) {
         auto8B2A1F16_var = PlayerGroupNextPlayer(auto8B2A1F16_g, auto8B2A1F16_var);
         if (auto8B2A1F16_var < 0) { break; }
         lv_index = auto8B2A1F16_var;
-        gf_UIDialogCreation(730, 575, 30, 100, c_anchorTopLeft);
-        gv_classSelectionDialog[lv_index] = DialogLastCreated();
-        DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_index], c_triggerControlTypePanel, "ClassSelection/ClassSelectionNormal");
-        lv_tempDialogFrame = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/82721D05"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class1Select");
-        gv_classSelectionDialogItem[lv_index][1] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class1Label");
-        gf_SetupClassSelection(lv_index, 1, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][1], gv_playerCP[lv_index].lv_rifleman);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class2Select");
-        gv_classSelectionDialogItem[lv_index][2] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class2Label");
-        gf_SetupClassSelection(lv_index, 2, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][2], gv_playerCP[lv_index].lv_medic);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class3Select");
-        gv_classSelectionDialogItem[lv_index][3] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class3Label");
-        gf_SetupClassSelection(lv_index, 3, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][3], gv_playerCP[lv_index].lv_assaultFlamerTech);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][3], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 3), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class4Select");
-        gv_classSelectionDialogItem[lv_index][4] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class4Label");
-        gf_SetupClassSelection(lv_index, 4, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][4], gv_playerCP[lv_index].lv_recon);
-        if ((gv_playerXP[lv_index] >= 100) && (gv_playerKarma[lv_index] >= 1300) && (gv_meritBalance[lv_index] >= gv_minMerits)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][4], PlayerGroupAll(), true);
-        }
-        else {
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][4], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 4), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class5Select");
-        gv_classSelectionDialogItem[lv_index][5] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
-        gf_SetupClassSelection(lv_index, 5, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][5], gv_playerCP[lv_index].lv_marksman);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 500) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), true);
-        }
-        else {
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][5], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class6Select");
-        gv_classSelectionDialogItem[lv_index][6] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
-        gf_SetupClassSelection(lv_index, 6, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][6], gv_playerCP[lv_index].lv_demoPFChem);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 2000) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), true);
-        }
-        else {
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][6], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class7Select");
-        gv_classSelectionDialogItem[lv_index][7] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
-        gf_SetupClassSelection(lv_index, 7, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][7], gv_playerCP[lv_index].lv_engineerFO);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 5000) || ((gv_playerXP[lv_index] >= 2500) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), true);
-        }
-        else {
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][7], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class8Select");
-        gv_classSelectionDialogItem[lv_index][8] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
-        gf_SetupClassSelection(lv_index, 8, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][8], gv_playerCP[lv_index].lv_commandoPO);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 10000) || ((gv_playerXP[lv_index] >= 5000) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), true);
-        }
-        else {
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][8], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8), "Locked Text", 1), PlayerGroupAll());
-        }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_randomsOption != 1)) {
-            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
-            gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
-            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
-            gf_SetupClassSelection(lv_index, 15, DialogControlLastCreated());
-        }
+        if (gv_playerIsHuman[lv_index]) {
+            gf_UIDialogCreation(730, 575, 30, 100, c_anchorTopLeft);
+            gv_classSelectionDialog[lv_index] = DialogLastCreated();
+            DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_index], c_triggerControlTypePanel, "ClassSelection/ClassSelectionNormal");
+            lv_tempDialogFrame = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/82721D05"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class1Select");
+            gv_classSelectionDialogItem[lv_index][1] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class1Label");
+            gf_SetupClassSelection(lv_index, 1, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][1], gv_playerCP[lv_index].lv_rifleman);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class2Select");
+            gv_classSelectionDialogItem[lv_index][2] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class2Label");
+            gf_SetupClassSelection(lv_index, 2, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][2], gv_playerCP[lv_index].lv_medic);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class3Select");
+            gv_classSelectionDialogItem[lv_index][3] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class3Label");
+            gf_SetupClassSelection(lv_index, 3, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][3], gv_playerCP[lv_index].lv_assaultFlamerTech);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][3], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 3), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class4Select");
+            gv_classSelectionDialogItem[lv_index][4] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class4Label");
+            gf_SetupClassSelection(lv_index, 4, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][4], gv_playerCP[lv_index].lv_recon);
+            if ((gv_playerXP[lv_index] >= 100) && (gv_playerKarma[lv_index] >= 1300) && (gv_meritBalance[lv_index] >= gv_minMerits)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][4], PlayerGroupAll(), true);
+            }
+            else {
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][4], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 4), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class5Select");
+            gv_classSelectionDialogItem[lv_index][5] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
+            gf_SetupClassSelection(lv_index, 5, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][5], gv_playerCP[lv_index].lv_marksman);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 500) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), true);
+            }
+            else {
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][5], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class6Select");
+            gv_classSelectionDialogItem[lv_index][6] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
+            gf_SetupClassSelection(lv_index, 6, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][6], gv_playerCP[lv_index].lv_demoPFChem);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 2000) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), true);
+            }
+            else {
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][6], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class7Select");
+            gv_classSelectionDialogItem[lv_index][7] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
+            gf_SetupClassSelection(lv_index, 7, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][7], gv_playerCP[lv_index].lv_engineerFO);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 5000) || ((gv_playerXP[lv_index] >= 2500) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), true);
+            }
+            else {
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][7], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class8Select");
+            gv_classSelectionDialogItem[lv_index][8] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
+            gf_SetupClassSelection(lv_index, 8, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][8], gv_playerCP[lv_index].lv_commandoPO);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 10000) || ((gv_playerXP[lv_index] >= 5000) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), true);
+            }
+            else {
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][8], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8), "Locked Text", 1), PlayerGroupAll());
+            }
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_randomsOption != 1)) {
+                DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
+                gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
+                DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
+                gf_SetupClassSelection(lv_index, 15, DialogControlLastCreated());
+            }
 
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
-        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Icon", 1), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Title Brief", 1) + PlayerName(lv_index)), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/D2EEA0F9"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "Title Full", 1), PlayerGroupAll());
-        DialogControlCreate(gv_classSelectionDialog[lv_index], c_triggerControlTypeProgressBar);
-        DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
-        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 50, 640);
-        libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)), PlayerGroupAll());
-        libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
-        libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_index]), PlayerGroupAll());
-        libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_index], 475, 37, c_anchorTopLeft, 50, 640, (IntToText(gv_playerXP[lv_index]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
-        libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
-        DialogSetVisible(gv_classSelectionDialog[lv_index], PlayerGroupSingle(lv_index), true);
-        if ((gv_meritBalance[lv_index] < gv_minMerits)) {
-            TextExpressionSetToken("Param/Expression/739881FA", "A", IntToText(gv_maxDemerits));
-            UIDisplayMessage(PlayerGroupSingle(lv_index), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/739881FA"));
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Icon", 1), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Title Brief", 1) + PlayerName(lv_index)), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/D2EEA0F9"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "Title Full", 1), PlayerGroupAll());
+            DialogControlCreate(gv_classSelectionDialog[lv_index], c_triggerControlTypeProgressBar);
+            DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
+            DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 50, 640);
+            libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)), PlayerGroupAll());
+            libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+            libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_index]), PlayerGroupAll());
+            libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_index], 475, 37, c_anchorTopLeft, 50, 640, (IntToText(gv_playerXP[lv_index]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
+            libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
+            DialogSetVisible(gv_classSelectionDialog[lv_index], PlayerGroupSingle(lv_index), true);
+            if ((gv_meritBalance[lv_index] < gv_minMerits)) {
+                TextExpressionSetToken("Param/Expression/739881FA", "A", IntToText(gv_maxDemerits));
+                UIDisplayMessage(PlayerGroupSingle(lv_index), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/739881FA"));
+            }
         }
     }
     DialogControlSetVisible(gv_teamUI, PlayerGroupAll(), true);
@@ -4567,213 +4672,215 @@ void gf_RecruitClassSelectionUI () {
         auto9605AE9E_var = PlayerGroupNextPlayer(auto9605AE9E_g, auto9605AE9E_var);
         if (auto9605AE9E_var < 0) { break; }
         lv_index = auto9605AE9E_var;
-        gf_UIDialogCreation(730, 885, 30, 100, c_anchorTopLeft);
-        gv_classSelectionDialog[lv_index] = DialogLastCreated();
-        DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_index], c_triggerControlTypePanel, "ClassSelection/ClassSelectionSurvival");
-        lv_tempDialogFrame = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/CD783517"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class1Select");
-        gv_classSelectionDialogItem[lv_index][1] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class1Label");
-        gf_SetupClassSelection(lv_index, 1, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][1], gv_playerCP[lv_index].lv_rifleman);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class2Select");
-        gv_classSelectionDialogItem[lv_index][2] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class2Label");
-        gf_SetupClassSelection(lv_index, 2, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][2], gv_playerCP[lv_index].lv_medic);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class3Select");
-        gv_classSelectionDialogItem[lv_index][3] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class3Label");
-        gf_SetupClassSelection(lv_index, 3, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][3], gv_playerCP[lv_index].lv_assaultFlamerTech);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][3], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 3), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class4Select");
-        gv_classSelectionDialogItem[lv_index][4] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class4Label");
-        gf_SetupClassSelection(lv_index, 4, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][4], gv_playerCP[lv_index].lv_recon);
-        if ((gv_playerXP[lv_index] >= 100) && (gv_playerKarma[lv_index] >= 1300) && (gv_meritBalance[lv_index] >= gv_minMerits)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][4], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][4], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][4], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 4), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class5Select");
-        gv_classSelectionDialogItem[lv_index][5] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
-        gf_SetupClassSelection(lv_index, 5, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][5], gv_playerCP[lv_index].lv_marksman);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 500) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][5], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class6Select");
-        gv_classSelectionDialogItem[lv_index][6] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
-        gf_SetupClassSelection(lv_index, 6, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][6], gv_playerCP[lv_index].lv_demoPFChem);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 2000) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][6], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class7Select");
-        gv_classSelectionDialogItem[lv_index][7] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
-        gf_SetupClassSelection(lv_index, 7, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][7], gv_playerCP[lv_index].lv_engineerFO);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 5000) || ((gv_playerXP[lv_index] >= 2500) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][7], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class8Select");
-        gv_classSelectionDialogItem[lv_index][8] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
-        gf_SetupClassSelection(lv_index, 8, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][8], gv_playerCP[lv_index].lv_commandoPO);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 10000) || ((gv_playerXP[lv_index] >= 5000) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][8], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8), "Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class9Select");
-        gv_classSelectionDialogItem[lv_index][9] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class9Label");
-        gf_SetupClassSelection(lv_index, 9, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][9], gv_playerCP[lv_index].lv_assaultFlamerTech);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 9)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][9], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][9], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][9], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 9), "Story Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class10Select");
-        gv_classSelectionDialogItem[lv_index][10] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class10Label");
-        gf_SetupClassSelection(lv_index, 10, DialogControlLastCreated());
-        if ((gv_storyline == 1)) {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][10], gv_playerCP[lv_index].lv_engineerFO);
-        }
-        else {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][10], gv_playerCP[lv_index].lv_demoPFChem);
-        }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 10)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][10], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][10], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][10], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 10), "Story Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class11Select");
-        gv_classSelectionDialogItem[lv_index][11] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class11Label");
-        gf_SetupClassSelection(lv_index, 11, DialogControlLastCreated());
-        if ((gv_storyline == 3)) {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][11], gv_playerCP[lv_index].lv_demoPFChem);
-        }
-        else {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][11], gv_playerCP[lv_index].lv_assaultFlamerTech);
-        }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 11)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][11], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][11], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][11], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 11), "Story Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class12Select");
-        gv_classSelectionDialogItem[lv_index][12] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class12Label");
-        gf_SetupClassSelection(lv_index, 12, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][12], gv_playerCP[lv_index].lv_commandoPO);
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 12)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][12], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][12], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][12], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 12), "Story Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class13Select");
-        gv_classSelectionDialogItem[lv_index][13] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class13Label");
-        gf_SetupClassSelection(lv_index, 13, DialogControlLastCreated());
-        if ((gv_storyline == 1)) {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][13], gv_playerCP[lv_index].lv_demoPFChem);
-        }
-        else {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][13], gv_playerCP[lv_index].lv_engineerFO);
-        }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 13)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][13], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][13], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][13], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 13), "Story Locked Text", 1), PlayerGroupAll());
-        }
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class14Select");
-        gv_classSelectionDialogItem[lv_index][14] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class14Label");
-        gf_SetupClassSelection(lv_index, 14, DialogControlLastCreated());
-        if ((gv_storyline == 3)) {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][14], gv_playerCP[lv_index].lv_assaultFlamerTech);
-        }
-        else {
-            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][14], gv_playerCP[lv_index].lv_demoPFChem);
-        }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 14)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][14], PlayerGroupAll(), true);
-        }
-        else {
-            DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][14], PlayerGroupAll(), false);
-            libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][14], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 14), "Story Locked Text", 1), PlayerGroupAll());
-        }
-        if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_randomsOption != 1)) {
-            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
-            gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
-            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
-            gf_SetupClassSelection(lv_index, 15, DialogControlLastCreated());
-        }
+        if (gv_playerIsHuman[lv_index]) {
+            gf_UIDialogCreation(730, 885, 30, 100, c_anchorTopLeft);
+            gv_classSelectionDialog[lv_index] = DialogLastCreated();
+            DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_index], c_triggerControlTypePanel, "ClassSelection/ClassSelectionSurvival");
+            lv_tempDialogFrame = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/CD783517"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class1Select");
+            gv_classSelectionDialogItem[lv_index][1] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class1Label");
+            gf_SetupClassSelection(lv_index, 1, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][1], gv_playerCP[lv_index].lv_rifleman);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class2Select");
+            gv_classSelectionDialogItem[lv_index][2] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class2Label");
+            gf_SetupClassSelection(lv_index, 2, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][2], gv_playerCP[lv_index].lv_medic);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class3Select");
+            gv_classSelectionDialogItem[lv_index][3] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class3Label");
+            gf_SetupClassSelection(lv_index, 3, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][3], gv_playerCP[lv_index].lv_assaultFlamerTech);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][3], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][3], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 3), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class4Select");
+            gv_classSelectionDialogItem[lv_index][4] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class4Label");
+            gf_SetupClassSelection(lv_index, 4, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][4], gv_playerCP[lv_index].lv_recon);
+            if ((gv_playerXP[lv_index] >= 100) && (gv_playerKarma[lv_index] >= 1300) && (gv_meritBalance[lv_index] >= gv_minMerits)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][4], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][4], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][4], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 4), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class5Select");
+            gv_classSelectionDialogItem[lv_index][5] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
+            gf_SetupClassSelection(lv_index, 5, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][5], gv_playerCP[lv_index].lv_marksman);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 500) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][5], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][5], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 5), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class6Select");
+            gv_classSelectionDialogItem[lv_index][6] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
+            gf_SetupClassSelection(lv_index, 6, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][6], gv_playerCP[lv_index].lv_demoPFChem);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 2000) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][6], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][6], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 6), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class7Select");
+            gv_classSelectionDialogItem[lv_index][7] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
+            gf_SetupClassSelection(lv_index, 7, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][7], gv_playerCP[lv_index].lv_engineerFO);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 5000) || ((gv_playerXP[lv_index] >= 2500) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][7], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][7], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 7), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class8Select");
+            gv_classSelectionDialogItem[lv_index][8] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
+            gf_SetupClassSelection(lv_index, 8, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][8], gv_playerCP[lv_index].lv_commandoPO);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && ((gv_playerXP[lv_index] >= 10000) || ((gv_playerXP[lv_index] >= 5000) && (gv_playerRating[lv_index] >= 1700)) || (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8)) == true)) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][8], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][8], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 8), "Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class9Select");
+            gv_classSelectionDialogItem[lv_index][9] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class9Label");
+            gf_SetupClassSelection(lv_index, 9, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][9], gv_playerCP[lv_index].lv_assaultFlamerTech);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 9)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][9], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][9], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][9], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 9), "Story Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class10Select");
+            gv_classSelectionDialogItem[lv_index][10] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class10Label");
+            gf_SetupClassSelection(lv_index, 10, DialogControlLastCreated());
+            if ((gv_storyline == 1)) {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][10], gv_playerCP[lv_index].lv_engineerFO);
+            }
+            else {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][10], gv_playerCP[lv_index].lv_demoPFChem);
+            }
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 10)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][10], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][10], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][10], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 10), "Story Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class11Select");
+            gv_classSelectionDialogItem[lv_index][11] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class11Label");
+            gf_SetupClassSelection(lv_index, 11, DialogControlLastCreated());
+            if ((gv_storyline == 3)) {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][11], gv_playerCP[lv_index].lv_demoPFChem);
+            }
+            else {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][11], gv_playerCP[lv_index].lv_assaultFlamerTech);
+            }
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 11)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][11], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][11], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][11], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 11), "Story Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class12Select");
+            gv_classSelectionDialogItem[lv_index][12] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class12Label");
+            gf_SetupClassSelection(lv_index, 12, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][12], gv_playerCP[lv_index].lv_commandoPO);
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 12)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][12], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][12], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][12], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 12), "Story Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class13Select");
+            gv_classSelectionDialogItem[lv_index][13] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class13Label");
+            gf_SetupClassSelection(lv_index, 13, DialogControlLastCreated());
+            if ((gv_storyline == 1)) {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][13], gv_playerCP[lv_index].lv_demoPFChem);
+            }
+            else {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][13], gv_playerCP[lv_index].lv_engineerFO);
+            }
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 13)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][13], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][13], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][13], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 13), "Story Locked Text", 1), PlayerGroupAll());
+            }
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class14Select");
+            gv_classSelectionDialogItem[lv_index][14] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class14Label");
+            gf_SetupClassSelection(lv_index, 14, DialogControlLastCreated());
+            if ((gv_storyline == 3)) {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][14], gv_playerCP[lv_index].lv_assaultFlamerTech);
+            }
+            else {
+                gf_ClassPointBarCreation(gv_classSelectionDialog[lv_index], gv_classSelectionDialogItem[lv_index][14], gv_playerCP[lv_index].lv_demoPFChem);
+            }
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gf_ClassisUnlockedbyTraits(lv_index, gv_storyline, UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 14)) == true) && (gv_playerKarma[lv_index] >= 1300)) {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][14], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetEnabled(gv_classSelectionDialogItem[lv_index][14], PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemTooltip(gv_classSelectionDialogItem[lv_index][14], UserDataGetText("Classes", UserDataGetUserInstance("StoryClassAssignments", UserDataInstance("StoryClassAssignments", gv_storyline), "Class", 14), "Story Locked Text", 1), PlayerGroupAll());
+            }
+            if ((gv_meritBalance[lv_index] >= gv_minMerits) && (gv_randomsOption != 1)) {
+                DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
+                gv_classSelectionDialogItem[lv_index][15] = DialogControlLastCreated();
+                DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
+                gf_SetupClassSelection(lv_index, 15, DialogControlLastCreated());
+            }
 
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
-        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Icon", 1), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Title Brief", 1) + PlayerName(lv_index)), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/1C6F9E02"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "Title Full", 1), PlayerGroupAll());
-        DialogControlCreate(gv_classSelectionDialog[lv_index], c_triggerControlTypeProgressBar);
-        DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
-        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 70, 640);
-        libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)), PlayerGroupAll());
-        libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
-        libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_index]), PlayerGroupAll());
-        libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_index], 475, 37, c_anchorTopLeft, 70, 640, (IntToText(gv_playerXP[lv_index]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
-        libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
-        DialogSetVisible(gv_classSelectionDialog[lv_index], PlayerGroupSingle(auto9605AE9E_var), true);
-        if ((gv_meritBalance[lv_index] < gv_minMerits)) {
-            TextExpressionSetToken("Param/Expression/0972D6BC", "A", IntToText(gv_maxDemerits));
-            UIDisplayMessage(PlayerGroupSingle(lv_index), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/0972D6BC"));
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Icon", 1), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_index]), "Title Brief", 1) + PlayerName(lv_index)), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/1C6F9E02"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "Title Full", 1), PlayerGroupAll());
+            DialogControlCreate(gv_classSelectionDialog[lv_index], c_triggerControlTypeProgressBar);
+            DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
+            DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 70, 640);
+            libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)), PlayerGroupAll());
+            libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+            libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_index]), PlayerGroupAll());
+            libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_index], 475, 37, c_anchorTopLeft, 70, 640, (IntToText(gv_playerXP[lv_index]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_index] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
+            libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
+            DialogSetVisible(gv_classSelectionDialog[lv_index], PlayerGroupSingle(auto9605AE9E_var), true);
+            if ((gv_meritBalance[lv_index] < gv_minMerits)) {
+                TextExpressionSetToken("Param/Expression/0972D6BC", "A", IntToText(gv_maxDemerits));
+                UIDisplayMessage(PlayerGroupSingle(lv_index), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/0972D6BC"));
+            }
         }
     }
     DialogControlSetVisible(gv_teamUI, PlayerGroupAll(), true);
@@ -4798,110 +4905,112 @@ void gf_SurvivalClassSelectionUI () {
     while (true) {
         autoA644CAD3_var = PlayerGroupNextPlayer(autoA644CAD3_g, autoA644CAD3_var);
         if (autoA644CAD3_var < 0) { break; }
-        lv_player = autoA644CAD3_var;
-        gf_UIDialogCreation(730, 885, 30, 100, c_anchorTopLeft);
-        gv_classSelectionDialog[lv_player] = DialogLastCreated();
-        DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_player], c_triggerControlTypePanel, "ClassSelection/ClassSelectionSurvival");
-        lv_tempDialogFrame = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/9B5214EE"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class1Select");
-        gv_classSelectionDialogItem[lv_player][1] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class1Label");
-        gf_SetupClassSelection(lv_player, 1, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][1], gv_playerCP[lv_player].lv_rifleman);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class2Select");
-        gv_classSelectionDialogItem[lv_player][2] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class2Label");
-        gf_SetupClassSelection(lv_player, 2, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][2], gv_playerCP[lv_player].lv_medic);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class3Select");
-        gv_classSelectionDialogItem[lv_player][3] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class3Label");
-        gf_SetupClassSelection(lv_player, 3, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][3], gv_playerCP[lv_player].lv_assaultFlamerTech);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class4Select");
-        gv_classSelectionDialogItem[lv_player][4] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class4Label");
-        gf_SetupClassSelection(lv_player, 4, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][4], gv_playerCP[lv_player].lv_recon);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class5Select");
-        gv_classSelectionDialogItem[lv_player][5] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
-        gf_SetupClassSelection(lv_player, 5, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][5], gv_playerCP[lv_player].lv_marksman);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class6Select");
-        gv_classSelectionDialogItem[lv_player][6] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
-        gf_SetupClassSelection(lv_player, 6, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][6], gv_playerCP[lv_player].lv_demoPFChem);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class7Select");
-        gv_classSelectionDialogItem[lv_player][7] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
-        gf_SetupClassSelection(lv_player, 7, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][7], gv_playerCP[lv_player].lv_engineerFO);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class8Select");
-        gv_classSelectionDialogItem[lv_player][8] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
-        gf_SetupClassSelection(lv_player, 8, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][8], gv_playerCP[lv_player].lv_commandoPO);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class9Select");
-        gv_classSelectionDialogItem[lv_player][9] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class9Label");
-        gf_SetupClassSelection(lv_player, 9, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][9], gv_playerCP[lv_player].lv_assaultFlamerTech);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class10Select");
-        gv_classSelectionDialogItem[lv_player][10] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class10Label");
-        gf_SetupClassSelection(lv_player, 10, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][10], gv_playerCP[lv_player].lv_engineerFO);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class11Select");
-        gv_classSelectionDialogItem[lv_player][11] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class11Label");
-        gf_SetupClassSelection(lv_player, 11, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][11], gv_playerCP[lv_player].lv_assaultFlamerTech);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class12Select");
-        gv_classSelectionDialogItem[lv_player][12] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class12Label");
-        gf_SetupClassSelection(lv_player, 12, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][12], gv_playerCP[lv_player].lv_commandoPO);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class13Select");
-        gv_classSelectionDialogItem[lv_player][13] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class13Label");
-        gf_SetupClassSelection(lv_player, 13, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][13], gv_playerCP[lv_player].lv_demoPFChem);
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class14Select");
-        gv_classSelectionDialogItem[lv_player][14] = DialogControlLastCreated();
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class14Label");
-        gf_SetupClassSelection(lv_player, 14, DialogControlLastCreated());
-        gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][14], gv_playerCP[lv_player].lv_demoPFChem);
-        if ((gv_randomsOption != 1)) {
-            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
-            gv_classSelectionDialogItem[lv_player][15] = DialogControlLastCreated();
-            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
-            gf_SetupClassSelection(lv_player, 15, DialogControlLastCreated());
-        }
+        if (gv_playerIsHuman[lv_player]) {
+            lv_player = autoA644CAD3_var;
+            gf_UIDialogCreation(730, 885, 30, 100, c_anchorTopLeft);
+            gv_classSelectionDialog[lv_player] = DialogLastCreated();
+            DialogControlCreateFromTemplate(gv_classSelectionDialog[lv_player], c_triggerControlTypePanel, "ClassSelection/ClassSelectionSurvival");
+            lv_tempDialogFrame = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Title");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/9B5214EE"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class1Select");
+            gv_classSelectionDialogItem[lv_player][1] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class1Label");
+            gf_SetupClassSelection(lv_player, 1, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][1], gv_playerCP[lv_player].lv_rifleman);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class2Select");
+            gv_classSelectionDialogItem[lv_player][2] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class2Label");
+            gf_SetupClassSelection(lv_player, 2, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][2], gv_playerCP[lv_player].lv_medic);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class3Select");
+            gv_classSelectionDialogItem[lv_player][3] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class3Label");
+            gf_SetupClassSelection(lv_player, 3, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][3], gv_playerCP[lv_player].lv_assaultFlamerTech);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class4Select");
+            gv_classSelectionDialogItem[lv_player][4] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class4Label");
+            gf_SetupClassSelection(lv_player, 4, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][4], gv_playerCP[lv_player].lv_recon);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class5Select");
+            gv_classSelectionDialogItem[lv_player][5] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class5Label");
+            gf_SetupClassSelection(lv_player, 5, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][5], gv_playerCP[lv_player].lv_marksman);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class6Select");
+            gv_classSelectionDialogItem[lv_player][6] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class6Label");
+            gf_SetupClassSelection(lv_player, 6, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][6], gv_playerCP[lv_player].lv_demoPFChem);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class7Select");
+            gv_classSelectionDialogItem[lv_player][7] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class7Label");
+            gf_SetupClassSelection(lv_player, 7, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][7], gv_playerCP[lv_player].lv_engineerFO);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class8Select");
+            gv_classSelectionDialogItem[lv_player][8] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class8Label");
+            gf_SetupClassSelection(lv_player, 8, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][8], gv_playerCP[lv_player].lv_commandoPO);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class9Select");
+            gv_classSelectionDialogItem[lv_player][9] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class9Label");
+            gf_SetupClassSelection(lv_player, 9, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][9], gv_playerCP[lv_player].lv_assaultFlamerTech);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class10Select");
+            gv_classSelectionDialogItem[lv_player][10] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class10Label");
+            gf_SetupClassSelection(lv_player, 10, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][10], gv_playerCP[lv_player].lv_engineerFO);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class11Select");
+            gv_classSelectionDialogItem[lv_player][11] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class11Label");
+            gf_SetupClassSelection(lv_player, 11, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][11], gv_playerCP[lv_player].lv_assaultFlamerTech);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class12Select");
+            gv_classSelectionDialogItem[lv_player][12] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class12Label");
+            gf_SetupClassSelection(lv_player, 12, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][12], gv_playerCP[lv_player].lv_commandoPO);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class13Select");
+            gv_classSelectionDialogItem[lv_player][13] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class13Label");
+            gf_SetupClassSelection(lv_player, 13, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][13], gv_playerCP[lv_player].lv_demoPFChem);
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Class14Select");
+            gv_classSelectionDialogItem[lv_player][14] = DialogControlLastCreated();
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "Class14Label");
+            gf_SetupClassSelection(lv_player, 14, DialogControlLastCreated());
+            gf_ClassPointBarCreation(gv_classSelectionDialog[lv_player], gv_classSelectionDialogItem[lv_player][14], gv_playerCP[lv_player].lv_demoPFChem);
+            if ((gv_randomsOption != 1)) {
+                DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeButton, "Random");
+                gv_classSelectionDialogItem[lv_player][15] = DialogControlLastCreated();
+                DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "RandomLabel");
+                gf_SetupClassSelection(lv_player, 15, DialogControlLastCreated());
+            }
 
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
-        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_player]), "Icon", 1), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_player]), "Title Brief", 1) + PlayerName(lv_player)), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/93808253"), PlayerGroupAll());
-        DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_player] + 1)), "Title Full", 1), PlayerGroupAll());
-        DialogControlCreate(gv_classSelectionDialog[lv_player], c_triggerControlTypeProgressBar);
-        DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
-        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 70, 640);
-        libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_player] + 1)), "XP Required", 1)), PlayerGroupAll());
-        libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
-        libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_player]), PlayerGroupAll());
-        libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_player], 475, 37, c_anchorTopLeft, 70, 640, (IntToText(gv_playerXP[lv_player]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_player] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
-        libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
-        DialogSetVisible(gv_classSelectionDialog[lv_player], PlayerGroupSingle(autoA644CAD3_var), true);
-        if ((gv_meritBalance[lv_player] < gv_minMerits)) {
-            TextExpressionSetToken("Param/Expression/D8CA59A1", "A", IntToText(gv_maxDemerits));
-            UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/D8CA59A1"));
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeImage, "PlayerRankImage");
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_player]), "Icon", 1), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "PlayerRankLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lv_player]), "Title Brief", 1) + PlayerName(lv_player)), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotionLabel");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringExternal("Param/Value/93808253"), PlayerGroupAll());
+            DialogControlHookup(lv_tempDialogFrame, c_triggerControlTypeLabel, "NextPromotion");
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_player] + 1)), "Title Full", 1), PlayerGroupAll());
+            DialogControlCreate(gv_classSelectionDialog[lv_player], c_triggerControlTypeProgressBar);
+            DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 475, 37);
+            DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 70, 640);
+            libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), IntToFixed(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_player] + 1)), "XP Required", 1)), PlayerGroupAll());
+            libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+            libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), IntToFixed(gv_playerXP[lv_player]), PlayerGroupAll());
+            libNtve_gf_CreateDialogItemLabel(gv_classSelectionDialog[lv_player], 475, 37, c_anchorTopLeft, 70, 640, (IntToText(gv_playerXP[lv_player]) + (gv_forwardSlash + IntToText(UserDataGetInt("Ranks", UserDataInstance("Ranks", (gv_playerRank[lv_player] + 1)), "XP Required", 1)))), Color(100,100,100), false, 2.0);
+            libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize20", PlayerGroupAll());
+            DialogSetVisible(gv_classSelectionDialog[lv_player], PlayerGroupSingle(autoA644CAD3_var), true);
+            if ((gv_meritBalance[lv_player] < gv_minMerits)) {
+                TextExpressionSetToken("Param/Expression/D8CA59A1", "A", IntToText(gv_maxDemerits));
+                UIDisplayMessage(PlayerGroupSingle(lv_player), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/D8CA59A1"));
+            }
         }
     }
     DialogControlSetVisible(gv_teamUI, PlayerGroupAll(), true);
@@ -5106,6 +5215,7 @@ bool gf_OpenRerollDialog (int lp_player) {
         return (gv_rollAccepted[lp_player] == false);
     }
     else {
+        gv_rerollsRemain[lp_player] = 0;
         return false;
     }
 }
@@ -5167,31 +5277,29 @@ int gf_GetRandomRange (int lp_player) {
 
 string gf_GetClassfromKeyString (string lp_word) {
     // Variable Declarations
-    string lv_word;
     string lv_subs;
 
     // Automatic Variable Declarations
     // Variable Initialization
-    lv_word = StringCase(lp_word, false);
-    lv_subs = StringSub(lv_word, 1, 3);
+    lv_subs = StringSub(lp_word, 1, 3);
 
     // Implementation
-    if (((lv_word == "fo") || (lv_subs == "for"))) {
+    if (((lp_word == "fo") || (lv_subs == "for"))) {
         return "Forward Observer";
     }
-    else if (((lv_word == "po") || (lv_subs == "psi"))) {
+    else if (((lp_word == "po") || (lv_subs == "psi"))) {
         return "Psi Ops";
     }
-    else if (((lv_word == "pf") || (lv_subs == "pat"))) {
+    else if (((lp_word == "pf") || (lv_subs == "pat"))) {
         return "Pathfinder";
     }
-    else if (((lv_word == "ce") || (lv_subs == "che"))) {
+    else if (((lp_word == "ce") || (lv_subs == "che"))) {
         return "Chemical Expert";
     }
     else if (((lv_subs == "tec") || (lv_subs == "tek"))) {
         return "Technician";
     }
-    else if (((lv_word == "mando") || (lv_subs == "com"))) {
+    else if (((lp_word == "mando") || (lv_subs == "com"))) {
         return "Commando";
     }
     else if (((lv_subs == "fla"))) {
@@ -5203,19 +5311,19 @@ string gf_GetClassfromKeyString (string lp_word) {
     else if (((lv_subs == "eng"))) {
         return "Engineer";
     }
-    else if (((lv_word == "mm") || (lv_subs == "mar") || (lv_word == "smm"))) {
+    else if (((lp_word == "mm") || (lv_subs == "mar") || (lp_word == "smm"))) {
         return "Marksman";
     }
-    else if (((lv_subs == "ass") || (lv_word == "as"))) {
+    else if (((lv_subs == "ass") || (lp_word == "as"))) {
         return "Assault";
     }
     else if (((lv_subs == "med"))) {
         return "Medic";
     }
-    else if (((lv_subs == "rec") || (lv_word == "con"))) {
+    else if (((lv_subs == "rec") || (lp_word == "con"))) {
         return "Recon";
     }
-    else if (((lv_subs == "rif") || (lv_subs == "cri") || (lv_subs == "rof") || (lv_subs == "cro") || (lv_word == "rf"))) {
+    else if (((lv_subs == "rif") || (lv_subs == "cri") || (lv_subs == "rof") || (lv_subs == "cro") || (lp_word == "rf"))) {
         return "Rifleman";
     }
     return "Random";
@@ -5424,6 +5532,10 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeCommandPanel, true);
     UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeInventoryPanel, true);
     UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMinimapPanel, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeConsolePanel, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMenuBar, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMissionTimePanel, true);
+    UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeAllianceButton, true);
     CameraLockInput(lp_player, false);
     libNtve_gf_SetDialogItemUnit(gv_teamStatusLifeBar[lp_player], gv_marineHero[lp_player], PlayerGroupAll());
     UnitSetPropertyFixed(gv_marineHero[lp_player], c_unitPropLevel, 1.0);
@@ -5476,6 +5588,7 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     }
 
     gv_classCount[UserDataGetInt("Classes", gv_playerClass[lp_player], "Slot", 1)] += 1;
+    gv_playerHasPicked[lp_player] = true;
     gf_StartingBonuses(lp_player);
     if ((UnitGetType(gv_marineHero[lp_player]) == "Medic2")) {
         UnitIssueOrder(gv_marineHero[lp_player], Order(AbilityCommand("LearnMedic", 1)), c_orderQueueReplace);
@@ -5561,7 +5674,20 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
         UnitSetAttributePoint(gv_marineHero[lp_player], "Insignia", true, 1);
     }
 
-    UnitInventoryContainerOpen(PlayerGroupActive(), gv_marineHero[lp_player], 1, true);
+    if (gv_playerIsHuman[lp_player]) {
+        UnitInventoryContainerOpen(PlayerGroupActive(), gv_marineHero[lp_player], 1, true);
+        UnitGroupAdd(gv_marinesHuman, gv_marineHero[lp_player]);
+        if ((UnitGetType(gv_marineHero[lp_player]) != "Spectre") && (UnitGetType(gv_marineHero[lp_player]) != "Marksman")) {
+            UnitGroupAdd(gv_marinesNotRecon, gv_marineHero[lp_player]);
+            UnitGroupAdd(gv_marinesNotReconAny, gv_marineHero[lp_player]);
+        }
+    }
+    if (gv_playerIsComp[lp_player]) {
+        UnitGroupAdd(gv_marinesAI, gv_marineHero[lp_player]);
+        if ((UnitGetType(gv_marineHero[lp_player]) != "Spectre") && (UnitGetType(gv_marineHero[lp_player]) != "Marksman")) {
+            UnitGroupAdd(gv_marinesNotReconAny, gv_marineHero[lp_player]);
+        }
+    }
     UIClearMessages(PlayerGroupSingle(lp_player), c_messageAreaDirective);
     Wait(12.0, c_timeReal);
     gf_TipLocalNOTD(500, lp_player, StringExternal("Param/Value/2482F8A0"));
@@ -6412,7 +6538,7 @@ void gf_DemeritDialogCreateShow (int lp_viewingPlayer, int lp_viewedPlayer) {
             }
             gv_demeritDialog[lp_viewedPlayer] = DialogLastCreated();
             libNtve_gf_CreateDialogItemLabel(gv_demeritDialog[lp_viewedPlayer], 200, 25, c_anchorLeft, 0, -12, (StringExternal("Param/Value/351A44C5") + PlayerName(lp_viewedPlayer) + StringExternal("Param/Value/0D570AB4")), ColorWithAlpha(0,0,0,0), false, 2.0);
-            if ((PlayerStatus(lp_viewedPlayer) != c_playerStatusUnused)) {
+            if (gv_playerIsHuman[lp_viewedPlayer]) {
                 libNtve_gf_CreateDialogItemLabel(gv_demeritDialog[lp_viewedPlayer], 200, 25, c_anchorLeft, 0, 12, (StringExternal("Param/Value/6A606D49") + StringToText(PlayerHandle(lp_viewedPlayer)) + StringExternal("Param/Value/ACF8242C")), ColorWithAlpha(0,0,0,0), false, 2.0);
             }
             if (false) {
@@ -6636,7 +6762,7 @@ void gf_DemeritsApplyDemerit (int lp_viewingPlayer, int lp_viewedPlayer) {
     lv_bank = gv_demeritsBank[lp_viewingPlayer];
 
     // Implementation
-    if ((PlayerStatus(lp_viewedPlayer) != c_playerStatusUnused)) {
+    if (gv_playerIsHuman[lp_viewedPlayer]) {
         lv_handle = PlayerHandle(lp_viewedPlayer);
         if (gf_DemeritsHandleExists(lv_handle, "Demerits", lv_bank)) {
             gf_DemeritsAddHandle(false, lp_viewedPlayer, lv_handle, "Demerits", lv_bank);
@@ -6693,7 +6819,7 @@ void gf_DemeritsApplyMerit (int lp_viewingPlayer, int lp_viewedPlayer) {
     lv_bank = gv_demeritsBank[lp_viewingPlayer];
 
     // Implementation
-    if ((PlayerStatus(lp_viewedPlayer) != c_playerStatusUnused)) {
+    if (gv_playerIsHuman[lp_viewedPlayer]) {
         lv_handle = PlayerHandle(lp_viewedPlayer);
         if (gf_DemeritsHandleExists(lv_handle, "Merits", lv_bank)) {
             gf_DemeritsAddHandle(false, lp_viewedPlayer, lv_handle, "Merits", lv_bank);
@@ -6731,7 +6857,7 @@ void gf_DemeritsApplyMerit (int lp_viewingPlayer, int lp_viewedPlayer) {
 void gf_DemeritsAddHandle (bool lp_add, int lp_viewedPlayer, string lp_handle, string lp_section, bank lp_bank) {
     // Automatic Variable Declarations
     // Implementation
-    if ((lp_handle != "")) {
+    if (gv_playerIsHuman[lp_viewedPlayer] && (lp_handle != "")) {
         if (lp_add) {
             BankValueSetFromText(lp_bank, lp_section, lp_handle, PlayerName(lp_viewedPlayer));
             BankValueSetFromString(lp_bank, lp_section, "Handles", StringReplaceWord((" " + lp_handle + " " + BankValueGetAsString(lp_bank, lp_section, "Handles")), "  ", " ", c_stringReplaceAll, c_stringNoCase));
@@ -8642,7 +8768,7 @@ bool auto_gf_ShopCreation_TriggerFunc (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     const int auto75ED4ACC_ae = gv_numberOfShopOptions;
     int auto75ED4ACC_var;
-    const int auto1F1F9F31_ae = 32;
+    const int auto1F1F9F31_ae = 33;
     int auto1F1F9F31_var;
 
     // Variable Initialization
@@ -8655,7 +8781,7 @@ bool auto_gf_ShopCreation_TriggerFunc (bool testConds, bool runActions) {
     lv_tempDialogItem = DialogControlLastCreated();
     DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeButton, "CloseButton");
     gv_shopCloseButtons[lp_player] = DialogControlLastCreated();
-    auto75ED4ACC_var = 33;
+    auto75ED4ACC_var = 34;
     for ( ; auto75ED4ACC_var <= auto75ED4ACC_ae; auto75ED4ACC_var += 1 ) {
         gf_ShopButton(lv_tempDialogItem, lp_player, auto75ED4ACC_var, 1);
     }
@@ -8684,7 +8810,7 @@ void gf_ShopButton (int lp_panel, int lp_player, int lp_itemNumber, int lp_page)
     lv_tempPanel = DialogControlLastCreated();
     DialogControlHookup(lv_tempPanel, c_triggerControlTypeButton, "Button");
     gv_shopButtons[lp_player][lp_itemNumber] = DialogControlLastCreated();
-    if ((lp_page == 1) && (lp_itemNumber <= 60) && ((gv_noShopMode == true))) {
+    if ((lp_page == 1) && (lp_itemNumber <= 61) && ((gv_noShopMode == true))) {
         libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringToText(UserDataGetString("ShopItems", "ShopItem"+IntToString(lp_itemNumber), "Name", 1)) + StringExternal("Param/Value/3CFEA3BD") + UserDataGetText("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopTooltip", 1)), PlayerGroupAll());
         DialogControlHookup(lv_tempPanel, c_triggerControlTypeImage, "ShopImage");
         libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("ShopItems", "ShopItem" + IntToString(lp_itemNumber), "ShopImage", 1), PlayerGroupAll());
@@ -8740,7 +8866,7 @@ void gf_ShopBuyTemp (int lp_itemID, int lp_player) {
     lv_itemID = lp_itemID;
 
     // Implementation
-    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noShopMode == false)) || (lv_itemID > 60) || (gv_trainingActivated == true))) {
+    if ((((PlayerGetPropertyInt(lv_buyingPlayer, c_playerPropCustom) >= 5000) && (gv_noShopMode == false)) || (lv_itemID > 61) || (gv_trainingActivated == true))) {
         lv_itemCost = UserDataGetInt("ShopItems", "ShopItem"+IntToString(lv_itemID), "ShopCost", 1);
         if ((lv_itemCost == -1)) {
             if ((gv_playerXP[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "XPRequirement", 1)) && (gv_playerKarma[lp_player] >= UserDataGetInt("ShopItemsCosmetics", "ShopItem"+IntToString(lv_itemID), "KarmaRequirement", 1))) {
@@ -8843,6 +8969,11 @@ void gf_ShopBuyPerm (int lp_itemID, int lp_player, string lp_itemType) {
                 gf_UpdateCredits(lp_player, -lv_itemCost);
                 gv_playerWeaponsMod2[lp_player] += 100;
                 gf_ModUpdateUnlockedModPointsText(lp_player);
+                lv_boughtItem = true;
+            }
+            else if ((lv_itemType == "reroll") && (gv_rerolls[lp_player] < 3)) {
+                gf_UpdateCredits(lp_player, -lv_itemCost);
+                gv_rerolls[lp_player] += 1;
                 lv_boughtItem = true;
             }
             else if ((lv_itemType == "kitten") && (gf_KittensBought(lp_player) == false)) {
@@ -12797,9 +12928,6 @@ bool auto_gf_CharlieCompanyAI_TriggerFunc (bool testConds, bool runActions) {
     unitgroup auto8F1F79AB_g;
     int auto8F1F79AB_u;
     unit auto8F1F79AB_var;
-    unitgroup auto202BB3CF_g;
-    int auto202BB3CF_u;
-    unit auto202BB3CF_var;
     unitgroup autoD3FB63F8_g;
     int autoD3FB63F8_u;
     unit autoD3FB63F8_var;
@@ -12825,17 +12953,11 @@ bool auto_gf_CharlieCompanyAI_TriggerFunc (bool testConds, bool runActions) {
     }
     while ((gv_gameOver == false)) {
         if ((UnitGroupCount(lv_possibleEscorts, c_unitCountAlive) == 0)) {
-            auto202BB3CF_g = gv_marines;
-            auto202BB3CF_u = UnitGroupCount(auto202BB3CF_g, c_unitCountAll);
-            for (;; auto202BB3CF_u -= 1) {
-                auto202BB3CF_var = UnitGroupUnitFromEnd(auto202BB3CF_g, auto202BB3CF_u);
-                if (auto202BB3CF_var == null) { break; }
-                if ((UnitGetType(auto202BB3CF_var) != "Marksman") && (UnitGetType(auto202BB3CF_var) != "Spectre")) {
-                    UnitGroupAdd(lv_possibleEscorts, auto202BB3CF_var);
-                }
-            }
-            if ((UnitGroupCount(lv_possibleEscorts, c_unitCountAlive) == 0)) {
+            if ((UnitGroupCount(gv_marinesNotReconAny, c_unitCountAlive) == 0)) {
                 UnitGroupAddUnitGroup(lv_possibleEscorts, gv_marines);
+            }
+            else {
+                UnitGroupAddUnitGroup(lv_possibleEscorts, gv_marinesNotReconAny);
             }
         }
         autoD3FB63F8_g = gv_easyCompanyTanks;
@@ -15431,7 +15553,12 @@ void gf_UISetPlayerRankNameIconXP (int lp_triggeringPlayer) {
         libNtve_gf_SetDialogItemImage(gv_teamStatusPortraitButton[lp_triggeringPlayer], UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Icon", 1), PlayerGroupAll());
         libNtve_gf_SetDialogItemImage(gv_teamStatusRankIcon[lp_triggeringPlayer], UserDataGetImagePath("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Icon", 1), PlayerGroupAll());
         libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1), PlayerGroupAll());
-        libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1) + StringExternal("Param/Value/F5F4A3AF") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
+        if (gv_playerIsHuman[lp_triggeringPlayer]) {
+            libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1) + StringExternal("Param/Value/F5F4A3AF") + StringToText(PlayerHandle(lp_triggeringPlayer))), gv_admin);
+        }
+        else {
+            libNtve_gf_SetDialogItemTooltip(gv_teamStatusRankIcon[lp_triggeringPlayer], (UserDataGetText("Ranks", UserDataInstance("Ranks", gv_playerRank[lp_triggeringPlayer]), "Title Full", 1)), gv_admin);
+        }
     }
     gf_UIUpdateXP(lp_triggeringPlayer);
 }
@@ -18241,11 +18368,21 @@ void gf_AllRandomBonusXP () {
 
     // Implementation
     if ((gv_randomsOption == 3)) {
-        lv_xp = libNtve_gf_DifficultyValueInt(25, 35, 45, 55);
+        lv_xp = libNtve_gf_DifficultyValueInt(15, 25, 35, 45);
         gf_AwardPlayerXPNOTD(lv_xp);
-        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(30, 60, 90, 120));
+        gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(15, 30, 45, 60));
         TextExpressionSetToken("Param/Expression/8F6674B0", "A", IntToText(lv_xp));
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/8F6674B0"));
+    }
+    if ((gv_storyline < 4) && (gv_randomsOption <= 1)) {
+        lv_xp = libNtve_gf_DifficultyValueInt(0, 25, 50, 75);
+        if ((lv_xp > 0)) {
+            gf_AwardPlayerXPNOTD(lv_xp);
+            gf_AwardCreditsNOTD(libNtve_gf_DifficultyValueInt(0, 35, 50, 65));
+            gf_AwardKarmaNOTD(libNtve_gf_DifficultyValueInt(0, 1, 2, 3));
+            TextExpressionSetToken("Param/Expression/4691678F", "A", IntToText(lv_xp));
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, TextExpressionAssemble("Param/Expression/4691678F"));
+        }
     }
 }
 
@@ -18766,7 +18903,12 @@ bool auto_gf_EndGameUISetNOTD_TriggerFunc (bool testConds, bool runActions) {
 // Trigger: Generic Test
 //--------------------------------------------------------------------------------------------------
 bool gt_GenericTest_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_testvar;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+
     // Conditions
     if (testConds) {
         if (!(((PlayerHandle(EventPlayer()) == "1-S2-1-417524") || (PlayerHandle(EventPlayer()) == "1-S2-1-431521") || (PlayerHandle(EventPlayer()) == "1-S2-1-1143628") || (PlayerHandle(EventPlayer()) == "1-S2-1-3388720") || (PlayerHandle(EventPlayer()) == "1-S2-1-11533459") || (PlayerHandle(EventPlayer()) == "1-S2-1-1246603") || !(GameIsOnline())))) {
@@ -19044,6 +19186,11 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     libNtve_gf_HideGameUI(false, PlayerGroupActive());
     GameSetSpeedValue(c_gameSpeedFaster);
     GameSetSpeedLocked(true);
+    TimerStart(gv_globalTimer, 60.0, false, c_timeReal);
+    TimerWindowCreate(gv_globalTimer, StringExternal("Param/Value/65CB3623"), true, false);
+    gf_NOTDFormatTimerWindow(TimerWindowLastCreated());
+    gv_globalTimerWindow = TimerWindowLastCreated();
+    TimerWindowShow(gv_globalTimerWindow, PlayerGroupActive(), true);
     Wait(0.1, c_timeGame);
     if ((GameIsTestMap(false) == true)) {
         GameCheatAllow(c_gameCheatAny, true);
@@ -19068,6 +19215,7 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     UISetResourceTradingAllowed(c_resourceTypeVespene, false);
     TriggerExecute(gt_Environment, true, false);
     TimerStart(gv_gameTime, 10800.0, false, c_timeReal);
+    TriggerExecute(gt_MarineHeroAITestRegPlayer, true, true);
     TriggerExecute(gt_PlayerIntialize, true, true);
     TriggerEnable(gt_NightmareHellMode, true);
     TriggerEnable(gt_OutbreakCommand, true);
@@ -19087,33 +19235,35 @@ bool gt_NOTDInitialize_Func (bool testConds, bool runActions) {
     while (true) {
         autoED8D603D_var = PlayerGroupNextPlayer(autoED8D603D_g, autoED8D603D_var);
         if (autoED8D603D_var < 0) { break; }
-        if ((gv_playerRating[autoED8D603D_var] >= 2500)) {
-            gv_rerollsRemain[autoED8D603D_var] += 1;
-        }
-        if ((gv_playerKarma[autoED8D603D_var] >= 2000)) {
-            gv_rerollsRemain[autoED8D603D_var] += 1;
-        }
-        if ((gv_playerKarma[autoED8D603D_var] >= 1525)) {
-            gv_rerollsRemain[autoED8D603D_var] += gv_rerolls[autoED8D603D_var];
-        }
-        lv_xPPool += Log2(MinF(MaxF(IntToFixed(gv_playerXP[autoED8D603D_var]), 1.0), 100000.0));
-        lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
-        if ((gv_playerXP[autoED8D603D_var] == 0)) {
-            gv_firstGame = true;
-            gv_noSkip = true;
-        }
-        if ((gv_playerXP[autoED8D603D_var] < 500)) {
-            lv_newbieCount += 1;
-            gv_playerIsNewbie[autoED8D603D_var] = true;
-        }
-        if ((gv_playerXP[autoED8D603D_var] >= 10000)) {
-            gv_playerIsHardVet[autoED8D603D_var] = true;
-        }
-        else {
-            gv_isHardVetSquad = false;
+        if (gv_playerIsHuman[autoED8D603D_var]) {
+            if ((gv_playerRating[autoED8D603D_var] >= 2500)) {
+                gv_rerollsRemain[autoED8D603D_var] += 1;
+            }
+            if ((gv_playerKarma[autoED8D603D_var] >= 2000)) {
+                gv_rerollsRemain[autoED8D603D_var] += 1;
+            }
+            if ((gv_playerKarma[autoED8D603D_var] >= 1525)) {
+                gv_rerollsRemain[autoED8D603D_var] += gv_rerolls[autoED8D603D_var];
+            }
+            lv_xPPool += Log2(MinF(MaxF(IntToFixed(gv_playerXP[autoED8D603D_var]), 1.0), 100000.0));
+            lv_xPMin = MinI(gv_playerXP[autoED8D603D_var], lv_xPMin);
+            if ((gv_playerXP[autoED8D603D_var] == 0)) {
+                gv_firstGame = true;
+                gv_noSkip = true;
+            }
+            if ((gv_playerXP[autoED8D603D_var] < 500)) {
+                lv_newbieCount += 1;
+                gv_playerIsNewbie[autoED8D603D_var] = true;
+            }
+            if ((gv_playerXP[autoED8D603D_var] >= 10000)) {
+                gv_playerIsHardVet[autoED8D603D_var] = true;
+            }
+            else {
+                gv_isHardVetSquad = false;
+            }
         }
     }
-    lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_totalPlayers)));
+    lv_xPPool = Ceiling(Pow2((lv_xPPool / gv_humanPlayers)));
     gv_noNewbie = (lv_xPMin >= 500);
     gv_scaledXP = MaxI(FixedToInt(lv_xPPool), lv_xPMin);
     gv_isVeteranSquad = (gv_scaledXP >= 4500);
@@ -19154,12 +19304,20 @@ bool gt_PlayerIntialize_Func (bool testConds, bool runActions) {
     while (true) {
         auto0E90487C_var = PlayerGroupNextPlayer(auto0E90487C_g, auto0E90487C_var);
         if (auto0E90487C_var < 0) { break; }
+        if ((PlayerType(auto0E90487C_var) == c_playerTypeComputer)) {
+            gv_playerIsComp[auto0E90487C_var] = true;
+            PlayerGroupAdd(gv_marineSquadAI, auto0E90487C_var);
+        }
+        if ((PlayerType(auto0E90487C_var) == c_playerTypeUser) && (PlayerStatus(auto0E90487C_var) == c_playerStatusActive)) {
+            gv_playerIsHuman[auto0E90487C_var] = true;
+            gv_humanPlayers += 1;
+        }
         PlayerOptionOverride(auto0E90487C_var, "selectuncontrolable", "1");
         PlayerOptionOverride(auto0E90487C_var, "simplecommandcard", "0");
         PlayerOptionOverride(auto0E90487C_var, "showalerts", "1");
         PlayerOptionOverride(auto0E90487C_var, "tickedunitstatus", "0");
         PlayerGroupAdd(gv_marineSquad, auto0E90487C_var);
-        if (((PlayerHandle(auto0E90487C_var) == "1-S2-1-417524") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-431521") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1143628") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-3388720") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-11533459") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1246603") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-7513326") || !(GameIsOnline()))) {
+        if (gv_playerIsHuman[auto0E90487C_var] && ((PlayerHandle(auto0E90487C_var) == "1-S2-1-417524") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-431521") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1143628") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-3388720") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-11533459") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-1246603") || (PlayerHandle(auto0E90487C_var) == "1-S2-1-7513326") || !(GameIsOnline()))) {
             PlayerGroupAdd(gv_admin, auto0E90487C_var);
             gv_isAdmin[auto0E90487C_var] = true;
         }
@@ -19387,6 +19545,7 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
     if ((gv_firstGame || (gv_scaledXP < 1000))) {
         gv_storylineUnlocked[2] = false;
         gv_storylineUnlocked[4] = false;
+        TimerWindowSetTitle(gv_globalTimerWindow, StringExternal("Param/Value/95A59AA2"));
     }
     UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
     gf_UIDialogCreation(1235, 1225, 0, 0, c_anchorCenter);
@@ -19568,6 +19727,13 @@ bool gt_StorylineDialogCreation_Func (bool testConds, bool runActions) {
         DialogControlSetEnabled(gv_modeSelection[1], PlayerGroupAll(), false);
         gf_UpdateModeSelectionUIs(ge_GameModes_Recruit);
     }
+    libNtve_gf_HideGameUI(true, PlayerGroupActive());
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeMenuBar, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeMissionTimePanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeConsolePanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeCommandPanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeMinimapPanel, false);
+    UISetFrameVisible(PlayerGroupActive(), c_syncFrameTypeAllianceButton, false);
     return true;
 }
 
@@ -19789,9 +19955,18 @@ void gt_ModeSelection_Init () {
 // Trigger: Auto Storyline Selection
 //--------------------------------------------------------------------------------------------------
 bool gt_AutoStorylineSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_unlocked;
+    int lv_index;
+
     // Automatic Variable Declarations
+    const int auto539912AE_ae = 4;
+    int auto539912AE_var;
     const int auto8FD6CC03_ae = 3;
     int auto8FD6CC03_var;
+
+    // Variable Initialization
+    lv_unlocked = "";
 
     // Actions
     if (!runActions) {
@@ -19806,9 +19981,19 @@ bool gt_AutoStorylineSelection_Func (bool testConds, bool runActions) {
         gv_isVeteranSquad = false;
         gv_noNewbie = false;
     }
-    auto8FD6CC03_var = 2;
+    auto539912AE_var = 1;
+    for ( ; auto539912AE_var <= auto539912AE_ae; auto539912AE_var += 1 ) {
+        if (gv_storylineUnlocked[auto539912AE_var]) {
+            lv_unlocked = (lv_unlocked + IntToString(auto539912AE_var));
+        }
+    }
+    lv_index = RandomInt(1, StringLength(lv_unlocked));
+    gv_storyline = StringToInt(StringSub(lv_unlocked, lv_index, lv_index));
+    auto8FD6CC03_var = 1;
     for ( ; auto8FD6CC03_var <= auto8FD6CC03_ae; auto8FD6CC03_var += 1 ) {
-        DialogControlFadeTransparency(gv_storylineSelection[auto8FD6CC03_var], PlayerGroupAll(), 0.5, 80.0);
+        if ((auto8FD6CC03_var != gv_storyline)) {
+            DialogControlFadeTransparency(gv_storylineSelection[auto8FD6CC03_var], PlayerGroupAll(), 0.5, 80.0);
+        }
     }
     Wait(1.0, c_timeGame);
     gf_FinalizeStorylineSelection();
@@ -19882,7 +20067,6 @@ bool gt_Reroll_Func (bool testConds, bool runActions) {
     }
     else {
         gf_UpdateKarma(lv_localPlayer, -5);
-        gf_UpdateRating(lv_localPlayer, -1);
         gv_rerollsRemain[lv_localPlayer] -= 1;
     }
     gv_rerollEnable[lv_localPlayer] = false;
@@ -19931,7 +20115,7 @@ bool gt_ClassCreation_Func (bool testConds, bool runActions) {
     }
 
     DialogDestroy(gv_classSelectionDialog[lv_selectingPlayer]);
-    if ((TriggerGetExecCount(TriggerGetCurrent()) == (gv_totalPlayers - 1))) {
+    if ((TriggerGetExecCount(TriggerGetCurrent()) == (gv_humanPlayers - 1))) {
         TriggerEnable(TriggerGetCurrent(), false);
         TriggerEnable(gt_NoRandoms, false);
     }
@@ -20500,6 +20684,72 @@ void gt_ClassPointsCheck_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Stats Check
+//--------------------------------------------------------------------------------------------------
+bool gt_StatsCheck_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_viewedPlayer;
+    int lv_viewingPlayer;
+    fixed lv_wins;
+    fixed lv_nmwins;
+    fixed lv_totwins;
+    fixed lv_cpwins;
+    fixed lv_speedwins;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_viewedPlayer = StringToInt(StringWord(EventChatMessage(false), 2));
+    lv_viewingPlayer = EventPlayer();
+    lv_wins = IntToFixed(gf_GetMedalWins(lv_viewedPlayer));
+    lv_nmwins = IntToFixed(gf_GetMedalWinsNM(lv_viewedPlayer));
+    lv_totwins = (lv_wins+lv_nmwins);
+    lv_cpwins = IntToFixed(gf_GetCPWins(lv_viewedPlayer));
+    lv_speedwins = IntToFixed(gf_GetCPWinsSpeed(lv_viewedPlayer));
+
+    // Conditions
+    if (testConds) {
+        if (!(gf_ValidPlayer(lv_viewedPlayer))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, (StringExternal("Param/Value/CFE0F596") + (PlayerName(lv_viewedPlayer) + StringExternal("Param/Value/11FBB304"))));
+    TextExpressionSetToken("Param/Expression/67C68587", "A", FixedToText((gf_GetTotalCP(lv_viewedPlayer)/8), 0));
+    UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/67C68587"));
+    TextExpressionSetToken("Param/Expression/A8C81CB5", "A", FixedToText(gf_CPVariation(lv_viewedPlayer), 1));
+    UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/A8C81CB5"));
+    if ((lv_totwins == 0)) {
+        UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/75C0939E"));
+    }
+    else {
+        TextExpressionSetToken("Param/Expression/96D8D1C9", "A", FixedToText(((lv_nmwins/lv_totwins)*100), 0));
+        TextExpressionSetToken("Param/Expression/96D8D1C9", "B", FixedToText(lv_nmwins, 0));
+        TextExpressionSetToken("Param/Expression/96D8D1C9", "C", FixedToText(lv_totwins, 0));
+        UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/96D8D1C9"));
+    }
+    TextExpressionSetToken("Param/Expression/25E02CAF", "A", FixedToText(((lv_totwins/gv_playerGamesPlayed[lv_viewedPlayer])*100), 0));
+    TextExpressionSetToken("Param/Expression/25E02CAF", "B", FixedToText(lv_totwins, 0));
+    TextExpressionSetToken("Param/Expression/25E02CAF", "C", IntToText(gv_playerGamesPlayed[lv_viewedPlayer]));
+    UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/25E02CAF"));
+    TextExpressionSetToken("Param/Expression/FC67CADC", "A", FixedToText((gv_playerXP[lv_viewedPlayer]/gv_playerGamesPlayed[lv_viewedPlayer]), 0));
+    UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/FC67CADC"));
+    TextExpressionSetToken("Param/Expression/5A6C584D", "A", FixedToText((gv_playerLifeTimeCreditsAcquired[lv_viewedPlayer]/gv_playerGamesPlayed[lv_viewedPlayer]), 0));
+    UIDisplayMessage(gv_activePlayers, c_messageAreaDebug, TextExpressionAssemble("Param/Expression/5A6C584D"));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_StatsCheck_Init () {
+    gt_StatsCheck = TriggerCreate("gt_StatsCheck_Func");
+    TriggerAddEventChatMessage(gt_StatsCheck, c_playerAny, "-stats", false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Help
 //--------------------------------------------------------------------------------------------------
 bool gt_Help_Func (bool testConds, bool runActions) {
@@ -20845,6 +21095,7 @@ void gt_AllRandom_Init () {
 bool gt_Blacklist_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_localPlayer;
+    string lv_chatString;
     int lv_wordNum;
     string lv_word;
     int lv_range;
@@ -20855,6 +21106,7 @@ bool gt_Blacklist_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Variable Initialization
     lv_localPlayer = EventPlayer();
+    lv_chatString = StringCase(EventChatMessage(false), false);
     lv_wordNum = 2;
     lv_word = "";
     lv_range = gf_GetRandomRange(lv_localPlayer);
@@ -20866,7 +21118,7 @@ bool gt_Blacklist_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((EventChatMessage(true) == "-black")) {
+    if ((StringCase(EventChatMessage(true), false) == "-black")) {
         gv_classPreferred[lv_localPlayer] = false;
         lv_localTitle = StringExternal("Param/Value/07A54F59");
         lv_localColor = Color(100.00, 50.20, 50.20);
@@ -20878,14 +21130,34 @@ bool gt_Blacklist_Func (bool testConds, bool runActions) {
     }
     gv_preferredClasses[lv_localPlayer] = "";
     while (true) {
-        lv_word = StringWord(EventChatMessage(false), lv_wordNum);
+        lv_word = StringWord(lv_chatString, lv_wordNum);
         if ((lv_word == "")) {
             break;
         }
-        lv_currentClass = gf_GetClassfromKeyString(lv_word);
-        if ((lv_currentClass != "Random") && !(StringContains(gv_preferredClasses[lv_localPlayer], (lv_currentClass), c_stringAnywhere, c_stringCase))) {
-            gv_preferredClasses[lv_localPlayer] = (gv_preferredClasses[lv_localPlayer] + " " + (lv_currentClass));
-            gv_preferredClassCount[lv_localPlayer] += 1;
+        if ((lv_word == "tank")) {
+            lv_chatString = (lv_chatString + " assa flamer tech demo");
+        }
+        else if ((lv_word == "dps")) {
+            lv_chatString = (lv_chatString + " mm mando");
+        }
+        else if ((lv_word == "support")) {
+            lv_chatString = (lv_chatString + " medic recon");
+        }
+        else if ((lv_word == "micro")) {
+            lv_chatString = (lv_chatString + " rifle engi");
+        }
+        else if ((lv_word == "cloak")) {
+            lv_chatString = (lv_chatString + " recon mm po");
+        }
+        else if (((lv_word == "special") || (lv_word == "spec"))) {
+            lv_chatString = (lv_chatString + " fo pf po ce");
+        }
+        else if (true) {
+            lv_currentClass = gf_GetClassfromKeyString(lv_word);
+            if ((lv_currentClass != "Random") && !(StringContains(gv_preferredClasses[lv_localPlayer], (lv_currentClass), c_stringAnywhere, c_stringCase))) {
+                gv_preferredClasses[lv_localPlayer] = (gv_preferredClasses[lv_localPlayer] + " " + (lv_currentClass));
+                gv_preferredClassCount[lv_localPlayer] += 1;
+            }
         }
         lv_wordNum += 1;
     }
@@ -21631,6 +21903,8 @@ bool gt_Demerits_Func (bool testConds, bool runActions) {
     else if ((lv_dialogItem == gv_demeritDialogMeritbtn[lv_viewedPlayer])) {
         gf_DemeritsApplyMerit(lv_viewingPlayer, lv_viewedPlayer);
     }
+    if (gv_playerIsHuman[0]) {
+    }
     return true;
 }
 
@@ -21683,6 +21957,152 @@ void gt_DemeritsVisible_Init () {
     gt_DemeritsVisible = TriggerCreate("gt_DemeritsVisible_Func");
     TriggerEnable(gt_DemeritsVisible, false);
     TriggerAddEventDialogControl(gt_DemeritsVisible, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeChecked);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MarineHeroAI - Test Reg Player
+//--------------------------------------------------------------------------------------------------
+bool gt_MarineHeroAITestRegPlayer_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_localPlayer;
+
+    // Automatic Variable Declarations
+    const int auto6EF702C4_ae = 8;
+    const int auto6EF702C4_ai = 1;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!(!(GameIsOnline()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_localPlayer = 1;
+    for ( ; ( (auto6EF702C4_ai >= 0 && lv_localPlayer <= auto6EF702C4_ae) || (auto6EF702C4_ai < 0 && lv_localPlayer >= auto6EF702C4_ae) ) ; lv_localPlayer += auto6EF702C4_ai ) {
+        if ((PlayerType(lv_localPlayer) == c_playerTypeComputer)) {
+            gv_playerIsComp[lv_localPlayer] = true;
+            PlayerOptionOverride(lv_localPlayer, "selectuncontrolable", "1");
+            PlayerOptionOverride(lv_localPlayer, "simplecommandcard", "0");
+            PlayerOptionOverride(lv_localPlayer, "showalerts", "1");
+            PlayerOptionOverride(lv_localPlayer, "tickedunitstatus", "0");
+            PlayerGroupAdd(gv_marineSquad, lv_localPlayer);
+            PlayerGroupAdd(gv_marineSquadAI, lv_localPlayer);
+            gv_totalPlayers += 1;
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_MarineHeroAITestRegPlayer_Init () {
+    gt_MarineHeroAITestRegPlayer = TriggerCreate("gt_MarineHeroAITestRegPlayer_Func");
+    TriggerEnable(gt_MarineHeroAITestRegPlayer, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MarineHeroAI - Class Creation
+//--------------------------------------------------------------------------------------------------
+bool gt_MarineHeroAIClassCreation_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_picks;
+    int lv_waits;
+
+    // Automatic Variable Declarations
+    playergroup auto4E56EA6E_g;
+    int auto4E56EA6E_var;
+    playergroup auto6AA4D25E_g;
+    int auto6AA4D25E_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((lv_picks < gv_humanPlayers) && (lv_waits < 30)) {
+        lv_waits += 1;
+        lv_picks = 0;
+        auto4E56EA6E_g = gv_marineSquad;
+        auto4E56EA6E_var = -1;
+        while (true) {
+            auto4E56EA6E_var = PlayerGroupNextPlayer(auto4E56EA6E_g, auto4E56EA6E_var);
+            if (auto4E56EA6E_var < 0) { break; }
+            if (gv_playerIsHuman[auto4E56EA6E_var] && gv_playerHasPicked[auto4E56EA6E_var]) {
+                lv_picks += 1;
+            }
+        }
+        Wait(1.0, c_timeReal);
+    }
+    auto6AA4D25E_g = gv_marineSquadAI;
+    auto6AA4D25E_var = -1;
+    while (true) {
+        auto6AA4D25E_var = PlayerGroupNextPlayer(auto6AA4D25E_g, auto6AA4D25E_var);
+        if (auto6AA4D25E_var < 0) { break; }
+        Wait(RandomFixed(0.2, 2.0), c_timeReal);
+        gv_playerHasPicked[auto6AA4D25E_var] = true;
+        if ((gv_randomsOption == 3)) {
+            gf_ClassCreationInit(auto6AA4D25E_var, 15);
+        }
+        else if ((gv_preClassCount[2] == 0)) {
+            gf_ClassCreationInit(auto6AA4D25E_var, 2);
+        }
+        else if ((gv_preClassCount[3] == 0)) {
+            gf_ClassCreationInit(auto6AA4D25E_var, 3);
+        }
+        else if (true) {
+            if ((gv_preClassCount[3] == 1) && (RandomInt(0, 3) == 1)) {
+                gf_ClassCreationInit(auto6AA4D25E_var, 3);
+            }
+            else if ((gv_preClassCount[2] == 1) && (RandomInt(0, 2) == 1)) {
+                gf_ClassCreationInit(auto6AA4D25E_var, 2);
+            }
+            else if (true) {
+                gf_ClassCreationInit(auto6AA4D25E_var, 1);
+            }
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_MarineHeroAIClassCreation_Init () {
+    gt_MarineHeroAIClassCreation = TriggerCreate("gt_MarineHeroAIClassCreation_Func");
+    TriggerEnable(gt_MarineHeroAIClassCreation, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MarineHeroAI
+//--------------------------------------------------------------------------------------------------
+bool gt_MarineHeroAI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_aiHero;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!(!(gv_gameOver))) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_MarineHeroAI_Init () {
+    gt_MarineHeroAI = TriggerCreate("gt_MarineHeroAI_Func");
+    TriggerEnable(gt_MarineHeroAI, false);
+    TriggerAddEventTimePeriodic(gt_MarineHeroAI, 1.333, c_timeReal);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -23085,6 +23505,12 @@ bool gt_DeadMarine_Func (bool testConds, bool runActions) {
         TriggerEnable(gt_SpectatorModeClick, true);
     }
 
+    if ((UnitGroupCount(gv_marinesNotReconAny, c_unitCountAlive) == 0)) {
+        UnitGroupAddUnitGroup(gv_marinesNotReconAny, gv_marines);
+    }
+    if ((UnitGroupCount(gv_marinesNotRecon, c_unitCountAlive) == 0)) {
+        UnitGroupAddUnitGroup(gv_marinesNotRecon, gv_marinesHuman);
+    }
     AIAttackWaveSetTargetEscort(9, gv_marines, 2);
     auto7F2D4C58_g = AIGetAllEscorts(lv_deadMarine);
     auto7F2D4C58_u = UnitGroupCount(auto7F2D4C58_g, c_unitCountAll);
@@ -24341,10 +24767,6 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         if (!(((lv_deadUnitType == "Devourer") || (lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran") || (lv_deadUnitType == "Ultralisk") || (lv_deadUnitType == "Infestor2") || (lv_deadUnitType == "Titan") || (lv_deadUnitType == "Baneling") || (lv_deadUnitType == "Beastling") || (lv_deadUnitType == "NydusCanal") || UnitGroupHasUnit(gv_infectedUnits, lv_deadUnit) || UnitGroupHasUnit(gv_unknownUnits, lv_deadUnit) || (EventUnitDamageDeathCheck(c_deathTypeEviscerate) && (UnitBehaviorCount(libNtve_gf_KillingUnit(), "Infectious") != 0))))) {
             return false;
         }
-
-        if (!(((EventUnitDamageDeathCheck(c_deathTypeFire) == false) || UnitGroupHasUnit(gv_scorchingUnits, lv_deadUnit)))) {
-            return false;
-        }
     }
 
     // Actions
@@ -24366,7 +24788,7 @@ bool gt_ZombieDeathEffects_Func (bool testConds, bool runActions) {
         }
 
     }
-    if ((((lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran")) && (RandomInt(0, 2) == 1))) {
+    if (((lv_deadUnitType == "ZombieLevel1") || (lv_deadUnitType == "ZombieLevel2") || (lv_deadUnitType == "Seeker") || (lv_deadUnitType == "Hulk") || (lv_deadUnitType == "InfestorTerran")) && (RandomInt(0, 2) == 1) && (EventUnitDamageDeathCheck(c_deathTypeFire) == false) && (EventUnitDamageDeathCheck(c_deathTypeBlast) == false)) {
         Wait(RandomFixed(1.5, 3.0), c_timeReal);
         if (!(gv_cinematicMode)) {
             UnitCreate(1, "Zergling", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
@@ -24490,41 +24912,39 @@ bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
     gv_infestorLock = true;
     UnitGroupRemove(gv_infestors, EventUnit());
     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Zerg, lv_localPointA);
-    if (((EventUnitDamageDeathCheck(c_deathTypeFire) == false) || lv_isScorching)) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreepLarge", 0, 14, lv_localPointA, RegionRandomPoint(RegionPlayableMap()));
-        if ((gv_nightmare || gv_hell)) {
-            libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+    libNtve_gf_UnitCreateFacingPoint(1, "ZombieCreepLarge", 0, 14, lv_localPointA, RegionRandomPoint(RegionPlayableMap()));
+    if ((gv_nightmare || gv_hell)) {
+        libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+    }
+    if (gv_nightmare) {
+        auto16F7DD33_n = gv_spawnFactor;
+        for (auto16F7DD33_i = 1; auto16F7DD33_i <= auto16F7DD33_n; auto16F7DD33_i += 1) {
+            UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
+            UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+            UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
+            Wait(0.1, c_timeGame);
         }
-        if (gv_nightmare) {
-            auto16F7DD33_n = gv_spawnFactor;
-            for (auto16F7DD33_i = 1; auto16F7DD33_i <= auto16F7DD33_n; auto16F7DD33_i += 1) {
-                UnitCreate(1, "Parasite", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
-                UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-                UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
-                Wait(0.1, c_timeGame);
+    }
+    else if (gv_hell) {
+        auto2B71D0CC_n = gv_spawnFactor;
+        for (auto2B71D0CC_i = 1; auto2B71D0CC_i <= auto2B71D0CC_n; auto2B71D0CC_i += 1) {
+            UnitCreate(1, "Slither", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
+            UnitGroupAdd(gv_zombieWave, UnitLastCreated());
+            UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
+            UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
+            UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
+            UnitBehaviorAddPlayer(UnitLastCreated(), "SpeedBuff", 13, 1);
+            if (lv_isScorching) {
+                UnitWeaponRemove(UnitLastCreated(), "VenomousFangs");
+                UnitWeaponAdd(UnitLastCreated(), "FlamethrowerMK2", null);
+                UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
             }
-        }
-        else if (gv_hell) {
-            auto2B71D0CC_n = gv_spawnFactor;
-            for (auto2B71D0CC_i = 1; auto2B71D0CC_i <= auto2B71D0CC_n; auto2B71D0CC_i += 1) {
-                UnitCreate(1, "Slither", 0, 14, lv_localPointA, libNtve_gf_RandomAngle());
-                UnitGroupAdd(gv_zombieWave, UnitLastCreated());
-                UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeRegen, 10.0);
-                UnitBehaviorAdd(UnitLastCreated(), "Rampage", UnitLastCreated(), 1);
-                UnitBehaviorAdd(UnitLastCreated(), "AdvancedMutation", UnitLastCreated(), 1);
-                UnitBehaviorAddPlayer(UnitLastCreated(), "SpeedBuff", 13, 1);
-                if (lv_isScorching) {
-                    UnitWeaponRemove(UnitLastCreated(), "VenomousFangs");
-                    UnitWeaponAdd(UnitLastCreated(), "FlamethrowerMK2", null);
-                    UnitBehaviorAdd(UnitLastCreated(), "Scorching", UnitLastCreated(), 1);
+            else {
+                if ((RandomInt(0, 2) == 1)) {
+                    UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
                 }
-                else {
-                    if ((RandomInt(0, 2) == 1)) {
-                        UnitBehaviorAddPlayer(UnitLastCreated(), "Infectious", 14, 1);
-                    }
-                }
-                Wait(0.1, c_timeGame);
             }
+            Wait(0.1, c_timeGame);
         }
     }
     gf_AwardMarineXPNOTD(75.0);
@@ -26574,7 +26994,12 @@ bool gt_OM2aOgilvyFound_Func (bool testConds, bool runActions) {
     Wait(1.0, c_timeGame);
     SoundPlayAtPoint(SoundLink("UI_TerranRescueUnit", -1), PlayerGroupAll(), UnitGetPosition(EventUnit()), 1.5, 100.0, 0.0);
     UnitCreate(1, "Ogilvy", 0, 9, RegionRandomPoint(gv_ogilvysHideout), 270.0);
-    AIAttackWaveSetTargetEscort(9, gv_marines, 2);
+    if ((UnitGroupCount(gv_marinesNotReconAny, c_unitCountAlive) == 0)) {
+        AIAttackWaveSetTargetEscort(9, gv_marines, 2);
+    }
+    else {
+        AIAttackWaveSetTargetEscort(9, gv_marinesNotReconAny, 2);
+    }
     AIAttackWaveUseUnit(9, UnitLastCreated());
     AIAttackWaveSend(9, 0, false);
     gv_ogilvy = UnitLastCreated();
@@ -26636,7 +27061,12 @@ bool gt_OM2bIvanFound_Func (bool testConds, bool runActions) {
     Wait(1.0, c_timeGame);
     SoundPlayAtPoint(SoundLink("UI_TerranRescueUnit", -1), PlayerGroupAll(), UnitGetPosition(EventUnit()), 1.5, 100.0, 0.0);
     UnitCreate(1, "IvanPlushenko", 0, 9, RegionRandomPoint(gv_ogilvysHideout), libNtve_gf_RandomAngle());
-    AIAttackWaveSetTargetEscort(9, gv_marines, 2);
+    if ((UnitGroupCount(gv_marinesNotReconAny, c_unitCountAlive) == 0)) {
+        AIAttackWaveSetTargetEscort(9, gv_marines, 2);
+    }
+    else {
+        AIAttackWaveSetTargetEscort(9, gv_marinesNotReconAny, 2);
+    }
     AIAttackWaveUseUnit(9, UnitLastCreated());
     AIAttackWaveSend(9, 0, false);
     gv_ivan = UnitLastCreated();
@@ -46745,10 +47175,10 @@ bool gt_CreateTeamStatusDialog_Func (bool testConds, bool runActions) {
         DialogControlHookup(gv_teamStatusPlayerPanel[lv_currentPlayer], c_triggerControlTypeButton, "StatusButton");
         gv_teamStatusPortraitButton[lv_currentPlayer] = DialogControlLastCreated();
         DialogControlHookup(gv_teamStatusPlayerPanel[lv_currentPlayer], c_triggerControlTypeImage, "BorderImage");
-        if (gf_Staff(PlayerHandle(lv_currentPlayer))) {
+        if (gv_playerIsHuman[lv_currentPlayer] && gf_Staff(PlayerHandle(lv_currentPlayer))) {
             libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_multiplayerload_avatarborder_grandmaster.dds", PlayerGroupAll());
         }
-        else if (gf_TournamentWinner(PlayerHandle(lv_currentPlayer))) {
+        else if (gv_playerIsHuman[lv_currentPlayer] && gf_TournamentWinner(PlayerHandle(lv_currentPlayer))) {
             libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_multiplayerload_avatarborder_master.dds", PlayerGroupAll());
         }
         else if ((gv_medalOfHonor[lv_currentPlayer] >= 500)) {
@@ -46952,7 +47382,7 @@ bool gt_CreateMedalsDialog_Func (bool testConds, bool runActions) {
     while (true) {
         lv_currentPlayer = PlayerGroupNextPlayer(auto8419F750_g, lv_currentPlayer);
         if (lv_currentPlayer < 0) { break; }
-        if ((PlayerHandle(lv_currentPlayer) == "5-S2-1-643123")) {
+        if (gv_playerIsHuman[lv_currentPlayer] && (PlayerHandle(lv_currentPlayer) == "5-S2-1-643123")) {
             GameOver(lv_currentPlayer, c_gameOverVictory, true, true);
         }
 
@@ -50056,6 +50486,7 @@ void InitTriggers () {
     gt_CiviliansCheck_Init();
     gt_TeamLocation_Init();
     gt_ClassPointsCheck_Init();
+    gt_StatsCheck_Init();
     gt_Help_Init();
     gt_WinsCheck_Init();
     gt_AmmoCheck_Init();
@@ -50083,6 +50514,9 @@ void InitTriggers () {
     gt_CustomCheatFree_Init();
     gt_Demerits_Init();
     gt_DemeritsVisible_Init();
+    gt_MarineHeroAITestRegPlayer_Init();
+    gt_MarineHeroAIClassCreation_Init();
+    gt_MarineHeroAI_Init();
     gt_ManualReload_Init();
     gt_AmmoUsage_Init();
     gt_AmmoUsageStinger_Init();

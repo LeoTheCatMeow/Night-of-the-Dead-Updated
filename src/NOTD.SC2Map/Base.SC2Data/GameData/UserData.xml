@@ -49,7 +49,7 @@
         <Fields Id="XPRequirement" Type="Int"/>
         <Fields Id="KarmaRequirement" Type="Int"/>
         <Instances Id="[Default]"/>
-        <Instances Id="ShopItem61">
+        <Instances Id="ShopItem62">
             <GameLink GameLink="Tier1Skin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -60,7 +60,7 @@
                 <Field Id="XPRequirement"/>
             </Int>
         </Instances>
-        <Instances Id="ShopItem62">
+        <Instances Id="ShopItem63">
             <GameLink GameLink="Tier2Skin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -71,7 +71,7 @@
                 <Field Id="KarmaRequirement"/>
             </Int>
         </Instances>
-        <Instances Id="ShopItem63">
+        <Instances Id="ShopItem64">
             <GameLink GameLink="Tier3Skin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -82,27 +82,27 @@
                 <Field Id="KarmaRequirement"/>
             </Int>
         </Instances>
-        <Instances Id="ShopItem64">
+        <Instances Id="ShopItem65">
             <GameLink GameLink="Default">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem65">
+        <Instances Id="ShopItem66">
             <GameLink GameLink="KittenSkin1">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem66">
+        <Instances Id="ShopItem67">
             <GameLink GameLink="KittenSkin2">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem67">
+        <Instances Id="ShopItem68">
             <GameLink GameLink="KittenSkin3">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
         </Instances>
-        <Instances Id="ShopItem68">
+        <Instances Id="ShopItem69">
             <GameLink GameLink="KittenDefaultSkin">
                 <Field Id="Skin (Effect)"/>
             </GameLink>
@@ -1851,6 +1851,23 @@
             </Text>
         </Instances>
         <Instances Id="ShopItem33">
+            <Image Image="Assets\Textures\ui_battlenet_glue_icons_random_highlight.dds">
+                <Field Id="ShopImage"/>
+            </Image>
+            <Int Int="10000">
+                <Field Id="ShopCost"/>
+            </Int>
+            <String String="Buy Class Reroll">
+                <Field Id="Name"/>
+            </String>
+            <String String="reroll">
+                <Field Id="Type"/>
+            </String>
+            <Text Text="UserData/ShopItems/ShopItem33_ShopTooltip">
+                <Field Id="ShopTooltip"/>
+            </Text>
+        </Instances>
+        <Instances Id="ShopItem34">
             <GameLink GameLink="BarrettM112">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1866,11 +1883,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem33_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem34_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem34">
+        <Instances Id="ShopItem35">
             <GameLink GameLink="L3GrenadeLauncher">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1886,11 +1903,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem34_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem35_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem35">
+        <Instances Id="ShopItem36">
             <GameLink GameLink="StingerMK3">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1906,11 +1923,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem35_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem36_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem36">
+        <Instances Id="ShopItem37">
             <GameLink GameLink="Chaingun">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1926,11 +1943,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem36_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem37_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem37">
+        <Instances Id="ShopItem38">
             <GameLink GameLink="UA420AssaultRifle">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1946,11 +1963,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem37_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem38_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem38">
+        <Instances Id="ShopItem39">
             <GameLink GameLink="Shotgun">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1966,11 +1983,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem38_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem39_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem39">
+        <Instances Id="ShopItem40">
             <GameLink GameLink="MP9A2SubMachineGun">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -1986,11 +2003,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem39_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem40_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem40">
+        <Instances Id="ShopItem41">
             <GameLink GameLink="Flamethrower">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2006,11 +2023,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem40_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem41_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem41">
+        <Instances Id="ShopItem42">
             <GameLink GameLink="XS4Armor">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2026,11 +2043,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem41_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem42_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem42">
+        <Instances Id="ShopItem43">
             <GameLink GameLink="C2Armor">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2046,11 +2063,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem42_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem43_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem43">
+        <Instances Id="ShopItem44">
             <GameLink GameLink="C4Armor">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2066,11 +2083,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem43_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem44_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem44">
+        <Instances Id="ShopItem45">
             <GameLink GameLink="APAmmo">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2086,11 +2103,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem44_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem45_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem45">
+        <Instances Id="ShopItem46">
             <GameLink GameLink="FMJAmmo">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2106,11 +2123,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem45_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem46_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem46">
+        <Instances Id="ShopItem47">
             <GameLink GameLink="HEAmmo">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2126,11 +2143,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem46_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem47_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem47">
+        <Instances Id="ShopItem48">
             <GameLink GameLink="HighCapacityClip">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2146,11 +2163,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem47_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem48_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem48">
+        <Instances Id="ShopItem49">
             <GameLink GameLink="HPAmmo">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2166,11 +2183,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem48_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem49_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem49">
+        <Instances Id="ShopItem50">
             <GameLink GameLink="NanoHealthAugment">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2186,11 +2203,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem49_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem50_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem50">
+        <Instances Id="ShopItem51">
             <GameLink GameLink="OccularImplants">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2206,11 +2223,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem50_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem51_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem51">
+        <Instances Id="ShopItem52">
             <GameLink GameLink="CombatMobilityAugment">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2226,11 +2243,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem51_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem52_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem52">
+        <Instances Id="ShopItem53">
             <GameLink GameLink="PersonnelArcReactor">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2246,11 +2263,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem52_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem53_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem53">
+        <Instances Id="ShopItem54">
             <GameLink GameLink="RoadFlare">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2266,11 +2283,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem53_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem54_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem54">
+        <Instances Id="ShopItem55">
             <GameLink GameLink="Medpack">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2286,11 +2303,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem54_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem55_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem55">
+        <Instances Id="ShopItem56">
             <GameLink GameLink="Bandage">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2306,11 +2323,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem55_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem56_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem56">
+        <Instances Id="ShopItem57">
             <GameLink GameLink="AntiVenom">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2326,11 +2343,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem56_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem57_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem57">
+        <Instances Id="ShopItem58">
             <GameLink GameLink="Magazine">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2346,11 +2363,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem57_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem58_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem58">
+        <Instances Id="ShopItem59">
             <GameLink GameLink="AmmoBox">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2366,11 +2383,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem58_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem59_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem59">
+        <Instances Id="ShopItem60">
             <GameLink GameLink="CIAmmo">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2386,11 +2403,11 @@
             <String String="Buy &lt;c val=&quot;80FF80&quot;&gt;Chemical Infused Ammo&lt;/c&gt;">
                 <Field Id="Name"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem59_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem60_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem60">
+        <Instances Id="ShopItem61">
             <GameLink GameLink="SynchronizationModule">
                 <Field Id="ShopUnit"/>
             </GameLink>
@@ -2406,11 +2423,11 @@
             <String String="Buy &lt;c val=&quot;80FF80&quot;&gt;Synchronization Module&lt;/c&gt;">
                 <Field Id="Name"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem60_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem61_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem61">
+        <Instances Id="ShopItem62">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel1.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2423,11 +2440,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem61_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem62_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem62">
+        <Instances Id="ShopItem63">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel2.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2440,11 +2457,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem62_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem63_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem63">
+        <Instances Id="ShopItem64">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2457,11 +2474,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem63_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem64_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem64">
+        <Instances Id="ShopItem65">
             <Image Image="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel0.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2474,11 +2491,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem64_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem65_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem65">
+        <Instances Id="ShopItem66">
             <Image Image="Assets\Textures\btn-unit-terran-marine-silver.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2491,11 +2508,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem65_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem66_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem66">
+        <Instances Id="ShopItem67">
             <Image Image="Assets\Textures\btn-unit-zerg-baneling.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2508,11 +2525,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem66_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem67_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem67">
+        <Instances Id="ShopItem68">
             <Image Image="Assets\Textures\btn-unit-zerg-infestor-mecha.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2525,11 +2542,11 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem67_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem68_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
-        <Instances Id="ShopItem68">
+        <Instances Id="ShopItem69">
             <Image Image="Assets\Textures\btn-unit-terran-predator.dds">
                 <Field Id="ShopImage"/>
             </Image>
@@ -2542,7 +2559,7 @@
             <String String="item">
                 <Field Id="Type"/>
             </String>
-            <Text Text="UserData/ShopItems/ShopItem68_ShopTooltip">
+            <Text Text="UserData/ShopItems/ShopItem69_ShopTooltip">
                 <Field Id="ShopTooltip"/>
             </Text>
         </Instances>
