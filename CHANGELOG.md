@@ -4,6 +4,16 @@
 [ThunderRazor]
 - Fixed bugs with random class selection.
 - Updated the banlist for a few clearly cheating players.
+- Added timer display for story selection 
+- Story selection auto-starts random story
+- Added shop buy rerolls, costs 10k credits, max 3 rerolls 
+- Reverted most zombie fire deaths to spawn secondary units -- Regular zombie type deaths by fire and blast will not spawn ghouls 
+- 'Special' zombie types such as devourers, infestors, titans etc. will spawn their intended offspring
+- Reduced all randoms bonus xp to 15/25/35/45 
+- Added no randoms bonus xp to 0/25/50/75 
+- Added no randoms credit bonus to 0/35/50/65
+- Added no randoms karma bonus to 0/1/2/3 
+- Disabled all randoms command on story selection
 
 2021-10-25
 [ThunderRazor]
