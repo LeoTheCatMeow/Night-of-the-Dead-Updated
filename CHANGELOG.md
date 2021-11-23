@@ -1,5 +1,10 @@
 # Current Changes & Bugfixes Tracklist
 
+2021-11-8
+[ThunderRazor]
+- Fixed bugs with random class selection.
+- Updated the banlist for a few clearly cheating players.
+
 2021-10-25
 [ThunderRazor]
 QoL updates for Random class selections:
