@@ -4229,6 +4229,10 @@ void gf_FinalizeStorylineSelection () {
     gf_MarineExperienceSharing();
     gf_BehaviorUpdate();
     gf_InitRandomRanges();
+    if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/EC24ADEA"));
+        SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
+    }
     Wait(5.0, c_timeGame);
     UIClearMessages(gv_marineSquad, c_messageAreaAll);
     if ((gv_randomsOption == 3) && (gv_isVeteranSquad == true)) {
@@ -19798,6 +19802,7 @@ bool gt_storylineModSelection_Func (bool testConds, bool runActions) {
         }
     }
     else if ((lv_usedDialogControl == gv_storylineModSelection[4])) {
+        gv_randomsOption = 0;
         if ((gv_storylineModOn[4] == false)) {
             libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[4], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
             libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[5], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
@@ -19815,10 +19820,12 @@ bool gt_storylineModSelection_Func (bool testConds, bool runActions) {
             libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[4], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
             gv_storylineModOn[5] = true;
             gv_storylineModOn[4] = false;
+            gv_randomsOption = 3;
         }
         else {
             libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[5], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
             gv_storylineModOn[5] = false;
+            gv_randomsOption = 0;
         }
     }
     else if ((lv_usedDialogControl == gv_storylineModSelection[6])) {
@@ -20951,13 +20958,14 @@ bool gt_NavyCross_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    TriggerEnable(TriggerGetCurrent(), false);
-    if ((gv_navyCrossFailed == false)) {
-        if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
-            libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[6], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
-            gv_storylineModOn[6] = true;
-        }
-        else {
+    if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
+        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[6], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
+        gv_storylineModOn[6] = true;
+        gv_navyCrossMode = true;
+    }
+    else {
+        TriggerEnable(TriggerGetCurrent(), false);
+        if ((gv_navyCrossFailed == false)) {
             gv_navyCrossMode = true;
             auto04DEC3AB_g = UnitGroup("Medpack", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
             auto04DEC3AB_u = UnitGroupCount(auto04DEC3AB_g, c_unitCountAll);
@@ -20977,10 +20985,10 @@ bool gt_NavyCross_Func (bool testConds, bool runActions) {
             UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/AA0161B7"));
             SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
         }
-    }
-    else {
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/78E290D7"));
-        SoundPlay(SoundLink("Alert_UniObjectiveFailed", -1), PlayerGroupAll(), 100.0, 0.0);
+        else {
+            UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/78E290D7"));
+            SoundPlay(SoundLink("Alert_UniObjectiveFailed", -1), PlayerGroupAll(), 100.0, 0.0);
+        }
     }
     return true;
 }
@@ -21011,15 +21019,16 @@ bool gt_NoRandoms_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerEnable(gt_AllRandom, false);
     if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
+        gv_randomsOption = 0;
         libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[4], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
         gv_storylineModOn[4] = true;
         libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[5], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
         gv_storylineModOn[5] = false;
     }
     else {
+        TriggerEnable(TriggerGetCurrent(), false);
+        TriggerEnable(gt_AllRandom, false);
         if ((gv_randomsOption == 0)) {
             gv_randomsOption = 1;
             TriggerExecute(gt_DisableRandomButton, false, false);
@@ -21053,6 +21062,10 @@ bool gt_AllRandom_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!((TriggerIsEnabled(gt_StorylineSelection) == true))) {
+            return false;
+        }
+
         if (!(((gv_noNewbie == true) || (gv_isVeteranSquad == true)))) {
             return false;
         }
@@ -21063,20 +21076,11 @@ bool gt_AllRandom_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerEnable(gt_NoRandoms, false);
-    if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
-        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[5], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
-        gv_storylineModOn[5] = true;
-        libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[4], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
-        gv_storylineModOn[4] = false;
-    }
-    else {
-        gv_randomsOption = 3;
-        Wait(0.5, c_timeGame);
-        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/E3E8800E"));
-        SoundPlay(SoundLink("TUISecret", -1), PlayerGroupAll(), 100.0, 0.0);
-    }
+    gv_randomsOption = 3;
+    libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[5], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
+    gv_storylineModOn[5] = true;
+    libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[4], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_disabled.dds", PlayerGroupAll());
+    gv_storylineModOn[4] = false;
     return true;
 }
 
