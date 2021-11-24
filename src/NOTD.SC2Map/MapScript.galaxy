@@ -20961,7 +20961,6 @@ bool gt_NavyCross_Func (bool testConds, bool runActions) {
     if ((TriggerIsEnabled(gt_StorylineSelection) == true)) {
         libNtve_gf_SetDialogItemImage(gv_storylineModSelectionFrame[6], "Assets\\Textures\\ui_battlenet_glue_collection_standarditemframe_toggled.dds", PlayerGroupAll());
         gv_storylineModOn[6] = true;
-        gv_navyCrossMode = true;
     }
     else {
         TriggerEnable(TriggerGetCurrent(), false);
