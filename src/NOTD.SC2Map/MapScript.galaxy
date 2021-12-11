@@ -5598,7 +5598,7 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     if ((gv_playerXP[lp_player] <= 2000)) {
         UIDisplayMessage(PlayerGroupSingle(lp_player), c_messageAreaDirective, StringExternal("Param/Value/1FDEF267"));
     }
-    if (((gv_playerXP[lp_player] / gv_playerKarma[lp_player]) >= libNtve_gf_DifficultyValueInt(20, 80, 715, 715))) {
+    if (((gv_playerXP[lp_player] / libNtve_gf_DifficultyValueInt(20, 80, 715, 715)) >= gv_playerKarma[lp_player])) {
         gv_nerfed[lp_player] = true;
     }
     if (gv_nerfed[lp_player]) {

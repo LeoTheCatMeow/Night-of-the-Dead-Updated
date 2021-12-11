@@ -642,7 +642,7 @@
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
     </CEffectDamage>
     <CEffectSet id="ThermalLances">
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectSet>
     <CEffectSet id="VenomandInfectionSet">
         <EditorCategories value=""/>
@@ -1345,7 +1345,7 @@
         <EditorCategories value=""/>
         <EffectArray value="ParticleBeam"/>
         <EffectArray value="ShockApplyBehavior"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectSet>
     <CEffectCreateUnit id="SpawnSpiderMine">
         <SpawnUnit index="0" value="SentinelMine"/>
@@ -1494,7 +1494,7 @@
         <AreaArray Radius="1.5" Fraction="0.6"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="InfernoDamage">
         <EditorCategories value=""/>
@@ -1553,7 +1553,7 @@
         <EditorCategories value=""/>
         <EffectArray value="M5PulseRifle"/>
         <EffectArray value="M5PulseRifleSearchSlowNOTD"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectSet>
     <CEffectEnumArea id="M5PulseRifleSearchSlowNOTD">
         <EditorCategories value=""/>
@@ -2492,7 +2492,7 @@
         <Amount value="300"/>
         <Death value="Impact"/>
         <AreaArray Radius="3.5" Fraction="1" Validator="TargetIsNotAllyOrPlayer"/>
-        <AreaArray Radius="3.5" Fraction="0.2" Validator="TargetIsNotEnemy"/>
+        <AreaArray Radius="3.5" Fraction="0.2" Validator="NotNerfedTargetisAlly"/>
         <SearchFilters value="-;Neutral,Item,Invulnerable"/>
     </CEffectDamage>
     <CEffectSet id="HellfireMissleImpactSet">
@@ -3650,7 +3650,7 @@
         <Amount value="60"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
         <Total value="Combine"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectModifyUnit id="MarchoftheMachinesDrainEnergy">
         <EditorCategories value="Race:Terran"/>
@@ -3744,7 +3744,7 @@
         <EditorCategories value=""/>
         <EffectArray value="FlamethrowerMK2"/>
         <EffectArray value="SlowRoastApplyBehavior"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectSet>
     <CEffectCreatePersistent id="MobileInfantryLevel1">
         <ValidatorArray value="MobileInfantryLanding"/>
@@ -4241,7 +4241,7 @@
         <Amount value="50"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
         <Total value="Combine"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectRemoveBehavior id="ChemicalExtractionRemoveETLevel2">
         <EditorCategories value="Race:Terran"/>
@@ -5460,7 +5460,6 @@
         <EditorCategories value="Race:Terran"/>
         <EffectArray value="TheHorrorApply"/>
         <EffectArray value="TheHorrorHeroicApply"/>
-        <ValidatorArray value="NotNerfedCombined"/>
     </CEffectSet>
     <CEffectApplyBehavior id="VRL772ApplyBuff">
         <ValidatorArray index="0" value="TargetisAllyMarine"/>
@@ -6569,10 +6568,10 @@
         <EditorCategories value=""/>
         <ImpactEffect value="KineticCatapultLevel1Damage"/>
         <AmmoUnit value="KineticCatapultMissile"/>
-        <ValidatorArray index="0" value="NotNerfedCombined"/>
+        <ValidatorArray index="0" value="NotNerfedTargetisEnemy"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="KineticCatapultLaunchLevel2">
-        <ValidatorArray index="0" value="NotNerfedCombined"/>
+        <ValidatorArray index="0" value="NotNerfedTargetisEnemy"/>
         <EditorCategories value=""/>
         <Marker Link="Effect/KineticCatapultLaunchLevel1"/>
         <ImpactEffect value="KineticCatapultLevel2Damage"/>
@@ -7294,6 +7293,7 @@
     </CEffectApplyBehavior>
     <CEffectApplyForce id="GravityGrenadeForce">
         <ValidatorArray value="IsNotWarpBubble"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
         <WhichLocation Effect="GravityGrenadeCreatePersistent" Value="TargetPoint"/>
         <Amount value="-0.2"/>
     </CEffectApplyForce>
@@ -7412,7 +7412,7 @@
         <EditorCategories value=""/>
         <EffectArray value="Shotgun"/>
         <EffectArray value="ShotgunStunSearch"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectSet>
     <CEffectApplyBehavior id="ShotgunStunApply">
         <EditorCategories value=""/>
@@ -7534,7 +7534,7 @@
         <Amount value="18"/>
         <AttributeBonus index="Light" value="9"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="BURNDummy2">
         <ValidatorArray index="0" value="BURNApplyLevel1TargetFilters"/>
@@ -7734,7 +7734,7 @@
         <Kind value="Ranged"/>
         <Amount value="35"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectModifyUnit id="BorrowedTime">
         <EditorCategories value=""/>
@@ -8888,7 +8888,7 @@
         <SearchFilters value="-;Player,Ally,Destructible,Item,Dead,Hidden,Invulnerable"/>
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="Crowbar">
         <EditorCategories value="Race:Terran"/>
@@ -8912,7 +8912,7 @@
         <AreaArray Radius="1.25" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="M5PulseRifle" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
@@ -9551,7 +9551,7 @@
     </CEffectSet>
     <CEffectLaunchMissile id="PenetrateLaunchMissile">
         <ValidatorArray index="0" value="PunisherGrenadesLMTargetFilters"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
         <EditorCategories value="Race:Terran"/>
         <ImpactEffect value="PenetrateSet"/>
         <AmmoUnit value="PunisherGrenadesLMWeapon"/>
@@ -9860,7 +9860,7 @@
     <CEffectApplyBehavior id="ForcePushApplyTarget">
         <EditorCategories value=""/>
         <Behavior value="ForcePushTarget"/>
-        <ValidatorArray index="0" value="NotNerfedCombined"/>
+        <ValidatorArray index="0" removed="1"/>
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="ForcePushDropBoss">
         <EditorCategories value=""/>
@@ -10055,7 +10055,7 @@
         <PeriodicOffsetArray value="0,-7.25,0"/>
         <PeriodicOffsetArray value="0,-7.5,0"/>
         <PeriodicOffsetArray value="0,-7.75,0"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="FlamethrowerMK2" parent="InfernalFlameThrowerCP">
         <Marker Link="Effect/FlamethrowerMK2"/>
@@ -10568,7 +10568,7 @@
         <PeriodicPeriodArray index="1" removed="1"/>
         <PeriodicEffectArray index="0" value="P45PistolDamageSet"/>
         <ValidatorArray value="PistolFFFSet1"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="ProtectApplyStun">
         <ValidatorArray index="0" removed="1"/>
@@ -10957,6 +10957,7 @@
         <Marker Link="Effect/SonicTrapPush"/>
         <WhichLocation Value="CasterUnit"/>
         <Amount value="1"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectApplyForce>
     <CEffectApplyBehavior id="ForcePushHeight">
         <ValidatorArray index="0" value="HasForcePush"/>
@@ -11062,7 +11063,7 @@
         <ImpactEffect value="StingerMK3DamageSet"/>
         <AmmoUnit value="StingerMk3Missile"/>
         <Movers Link="StingerMK3"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectLaunchMissile>
     <CEffectDamage id="RetrieveMineRemove">
         <ImpactLocation Value="TargetUnit"/>
@@ -11146,7 +11147,7 @@
         <Amount value="48"/>
         <ArmorReduction value="0.8"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="WeaponSwap">
         <EditorCategories value=""/>
@@ -11177,7 +11178,7 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
         <Flags index="Impact" value="1"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="Claws">
         <Amount value="22"/>
@@ -11320,7 +11321,7 @@
         <AreaArray Radius="1.5" Fraction="0.6"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Missile,Destructible,Item,Stasis,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="HydraliskMelee">
         <Amount value="15"/>
@@ -11423,7 +11424,7 @@
         <AreaArray Radius="1" Fraction="1"/>
         <KindSplash value="Splash"/>
         <ExcludeArray Value="Target"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="X1EvisceratorBeamLevel2" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
@@ -11436,7 +11437,7 @@
         <AreaArray Radius="1" Fraction="1"/>
         <KindSplash value="Splash"/>
         <ExcludeArray Value="Target"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="X1EvisceratorBeamLevel3" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
@@ -11449,7 +11450,7 @@
         <AreaArray Radius="1" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectEnumArea id="ForcePushSearch">
         <EditorCategories value=""/>
@@ -12256,7 +12257,7 @@
         <KindSplash value="Splash"/>
         <Total value="Combine"/>
         <ExcludeArray Value="Target"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="MoreDoTsDamage">
         <ValidatorArray value="NotInvulnerable"/>
@@ -12612,17 +12613,17 @@
         <EditorCategories value=""/>
         <Behavior value="MonofilamentCartridgeLevel1Stun"/>
         <ValidatorArray index="0" value="IsNotStunImmune"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="MonofilamentCartridgeLevel2ApplyStun">
         <ValidatorArray index="0" value="IsNotStunImmune"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
         <EditorCategories value=""/>
         <Behavior value="MonofilamentCartridgeLevel2Stun"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="MonofilamentCartridgeLevel3ApplyStun">
         <ValidatorArray index="0" value="IsNotStunImmune"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
         <EditorCategories value=""/>
         <Behavior value="MonofilamentCartridgeLevel3Stun"/>
     </CEffectApplyBehavior>
@@ -12975,7 +12976,7 @@
         <ArmorReduction value="0.2"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
         <Total value="Combine"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="ExplodingBarrelLargeExplosion">
         <Amount value="300"/>
@@ -13091,7 +13092,7 @@
         <Amount value="15"/>
         <AttributeBonus index="Mechanical" value="-5"/>
         <SearchFilters value="-;Item,Dead,Invulnerable"/>
-        <ValidatorArray value="NotNerfedCombined"/>
+        <ValidatorArray value="NotNerfedTargetisEnemy"/>
     </CEffectDamage>
     <CEffectDamage id="DeimosAssaultRifle" parent="InfestedGuassRifle">
         <Marker Link="Effect/DeimosAssaultRifle"/>

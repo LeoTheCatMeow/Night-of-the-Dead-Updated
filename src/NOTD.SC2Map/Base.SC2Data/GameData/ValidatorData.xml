@@ -194,9 +194,14 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="NerfMePlease"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="NotNerfedCombined">
+    <CValidatorCombine id="NotNerfedTargetisEnemy">
         <CombineArray value="NotNerfed"/>
         <CombineArray value="TargetIsEnemyorNeutral"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="NotNerfedTargetisAlly">
+        <Type value="And"/>
+        <CombineArray value="NotNerfed"/>
+        <CombineArray value="TargetIsNotEnemy"/>
     </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="StingerEquipped">
         <WhichUnit Value="Caster"/>
