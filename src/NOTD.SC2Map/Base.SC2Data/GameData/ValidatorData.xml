@@ -190,6 +190,14 @@
     <CValidatorUnitCompareBehaviorCount id="NotInfectious">
         <Behavior value="Infectious"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="NotNerfed">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="NerfMePlease"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="NotNerfedCombined">
+        <CombineArray value="NotNerfed"/>
+        <CombineArray value="TargetIsEnemyorNeutral"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="StingerEquipped">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>

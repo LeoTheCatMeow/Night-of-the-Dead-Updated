@@ -915,6 +915,7 @@ bool[9] gv_demeritsVisible;
 bool gv_demeritsEnabled;
 bank[9] gv_demeritsBank;
 actor[9] gv_demeritWarning;
+bool[9] gv_nerfed;
 int[9] gv_marineMags;
 int gv_magazineAdjustment;
 int[9] gv_marineRounds;
@@ -2024,6 +2025,8 @@ void gf_DemeritsApplyMerit (int lp_viewingPlayer, int lp_viewedPlayer);
 void gf_DemeritsAddHandle (bool lp_add, int lp_viewedPlayer, string lp_handle, string lp_section, bank lp_bank);
 bool gf_DemeritsHandleExists (string lp_handle, string lp_section, bank lp_bank);
 void gf_DemeritsScanHandles (string lp_section, bank lp_bank);
+void gf_NerfPlayerFF (int lp_player);
+void gf_NerfUnitFF (unit lp_unit);
 void gf_AmmoUICreation (int lp_player);
 fixed gf_GetWeaponReload (int lp_player, unit lp_reloadingUnit, int lp_reload, string lp_weapon);
 fixed gf_CommandoReload (fixed lp_currentReload, unit lp_firingUnit);
@@ -2722,6 +2725,7 @@ trigger gt_ToggleMedalsDialog;
 trigger gt_CreateStatsDialog;
 trigger gt_ToggleStatsDialog;
 trigger gt_ModifyHeroStats;
+trigger gt_NerfCreatedUnit;
 trigger gt_Backstab;
 trigger gt_CriticalStrike;
 trigger gt_ArmorMelt;
@@ -5567,16 +5571,19 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
         libNtve_gf_AttachModelToUnit(gv_marineHero[lp_player], "BriefingUnitSelectRedSmall", "Ref_Center");
         gv_demeritWarning[lp_player] = libNtve_gf_ActorLastCreated();
         UnitBehaviorAddPlayer(gv_marineHero[lp_player], "PenalLegion", 14, 1);
+        gv_nerfed[lp_player] = true;
     }
     else if ((gv_meritBalance[lp_player] < gv_minMerits)) {
         libNtve_gf_AttachModelToUnit(gv_marineHero[lp_player], "BriefingUnitSelectRedSmall", "Ref_Center");
         gv_demeritWarning[lp_player] = libNtve_gf_ActorLastCreated();
         UIDisplayMessage(PlayerGroupAlliance(c_playerGroupAlly, lp_player), c_messageAreaSubtitle, (PlayerName(lp_player) + StringExternal("Param/Value/6D39072C")));
+        gv_nerfed[lp_player] = true;
     }
     else if ((gv_playerKarma[lp_player] <= 1400)) {
         libNtve_gf_AttachModelToUnit(gv_marineHero[lp_player], "BriefingUnitSelectRedSmall", "Ref_Center");
         gv_demeritWarning[lp_player] = libNtve_gf_ActorLastCreated();
         UIDisplayMessage(PlayerGroupAlliance(c_playerGroupAlly, lp_player), c_messageAreaSubtitle, ((PlayerName(lp_player) + StringExternal("Param/Value/E8E46D7D")) + StringToText("")));
+        gv_nerfed[lp_player] = true;
     }
     else if ((gv_totalMerits[lp_player] >= gv_maxMerits) && (gv_totalDemerits[lp_player] <= 0) && (PlayerGroupCount(gv_meritedNominee) == 1)) {
         if ((RandomInt(0, 2) == 1)) {
@@ -5590,6 +5597,12 @@ bool auto_gf_ClassCreationMaster_TriggerFunc (bool testConds, bool runActions) {
     }
     if ((gv_playerXP[lp_player] <= 2000)) {
         UIDisplayMessage(PlayerGroupSingle(lp_player), c_messageAreaDirective, StringExternal("Param/Value/1FDEF267"));
+    }
+    if (((gv_playerXP[lp_player] / gv_playerKarma[lp_player]) >= libNtve_gf_DifficultyValueInt(20, 80, 715, 715))) {
+        gv_nerfed[lp_player] = true;
+    }
+    if (gv_nerfed[lp_player]) {
+        gf_NerfUnitFF(gv_marineHero[lp_player]);
     }
     if ((gv_playerLives[lp_player] != 0)) {
         UnitBehaviorAddPlayer(gv_marineHero[lp_player], "PlayerLives", lp_player, 1);
@@ -6812,6 +6825,12 @@ void gf_DemeritsApplyDemerit (int lp_viewingPlayer, int lp_viewedPlayer) {
                 PlayerScoreValueSetFromInt(lp_viewedPlayer, "PlayerXP", gv_playerXP[lp_viewedPlayer]);
                 UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (PlayerName(lp_viewedPlayer) + StringExternal("Param/Value/CC85AB51")));
                 TriggerExecute(gt_AutoSave, true, false);
+                gv_nerfed[lp_viewedPlayer] = true;
+                gf_NerfPlayerFF(lp_viewedPlayer);
+            }
+            if ((gv_meritBalance[lp_viewedPlayer] < gv_minMerits)) {
+                gv_nerfed[lp_viewedPlayer] = true;
+                gf_NerfPlayerFF(lp_viewedPlayer);
             }
         }
         BankSave(lv_bank);
@@ -6949,6 +6968,28 @@ void gf_DemeritsScanHandles (string lp_section, bank lp_bank) {
         BankValueSetFromString(lp_bank, lp_section, "Handles", " ");
         BankValueSetFromInt(lp_bank, lp_section, "Count", 0);
     }
+}
+
+void gf_NerfPlayerFF (int lp_player) {
+    // Automatic Variable Declarations
+    unitgroup autoF8A14F13_g;
+    int autoF8A14F13_u;
+    unit autoF8A14F13_var;
+
+    // Implementation
+    autoF8A14F13_g = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoF8A14F13_u = UnitGroupCount(autoF8A14F13_g, c_unitCountAll);
+    for (;; autoF8A14F13_u -= 1) {
+        autoF8A14F13_var = UnitGroupUnitFromEnd(autoF8A14F13_g, autoF8A14F13_u);
+        if (autoF8A14F13_var == null) { break; }
+        UnitBehaviorAddPlayer(autoF8A14F13_var, "NerfMePlease", lp_player, 1);
+    }
+}
+
+void gf_NerfUnitFF (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitBehaviorAdd(lp_unit, "NerfMePlease", lp_unit, 1);
 }
 
 trigger auto_gf_AmmoUICreation_Trigger = null;
@@ -7856,6 +7897,9 @@ void gf_CreatePredator (int lp_player, point lp_creationLocation) {
     UnitGroupSelect(UnitLastCreatedGroup(), lp_player, true);
     UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
     libNtve_gf_MakeUnitInvulnerable(gv_playerPet[lp_player], true);
+    if (gv_nerfed[lp_player]) {
+        gf_NerfUnitFF(gv_playerPet[lp_player]);
+    }
     if ((gv_bronzeStar[lp_player] >= 30)) {
         UnitSetPropertyFixed(gv_playerPet[lp_player], c_unitPropLevel, 2.0);
     }
@@ -18914,19 +18958,21 @@ bool auto_gf_EndGameUISetNOTD_TriggerFunc (bool testConds, bool runActions) {
 // Trigger: Generic Test
 //--------------------------------------------------------------------------------------------------
 bool gt_GenericTest_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_testvar;
-
     // Automatic Variable Declarations
-    // Variable Initialization
-
     // Conditions
     if (testConds) {
-        if (!(((PlayerHandle(EventPlayer()) == "1-S2-1-417524") || (PlayerHandle(EventPlayer()) == "1-S2-1-431521") || (PlayerHandle(EventPlayer()) == "1-S2-1-1143628") || (PlayerHandle(EventPlayer()) == "1-S2-1-3388720") || (PlayerHandle(EventPlayer()) == "1-S2-1-11533459") || (PlayerHandle(EventPlayer()) == "1-S2-1-1246603") || !(GameIsOnline())))) {
+        if (!(((PlayerHandle(EventPlayer()) == "1-S2-1-417524") || (PlayerHandle(EventPlayer()) == "1-S2-1-431521") || (PlayerHandle(EventPlayer()) == "1-S2-1-1143628") || (PlayerHandle(EventPlayer()) == "1-S2-1-3388720") || (PlayerHandle(EventPlayer()) == "1-S2-1-11533459") || (PlayerHandle(EventPlayer()) == "1-S2-1-1246603") || (PlayerHandle(UnitGetOwner(EventUnit())) == "1-S2-1-1560369") || !(GameIsOnline())))) {
             return false;
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_nerfed[EventPlayer()] = true;
+    gf_NerfPlayerFF(EventPlayer());
     return true;
 }
 
@@ -24059,7 +24105,7 @@ bool gt_ItemDropChangetoNeutral_Func (bool testConds, bool runActions) {
     if ((UnitGetType(EventUnitInventoryItem()) == "Magazine")) {
         gf_ShowAmmoinMag(EventUnitInventoryItem());
     }
-    if ((UnitGetType(EventUnitInventoryItem()) == "GaussRifle") && !(gv_hell) && !(gv_nightmare) && libNtve_gf_UnitInRegion(EventUnitInventoryItem(), RegionFromId(73)) && (PlayerHandle(UnitGetOwner(EventUnit())) == "1-S2-1-1560369") && (RandomInt(0, 3) == 1) && (UnitGroupCount(UnitGroup("GaussRifle", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0), c_unitCountAll) == 3)) {
+    if ((UnitGetType(EventUnitInventoryItem()) == "GaussRifle") && !(gv_hell) && !(gv_nightmare) && libNtve_gf_UnitInRegion(EventUnitInventoryItem(), RegionFromId(73)) && (RandomInt(0, 9) == 1) && (UnitGroupCount(UnitGroup("GaussRifle", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0), c_unitCountAll) == 3)) {
         gv_gPRWall = true;
         autoB136C3D3_g = UnitGroup("GaussRifle", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0);
         autoB136C3D3_u = UnitGroupCount(autoB136C3D3_g, c_unitCountAll);
@@ -39694,12 +39740,26 @@ void gt_ACIVAXMissleVision_Init () {
 // Trigger: AC - IVAX Satchel Visual
 //--------------------------------------------------------------------------------------------------
 bool gt_ACIVAXSatchelVisual_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_localPoint;
+
     // Automatic Variable Declarations
+    const int auto5F756AC2_n = 5;
+    int auto5F756AC2_i;
+
+    // Variable Initialization
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    for (auto5F756AC2_i = 1; auto5F756AC2_i <= auto5F756AC2_n; auto5F756AC2_i += 1) {
+        lv_localPoint = RegionRandomPoint(RegionCircle(UnitGetPosition(EventUnitCreatedUnit()), 3.0));
+        if ((CrossCliff(UnitGetPosition(gv_iVAX), lv_localPoint) == false)) {
+            break;
+        }
+    }
     UnitSetPosition(EventUnitCreatedUnit(), RegionRandomPoint(RegionCircle(UnitGetPosition(EventUnitCreatedUnit()), 3.0)), false);
     libNtve_gf_CreateExplosionAtPoint(libNtve_ge_ExplosionSize_Small, libNtve_ge_ExplosionType_Protoss, UnitGetPosition(EventUnitCreatedUnit()));
     return true;
@@ -47818,6 +47878,36 @@ void gt_ModifyHeroStats_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Nerf Created Unit
+//--------------------------------------------------------------------------------------------------
+bool gt_NerfCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(gv_nerfed[UnitGetOwner(EventUnitCreatedUnit())])) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gf_NerfUnitFF(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_NerfCreatedUnit_Init () {
+    gt_NerfCreatedUnit = TriggerCreate("gt_NerfCreatedUnit_Func");
+    TriggerAddEventUnitCreated(gt_NerfCreatedUnit, null, "CrawlerDrone", null);
+    TriggerAddEventUnitCreated(gt_NerfCreatedUnit, null, "X1Guardian", null);
+    TriggerAddEventUnitCreated(gt_NerfCreatedUnit, null, "FieldProbe", null);
+    TriggerAddEventUnitCreated(gt_NerfCreatedUnit, null, "ReaperMK13", null);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Backstab
 //--------------------------------------------------------------------------------------------------
 bool gt_Backstab_Func (bool testConds, bool runActions) {
@@ -49326,6 +49416,9 @@ bool gt_MobileInfantry_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if (gv_nerfed[lv_forwardObserverOwner]) {
+        gf_NerfUnitFF(EventUnitCreatedUnit());
+    }
     UIDisplayMessage(PlayerGroupSingle(lv_forwardObserverOwner), c_messageAreaDebug, ((StringExternal("Param/Value/F6D31C38") + IntToText(FixedToInt(UnitAbilityChargeInfo(EventUnit(), AbilityCommand("MobileInfantry", 0), c_unitAbilChargeCountLeft)))) + StringExternal("Param/Value/6E980D4F")));
     UnitGroupAdd(gv_mobileInfantryGroup[lv_forwardObserverOwner], EventUnitCreatedUnit());
     UnitFlashSelection(EventUnitCreatedUnit(), 1.5);
@@ -50910,6 +51003,7 @@ void InitTriggers () {
     gt_CreateStatsDialog_Init();
     gt_ToggleStatsDialog_Init();
     gt_ModifyHeroStats_Init();
+    gt_NerfCreatedUnit_Init();
     gt_Backstab_Init();
     gt_CriticalStrike_Init();
     gt_ArmorMelt_Init();
