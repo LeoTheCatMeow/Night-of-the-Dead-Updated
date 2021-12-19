@@ -7032,26 +7032,26 @@ void gf_MedicHeroAI (unit lp_hero) {
         if (lv_localUnit == null) { break; }
         if ((((UnitGetPropertyFixed(lv_localUnit, c_unitPropEnergyPercent, c_unitPropCurrent) < 50.0) && (UnitGetType(lv_localUnit) != "Medic2")) || ((UnitGetPropertyFixed(lv_localUnit, c_unitPropLifePercent, c_unitPropCurrent) < 75.0) && ((UnitBehaviorCount(lv_localUnit, "OpenWound") >= 3) || (UnitBehaviorCount(lv_localUnit, "Venom") >= 5))))) {
             UnitIssueOrder(lp_hero, Order(AbilityCommand("Restoration", 0)), c_orderQueueAddToFront);
-            Wait(1.0, c_timeReal);
-        }
-        if (((UnitGetPropertyFixed(lv_localUnit, c_unitPropLifePercent, c_unitPropCurrent) < 60.0) || (gv_bossFight && (UnitAbilityCheck(lv_localUnit, "Taunt2", true) || UnitAbilityCheck(lv_localUnit, "Smite", true)) && (UnitGetPropertyFixed(lv_localUnit, c_unitPropLifePercent, c_unitPropCurrent) < 75.0) && (DistanceBetweenPoints(UnitGetPosition(lv_localUnit), UnitGetPosition(gv_boss)) < 7.0)))) {
-            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("NanoWeave", 0), lv_localUnit), c_orderQueueAddToEnd);
-            Wait(1.0, c_timeReal);
+            Wait(0.25, c_timeReal);
         }
         if (gv_bossFight && (UnitAbilityCheck(lv_localUnit, "ImYourFather", true) || UnitAbilityCheck(lv_localUnit, "Smite", true)) && (UnitGetPropertyFixed(lv_localUnit, c_unitPropShieldsPercent, c_unitPropCurrent) < 100.0) && (DistanceBetweenPoints(UnitGetPosition(lv_localUnit), UnitGetPosition(gv_boss)) < 7.0)) {
-            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("NanoShield", 0), lv_localUnit), c_orderQueueAddToEnd);
+            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("NanoShield", 0), lv_localUnit), c_orderQueueAddToFront);
+            Wait(0.25, c_timeReal);
+        }
+        if (((UnitGetPropertyFixed(lv_localUnit, c_unitPropLifePercent, c_unitPropCurrent) < 60.0) || (gv_bossFight && (UnitAbilityCheck(lv_localUnit, "Taunt2", true) || UnitAbilityCheck(lv_localUnit, "Smite", true)) && (UnitGetPropertyFixed(lv_localUnit, c_unitPropLifePercent, c_unitPropCurrent) < 75.0) && (DistanceBetweenPoints(UnitGetPosition(lv_localUnit), UnitGetPosition(gv_boss)) < 7.0)))) {
+            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("NanoWeave", 0), lv_localUnit), c_orderQueueAddToFront);
             Wait(1.0, c_timeReal);
         }
         if (((UnitBehaviorCount(lv_localUnit, "Venom") >= 1) || (UnitBehaviorCount(lv_localUnit, "Infection") >= 1))) {
-            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("AntiVenom", 0), lv_localUnit), c_orderQueueAddToEnd);
-            Wait(1.0, c_timeReal);
+            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("AntiVenom", 0), lv_localUnit), c_orderQueueAddToFront);
+            Wait(0.25, c_timeReal);
         }
         if (gv_bossFight && (UnitGetType(gv_boss) == "Apoptosis")) {
             continue;
         }
         if (((UnitBehaviorCount(lv_localUnit, "OpenWound") >= 1) || (UnitGetPropertyFixed(lv_localUnit, c_unitPropLifePercent, c_unitPropCurrent) < 45.0))) {
-            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("SurgicalLaser", 0), lv_localUnit), c_orderQueueAddToEnd);
-            Wait(1.0, c_timeReal);
+            UnitIssueOrder(lp_hero, OrderTargetingUnit(AbilityCommand("SurgicalLaser", 0), lv_localUnit), c_orderQueueAddToFront);
+            Wait(0.25, c_timeReal);
         }
     }
 }
