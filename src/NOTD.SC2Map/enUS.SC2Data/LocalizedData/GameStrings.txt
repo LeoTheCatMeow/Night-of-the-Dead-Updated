@@ -2329,6 +2329,21 @@ DocInfo/PatchNote213=- Added no randoms bonus xp to 0/25/50/75
 DocInfo/PatchNote214=- Added no randoms credit bonus to 0/35/50/65
 DocInfo/PatchNote215=- Added no randoms karma bonus to 0/1/2/3 
 DocInfo/PatchNote216=- Disabled all randoms command on story selection
+DocInfo/PatchNote217=[ThunderRazor]
+DocInfo/PatchNote218=- Fixed bug where picking up a Weapon when inventory is full causes game to crash
+DocInfo/PatchNote219=- Added Quick Use for Ammo/Box, Armor, Anti-Venom, Road Flare, and Enhancement Items
+DocInfo/PatchNote220=- Added Quick Sort (Numpad 3) - Enables/Disables moving Medpacks/Weapons to Slot 1
+DocInfo/PatchNote221=- Added '-sf' or '-smart follow' command
+DocInfo/PatchNote222=- - When Enabled, scan move on any Marine to activate
+DocInfo/PatchNote223=- - Smart move on ground to follow nearest Marine (AI/ Leavers Only)
+DocInfo/PatchNote224=- - Hold position to deactivate
+DocInfo/PatchNote225=- - Smart Follow keeps the unit near but not touching the Marine.
+DocInfo/PatchNote226=- - Behavior applies to Marines, FO Minies, and Field Nexus only.
+DocInfo/PatchNote227=- - Marine Medics on smart follow will perform basic Field Medic duties.
+DocInfo/PatchNote228=- Allowed adding AI Marines
+DocInfo/PatchNote229=- - AI Marines always choose Rifleman/Medic/Assault/Flamer/Tech
+DocInfo/PatchNote230=- - AI Marines always share control
+DocInfo/PatchNote231=- - AI Marines and Leavers have Smart Follow Enabled by default
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4842,12 +4857,14 @@ Param/Value/45FDE674=What was that?
 Param/Value/460272C9=Negative. We sweeped the whole colony. There are no survivors. Get out of here before the creatures overrun your position.
 Param/Value/464199E8=<s val="GlueButton">
 Param/Value/4666C8A0=Chapter 3
+Param/Value/46B66915=<s val="InfoPaneHeroRank">Navy Cross Activated</s>
 Param/Value/46F19DE3=Difficulty HP Scaling: 
 Param/Value/4713242D=Click to open Marine Equipment
 Param/Value/472EBABF=</c>
 Param/Value/476A1406=</c> <c val="F5D62B">for abusive behavior.</c><n/>If this is in response to a <c val="FF4040">team kill</c>, the player will incur additional penalties. Limit demerits to 10 players.
 Param/Value/477A5ACF=Put your guns down and we'll talk.
 Param/Value/4782E35D=We've heard enough from you.
+Param/Value/479AAFF6=<c val="CCCCCC">Quick Sort OFF (Numpad 3)</c>
 Param/Value/481CA5D5=UGC Command wants our lips sealed on this mission. Report in at 0900 hours for debriefing.
 Param/Value/4826ECBA=You cannot proceed beyond Wave 20 with less than 2 players alive.
 Param/Value/483335C5=<img width="64" height="64" path="Assets\Textures\ui-editoricon-triggereditor_newaction.dds"/>
@@ -5188,6 +5205,7 @@ Param/Value/7EBDCF5E=Enter the Colony Airlock
 Param/Value/7ED7EB38=We've got bigger problems on our hands, mate.
 Param/Value/7F3B5C2C=We're bringing you out.
 Param/Value/7F7D63B3=Zeus and Leto must be killed simultaneously to put them down permanently
+Param/Value/7F8DAFE2=Quick Sort ON (Numpad 3)
 Param/Value/7F9D1519=Chemical Leak
 Param/Value/7FABFB5D=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/7FD7EB19=Move out of Demeters' vision to avoid his stare!

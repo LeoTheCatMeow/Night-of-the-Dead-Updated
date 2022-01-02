@@ -939,6 +939,7 @@ int gv_tKedPlayer;
 int gv_griefingPlayer;
 bool[gv_numberofPlayers + 1] gv_inventoryOpen;
 bool[gv_numberofPlayers + 1] gv_equipmentOpen;
+bool[gv_numberofPlayers + 1] gv_quickSort;
 bool gv_gPRWall;
 unitgroup[9] gv_boughtItems;
 text gv_creditsLeft;
@@ -1564,6 +1565,9 @@ void InitGlobals () {
     for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
         gv_inventoryOpen[init_i] = true;
     }
+    for (init_i = 0; init_i <= gv_numberofPlayers; init_i += 1) {
+        gv_quickSort[init_i] = true;
+    }
     for (init_i = 0; init_i <= 8; init_i += 1) {
         gv_boughtItems[init_i] = UnitGroupEmpty();
     }
@@ -2068,6 +2072,8 @@ void gf_DeathDialogDestruction (int lp_playerNumber);
 void gf_EquipmentDialogCreation (int lp_player);
 void gf_DisableAttackEquippingWeapons (int lp_inventoryOwner, string lp_equipment);
 void gf_ShowInventory (int lp_observer, bool lp_includeSelf);
+void gf_UseMagazine (unit lp_marine);
+void gf_EquipEnhancement (unit lp_marine, unit lp_item);
 unit gf_GetFirstItem (unit lp_hero, int lp_invContainer);
 void gf_MoveItemtoAvailableSlot (unit lp_hero, unit lp_item, int lp_invContainer);
 void gf_ShowAmmoinBox (unit lp_ammoBox);
@@ -2410,12 +2416,11 @@ trigger gt_WeaponSwapDisable;
 trigger gt_UpdateWeightItems;
 trigger gt_ItemTransferBlock;
 trigger gt_UnequipItem;
-trigger gt_EquipItem;
+trigger gt_EquipItemMagazine;
 trigger gt_QuickUseItem;
 trigger gt_ItemDropChangetoNeutral;
 trigger gt_ItemGained;
 trigger gt_DropMagazine;
-trigger gt_MagazineUse;
 trigger gt_StackMagsIntoBox;
 trigger gt_AmmoBoxPickedUp;
 trigger gt_AmmoBoxLost;
@@ -6521,6 +6526,9 @@ void gf_DisplaySquadInformation () {
     if ((gv_dailyChallengeActivated == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, ((gv_infoPanelHeroRank + gv_dailyChallengeInfo) + gv_endStyling));
     }
+    if ((gv_navyCrossMode == true)) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/46B66915"));
+    }
     if ((gv_navyCrossFailed == true)) {
         UIDisplayMessage(PlayerGroupActive(), c_messageAreaDebug, StringExternal("Param/Value/A0E38EFB"));
     }
@@ -8341,6 +8349,91 @@ void gf_ShowInventory (int lp_observer, bool lp_includeSelf) {
 
     }
 
+}
+
+void gf_UseMagazine (unit lp_marine) {
+    // Variable Declarations
+    int lv_selectingPlayer;
+    int lv_originAmmo;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_selectingPlayer = UnitGetOwner(lp_marine);
+    lv_originAmmo = gv_marineMags[lv_selectingPlayer];
+
+    // Implementation
+    if (true) {
+        if ((gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true)) {
+            gf_UpdateMagazineCount(1, ge_AmmoChange_Increase, lv_selectingPlayer);
+        }
+        else {
+            gf_UpdateMagazineCount(3, ge_AmmoChange_Increase, lv_selectingPlayer);
+        }
+        if ((lv_originAmmo <= 0) && (gv_marineRounds[lv_selectingPlayer] <= 0) && (gv_reloading[lv_selectingPlayer] == false) && (UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1) != "Crowbar")) {
+            gf_ReloadMagazine(lv_selectingPlayer, EventUnit(), ge_ReloadType_Perfect, UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1));
+        }
+        else {
+            gf_EquipmentUpdateMarineWeight(lv_selectingPlayer, true);
+            gf_UpdateAmmoDialog(lv_selectingPlayer);
+        }
+    }
+    else {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Magazine", 0, 10, UnitGetPosition(EventUnit()));
+        UnitAddChargeUsed(UnitLastCreated(), "Ammo/Magazine", 2.0);
+    }
+}
+
+void gf_EquipEnhancement (unit lp_marine, unit lp_item) {
+    int init_i;
+
+    // Variable Declarations
+    int lv_enhancementSlotsAvailable;
+    bool[4] lv_openEnhancementSlot;
+
+    // Automatic Variable Declarations
+    unitgroup auto4D6B3C82_g;
+    int auto4D6B3C82_u;
+    unit auto4D6B3C82_var;
+    int auto8B280A29_ae;
+    int auto8B280A29_var;
+    int auto2C73CCAB_ae;
+    int auto2C73CCAB_var;
+
+    // Variable Initialization
+    lv_enhancementSlotsAvailable = gf_GetEnhancementSlots(lp_marine);
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lv_openEnhancementSlot[init_i] = true;
+    }
+
+    // Implementation
+    auto4D6B3C82_g = UnitInventoryGroup(lp_marine);
+    auto4D6B3C82_u = UnitGroupCount(auto4D6B3C82_g, c_unitCountAll);
+    for (;; auto4D6B3C82_u -= 1) {
+        auto4D6B3C82_var = UnitGroupUnitFromEnd(auto4D6B3C82_g, auto4D6B3C82_u);
+        if (auto4D6B3C82_var == null) { break; }
+        if ((UnitInventoryContainer(auto4D6B3C82_var) == 2) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto4D6B3C82_var), "Class", c_playerAny) == ("Enhancements"))) {
+            lv_openEnhancementSlot[(UnitInventorySlot(auto4D6B3C82_var) - 21)] = false;
+            lv_enhancementSlotsAvailable -= 1;
+        }
+
+    }
+    if ((lv_enhancementSlotsAvailable != 0)) {
+        auto2C73CCAB_ae = gf_GetEnhancementSlots(UnitInventoryUnit(lp_item));
+        auto2C73CCAB_var = 1;
+        for ( ; auto2C73CCAB_var <= auto2C73CCAB_ae; auto2C73CCAB_var += 1 ) {
+            if ((lv_openEnhancementSlot[auto2C73CCAB_var] == true)) {
+                UnitInventoryMove(lp_item, 2, (auto2C73CCAB_var + 21));
+            }
+
+        }
+    }
+    else {
+        auto8B280A29_ae = gf_GetEnhancementSlots(UnitInventoryUnit(lp_item));
+        auto8B280A29_var = 1;
+        for ( ; auto8B280A29_var <= auto8B280A29_ae; auto8B280A29_var += 1 ) {
+            UnitInventoryMove(lp_item, 2, (auto8B280A29_var + 21));
+        }
+    }
 }
 
 unit gf_GetFirstItem (unit lp_hero, int lp_invContainer) {
@@ -23966,6 +24059,16 @@ bool gt_InventoryKeyPressed_Func (bool testConds, bool runActions) {
         gv_equipmentOpen[lv_trigPlayer] = !(gv_equipmentOpen[lv_trigPlayer]);
         gf_ShowInventory(lv_trigPlayer, false);
     }
+    else if ((lv_key == c_keyNumPad3)) {
+        if ((gv_quickSort[lv_trigPlayer] == true)) {
+            UIDisplayMessage(PlayerGroupSingle(lv_trigPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/479AAFF6"));
+        }
+        else {
+            UIDisplayMessage(PlayerGroupSingle(lv_trigPlayer), c_messageAreaSubtitle, StringExternal("Param/Value/7F8DAFE2"));
+        }
+        gv_quickSort[lv_trigPlayer] = !(gv_quickSort[lv_trigPlayer]);
+        gf_ShowInventory(lv_trigPlayer, false);
+    }
     else if (true) {
         gf_ShowInventory(lv_trigPlayer, true);
     }
@@ -23977,6 +24080,7 @@ void gt_InventoryKeyPressed_Init () {
     gt_InventoryKeyPressed = TriggerCreate("gt_InventoryKeyPressed_Func");
     TriggerAddEventKeyPressed(gt_InventoryKeyPressed, c_playerAny, c_keyNumPad1, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
     TriggerAddEventKeyPressed(gt_InventoryKeyPressed, c_playerAny, c_keyNumPad2, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
+    TriggerAddEventKeyPressed(gt_InventoryKeyPressed, c_playerAny, c_keyNumPad3, true, c_keyModifierStateExclude, c_keyModifierStateExclude, c_keyModifierStateExclude);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -24181,31 +24285,15 @@ void gt_UnequipItem_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Equip Item
+// Trigger: Equip Item/Magazine
 //--------------------------------------------------------------------------------------------------
-bool gt_EquipItem_Func (bool testConds, bool runActions) {
-    int init_i;
-
+bool gt_EquipItemMagazine_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    int lv_triggeringPlayer;
-    int lv_enhancementSlotsAvailable;
-    bool[4] lv_openEnhancementSlot;
+    string lv_itemType;
 
     // Automatic Variable Declarations
-    unitgroup autoC814128F_g;
-    int autoC814128F_u;
-    unit autoC814128F_var;
-    int auto13D1F688_ae;
-    int auto13D1F688_var;
-    int autoBD30F46E_ae;
-    int autoBD30F46E_var;
-
     // Variable Initialization
-    lv_triggeringPlayer = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
-    lv_enhancementSlotsAvailable = gf_GetEnhancementSlots(EventUnit());
-    for (init_i = 0; init_i <= 3; init_i += 1) {
-        lv_openEnhancementSlot[init_i] = true;
-    }
+    lv_itemType = UnitGetType(EventUnitInventoryItem());
 
     // Conditions
     if (testConds) {
@@ -24219,52 +24307,29 @@ bool gt_EquipItem_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Weapons"))) {
+    if (((lv_itemType == "AmmoBox") || (lv_itemType == "Magazine"))) {
+        gf_UseMagazine(EventUnit());
+        return true;
+    }
+    if ((CatalogFieldValueGet(c_gameCatalogItem, lv_itemType, "Class", c_playerAny) == ("Weapons"))) {
         UnitInventoryMove(EventUnitInventoryItem(), 2, 6);
     }
 
-    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Armor"))) {
+    if ((CatalogFieldValueGet(c_gameCatalogItem, lv_itemType, "Class", c_playerAny) == ("Armor"))) {
         UnitInventoryMove(EventUnitInventoryItem(), 2, 10);
     }
 
-    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Enhancements"))) {
-        autoC814128F_g = UnitInventoryGroup(EventUnit());
-        autoC814128F_u = UnitGroupCount(autoC814128F_g, c_unitCountAll);
-        for (;; autoC814128F_u -= 1) {
-            autoC814128F_var = UnitGroupUnitFromEnd(autoC814128F_g, autoC814128F_u);
-            if (autoC814128F_var == null) { break; }
-            if ((UnitInventoryContainer(autoC814128F_var) == 2) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(autoC814128F_var), "Class", c_playerAny) == ("Enhancements"))) {
-                lv_openEnhancementSlot[(UnitInventorySlot(autoC814128F_var) - 21)] = false;
-                lv_enhancementSlotsAvailable -= 1;
-            }
-
-        }
-        if ((lv_enhancementSlotsAvailable != 0)) {
-            autoBD30F46E_ae = gf_GetEnhancementSlots(UnitInventoryUnit(EventUnitInventoryItem()));
-            autoBD30F46E_var = 1;
-            for ( ; autoBD30F46E_var <= autoBD30F46E_ae; autoBD30F46E_var += 1 ) {
-                if ((lv_openEnhancementSlot[autoBD30F46E_var] == true)) {
-                    UnitInventoryMove(EventUnitInventoryItem(), 2, (autoBD30F46E_var + 21));
-                }
-
-            }
-        }
-        else {
-            auto13D1F688_ae = gf_GetEnhancementSlots(UnitInventoryUnit(EventUnitInventoryItem()));
-            auto13D1F688_var = 1;
-            for ( ; auto13D1F688_var <= auto13D1F688_ae; auto13D1F688_var += 1 ) {
-                UnitInventoryMove(EventUnitInventoryItem(), 2, (auto13D1F688_var + 21));
-            }
-        }
+    if ((CatalogFieldValueGet(c_gameCatalogItem, lv_itemType, "Class", c_playerAny) == ("Enhancements"))) {
+        gf_EquipEnhancement(EventUnit(), EventUnitInventoryItem());
     }
 
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_EquipItem_Init () {
-    gt_EquipItem = TriggerCreate("gt_EquipItem_Func");
-    TriggerAddEventUnitInventoryChange(gt_EquipItem, null, c_unitInventoryChangeUses, null);
+void gt_EquipItemMagazine_Init () {
+    gt_EquipItemMagazine = TriggerCreate("gt_EquipItemMagazine_Func");
+    TriggerAddEventUnitInventoryChange(gt_EquipItemMagazine, null, c_unitInventoryChangeUses, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -24287,7 +24352,17 @@ bool gt_QuickUseItem_Func (bool testConds, bool runActions) {
         auto8084B81A_var = UnitGroupUnitFromEnd(auto8084B81A_g, auto8084B81A_u);
         if (auto8084B81A_var == null) { break; }
         if ((UnitInventoryContainer(auto8084B81A_var) == 1) && (UnitInventorySlot(auto8084B81A_var) == 2)) {
-            if ((UnitGetType(auto8084B81A_var) == "Bandage")) {
+            if (((UnitGetType(auto8084B81A_var) == "AmmoBox") || (UnitGetType(auto8084B81A_var) == "Magazine")) && (ItemGetChargeCount(auto8084B81A_var, false) > 0.0)) {
+                if ((UnitGetType(auto8084B81A_var) == "Magazine") && (ItemGetChargeCount(auto8084B81A_var, false) == 1.0)) {
+                    UnitRemove(auto8084B81A_var);
+                }
+                else {
+                    UnitAddChargeUsed(auto8084B81A_var, "Ammo/Magazine", 1.0);
+                }
+                gf_UseMagazine(EventUnit());
+                return true;
+            }
+            else if ((UnitGetType(auto8084B81A_var) == "Bandage")) {
                 if ((TriggerIsEnabled(gt_NavyCrossCheck) == true)) {
                     TriggerExecute(gt_NavyCrossCheck, false, false);
                 }
@@ -24313,8 +24388,36 @@ bool gt_QuickUseItem_Func (bool testConds, bool runActions) {
 
                 return true;
             }
+            else if ((UnitGetType(auto8084B81A_var) == "AntiVenom")) {
+                if ((ItemGetChargeCount(auto8084B81A_var, false) == 1.0)) {
+                    UnitInventoryRemove(auto8084B81A_var);
+                }
+                else {
+                    UnitAddChargeUsed(auto8084B81A_var, "Abil/Medpack", 1.0);
+                }
+                UnitCreateEffectUnit(EventUnit(), "AntiVenomSet", EventUnit());
+                return true;
+            }
+            else if ((UnitGetType(auto8084B81A_var) == "RoadFlare")) {
+                if ((ItemGetChargeCount(auto8084B81A_var, false) == 1.0)) {
+                    UnitInventoryRemove(auto8084B81A_var);
+                }
+                else {
+                    UnitAddChargeUsed(auto8084B81A_var, "Abil/RoadFlare", 1.0);
+                }
+                UnitCreateEffectUnit(EventUnit(), "RoadFlareSpawn", EventUnit());
+                return true;
+            }
             else if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto8084B81A_var), "Class", c_playerAny) == ("Weapons"))) {
                 UnitInventoryMove(auto8084B81A_var, 2, 6);
+                return true;
+            }
+            else if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto8084B81A_var), "Class", c_playerAny) == ("Armor"))) {
+                UnitInventoryMove(auto8084B81A_var, 2, 10);
+                return true;
+            }
+            else if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto8084B81A_var), "Class", c_playerAny) == ("Enhancements"))) {
+                gf_EquipEnhancement(EventUnit(), auto8084B81A_var);
                 return true;
             }
         }
@@ -24376,6 +24479,7 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
     int init_i;
 
     // Variable Declarations
+    string lv_itemType;
     int lv_triggeringPlayer;
     bool lv_noWeapon;
     bool lv_noArmor;
@@ -24396,10 +24500,11 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
     int auto674E227F_var;
 
     // Variable Initialization
+    lv_itemType = UnitGetType(EventUnitInventoryItem());
     lv_triggeringPlayer = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
     lv_noWeapon = true;
     lv_noArmor = true;
-    lv_quickUse = true;
+    lv_quickUse = gv_quickSort[lv_triggeringPlayer];
     for (init_i = 0; init_i <= 3; init_i += 1) {
         lv_openEnhancementSlot[init_i] = true;
     }
@@ -24409,7 +24514,7 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Weapons"))) {
+    if (((lv_itemType == "Medpack") || (lv_itemType == "Bandage") || (CatalogFieldValueGet(c_gameCatalogItem, lv_itemType, "Class", c_playerAny) == ("Weapons"))) && (UnitInventoryContainer(EventUnitInventoryItem()) != 2)) {
         auto386449FA_g = UnitInventoryGroup(EventUnit());
         auto386449FA_u = UnitGroupCount(auto386449FA_g, c_unitCountAll);
         for (;; auto386449FA_u -= 1) {
@@ -24418,7 +24523,7 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
             if ((UnitInventoryContainer(auto386449FA_var) == 2) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons"))) {
                 lv_noWeapon = false;
             }
-            else if ((UnitInventoryContainer(auto386449FA_var) == 1) && (UnitInventorySlot(auto386449FA_var) == 2) && ((UnitGetType(auto386449FA_var) == "Medpack") || (UnitGetType(auto386449FA_var) == "Bandage") || (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons")))) {
+            if ((UnitInventoryContainer(auto386449FA_var) == 1) && (UnitInventorySlot(auto386449FA_var) == 2) && ((UnitGetType(auto386449FA_var) == "Medpack") || (UnitGetType(auto386449FA_var) == "Bandage") || (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(auto386449FA_var), "Class", c_playerAny) == ("Weapons")))) {
                 lv_quickUse = false;
             }
         }
@@ -24428,13 +24533,13 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
         else if ((lv_quickUse == true)) {
             UnitInventoryMove(EventUnitInventoryItem(), 1, 2);
         }
-        if (gv_gPRWall && (UnitGetType(EventUnitInventoryItem()) == "GaussRifle")) {
+        if (gv_gPRWall && (lv_itemType == "GaussRifle")) {
             gv_gPRWall = false;
             gf_RemoveUnits(UnitGroup("EnemyPathingBlocker1x1", 10, RegionFromId(73), UnitFilter(0, 0, 0, 0), 0));
         }
     }
 
-    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Armor"))) {
+    if ((CatalogFieldValueGet(c_gameCatalogItem, lv_itemType, "Class", c_playerAny) == ("Armor"))) {
         auto1683AA95_g = UnitInventoryGroup(EventUnit());
         auto1683AA95_u = UnitGroupCount(auto1683AA95_g, c_unitCountAll);
         for (;; auto1683AA95_u -= 1) {
@@ -24451,7 +24556,7 @@ bool gt_ItemGained_Func (bool testConds, bool runActions) {
 
     }
 
-    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("Enhancements"))) {
+    if ((CatalogFieldValueGet(c_gameCatalogItem, lv_itemType, "Class", c_playerAny) == ("Enhancements"))) {
         autoEE71E73D_g = UnitInventoryGroup(EventUnit());
         autoEE71E73D_u = UnitGroupCount(autoEE71E73D_g, c_unitCountAll);
         for (;; autoEE71E73D_u -= 1) {
@@ -24523,61 +24628,6 @@ bool gt_DropMagazine_Func (bool testConds, bool runActions) {
 void gt_DropMagazine_Init () {
     gt_DropMagazine = TriggerCreate("gt_DropMagazine_Func");
     TriggerAddEventUnitAbility(gt_DropMagazine, null, AbilityCommand("DropMagazine", 0), c_unitAbilStageComplete, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Magazine Use
-//--------------------------------------------------------------------------------------------------
-bool gt_MagazineUse_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string lv_itemType;
-    int lv_selectingPlayer;
-    int lv_originAmmo;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_itemType = UnitGetType(EventUnitInventoryItem());
-    lv_selectingPlayer = UnitGetOwner(EventUnit());
-    lv_originAmmo = gv_marineMags[lv_selectingPlayer];
-
-    // Conditions
-    if (testConds) {
-        if (!(((lv_itemType == "AmmoBox") || (lv_itemType == "Magazine")))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if (true) {
-        if ((gv_currentDailyChallenge == ge_DailyChallenge_AmmoShortage) && (gv_dailyChallengeActivated == true)) {
-            gf_UpdateMagazineCount(1, ge_AmmoChange_Increase, lv_selectingPlayer);
-        }
-        else {
-            gf_UpdateMagazineCount(3, ge_AmmoChange_Increase, lv_selectingPlayer);
-        }
-        if ((lv_originAmmo <= 0) && (gv_marineRounds[lv_selectingPlayer] <= 0) && (gv_reloading[lv_selectingPlayer] == false) && (UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1) != "Crowbar")) {
-            gf_ReloadMagazine(lv_selectingPlayer, EventUnit(), ge_ReloadType_Perfect, UnitWeaponGet(gv_marineHero[lv_selectingPlayer], 1));
-        }
-        else {
-            gf_EquipmentUpdateMarineWeight(lv_selectingPlayer, true);
-            gf_UpdateAmmoDialog(lv_selectingPlayer);
-        }
-    }
-    else {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Magazine", 0, 10, UnitGetPosition(EventUnit()));
-        UnitAddChargeUsed(UnitLastCreated(), "Ammo/Magazine", 2.0);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_MagazineUse_Init () {
-    gt_MagazineUse = TriggerCreate("gt_MagazineUse_Func");
-    TriggerAddEventUnitInventoryChange(gt_MagazineUse, null, c_unitInventoryChangeUses, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -50927,12 +50977,11 @@ void InitTriggers () {
     gt_UpdateWeightItems_Init();
     gt_ItemTransferBlock_Init();
     gt_UnequipItem_Init();
-    gt_EquipItem_Init();
+    gt_EquipItemMagazine_Init();
     gt_QuickUseItem_Init();
     gt_ItemDropChangetoNeutral_Init();
     gt_ItemGained_Init();
     gt_DropMagazine_Init();
-    gt_MagazineUse_Init();
     gt_StackMagsIntoBox_Init();
     gt_AmmoBoxPickedUp_Init();
     gt_AmmoBoxLost_Init();
