@@ -1,5 +1,22 @@
 # Current Changes & Bugfixes Tracklist
 
+2022-1-1
+[ThunderRazor]
+- Fixed bug where picking up a Weapon when inventory is full causes game to crash
+- Added Quick Use for Ammo/Box, Armor, Anti-Venom, Road Flare, and Enhancement Items
+- Added Quick Sort (Numpad 3) - Enables/Disables moving Medpacks/Weapons to Slot 1
+- Added '-sf' or '-smart follow' command
+- - When Enabled, scan move on any Marine to activate
+- - Smart move on ground to follow nearest Marine (AI/ Leavers Only)
+- - Hold position to deactivate
+- - Smart Follow keeps the unit near but not touching the Marine.
+- - Behavior applies to Marines, FO Minies, and Field Nexus only.
+- - Marine Medics on smart follow will perform basic Field Medic duties.
+- Allowed adding AI Marines
+- - AI Marines always choose Rifleman/Medic/Assault/Flamer/Tech
+- - AI Marines always share control
+- - AI Marines and Leavers have Smart Follow Enabled by default
+
 2021-11-8
 [ThunderRazor]
 - Fixed bugs with random class selection.

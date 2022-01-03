@@ -126,7 +126,7 @@
             <ValidatorArray value="CasterShieldsLT10"/>
             <Chance value="1"/>
             <Cost>
-                <Cooldown TimeUse="300"/>
+                <Cooldown TimeUse="200"/>
             </Cost>
         </DamageResponse>
     </CBehaviorBuff>
@@ -414,7 +414,7 @@
     <CBehaviorBuff id="CooldownCounter">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="300"/>
+        <Duration value="200"/>
     </CBehaviorBuff>
     <CBehaviorAttribute id="Insignia">
         <Alignment value="Positive"/>
