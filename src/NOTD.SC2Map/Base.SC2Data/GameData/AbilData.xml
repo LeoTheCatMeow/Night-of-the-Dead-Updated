@@ -34,6 +34,8 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="Initial"/>
         <Effect value="Initial"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="45"/>
@@ -45,6 +47,7 @@
         <CursorEffect value="DummySearch"/>
         <LevelButtonTooltip value="Level 2 Air Strike"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AirStrike"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Adrenaline">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -547,6 +550,7 @@
     <CAbilEffectTarget id="Flare">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Flare"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Effect index="0" value="FlareCreateRevealDummy"/>
         <Cost>
@@ -558,6 +562,7 @@
         <UninterruptibleArray index="Prep" value="1"/>
         <ValidatedArray index="Approach" value="0"/>
         <ValidatedArray index="Finish" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="HurlBoulders">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -879,11 +884,13 @@
     <CAbilEffectInstant id="RemoteSelfDestruct">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="RemoteSelfDestructSearch"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
             <Cooldown TimeUse="1"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="RemoteSelfDestruct"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Repair">
         <Flags index="AutoCastOn" value="1"/>
@@ -1222,6 +1229,8 @@
         <EffectRange index="0" value="3,15"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="NoQuarter"/>
         <CursorEffect value="NoQuarterSearchDummy"/>
+        <Flags index="AutoCast" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="ImprovedCoolantLines">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1349,6 +1358,8 @@
         <Effect index="0" value="AssaultJumpLaunchLevel1"/>
         <Effect value="AssaultJumpLaunchLevel2"/>
         <Effect value="AssaultJumpLaunchLevel3"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="15"/>
@@ -1372,6 +1383,7 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AssaultJump"/>
         <ErrorAlert value="Error"/>
         <TargetFilters value="Visible;Player,Ally,Neutral,Missile,Destructible,Item,Dead,Invulnerable"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="ComingInHot">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2953,9 +2965,11 @@
         <LevelButtonTooltip value="Level 2 Burst Fire"/>
         <LevelButtonTooltip value="Burst Fire Level 3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="BurstFire" Requirements="FlamerEquipped"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <TargetFilters value="-;Player,Ally,Item,Invulnerable"/>
         <AutoCastFilters value="-;Player,Ally"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Faith">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3027,6 +3041,9 @@
         <LevelButtonTooltip value="Level 3 Plasma Discharge"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PlasmaDischarge"/>
         <CursorEffect value="PlasmaDischargeSearchDummy"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="TX179Asgard">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3057,6 +3074,9 @@
         <Range value="12"/>
         <AINotifyEffect value=""/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Inferno"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilLearn id="LearnFlamethrower">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3188,6 +3208,7 @@
         <Effect index="0" value="SmiteSearchLevel1"/>
         <Effect value="SmiteSearchLevel2"/>
         <Effect value="SmiteSearchLevel3"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="BestUnit" value="0"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
@@ -3201,6 +3222,7 @@
         <LevelButtonTooltip value="Level 2 SmiteLevel 2 SmiteRangeLevel 2 SmiteLevel 2 Smite"/>
         <LevelButtonTooltip value="Level 3 SmiteLevel 3 SmiteRangeLevel 3 SmiteLevel 3 Smite"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Smite"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="PredatorCloak">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3227,12 +3249,15 @@
         <LevelButtonTooltip value="Level 2 Supply Station"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SupplyStationLevel1"/>
         <CursorEffect value="SupplyStationSearchLevel1"/>
+        <Flags index="AutoCast" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="FireMission">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="FireMissionLevel1CreatePersistent"/>
         <Effect value="FireMissionLevel2CreatePersistent"/>
         <Effect value="FireMissionLevel3CreatePersistent"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="8"/>
@@ -3251,6 +3276,7 @@
         <LevelButtonTooltip value="Fire Mission Level 3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="FireMission"/>
         <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilBehavior id="InfantrySpecialization">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3373,8 +3399,11 @@
         <Range value="90"/>
         <CursorEffect value="ArtillerySearchAreaDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="NapalmBarrage"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="OdinBarrage">
         <Flags index="RequireTargetVision" value="0"/>
@@ -3390,11 +3419,14 @@
         <Effect index="0" value="SelfDestructSet"/>
         <Cost/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SelfDestruct"/>
+        <Flags index="AutoCast" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="ShockwaveBarrage">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
         <Effect index="0" value="ShockwaveBarrageLevel1CreatePersistent"/>
         <Effect value="ShockwaveBarrageLevel2CreatePersistent"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="5"/>
@@ -3413,10 +3445,12 @@
         <LevelButtonTooltip value="Level 2 Shockwave Barrage"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ShockwaveBarrage"/>
         <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilTrain id="SummonMercenaries"/>
     <CAbilEffectTarget id="SurveillanceFlare">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="10"/>
@@ -3437,6 +3471,7 @@
         <ValidatedArray index="Approach" value="0"/>
         <ValidatedArray index="Finish" value="1"/>
         <TargetFilters value="Hallucination;Player,Ally,Neutral"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="ForcePush">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3739,6 +3774,9 @@
         <ProgressButtonArray index="Channel" value="HellfireMissiles"/>
         <TargetFilters value="-;Player,Ally,Neutral"/>
         <CursorEffect value="HellfireMissleDamageEnemies"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="MindMeld">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3801,6 +3839,7 @@
         <UninterruptibleArray index="Prep" value="1"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PrecisionShot"/>
         <IgnoreFilters value="Visible;Player,Ally,Neutral,Item,Dead,Hidden,Invulnerable"/>
+        <Flags index="AutoCast" value="1"/>
     </CAbilEffectTarget>
     <CAbilLearn id="LearnPsiOps">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3869,6 +3908,7 @@
         <Range value="3"/>
         <LevelButtonTooltip value="Level 2 Sonic Trap"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrapLevel1"/>
+        <Flags index="AutoCast" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="SonicTrapLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3923,6 +3963,8 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="TacticalNuke" Requirements=""/>
         <CmdButtonArray index="Cancel" DefaultButtonFace=""/>
         <Effect index="0" value="NukeCreateRevealDummy"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Vital index="Energy" value="50"/>
@@ -3935,6 +3977,8 @@
         <ProgressButtonArray index="Prep" value="TacticalNuke"/>
         <PrepTime value="0"/>
         <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
+        <AutoCastFilters value="-;Player,Ally"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="ReaperMK13">
         <Alignment value="Positive"/>
@@ -4519,8 +4563,10 @@
         <CursorEffect value="GrenadeLevel1Damage"/>
         <PrepTime value="0.2"/>
         <FinishTime value="2"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
         <AINotifyEffect value=""/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectTarget>
     <CAbilInventory id="InventoryRifleman" parent="InventoryTemplate" EquipmentBag="Equipment" SlotCount="6">
         <Name value="Abil/Name/InventoryRifleman"/>
@@ -4768,7 +4814,9 @@
             <Cooldown TimeUse="12"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="Repulse"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Transient" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="RogueGhostCloak2">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -4828,8 +4876,10 @@
         <LevelButtonTooltip value="Saline IV Level 3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SalineIV"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
+        <AutoCastValidatorArray value="Never"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Satchel">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>

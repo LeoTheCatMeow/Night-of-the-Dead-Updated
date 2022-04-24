@@ -1795,6 +1795,7 @@
         <EditorCategories value="Race:Terran"/>
         <BehaviorLink value="OpenWound"/>
         <Count value="5"/>
+        <ValidatorArray value="isNotApoptosis"/>
     </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="VRL772RemoveCripple">
         <EditorCategories value="Race:Terran"/>
@@ -11039,7 +11040,7 @@
         <ImpactUnitValidator value="TargetIsNotAllyOrPlayer"/>
         <AreaArray Radius="5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
-        <AttributeBonus index="Massive" value="100"/>
+        <AttributeBonus index="Massive" value="150"/>
     </CEffectDamage>
     <CEffectDamage id="StingerMK3DamageAllies">
         <EditorCategories value=""/>

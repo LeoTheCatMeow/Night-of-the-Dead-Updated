@@ -406,6 +406,12 @@ Attribute005/Value007/Name=NMAC
 Attribute005/Value008/Name=NMSurv
 Attribute005/Value009/Name=NMSec
 Attribute005/Value010/Name=AnyNM
+Attribute006/Desc=Allow active players to autocast certain target-based skills such as Rifleman Grenade. AI scripts use Enemy/Ally filters to safely execute AOE skills. This feature is always enabled for AI marines and leavers.
+Attribute006/Name=Smart Autocast
+Attribute006/Value001/Desc=Active players can autocast certain target-based skills.
+Attribute006/Value001/Name=Enabled
+Attribute006/Value002/Desc=Only leavers and AI marines can autocast target-based skills.
+Attribute006/Value002/Name=Disabled
 Attribute007/Desc=Enforces merits and demerits. It is recommended to disable this option in a private lobby and keep enabled in a public lobby. Use demerits to help protect the team from abusive players. Abusive players will lose access to advanced selections and items.
 Attribute007/Name=Merits
 Attribute007/Value001/Desc=Merits and demerits will be enforced.
@@ -2344,6 +2350,17 @@ DocInfo/PatchNote228=- Allowed adding AI Marines
 DocInfo/PatchNote229=- - AI Marines always choose Rifleman/Medic/Assault/Flamer/Tech
 DocInfo/PatchNote230=- - AI Marines always share control
 DocInfo/PatchNote231=- - AI Marines and Leavers have Smart Follow Enabled by default
+DocInfo/PatchNote232=[ThunderRazor]
+DocInfo/PatchNote233=- Fixed issue where merit upvotes did not balance for shop selection.
+DocInfo/PatchNote234=- Stinger damage versus massive from 400 to 450 (to offset splash nerfing)
+DocInfo/PatchNote235=- Method to recover bank files corrupted by bootcamp (unassigned weapon mods cannot be recovered)
+DocInfo/PatchNote236=- Disabled Elite Mutation when not enough veterans.
+DocInfo/PatchNote237=- Disabled VRL Remove Open Wound during Apoptosis boss fight.
+DocInfo/PatchNote238=- Slightly improved medic AI efficiency (will only target heroics; slightly adjusted thresholds)
+DocInfo/PatchNote239=- Smart Autocast. Most AOE-based skills on autocast will be controlled by AI.
+DocInfo/PatchNote240=- - You can disable this option in a Private Lobby.
+DocInfo/PatchNote241=- - Type -ac or -autocast to show help on smart autocast.
+DocInfo/PatchNote242=- - Please note that smart follow and smart autocast are still experimental.
 DocInfo/Screenshot01=Employ your wit to fight bosses
 DocInfo/Screenshot02=Complete many unique missions
 DocInfo/Screenshot03=Work together and win as a team
@@ -4359,49 +4376,72 @@ One Shot, One Kill Level 2=Deals 600 damage to target unit. <n/><n/>+30% damage 
 One Shot, One Kill Level 3=Kills non-Heroics instantly. Deals 800 +1.2% of current HP damage to Bosses.<n/><n/>+30% base damage and additional +0.3% current HP damage with Barrett equipped. Percentage damage requires Concentration stack.
 Param/Expression/0019D00A=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> designates <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/01B171F0=<n/><s val="GlueButtonSmall">Class Traits<n/>Tank ~A~  |  Damage ~B~  |  Micro ~C~  |  Squishy ~D~<n/>Stealth ~E~  |  Dangerous ~F~  |  Crowd Control ~G~
+Param/Expression/02F3B067=Supply station/tower autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/05D1FF35=Defend ~A~
+Param/Expression/08D83942= for ~A~
+Param/Expression/094C3A09=Trap autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/0972D6BC=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
+Param/Expression/0A738460=Inferno autocast targets <c val="80FF00">~A~</c> minimum~B~.
+Param/Expression/0D8E0CA0=Smite autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
+Param/Expression/11B2DF7E=Nuke/ScorchE/NoQ autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/12668883=<s val="GlueButtonSmall">Security Team: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
+Param/Expression/13EDC53F=Burst fire autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/142E3EDE=Wave ~A~
+Param/Expression/16A1BCEB=Repulse autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/17F31179=<s val="GlueButtonSmall">Alpha Company: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
 Param/Expression/18B09A35=~A~ has rolled a <c val="00FF00">~B~</c>
 Param/Expression/1D67EC0B=<c val="FF0000"> ~A~</c> has been pardoned by <c val="0080FF">~B~</c>.
 Param/Expression/1E570E34=Ammo Box (~A~)
+Param/Expression/206B4289=Air strike autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/207EADA5=<s val="GlueButtonSmall">Rec/Norm: <c val="71E100">~A~</c></s>
 Param/Expression/20BD633D=Designate ~A~
 Param/Expression/25E02CAF=<s val="GlueButtonSmall">Wins per Game: <c val="FFCE09">~A~%</c> (~B~/~C~)</s>
+Param/Expression/289BEFE4=Flare autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/2FE78331=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/31E5524F=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/32F4B8C8=+<c val="FFFF80">~A~</c> XP and<c val="FFFF80"> ~B~</c> Rating for Daily Challenge Bonus
+Param/Expression/37A01CEE=Shock barrage autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/3AB49B51=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/3E2A6258=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend <c val="[d Player='~ENEMYID~' GameValue='PlayerColor'/]">~ENEMY~</c>!
 Param/Expression/444E0DF8= ~A~ Class Point awarded</s>
 Param/Expression/4691678F=+<c val="FFFF80">~A~</c> XP for No Randoms Bonus
+Param/Expression/4B557E3A=P-Shot autocast heroics <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/4CE48FDE=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to defend!
 Param/Expression/4D6170D4=<s val="InfoPaneHeroRank"><c val="FBC442">(~A~ awarded...)</s></c>
 Param/Expression/4FB8FD67=~A~<n/>
+Param/Expression/4FDD40EE=Jump autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/50E65A76=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to move!
 Param/Expression/52B935CC=<c val="FF3333">~A~ other Marines are</c> ~B~
 Param/Expression/559B8D7C=~A~: ~B~
 Param/Expression/5A6C584D=<s val="GlueButtonSmall">Credits per Game: <c val="FFCE09">~A~</c></s>
 Param/Expression/606DB275=Magazine (~A~)
+Param/Expression/61DC42AB=Nade autocast targets <c val="80FF00">~A~</c> minimum~B~.
+Param/Expression/62D6E447=Nade autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/67750AE9=<s val="InfoPaneHeroRank">Scaled XP: ~A~<n/>New Players: ~C~</s>
 Param/Expression/67C68587=<s val="GlueButtonSmall">Average Class Points: <c val="FFCE09">~A~</c></s>
 Param/Expression/6A6D9888=<s val="InfoPaneHeroRank">~A~ has voted for maximum difficulty</s>
+Param/Expression/6C4759E1=Burst fire autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
+Param/Expression/6EBEEC2C=Nuke/ScorchE/NoQ autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/710E94FC=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/713D1F7E=+<c val="FFFF80">~A~</c> XP for Outbreak Bonus
 Param/Expression/72793672=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/739881FA=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, class selection and shop privileges are temporarily revoked.</c>
 Param/Expression/749F018B=Survive (Wave ~A~/40)
 Param/Expression/75C0939E=<s val="GlueButtonSmall">NM Win Rate: <c val="FFCE09">0%</c></s>
+Param/Expression/7810E43C=Saline autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
+Param/Expression/7A0436F8=Plasma discharge/Satchel/Hellfire autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/7BD87709=<s val="HeaderExtendedTemplate">~A~</s>
+Param/Expression/7EFF8D40=Jump autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/8074E518=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/81A0B422=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
 Param/Expression/8261F9D4=+<c val="FFFF80">~A~ </c>XP for Speed Bonus
 Param/Expression/8535570E=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> signals to retreat!
+Param/Expression/853F8455=Supply station autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/876B094F=~A~WARNING: ~B~ is Unstable. Play at your own Risk! ~C~
+Param/Expression/87E8CAB9=P-Shot autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/8EAFA28F=<s val="GlueButtonSmall">Hell: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
 Param/Expression/8F6674B0=+<c val="FFFF80">~A~</c> XP for All Random Bonus
+Param/Expression/91E5BD5C=Shock barrage autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/96D8D1C9=<s val="GlueButtonSmall">NM Win Rate: <c val="FFCE09">~A~%</c> (~B~/~C~)</s>
 Param/Expression/9D83CC11=<c val="FFCE09">1 other Marine is</c> ~B~
 Param/Expression/A1DF7D2C=<s val="GlueButtonSmall">~A~ - <c val="71E100">Wins</c> (<c val="49ABF3">Speed</c>) (<c val="E10000">NM</c>) (<c val="F1D845">NM Speed</c>) (<c val="DB48FF">Hell</c>)</s>
@@ -4409,21 +4449,36 @@ Param/Expression/A5DC8985=Attack ~A~
 Param/Expression/A8C81CB5=<s val="GlueButtonSmall">Class Point Variation: <c val="FFCE09">~A~</c></s>
 Param/Expression/A91F7F6B=~A~~B~~C~
 Param/Expression/ABAE731B=~A~/~B~
+Param/Expression/B4077A9F=Tower autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
+Param/Expression/B82AF5D1=Tower autocast targets <c val="80FF00">~A~</c> minimum~B~.
+Param/Expression/BBB9B1AA=Self-destruct life <c val="80FF00">~A~</c>%~B~.
 Param/Expression/C6F9A88B=<s val="GlueButtonSmall">Easy Company: <c val="71E100">~A~</c> (<c val="49ABF3">~B~</c>) (<c val="E10000">~C~</c>) (<c val="F1D845">~D~</c>)</s>
+Param/Expression/CE1F4BBB=Plasma discharge/Satchel/Hellfire autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/D0B2F76E=<s val="GlueButtonSmall">Gate State<n/>Storyline: ~A~<n/>Current Game Mode: ~B~<n/>Navy Cross Mode: ~C~<n/>Randoms Option: ~D~<n/>Random Count: ~E~<n/>Picked Count: ~F~<n/>Total Players: ~G~<n/>Human: ~H~<n/>AI: ~I~<n/>Unknown Units: ~J~</s>
+Param/Expression/D33CFC26=Napalm barrage autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/D367E33B=<c val="[d Player='~ID~' GameValue='PlayerColor'/]">~PLAYER~</c> wants to attack!
 Param/Expression/D3BA9547=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/D3BD4BE9=Fire mission autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Expression/D5EBFD15=<s val="InfoPaneHeroRank"><c val="FFFF00">The game will continue with maximum difficulty</c></s>
+Param/Expression/D6658FFC=Inferno autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
+Param/Expression/D73214E4=Fire mission autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/D7FE6A11=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
 Param/Expression/D8CA59A1=You are considered <c val="FF4040">abusive</c> by ~A~ or more players.<n/><c val="F5D62B">For their safety, shop privilege is temporarily revoked.</c>
 Param/Expression/D9838420=+<c val="FFFF80">~A~ </c>XP for Elite Mutation Bonus
 Param/Expression/E3956D74=<s val="GlueButtonSmall">Mods - <c val="71E100">EM</c> (<c val="FFAC62">OB</c>) (<c val="DB48FF">EM+OB</c>)</s>
+Param/Expression/E491646D=Napalm barrage autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/E6D26B07=<s val="GlueButtonSmall">Survival: <c val="71E100">~A~</c> (<c val="E10000">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
+Param/Expression/ECC0DE08=Air strike autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/EFDB5152=~A~: ~B~
 Param/Expression/F405B274=<s val="GlueButtonSmall">Nightmare: <c val="71E100">~A~</c> (<c val="FFAC62">~B~</c>) (<c val="DB48FF">~C~</c>)</s>
+Param/Expression/F5242D83=Trap autocast targets <c val="80FF00">~A~</c> minimum~B~.
+Param/Expression/F9AC0382=Self-destruct autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/FC24AE7C=<s val="BriefingHanText">(~A~ Infestors remaining..)</s>
 Param/Expression/FC67CADC=<s val="GlueButtonSmall">XP per Game: <c val="FFCE09">~A~</c></s>
+Param/Expression/FC8B89DF=Flare autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
+Param/Expression/FCB1BD3F=Smite autocast targets <c val="80FF00">~A~</c> minimum~B~.
 Param/Expression/FEC5EBF1=<s val="InfoPaneHeroRank">(~A~ awarded...)</s>
+Param/Expression/FF97AE05=Repulse autocast cooldown <c val="80FF00">~A~</c> seconds~B~.
 Param/Value/004D086A=<s val="GlueButton">Infestor
 Param/Value/004DD921= will meet Bob.</s>
 Param/Value/00AD8F43=Are you seeing this?
@@ -4711,7 +4766,7 @@ Param/Value/2E1900EB=Investigate the Communications Tower
 Param/Value/2E588F08=
 Param/Value/2E973C55=This is the last dome. We got this.
 Param/Value/2F400B8B=+1 XP for Performance Bonus
-Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | <c val="FFFF80">[-stats #</c>] Stats Check | [<c val="FFFF80">-mobs</c>] Mob Count |  [<c val="FFFF80">-sf</c>] Smart Follow | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations | [<c val="FFFF80">-skip</c>/<c val="FFFF80">-skip all</c>] Skip Cinematics | [<c val="FFFF80">-pref</c>/<c val="FFFF80">-blacklist</c>] Prefer/Blacklist Classes | [<c val="FFFF80">-roll</c>] Roll a Dice<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
+Param/Value/2F6C91CB=<s val="GlueButtonSmall">Common Commands:<n/>[<c val="FFFF80">-s</c>] Save Game | [<c val="FFFF80">-c</c>] Clear Text | [<c val="FFFF80">-sq</c>] Squad Info | [<c val="FFFF80">-civs</c>] Civilians Check | [<c val="FFFF80">-a</c>] Ammo Check | [<c val="FFFF80">-cp #</c>] CP Check | <c val="FFFF80">[-w #</c>] Wins Check | <c val="FFFF80">[-stats #</c>] Stats Check | [<c val="FFFF80">-mobs</c>] Mob Count | [<c val="FFFF80">-sf</c>] Smart Follow | [<c val="FFFF80">-help</c>] Display Help<n/><n/>Game Commands:<n/>[<c val="FFFF80">-nm</c>] Enable Nightmare | [<c val="FFFF80">-em</c>] Enable Elite Mutation | [<c val="FFFF80">-ob</c>] Enable Outbreak | [<c val="FFFF80">-nc</c>] Enable Navy Cross | [<c val="FFFF80">-nr</c>] No Random | [<c val="FFFF80">-ar</c>] All Random | [<c val="FFFF80">-max</c>] Vote for Max Difficulty Nightmare<n/><n/>Misc Commands:<n/>[<c val="FFFF80">-b</c>] Toggle Status Bar Style | [<c val="FFFF80">-qp</c>] Toggle Quiet Ping | [<c val="FFFF80">-vk #</c>] Vote Kick Player | [<c val="FFFF80">-karmabite</c>] Punish TK Player | [<c val="FFFF80">numpad 1-2</c>] Toggle Inventory | [<c val="FFFF80">numpad 3-6</c>] Certain Dance/Cheer Animations | [<c val="FFFF80">-skip</c>/<c val="FFFF80">-skip all</c>] Skip Cinematics | [<c val="FFFF80">-pref</c>/<c val="FFFF80">-blacklist</c>] Prefer/Blacklist Classes | [<c val="FFFF80">-ac</c>] Autocast | [<c val="FFFF80">-d #</c>] Debug Inventory | [<c val="FFFF80">-roll</c>] Roll a Dice<n/><n/>Training Mode:<n/>[<c val="FFFF80">-train</c>] Enable Training | [<c val="FFFF80">-level #</c>] Set Level | [<c val="FFFF80">-god</c>] God Mode| [<c val="FFFF80">-free</c>] Free Energy</s>
 Param/Value/2F787A1C=<s val="InfoPaneHeroRank">No issues found.</s>
 Param/Value/2F9BB167=Give suppressive fire and move! That thing has thick armor.
 Param/Value/2F9DE260=<c val="FF0000">(Sahaquiel prepares for a deadly descend...)</c>
@@ -4744,7 +4799,7 @@ Param/Value/333C00A9=<s val="BriefingHanText">   Balancing/Testers<n/>   HunterI
 Param/Value/335ED149=Nail all those Agrons down.
 Param/Value/338A4C58=We brought down that machine, but looks like we've got more ahead of us.
 Param/Value/3395507F=<s val="ABChoiceButtonText"><c val="FF4040">
-Param/Value/3399C292=<c val="CCCCCC">Equipment Closed</c>
+Param/Value/3399C292=<s val="GlueButtonSmall"><c val="CCCCCC">Equipment Closed</c></s>
 Param/Value/339DA5E3=+20 XP for Victory Bonus
 Param/Value/33B6A5BE=Field Marshal, I don't think it's a good idea to ask them to destroy the facility. Earth will be in an energy crisis without Apollo.
 Param/Value/3445B423=Perses is in a weakened state when charging up.
@@ -4818,7 +4873,7 @@ Param/Value/3DC9679C=We need to find a safe spot.
 Param/Value/3DD0390C=<s val="InfoPaneHeroRank">Recruit Mode</s>
 Param/Value/3E1B8894=I'm your dropship pilot. We've located a suitable LZ. You need to clear the area for me.
 Param/Value/3E1C1E17=. Removal with 2 more votes.</s>
-Param/Value/3E3025A5=Equipment Open
+Param/Value/3E3025A5=<s val="GlueButtonSmall"><c val="FFFFFF">Equipment Open</c></s>
 Param/Value/3E5FA299=Corpsman Kellen
 Param/Value/3EA0E930=Secure Airlock perimeter until decryption is complete
 Param/Value/3EC532D7=[Outbreak]
@@ -4832,7 +4887,7 @@ Param/Value/40865F64=[<c val="FF0000">Priority Transmission</c>]<n/>General Koll
 Param/Value/409F0FCD=She could be hosted anywhere if optic feeds were still live. Mars...or...even back on Earth.
 Param/Value/41199A23= vote kicked by 
 Param/Value/414A1DEB=</c></s>
-Param/Value/417765C1=Inventory Visible
+Param/Value/417765C1=<s val="GlueButtonSmall"><c val="FFFFFF">Inventory Visible</c></s>
 Param/Value/419A5261=<s val="InfoPaneHeroRank">Cinematics or Waves will NOT be skipped.</s>
 Param/Value/41AFE9EF=<s val="BriefingHanText">   Story/Concepts<n/>   Richard Lim (XaVi)</s>
 Param/Value/4201B763=<s val="InfoPaneHeroRank">Supplies delivered into battlefield..</s>
@@ -4864,7 +4919,7 @@ Param/Value/472EBABF=</c>
 Param/Value/476A1406=</c> <c val="F5D62B">for abusive behavior.</c><n/>If this is in response to a <c val="FF4040">team kill</c>, the player will incur additional penalties. Limit demerits to 10 players.
 Param/Value/477A5ACF=Put your guns down and we'll talk.
 Param/Value/4782E35D=We've heard enough from you.
-Param/Value/479AAFF6=<c val="CCCCCC">Quick Sort OFF (Numpad 3)</c>
+Param/Value/479AAFF6=<s val="GlueButtonSmall"><c val="CCCCCC">Quick Sort OFF (Numpad 3)</c></s>
 Param/Value/481CA5D5=UGC Command wants our lips sealed on this mission. Report in at 0900 hours for debriefing.
 Param/Value/4826ECBA=You cannot proceed beyond Wave 20 with less than 2 players alive.
 Param/Value/483335C5=<img width="64" height="64" path="Assets\Textures\ui-editoricon-triggereditor_newaction.dds"/>
@@ -5023,6 +5078,7 @@ Param/Value/606A90B6=Attack Zeus & Leto from behind. They have thick frontal arm
 Param/Value/60837DF9=We've restarted the Mining facilities.
 Param/Value/608D552D=Items
 Param/Value/60AE9014=+5 XP for Performance Bonus
+Param/Value/615ACA69=<s val="GlueButtonSmall">Set smart autocast follows the syntax:<n/><c val="FFD135">-ac [ability] [param] = [value]</c><n/>Examples:<n/><c val="FFD135">-ac nuke count = 10</c> (sets your nuke targets to 10 units)<n/><c val="FFD135">-ac 3 flare time = 15</c> (sets player 3's flare cooldown to 15s)<n/>Abilities:<c val="FFD135"><n/>Nuke/TK/Scorch/NoQuart,<n/>Nade, </c>(Rifleman)<c val="FFD135"><n/>Sonic/Trap, </c>(Rifleman)<c val="FFD135"><n/>Pshot,<n/>Repulse,<n/>Saline,<n/>Flare, </c>(Recon/FO)<c val="FFD135"><n/>Supply/SS,<n/>Smite,<n/>Burst, </c>(Flamethrower)<c val="FFD135"><n/>Inferno,<n/>Jump,<n/>Plasma/Satch/Hellfire missile, </c>(Engi/Demo/Recon)<c val="FFD135"><n/>Tower, </c>(Engi - Tower Build)<c val="FFD135"><n/>Remote/Self Destruct, </c>(Engi - Detonate)<c val="FFD135"><n/>Fire Mission/Arty,<n/>Shock, </c>(FO)<c val="FFD135"><n/>Napalm</c></s>
 Param/Value/616258C1=<c val="80FF00">(Sahaquiel prepares for bio bombardment...)</c>
 Param/Value/6187C54A=Watch out for huggers. Our scanners will pick them up.
 Param/Value/6189B259=Look! I see Marines!
@@ -5179,6 +5235,7 @@ Param/Value/7A2BF702=Military EVAC is underway. Find a safe and defensible spot 
 Param/Value/7A5F0DCB=
 Param/Value/7AC57705=<s val="GlueButton"><c val="F4D72B">But you can call me Charlie.</c></s>
 Param/Value/7B4DC8CD=<s val="GlueButton"><c val="F4D72B">More incoming! Huddle close to IVAX.</c>
+Param/Value/7B591CC5=You can only set autocast values for yourself, leavers, and a.i.!<n/>Type <c val="FFD135">-autocast</c> for more info.
 Param/Value/7B8010E7=<s val="BriefingHanText">(An ominous atmosphere surrounds the central tower...)</s>
 Param/Value/7B8C4D80=Prepare for exfil.
 Param/Value/7B981C01=If you have wounded, our Corpsmen are here to help.
@@ -5205,7 +5262,7 @@ Param/Value/7EBDCF5E=Enter the Colony Airlock
 Param/Value/7ED7EB38=We've got bigger problems on our hands, mate.
 Param/Value/7F3B5C2C=We're bringing you out.
 Param/Value/7F7D63B3=Zeus and Leto must be killed simultaneously to put them down permanently
-Param/Value/7F8DAFE2=Quick Sort ON (Numpad 3)
+Param/Value/7F8DAFE2=<s val="GlueButtonSmall"><c val="FFFFFF">Quick Sort ON (Numpad 3)</c></s>
 Param/Value/7F9D1519=Chemical Leak
 Param/Value/7FABFB5D=<s val="ABChoiceButtonText"><c val="2CF5CD">
 Param/Value/7FD7EB19=Move out of Demeters' vision to avoid his stare!
@@ -5425,6 +5482,7 @@ Param/Value/9EB6B8C4=It is important to assign talents everytime you Level Up. S
 Param/Value/9EE1081C=+
 Param/Value/9EEBBCDA=<s val="InfoPaneHeroRank">Select Path<n/>A - "Tell us what you know"<n/>B - "You've betrayed us for the last time, Tanaka!"</s>
 Param/Value/9EF2DD88=<s val="GlueButtonSmall">Medic: 
+Param/Value/9EFEC0A7=<s val="InfoPaneHeroRank"><c val="FF0000">Bank File Corrupt:</c> <c val="FFD135">You may have lost weapon mods.</c> Ignore this warning if you accept the loss.</s>
 Param/Value/9F2AB564=Unknown unit has died.
 Param/Value/9F67405F=Hello there.
 Param/Value/9F9EEF3E=<s val="GlueButton">Infestor
@@ -5787,7 +5845,7 @@ Param/Value/DAA0ACEF=<s val="InfoPaneHeroRank">Outbreak activated</s><n/>- Large
 Param/Value/DAB8AD38=We're not coming. Return to base.
 Param/Value/DAD3C239=We're Oscar Mike to target location.
 Param/Value/DAEA2E45=Class: 
-Param/Value/DAECF587=<c val="CCCCCC">Inventory Hidden</c> <c val="FFFFFF">(Numpad 1)</c>
+Param/Value/DAECF587=<s val="GlueButtonSmall"><c val="CCCCCC">Inventory Hidden</c> <c val="FFFFFF">(Numpad 1)</c></s>
 Param/Value/DB0896F1=I hear gunfire. Move quickly!
 Param/Value/DB2B3493=You're safe. Follow us.
 Param/Value/DB2E4586=<s val="BriefingHanText">(Airlock gates unlocked..)</s>
@@ -5953,6 +6011,7 @@ Param/Value/F318EF99=+3 XP for Mission Bonus. 60 civilians rescued.
 Param/Value/F32B148A=We got it for good.
 Param/Value/F32ED3E3=A Million Little Pieces
 Param/Value/F33DB05F=We better be ready for this.
+Param/Value/F36B8D44=
 Param/Value/F39DD32E=We're bringing you to a safe zone.
 Param/Value/F3A5AC8E=I'm sorry, I'm afraid I can't do that. You have been identified as a threat.
 Param/Value/F3E4787B=Head to the armory in the North East. Time to get some real firepower.

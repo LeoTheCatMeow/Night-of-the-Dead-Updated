@@ -187,6 +187,9 @@
         <Compare value="GT"/>
         <Behavior value="Infectious"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitFilters id="Never">
+        <Filters value="-;Player,Ally,Neutral,Enemy"/>
+    </CValidatorUnitFilters>
     <CValidatorUnitCompareBehaviorCount id="NotInfectious">
         <Behavior value="Infectious"/>
     </CValidatorUnitCompareBehaviorCount>
@@ -1711,6 +1714,9 @@
         <Value value="5"/>
         <Vital value="Shields"/>
     </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareBehaviorCount id="isNotApoptosis">
+        <Behavior value="isBossFightApoptosis"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="isNotPlayerUnit">
         <Behavior value="PlayerUnit"/>
     </CValidatorUnitCompareBehaviorCount>

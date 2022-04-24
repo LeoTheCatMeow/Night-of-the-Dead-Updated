@@ -9595,6 +9595,10 @@
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="isBossFightApoptosis">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorCreepSource id="makeCreep2x2">
         <Period value="0.7"/>
     </CBehaviorCreepSource>
